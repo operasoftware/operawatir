@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>File: INSTALL</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+  <div id="fileHeader">
+    <h1>INSTALL</h1>
+    <table class="header-table">
+    <tr class="top-aligned-row">
+      <td><strong>Path:</strong></td>
+      <td>INSTALL
+      </td>
+    </tr>
+    <tr class="top-aligned-row">
+      <td><strong>Last Update:</strong></td>
+      <td>Thu Jul 15 16:01:46 +0200 2010</td>
+    </tr>
+    </table>
+  </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <h1>Installation</h1>
+<p>
+This page describes installing and upgrading <a
+href="../classes/OperaWatir.html">OperaWatir</a> and setting up an
+automated testing system on your machine. <a
+href="../classes/OperaWatir.html">OperaWatir</a> runs on GNU/Linux and
+Windows operating systems. Other UNIX-like systems, such as BSD and OS X,
+have not been tested but should work. We recommend using Java &gt;= 1.6.0,
+JRuby &gt;= 1.4.0 (ruby 1.8.7 patchlevel 174), RubyGems &gt;= 1.3.5, RSpec
+&gt;= 1.3.0, and a somewhat recent gogi core build of Opera.
+</p>
+<h2>Fresh Installation</h2>
+<h3>GNU/Linux</h3>
+<h4>Debian</h4>
+<p>
+First, you will need to install Java on your system. On Debian you must
+either enable the non-free repositories or manually download the Sun Java
+package. To enable your non-free repositories, you need to add
+“non-free” to your default repository source in /etc/sources.list.
+lenny is the stable version of Debian, but you can replace this with
+squeeze if you are running Debian squeeze/testing:
+</p>
+<pre>
+  deb http://ftp.no.debian.org/debian/ lenny main non-free
+</pre>
+<p>
+Make sure you update your cached package lists if you enabled the non-free
+repositories:
+</p>
+<pre>
+  % sudo aptitude update
+</pre>
+<p>
+Sun Java is now easily installable:
+</p>
+<pre>
+  % sudo aptitude install sun-java6-jre
+</pre>
+<p>
+If you download the Java package manually you can install it by running the
+following command:
+</p>
+<pre>
+  % sudo dpkg -i sun-java6-jre_6.20-dlj-4_all.deb
+</pre>
+<p>
+JRuby is by Debian also considered a non-fre package, but will be available
+to the package system if you have non-free repositories enabled. If you are
+using Debian squeeze/testing and have non-free repositories enabled, it can
+be installed like this:
+</p>
+<pre>
+  % sudo aptitude install jruby
+</pre>
+<p>
+Debian lenny/stable users, or users who prefer to not enable non-free
+repositories, must download the JRuby 1.4 package manually. JRuby 1.4 is
+not yet available in Debian&#8216;s stable non-free repository, but the
+manually downloaded package can be installed like this:
+</p>
+<pre>
+  % sudo dpkg -i jruby_1.4.0-1_all.deb
+</pre>
+<p>
+When you have JRuby installed you must fetch RSpec:
+</p>
+<pre>
+  % sudo jruby -S gem install rspec
+</pre>
+<p>
+Finally, download the <a href="../classes/OperaWatir.html">OperaWatir</a>
+gem and install it, replacing the wildcard below with the correct version
+number:
+</p>
+<pre>
+  % sudo jruby -S gem install operawatir-0.0.2.*.gem
+</pre>
+<h4>Ubuntu</h4>
+<p>
+First, install Sun Java on your system by using the following command:
+</p>
+<pre>
+  % sudo aptitude install sun-java6-jre
+</pre>
+<p>
+When you have JRuby installed you must fetch RSpec:
+</p>
+<pre>
+  % sudo jruby -S gem install rspec
+</pre>
+<p>
+Finally, download the <a href="../classes/OperaWatir.html">OperaWatir</a>
+gem and install it, replacing the wildcard below with the correct version
+number:
+</p>
+<pre>
+  % sudo jruby -S gem install operawatir-0.0.2.*.gem
+</pre>
+<h3>Windows</h3>
+<p>
+First you must install Sun Java on your machine. It is available from
+Oracle&#8216;s website:
+</p>
+<pre>
+  http://java.com/en/download/
+</pre>
+<p>
+Then fetch and install JRuby:
+</p>
+<pre>
+  http://jruby.org/download
+</pre>
+<p>
+When you have JRuby installed you must fetch RSpec:
+</p>
+<pre>
+  jruby -S gem install rspec
+</pre>
+<p>
+Finally, download the <a href="../classes/OperaWatir.html">OperaWatir</a>
+gem and install it, replacing the wildcard below with the correct version
+number. Please note that you must be in the same directory as to where you
+downloaded the gem before issuing this command:
+</p>
+<pre>
+  jruby -S gem install operawatir-0.0.2.*.gem
+</pre>
+<h2>Upgrading</h2>
+<p>
+It&#8216;s important to note that if you have an old version installed on
+your system, you will most likely need to remove that to make a newer
+version work. To see the gems currently installed on your system:
+</p>
+<pre>
+  % jruby -S gem list
+</pre>
+<p>
+You can remove your old version of <a
+href="../classes/OperaWatir.html">OperaWatir</a> with this command
+(preceded by &quot;sudo&quot; if you&#8216;re on an UNIX-like system):
+</p>
+<pre>
+  % jruby -S gem uninstall OperaWatir
+</pre>
+<p>
+If everything else fails you can try include the &#8212;install-dir
+parameter to your gem&#8216;s top directory. That will remove the specified
+gem in the specified install directory.
+</p>
+<p>
+If multiple versions of <a href="../classes/OperaWatir.html">OperaWatir</a>
+are installed those could also be removed by running (also preceded by
+&quot;sudo&quot; if on UNIX):
+</p>
+<pre>
+  % jruby -S gem cleanup OperaWatir
+</pre>
+<p>
+When <a href="../classes/OperaWatir.html">OperaWatir</a> has been removed
+from your system you can proceed with installing the new version, following
+the installation instructions above.
+</p>
+
+    </div>
+
+
+   </div>
+
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

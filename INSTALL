@@ -1,0 +1,128 @@
+= Installation
+
+This page describes installing and upgrading OperaWatir and setting up
+an automated testing system on your machine.  OperaWatir runs on
+GNU/Linux and Windows operating systems.  Other UNIX-like systems, such
+as BSD and OS X, have not been tested but should work.  We recommend
+using Java >= 1.6.0, JRuby >= 1.4.0 (ruby 1.8.7 patchlevel 174),
+RubyGems >= 1.3.5, RSpec >= 1.3.0, and a somewhat recent gogi core
+build of Opera.
+
+== Fresh Installation
+
+=== GNU/Linux
+
+==== Debian
+
+First, you will need to install Java on your system. On Debian you must
+either enable the non-free repositories or manually download the Sun
+Java package.  To enable your non-free repositories, you need to add
+“non-free” to your default repository source in /etc/sources.list.  lenny
+is the stable version of Debian, but you can replace this with squeeze
+if you are running Debian squeeze/testing: 
+
+  deb http://ftp.no.debian.org/debian/ lenny main non-free
+
+Make sure you update your cached package lists if you enabled the
+non-free repositories: 
+
+  % sudo aptitude update
+
+Sun Java is now easily installable: 
+
+  % sudo aptitude install sun-java6-jre
+
+If you download the Java package manually you can install it by running
+the following command: 
+
+  % sudo dpkg -i sun-java6-jre_6.20-dlj-4_all.deb
+
+JRuby is by Debian also considered a non-fre package, but will be
+available to the package system if you have non-free repositories
+enabled.  If you are using Debian squeeze/testing and have non-free
+repositories enabled, it can be installed like this: 
+
+  % sudo aptitude install jruby
+
+Debian lenny/stable users, or users who prefer to not enable non-free
+repositories, must download the JRuby 1.4 package manually.  JRuby 1.4 is
+not yet available in Debian's stable non-free repository, but the
+manually downloaded package can be installed like this: 
+
+  % sudo dpkg -i jruby_1.4.0-1_all.deb
+
+When you have JRuby installed you must fetch RSpec: 
+
+  % sudo jruby -S gem install rspec
+
+Finally, download the OperaWatir gem and install it, replacing the
+wildcard below with the correct version number: 
+
+  % sudo jruby -S gem install operawatir-0.0.2.*.gem
+
+
+==== Ubuntu
+
+First, install Sun Java on your system by using the following command:
+
+  % sudo aptitude install sun-java6-jre
+
+When you have JRuby installed you must fetch RSpec:
+
+  % sudo jruby -S gem install rspec
+
+Finally, download the OperaWatir gem and install it, replacing the
+wildcard below with the correct version number: 
+
+  % sudo jruby -S gem install operawatir-0.0.2.*.gem
+
+
+=== Windows
+
+First you must install Sun Java on your machine.  It is available from
+Oracle's website: 
+
+  http://java.com/en/download/
+
+Then fetch and install JRuby: 
+
+  http://jruby.org/download 
+
+When you have JRuby installed you must fetch RSpec: 
+
+  jruby -S gem install rspec
+
+Finally, download the OperaWatir gem and install it, replacing the
+wildcard below with the correct version number.  Please note that you
+must be in the same directory as to where you downloaded the gem before
+issuing this command:
+
+  jruby -S gem install operawatir-0.0.2.*.gem
+
+
+== Upgrading
+
+It's important to note that if you have an old version installed on your
+system, you will most likely need to remove that to make a newer version
+work.  To see the gems currently installed on your system: 
+
+  % jruby -S gem list
+
+You can remove your old version of OperaWatir with this command
+(preceded by "sudo" if you're on an UNIX-like system): 
+
+  % jruby -S gem uninstall OperaWatir
+
+If everything else fails you can try include the --install-dir parameter
+to your gem's top directory.  That will remove the specified gem in the
+specified install directory. 
+
+If multiple versions of OperaWatir are installed those could also be
+removed by running (also preceded by "sudo" if on UNIX): 
+
+  % jruby -S gem cleanup OperaWatir
+
+When OperaWatir has been removed from your system you can proceed with
+installing the new version, following the installation instructions
+above.
+
