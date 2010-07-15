@@ -34,12 +34,12 @@ Rake::GemPackageTask.new(spec) do |p|
 end
 
 Rake::RDocTask.new do |rdoc|
-  files =['README', 'LICENSE', 'lib/**/*.rb']
+  files =['README', 'LICENSE', 'INSTALL', 'TUTORIAL', 'lib/**/*.rb']
   rdoc.rdoc_files.add(files)
   rdoc.main = "README" # page to start on
-  rdoc.title = "OperaWatir Docs"
-  rdoc.rdoc_dir = 'doc/rdoc' # rdoc output folder
-  rdoc.options << '--line-numbers'
+  rdoc.title = "OperaWatir Documentation"
+  rdoc.rdoc_dir = 'doc' # rdoc output folder
+  rdoc.options = '--line-numbers', '--charset=utf-8'
 end
 
 Rake::TestTask.new do |t|
