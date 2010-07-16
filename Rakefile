@@ -34,7 +34,7 @@ Rake::GemPackageTask.new(spec) do |p|
 end
 
 Rake::RDocTask.new do |rdoc|
-  files =['README', 'LICENSE', 'INSTALL', 'TUTORIAL', 'lib/**/*.rb']
+  files = ['README', 'LICENSE', 'INSTALL', 'TUTORIAL', 'lib/**/*.rb']
   rdoc.rdoc_files.add(files)
   rdoc.main = "README" # page to start on
   rdoc.title = "OperaWatir Documentation"
