@@ -14,8 +14,8 @@ require 'spec/rake/spectask'
 spec = Gem::Specification.new do |s|
   s.name = 'OperaWatir'
   s.version = '0.2.2.100709'
-  s.has_rdoc = false
-  #s.extra_rdoc_files = ['README', 'LICENSE']
+  s.has_rdoc = true
+  s.extra_rdoc_files = ['README', 'LICENSE', 'INSTALL']
   s.summary = 'OperaWatir on OperaDriver engine'
   s.description = s.summary
   s.author = 'Deniz Turkoglu'
@@ -34,7 +34,7 @@ Rake::GemPackageTask.new(spec) do |p|
 end
 
 Rake::RDocTask.new do |rdoc|
-  files = ['README', 'LICENSE', 'INSTALL', 'TUTORIAL', 'lib/**/*.rb']
+  files = ['README', 'LICENSE', 'INSTALL', 'lib/**/*.rb']
   rdoc.rdoc_files.add(files)
   rdoc.main = "README" # page to start on
   rdoc.title = "OperaWatir Documentation"
