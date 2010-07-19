@@ -1,0 +1,51 @@
+require "rubygems"
+require "spec"
+require "spec/rake/spectask"
+require "pathname"
+require "operawatir"
+
+ALL_TESTS = [
+#  { :id => "browser", :files => Dir.glob("browser/*.rb") },
+  { :id => "browser", :files => "browser.rb" },
+  { :id => "p", :files => Dir.glob("p/*.rb") },
+  { :id => "button",  :files => Dir.glob("button/*.rb") }
+]
+
+spec_opts = ["--options", "spec.opts"]
+spec_files = []
+
+# All tests
+desc "All tests"
+Spec::Rake::SpecTask.new("tests") do |t|
+  ALL_TESTS.each do |collection|
+    spec_files.push collection[:files]
+  end
+  t.spec_opts = spec_opts
+  t.spec_files = [spec_files]
+end
+
+namespace :tests do
+  ALL_TESTS.each do |collection|
+    # Collection of tests
+    desc "All " + collection[:id] + " collection tests"
+    Spec::Rake::SpecTask.new(collection[:id]) do |t|
+      t.spec_opts = spec_opts
+      t.spec_files = [collection[:files]]
+    end
+
+    namespace collection[:id] do
+      collection[:files].each do |file|
+        method = file.gsub(/^(.*)\//, "")
+        method = method.gsub(/\.rb/, "")
+
+        # Individual tests
+        desc file + " method tests in #{collection[:id]} collection"
+        Spec::Rake::SpecTask.new(method) do |t|
+          t.spec_opts = spec_opts
+          t.spec_files = [file]
+        end
+      end
+    end
+  end
+end
+
