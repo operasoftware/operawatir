@@ -17,11 +17,8 @@ require "pathname"
 
 Spec::Runner.configure do |config|
   config.before(:all) do
-#    puts "BEFORE ALL"
-
-=begin
     # Fetch configuration.
-    @config = IniFile.new("config.ini")
+    @config = IniFile.new("operahelper.ini")
 
     # If specified browser path is gogilauncher, we first need to
     # retrieve the full directory.
@@ -37,35 +34,30 @@ Spec::Runner.configure do |config|
       FileUtils.mv(@dir + "opera.ini", @dir + "opera.ini.backup") if File.exists?(@dir + "opera.ini")
       FileUtils.cp("lib/opera.ini", @dir + "opera.ini")
     end
-=end
 
     # Base URI.
     @url = "file://localhost/" + Pathname.new(File.dirname(__FILE__) + "/interactive").realpath.to_s + "/"
 
     # Start a new browser.
-#    @browser = OperaWatir::Browser.new(@config["browser"]["path"], "-nowindow")
-    @browser = OperaWatir::Browser.new("/home/andreastt/gogilauncher/builds/opera-ppp-mainline-build_4340-buildsetid_23582-core_2_6-lingogi/profiles/release_desktop/lingogi_release_desktop", "-nowindow")
+    @browser = OperaWatir::Browser.new(@config["browser"]["path"], "-nowindow")
+#    @browser = OperaWatir::Browser.new("/home/andreastt/gogilauncher/builds/opera-ppp-mainline-build_4340-buildsetid_23582-core_2_6-lingogi/profiles/release_desktop/lingogi_release_desktop", "-nowindow")
   end
 
   config.after(:all) do
     # Replace inserted opera.ini file with the user's original.
-#    FileUtils.mv(@dir + "opera.ini.backup", @dir + "opera.ini") if File.exists?(@dir + "opera.ini.backup")
+    FileUtils.mv(@dir + "opera.ini.backup", @dir + "opera.ini") if File.exists?(@dir + "opera.ini.backup")
 
     # Quit the browser.
-    @browser.quit
-#    @browser.clean_up
-#   @browser.quit if @browser
+    @browser.quit if @browser
   end
 
-#  config.before(:each) do
-#    puts "BEFORE EACH is connected? " + @browser.is_connected?.to_s + "\n"
+  config.before(:each) do
+    unless @browser.is_connected?
+      @browser = OperaWatir::Browser.new(@config["browser"]["path"], "-nowindow")
+      #@browser = OperaWatir::Browser.new
+    end
+  end
 
-#    unless @browser.is_connected?
-#      @browser = OperaWatir::Browser.new(@config["browser"]["path"])
-#      @browser = OperaWatir::Browser.new
-#    end
-#  end
-
-#  config.after(:each) {}
+  config.after(:each) {}
 end
 
