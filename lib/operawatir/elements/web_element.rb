@@ -208,7 +208,7 @@ module OperaWatir
     # field.  Text can be a string or regular expression.
     #
     # Input: 
-    #   foobar
+    # target::  text to be verified.
     #
     # Output:
     #   True if provided text matches with the contents of text field,
