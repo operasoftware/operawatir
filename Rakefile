@@ -2,7 +2,6 @@
 # To change this template, choose Tools | Templates
 # and open the template in the editor.
 
-
 require 'rubygems'
 require 'rake'
 require 'rake/clean'
@@ -21,10 +20,10 @@ spec = Gem::Specification.new do |s|
   s.author = 'Deniz Turkoglu'
   s.email = 'dturkoglu@opera.com'
   # s.executables = ['your_executable_here']
-  s.files = %w(LICENSE README Rakefile) + Dir.glob("{bin,lib,spec}/**/*")
-  s.files.reject! { |fn| fn.include? "main.rb" }
-  s.require_path = "lib"
-  s.bindir = "bin"
+  s.files = %w(LICENSE README Rakefile) + Dir.glob('{bin,lib,spec}/**/*')
+  s.files.reject! { |fn| fn.include? 'main.rb' }
+  s.require_path = 'lib'
+  s.bindir = 'bin'
 end
 
 Rake::GemPackageTask.new(spec) do |p|
@@ -36,8 +35,8 @@ end
 Rake::RDocTask.new do |rdoc|
   files = ['README', 'LICENSE', 'INSTALL', 'lib/**/*.rb']
   rdoc.rdoc_files.add(files)
-  rdoc.main = "README" # page to start on
-  rdoc.title = "OperaWatir Documentation"
+  rdoc.main = 'README' # page to start on
+  rdoc.title = 'OperaWatir Documentation'
   rdoc.rdoc_dir = 'doc' # rdoc output folder
   rdoc.options = '--line-numbers', '--charset=utf-8'
 end
@@ -49,3 +48,4 @@ end
 Spec::Rake::SpecTask.new do |t|
   t.spec_files = FileList['spec/**/*.rb']
 end
+
