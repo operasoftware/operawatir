@@ -1,0 +1,66 @@
+require "rubygems"
+require "spec"
+require "spec/rake/spectask"
+require "pathname"
+
+all_tests = {}
+all_files = Dir["**/*.rb"]
+
+all_files.each do |filename|
+  if filename =~ /\//
+    sub = filename.split("/")
+    subfilename = sub[1]
+
+    unless all_tests.has_key?(sub[0])
+      all_tests.merge!({sub[0] => {}})
+    end
+
+    test = {subfilename[0..-4] => subfilename}
+    all_tests[sub[0]].merge!(test)
+  else
+    test = {filename[0..-4] => filename}
+    all_tests.merge!(test)
+  end
+end
+
+spec_opts = ["--color", "--require rubygems", "--format OperaHelperFormatter"]
+spec_files = []
+
+# All tests
+desc "All tests"
+Spec::Rake::SpecTask.new("test") do |t|
+  all_tests.each do |test|
+    spec_files.push test
+  end
+  t.spec_opts = spec_opts
+  t.spec_files = [spec_files]
+end
+
+namespace :test do
+  all_tests.each_pair do |testname, testfile|
+    if testfile.kind_of?(Hash)
+      desc "All " + testname + " tests"
+      Spec::Rake::SpecTask.new(testname) do |t|
+        t.spec_opts = spec_opts
+        t.spec_files = testfile.values
+      end
+
+      namespace testname do
+        testfile.each_pair do |subtestname, subtestfile|
+          desc subtestname + " tests"
+          Spec::Rake::SpecTask.new(subtestname) do |t|
+            t.spec_opts = spec_opts
+            t.spec_files = [subtestfile]
+          end
+        end
+      end
+    else
+      desc testname + " tests"
+      Spec::Rake::SpecTask.new(testname) do |t|
+        t.spec_opts = spec_opts
+        t.spec_files = [testfile]
+      end
+    end
+  end
+end
+
