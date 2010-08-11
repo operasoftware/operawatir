@@ -1,4 +1,4 @@
-$LOAD_PATH.unshift("watirspec/lib")
+#$LOAD_PATH.unshift("watirspec/lib")
 
 require "rubygems"
 require "operawatir"

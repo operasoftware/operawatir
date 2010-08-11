@@ -2,13 +2,12 @@ require "rubygems"
 require "spec"
 require "spec/rake/spectask"
 require "pathname"
-require "operawatir"
 
 ALL_TESTS = [
 #  { :id => "browser", :files => Dir.glob("browser/*.rb") },
   { :id => "browser", :files => "browser.rb" },
   { :id => "p", :files => Dir.glob("p/*.rb") },
-  { :id => "button",  :files => Dir.glob("button/*.rb") }
+#  { :id => "button",  :files => Dir.glob("button/*.rb") }
 ]
 
 spec_opts = ["--options", "spec.opts"]
