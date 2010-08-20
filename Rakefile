@@ -14,16 +14,13 @@ spec = Gem::Specification.new do |s|
   s.name = 'OperaWatir'
   s.version = '0.2.2.100709'
   s.has_rdoc = true
-  s.extra_rdoc_files = ['README', 'LICENSE', 'INSTALL']
+  s.extra_rdoc_files = ['README', 'LICENSE']
   s.summary = 'OperaWatir on OperaDriver engine'
   s.description = s.summary
   s.author = 'Deniz Turkoglu'
   s.email = 'dturkoglu@opera.com'
-  # s.executables = ['your_executable_here']
-  s.files = %w(LICENSE README Rakefile) + Dir.glob('{bin,lib,spec}/**/*')
-  s.files.reject! { |fn| fn.include? 'main.rb' }
+  s.files = %w(README LICENSE Rakefile) + Dir.glob('{lib,spec}/**/*')
   s.require_path = 'lib'
-  s.bindir = 'bin'
 end
 
 Rake::GemPackageTask.new(spec) do |p|
@@ -39,10 +36,6 @@ Rake::RDocTask.new do |rdoc|
   rdoc.title = 'OperaWatir Documentation'
   rdoc.rdoc_dir = 'doc' # rdoc output folder
   rdoc.options = '--line-numbers', '--charset=utf-8'
-end
-
-Rake::TestTask.new do |t|
-  t.test_files = FileList['test/**/*.rb']
 end
 
 Spec::Rake::SpecTask.new do |t|
