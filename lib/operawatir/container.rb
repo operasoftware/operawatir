@@ -28,7 +28,7 @@ module OperaWatir
     # Raises:
     # NoSuchElementException::  if element is not found.
     def text_field(how,what)
-      return TextField.new(self,how,what)
+      TextField.new(self,how,what)
     end
 
     # Method for accessing a form element, typically a <form> tag.
@@ -48,9 +48,9 @@ module OperaWatir
     # A Form object.
     #
     # Raises:
-    # NoSuchElementException::  if element is not found.    
+    # NoSuchElementException::  if element is not found.
     def form(how,what)
-      return Form.new(self,how,what)
+      Form.new(self,how,what)
     end
 
     # Method for accessing a button element, typically a <button> or <input type="submit" /> tag.
@@ -72,12 +72,9 @@ module OperaWatir
     # A Button object.
     #
     # Raises:
-    # NoSuchElementException::  if element is not found.    
-    def button(how,what=nil)
-      if what.nil?
-        return Button.new(self,:value,how)
-      end
-      return Button.new(self,how,what)
+    # NoSuchElementException::  if element is not found.
+    def button(how, what=nil)
+      what.nil? ? Button.new(self, :value, how) : Button.new(self, how, what)
     end
 
     # Method for accessing a link element, typically an <a href=""> tag.
@@ -100,9 +97,9 @@ module OperaWatir
     # A Link object.
     #
     # Raises:
-    # NoSuchElementException::  if element is not found.    
+    # NoSuchElementException::  if element is not found.
     def link(how,what)
-      return Link.new(self, how,what)
+      Link.new(self, how,what)
     end
 
     # Method for accessing a select list element, typically a <select> tag.
@@ -124,7 +121,7 @@ module OperaWatir
     # Raises:
     # NoSuchElementException::  if element is not found.
     def select_list(how, what=nil)
-      return SelectList.new(self, how, what)
+      SelectList.new(self, how, what)
     end
 
     # Method for accessing a checkbox element, typically a <input type="checkbox" /> tag.
@@ -148,7 +145,7 @@ module OperaWatir
     # Raises:
     # NoSuchElementException::  if element is not found.
     def checkbox(how, what=nil, value=nil)
-      return CheckBox.new(self, how, what, value)
+      CheckBox.new(self, how, what, value)
     end
 
     # Method for accessing a radio element.
@@ -172,7 +169,7 @@ module OperaWatir
     # Raises:
     # NoSuchElementException::  if element is not found.
     def radio(how, what=nil, value=nil)
-      return Radio.new(self, how, what, value)
+      Radio.new(self, how, what, value)
     end
 
     # Method for accessing an area element, typically an <area>foobar</area> tag.
@@ -194,7 +191,7 @@ module OperaWatir
     # Raises:
     # NoSuchElementException::  if element is not found.
     def area(how,what)
-      return Area.new(self,how,what)
+      Area.new(self,how,what)
     end
 
     # Method for accessing an image element, typically a <img src="foo.png" alt="" /> tag.
@@ -216,7 +213,7 @@ module OperaWatir
     # Raises:
     # NoSuchElementException::  if element is not found.
     def image(how,what)
-      return Image.new(self,how,what)
+      Image.new(self,how,what)
     end
 
     # Method for accessing a div element, typically a <div> tag.
@@ -238,7 +235,7 @@ module OperaWatir
     # Raises:
     # NoSuchElementException::  if element is not found.
     def div(how,what)
-      return Div.new(self,how,what)
+      Div.new(self,how,what)
     end
 
     # Method for accessing a p (paragraph) element, typically a <p> tag.
@@ -260,9 +257,9 @@ module OperaWatir
     # Raises:
     # NoSuchElementException::  if element is not found.
     def p(how,what)
-      return P.new(self,how,what)
+      P.new(self,how,what)
     end
-    
+
     # Method for accessing a generic element.
     #
     # Arguments:
@@ -282,7 +279,7 @@ module OperaWatir
     # Raises:
     # NoSuchElementException::  if element is not found.
     def element(how,what)
-      return Element.new(self,how,what)
+      Element.new(self,how,what)
     end
 
     # Method for accessing a hidden element, typically a <input type="hidden" />.
@@ -292,11 +289,11 @@ module OperaWatir
     # what::   (Optional.)  Integer, string or regular expression; depending on which selector you are using.
     #
     # Selectors (for <tt>:how</tt>):
-    # * name 
-    # * id 
+    # * name
+    # * id
     # * index
     # * xpath
-    # * selector 
+    # * selector
     #
     # Returns:
     # A Hidden object.
@@ -304,7 +301,7 @@ module OperaWatir
     # Raises:
     # NoSuchElementException::  if element is not found.
     def hidden(how,what)
-      return Hidden.new(self,how,what)
+      Hidden.new(self,how,what)
     end
 
     # Method for accessing a file field element, typically a <input type="file" />.
@@ -314,11 +311,11 @@ module OperaWatir
     # what::   (Optional.)  Integer, string or regular expression; depending on which selector you are using.
     #
     # Selectors (for <tt>:how</tt>):
-    # * name 
+    # * name
     # * id
-    # * index 
+    # * index
     # * xpath
-    # * selector 
+    # * selector
     #
     # Returns:
     # A FileField object.
@@ -326,7 +323,7 @@ module OperaWatir
     # Raises:
     # NoSuchElementException::  if element is not found.
     def file_field(how,what)
-      return FileField.new(self,how,what)
+      FileField.new(self,how,what)
     end
 
     # Method for accessing an unordered list element, typically a <ul> tag.
@@ -336,11 +333,11 @@ module OperaWatir
     # what::   (Optional.)  Integer, string or regular expression; depending on which selector you are using.
     #
     # Selectors (for <tt>:how</tt>):
-    # * name 
+    # * name
     # * id
-    # * index 
+    # * index
     # * xpath
-    # * selector 
+    # * selector
     #
     # Returns:
     # An Ul object.
@@ -348,7 +345,7 @@ module OperaWatir
     # Raises:
     # NoSuchElementException::  if element is not found.
     def ul(how,what)
-      return Ul.new(self,how,what)
+      Ul.new(self,how,what)
     end
 
     # Method for accessing a span element, typically a <span> tag.
@@ -358,11 +355,11 @@ module OperaWatir
     # what::   (Optional.)  Integer, string or regular expression; depending on which selector you are using.
     #
     # Selectors (for <tt>:how</tt>):
-    # * name 
+    # * name
     # * id
-    # * index 
+    # * index
     # * xpath
-    # * selector 
+    # * selector
     #
     # Returns:
     # An Span object.
@@ -370,7 +367,7 @@ module OperaWatir
     # Raises:
     # NoSuchElementException::  if element is not found.
     def span(how,what)
-      return Span.new(self,how,what)
+      Span.new(self,how,what)
     end
   end
 end

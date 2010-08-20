@@ -1,6 +1,7 @@
 module OperaWatir
   class Browser
     include Container
+
     def initialize (executable_location = nil, *arguments)
       if executable_location.nil?
         @driver = OperaDriver.new
@@ -46,7 +47,7 @@ module OperaWatir
     def text
       return @driver.getText
     end
-    
+
     # Instructs the browser to navigate one page backwards.
     def back
       return @driver.navigate.back
@@ -97,7 +98,7 @@ module OperaWatir
     def execute_script(source)
       return @driver.executeScript(source, [].to_java(:String))
     end
-    
+
     # Send key events to the browser instance.  I.e. “Down” (arrow
     # down), “Space” (space key), “Home”, &c.
     def key(key)
@@ -134,7 +135,7 @@ module OperaWatir
     def opera_action(name, *param)
       @driver.operaAction(name, param.to_java(:String))
     end
-    
+
     # Takes screenshot of the entire page.
     #
     # Arguments:
@@ -157,7 +158,7 @@ module OperaWatir
     # you're using.  Note that this list varies from configuration to
     # configuration, and from build to build.  The Opera actions
     # available to devices-type builds will vary greatly from those
-    # available to desktop-types.    
+    # available to desktop-types.
     def opera_action_list
       @driver.getOperaActionList
     end
@@ -173,7 +174,7 @@ module OperaWatir
     end
 
     # Checks if OperaWatir is connected to any browser instance.  Will
-    # return true or false.    
+    # return true or false.
     def is_connected?
       @driver.isConnected
     end
