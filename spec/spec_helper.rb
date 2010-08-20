@@ -1,12 +1,8 @@
-#$LOAD_PATH.unshift("watirspec/lib")
+$LOAD_PATH.unshift File.join(File.dirname(__FILE__), '..', 'lib')
+require 'operawatir'
+require 'watirspec/spec_helper'
 
-require "rubygems"
-require "operawatir"
-#require "watirspec/spec_helper"
-
-Browser = OperaWatir::Browser
-
-#WatirSpec.browser_args = ["-no-window"]
-#WatirSpec.persistent_browser = false
-#WatirSpec::Server.autorun = true
-
+WatirSpec.implementation do |browser|
+  browser.name          = :opera
+  browser.browser_class = OperaWatir::Browser
+end
