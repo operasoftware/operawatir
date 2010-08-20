@@ -2,6 +2,8 @@ module OperaWatir
   class Browser
     include Container
 
+    attr_reader :driver
+
     def initialize (executable_location = nil, *arguments)
       if executable_location.nil?
         @driver = OperaDriver.new
@@ -28,14 +30,9 @@ module OperaWatir
       @driver.cleanUp
     end
 
-    # Returns the internal OperaDriver object.
-    def driver
-      return @driver
-    end
-
     # Returns the title of the page.
     def title
-      return @driver.getTitle
+      @driver.getTitle
     end
 
     # Closes the open page/tab.
@@ -45,22 +42,22 @@ module OperaWatir
 
     # Returns the full text of the active page.
     def text
-      return @driver.getText
+      @driver.getText
     end
 
     # Instructs the browser to navigate one page backwards.
     def back
-      return @driver.navigate.back
+      @driver.navigate.back
     end
 
     # Instructs the browser to navigate one page forward.
     def forward
-      return @driver.navigate.forward
+      @driver.navigate.forward
     end
 
     # Refreshes the current page.
     def refresh
-      return @driver.navigate.refresh
+      @driver.navigate.refresh
     end
 
     # Switches focus (active page) to the specified frame.
@@ -75,7 +72,7 @@ module OperaWatir
       when :index
         @driver.switchTo.frame(what.to_i - 1) #index starts from 1 in watir
       end
-      return self
+      self
     end
 
     # Output a list of frames to the console.
@@ -90,13 +87,13 @@ module OperaWatir
     # Closes all open pages and quits the browser instance.  The browser
     # instance will be terminated.
     def close_all
-      return @driver.quit
+      @driver.quit
     end
     alias_method :quit, :close_all
 
     # Executes the given JavaScript string, and returns the result.
     def execute_script(source)
-      return @driver.executeScript(source, [].to_java(:String))
+      @driver.executeScript(source, [].to_java(:String))
     end
 
     # Send key events to the browser instance.  I.e. “Down” (arrow
@@ -124,7 +121,7 @@ module OperaWatir
 
     # Return current URI.
     def url
-      return @driver.getCurrentUrl
+      @driver.getCurrentUrl
     end
 
     # Execute specified Opera action.
