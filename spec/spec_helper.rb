@@ -1,6 +1,6 @@
 $LOAD_PATH.unshift File.join(File.dirname(__FILE__), '..', 'lib')
 require 'operawatir'
-require 'watirspec/spec_helper'
+require 'spec/watirspec/spec_helper'
 
 WatirSpec.implementation do |browser|
   browser.name          = :opera
