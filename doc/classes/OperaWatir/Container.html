@@ -80,22 +80,22 @@
       <h3 class="section-bar">Methods</h3>
 
       <div class="name-list">
-      <a href="#M000008">area</a>&nbsp;&nbsp;
-      <a href="#M000003">button</a>&nbsp;&nbsp;
-      <a href="#M000006">checkbox</a>&nbsp;&nbsp;
-      <a href="#M000010">div</a>&nbsp;&nbsp;
-      <a href="#M000012">element</a>&nbsp;&nbsp;
-      <a href="#M000014">file_field</a>&nbsp;&nbsp;
-      <a href="#M000002">form</a>&nbsp;&nbsp;
-      <a href="#M000013">hidden</a>&nbsp;&nbsp;
-      <a href="#M000009">image</a>&nbsp;&nbsp;
-      <a href="#M000004">link</a>&nbsp;&nbsp;
-      <a href="#M000011">p</a>&nbsp;&nbsp;
-      <a href="#M000007">radio</a>&nbsp;&nbsp;
-      <a href="#M000005">select_list</a>&nbsp;&nbsp;
-      <a href="#M000016">span</a>&nbsp;&nbsp;
-      <a href="#M000001">text_field</a>&nbsp;&nbsp;
-      <a href="#M000015">ul</a>&nbsp;&nbsp;
+      <a href="#M000029">area</a>&nbsp;&nbsp;
+      <a href="#M000024">button</a>&nbsp;&nbsp;
+      <a href="#M000027">checkbox</a>&nbsp;&nbsp;
+      <a href="#M000031">div</a>&nbsp;&nbsp;
+      <a href="#M000033">element</a>&nbsp;&nbsp;
+      <a href="#M000035">file_field</a>&nbsp;&nbsp;
+      <a href="#M000023">form</a>&nbsp;&nbsp;
+      <a href="#M000034">hidden</a>&nbsp;&nbsp;
+      <a href="#M000030">image</a>&nbsp;&nbsp;
+      <a href="#M000025">link</a>&nbsp;&nbsp;
+      <a href="#M000032">p</a>&nbsp;&nbsp;
+      <a href="#M000028">radio</a>&nbsp;&nbsp;
+      <a href="#M000026">select_list</a>&nbsp;&nbsp;
+      <a href="#M000037">span</a>&nbsp;&nbsp;
+      <a href="#M000022">text_field</a>&nbsp;&nbsp;
+      <a href="#M000036">ul</a>&nbsp;&nbsp;
       </div>
     </div>
 
@@ -117,28 +117,28 @@
     <div id="methods">
       <h3 class="section-bar">Public Instance methods</h3>
 
-      <div id="method-M000008" class="method-detail">
-        <a name="M000008"></a>
+      <div id="method-M000029" class="method-detail">
+        <a name="M000029"></a>
 
         <div class="method-heading">
-          <a href="#M000008" class="method-signature">
+          <a href="#M000029" class="method-signature">
           <span class="method-name">area</span><span class="method-args">(how,what)</span>
           </a>
         </div>
       
         <div class="method-description">
           <p>
-Method for accessing an <a href="Container.html#M000008">area</a> <a
-href="Container.html#M000012">element</a>, typically an &lt;<a
-href="Container.html#M000008">area</a>&gt;foobar&lt;/<a
-href="Container.html#M000008">area</a>&gt; tag.
+Method for accessing an <a href="Container.html#M000029">area</a> <a
+href="Container.html#M000033">element</a>, typically an &lt;<a
+href="Container.html#M000029">area</a>&gt;foobar&lt;/<a
+href="Container.html#M000029">area</a>&gt; tag.
 </p>
 <p>
 Arguments:
 </p>
 <table>
 <tr><td valign="top">how:</td><td>Selector symbol for how we are to locate the <a
-href="Container.html#M000012">element</a>.
+href="Container.html#M000033">element</a>.
 
 </td></tr>
 <tr><td valign="top">what:</td><td>(Optional.) Integer, string or regular expression; depending on which
@@ -173,37 +173,37 @@ Returns: An <a href="Area.html">Area</a> object.
 Raises:
 </p>
 <table>
-<tr><td valign="top">NoSuchElementException:</td><td>if <a href="Container.html#M000012">element</a> is not found.
+<tr><td valign="top">NoSuchElementException:</td><td>if <a href="Container.html#M000033">element</a> is not found.
 
 </td></tr>
 </table>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000008-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000008-source">
+            onclick="toggleCode('M000029-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000029-source">
 <pre>
-     <span class="ruby-comment cmt"># File lib/operawatir/container.rb, line 196</span>
-196:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">area</span>(<span class="ruby-identifier">how</span>,<span class="ruby-identifier">what</span>)
-197:       <span class="ruby-keyword kw">return</span> <span class="ruby-constant">Area</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword kw">self</span>,<span class="ruby-identifier">how</span>,<span class="ruby-identifier">what</span>)
-198:     <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File lib/operawatir/container.rb, line 193</span>
+193:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">area</span>(<span class="ruby-identifier">how</span>,<span class="ruby-identifier">what</span>)
+194:       <span class="ruby-constant">Area</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword kw">self</span>,<span class="ruby-identifier">how</span>,<span class="ruby-identifier">what</span>)
+195:     <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
       </div>
 
-      <div id="method-M000003" class="method-detail">
-        <a name="M000003"></a>
+      <div id="method-M000024" class="method-detail">
+        <a name="M000024"></a>
 
         <div class="method-heading">
-          <a href="#M000003" class="method-signature">
-          <span class="method-name">button</span><span class="method-args">(how,what=nil)</span>
+          <a href="#M000024" class="method-signature">
+          <span class="method-name">button</span><span class="method-args">(how, what=nil)</span>
           </a>
         </div>
       
         <div class="method-description">
           <p>
-Method for accessing a <a href="Container.html#M000003">button</a> <a
-href="Container.html#M000012">element</a>, typically a &lt;<a
-href="Container.html#M000003">button</a>&gt; or &lt;input
+Method for accessing a <a href="Container.html#M000024">button</a> <a
+href="Container.html#M000033">element</a>, typically a &lt;<a
+href="Container.html#M000024">button</a>&gt; or &lt;input
 type=&quot;submit&quot; /&gt; tag.
 </p>
 <p>
@@ -211,7 +211,7 @@ Arguments:
 </p>
 <table>
 <tr><td valign="top">how:</td><td>(Symbol.) Selector for how we are to locate the <a
-href="Container.html#M000012">element</a>.
+href="Container.html#M000033">element</a>.
 
 </td></tr>
 <tr><td valign="top">what:</td><td>(String.) (Optional.) Integer, string or regular expression; depending on
@@ -252,47 +252,44 @@ Returns: A <a href="Button.html">Button</a> object.
 Raises:
 </p>
 <table>
-<tr><td valign="top">NoSuchElementException:</td><td>if <a href="Container.html#M000012">element</a> is not found.
+<tr><td valign="top">NoSuchElementException:</td><td>if <a href="Container.html#M000033">element</a> is not found.
 
 </td></tr>
 </table>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000003-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000003-source">
+            onclick="toggleCode('M000024-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000024-source">
 <pre>
     <span class="ruby-comment cmt"># File lib/operawatir/container.rb, line 76</span>
-76:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">button</span>(<span class="ruby-identifier">how</span>,<span class="ruby-identifier">what</span>=<span class="ruby-keyword kw">nil</span>)
-77:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">what</span>.<span class="ruby-identifier">nil?</span>
-78:         <span class="ruby-keyword kw">return</span> <span class="ruby-constant">Button</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword kw">self</span>,<span class="ruby-identifier">:value</span>,<span class="ruby-identifier">how</span>)
-79:       <span class="ruby-keyword kw">end</span>
-80:       <span class="ruby-keyword kw">return</span> <span class="ruby-constant">Button</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword kw">self</span>,<span class="ruby-identifier">how</span>,<span class="ruby-identifier">what</span>)
-81:     <span class="ruby-keyword kw">end</span>
+76:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">button</span>(<span class="ruby-identifier">how</span>, <span class="ruby-identifier">what</span>=<span class="ruby-keyword kw">nil</span>)
+77:       <span class="ruby-identifier">what</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-value">? </span><span class="ruby-constant">Button</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword kw">self</span>, <span class="ruby-identifier">:value</span>, <span class="ruby-identifier">how</span>) <span class="ruby-operator">:</span> <span class="ruby-constant">Button</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword kw">self</span>, <span class="ruby-identifier">how</span>, <span class="ruby-identifier">what</span>)
+78:     <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
       </div>
 
-      <div id="method-M000006" class="method-detail">
-        <a name="M000006"></a>
+      <div id="method-M000027" class="method-detail">
+        <a name="M000027"></a>
 
         <div class="method-heading">
-          <a href="#M000006" class="method-signature">
+          <a href="#M000027" class="method-signature">
           <span class="method-name">checkbox</span><span class="method-args">(how, what=nil, value=nil)</span>
           </a>
         </div>
       
         <div class="method-description">
           <p>
-Method for accessing a <a href="Container.html#M000006">checkbox</a> <a
-href="Container.html#M000012">element</a>, typically a &lt;input
-type=&quot;<a href="Container.html#M000006">checkbox</a>&quot; /&gt; tag.
+Method for accessing a <a href="Container.html#M000027">checkbox</a> <a
+href="Container.html#M000033">element</a>, typically a &lt;input
+type=&quot;<a href="Container.html#M000027">checkbox</a>&quot; /&gt; tag.
 </p>
 <p>
 Arguments:
 </p>
 <table>
 <tr><td valign="top">how:</td><td>Selector symbol for how we are to locate the <a
-href="Container.html#M000012">element</a>.
+href="Container.html#M000033">element</a>.
 
 </td></tr>
 <tr><td valign="top">what:</td><td>(Optional.) Integer, string or regular expression; depending on which
@@ -334,44 +331,44 @@ Returns: A <a href="CheckBox.html">CheckBox</a> object.
 Raises:
 </p>
 <table>
-<tr><td valign="top">NoSuchElementException:</td><td>if <a href="Container.html#M000012">element</a> is not found.
+<tr><td valign="top">NoSuchElementException:</td><td>if <a href="Container.html#M000033">element</a> is not found.
 
 </td></tr>
 </table>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000006-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000006-source">
+            onclick="toggleCode('M000027-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000027-source">
 <pre>
-     <span class="ruby-comment cmt"># File lib/operawatir/container.rb, line 150</span>
-150:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">checkbox</span>(<span class="ruby-identifier">how</span>, <span class="ruby-identifier">what</span>=<span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">value</span>=<span class="ruby-keyword kw">nil</span>)
-151:       <span class="ruby-keyword kw">return</span> <span class="ruby-constant">CheckBox</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword kw">self</span>, <span class="ruby-identifier">how</span>, <span class="ruby-identifier">what</span>, <span class="ruby-identifier">value</span>)
-152:     <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File lib/operawatir/container.rb, line 147</span>
+147:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">checkbox</span>(<span class="ruby-identifier">how</span>, <span class="ruby-identifier">what</span>=<span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">value</span>=<span class="ruby-keyword kw">nil</span>)
+148:       <span class="ruby-constant">CheckBox</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword kw">self</span>, <span class="ruby-identifier">how</span>, <span class="ruby-identifier">what</span>, <span class="ruby-identifier">value</span>)
+149:     <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
       </div>
 
-      <div id="method-M000010" class="method-detail">
-        <a name="M000010"></a>
+      <div id="method-M000031" class="method-detail">
+        <a name="M000031"></a>
 
         <div class="method-heading">
-          <a href="#M000010" class="method-signature">
+          <a href="#M000031" class="method-signature">
           <span class="method-name">div</span><span class="method-args">(how,what)</span>
           </a>
         </div>
       
         <div class="method-description">
           <p>
-Method for accessing a <a href="Container.html#M000010">div</a> <a
-href="Container.html#M000012">element</a>, typically a &lt;<a
-href="Container.html#M000010">div</a>&gt; tag.
+Method for accessing a <a href="Container.html#M000031">div</a> <a
+href="Container.html#M000033">element</a>, typically a &lt;<a
+href="Container.html#M000031">div</a>&gt; tag.
 </p>
 <p>
 Arguments:
 </p>
 <table>
 <tr><td valign="top">how:</td><td>Selector symbol for how we are to locate the <a
-href="Container.html#M000012">element</a>.
+href="Container.html#M000033">element</a>.
 
 </td></tr>
 <tr><td valign="top">what:</td><td>(Optional.) Integer, string or regular expression; depending on which
@@ -406,28 +403,28 @@ Returns: A <a href="Div.html">Div</a> object.
 Raises:
 </p>
 <table>
-<tr><td valign="top">NoSuchElementException:</td><td>if <a href="Container.html#M000012">element</a> is not found.
+<tr><td valign="top">NoSuchElementException:</td><td>if <a href="Container.html#M000033">element</a> is not found.
 
 </td></tr>
 </table>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000010-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000010-source">
+            onclick="toggleCode('M000031-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000031-source">
 <pre>
-     <span class="ruby-comment cmt"># File lib/operawatir/container.rb, line 240</span>
-240:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">div</span>(<span class="ruby-identifier">how</span>,<span class="ruby-identifier">what</span>)
-241:       <span class="ruby-keyword kw">return</span> <span class="ruby-constant">Div</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword kw">self</span>,<span class="ruby-identifier">how</span>,<span class="ruby-identifier">what</span>)
-242:     <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File lib/operawatir/container.rb, line 237</span>
+237:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">div</span>(<span class="ruby-identifier">how</span>,<span class="ruby-identifier">what</span>)
+238:       <span class="ruby-constant">Div</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword kw">self</span>,<span class="ruby-identifier">how</span>,<span class="ruby-identifier">what</span>)
+239:     <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
       </div>
 
-      <div id="method-M000012" class="method-detail">
-        <a name="M000012"></a>
+      <div id="method-M000033" class="method-detail">
+        <a name="M000033"></a>
 
         <div class="method-heading">
-          <a href="#M000012" class="method-signature">
+          <a href="#M000033" class="method-signature">
           <span class="method-name">element</span><span class="method-args">(how,what)</span>
           </a>
         </div>
@@ -435,14 +432,14 @@ Raises:
         <div class="method-description">
           <p>
 Method for accessing a generic <a
-href="Container.html#M000012">element</a>.
+href="Container.html#M000033">element</a>.
 </p>
 <p>
 Arguments:
 </p>
 <table>
 <tr><td valign="top">how:</td><td>Selector symbol for how we are to locate the <a
-href="Container.html#M000012">element</a>.
+href="Container.html#M000033">element</a>.
 
 </td></tr>
 <tr><td valign="top">what:</td><td>(Optional.) Integer, string or regular expression; depending on which
@@ -477,28 +474,28 @@ Returns: A generic object.
 Raises:
 </p>
 <table>
-<tr><td valign="top">NoSuchElementException:</td><td>if <a href="Container.html#M000012">element</a> is not found.
+<tr><td valign="top">NoSuchElementException:</td><td>if <a href="Container.html#M000033">element</a> is not found.
 
 </td></tr>
 </table>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000012-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000012-source">
+            onclick="toggleCode('M000033-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000033-source">
 <pre>
-     <span class="ruby-comment cmt"># File lib/operawatir/container.rb, line 284</span>
-284:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">element</span>(<span class="ruby-identifier">how</span>,<span class="ruby-identifier">what</span>)
-285:       <span class="ruby-keyword kw">return</span> <span class="ruby-constant">Element</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword kw">self</span>,<span class="ruby-identifier">how</span>,<span class="ruby-identifier">what</span>)
-286:     <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File lib/operawatir/container.rb, line 281</span>
+281:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">element</span>(<span class="ruby-identifier">how</span>,<span class="ruby-identifier">what</span>)
+282:       <span class="ruby-constant">Element</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword kw">self</span>,<span class="ruby-identifier">how</span>,<span class="ruby-identifier">what</span>)
+283:     <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
       </div>
 
-      <div id="method-M000014" class="method-detail">
-        <a name="M000014"></a>
+      <div id="method-M000035" class="method-detail">
+        <a name="M000035"></a>
 
         <div class="method-heading">
-          <a href="#M000014" class="method-signature">
+          <a href="#M000035" class="method-signature">
           <span class="method-name">file_field</span><span class="method-args">(how,what)</span>
           </a>
         </div>
@@ -506,7 +503,7 @@ Raises:
         <div class="method-description">
           <p>
 Method for accessing a file field <a
-href="Container.html#M000012">element</a>, typically a &lt;input
+href="Container.html#M000033">element</a>, typically a &lt;input
 type=&quot;file&quot; /&gt;.
 </p>
 <p>
@@ -514,7 +511,7 @@ Arguments:
 </p>
 <table>
 <tr><td valign="top">how:</td><td>Selector symbol for how we are to locate the <a
-href="Container.html#M000012">element</a>.
+href="Container.html#M000033">element</a>.
 
 </td></tr>
 <tr><td valign="top">what:</td><td>(Optional.) Integer, string or regular expression; depending on which
@@ -549,44 +546,44 @@ Returns: A <a href="FileField.html">FileField</a> object.
 Raises:
 </p>
 <table>
-<tr><td valign="top">NoSuchElementException:</td><td>if <a href="Container.html#M000012">element</a> is not found.
+<tr><td valign="top">NoSuchElementException:</td><td>if <a href="Container.html#M000033">element</a> is not found.
 
 </td></tr>
 </table>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000014-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000014-source">
+            onclick="toggleCode('M000035-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000035-source">
 <pre>
-     <span class="ruby-comment cmt"># File lib/operawatir/container.rb, line 328</span>
-328:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">file_field</span>(<span class="ruby-identifier">how</span>,<span class="ruby-identifier">what</span>)
-329:       <span class="ruby-keyword kw">return</span> <span class="ruby-constant">FileField</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword kw">self</span>,<span class="ruby-identifier">how</span>,<span class="ruby-identifier">what</span>)
-330:     <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File lib/operawatir/container.rb, line 325</span>
+325:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">file_field</span>(<span class="ruby-identifier">how</span>,<span class="ruby-identifier">what</span>)
+326:       <span class="ruby-constant">FileField</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword kw">self</span>,<span class="ruby-identifier">how</span>,<span class="ruby-identifier">what</span>)
+327:     <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
       </div>
 
-      <div id="method-M000002" class="method-detail">
-        <a name="M000002"></a>
+      <div id="method-M000023" class="method-detail">
+        <a name="M000023"></a>
 
         <div class="method-heading">
-          <a href="#M000002" class="method-signature">
+          <a href="#M000023" class="method-signature">
           <span class="method-name">form</span><span class="method-args">(how,what)</span>
           </a>
         </div>
       
         <div class="method-description">
           <p>
-Method for accessing a <a href="Container.html#M000002">form</a> <a
-href="Container.html#M000012">element</a>, typically a &lt;<a
-href="Container.html#M000002">form</a>&gt; tag.
+Method for accessing a <a href="Container.html#M000023">form</a> <a
+href="Container.html#M000033">element</a>, typically a &lt;<a
+href="Container.html#M000023">form</a>&gt; tag.
 </p>
 <p>
 Arguments:
 </p>
 <table>
 <tr><td valign="top">how:</td><td>(Symbol.) Selector for how we are to locate the <a
-href="Container.html#M000012">element</a>.
+href="Container.html#M000033">element</a>.
 
 </td></tr>
 <tr><td valign="top">what:</td><td>(String.) Integer, string or regular expression; depending on which
@@ -621,44 +618,44 @@ Returns: A <a href="Form.html">Form</a> object.
 Raises:
 </p>
 <table>
-<tr><td valign="top">NoSuchElementException:</td><td>if <a href="Container.html#M000012">element</a> is not found.
+<tr><td valign="top">NoSuchElementException:</td><td>if <a href="Container.html#M000033">element</a> is not found.
 
 </td></tr>
 </table>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000002-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000002-source">
+            onclick="toggleCode('M000023-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000023-source">
 <pre>
     <span class="ruby-comment cmt"># File lib/operawatir/container.rb, line 52</span>
 52:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">form</span>(<span class="ruby-identifier">how</span>,<span class="ruby-identifier">what</span>)
-53:       <span class="ruby-keyword kw">return</span> <span class="ruby-constant">Form</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword kw">self</span>,<span class="ruby-identifier">how</span>,<span class="ruby-identifier">what</span>)
+53:       <span class="ruby-constant">Form</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword kw">self</span>,<span class="ruby-identifier">how</span>,<span class="ruby-identifier">what</span>)
 54:     <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
       </div>
 
-      <div id="method-M000013" class="method-detail">
-        <a name="M000013"></a>
+      <div id="method-M000034" class="method-detail">
+        <a name="M000034"></a>
 
         <div class="method-heading">
-          <a href="#M000013" class="method-signature">
+          <a href="#M000034" class="method-signature">
           <span class="method-name">hidden</span><span class="method-args">(how,what)</span>
           </a>
         </div>
       
         <div class="method-description">
           <p>
-Method for accessing a <a href="Container.html#M000013">hidden</a> <a
-href="Container.html#M000012">element</a>, typically a &lt;input
-type=&quot;<a href="Container.html#M000013">hidden</a>&quot; /&gt;.
+Method for accessing a <a href="Container.html#M000034">hidden</a> <a
+href="Container.html#M000033">element</a>, typically a &lt;input
+type=&quot;<a href="Container.html#M000034">hidden</a>&quot; /&gt;.
 </p>
 <p>
 Arguments:
 </p>
 <table>
 <tr><td valign="top">how:</td><td>Selector symbol for how we are to locate the <a
-href="Container.html#M000012">element</a>.
+href="Container.html#M000033">element</a>.
 
 </td></tr>
 <tr><td valign="top">what:</td><td>(Optional.) Integer, string or regular expression; depending on which
@@ -693,36 +690,36 @@ Returns: A <a href="Hidden.html">Hidden</a> object.
 Raises:
 </p>
 <table>
-<tr><td valign="top">NoSuchElementException:</td><td>if <a href="Container.html#M000012">element</a> is not found.
+<tr><td valign="top">NoSuchElementException:</td><td>if <a href="Container.html#M000033">element</a> is not found.
 
 </td></tr>
 </table>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000013-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000013-source">
+            onclick="toggleCode('M000034-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000034-source">
 <pre>
-     <span class="ruby-comment cmt"># File lib/operawatir/container.rb, line 306</span>
-306:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">hidden</span>(<span class="ruby-identifier">how</span>,<span class="ruby-identifier">what</span>)
-307:       <span class="ruby-keyword kw">return</span> <span class="ruby-constant">Hidden</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword kw">self</span>,<span class="ruby-identifier">how</span>,<span class="ruby-identifier">what</span>)
-308:     <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File lib/operawatir/container.rb, line 303</span>
+303:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">hidden</span>(<span class="ruby-identifier">how</span>,<span class="ruby-identifier">what</span>)
+304:       <span class="ruby-constant">Hidden</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword kw">self</span>,<span class="ruby-identifier">how</span>,<span class="ruby-identifier">what</span>)
+305:     <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
       </div>
 
-      <div id="method-M000009" class="method-detail">
-        <a name="M000009"></a>
+      <div id="method-M000030" class="method-detail">
+        <a name="M000030"></a>
 
         <div class="method-heading">
-          <a href="#M000009" class="method-signature">
+          <a href="#M000030" class="method-signature">
           <span class="method-name">image</span><span class="method-args">(how,what)</span>
           </a>
         </div>
       
         <div class="method-description">
           <p>
-Method for accessing an <a href="Container.html#M000009">image</a> <a
-href="Container.html#M000012">element</a>, typically a &lt;img
+Method for accessing an <a href="Container.html#M000030">image</a> <a
+href="Container.html#M000033">element</a>, typically a &lt;img
 src=&quot;foo.png&quot; alt=&quot;&quot; /&gt; tag.
 </p>
 <p>
@@ -730,7 +727,7 @@ Arguments:
 </p>
 <table>
 <tr><td valign="top">how:</td><td>Selector symbol for how we are to locate the <a
-href="Container.html#M000012">element</a>.
+href="Container.html#M000033">element</a>.
 
 </td></tr>
 <tr><td valign="top">what:</td><td>(Optional.) Integer, string or regular expression; depending on which
@@ -765,36 +762,36 @@ Returns: An <a href="Image.html">Image</a> object.
 Raises:
 </p>
 <table>
-<tr><td valign="top">NoSuchElementException:</td><td>if <a href="Container.html#M000012">element</a> is not found.
+<tr><td valign="top">NoSuchElementException:</td><td>if <a href="Container.html#M000033">element</a> is not found.
 
 </td></tr>
 </table>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000009-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000009-source">
+            onclick="toggleCode('M000030-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000030-source">
 <pre>
-     <span class="ruby-comment cmt"># File lib/operawatir/container.rb, line 218</span>
-218:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">image</span>(<span class="ruby-identifier">how</span>,<span class="ruby-identifier">what</span>)
-219:       <span class="ruby-keyword kw">return</span> <span class="ruby-constant">Image</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword kw">self</span>,<span class="ruby-identifier">how</span>,<span class="ruby-identifier">what</span>)
-220:     <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File lib/operawatir/container.rb, line 215</span>
+215:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">image</span>(<span class="ruby-identifier">how</span>,<span class="ruby-identifier">what</span>)
+216:       <span class="ruby-constant">Image</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword kw">self</span>,<span class="ruby-identifier">how</span>,<span class="ruby-identifier">what</span>)
+217:     <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
       </div>
 
-      <div id="method-M000004" class="method-detail">
-        <a name="M000004"></a>
+      <div id="method-M000025" class="method-detail">
+        <a name="M000025"></a>
 
         <div class="method-heading">
-          <a href="#M000004" class="method-signature">
+          <a href="#M000025" class="method-signature">
           <span class="method-name">link</span><span class="method-args">(how,what)</span>
           </a>
         </div>
       
         <div class="method-description">
           <p>
-Method for accessing a <a href="Container.html#M000004">link</a> <a
-href="Container.html#M000012">element</a>, typically an &lt;a
+Method for accessing a <a href="Container.html#M000025">link</a> <a
+href="Container.html#M000033">element</a>, typically an &lt;a
 href=&quot;&quot;&gt; tag.
 </p>
 <p>
@@ -802,7 +799,7 @@ Arguments:
 </p>
 <table>
 <tr><td valign="top">how:</td><td>(Symbol.) Selector for how we are to locate the <a
-href="Container.html#M000012">element</a>.
+href="Container.html#M000033">element</a>.
 
 </td></tr>
 <tr><td valign="top">what:</td><td>(String.) (Optional.) Integer, string or regular expression; depending on
@@ -846,44 +843,44 @@ Returns: A <a href="Link.html">Link</a> object.
 Raises:
 </p>
 <table>
-<tr><td valign="top">NoSuchElementException:</td><td>if <a href="Container.html#M000012">element</a> is not found.
+<tr><td valign="top">NoSuchElementException:</td><td>if <a href="Container.html#M000033">element</a> is not found.
 
 </td></tr>
 </table>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000004-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000004-source">
+            onclick="toggleCode('M000025-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000025-source">
 <pre>
-     <span class="ruby-comment cmt"># File lib/operawatir/container.rb, line 104</span>
-104:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">link</span>(<span class="ruby-identifier">how</span>,<span class="ruby-identifier">what</span>)
-105:       <span class="ruby-keyword kw">return</span> <span class="ruby-constant">Link</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword kw">self</span>, <span class="ruby-identifier">how</span>,<span class="ruby-identifier">what</span>)
-106:     <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File lib/operawatir/container.rb, line 101</span>
+101:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">link</span>(<span class="ruby-identifier">how</span>,<span class="ruby-identifier">what</span>)
+102:       <span class="ruby-constant">Link</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword kw">self</span>, <span class="ruby-identifier">how</span>,<span class="ruby-identifier">what</span>)
+103:     <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
       </div>
 
-      <div id="method-M000011" class="method-detail">
-        <a name="M000011"></a>
+      <div id="method-M000032" class="method-detail">
+        <a name="M000032"></a>
 
         <div class="method-heading">
-          <a href="#M000011" class="method-signature">
+          <a href="#M000032" class="method-signature">
           <span class="method-name">p</span><span class="method-args">(how,what)</span>
           </a>
         </div>
       
         <div class="method-description">
           <p>
-Method for accessing a <a href="Container.html#M000011">p</a> (paragraph)
-<a href="Container.html#M000012">element</a>, typically a &lt;<a
-href="Container.html#M000011">p</a>&gt; tag.
+Method for accessing a <a href="Container.html#M000032">p</a> (paragraph)
+<a href="Container.html#M000033">element</a>, typically a &lt;<a
+href="Container.html#M000032">p</a>&gt; tag.
 </p>
 <p>
 Arguments:
 </p>
 <table>
 <tr><td valign="top">how:</td><td>Selector symbol for how we are to locate the <a
-href="Container.html#M000012">element</a>.
+href="Container.html#M000033">element</a>.
 
 </td></tr>
 <tr><td valign="top">what:</td><td>(Optional.) Integer, string or regular expression; depending on which
@@ -918,43 +915,43 @@ Returns: A <a href="P.html">P</a> object.
 Raises:
 </p>
 <table>
-<tr><td valign="top">NoSuchElementException:</td><td>if <a href="Container.html#M000012">element</a> is not found.
+<tr><td valign="top">NoSuchElementException:</td><td>if <a href="Container.html#M000033">element</a> is not found.
 
 </td></tr>
 </table>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000011-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000011-source">
+            onclick="toggleCode('M000032-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000032-source">
 <pre>
-     <span class="ruby-comment cmt"># File lib/operawatir/container.rb, line 262</span>
-262:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">p</span>(<span class="ruby-identifier">how</span>,<span class="ruby-identifier">what</span>)
-263:       <span class="ruby-keyword kw">return</span> <span class="ruby-constant">P</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword kw">self</span>,<span class="ruby-identifier">how</span>,<span class="ruby-identifier">what</span>)
-264:     <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File lib/operawatir/container.rb, line 259</span>
+259:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">p</span>(<span class="ruby-identifier">how</span>,<span class="ruby-identifier">what</span>)
+260:       <span class="ruby-constant">P</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword kw">self</span>,<span class="ruby-identifier">how</span>,<span class="ruby-identifier">what</span>)
+261:     <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
       </div>
 
-      <div id="method-M000007" class="method-detail">
-        <a name="M000007"></a>
+      <div id="method-M000028" class="method-detail">
+        <a name="M000028"></a>
 
         <div class="method-heading">
-          <a href="#M000007" class="method-signature">
+          <a href="#M000028" class="method-signature">
           <span class="method-name">radio</span><span class="method-args">(how, what=nil, value=nil)</span>
           </a>
         </div>
       
         <div class="method-description">
           <p>
-Method for accessing a <a href="Container.html#M000007">radio</a> <a
-href="Container.html#M000012">element</a>.
+Method for accessing a <a href="Container.html#M000028">radio</a> <a
+href="Container.html#M000033">element</a>.
 </p>
 <p>
 Arguments:
 </p>
 <table>
 <tr><td valign="top">how:</td><td>Selector symbol for how we are to locate the <a
-href="Container.html#M000012">element</a>.
+href="Container.html#M000033">element</a>.
 
 </td></tr>
 <tr><td valign="top">what:</td><td>(Optional.) Integer, string or regular expression; depending on which
@@ -996,28 +993,28 @@ Returns: A <a href="Radio.html">Radio</a> object.
 Raises:
 </p>
 <table>
-<tr><td valign="top">NoSuchElementException:</td><td>if <a href="Container.html#M000012">element</a> is not found.
+<tr><td valign="top">NoSuchElementException:</td><td>if <a href="Container.html#M000033">element</a> is not found.
 
 </td></tr>
 </table>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000007-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000007-source">
+            onclick="toggleCode('M000028-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000028-source">
 <pre>
-     <span class="ruby-comment cmt"># File lib/operawatir/container.rb, line 174</span>
-174:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">radio</span>(<span class="ruby-identifier">how</span>, <span class="ruby-identifier">what</span>=<span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">value</span>=<span class="ruby-keyword kw">nil</span>)
-175:       <span class="ruby-keyword kw">return</span> <span class="ruby-constant">Radio</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword kw">self</span>, <span class="ruby-identifier">how</span>, <span class="ruby-identifier">what</span>, <span class="ruby-identifier">value</span>)
-176:     <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File lib/operawatir/container.rb, line 171</span>
+171:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">radio</span>(<span class="ruby-identifier">how</span>, <span class="ruby-identifier">what</span>=<span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">value</span>=<span class="ruby-keyword kw">nil</span>)
+172:       <span class="ruby-constant">Radio</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword kw">self</span>, <span class="ruby-identifier">how</span>, <span class="ruby-identifier">what</span>, <span class="ruby-identifier">value</span>)
+173:     <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
       </div>
 
-      <div id="method-M000005" class="method-detail">
-        <a name="M000005"></a>
+      <div id="method-M000026" class="method-detail">
+        <a name="M000026"></a>
 
         <div class="method-heading">
-          <a href="#M000005" class="method-signature">
+          <a href="#M000026" class="method-signature">
           <span class="method-name">select_list</span><span class="method-args">(how, what=nil)</span>
           </a>
         </div>
@@ -1025,14 +1022,14 @@ Raises:
         <div class="method-description">
           <p>
 Method for accessing a select list <a
-href="Container.html#M000012">element</a>, typically a &lt;select&gt; tag.
+href="Container.html#M000033">element</a>, typically a &lt;select&gt; tag.
 </p>
 <p>
 Arguments:
 </p>
 <table>
 <tr><td valign="top">how:</td><td>(Symbol.) Selector for how we are to locate the <a
-href="Container.html#M000012">element</a>.
+href="Container.html#M000033">element</a>.
 
 </td></tr>
 <tr><td valign="top">what:</td><td>(String.) (Optional.) Integer, string or regular expression; depending on
@@ -1067,44 +1064,44 @@ Returns: A <a href="SelectList.html">SelectList</a> object.
 Raises:
 </p>
 <table>
-<tr><td valign="top">NoSuchElementException:</td><td>if <a href="Container.html#M000012">element</a> is not found.
+<tr><td valign="top">NoSuchElementException:</td><td>if <a href="Container.html#M000033">element</a> is not found.
 
 </td></tr>
 </table>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000005-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000005-source">
+            onclick="toggleCode('M000026-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000026-source">
 <pre>
-     <span class="ruby-comment cmt"># File lib/operawatir/container.rb, line 126</span>
-126:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">how</span>, <span class="ruby-identifier">what</span>=<span class="ruby-keyword kw">nil</span>)
-127:       <span class="ruby-keyword kw">return</span> <span class="ruby-constant">SelectList</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword kw">self</span>, <span class="ruby-identifier">how</span>, <span class="ruby-identifier">what</span>)
-128:     <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File lib/operawatir/container.rb, line 123</span>
+123:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">select_list</span>(<span class="ruby-identifier">how</span>, <span class="ruby-identifier">what</span>=<span class="ruby-keyword kw">nil</span>)
+124:       <span class="ruby-constant">SelectList</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword kw">self</span>, <span class="ruby-identifier">how</span>, <span class="ruby-identifier">what</span>)
+125:     <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
       </div>
 
-      <div id="method-M000016" class="method-detail">
-        <a name="M000016"></a>
+      <div id="method-M000037" class="method-detail">
+        <a name="M000037"></a>
 
         <div class="method-heading">
-          <a href="#M000016" class="method-signature">
+          <a href="#M000037" class="method-signature">
           <span class="method-name">span</span><span class="method-args">(how,what)</span>
           </a>
         </div>
       
         <div class="method-description">
           <p>
-Method for accessing a <a href="Container.html#M000016">span</a> <a
-href="Container.html#M000012">element</a>, typically a &lt;<a
-href="Container.html#M000016">span</a>&gt; tag.
+Method for accessing a <a href="Container.html#M000037">span</a> <a
+href="Container.html#M000033">element</a>, typically a &lt;<a
+href="Container.html#M000037">span</a>&gt; tag.
 </p>
 <p>
 Arguments:
 </p>
 <table>
 <tr><td valign="top">how:</td><td>Selector symbol for how we are to locate the <a
-href="Container.html#M000012">element</a>.
+href="Container.html#M000033">element</a>.
 
 </td></tr>
 <tr><td valign="top">what:</td><td>(Optional.) Integer, string or regular expression; depending on which
@@ -1139,28 +1136,28 @@ Returns: An <a href="Span.html">Span</a> object.
 Raises:
 </p>
 <table>
-<tr><td valign="top">NoSuchElementException:</td><td>if <a href="Container.html#M000012">element</a> is not found.
+<tr><td valign="top">NoSuchElementException:</td><td>if <a href="Container.html#M000033">element</a> is not found.
 
 </td></tr>
 </table>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000016-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000016-source">
+            onclick="toggleCode('M000037-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000037-source">
 <pre>
-     <span class="ruby-comment cmt"># File lib/operawatir/container.rb, line 372</span>
-372:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">span</span>(<span class="ruby-identifier">how</span>,<span class="ruby-identifier">what</span>)
-373:       <span class="ruby-keyword kw">return</span> <span class="ruby-constant">Span</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword kw">self</span>,<span class="ruby-identifier">how</span>,<span class="ruby-identifier">what</span>)
-374:     <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File lib/operawatir/container.rb, line 369</span>
+369:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">span</span>(<span class="ruby-identifier">how</span>,<span class="ruby-identifier">what</span>)
+370:       <span class="ruby-constant">Span</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword kw">self</span>,<span class="ruby-identifier">how</span>,<span class="ruby-identifier">what</span>)
+371:     <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
       </div>
 
-      <div id="method-M000001" class="method-detail">
-        <a name="M000001"></a>
+      <div id="method-M000022" class="method-detail">
+        <a name="M000022"></a>
 
         <div class="method-heading">
-          <a href="#M000001" class="method-signature">
+          <a href="#M000022" class="method-signature">
           <span class="method-name">text_field</span><span class="method-args">(how,what)</span>
           </a>
         </div>
@@ -1175,7 +1172,7 @@ Arguments:
 </p>
 <table>
 <tr><td valign="top">how:</td><td>(Symbol.) Selector for how we are to locate the <a
-href="Container.html#M000012">element</a>.
+href="Container.html#M000033">element</a>.
 
 </td></tr>
 <tr><td valign="top">what:</td><td>(String.) Integer, string or regular expression; depending on which
@@ -1219,28 +1216,28 @@ Usage:
 Raises:
 </p>
 <table>
-<tr><td valign="top">NoSuchElementException:</td><td>if <a href="Container.html#M000012">element</a> is not found.
+<tr><td valign="top">NoSuchElementException:</td><td>if <a href="Container.html#M000033">element</a> is not found.
 
 </td></tr>
 </table>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000001-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000001-source">
+            onclick="toggleCode('M000022-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000022-source">
 <pre>
     <span class="ruby-comment cmt"># File lib/operawatir/container.rb, line 30</span>
 30:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">text_field</span>(<span class="ruby-identifier">how</span>,<span class="ruby-identifier">what</span>)
-31:       <span class="ruby-keyword kw">return</span> <span class="ruby-constant">TextField</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword kw">self</span>,<span class="ruby-identifier">how</span>,<span class="ruby-identifier">what</span>)
+31:       <span class="ruby-constant">TextField</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword kw">self</span>,<span class="ruby-identifier">how</span>,<span class="ruby-identifier">what</span>)
 32:     <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
       </div>
 
-      <div id="method-M000015" class="method-detail">
-        <a name="M000015"></a>
+      <div id="method-M000036" class="method-detail">
+        <a name="M000036"></a>
 
         <div class="method-heading">
-          <a href="#M000015" class="method-signature">
+          <a href="#M000036" class="method-signature">
           <span class="method-name">ul</span><span class="method-args">(how,what)</span>
           </a>
         </div>
@@ -1248,15 +1245,15 @@ Raises:
         <div class="method-description">
           <p>
 Method for accessing an unordered list <a
-href="Container.html#M000012">element</a>, typically a &lt;<a
-href="Container.html#M000015">ul</a>&gt; tag.
+href="Container.html#M000033">element</a>, typically a &lt;<a
+href="Container.html#M000036">ul</a>&gt; tag.
 </p>
 <p>
 Arguments:
 </p>
 <table>
 <tr><td valign="top">how:</td><td>Selector symbol for how we are to locate the <a
-href="Container.html#M000012">element</a>.
+href="Container.html#M000033">element</a>.
 
 </td></tr>
 <tr><td valign="top">what:</td><td>(Optional.) Integer, string or regular expression; depending on which
@@ -1291,18 +1288,18 @@ Returns: An <a href="Ul.html">Ul</a> object.
 Raises:
 </p>
 <table>
-<tr><td valign="top">NoSuchElementException:</td><td>if <a href="Container.html#M000012">element</a> is not found.
+<tr><td valign="top">NoSuchElementException:</td><td>if <a href="Container.html#M000033">element</a> is not found.
 
 </td></tr>
 </table>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000015-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000015-source">
+            onclick="toggleCode('M000036-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000036-source">
 <pre>
-     <span class="ruby-comment cmt"># File lib/operawatir/container.rb, line 350</span>
-350:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">ul</span>(<span class="ruby-identifier">how</span>,<span class="ruby-identifier">what</span>)
-351:       <span class="ruby-keyword kw">return</span> <span class="ruby-constant">Ul</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword kw">self</span>,<span class="ruby-identifier">how</span>,<span class="ruby-identifier">what</span>)
-352:     <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File lib/operawatir/container.rb, line 347</span>
+347:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">ul</span>(<span class="ruby-identifier">how</span>,<span class="ruby-identifier">what</span>)
+348:       <span class="ruby-constant">Ul</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword kw">self</span>,<span class="ruby-identifier">how</span>,<span class="ruby-identifier">what</span>)
+349:     <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
