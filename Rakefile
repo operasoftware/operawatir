@@ -12,7 +12,7 @@ require 'spec/rake/spectask'
 
 spec = Gem::Specification.new do |s|
   s.name = 'OperaWatir'
-  s.version = '0.2.2.100709'
+  s.version = '0.2.2.100722'
   s.has_rdoc = true
   s.extra_rdoc_files = ['README', 'LICENSE']
   s.summary = 'OperaWatir on OperaDriver engine'
