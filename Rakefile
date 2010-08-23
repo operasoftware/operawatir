@@ -19,7 +19,7 @@ spec = Gem::Specification.new do |s|
   s.description = s.summary
   s.author = 'Deniz Turkoglu'
   s.email = 'dturkoglu@opera.com'
-  s.files = %w(README LICENSE Rakefile) + Dir.glob('{lib,spec}/**/*')
+  s.files = %w(README LICENSE Rakefile) + Dir.glob('{lib,spec,utils}/**/*')
   s.require_path = 'lib'
 end
 
