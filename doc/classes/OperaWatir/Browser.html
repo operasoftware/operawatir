@@ -86,35 +86,34 @@
       <h3 class="section-bar">Methods</h3>
 
       <div class="name-list">
-      <a href="#M000061">back</a>&nbsp;&nbsp;
-      <a href="#M000056">clean_up</a>&nbsp;&nbsp;
-      <a href="#M000059">close</a>&nbsp;&nbsp;
-      <a href="#M000066">close_all</a>&nbsp;&nbsp;
-      <a href="#M000057">driver</a>&nbsp;&nbsp;
-      <a href="#M000068">execute_script</a>&nbsp;&nbsp;
-      <a href="#M000062">forward</a>&nbsp;&nbsp;
-      <a href="#M000064">frame</a>&nbsp;&nbsp;
-      <a href="#M000079">gc</a>&nbsp;&nbsp;
-      <a href="#M000076">get_hash</a>&nbsp;&nbsp;
-      <a href="#M000054">goto</a>&nbsp;&nbsp;
-      <a href="#M000080">is_connected?</a>&nbsp;&nbsp;
-      <a href="#M000069">key</a>&nbsp;&nbsp;
-      <a href="#M000070">key_down</a>&nbsp;&nbsp;
-      <a href="#M000071">key_up</a>&nbsp;&nbsp;
-      <a href="#M000053">new</a>&nbsp;&nbsp;
-      <a href="#M000078">open_tabs</a>&nbsp;&nbsp;
-      <a href="#M000074">opera_action</a>&nbsp;&nbsp;
-      <a href="#M000077">opera_action_list</a>&nbsp;&nbsp;
-      <a href="#M000081">pid</a>&nbsp;&nbsp;
-      <a href="#M000067">quit</a>&nbsp;&nbsp;
-      <a href="#M000063">refresh</a>&nbsp;&nbsp;
-      <a href="#M000065">show_frames</a>&nbsp;&nbsp;
-      <a href="#M000055">stop</a>&nbsp;&nbsp;
-      <a href="#M000075">take_screenshot</a>&nbsp;&nbsp;
-      <a href="#M000060">text</a>&nbsp;&nbsp;
-      <a href="#M000058">title</a>&nbsp;&nbsp;
-      <a href="#M000072">type</a>&nbsp;&nbsp;
-      <a href="#M000073">url</a>&nbsp;&nbsp;
+      <a href="#M000045">back</a>&nbsp;&nbsp;
+      <a href="#M000041">clean_up</a>&nbsp;&nbsp;
+      <a href="#M000043">close</a>&nbsp;&nbsp;
+      <a href="#M000050">close_all</a>&nbsp;&nbsp;
+      <a href="#M000052">execute_script</a>&nbsp;&nbsp;
+      <a href="#M000046">forward</a>&nbsp;&nbsp;
+      <a href="#M000048">frame</a>&nbsp;&nbsp;
+      <a href="#M000063">gc</a>&nbsp;&nbsp;
+      <a href="#M000060">get_hash</a>&nbsp;&nbsp;
+      <a href="#M000039">goto</a>&nbsp;&nbsp;
+      <a href="#M000064">is_connected?</a>&nbsp;&nbsp;
+      <a href="#M000053">key</a>&nbsp;&nbsp;
+      <a href="#M000054">key_down</a>&nbsp;&nbsp;
+      <a href="#M000055">key_up</a>&nbsp;&nbsp;
+      <a href="#M000038">new</a>&nbsp;&nbsp;
+      <a href="#M000062">open_tabs</a>&nbsp;&nbsp;
+      <a href="#M000058">opera_action</a>&nbsp;&nbsp;
+      <a href="#M000061">opera_action_list</a>&nbsp;&nbsp;
+      <a href="#M000065">pid</a>&nbsp;&nbsp;
+      <a href="#M000051">quit</a>&nbsp;&nbsp;
+      <a href="#M000047">refresh</a>&nbsp;&nbsp;
+      <a href="#M000049">show_frames</a>&nbsp;&nbsp;
+      <a href="#M000040">stop</a>&nbsp;&nbsp;
+      <a href="#M000059">take_screenshot</a>&nbsp;&nbsp;
+      <a href="#M000044">text</a>&nbsp;&nbsp;
+      <a href="#M000042">title</a>&nbsp;&nbsp;
+      <a href="#M000056">type</a>&nbsp;&nbsp;
+      <a href="#M000057">url</a>&nbsp;&nbsp;
       </div>
     </div>
 
@@ -136,6 +135,19 @@
 
 
 
+    <div id="attribute-list">
+      <h3 class="section-bar">Attributes</h3>
+
+      <div class="name-list">
+        <table>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">driver</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        </table>
+      </div>
+    </div>
       
 
 
@@ -143,29 +155,29 @@
     <div id="methods">
       <h3 class="section-bar">Public Class methods</h3>
 
-      <div id="method-M000053" class="method-detail">
-        <a name="M000053"></a>
+      <div id="method-M000038" class="method-detail">
+        <a name="M000038"></a>
 
         <div class="method-heading">
-          <a href="#M000053" class="method-signature">
+          <a href="#M000038" class="method-signature">
           <span class="method-name">new</span><span class="method-args">(executable_location = nil, *arguments)</span>
           </a>
         </div>
       
         <div class="method-description">
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000053-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000053-source">
+            onclick="toggleCode('M000038-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000038-source">
 <pre>
-    <span class="ruby-comment cmt"># File lib/operawatir/browser.rb, line 4</span>
- 4:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span> (<span class="ruby-identifier">executable_location</span> = <span class="ruby-keyword kw">nil</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">arguments</span>)
- 5:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">executable_location</span>.<span class="ruby-identifier">nil?</span>
- 6:         <span class="ruby-ivar">@driver</span> = <span class="ruby-constant">OperaDriver</span>.<span class="ruby-identifier">new</span>
- 7:         <span class="ruby-ivar">@frame</span> = <span class="ruby-value str">'_top'</span>
- 8:       <span class="ruby-keyword kw">else</span>
- 9:         <span class="ruby-ivar">@driver</span> = <span class="ruby-constant">OperaDriver</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">executable_location</span>, <span class="ruby-identifier">arguments</span>.<span class="ruby-identifier">to_java</span>(<span class="ruby-identifier">:String</span>))
-10:       <span class="ruby-keyword kw">end</span>
-11:     <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File lib/operawatir/browser.rb, line 7</span>
+ 7:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span> (<span class="ruby-identifier">executable_location</span> = <span class="ruby-keyword kw">nil</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">arguments</span>)
+ 8:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">executable_location</span>.<span class="ruby-identifier">nil?</span>
+ 9:         <span class="ruby-ivar">@driver</span> = <span class="ruby-constant">OperaDriver</span>.<span class="ruby-identifier">new</span>
+10:         <span class="ruby-ivar">@frame</span> = <span class="ruby-value str">'_top'</span>
+11:       <span class="ruby-keyword kw">else</span>
+12:         <span class="ruby-ivar">@driver</span> = <span class="ruby-constant">OperaDriver</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">executable_location</span>, <span class="ruby-identifier">arguments</span>.<span class="ruby-identifier">to_java</span>(<span class="ruby-identifier">:String</span>))
+13:       <span class="ruby-keyword kw">end</span>
+14:     <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
@@ -173,11 +185,11 @@
 
       <h3 class="section-bar">Public Instance methods</h3>
 
-      <div id="method-M000061" class="method-detail">
-        <a name="M000061"></a>
+      <div id="method-M000045" class="method-detail">
+        <a name="M000045"></a>
 
         <div class="method-heading">
-          <a href="#M000061" class="method-signature">
+          <a href="#M000045" class="method-signature">
           <span class="method-name">back</span><span class="method-args">()</span>
           </a>
         </div>
@@ -187,50 +199,50 @@
 Instructs the browser to navigate one page backwards.
 </p>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000061-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000061-source">
+            onclick="toggleCode('M000045-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000045-source">
 <pre>
-    <span class="ruby-comment cmt"># File lib/operawatir/browser.rb, line 51</span>
-51:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">back</span>
-52:       <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@driver</span>.<span class="ruby-identifier">navigate</span>.<span class="ruby-identifier">back</span>
-53:     <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File lib/operawatir/browser.rb, line 49</span>
+49:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">back</span>
+50:       <span class="ruby-ivar">@driver</span>.<span class="ruby-identifier">navigate</span>.<span class="ruby-identifier">back</span>
+51:     <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
       </div>
 
-      <div id="method-M000056" class="method-detail">
-        <a name="M000056"></a>
+      <div id="method-M000041" class="method-detail">
+        <a name="M000041"></a>
 
         <div class="method-heading">
-          <a href="#M000056" class="method-signature">
+          <a href="#M000041" class="method-signature">
           <span class="method-name">clean_up</span><span class="method-args">()</span>
           </a>
         </div>
       
         <div class="method-description">
           <p>
-Cleans up and <a href="Browser.html#M000059">close</a> the connection to
+Cleans up and <a href="Browser.html#M000043">close</a> the connection to
 the browser instance. Will not terminate the browser program.
 </p>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000056-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000056-source">
+            onclick="toggleCode('M000041-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000041-source">
 <pre>
-    <span class="ruby-comment cmt"># File lib/operawatir/browser.rb, line 26</span>
-26:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">clean_up</span>
-27:       <span class="ruby-ivar">@driver</span>.<span class="ruby-identifier">cleanUp</span>
-28:     <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File lib/operawatir/browser.rb, line 29</span>
+29:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">clean_up</span>
+30:       <span class="ruby-ivar">@driver</span>.<span class="ruby-identifier">cleanUp</span>
+31:     <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
       </div>
 
-      <div id="method-M000059" class="method-detail">
-        <a name="M000059"></a>
+      <div id="method-M000043" class="method-detail">
+        <a name="M000043"></a>
 
         <div class="method-heading">
-          <a href="#M000059" class="method-signature">
+          <a href="#M000043" class="method-signature">
           <span class="method-name">close</span><span class="method-args">()</span>
           </a>
         </div>
@@ -240,23 +252,23 @@ the browser instance. Will not terminate the browser program.
 Closes the open page/tab.
 </p>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000059-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000059-source">
+            onclick="toggleCode('M000043-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000043-source">
 <pre>
-    <span class="ruby-comment cmt"># File lib/operawatir/browser.rb, line 41</span>
-41:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">close</span>
-42:       <span class="ruby-ivar">@driver</span>.<span class="ruby-identifier">close</span>
-43:     <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File lib/operawatir/browser.rb, line 39</span>
+39:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">close</span>
+40:       <span class="ruby-ivar">@driver</span>.<span class="ruby-identifier">close</span>
+41:     <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
       </div>
 
-      <div id="method-M000066" class="method-detail">
-        <a name="M000066"></a>
+      <div id="method-M000050" class="method-detail">
+        <a name="M000050"></a>
 
         <div class="method-heading">
-          <a href="#M000066" class="method-signature">
+          <a href="#M000050" class="method-signature">
           <span class="method-name">close_all</span><span class="method-args">()</span>
           </a>
         </div>
@@ -267,49 +279,23 @@ Closes all open pages and quits the browser instance. The browser instance
 will be terminated.
 </p>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000066-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000066-source">
+            onclick="toggleCode('M000050-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000050-source">
 <pre>
-    <span class="ruby-comment cmt"># File lib/operawatir/browser.rb, line 91</span>
-91:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">close_all</span>
-92:       <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@driver</span>.<span class="ruby-identifier">quit</span>
-93:     <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File lib/operawatir/browser.rb, line 89</span>
+89:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">close_all</span>
+90:       <span class="ruby-ivar">@driver</span>.<span class="ruby-identifier">quit</span>
+91:     <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
       </div>
 
-      <div id="method-M000057" class="method-detail">
-        <a name="M000057"></a>
+      <div id="method-M000052" class="method-detail">
+        <a name="M000052"></a>
 
         <div class="method-heading">
-          <a href="#M000057" class="method-signature">
-          <span class="method-name">driver</span><span class="method-args">()</span>
-          </a>
-        </div>
-      
-        <div class="method-description">
-          <p>
-Returns the internal OperaDriver object.
-</p>
-          <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000057-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000057-source">
-<pre>
-    <span class="ruby-comment cmt"># File lib/operawatir/browser.rb, line 31</span>
-31:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">driver</span>
-32:       <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@driver</span>
-33:     <span class="ruby-keyword kw">end</span>
-</pre>
-          </div>
-        </div>
-      </div>
-
-      <div id="method-M000068" class="method-detail">
-        <a name="M000068"></a>
-
-        <div class="method-heading">
-          <a href="#M000068" class="method-signature">
+          <a href="#M000052" class="method-signature">
           <span class="method-name">execute_script</span><span class="method-args">(source)</span>
           </a>
         </div>
@@ -319,23 +305,23 @@ Returns the internal OperaDriver object.
 Executes the given JavaScript string, and returns the result.
 </p>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000068-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000068-source">
+            onclick="toggleCode('M000052-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000052-source">
 <pre>
-    <span class="ruby-comment cmt"># File lib/operawatir/browser.rb, line 97</span>
-97:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">execute_script</span>(<span class="ruby-identifier">source</span>)
-98:       <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@driver</span>.<span class="ruby-identifier">executeScript</span>(<span class="ruby-identifier">source</span>, [].<span class="ruby-identifier">to_java</span>(<span class="ruby-identifier">:String</span>))
-99:     <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File lib/operawatir/browser.rb, line 95</span>
+95:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">execute_script</span>(<span class="ruby-identifier">source</span>)
+96:       <span class="ruby-ivar">@driver</span>.<span class="ruby-identifier">executeScript</span>(<span class="ruby-identifier">source</span>, [].<span class="ruby-identifier">to_java</span>(<span class="ruby-identifier">:String</span>))
+97:     <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
       </div>
 
-      <div id="method-M000062" class="method-detail">
-        <a name="M000062"></a>
+      <div id="method-M000046" class="method-detail">
+        <a name="M000046"></a>
 
         <div class="method-heading">
-          <a href="#M000062" class="method-signature">
+          <a href="#M000046" class="method-signature">
           <span class="method-name">forward</span><span class="method-args">()</span>
           </a>
         </div>
@@ -343,26 +329,26 @@ Executes the given JavaScript string, and returns the result.
         <div class="method-description">
           <p>
 Instructs the browser to navigate one page <a
-href="Browser.html#M000062">forward</a>.
+href="Browser.html#M000046">forward</a>.
 </p>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000062-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000062-source">
+            onclick="toggleCode('M000046-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000046-source">
 <pre>
-    <span class="ruby-comment cmt"># File lib/operawatir/browser.rb, line 56</span>
-56:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">forward</span>
-57:       <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@driver</span>.<span class="ruby-identifier">navigate</span>.<span class="ruby-identifier">forward</span>
-58:     <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File lib/operawatir/browser.rb, line 54</span>
+54:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">forward</span>
+55:       <span class="ruby-ivar">@driver</span>.<span class="ruby-identifier">navigate</span>.<span class="ruby-identifier">forward</span>
+56:     <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
       </div>
 
-      <div id="method-M000064" class="method-detail">
-        <a name="M000064"></a>
+      <div id="method-M000048" class="method-detail">
+        <a name="M000048"></a>
 
         <div class="method-heading">
-          <a href="#M000064" class="method-signature">
+          <a href="#M000048" class="method-signature">
           <span class="method-name">frame</span><span class="method-args">(how, what)</span>
           </a>
         </div>
@@ -370,46 +356,46 @@ href="Browser.html#M000062">forward</a>.
         <div class="method-description">
           <p>
 Switches focus (active page) to the specified <a
-href="Browser.html#M000064">frame</a>.
+href="Browser.html#M000048">frame</a>.
 </p>
 <p>
 Input:
 </p>
 <table>
-<tr><td valign="top">how:</td><td>Supply method for locating <a href="Browser.html#M000064">frame</a>, by
+<tr><td valign="top">how:</td><td>Supply method for locating <a href="Browser.html#M000048">frame</a>, by
 send the argument <tt>:name</tt> or <tt>:index</tt>.
 
 </td></tr>
-<tr><td valign="top">what:</td><td>Specify which <a href="Browser.html#M000064">frame</a>. Depending on what
-<a href="Browser.html#M000072">type</a> of selector you are using, specify
-the <a href="Browser.html#M000064">frame</a>&#8216;s name or its index.
+<tr><td valign="top">what:</td><td>Specify which <a href="Browser.html#M000048">frame</a>. Depending on what
+<a href="Browser.html#M000056">type</a> of selector you are using, specify
+the <a href="Browser.html#M000048">frame</a>&#8216;s name or its index.
 
 </td></tr>
 </table>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000064-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000064-source">
+            onclick="toggleCode('M000048-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000048-source">
 <pre>
-    <span class="ruby-comment cmt"># File lib/operawatir/browser.rb, line 70</span>
-70:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">frame</span>(<span class="ruby-identifier">how</span>, <span class="ruby-identifier">what</span>)
-71:       <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">how</span>
-72:       <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:name</span>
-73:         <span class="ruby-ivar">@driver</span>.<span class="ruby-identifier">switchTo</span>.<span class="ruby-identifier">frame</span>(<span class="ruby-identifier">what</span>)
-74:       <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:index</span>
-75:         <span class="ruby-ivar">@driver</span>.<span class="ruby-identifier">switchTo</span>.<span class="ruby-identifier">frame</span>(<span class="ruby-identifier">what</span>.<span class="ruby-identifier">to_i</span> <span class="ruby-operator">-</span> <span class="ruby-value">1</span>) <span class="ruby-comment cmt">#index starts from 1 in watir</span>
-76:       <span class="ruby-keyword kw">end</span>
-77:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">self</span>
-78:     <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File lib/operawatir/browser.rb, line 68</span>
+68:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">frame</span>(<span class="ruby-identifier">how</span>, <span class="ruby-identifier">what</span>)
+69:       <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">how</span>
+70:       <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:name</span>
+71:         <span class="ruby-ivar">@driver</span>.<span class="ruby-identifier">switchTo</span>.<span class="ruby-identifier">frame</span>(<span class="ruby-identifier">what</span>)
+72:       <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:index</span>
+73:         <span class="ruby-ivar">@driver</span>.<span class="ruby-identifier">switchTo</span>.<span class="ruby-identifier">frame</span>(<span class="ruby-identifier">what</span>.<span class="ruby-identifier">to_i</span> <span class="ruby-operator">-</span> <span class="ruby-value">1</span>) <span class="ruby-comment cmt">#index starts from 1 in watir</span>
+74:       <span class="ruby-keyword kw">end</span>
+75:       <span class="ruby-keyword kw">self</span>
+76:     <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
       </div>
 
-      <div id="method-M000079" class="method-detail">
-        <a name="M000079"></a>
+      <div id="method-M000063" class="method-detail">
+        <a name="M000063"></a>
 
         <div class="method-heading">
-          <a href="#M000079" class="method-signature">
+          <a href="#M000063" class="method-signature">
           <span class="method-name">gc</span><span class="method-args">()</span>
           </a>
         </div>
@@ -419,23 +405,23 @@ the <a href="Browser.html#M000064">frame</a>&#8216;s name or its index.
 Will return the garbage collection.
 </p>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000079-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000079-source">
+            onclick="toggleCode('M000063-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000063-source">
 <pre>
-     <span class="ruby-comment cmt"># File lib/operawatir/browser.rb, line 171</span>
-171:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">gc</span>
-172:       <span class="ruby-ivar">@driver</span>.<span class="ruby-identifier">gc</span>
-173:     <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File lib/operawatir/browser.rb, line 169</span>
+169:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">gc</span>
+170:       <span class="ruby-ivar">@driver</span>.<span class="ruby-identifier">gc</span>
+171:     <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
       </div>
 
-      <div id="method-M000076" class="method-detail">
-        <a name="M000076"></a>
+      <div id="method-M000060" class="method-detail">
+        <a name="M000060"></a>
 
         <div class="method-heading">
-          <a href="#M000076" class="method-signature">
+          <a href="#M000060" class="method-signature">
           <span class="method-name">get_hash</span><span class="method-args">(time_out = 50)</span>
           </a>
         </div>
@@ -454,23 +440,23 @@ Arguments:
 </td></tr>
 </table>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000076-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000076-source">
+            onclick="toggleCode('M000060-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000060-source">
 <pre>
-     <span class="ruby-comment cmt"># File lib/operawatir/browser.rb, line 152</span>
-152:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">get_hash</span>(<span class="ruby-identifier">time_out</span> = <span class="ruby-value">50</span>)
-153:       <span class="ruby-ivar">@driver</span>.<span class="ruby-identifier">findElementByTagName</span>(<span class="ruby-value str">'body'</span>).<span class="ruby-identifier">getImageHash</span>
-154:     <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File lib/operawatir/browser.rb, line 150</span>
+150:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">get_hash</span>(<span class="ruby-identifier">time_out</span> = <span class="ruby-value">50</span>)
+151:       <span class="ruby-ivar">@driver</span>.<span class="ruby-identifier">findElementByTagName</span>(<span class="ruby-value str">'body'</span>).<span class="ruby-identifier">getImageHash</span>
+152:     <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
       </div>
 
-      <div id="method-M000054" class="method-detail">
-        <a name="M000054"></a>
+      <div id="method-M000039" class="method-detail">
+        <a name="M000039"></a>
 
         <div class="method-heading">
-          <a href="#M000054" class="method-signature">
+          <a href="#M000039" class="method-signature">
           <span class="method-name">goto</span><span class="method-args">(url = &quot;&quot;)</span>
           </a>
         </div>
@@ -480,24 +466,24 @@ Arguments:
 Loads the given URL in the browser. Waits for the page to get loaded.
 </p>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000054-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000054-source">
+            onclick="toggleCode('M000039-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000039-source">
 <pre>
-    <span class="ruby-comment cmt"># File lib/operawatir/browser.rb, line 14</span>
-14:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">goto</span>(<span class="ruby-identifier">url</span> = <span class="ruby-value str">&quot;&quot;</span>)
-15:       <span class="ruby-identifier">raise</span> <span class="ruby-value str">'You need to specify an address'</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">url</span>.<span class="ruby-identifier">empty?</span>
-16:       <span class="ruby-ivar">@driver</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">url</span>)
-17:     <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File lib/operawatir/browser.rb, line 17</span>
+17:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">goto</span>(<span class="ruby-identifier">url</span> = <span class="ruby-value str">&quot;&quot;</span>)
+18:       <span class="ruby-identifier">raise</span> <span class="ruby-value str">'You need to specify an address'</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">url</span>.<span class="ruby-identifier">empty?</span>
+19:       <span class="ruby-ivar">@driver</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">url</span>)
+20:     <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
       </div>
 
-      <div id="method-M000080" class="method-detail">
-        <a name="M000080"></a>
+      <div id="method-M000064" class="method-detail">
+        <a name="M000064"></a>
 
         <div class="method-heading">
-          <a href="#M000080" class="method-signature">
+          <a href="#M000064" class="method-signature">
           <span class="method-name">is_connected?</span><span class="method-args">()</span>
           </a>
         </div>
@@ -508,105 +494,105 @@ Checks if <a href="../OperaWatir.html">OperaWatir</a> is connected to any
 browser instance. Will return true or false.
 </p>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000080-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000080-source">
+            onclick="toggleCode('M000064-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000064-source">
 <pre>
-     <span class="ruby-comment cmt"># File lib/operawatir/browser.rb, line 177</span>
-177:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">is_connected?</span>
-178:       <span class="ruby-ivar">@driver</span>.<span class="ruby-identifier">isConnected</span>
-179:     <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File lib/operawatir/browser.rb, line 175</span>
+175:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">is_connected?</span>
+176:       <span class="ruby-ivar">@driver</span>.<span class="ruby-identifier">isConnected</span>
+177:     <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
       </div>
 
-      <div id="method-M000069" class="method-detail">
-        <a name="M000069"></a>
+      <div id="method-M000053" class="method-detail">
+        <a name="M000053"></a>
 
         <div class="method-heading">
-          <a href="#M000069" class="method-signature">
+          <a href="#M000053" class="method-signature">
           <span class="method-name">key</span><span class="method-args">(key)</span>
           </a>
         </div>
       
         <div class="method-description">
           <p>
-Send <a href="Browser.html#M000069">key</a> events to the browser instance.
+Send <a href="Browser.html#M000053">key</a> events to the browser instance.
 I.e. “Down” (arrow down), “Space” (space <a
-href="Browser.html#M000069">key</a>), “Home”, &amp;c.
+href="Browser.html#M000053">key</a>), “Home”, &amp;c.
 </p>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000069-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000069-source">
+            onclick="toggleCode('M000053-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000053-source">
 <pre>
-     <span class="ruby-comment cmt"># File lib/operawatir/browser.rb, line 103</span>
-103:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">key</span>(<span class="ruby-identifier">key</span>)
-104:       <span class="ruby-ivar">@driver</span>.<span class="ruby-identifier">key</span>(<span class="ruby-identifier">key</span>)
-105:     <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File lib/operawatir/browser.rb, line 101</span>
+101:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">key</span>(<span class="ruby-identifier">key</span>)
+102:       <span class="ruby-ivar">@driver</span>.<span class="ruby-identifier">key</span>(<span class="ruby-identifier">key</span>)
+103:     <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
       </div>
 
-      <div id="method-M000070" class="method-detail">
-        <a name="M000070"></a>
+      <div id="method-M000054" class="method-detail">
+        <a name="M000054"></a>
 
         <div class="method-heading">
-          <a href="#M000070" class="method-signature">
+          <a href="#M000054" class="method-signature">
           <span class="method-name">key_down</span><span class="method-args">(key)</span>
           </a>
         </div>
       
         <div class="method-description">
           <p>
-Enables you to hold down a <a href="Browser.html#M000069">key</a>, i.e.
+Enables you to hold down a <a href="Browser.html#M000053">key</a>, i.e.
 “Ctrl”, “Alt”, “Shift”, &amp;c. Remember to release the keys
-afterwards with the <a href="Browser.html#M000071">key_up</a> method.
+afterwards with the <a href="Browser.html#M000055">key_up</a> method.
 </p>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000070-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000070-source">
+            onclick="toggleCode('M000054-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000054-source">
 <pre>
-     <span class="ruby-comment cmt"># File lib/operawatir/browser.rb, line 109</span>
-109:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">key_down</span>(<span class="ruby-identifier">key</span>)
-110:       <span class="ruby-ivar">@driver</span>.<span class="ruby-identifier">keyDown</span>(<span class="ruby-identifier">key</span>)
-111:     <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File lib/operawatir/browser.rb, line 107</span>
+107:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">key_down</span>(<span class="ruby-identifier">key</span>)
+108:       <span class="ruby-ivar">@driver</span>.<span class="ruby-identifier">keyDown</span>(<span class="ruby-identifier">key</span>)
+109:     <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
       </div>
 
-      <div id="method-M000071" class="method-detail">
-        <a name="M000071"></a>
+      <div id="method-M000055" class="method-detail">
+        <a name="M000055"></a>
 
         <div class="method-heading">
-          <a href="#M000071" class="method-signature">
+          <a href="#M000055" class="method-signature">
           <span class="method-name">key_up</span><span class="method-args">(key)</span>
           </a>
         </div>
       
         <div class="method-description">
           <p>
-Releases a held down <a href="Browser.html#M000069">key</a>.
+Releases a held down <a href="Browser.html#M000053">key</a>.
 </p>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000071-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000071-source">
+            onclick="toggleCode('M000055-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000055-source">
 <pre>
-     <span class="ruby-comment cmt"># File lib/operawatir/browser.rb, line 114</span>
-114:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">key_up</span>(<span class="ruby-identifier">key</span>)
-115:       <span class="ruby-ivar">@driver</span>.<span class="ruby-identifier">keyUp</span>(<span class="ruby-identifier">key</span>)
-116:     <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File lib/operawatir/browser.rb, line 112</span>
+112:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">key_up</span>(<span class="ruby-identifier">key</span>)
+113:       <span class="ruby-ivar">@driver</span>.<span class="ruby-identifier">keyUp</span>(<span class="ruby-identifier">key</span>)
+114:     <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
       </div>
 
-      <div id="method-M000078" class="method-detail">
-        <a name="M000078"></a>
+      <div id="method-M000062" class="method-detail">
+        <a name="M000062"></a>
 
         <div class="method-heading">
-          <a href="#M000078" class="method-signature">
+          <a href="#M000062" class="method-signature">
           <span class="method-name">open_tabs</span><span class="method-args">()</span>
           </a>
         </div>
@@ -616,23 +602,23 @@ Releases a held down <a href="Browser.html#M000069">key</a>.
 Returns the number of open pages/tabs.
 </p>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000078-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000078-source">
+            onclick="toggleCode('M000062-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000062-source">
 <pre>
-     <span class="ruby-comment cmt"># File lib/operawatir/browser.rb, line 166</span>
-166:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">open_tabs</span>
-167:       <span class="ruby-ivar">@driver</span>.<span class="ruby-identifier">getWindowHandles</span>.<span class="ruby-identifier">size</span>
-168:     <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File lib/operawatir/browser.rb, line 164</span>
+164:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">open_tabs</span>
+165:       <span class="ruby-ivar">@driver</span>.<span class="ruby-identifier">getWindowHandles</span>.<span class="ruby-identifier">size</span>
+166:     <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
       </div>
 
-      <div id="method-M000074" class="method-detail">
-        <a name="M000074"></a>
+      <div id="method-M000058" class="method-detail">
+        <a name="M000058"></a>
 
         <div class="method-heading">
-          <a href="#M000074" class="method-signature">
+          <a href="#M000058" class="method-signature">
           <span class="method-name">opera_action</span><span class="method-args">(name, *param)</span>
           </a>
         </div>
@@ -653,23 +639,23 @@ Arguments:
 </td></tr>
 </table>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000074-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000074-source">
+            onclick="toggleCode('M000058-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000058-source">
 <pre>
-     <span class="ruby-comment cmt"># File lib/operawatir/browser.rb, line 134</span>
-134:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">opera_action</span>(<span class="ruby-identifier">name</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">param</span>)
-135:       <span class="ruby-ivar">@driver</span>.<span class="ruby-identifier">operaAction</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">param</span>.<span class="ruby-identifier">to_java</span>(<span class="ruby-identifier">:String</span>))
-136:     <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File lib/operawatir/browser.rb, line 132</span>
+132:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">opera_action</span>(<span class="ruby-identifier">name</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">param</span>)
+133:       <span class="ruby-ivar">@driver</span>.<span class="ruby-identifier">operaAction</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">param</span>.<span class="ruby-identifier">to_java</span>(<span class="ruby-identifier">:String</span>))
+134:     <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
       </div>
 
-      <div id="method-M000077" class="method-detail">
-        <a name="M000077"></a>
+      <div id="method-M000061" class="method-detail">
+        <a name="M000061"></a>
 
         <div class="method-heading">
-          <a href="#M000077" class="method-signature">
+          <a href="#M000061" class="method-signature">
           <span class="method-name">opera_action_list</span><span class="method-args">()</span>
           </a>
         </div>
@@ -679,85 +665,17 @@ Arguments:
 Returns a full list of available Opera actions in the Opera build
 you&#8216;re using. Note that this list varies from configuration to
 configuration, and from build to build. The Opera actions available to
-devices-<a href="Browser.html#M000072">type</a> builds will vary greatly
+devices-<a href="Browser.html#M000056">type</a> builds will vary greatly
 from those available to desktop-types.
 </p>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000077-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000077-source">
+            onclick="toggleCode('M000061-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000061-source">
 <pre>
-     <span class="ruby-comment cmt"># File lib/operawatir/browser.rb, line 161</span>
-161:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">opera_action_list</span>
-162:       <span class="ruby-ivar">@driver</span>.<span class="ruby-identifier">getOperaActionList</span>
-163:     <span class="ruby-keyword kw">end</span>
-</pre>
-          </div>
-        </div>
-      </div>
-
-      <div id="method-M000081" class="method-detail">
-        <a name="M000081"></a>
-
-        <div class="method-heading">
-          <a href="#M000081" class="method-signature">
-          <span class="method-name">pid</span><span class="method-args">()</span>
-          </a>
-        </div>
-      
-        <div class="method-description">
-          <p>
-Returns the Process identifier (<a href="Browser.html#M000081">pid</a>), a
-number used by Unix kernels and Windows operating systems to identify a
-process.
-</p>
-          <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000081-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000081-source">
-<pre>
-     <span class="ruby-comment cmt"># File lib/operawatir/browser.rb, line 183</span>
-183:      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">pid</span>
-184:       <span class="ruby-ivar">@driver</span>.<span class="ruby-identifier">getPid</span>
-185:     <span class="ruby-keyword kw">end</span>
-</pre>
-          </div>
-        </div>
-      </div>
-
-      <div id="method-M000067" class="method-detail">
-        <a name="M000067"></a>
-
-        <div class="method-heading">
-          <span class="method-name">quit</span><span class="method-args">()</span>
-        </div>
-      
-        <div class="method-description">
-          <p>
-Alias for <a href="Browser.html#M000066">close_all</a>
-</p>
-        </div>
-      </div>
-
-      <div id="method-M000063" class="method-detail">
-        <a name="M000063"></a>
-
-        <div class="method-heading">
-          <a href="#M000063" class="method-signature">
-          <span class="method-name">refresh</span><span class="method-args">()</span>
-          </a>
-        </div>
-      
-        <div class="method-description">
-          <p>
-Refreshes the current page.
-</p>
-          <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000063-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000063-source">
-<pre>
-    <span class="ruby-comment cmt"># File lib/operawatir/browser.rb, line 61</span>
-61:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">refresh</span>
-62:       <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@driver</span>.<span class="ruby-identifier">navigate</span>.<span class="ruby-identifier">refresh</span>
-63:     <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File lib/operawatir/browser.rb, line 159</span>
+159:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">opera_action_list</span>
+160:       <span class="ruby-ivar">@driver</span>.<span class="ruby-identifier">getOperaActionList</span>
+161:     <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
@@ -768,6 +686,74 @@ Refreshes the current page.
 
         <div class="method-heading">
           <a href="#M000065" class="method-signature">
+          <span class="method-name">pid</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns the Process identifier (<a href="Browser.html#M000065">pid</a>), a
+number used by Unix kernels and Windows operating systems to identify a
+process.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000065-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000065-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/operawatir/browser.rb, line 181</span>
+181:      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">pid</span>
+182:       <span class="ruby-ivar">@driver</span>.<span class="ruby-identifier">getPid</span>
+183:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000051" class="method-detail">
+        <a name="M000051"></a>
+
+        <div class="method-heading">
+          <span class="method-name">quit</span><span class="method-args">()</span>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias for <a href="Browser.html#M000050">close_all</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000047" class="method-detail">
+        <a name="M000047"></a>
+
+        <div class="method-heading">
+          <a href="#M000047" class="method-signature">
+          <span class="method-name">refresh</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Refreshes the current page.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000047-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000047-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/operawatir/browser.rb, line 59</span>
+59:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">refresh</span>
+60:       <span class="ruby-ivar">@driver</span>.<span class="ruby-identifier">navigate</span>.<span class="ruby-identifier">refresh</span>
+61:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000049" class="method-detail">
+        <a name="M000049"></a>
+
+        <div class="method-heading">
+          <a href="#M000049" class="method-signature">
           <span class="method-name">show_frames</span><span class="method-args">()</span>
           </a>
         </div>
@@ -777,27 +763,27 @@ Refreshes the current page.
 Output a list of frames to the console.
 </p>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000065-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000065-source">
+            onclick="toggleCode('M000049-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000049-source">
 <pre>
-    <span class="ruby-comment cmt"># File lib/operawatir/browser.rb, line 81</span>
-81:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show_frames</span>
-82:       <span class="ruby-identifier">frames</span> = <span class="ruby-ivar">@driver</span>.<span class="ruby-identifier">listFrames</span>
-83:       <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;There are #{frames.length.to_s} frames&quot;</span>
-84:       <span class="ruby-identifier">frames</span>.<span class="ruby-identifier">each_with_index</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">frame</span>,<span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
-85:         <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;frame index:#{(i.to_i+1).to_s} name:#{frame.to_s}&quot;</span>
-86:       }
-87:     <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File lib/operawatir/browser.rb, line 79</span>
+79:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show_frames</span>
+80:       <span class="ruby-identifier">frames</span> = <span class="ruby-ivar">@driver</span>.<span class="ruby-identifier">listFrames</span>
+81:       <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;There are #{frames.length.to_s} frames&quot;</span>
+82:       <span class="ruby-identifier">frames</span>.<span class="ruby-identifier">each_with_index</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">frame</span>,<span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
+83:         <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;frame index:#{(i.to_i+1).to_s} name:#{frame.to_s}&quot;</span>
+84:       }
+85:     <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
       </div>
 
-      <div id="method-M000055" class="method-detail">
-        <a name="M000055"></a>
+      <div id="method-M000040" class="method-detail">
+        <a name="M000040"></a>
 
         <div class="method-heading">
-          <a href="#M000055" class="method-signature">
+          <a href="#M000040" class="method-signature">
           <span class="method-name">stop</span><span class="method-args">()</span>
           </a>
         </div>
@@ -807,23 +793,23 @@ Output a list of frames to the console.
 Stops the loading of the current page.
 </p>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000055-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000055-source">
+            onclick="toggleCode('M000040-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000040-source">
 <pre>
-    <span class="ruby-comment cmt"># File lib/operawatir/browser.rb, line 20</span>
-20:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">stop</span>
-21:       <span class="ruby-ivar">@driver</span>.<span class="ruby-identifier">stop</span>
-22:     <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File lib/operawatir/browser.rb, line 23</span>
+23:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">stop</span>
+24:       <span class="ruby-ivar">@driver</span>.<span class="ruby-identifier">stop</span>
+25:     <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
       </div>
 
-      <div id="method-M000075" class="method-detail">
-        <a name="M000075"></a>
+      <div id="method-M000059" class="method-detail">
+        <a name="M000059"></a>
 
         <div class="method-heading">
-          <a href="#M000075" class="method-signature">
+          <a href="#M000059" class="method-signature">
           <span class="method-name">take_screenshot</span><span class="method-args">(file_name,hashes,time_out)</span>
           </a>
         </div>
@@ -844,104 +830,104 @@ Arguments:
 </td></tr>
 </table>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000075-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000075-source">
+            onclick="toggleCode('M000059-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000059-source">
 <pre>
-     <span class="ruby-comment cmt"># File lib/operawatir/browser.rb, line 143</span>
-143:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">take_screenshot</span>(<span class="ruby-identifier">file_name</span>,<span class="ruby-identifier">hashes</span>,<span class="ruby-identifier">time_out</span>)
-144:       <span class="ruby-ivar">@driver</span>.<span class="ruby-identifier">saveScreenshot</span>(<span class="ruby-identifier">file_name</span>, <span class="ruby-identifier">time_out</span>, <span class="ruby-identifier">hashes</span>.<span class="ruby-identifier">to_java</span>(<span class="ruby-identifier">:String</span>))
-145:     <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File lib/operawatir/browser.rb, line 141</span>
+141:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">take_screenshot</span>(<span class="ruby-identifier">file_name</span>,<span class="ruby-identifier">hashes</span>,<span class="ruby-identifier">time_out</span>)
+142:       <span class="ruby-ivar">@driver</span>.<span class="ruby-identifier">saveScreenshot</span>(<span class="ruby-identifier">file_name</span>, <span class="ruby-identifier">time_out</span>, <span class="ruby-identifier">hashes</span>.<span class="ruby-identifier">to_java</span>(<span class="ruby-identifier">:String</span>))
+143:     <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
       </div>
 
-      <div id="method-M000060" class="method-detail">
-        <a name="M000060"></a>
+      <div id="method-M000044" class="method-detail">
+        <a name="M000044"></a>
 
         <div class="method-heading">
-          <a href="#M000060" class="method-signature">
+          <a href="#M000044" class="method-signature">
           <span class="method-name">text</span><span class="method-args">()</span>
           </a>
         </div>
       
         <div class="method-description">
           <p>
-Returns the full <a href="Browser.html#M000060">text</a> of the active
+Returns the full <a href="Browser.html#M000044">text</a> of the active
 page.
 </p>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000060-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000060-source">
+            onclick="toggleCode('M000044-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000044-source">
 <pre>
-    <span class="ruby-comment cmt"># File lib/operawatir/browser.rb, line 46</span>
-46:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">text</span>
-47:       <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@driver</span>.<span class="ruby-identifier">getText</span>
-48:     <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File lib/operawatir/browser.rb, line 44</span>
+44:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">text</span>
+45:       <span class="ruby-ivar">@driver</span>.<span class="ruby-identifier">getText</span>
+46:     <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
       </div>
 
-      <div id="method-M000058" class="method-detail">
-        <a name="M000058"></a>
+      <div id="method-M000042" class="method-detail">
+        <a name="M000042"></a>
 
         <div class="method-heading">
-          <a href="#M000058" class="method-signature">
+          <a href="#M000042" class="method-signature">
           <span class="method-name">title</span><span class="method-args">()</span>
           </a>
         </div>
       
         <div class="method-description">
           <p>
-Returns the <a href="Browser.html#M000058">title</a> of the page.
+Returns the <a href="Browser.html#M000042">title</a> of the page.
 </p>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000058-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000058-source">
+            onclick="toggleCode('M000042-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000042-source">
 <pre>
-    <span class="ruby-comment cmt"># File lib/operawatir/browser.rb, line 36</span>
-36:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">title</span>
-37:       <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@driver</span>.<span class="ruby-identifier">getTitle</span>
-38:     <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File lib/operawatir/browser.rb, line 34</span>
+34:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">title</span>
+35:       <span class="ruby-ivar">@driver</span>.<span class="ruby-identifier">getTitle</span>
+36:     <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
       </div>
 
-      <div id="method-M000072" class="method-detail">
-        <a name="M000072"></a>
+      <div id="method-M000056" class="method-detail">
+        <a name="M000056"></a>
 
         <div class="method-heading">
-          <a href="#M000072" class="method-signature">
+          <a href="#M000056" class="method-signature">
           <span class="method-name">type</span><span class="method-args">(text)</span>
           </a>
         </div>
       
         <div class="method-description">
           <p>
-Types given <a href="Browser.html#M000060">text</a> directly in to the
-browser. The <a href="Browser.html#M000060">text</a> will be inputted to
+Types given <a href="Browser.html#M000044">text</a> directly in to the
+browser. The <a href="Browser.html#M000044">text</a> will be inputted to
 the page depending on where the focus is.
 </p>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000072-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000072-source">
+            onclick="toggleCode('M000056-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000056-source">
 <pre>
-     <span class="ruby-comment cmt"># File lib/operawatir/browser.rb, line 120</span>
-120:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">type</span>(<span class="ruby-identifier">text</span>)
-121:       <span class="ruby-ivar">@driver</span>.<span class="ruby-identifier">type</span>(<span class="ruby-identifier">text</span>)
-122:     <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File lib/operawatir/browser.rb, line 118</span>
+118:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">type</span>(<span class="ruby-identifier">text</span>)
+119:       <span class="ruby-ivar">@driver</span>.<span class="ruby-identifier">type</span>(<span class="ruby-identifier">text</span>)
+120:     <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
       </div>
 
-      <div id="method-M000073" class="method-detail">
-        <a name="M000073"></a>
+      <div id="method-M000057" class="method-detail">
+        <a name="M000057"></a>
 
         <div class="method-heading">
-          <a href="#M000073" class="method-signature">
+          <a href="#M000057" class="method-signature">
           <span class="method-name">url</span><span class="method-args">()</span>
           </a>
         </div>
@@ -951,13 +937,13 @@ the page depending on where the focus is.
 Return current URI.
 </p>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000073-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000073-source">
+            onclick="toggleCode('M000057-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000057-source">
 <pre>
-     <span class="ruby-comment cmt"># File lib/operawatir/browser.rb, line 125</span>
-125:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">url</span>
-126:       <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@driver</span>.<span class="ruby-identifier">getCurrentUrl</span>
-127:     <span class="ruby-keyword kw">end</span>
+     <span class="ruby-comment cmt"># File lib/operawatir/browser.rb, line 123</span>
+123:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">url</span>
+124:       <span class="ruby-ivar">@driver</span>.<span class="ruby-identifier">getCurrentUrl</span>
+125:     <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
