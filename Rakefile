@@ -8,14 +8,14 @@ require 'spec/rake/spectask'
 
 spec = Gem::Specification.new do |s|
   s.name = 'OperaWatir'
-  s.version = '0.2.2.100823'
+  s.version = File.read('VERSION').strip
   s.has_rdoc = true
   s.extra_rdoc_files = ['README', 'LICENSE']
   s.summary = 'OperaWatir on OperaDriver engine'
   s.description = s.summary
   s.author = 'Deniz Turkoglu'
   s.email = 'dturkoglu@opera.com'
-  s.files = %w(README LICENSE Rakefile) + Dir.glob('{lib,spec,utils}/**/*')
+  s.files = %w(README LICENSE VERSION Rakefile) + Dir.glob('{lib,spec,utils}/**/*')
   s.require_path = 'lib'
 end
 
