@@ -38,3 +38,14 @@ Spec::Rake::SpecTask.new do |t|
   t.spec_files = FileList['spec/**/*.rb']
 end
 
+task :bump do
+  v = ENV['VERSION']
+  abort("usage:\nVERSION=... rake bump") unless v
+
+  system "git stash
+       && echo #{v} > VERSION
+       && git add VERSION
+       && git commit --verbose --message 'Version #{v}.'
+       && git tag #{v}
+       && git stash apply"
+end
