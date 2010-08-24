@@ -2,14 +2,14 @@ module OperaWatir
   class WebElement
 
     LEFT = 3
-		RIGHT = 12
-		MIDDLE = 48
-		LEFT_DOWN = 1
-		LEFT_UP = 2
-		RIGHT_DOWN = 4
-		RIGHT_UP = 8
-		MIDDLE_DOWN = 16
-		MIDDLE_UP = 32
+    RIGHT = 12
+    MIDDLE = 48
+    LEFT_DOWN = 1
+    LEFT_UP = 2
+    RIGHT_DOWN = 4
+    RIGHT_UP = 8
+    MIDDLE_DOWN = 16
+    MIDDLE_UP = 32
 
     def initialize(container,how,what)
       @container,@how, @what = container, how, what
@@ -65,7 +65,7 @@ module OperaWatir
     # checks if element exists or not.  Then checks if element is enabled
     # or not.
     #
-    # Output: 
+    # Output:
     #   Returns true if element exists and is enabled, else returns
     #   false.
     #
@@ -184,7 +184,7 @@ module OperaWatir
     def right_click
       assert_exists
       @element.rightClick
-    end    
+    end
 
     # Return the innerText of the active element.
     #
@@ -207,7 +207,7 @@ module OperaWatir
     # Checks if the provided text matches with the contents of text
     # field.  Text can be a string or regular expression.
     #
-    # Input: 
+    # Input:
     # target::  text to be verified.
     #
     # Output:
@@ -252,7 +252,7 @@ module OperaWatir
       @element.getValue
     end
 
-    # Takes a screenshot of active element.  
+    # Takes a screenshot of active element.
     #
     # Input:
     # file_name::  the absolute file path you wish to save the screenshot to.
@@ -341,7 +341,7 @@ module OperaWatir
     # NoSuchElementException::  if the elemnt is not found.
     def fire_event(event, x = 0, y= 0)
       assert_exists
-      
+
       location = get_location
       x += location['x'];
       y += location['y'];
@@ -363,8 +363,8 @@ module OperaWatir
       end
     end
 
-    def mouse_action(x, y, *action)
-      sum = action.inject(0){|sum,item| sum + item}
+    def mouse_action(x, y, *actions)
+      sum = actions.inject(0){|sum,item| sum + item}
       @container.driver.mouseEvent(x,y,sum)
     end
   end
