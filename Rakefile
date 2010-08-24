@@ -42,11 +42,11 @@ task :bump do
   v = ENV['VERSION']
   abort("usage: rake bump VERSION=\"new version number\"") unless v
 
-  system "git stash
-       && echo '#{v}' > VERSION
-       && git add VERSION
-       && ! git commit --verbose --message 'Version #{v}.'
-       && git tag '#{v}'
-       && git stash apply"
+  system "git stash &&
+       echo '#{v}' > VERSION &&
+       git add VERSION &&
+       ! git commit --verbose --message 'Version #{v}.' &&
+       git tag '#{v}' &&
+       git stash apply"
 end
 
