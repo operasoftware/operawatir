@@ -11,54 +11,11 @@ module OperaWatir
     MIDDLE_DOWN = 16
     MIDDLE_UP = 32
 
-    def initialize(container,how,what)
-      @container,@how, @what = container, how, what
-    end
-
-    # Locate the element on the page.  Elements can be located using one
-    # of the following selectors:
-    #
-    # * name
-    # * id
-    # * xpath
-    # * selector
-    # * text
-    # * href
-    # * index
-    # * value
-    # * class
-    # * tag_name
-    #
-    # Raises:
-    # NoSuchElementException:  if element is not found.
-    def locate
-      case @how
-      when :name
-        if @value.nil?
-          @element = @container.driver.findElementByName(@what)
-        else
-          @element = @container.driver.findElementByXPath("//input[@name='#{@what}' and @value='#{@value}']")
-        end
-      when :id
-        @element = @container.driver.findElementById(@what)
-      when :xpath
-        @element = @container.driver.findElementByXPath(@what)
-      when :selector
-        @element = @container.driver.findElementByCssSelector(@what)
-      when :text
-        @element = @container.driver.findElementByLinkText(@what)
-      when :href
-        @element = @container.driver.findElementByXPath("//a[@href='#{@what}']")
-      when :index
-        raise "watir index starts from 1" if @what.eql?(0)
-        @element = @container.driver.findElementByXPath("//*[#{@what+1}]")
-      when :value
-        @element = @container.driver.findElementByXPath("//*[@value='#{@what}' or text()='#{@what}']")
-      when :class
-        @element = @container.driver.findElementByXPath("//*[@class='#{@what}']")
-      when :tag_name
-        @element = @container.driver.findElementByTagName(@what)
-      end
+    def initialize(container, method=nil, selector=nil, value=nil)
+      @container = container
+      @method    = method || self.class.default_method
+      @selector  = selector || self.class.default_selector
+      @value     = value
     end
 
     # Returns true if the element is enabled, false if it isn't.  First
@@ -72,8 +29,7 @@ module OperaWatir
     # Raises:
     # NoSuchElementException:  if element is not found.
     def enabled?
-      locate
-      return @element.isEnabled
+      element.isEnabled
     end
 
     # Checks if element is enabled or not.
@@ -81,31 +37,19 @@ module OperaWatir
     # Raises:
     # ObjectDisabledException::  if element is disabled and you are attempting to use it.
     def assert_enabled
-      raise ObjectDisabledException, "Element #{@how} and #{@what} is disabled" unless enabled?
+      raise ObjectDisabledException, "Element #{@method} and #{@selector} is disabled" unless enabled?
     end
 
     # Checks whether element exists or not.
     #
     # Raises:
     # NoSuchElementException::  if element is is not found.
-    def assert_exists
-      locate
-      unless @element
-        raise NoSuchElementException, "Element #{@what} not found using #{@how}"
-      end
-    end
-
-    # Checks whether element exists or not.
-    #
-    # Raises:
-    # NoSuchElementException::  if element is is not found.
-    def exists?
-      assert_exists
-      true
+    def exist?
+      !!element
     rescue NoSuchElementException
       false
     end
-    alias_method :exist?, :exists?
+    alias_method :exists?, :exist?
 
     # This method clicks the active element.  If optional arguments +x+
     # and +y+ are given, it clicks designated area on the screen
@@ -114,13 +58,8 @@ module OperaWatir
     # Raises:
     # NoSuchElementException::   if the element is not found.
     # ObjectDisabledException::  if the element is currently disabled.
-    def click(x = 0,y = 0)
-      assert_exists
-      if(x.eql?(0) && y.eql?(0))
-          @element.click()
-      else
-          @element.click(x,y)
-      end
+    def click(x=nil, y=nil)
+      x.nil? && y.nil? ? element.click : element.click(x.to_i, y.to_i)
     end
 
     # +click_no_wait+ method will click active element and go directly
@@ -132,8 +71,7 @@ module OperaWatir
     # NoSuchElementException::   if the element is not found.
     # ObjectDisabledException::  if the element is currently disabled.
     def click_no_wait
-      assert_exists
-      @element.click(1)
+      element.click 1
     end
 
     # Method will double click active element.
@@ -142,8 +80,7 @@ module OperaWatir
     # NoSuchElementException::   if the element is not found.
     # ObjectDisabledException::  if the element is currently disabled.
     def double_click
-      assert_exists
-      @element.click(2)
+      element.click 2
     end
 
     # Method will perform three consecutive clicks on active element.
@@ -154,8 +91,7 @@ module OperaWatir
     # NoSuchElementException::   if the element is not found.
     # ObjectDisabledException::  if the element is currently disabled.
     def triple_click
-      assert_exists
-      @element.click(3)
+      element.click 3
     end
 
     # Method will perform four consecutive clicks on active element.
@@ -166,15 +102,8 @@ module OperaWatir
     # NoSuchElementException::   if the element is not found.
     # ObjectDisabledException::  if the element is currently disabled.
     def quadruple_click
-      assert_exists
-      @element.click(4)
+      element.click 4
     end
-
-    def multiple_click(count)
-      assert_exists
-      @element.click(count.to_i)
-    end
-    private :multiple_click
 
     # Right clicks the active element.
     #
@@ -182,8 +111,7 @@ module OperaWatir
     # NoSuchElementException::   if the element is not found.
     # ObjectDisabledException::  if the element is currently disabled.
     def right_click
-      assert_exists
-      @element.rightClick
+      element.rightClick
     end
 
     # Return the innerText of the active element.
@@ -191,17 +119,15 @@ module OperaWatir
     # Raises:
     # NoSuchElementException::   if the element is not found.
     def text
-      assert_exists
-      return @element.getText
+      element.getText
     end
 
     # Returns the value of the specified attribute of an element.
     #
     # Raises:
     # NoSuchElementException::   if the element is not found.
-    def attribute_value(attribute_name)
-      assert_exists
-      return @element.getAttribute(attribute_name)
+    def attribute(name)
+      element.getAttribute(name)
     end
 
     # Checks if the provided text matches with the contents of text
@@ -213,7 +139,7 @@ module OperaWatir
     # Output:
     #   True if provided text matches with the contents of text field,
     #   false otherwise.
-    def verify_contains(target)
+    def contains?(target)
       return false unless exists?
       val = @element.getValue
       return false if val.nil?
@@ -226,8 +152,7 @@ module OperaWatir
     # Raises:
     # NoSuchElementException::  if the element is not found.
     def submit
-      assert_exists
-      @element.submit
+      element.submit
     end
 
     # Clears the contents of the element, typically an input type text
@@ -238,8 +163,7 @@ module OperaWatir
     # ObjectDisabledException::  if text field is disabled.
     # ObjectReadOnlyException::  if text field is read-only.
     def clear
-      assert_exists
-      @element.clear
+      element.clear
     end
 
     # Returns a string representation of the element.  Typically, the
@@ -247,9 +171,12 @@ module OperaWatir
     #
     # Raises:
     # NoSuchElementException::  if the element is not found.
-    def to_s
-      assert_exists
-      @element.getValue
+    # def to_s
+    #   element.getValue
+    # end
+
+    def value
+      element.getValue
     end
 
     # Takes a screenshot of active element.
@@ -260,8 +187,7 @@ module OperaWatir
     #
     # Raises:
     # NoSuchElementException::  if the element is not found.
-    def take_screenshot(file_name,time_out)
-        assert_exists
+    def take_screenshot(file_name, time_out=1)
         @element.saveScreenshot(file_name,time_out)
     end
 
@@ -273,10 +199,8 @@ module OperaWatir
     #
     # Raises:
     # NoSuchElementException::  if either of the elements is not found.
-    def drag_and_drop_on(element)
-      assert_exists
-      element.assert_exists
-      @element.dragAndDropOn(element)
+    def drag_and_drop_on(other)
+      element.dragAndDropOn other
     end
 
     # Will return the hash of the visual representation of the active
@@ -284,9 +208,8 @@ module OperaWatir
     #
     # Raises:
     # NoSuchElementException::  if the element is not found.
-    def get_hash
-      assert_exists
-      @element.getImageHash
+    def visual_hash
+      element.getImageHash
     end
 
     # Lets you visually compare active element and provided element in
@@ -305,28 +228,21 @@ module OperaWatir
     #
     # Raises:
     # NoSuchElementException::  if (either) element is not found.
-    def compare_hash(element)
-      assert_exists
-      element.assert_exists
-      self.get_hash.eql?(element.get_hash)
+    def compare_hash(other)
+      visual_hash == other.visual_hash
     end
 
     # Returns a hash with the the +x+ and +y+ location of active element.
     #
     # Output:
-    #   { x => 1, y => 2 }
+    #   { :x => 1, :y => 2 }
     #
     # Raises:
     # NoSuchElementException::  if the element is not found.
-    def get_location
-      assert_exists
-      {'x' => @element.getLocation.x.to_i, 'y' => @element.getLocation.y.to_i}
+    def location
+      loc = element.getLocation
+      {:x => loc.x.to_i, :y => loc.y.to_i}
     end
-
-    def getLocation
-      @element.getLocation
-    end
-    private(:getLocation)
 
     # Lets you fire an ECMAscript event on the current page.  By
     # supplying +x+ and +y+ arguments it will also allow you to fire off
@@ -339,13 +255,9 @@ module OperaWatir
     #
     # Raises:
     # NoSuchElementException::  if the elemnt is not found.
-    def fire_event(event, x = 0, y= 0)
-      assert_exists
-
-      location = get_location
-      x += location['x'];
-      y += location['y'];
-
+    def fire_event(event, x=0, y=0)
+      x += location[:x];
+      y += location[:y];
 
       case event
       when 'onMouseOver'
@@ -363,10 +275,64 @@ module OperaWatir
       end
     end
 
+  private
+
+    def element
+      @elm ||= find || raise(NoSuchElementException, "Element #{@selector} not found using #{@method}")
+    end
+
+    alias_method :elm, :element
+
     def mouse_action(x, y, *actions)
       sum = actions.inject(0){|sum,item| sum + item}
       @container.driver.mouseEvent(x,y,sum)
     end
+
+    # Locate the element on the page.  Elements can be located using one
+    # of the following selectors:
+    #
+    # * name
+    # * id
+    # * xpath
+    # * selector
+    # * text
+    # * href
+    # * index
+    # * value
+    # * class
+    # * tag_name
+    #
+    # Raises:
+    # NoSuchElementException:  if element is not found.
+    def find
+      case @method
+      when :name
+        if @value.nil?
+          @container.driver.findElementByName(@selector)
+        else
+          @container.driver.findElementByXPath("//input[@name='#{@selector}' and @value='#{@value}']")
+        end
+      when :id
+        @container.driver.findElementById(@selector)
+      when :xpath
+        @container.driver.findElementByXPath(@selector)
+      when :selector
+        @container.driver.findElementByCssSelector(@selector)
+      when :text
+        @container.driver.findElementByLinkText(@selector)
+      when :href
+        @container.driver.findElementByXPath("//a[@href='#{@selector}']")
+      when :index
+        raise "watir index starts from 1" if @selector.zero?
+        @container.driver.findElementByXPath("//*[#{@selector+1}]")
+      when :value
+        @container.driver.findElementByXPath("//*[@value='#{@selector}' or text()='#{@selector}']")
+      when :class
+        @container.driver.findElementByXPath("//*[@class='#{@selector}']")
+      when :tag_name
+        @container.driver.findElementByTagName(@selector)
+      end
+    end
+
   end
 end
-
