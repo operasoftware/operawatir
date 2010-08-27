@@ -11,7 +11,7 @@ module OperaWatir
     # NoSuchElementException::   if the element is not found.
     # ObjectDisabledException::  if the element is disabled.
     def set(value = true)
-      until result = value
+      until checked? == value
         element.toggle
       end
     end
