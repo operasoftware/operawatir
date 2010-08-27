@@ -6,3 +6,5 @@ WatirSpec.implementation do |browser|
   browser.name          = :opera
   browser.browser_class = OperaWatir::Browser
 end
+
+WatirSpec::SpecHelper.execute
