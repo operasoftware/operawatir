@@ -185,7 +185,7 @@ module OperaWatir
       case @method
       when :name
         if @value.nil?
-          @container.driver.findElementByName(@selector)
+          @container.driver.findElementByName(@selector.to_s)
         else
           @container.driver.findElementByXPath("//input[@name='#{@selector}' and @value='#{@value}']")
         end
