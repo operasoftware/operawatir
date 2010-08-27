@@ -79,7 +79,7 @@ module OperaWatir
     end
 
     def get_attribute(name)
-      element.getAttribute(name.to_s)
+      element.getAttribute(name.to_s) || ''
     end
 
     def contains?(target)
