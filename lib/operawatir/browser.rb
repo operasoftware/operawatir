@@ -178,8 +178,15 @@ module OperaWatir
 
     # Returns the Process identifier (pid), a number used by Unix
     # kernels and Windows operating systems to identify a process.
-     def pid
+    def pid
       @driver.getPid
+    end
+
+    # Returns the version number of OperaDriver.  Please note that the
+    # version number of webdriver-opera _is not_ related to the version
+    # number for OperaWatir.
+    def version
+      @driver.getOperaDriverVersion
     end
   end
 end
