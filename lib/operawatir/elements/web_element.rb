@@ -44,7 +44,7 @@ module OperaWatir
     end
 
     def exist?
-      !!element
+      !element.nil?
     rescue UnknownObjectException
       false
     end
@@ -181,6 +181,8 @@ module OperaWatir
     end
 
     def find
+      raise TypeError unless @selector.is_a?(String) || @selector.is_a?(Regexp) || @selector.is_a?(Fixnum)
+
       case @method
       when :name
         if @value.nil?
