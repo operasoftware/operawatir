@@ -11,9 +11,6 @@ module OperaWatir
     MIDDLE_DOWN = 16
     MIDDLE_UP = 32
 
-    class UnknownObjectException < StandardError; end
-    class MissingWayOfFindingObjectException < StandardError; end
-
     def self.default_method
       :id
     end
