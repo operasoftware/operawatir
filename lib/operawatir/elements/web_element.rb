@@ -44,7 +44,7 @@ module OperaWatir
     end
 
     def exist?
-      !!element
+      !element.nil?
     rescue UnknownObjectException
       false
     end
