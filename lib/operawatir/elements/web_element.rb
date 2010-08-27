@@ -141,10 +141,12 @@ module OperaWatir
     #   false otherwise.
     def contains?(target)
       return false unless exists?
-      val = @element.getValue
+      val = element.getValue
       return false if val.nil?
       val.include?(target)
     end
+
+    alias_method :verify_contains, :contains?
 
     # Submits the active form.  Equivalent to pressing +Enter+ or
     # +Return+ to submit a form.
@@ -231,8 +233,6 @@ module OperaWatir
     def compare_hash(other)
       visual_hash == other.visual_hash
     end
-
-    alias_method :verify_contains, :compare_hash
 
     # Returns a hash with the the +x+ and +y+ location of active element.
     #
