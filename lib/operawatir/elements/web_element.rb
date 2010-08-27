@@ -45,7 +45,7 @@ module OperaWatir
 
     def exist?
       !element.nil?
-    rescue UnknownObjectException
+    rescue UnknownObjectException, NoSuchElementException
       false
     end
     alias_method :exists?, :exist?
