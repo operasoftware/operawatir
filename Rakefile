@@ -46,7 +46,8 @@ task :bump do
        echo '#{v}' > VERSION &&
        git add VERSION &&
        ! git commit --verbose --message 'Version #{v}.' &&
-       git tag '#{v}' &&
+       git tag -a '#{v}' &&
+       git push --tags &&
        git stash apply"
 end
 
