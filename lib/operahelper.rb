@@ -34,12 +34,12 @@ module OperaWatir
           if OperaWatir::Helper.persistent_browser == false
             config.include(BrowserHelper)
 
-            config.before(:all) do
+            config.before(:suite) do
               puts "before all all"
               @browser = OperaWatir::Helper.new_browser
             end
 
-            config.after(:all) do
+            config.after(:suite) do
               @browser.quit if @browser
             end
           else
