@@ -11,6 +11,9 @@ module OperaWatir
     MIDDLE_DOWN = 16
     MIDDLE_UP = 32
 
+    class UnknownObjectException < StandardError; end
+    class MissingWayOfFindingObjectException < StandardError; end
+
     def self.default_method
       :id
     end
@@ -18,7 +21,6 @@ module OperaWatir
     def self.default_selector
       ':first'
     end
-
 
     def initialize(container, method=nil, selector=nil, value=nil)
       @container, @value = container, value
@@ -76,8 +78,8 @@ module OperaWatir
       element.getText
     end
 
-    def attribute(name)
-      element.getAttribute(name)
+    def get_attribute(name)
+      element.getAttribute(name.to_s)
     end
 
     def contains?(target)
@@ -96,6 +98,10 @@ module OperaWatir
     end
 
     def value
+      element.getValue
+    end
+
+    def text
       element.getValue
     end
 
@@ -140,10 +146,24 @@ module OperaWatir
       end
     end
 
+    # Attributes
+
+    def id
+      get_attribute 'id'
+    end
+
+    def class_name
+      get_attribute 'class'
+    end
+
+    def name
+      get_attribute 'name'
+    end
+
   private
 
     def element
-      @elm ||= find || raise(NoSuchElementException, "Element #{@selector} not found using #{@method}")
+      @elm ||= find || raise(UnknownObjectException, "Element #{@selector} not found using #{@method}")
     end
 
     alias_method :elm, :element
@@ -162,7 +182,7 @@ module OperaWatir
           @container.driver.findElementByXPath("//input[@name='#{@selector}' and @value='#{@value}']")
         end
       when :id
-        @container.driver.findElementById(@selector)
+        @container.driver.findElementById(@selector.to_s)
       when :xpath
         @container.driver.findElementByXPath(@selector)
       when :selector
@@ -180,6 +200,8 @@ module OperaWatir
         @container.driver.findElementByXPath("//*[@class='#{@selector}']")
       when :tag_name
         @container.driver.findElementByTagName(@selector)
+      else
+        raise MissingWayOfFindingObjectException
       end
     end
 
