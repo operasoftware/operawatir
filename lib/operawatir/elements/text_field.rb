@@ -12,9 +12,7 @@ module OperaWatir
     # ObjectReadOnlyException::  if text field is read only.
     def set(text)
       clear unless value.empty?
-      #WTR-117
-      #@element.click(1)
-      element.sendKeys(*text.to_s.split(//))
+      element.sendKeys(text.split(//).to_java(:string))
     end
 
     # Append the provided text to the contents of the text field.
