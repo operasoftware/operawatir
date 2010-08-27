@@ -1,6 +1,6 @@
 module OperaWatir
   class Browser
-    include Container
+    include Elements
 
     attr_reader :driver
 

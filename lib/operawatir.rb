@@ -20,6 +20,5 @@ include_class com.opera.core.systems.OperaDriver
 include_class com.opera.core.systems.OperaWebElement
 
 require "operawatir/container"
-require "operawatir/browser"
-require "operawatir/elements"
-
+require 'operawatir/elements'
+require 'operawatir/browser'
