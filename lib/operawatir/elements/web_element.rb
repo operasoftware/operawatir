@@ -232,6 +232,8 @@ module OperaWatir
       visual_hash == other.visual_hash
     end
 
+    alias_method :verify_contains, :compare_hash
+
     # Returns a hash with the the +x+ and +y+ location of active element.
     #
     # Output:
