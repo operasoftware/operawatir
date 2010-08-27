@@ -11,7 +11,6 @@ module OperaWatir
     # Raises:
     # NoSuchElementException::  if element is not found.
     def select(value)
-      items = element.findElementsByTagName('option')
       find_option_by_text(items, value).setSelected
     end
     alias_method :set, :select
@@ -26,7 +25,7 @@ module OperaWatir
     # Raises:
     # NoSuchElementException::  if element is not found.
     def select_value(value)
-      element.findElementsByTagName('option')
+      element.findElementsByTagName("option")
       find_option_by_val(items, value).setSelected
     end
 
@@ -35,11 +34,15 @@ module OperaWatir
     # Raises:
     # NoSuchElementException:  if element is not found.
     def selected?(value)
-      element.findElementsByTagName('option')
+      element.findElementsByTagName("option")
       find_option_by_val(items, value).isSelected
     end
 
   private
+
+    def items
+      items = element.findElementsByTagName("option")
+    end
 
     def find_option_by_val(items, value)
       items.find {|item| item.getValue == value } || raise("Can't find option by value : #{value}")
