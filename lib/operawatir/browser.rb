@@ -75,6 +75,11 @@ module OperaWatir
       self
     end
 
+    # Switches focus for active page back to the default frame.
+    def switch_to_default
+      @driver.switchTo.defaultContent
+    end
+
     # Output a list of frames to the console.
     def show_frames
       frames = @driver.listFrames
