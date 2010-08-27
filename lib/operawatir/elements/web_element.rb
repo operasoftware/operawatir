@@ -108,6 +108,10 @@ module OperaWatir
       element.getValue
     end
 
+    def type
+      element.getElementName
+    end
+
     def take_screenshot(file_name, time_out)
       element.saveScreenshot(file_name, time_out)
     end
