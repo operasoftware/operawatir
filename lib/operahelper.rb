@@ -205,14 +205,6 @@ module OperaWatir
       end
     end
 
-=begin
-    module PersistentBrowserHelper
-      def browser
-        $browser
-      end
-    end
-=end
-
     module PathHelper
       def files (path = nil)
         #OperaWatir::Helper.files
