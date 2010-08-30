@@ -19,7 +19,7 @@ module OperaWatir
       def new_browser
         args = OperaWatir::Helper.browser_args
         new_browser = args ? OperaWatir::Browser.new(*args) : OperaWatir::Browser.new
-        start_inspectr
+        start_inspectr(new_browser.pid) if OperaWatir::Helper.inspectr
         return new_browser
       end
 
@@ -142,10 +142,8 @@ module OperaWatir
       # (boolean), "true" (string), 1 (integer) and "1" (string) as
       # parameters, while OperaWatir::Helper.inspectr only takes true
       # (boolean).
-      def start_inspectr
+      def start_inspectr (pid)
         if OperaWatir::Helper.inspectr
-          pid = browser.pid
-
           # Find executable for this OS
           inspectr_path = File.expand_path(File.join(File.dirname(__FILE__), "..", "utils"))
 
