@@ -14,13 +14,16 @@ module OperaWatir
     class << self
       attr_accessor :browser_args, :persistent_browser, :inspectr
 
+      # Creates a new browser instance with browser arguments, and
+      # starts inspectr if required.
       def new_browser
         args = OperaWatir::Helper.browser_args
         new_browser = args ? OperaWatir::Browser.new(*args) : OperaWatir::Browser.new
-        start_inspectr(new_browser.pid)
+        start_inspectr
         return new_browser
       end
 
+      # OperaHelper wrapper to start OperaWatir.
       def execute
         defaults
         load_dependencies
@@ -30,26 +33,26 @@ module OperaWatir
       def configure
         Spec::Runner.configure do |config|
           config.include(PathHelper)
+          config.include(BrowserHelper)
 
           if OperaWatir::Helper.persistent_browser == false
-            config.include(BrowserHelper)
-
-            config.before(:suite) do
-              puts "before all all"
+            # TODO: Why does :suite fail here?  Getting nil:NilClass if
+            # using before/after :suite.
+            config.before(:all) do
               @browser = OperaWatir::Helper.new_browser
             end
 
-            config.after(:suite) do
+            config.after(:all) do
               @browser.quit if @browser
             end
           else
-            config.include(PersistentBrowserHelper)
             $browser = OperaWatir::Helper.new_browser
             at_exit { $browser.quit }
           end
         end
       end
 
+      # Sets defaults to OperaHelper's configuration options.
       def defaults
         OperaWatir::Helper.browser_args = [] if OperaWatir::Helper.browser_args.nil?
         OperaWatir::Helper.persistent_browser = false
@@ -57,6 +60,12 @@ module OperaWatir
         files "file://" + File.expand_path(Dir.pwd + "/interactive")
       end
 
+      # Sets or returns base URI path, depending on provided with
+      # argument.
+      #
+      # Arguments:
+      #
+      # new_path::  new path to be set.
       def files (new_path = nil)
         if new_path
           @files = new_path
@@ -65,11 +74,13 @@ module OperaWatir
         end
       end
 
+      # Inititalizes and loads OperaWatir dependencies.
       def load_dependencies
         load_helper
         load_environmental_variables
       end
 
+      # Loads helper file.
       def load_helper
         # Load local helper file, if it exists
         local_helper = "helper.rb"
@@ -90,11 +101,11 @@ module OperaWatir
         inspectr = ENV["OPERA_INSPECTR"]
 
         # Path
-        if path.nil? and File.exists?(OperaWatir::Helper.browser_args[0])
+        if path.nil? and File.exists?(OperaWatir::Helper.browser_args[0].to_s)
           # OPERA_PATH is not set, but helper path exists
           executable = OperaWatir::Helper.browser_args[0]
           OperaWatir::Helper.browser_args.shift
-        elsif not path.nil? and File.exists?(OperaWatir::Helper.browser_args[0])
+        elsif not path.nil? and File.exists?(OperaWatir::Helper.browser_args[0].to_s)
           # OPERA_PATH is set, and helper path exists
           executable = path
           OperaWatir::Helper.browser_args.shift
@@ -131,8 +142,10 @@ module OperaWatir
       # (boolean), "true" (string), 1 (integer) and "1" (string) as
       # parameters, while OperaWatir::Helper.inspectr only takes true
       # (boolean).
-      def start_inspectr(pid)
+      def start_inspectr
         if OperaWatir::Helper.inspectr
+          pid = browser.pid
+
           # Find executable for this OS
           inspectr_path = File.expand_path(File.join(File.dirname(__FILE__), "..", "utils"))
 
@@ -161,6 +174,7 @@ module OperaWatir
         end
       end
 
+      # Returns the platform type.
       def platform
         @platform ||= case Config::CONFIG["host_os"]
                       when /java/
@@ -176,6 +190,8 @@ module OperaWatir
                       end
       end
 
+      # Determines if a configuration file (helper.rb) is true or false.
+      # The use might enter “true”, 1 or true.
       def is_true(value)
         if value == true or value == "true" or value == 1 or value == "1"
           true
@@ -187,19 +203,22 @@ module OperaWatir
 
     module BrowserHelper
       def browser
-        @browser
+        @browser || $browser
       end
     end
 
+=begin
     module PersistentBrowserHelper
       def browser
         $browser
       end
     end
+=end
 
     module PathHelper
-      def files
-        OperaWatir::Helper.files
+      def files (path = nil)
+        #OperaWatir::Helper.files
+        OperaWatir::Helper.files(path)
       end
     end
   end
