@@ -145,7 +145,7 @@ module OperaWatir
       def start_inspectr (pid)
         if OperaWatir::Helper.inspectr
           # Find executable for this OS
-          inspectr_path = File.expand_path(File.join(File.dirname(__FILE__), "..", "utils"))
+          inspectr_path = File.expand_path(File.join(File.dirname(__FILE__), "../..", "utils"))
 
           case platform
           when :linux
