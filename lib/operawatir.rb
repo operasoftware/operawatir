@@ -25,7 +25,7 @@ end
 include_class org.openqa.selenium.WebDriver
 include_class org.openqa.selenium.RenderedWebElement
 include_class org.openqa.selenium.NoSuchElementException
-include_class com.opera.core.systems.OperaDriver
+include_class com.opera.core.systems.OperaDesktopDriver
 include_class com.opera.core.systems.OperaWebElement
 
 require 'operawatir/elements'
