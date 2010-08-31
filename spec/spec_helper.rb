@@ -2,7 +2,8 @@ $LOAD_PATH.unshift File.join(File.dirname(__FILE__), "..", "lib")
 require "operawatir"
 require "spec/watirspec/spec_helper"
 
-include OperaWatir::Exceptions
+include OperaWatir::UnknownObjectException
+include OperaWatir::MissingWayOfFindingObjectException
 
 WatirSpec.implementation do |browser|
   browser.name          = :opera
