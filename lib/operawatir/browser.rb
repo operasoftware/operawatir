@@ -7,11 +7,12 @@ module OperaWatir
 
     def initialize (executable_location = nil, *arguments)
       if executable_location.nil?
-        @driver = OperaDriver.new
+        @driver = OperaDesktopDriver.new
         @frame = '_top'
       else
-        @driver = OperaDriver.new(executable_location, arguments.to_java(:String))
+        @driver = OperaDesktopDriver.new(executable_location, arguments.to_java(:String))
       end
+      puts "Running from eclipse\n\n"
     end
 
     # Loads the given URL in the browser.  Waits for the page to get loaded.
