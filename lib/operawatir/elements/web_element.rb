@@ -24,13 +24,12 @@ module OperaWatir
     def initialize(container, method=nil, selector=nil, value=nil)
       @container, @value = container, value
 
-      case method
-      when Symbol
-        @method, @selector = method, selector
-      when nil
+      if method.nil? && selector.nil?
         @method, @selector = :index, 1
-      else
+      elsif selector.nil?
         @method, @selector = self.class.default_method, method
+      else
+        @method, @selector = method, selector
       end
     end
 
@@ -198,8 +197,10 @@ module OperaWatir
         @container.driver.findElementByCssSelector(@selector)
       when :text
         @container.driver.findElementByLinkText(@selector)
-      when :href
+      when :href, :url
         @container.driver.findElementByXPath("//a[@href='#{@selector}']")
+      when :title
+        @container.driver.findElementByXPath("//*[@title='#{@selector}']")
       when :index
         raise "watir index starts from 1" if @selector.to_i.zero?
         @container.driver.findElementByXPath("//*[#{@selector.to_i+1}]")
