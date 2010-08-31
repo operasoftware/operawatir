@@ -7,9 +7,12 @@ module OperaWatir
       end
     end
 
-    def checked?
+    def set?
       element.isSelected
     end
+
+    alias_method :checked?, :set?
+
   end
 end
 
