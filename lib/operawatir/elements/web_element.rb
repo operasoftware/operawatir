@@ -182,21 +182,23 @@ module OperaWatir
     def find
       raise TypeError unless @selector.is_a?(String) || @selector.is_a?(Regexp) || @selector.is_a?(Fixnum)
 
+      @selector = @selector.source if @selector.is_a?(Regexp)
+
       case @method
       when :name
         if @value.nil?
-          @container.driver.findElementByName(@selector.to_s)
+          @container.driver.findElementByName(@selector)
         else
           @container.driver.findElementByXPath("//input[@name='#{@selector}' and @value='#{@value}']")
         end
       when :id
-        @container.driver.findElementById(@selector.to_s)
+        @container.driver.findElementById(@selector)
       when :xpath
-        @container.driver.findElementByXPath(@selector.to_s)
+        @container.driver.findElementByXPath(@selector)
       when :selector
-        @container.driver.findElementByCssSelector(@selector.to_s)
+        @container.driver.findElementByCssSelector(@selector)
       when :text
-        @container.driver.findElementByLinkText(@selector.to_s)
+        @container.driver.findElementByLinkText(@selector)
       when :href
         @container.driver.findElementByXPath("//a[@href='#{@selector}']")
       when :index
@@ -207,7 +209,7 @@ module OperaWatir
       when :class
         @container.driver.findElementByXPath("//*[@class='#{@selector}']")
       when :tag_name
-        @container.driver.findElementByTagName(@selector.to_s)
+        @container.driver.findElementByTagName(@selector)
       else
         raise Exceptions::MissingWayOfFindingObjectException
       end
