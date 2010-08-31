@@ -11,4 +11,3 @@ module OperaWatir
     end
   end
 end
-
