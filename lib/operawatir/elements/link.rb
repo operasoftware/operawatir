@@ -5,14 +5,9 @@ module OperaWatir
       :href
     end
 
-    def href
-      get_attribute 'href'
-    end
-    alias_method :url, :href
+    element_attr_reader :href, :title
 
-    def title
-      get_attribute 'title'
-    end
+    alias_method :url, :href
 
   end
 end
