@@ -43,13 +43,13 @@ module OperaWatir
     end
 
     def assert_enabled
-      raise OperaWatir::ObjectDisabledException, "Element #{@method} and #{@selector} is disabled" unless enabled?
+      raise Exceptions::ObjectDisabledException, "Element #{@method} and #{@selector} is disabled" unless enabled?
     end
 
     # TODO: Stop webdriver-opera from raising NoSuchElementException
     def exist?
       !element.nil?
-    rescue OperaWatir::UnknownObjectException, OperaWatir::MissingWayOfFindingObjectException
+    rescue Exceptions::UnknownObjectException, Exceptions::MissingWayOfFindingObjectException
       false
     end
     alias_method :exists?, :exist?
@@ -172,7 +172,7 @@ module OperaWatir
   private
 
     def element
-      @elm ||= find || raise(OperaWatir::UnknownObjectException, "Element #{@selector} not found using #{@method}")
+      @elm ||= find || raise(Exceptions::UnknownObjectException, "Element #{@selector} not found using #{@method}")
     end
 
     alias_method :elm, :element
@@ -212,10 +212,10 @@ module OperaWatir
       when :tag_name
         @container.driver.findElementByTagName(@selector)
       else
-        raise MissingWayOfFindingObjectException
+        raise Exceptions::MissingWayOfFindingObjectException
       end
     rescue NoSuchElementException
-      raise OperaWatir::UnknownObjectException
+      raise Exceptions::UnknownObjectException
     end
   end
 end
