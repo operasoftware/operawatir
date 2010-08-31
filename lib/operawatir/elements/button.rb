@@ -1,9 +1,7 @@
 module OperaWatir
   class Button < WebElement
 
-    def src
-      get_attribute 'src'
-    end
+    element_attr_reader :src
 
   end
 end
