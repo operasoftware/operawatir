@@ -7,6 +7,10 @@ module OperaWatir
   def self.version
     VERSION
   end
+
+  class UnknownObjectException < StandardError; end
+  class MissingWayOfFindingObjectException < StandardError; end
+
 end
 
 %w(commons-jxpath-1.3.jar protobuf-java-2.3.0.jar webdriver-common.jar
@@ -20,6 +24,5 @@ include_class com.opera.core.systems.OperaDriver
 include_class com.opera.core.systems.OperaWebElement
 
 require "operawatir/container"
-require 'operawatir/exceptions'
 require 'operawatir/elements'
 require 'operawatir/browser'
