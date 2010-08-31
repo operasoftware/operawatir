@@ -68,5 +68,10 @@ module OperaWatir
     def span(method=nil, selector=nil, value=nil)
      Span.new self, method, selector, value
     end
+
+    def em(method=nil, selector=nil, value=nil)
+     Em.new self, method, selector, value
+    end
+
   end
 end
