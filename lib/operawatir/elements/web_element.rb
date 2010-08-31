@@ -181,6 +181,8 @@ module OperaWatir
       @container.driver.mouseEvent(x,y,sum)
     end
 
+    # TODO: webdriver-opera needs to accept regexes for findElement*
+    #       to_s is a hack.
     def find
       raise TypeError unless @selector.is_a?(String) || @selector.is_a?(Regexp) || @selector.is_a?(Fixnum)
 
@@ -194,22 +196,22 @@ module OperaWatir
       when :id
         @container.driver.findElementById(@selector.to_s)
       when :xpath
-        @container.driver.findElementByXPath(@selector)
+        @container.driver.findElementByXPath(@selector.to_s)
       when :selector
-        @container.driver.findElementByCssSelector(@selector)
+        @container.driver.findElementByCssSelector(@selector.to_s)
       when :text
-        @container.driver.findElementByLinkText(@selector)
+        @container.driver.findElementByLinkText(@selector.to_s)
       when :href
         @container.driver.findElementByXPath("//a[@href='#{@selector}']")
       when :index
-        raise "watir index starts from 1" if @selector.zero?
-        @container.driver.findElementByXPath("//*[#{@selector+1}]")
+        raise "watir index starts from 1" if @selector.to_i.zero?
+        @container.driver.findElementByXPath("//*[#{@selector.to_i+1}]")
       when :value
         @container.driver.findElementByXPath("//*[@value='#{@selector}' or text()='#{@selector}']")
       when :class
         @container.driver.findElementByXPath("//*[@class='#{@selector}']")
       when :tag_name
-        @container.driver.findElementByTagName(@selector)
+        @container.driver.findElementByTagName(@selector.to_s)
       else
         raise Exceptions::MissingWayOfFindingObjectException
       end
