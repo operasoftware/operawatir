@@ -43,9 +43,10 @@ module OperaWatir
       raise ObjectDisabledException, "Element #{@method} and #{@selector} is disabled" unless enabled?
     end
 
+    # TODO: Stop webdriver-opera from raising NoSuchElementException
     def exist?
       !element.nil?
-    rescue UnknownObjectException, NoSuchElementException
+    rescue UnknownObjectException, NoSuchElementException, MissingWayOfFindingObjectException
       false
     end
     alias_method :exists?, :exist?
