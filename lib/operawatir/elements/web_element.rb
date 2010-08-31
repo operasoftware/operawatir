@@ -11,15 +11,18 @@ module OperaWatir
     MIDDLE_DOWN = 16
     MIDDLE_UP = 32
 
-    class UnknownObjectException < StandardError; end
-    class MissingWayOfFindingObjectException < StandardError; end
-
     def self.default_method
       :id
     end
 
     def self.default_selector
       ':first'
+    end
+
+    def self.element_attr_reader(*attrs)
+      attrs.each do |attr|
+        define_method(attr.to_sym) { element.get_attribute(attr)}
+      end
     end
 
     def initialize(container, method=nil, selector=nil, value=nil)
@@ -40,13 +43,13 @@ module OperaWatir
     end
 
     def assert_enabled
-      raise ObjectDisabledException, "Element #{@method} and #{@selector} is disabled" unless enabled?
+      raise OperaWatir::ObjectDisabledException, "Element #{@method} and #{@selector} is disabled" unless enabled?
     end
 
     # TODO: Stop webdriver-opera from raising NoSuchElementException
     def exist?
       !element.nil?
-    rescue UnknownObjectException, NoSuchElementException, MissingWayOfFindingObjectException
+    rescue OperaWatir::UnknownObjectException, OperaWatir::MissingWayOfFindingObjectException
       false
     end
     alias_method :exists?, :exist?
@@ -164,14 +167,12 @@ module OperaWatir
       get_attribute 'class'
     end
 
-    def name
-      get_attribute 'name'
-    end
+    element_attr_reader :name, :style
 
   private
 
     def element
-      @elm ||= find || raise(UnknownObjectException, "Element #{@selector} not found using #{@method}")
+      @elm ||= find || raise(OperaWatir::UnknownObjectException, "Element #{@selector} not found using #{@method}")
     end
 
     alias_method :elm, :element
@@ -213,6 +214,8 @@ module OperaWatir
       else
         raise MissingWayOfFindingObjectException
       end
+    rescue NoSuchElementException
+      raise OperaWatir::UnknownObjectException
     end
   end
 end
