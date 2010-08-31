@@ -15,10 +15,6 @@ module OperaWatir
       :id
     end
 
-    def self.default_selector
-      ':first'
-    end
-
     def self.element_attr_reader(*attrs)
       attrs.each do |attr|
         define_method(attr.to_sym) { element.get_attribute(attr)}
@@ -32,7 +28,7 @@ module OperaWatir
       when Symbol
         @method, @selector = method, selector
       when nil
-        @method, @selector = self.class.default_method, self.class.default_selector
+        @method, @selector = :index, 1
       else
         @method, @selector = self.class.default_method, method
       end
@@ -46,10 +42,9 @@ module OperaWatir
       raise Exceptions::ObjectDisabledException, "Element #{@method} and #{@selector} is disabled" unless enabled?
     end
 
-    # TODO: Stop webdriver-opera from raising NoSuchElementException
     def exist?
-      !element.nil?
-    rescue Exceptions::UnknownObjectException, Exceptions::MissingWayOfFindingObjectException
+      !!element
+    rescue Exceptions::UnknownObjectException
       false
     end
     alias_method :exists?, :exist?
