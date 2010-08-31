@@ -13,4 +13,6 @@ module OperaWatir
   end
   class Span < NonControlElement
   end
+  class Em < NonControlElement
+  end
 end
