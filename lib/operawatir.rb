@@ -8,9 +8,10 @@ module OperaWatir
     VERSION
   end
 
-  class UnknownObjectException < StandardError; end
-  class MissingWayOfFindingObjectException < StandardError; end
-
+  module Exceptions
+    class UnknownObjectException < StandardError; end
+    class MissingWayOfFindingObjectException < StandardError; end
+  end
 end
 
 %w(commons-jxpath-1.3.jar protobuf-java-2.3.0.jar webdriver-common.jar
