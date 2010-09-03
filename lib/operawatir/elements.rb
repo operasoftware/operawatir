@@ -73,5 +73,50 @@ module OperaWatir
      Em.new self, method, selector, value
     end
 
+    def dl(method=nil, selector=nil, value=nil)
+      Dl.new self, method, selector, value
+    end
+
+    # TODO
+    def option
+      Option.new self, method, selector, value
+    end
+
+    def meta
+      Meta.new self, method, selector, value
+    end
+
+    def li
+      Li.new self, method, selector, value
+    end
+
+    def table
+      Table.new self, method, selector, value
+    end
+
+    def tfoot
+      TableFooter.new self, method, selector, value
+    end
+
+    def dd
+      Dd.new self, method, selector, value
+    end
+
+    def cell
+      Cell.new self, method, selector, value
+    end
+
+    def map
+      Map.new self, method, selector, value
+    end
+
+    def pre
+      Pre.new self, method, selector, value
+    end
+
+    def del
+      Del.new self, method, selector, value
+    end
+
   end
 end

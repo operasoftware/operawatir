@@ -9,8 +9,12 @@ module OperaWatir
   end
 
   module Exceptions
-    class UnknownObjectException < StandardError; end
-    class MissingWayOfFindingObjectException < StandardError; end
+
+    class OperaWatirException < StandardError; end
+
+    class UnknownObjectException < OperaWatirException; end
+    class MissingWayOfFindingObjectException < OperaWatirException; end
+    class UnknownFrameException < OperaWatirException; end
   end
 end
 
@@ -26,4 +30,5 @@ include_class com.opera.core.systems.OperaWebElement
 
 require "operawatir/container"
 require 'operawatir/elements'
+require 'operawatir/collections'
 require 'operawatir/browser'
