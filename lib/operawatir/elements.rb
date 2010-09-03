@@ -152,7 +152,7 @@ module OperaWatir
     end
 
     def cell(method=nil, selector=nil, value=nil)
-      Cell.new self, method, selector, value
+      Td.new self, method, selector, value
     end
 
     def tfoot(method=nil, selector=nil, value=nil)
