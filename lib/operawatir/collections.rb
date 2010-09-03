@@ -1,24 +1,6 @@
 module OperaWatir
   module Collections
 
-    def self.included(klass)
-      klass.extend
-    end
-
-    module InstanceMethods
-
-      def collection_accessor(collections={})
-        collections.each do |kl, klass|
-          define_method(name) do
-            @driver.getElementsByTagName(name.to_s).map do |elm|
-              klass.new_with_element self, elm
-            end
-          end
-        end
-      end
-
-    end
-
     def areas
     end
 
