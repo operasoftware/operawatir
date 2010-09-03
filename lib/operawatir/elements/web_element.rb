@@ -21,16 +21,12 @@ module OperaWatir
       end
     end
 
-    def self.new_with_element(element)
-      web_element = new
-      web_element.element = element
-      web_element
-    end
-
     def initialize(container, method=nil, selector=nil, value=nil)
       @container, @value = container, value
 
-      if method.nil? && selector.nil?
+      if method.is_a? OperaWebElement
+        @elm = method
+      elsif method.nil? && selector.nil?
         @method, @selector = :index, 1
       elsif selector.nil?
         @method, @selector = self.class.default_method, method
