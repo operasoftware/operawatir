@@ -21,6 +21,12 @@ module OperaWatir
       end
     end
 
+    def self.new_with_element(element)
+      web_element = new
+      web_element.element = element
+      web_element
+    end
+
     def initialize(container, method=nil, selector=nil, value=nil)
       @container, @value = container, value
 
@@ -81,10 +87,11 @@ module OperaWatir
     end
 
     def contains?(target)
-      return false unless exists?
       val = element.getValue
       return false if val.nil?
       val.include?(target)
+    rescue Exceptions::UnknownObjectException
+      false
     end
 
     alias_method :verify_contains, :contains?
@@ -107,6 +114,11 @@ module OperaWatir
 
     def type
       element.getElementName
+    end
+
+    # TODO
+    def disabled?
+      false
     end
 
     def take_screenshot(file_name, time_out)

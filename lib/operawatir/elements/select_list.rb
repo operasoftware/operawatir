@@ -16,19 +16,31 @@ module OperaWatir
       find_option_by_val(items, value).isSelected
     end
 
-  private
-
-    def items
-      items = element.findElementsByTagName("option")
+    def options
+      @options ||= element.findElementsByTagName("option")
     end
 
+    def option(method, value)
+      options.find {|option| option.send(method) == value }
+    end
+
+  private
+
     def find_option_by_val(items, value)
-      items.find {|item| item.getValue == value } || raise("Can't find option by value : #{value}")
+      options.find {|item| item.getValue == value } ||
+        raise(Exceptions::UnknownObjectException,
+              "Unable to locate Option, using :value and #{value.inspect}")
     end
 
     def find_option_by_text(items, value)
-      items.find {|item| item.getText == value} || raise("Can't find option by value : #{value}")
+      options.find {|item| item.getText == value} ||
+        raise(Exceptions::UnknownObjectException,
+              "Unable to locate Option, using :text and #{value.inspect}")
     end
   end
+
+  class Option < WebElement
+  end
+
 end
 
