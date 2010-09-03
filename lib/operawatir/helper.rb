@@ -12,7 +12,7 @@ end
 module OperaWatir
   module Helper
     class << self
-      attr_accessor :browser_args, :persistent_browser, :inspectr
+      attr_accessor :browser_args, :persistent_browser, :files, :inspectr
 
       # Creates a new browser instance with browser arguments, and
       # starts inspectr if required.
@@ -57,21 +57,7 @@ module OperaWatir
         OperaWatir::Helper.browser_args = [] if OperaWatir::Helper.browser_args.nil?
         OperaWatir::Helper.persistent_browser = false
         OperaWatir::Helper.inspectr = false
-        files "file://" + File.expand_path(Dir.pwd + "/interactive")
-      end
-
-      # Sets or returns base URI path, depending on provided with
-      # argument.
-      #
-      # Arguments:
-      #
-      # new_path::  new path to be set.
-      def files (new_path = nil)
-        if new_path
-          @files = new_path
-        else
-          @files
-        end
+        OperaWatir::Helper.files = "file://" + File.expand_path(Dir.pwd + "/interactive")
       end
 
       # Inititalizes and loads OperaWatir dependencies.
@@ -206,9 +192,12 @@ module OperaWatir
     end
 
     module PathHelper
-      def files (path = nil)
-        #OperaWatir::Helper.files
-        OperaWatir::Helper.files(path)
+      def files (new_path = nil)
+        if new_path
+          OperaWatir::Helper.files = new_path
+        else
+          OperaWatir::Helper.files
+        end
       end
     end
   end
