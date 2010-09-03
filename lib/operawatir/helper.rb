@@ -12,7 +12,8 @@ end
 module OperaWatir
   module Helper
     class << self
-      attr_accessor :browser_args, :persistent_browser, :files, :inspectr
+      attr_accessor :browser_args, :persistent_browser, :files,
+        :inspectr, :terminal_size
 
       # Creates a new browser instance with browser arguments, and
       # starts inspectr if required.
@@ -58,6 +59,7 @@ module OperaWatir
         OperaWatir::Helper.persistent_browser = false
         OperaWatir::Helper.inspectr = false
         OperaWatir::Helper.files = "file://" + File.expand_path(Dir.pwd + "/interactive/")
+        OperaWatir::Helper.terminal_size = detect_terminal_size
       end
 
       # Inititalizes and loads OperaWatir dependencies.
@@ -159,8 +161,14 @@ module OperaWatir
       end
 
       # Returns the platform type.
-      def platform
-        @platform ||= case Config::CONFIG["host_os"]
+      def platform (real = true)
+        if real
+          os = Config::CONFIG["host_os"]
+        else
+          os = RUBY_PLATFORM
+        end
+
+        @platform ||= case os
                       when /java/
                         :java
                       when /mswin|msys|mingw32/
@@ -172,6 +180,16 @@ module OperaWatir
                       else
                         RUBY_PLATFORM
                       end
+      end
+
+      # Determines and returns the terminal size in number of characters.
+      def detect_terminal_size
+        # FIXME: This should actually fetch the window size.
+#        if command_exists?("tput")
+#          [`tput cols`.to_i, `tput lines`.to_i]
+#        else
+          [80, 40]
+#        end
       end
 
       # Determines if a configuration file (helper.rb) is true or false.
@@ -204,31 +222,45 @@ module OperaWatir
 end
 
 class OperaHelperFormatter < Spec::Runner::Formatter::BaseTextFormatter
-  def example_failed(example, counter, failure)
-    message = sprintf("%-52s %52s\n", example.description, colorize_failure("FAILED", failure))
-    output.puts(message)
+  def example_failed (example, counter, failure)
+    output.puts message example, colorize_failure("FAILED", failure)
     output.flush
   end
 
-  def example_passed(example)
-    message = sprintf("%-52s %52s\n", example.description, green("PASSED"))
-    output.puts(message)
+  def example_passed (example)
+    output.puts message example, green("PASSED")
     output.flush
   end
 
-  def example_pending(example, message)
-    message = sprintf("%-50s %55s\n", example.description, blue("PENDING"))
-    output.puts(message)
+  def example_pending (example, message)
+    output.puts message example, blue("PENDING")
     output.flush
   end
 
-  def example_group_started(example_group_proxy)
-    message = "\n" +
-      "-------------------------------------------------------------------------------------------------\n" +
+  def example_group_started (example_group_proxy)
+    message = "\n" + line +
       example_group_proxy.description + " (" + example_group_proxy.examples.size.to_s + " examples)\n" +
-      "-------------------------------------------------------------------------------------------------\n"
+      line
+
     output.puts(message)
     output.flush
+  end
+
+  def message (example, text)
+    example.description.ljust(OperaWatir::Helper.terminal_size[0] - 7) + text
+  end
+
+  def line
+    message = ""
+    i = 0
+
+    begin
+      message += "-"
+      i += 1
+    end while i < OperaWatir::Helper.terminal_size[0]
+
+    message += "\n"
+    return message
   end
 end
 
