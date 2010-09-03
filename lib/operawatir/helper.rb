@@ -57,7 +57,7 @@ module OperaWatir
         OperaWatir::Helper.browser_args = [] if OperaWatir::Helper.browser_args.nil?
         OperaWatir::Helper.persistent_browser = false
         OperaWatir::Helper.inspectr = false
-        OperaWatir::Helper.files = "file://" + File.expand_path(Dir.pwd + "/interactive")
+        OperaWatir::Helper.files = "file://" + File.expand_path(Dir.pwd + "/interactive/")
       end
 
       # Inititalizes and loads OperaWatir dependencies.
