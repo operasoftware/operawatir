@@ -214,7 +214,7 @@ module OperaWatir
         raise Exceptions::MissingWayOfFindingObjectException
       end
     rescue NoSuchElementException
-      raise Exceptions::UnknownObjectException
+      raise Exceptions::UnknownObjectException, "Unable to locate #{self.class}, using #{@method} and #{@selector.inspect}"
     end
 
   end
