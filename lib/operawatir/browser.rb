@@ -1,6 +1,7 @@
 module OperaWatir
   class Browser
     include Elements
+    include Collections
 
     attr_reader :driver
 
@@ -43,6 +44,23 @@ module OperaWatir
     # Returns the full text of the active page.
     def text
       @driver.getText
+    end
+
+    # TODO
+    alias_method :html, :text
+
+    # TODO
+    def contains_text?
+    end
+
+    alias_method :contains_text, :contains_text?
+
+    # TODO
+    def document
+    end
+
+    # TODO
+    def element_by_xpath
     end
 
     # Instructs the browser to navigate one page backwards.
