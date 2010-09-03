@@ -204,18 +204,6 @@ module OperaWatir
 end
 
 class OperaHelperFormatter < Spec::Runner::Formatter::BaseTextFormatter
-  def example_passed(example)
-    message = sprintf("%-52s %52s\n", example.description, green("PASSED"))
-    output.puts(message)
-    output.flush
-  end
-
-  def example_pending(example, message)
-    message = sprintf("%-50s %55s\n", example.description, blue("PENDING"))
-    output.puts(message)
-    output.flush
-  end
-
   def example_failed(example, counter, failure)
     message = sprintf("%-52s %52s\n", example.description, colorize_failure("FAILED", failure))
     output.puts(message)
