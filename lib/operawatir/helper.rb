@@ -108,10 +108,10 @@ module OperaWatir
         helper_args = OperaWatir::Helper.browser_args
         OperaWatir::Helper.browser_args = [executable] if executable
 
-        args = "" if args.nil?
+        args = "" if args.nil? or executable.nil?
 
         if args.size > 0
-          args.split(" ").each do |arg|
+          args.split(",").each do |arg|
             OperaWatir::Helper.browser_args.push(arg)
           end
         else
