@@ -11,7 +11,7 @@ module OperaWatir
     MIDDLE_DOWN = 16
     MIDDLE_UP = 32
 
-    def initialize(container, method=nil, selector=nil, value=nil)
+    def initialize(container, method = nil, selector = nil, value = nil)
       @container = container
       @method    = method || self.class.default_method
       @selector  = selector || self.class.default_selector
@@ -173,10 +173,6 @@ module OperaWatir
     #
     # Raises:
     # NoSuchElementException::  if the element is not found.
-    # def to_s
-    #   element.getValue
-    # end
-
     def value
       element.getValue
     end
@@ -190,7 +186,7 @@ module OperaWatir
     # Raises:
     # NoSuchElementException::  if the element is not found.
     def take_screenshot(file_name, time_out=1)
-        @element.saveScreenshot(file_name,time_out)
+      element.saveScreenshot(file_name,time_out)
     end
 
     # Drags active element and drops it on the specified element.
@@ -257,21 +253,21 @@ module OperaWatir
     #
     # Raises:
     # NoSuchElementException::  if the elemnt is not found.
-    def fire_event(event, x=0, y=0)
+    def fire_event(event, x = 0, y = 0)
       x += location[:x];
       y += location[:y];
 
       case event
-      when 'onMouseOver'
+      when "onMouseOver"
         mouse_action(x,y)
-      when 'onMouseOut'
+      when "onMouseOut"
         mouse_action(x,y)
         mouse_action(0,0)
-      when 'onMouseDown'
+      when "onMouseDown"
         mouse_action(x, y, LEFT_DOWN)
-      when 'onMouseUp'
+      when "onMouseUp"
         mouse_action(x,y, LEFT_UP)
-      when 'onMouseMove'
+      when "onMouseMove"
         mouse_action(x,y)
         mouse_action(x+1,y+1)
       end
@@ -286,7 +282,7 @@ module OperaWatir
     alias_method :elm, :element
 
     def mouse_action(x, y, *actions)
-      sum = actions.inject(0){|sum,item| sum + item}
+      sum = actions.inject(0){ |sum, item| sum + item}
       @container.driver.mouseEvent(x,y,sum)
     end
 
@@ -335,6 +331,6 @@ module OperaWatir
         @container.driver.findElementByTagName(@selector)
       end
     end
-
   end
 end
+
