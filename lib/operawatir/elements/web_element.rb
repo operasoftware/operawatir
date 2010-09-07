@@ -101,10 +101,6 @@ module OperaWatir
       element.clear
     end
 
-    def value
-      element.getValue
-    end
-
     def text
       element.getValue
     end
@@ -169,7 +165,7 @@ module OperaWatir
       get_attribute 'class'
     end
 
-    element_attr_reader :name, :style
+    element_attr_reader :name, :style, :value
 
   private
 

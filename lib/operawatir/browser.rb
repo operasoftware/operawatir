@@ -46,6 +46,7 @@ module OperaWatir
       @driver.getText
     end
 
+    # TODO Doesn't return doctype
     def html
       @driver.getPageSource
     end
