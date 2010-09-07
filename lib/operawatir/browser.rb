@@ -46,8 +46,9 @@ module OperaWatir
       @driver.getText
     end
 
-    # TODO
-    alias_method :html, :text
+    def html
+      @driver.getPageSource
+    end
 
     # TODO
     def contains_text?
@@ -59,8 +60,8 @@ module OperaWatir
     def document
     end
 
-    # TODO
-    def element_by_xpath
+    def element_by_xpath(selector)
+      @driver.findElementByXPath(selector)
     end
 
     # Instructs the browser to navigate one page backwards.
