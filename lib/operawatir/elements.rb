@@ -7,7 +7,7 @@ module OperaWatir
 
     # TODO Dry
 
-    def area(mehtod=nil, selector=nil, value=nil)
+    def area(method=nil, selector=nil, value=nil)
       Area.new self, method, selector, value
     end
 
