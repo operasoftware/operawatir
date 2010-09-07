@@ -7,10 +7,10 @@ module OperaWatir
 
     def initialize (executable_location = nil, *arguments)
       if executable_location.nil?
-        @driver = OperaDesktopDriver.new
+        @driver = OperaDriver.new
         @frame = '_top'
       else
-        @driver = OperaDesktopDriver.new(executable_location, arguments.to_java(:String))
+        @driver = OperaDriver.new(executable_location, arguments.to_java(:String))
       end
     end
 
