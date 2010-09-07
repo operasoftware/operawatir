@@ -41,6 +41,9 @@ module OperaWatir
   class H6 < NonControlElement
   end
 
+  class Hidden < NonControlElement
+  end
+
   class Ins < NonControlElement
   end
 
@@ -52,7 +55,6 @@ module OperaWatir
 
   class Ol < NonControlElement
   end
-
 
   class Li < NonControlElement
   end
