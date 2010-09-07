@@ -21,4 +21,3 @@ module OperaWatir
   end
 
 end
-
