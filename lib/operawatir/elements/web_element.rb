@@ -183,11 +183,11 @@ module OperaWatir
       @container.driver.mouseEvent(x,y,sum)
     end
 
-    # TODO: webdriver-opera needs to accept regexes for findElement*
-    #       to_s is a hack.
     def find
       raise TypeError unless @selector.is_a?(String) || @selector.is_a?(Regexp) || @selector.is_a?(Fixnum)
 
+      # TODO: webdriver-opera needs to accept regexes for findElementBy*
+      #       `source` is a hack.
       @selector = @selector.source if @selector.is_a?(Regexp)
 
       case @method

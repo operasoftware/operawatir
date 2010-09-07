@@ -175,10 +175,10 @@ module OperaWatir
 
   private
 
-    class Collection
+    class Collection < Array
 
       def [](index)
-        super(index + 1)
+        super(index - 1)
       end
 
     end
