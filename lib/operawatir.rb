@@ -26,8 +26,12 @@ include_class org.openqa.selenium.WebDriver
 include_class org.openqa.selenium.RenderedWebElement
 include_class org.openqa.selenium.NoSuchElementException
 include_class com.opera.core.systems.OperaDesktopDriver
+include_class com.opera.core.systems.OperaDriver
 include_class com.opera.core.systems.OperaWebElement
 
 require 'operawatir/elements'
 require 'operawatir/collections'
 require 'operawatir/browser'
+require 'operawatir/desktop_container'
+require 'operawatir/desktop_browser'
+require 'operawatir/quickwidgets'
