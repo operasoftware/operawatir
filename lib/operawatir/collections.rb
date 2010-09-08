@@ -183,7 +183,7 @@ module OperaWatir
       end
 
       def length
-        @elements
+        @elements.length
       end
       alias_method :size, :length
 
