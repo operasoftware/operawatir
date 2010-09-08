@@ -4,7 +4,7 @@ module OperaWatir
     # Options needs to return an array of string values, rather than nodes
     alias_method :raw_options, :options
 
-    def options
+    def option_elements
       option_elements.map {|opt| opt.value}
     end
 
