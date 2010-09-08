@@ -1,6 +1,8 @@
 module OperaWatir
   class WebElement
 
+    include Collections
+
     LEFT = 3
     RIGHT = 12
     MIDDLE = 48
@@ -21,12 +23,18 @@ module OperaWatir
       end
     end
 
+    attr_writer :element
+
+    def self.new_with_element(container, element)
+      elm = new(container)
+      elm.element = element
+      elm
+    end
+
     def initialize(container, method=nil, selector=nil, value=nil)
       @container, @value = container, value
 
-      if method.is_a? OperaWebElement
-        @elm = method
-      elsif method.nil? && selector.nil?
+      if method.nil? && selector.nil?
         @method, @selector = :index, 1
       elsif selector.nil?
         @method, @selector = self.class.default_method, method
@@ -165,12 +173,12 @@ module OperaWatir
       get_attribute 'class'
     end
 
-    element_attr_reader :name, :style, :value
+    element_attr_reader :name, :style, :value, :index
 
   private
 
     def element
-      @elm ||= find || raise(Exceptions::UnknownObjectException, "Element #{@selector} not found using #{@method}")
+      @element ||= find || raise(Exceptions::UnknownObjectException, "Element #{@selector} not found using #{@method}")
     end
 
     alias_method :elm, :element
