@@ -38,7 +38,7 @@ module OperaWatir
     end
 
     def disabled?
-      get_attribute('disabled') == 'true'
+      get_attribute('disabled') != 'true'
     end
 
     def includes?(val)
