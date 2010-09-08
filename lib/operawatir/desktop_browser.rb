@@ -36,7 +36,13 @@ module OperaWatir
       @driver.waitForWindowClose(win_name)
     end
 
-    def close_dialog(win_name = "")
+    def open_dialog_with_action(win_name, name, *param)
+      wait_start
+      @driver.operaDesktopAction(name, param.to_java(:String))
+      wait_for_window_updated(win_name)
+    end
+
+    def close_dialog(win_name)
       wait_start
       opera_desktop_action("Cancel")
       wait_for_window_close(win_name)
