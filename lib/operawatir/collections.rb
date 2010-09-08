@@ -2,183 +2,209 @@ module OperaWatir
   module Collections
 
     def areas
-      Collection.new(@driver.findElementsByTagName('areas').map {|element| OperaWatir::Area.new(self, element)})
+      Collection.new(self, Area) {|d| d.findElementsByTagName('area')}
     end
 
     def buttons
-      Collection.new(@driver.findElementsByTagName('button').map {|element| OperaWatir::Button.new(self, element)})
+      Collection.new(self, Button) {|d| d.findElementsByTagName('button')}
     end
 
     def checkboxes
-      Collection.new(@driver.findElementsByTagName('checkbox').map {|element| OperaWatir::CheckBox.new(self, element)})
+      Collection.new(self, CheckBox) {|d| d.findElementsByTagName('checkbox')}
     end
 
     def dds
-      Collection.new(@driver.findElementsByTagName('dd').map {|element| OperaWatir::Dd.new(self, element)})
+      Collection.new(self, DD) {|d| d.findElementsByTagName('dd')}
     end
 
     def dels
-      Collection.new(@driver.findElementsByTagName('del').map {|element| OperaWatir::Del.new(self, element)})
+      Collection.new(self, Del) {|d| d.findElementsByTagName('del')}
     end
 
     def divs
-      Collection.new(@driver.findElementsByTagName('div').map {|element| OperaWatir::Div.new(self, element)})
+      Collection.new(self, Div) {|d| d.findElementsByTagName('div')}
     end
 
     def dls
-      Collection.new(@driver.findElementsByTagName('dl').map {|element| OperaWatir::Dl.new(self, element)})
+      Collection.new(self, Dl) {|d| d.findElementsByTagName('dl')}
     end
 
     def dts
-      Collection.new(@driver.findElementsByTagName('dt').map {|element| OperaWatir::Dt.new(self, element)})
-    end
-
-    def elements
-      raise 'TODO'
+      Collection.new(self, Dt) {|d| d.findElementsByTagName('dt')}
     end
 
     def ems
-      Collection.new(@driver.findElementsByTagName('em').map {|element| OperaWatir::Em.new(self, element)})
+      Collection.new(self, Em) {|d| d.findElementsByTagName('em')}
     end
 
     def file_fields
-      Collection.new(@driver.findElementsByTagName('input[type=file]').map {|element| OperaWatir::FileField.new(self, element)})
+      Collection.new(self, FileField) {|d| d.findElementsByCssSelector('input[type=file]')}
     end
 
     def forms
-      Collection.new(@driver.findElementsByTagName('form').map {|element| OperaWatir::Form.new(self, element)})
+      Collection.new(self, Form) {|d| d.findElementsByTagName('form')}
     end
 
     def frames
-      Collection.new(@driver.findElementsByTagName('frame').map {|element| OperaWatir::Frame.new(self, element)})
+      Collection.new(self, Frame) {|d| d.findElementsByTagName('frame')}
     end
 
     def hiddens
-      Collection.new(@driver.findElementsByTagName('input[type=hidden]').map {|element| OperaWatir::Hidden.new(self, element)})
+      Collection.new(self, Hidden) {|d| d.findElementsByCssSelector('input[type=hidden]')}
     end
 
     def h1s
-      Collection.new(@driver.findElementsByTagName('h1').map {|element| OperaWatir::H1.new(self, element)})
+      Collection.new(self, H1) {|d| d.findElementsByTagName('h1')}
     end
 
     def h2s
-      Collection.new(@driver.findElementsByTagName('h2').map {|element| OperaWatir::H2.new(self, element)})
+      Collection.new(self, H2) {|d| d.findElementsByTagName('h2')}
     end
 
     def h3s
-      Collection.new(@driver.findElementsByTagName('h3').map {|element| OperaWatir::H3.new(self, element)})
+      Collection.new(self, H3) {|d| d.findElementsByTagName('h3')}
     end
 
     def h4s
-      Collection.new(@driver.findElementsByTagName('h4').map {|element| OperaWatir::H4.new(self, element)})
+      Collection.new(self, H4) {|d| d.findElementsByTagName('h4')}
     end
 
     def h5s
-      Collection.new(@driver.findElementsByTagName('h5').map {|element| OperaWatir::H5.new(self, element)})
+      Collection.new(self, H5) {|d| d.findElementsByTagName('h5')}
     end
 
     def h6s
-      Collection.new(@driver.findElementsByTagName('h6').map {|element| OperaWatir::H6.new(self, element)})
+      Collection.new(self, H6) {|d| d.findElementsByTagName('h6')}
     end
 
     def images
-      Collection.new(@driver.findElementsByTagName('img').map {|element| OperaWatir::Image.new(self, element)})
+      Collection.new(self, Image) {|d| d.findElementsByTagName('img')}
     end
 
     def inss
-      Collection.new(@driver.findElementsByTagName('ins').map {|element| OperaWatir::Ins.new(self, element)})
+      Collection.new(self, Ins) {|d| d.findElementsByTagName('ins')}
     end
 
     def labels
-      Collection.new(@driver.findElementsByTagName('label').map {|element| OperaWatir::Label.new(self, element)})
+      Collection.new(self, Label) {|d| d.findElementsByTagName('label')}
     end
 
     def links
-      Collection.new(@driver.findElementsByTagName('a').map {|element| OperaWatir::Link.new(self, element)})
+      Collection.new(self, Link) {|d| d.findElementsByTagName('a')}
     end
 
     def lis
-      Collection.new(@driver.findElementsByTagName('li').map {|element| OperaWatir::Li.new(self, element)})
+      Collection.new(self, Li) {|d| d.findElementsByTagName('li')}
     end
 
     def maps
-      Collection.new(@driver.findElementsByTagName('map').map {|element| OperaWatir::Map.new(self, element)})
+      Collection.new(self, Map) {|d| d.findElementsByTagName('map')}
     end
 
     def metas
-      Collection.new(@driver.findElementsByTagName('meta').map {|element| OperaWatir::Meta.new(self, element)})
+      Collection.new(self, Meta) {|d| d.findElementsByTagName('meta')}
     end
 
     def ols
-      Collection.new(@driver.findElementsByTagName('ol').map {|element| OperaWatir::Ol.new(self, element)})
+      Collection.new(self, Ol) {|d| d.findElementsByTagName('ol')}
     end
 
     def options
-      Collection.new(@driver.findElementsByTagName('option').map {|element| OperaWatir::Option.new(self, element)})
+      Collection.new(self, Option) {|d| d.findElementsByTagName('option')}
     end
 
     def pres
-      Collection.new(@driver.findElementsByTagName('pre').map {|element| OperaWatir::Pre.new(self, element)})
+      Collection.new(self, Pre) {|d| d.findElementsByTagName('pre')}
     end
 
     def ps
-      Collection.new(@driver.findElementsByTagName('p').map {|element| OperaWatir::P.new(self, element)})
+      Collection.new(self, P) {|d| d.findElementsByTagName('p')}
     end
 
     def radios
-      Collection.new(@driver.findElementsByTagName('radio').map {|element| OperaWatir::Radio.new(self, element)})
+      Collection.new(self, Radio) {|d| d.findElementsByTagName('radio')}
     end
 
     def select_lists
-      Collection.new(@driver.findElementsByTagName('select').map {|element| OperaWatir::SelectList.new(self, element)})
+      Collection.new(self, SelectList) {|d| d.findElementsByTagName('select')}
     end
 
     def spans
-      Collection.new(@driver.findElementsByTagName('span').map {|element| OperaWatir::Span.new(self, element)})
+      Collection.new(self, Span) {|d| d.findElementsByTagName('span')}
     end
 
     def strongs
-      Collection.new(@driver.findElementsByTagName('strong').map {|element| OperaWatir::Strong.new(self, element)})
+      Collection.new(self, Strong) {|d| d.findElementsByTagName('strong')}
     end
 
     def tbodys
-      Collection.new(@driver.findElementsByTagName('tbody').map {|element| OperaWatir::TBody.new(self, element)})
+      Collection.new(self, TBody) {|d| d.findElementsByTagName('tbody')}
     end
 
     def cells
-      Collection.new(@driver.findElementsByTagName('td').map {|element| OperaWatir::Td.new(self, element)})
+      Collection.new(self, Td) {|d| d.findElementsByTagName('td')}
     end
 
     def tfoots
-      Collection.new(@driver.findElementsByTagName('h1').map {|element| OperaWatir::TFoot.new(self, element)})
+      Collection.new(self, TFoot) {|d| d.findElementsByTagName('tfoot')}
     end
 
     def theads
-      Collection.new(@driver.findElementsByTagName('thead').map {|element| OperaWatir::THead.new(self, element)})
+      Collection.new(self, THead) {|d| d.findElementsByTagName('thead')}
     end
 
     def rows
-      Collection.new(@driver.findElementsByTagName('tr').map {|element| OperaWatir::Tr.new(self, element)})
+      Collection.new(@driver.findElementsByTagName('tr').map {|element| OperaWatir::Tr.new_with_element(self, element)})
     end
 
     def tables
-      Collection.new(@driver.findElementsByTagName('table').map {|element| OperaWatir::Table.new(self, element)})
+      Collection.new(self, Table) {|d| d.findElementsByTagName('table')}
     end
 
     def text_fields
-      Collection.new(@driver.findElementsByTagName('input').map {|element| OperaWatir::H1.new(self, element)})
+      Collection.new(self, TextField) {|d| d.findElementsByTagName('input')}
     end
 
     def uls
-      Collection.new(@driver.findElementsByTagName('ul').map {|element| OperaWatir::Ul.new(self, element)})
+      Collection.new(self, UL) {|d| d.findElementsByTagName('ul')}
     end
 
   private
 
-    class Collection < Array
+    class Collection
+      include Enumerable
+
+      attr_accessor :root, :klass
+
+      def initialize(root, klass)
+        self.root, self.klass = root, klass
+
+        @elements = yield(root.element).map {|element| klass.new_with_element(root.element, element)}
+      end
+
+      def length
+        @elements
+      end
+      alias_method :size, :length
+
+      def each
+        @elements.each {|elm| yield elm}
+      end
+
+      def <=>(other)
+        index <=> other.index
+      end
 
       def [](index)
-        super(index - 1)
+        @elements[index - 1]
+      end
+
+      def first
+        @elements.first
+      end
+
+      def last
+        @elements.last
       end
 
     end

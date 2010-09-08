@@ -4,8 +4,9 @@ module OperaWatir
     include Collections
 
     attr_reader :driver
+    alias_method :element, :driver
 
-    def initialize (executable_location = nil, *arguments)
+    def initialize(executable_location = nil, *arguments)
       if executable_location.nil?
         @driver = OperaDriver.new
         @frame = '_top'
@@ -213,6 +214,7 @@ module OperaWatir
     def version
       @driver.getOperaDriverVersion
     end
+
   end
 end
 
