@@ -77,7 +77,8 @@ module OperaWatir
     end
 
     def label
-      sval = value.strip
+      # TODO || '' is a hack. get_attribute needs to work
+      sval = (value || '').strip
       sval.length.zero? ? get_attribute('label') : sval
     end
 
