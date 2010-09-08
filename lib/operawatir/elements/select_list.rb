@@ -10,7 +10,7 @@ module OperaWatir
 
 
     def select(value)
-      find_option_by_val(value).select!
+      find_option_by_label(value).select!
     end
 
     alias_method :set, :select
@@ -38,7 +38,7 @@ module OperaWatir
     end
 
     def disabled?
-      get_attribute 'disabled'
+      get_attribute('disabled') == 'true'
     end
 
     def includes?(val)
@@ -47,16 +47,20 @@ module OperaWatir
       false
     end
 
+    # TODO There is no way to set an attribute, or set the selected attribute.
+    def clear
+    end
+
   private
 
     def find_option_by_val(value)
-      option_elements.find {|option| option.value == value } ||
+      option_elements.find {|option| option.value.match(value) } ||
         raise(Exceptions::UnknownObjectException,
               "Unable to locate Option, using :value and #{value.inspect}")
     end
 
     def find_option_by_label(value)
-      option_elements.find {|option| option.label == value} ||
+      option_elements.find {|option| option.label.match(value)} ||
         raise(Exceptions::UnknownObjectException,
               "Unable to locate Option, using :text and #{value.inspect}")
     end
@@ -73,7 +77,8 @@ module OperaWatir
     end
 
     def label
-      text.strip.length.zero? ? label : text.strip
+      sval = value.strip
+      sval.length.zero? ? get_attribute('label') : sval
     end
 
   end
