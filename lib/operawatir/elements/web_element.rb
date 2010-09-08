@@ -110,6 +110,10 @@ module OperaWatir
     end
 
     def text
+      element.getText
+    end
+
+    def value
       element.getValue
     end
 
