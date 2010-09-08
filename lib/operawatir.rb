@@ -10,11 +10,12 @@ module OperaWatir
 
   module Exceptions
 
-    class OperaWatirException < StandardError; end
+    class OperaWatirException < RuntimeError; end
 
     class UnknownObjectException < OperaWatirException; end
     class MissingWayOfFindingObjectException < OperaWatirException; end
     class UnknownFrameException < OperaWatirException; end
+    class NoValueFoundException < OperaWatirException; end
   end
 end
 

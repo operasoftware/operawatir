@@ -1,6 +1,14 @@
 module OperaWatir
   class SelectList < WebElement
 
+    # Options needs to return an array of string values, rather than nodes
+    alias_method :raw_options, :options
+
+    def options
+      option_elements.map {|opt| opt.value}
+    end
+
+
     def select(value)
       find_option_by_val(value).select!
     end
@@ -13,7 +21,7 @@ module OperaWatir
     end
 
     def selected_options
-      all_options.select {|opt| opt.selected?}
+      option_elements.select {|opt| opt.selected?}
     end
 
     # def option(method, value)
@@ -46,13 +54,13 @@ module OperaWatir
   private
 
     def find_option_by_val(value)
-      options.find {|option| option.value == value } ||
+      option_elements.find {|option| option.value == value } ||
         raise(Exceptions::UnknownObjectException,
               "Unable to locate Option, using :value and #{value.inspect}")
     end
 
     def find_option_by_text(value)
-      options.find {|option| option.text == value || option.label == text} ||
+      option_elements.find {|option| option.text == value || option.label == text} ||
         raise(Exceptions::UnknownObjectException,
               "Unable to locate Option, using :text and #{value.inspect}")
     end
