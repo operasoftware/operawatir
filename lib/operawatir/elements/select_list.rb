@@ -5,7 +5,7 @@ module OperaWatir
     alias_method :option_elements, :options
 
     def options
-      option_elements.map {|opt| opt.value}
+      option_elements.map {|opt| opt.text}
     end
 
 
@@ -17,11 +17,11 @@ module OperaWatir
     alias_method :select_value, :select
 
     def selected?(value)
-      find_option_by_val(value).selected?
+      find_option_by_text(value).selected?
     end
 
     def selected_options
-      option_elements.select {|opt| opt.selected?}
+      option_elements.select {|opt| opt.selected?}.map {|opt| opt.text}
     end
 
     # def option(method, value)
