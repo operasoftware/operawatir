@@ -5,7 +5,7 @@ module OperaWatir
     alias_method :option_elements, :options
 
     def options
-      option_elements.map {|opt| opt.text}
+      option_elements.map {|opt| opt.label}
     end
 
 
@@ -17,7 +17,7 @@ module OperaWatir
     alias_method :select_value, :select
 
     def selected?(value)
-      find_option_by_text(value).selected?
+      find_option_by_label(value).selected?
     end
 
     def selected_options
@@ -37,10 +37,6 @@ module OperaWatir
       multiple? ? 'select-multiple' : 'select-one'
     end
 
-    # def value
-    #   option :selected?, true
-    # end
-
     def disabled?
       get_attribute 'disabled'
     end
@@ -59,8 +55,8 @@ module OperaWatir
               "Unable to locate Option, using :value and #{value.inspect}")
     end
 
-    def find_option_by_text(value)
-      option_elements.find {|option| option.text == value || option.label == text} ||
+    def find_option_by_label(value)
+      option_elements.find {|option| option.label == value} ||
         raise(Exceptions::UnknownObjectException,
               "Unable to locate Option, using :text and #{value.inspect}")
     end
@@ -74,6 +70,10 @@ module OperaWatir
 
     def selected?
       element.isSelected
+    end
+
+    def label
+      text.strip.blank? ? label : text.strip
     end
 
   end
