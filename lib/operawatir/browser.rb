@@ -1,7 +1,7 @@
 module OperaWatir
   class Browser
     include Elements
-    include Collections
+    include OperaWatir::Collections
 
     attr_reader :driver
     alias_method :element, :driver
