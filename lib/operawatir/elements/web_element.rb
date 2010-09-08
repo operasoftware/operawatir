@@ -1,7 +1,6 @@
 module OperaWatir
   class WebElement
-
-    include Collections
+    include OperaWatir::Collections
 
     LEFT = 3
     RIGHT = 12
