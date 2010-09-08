@@ -114,7 +114,7 @@ module OperaWatir
     end
 
     def text
-      element.getText || ''
+      (element.getText || '').strip
     end
 
     def value
@@ -181,7 +181,7 @@ module OperaWatir
       get_attribute 'class'
     end
 
-    element_attr_reader :name, :style, :value, :index
+    element_attr_reader :name, :style, :value, :index, :title
 
     def element
       @element ||= find || raise(Exceptions::UnknownObjectException, "Element #{@selector} not found using #{@method}")
