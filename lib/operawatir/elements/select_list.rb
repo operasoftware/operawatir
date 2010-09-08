@@ -26,7 +26,7 @@ module OperaWatir
 
     # Dangerous override.
     def type
-      multiple? 'select-multiple' : 'select-one'
+      multiple? ? 'select-multiple' : 'select-one'
     end
 
     # def value
