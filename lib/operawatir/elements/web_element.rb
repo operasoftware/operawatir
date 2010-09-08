@@ -175,13 +175,13 @@ module OperaWatir
 
     element_attr_reader :name, :style, :value, :index
 
-  private
-
     def element
       @element ||= find || raise(Exceptions::UnknownObjectException, "Element #{@selector} not found using #{@method}")
     end
 
     alias_method :elm, :element
+
+  private
 
     def mouse_action(x, y, *actions)
       sum = actions.inject(0){ |sum, item| sum + item}
