@@ -29,7 +29,7 @@ module OperaWatir
     # end
 
     def multiple?
-      get_attribute 'multiple'
+      get_attribute('multiple') == 'true'
     end
 
     # Dangerous override.
@@ -42,7 +42,7 @@ module OperaWatir
     end
 
     def includes?(val)
-      !!find_option_by_val(val)
+      !!find_option_by_label(val)
     rescue Exceptions::UnknownObjectException
       false
     end
@@ -73,7 +73,7 @@ module OperaWatir
     end
 
     def label
-      text.strip.blank? ? label : text.strip
+      text.strip.length.zero? ? label : text.strip
     end
 
   end
