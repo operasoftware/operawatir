@@ -24,6 +24,10 @@ module OperaWatir
       @driver.waitStart()
     end
 
+    def wait_for_window_shown(win_name = "")
+      @driver.waitForWindowShown(win_name)
+    end
+
     def wait_for_window_updated(win_name = "")
       @driver.waitForWindowUpdated(win_name)
     end
@@ -39,7 +43,7 @@ module OperaWatir
     def open_dialog_with_action(win_name, name, *param)
       wait_start
       @driver.operaDesktopAction(name, param.to_java(:String))
-      wait_for_window_updated(win_name)
+      wait_for_window_shown(win_name)
     end
 
     def close_dialog(win_name)
