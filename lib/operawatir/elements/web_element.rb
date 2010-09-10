@@ -24,7 +24,8 @@ module OperaWatir
     end
 
     def self.tag
-      name.downcase.to_sym
+      # HACK
+      name.split('::').last.downcase.to_sym
     end
 
     def self.xpath
@@ -206,7 +207,7 @@ module OperaWatir
       # TODO: webdriver-opera needs to accept regexes for findElementBy*
       #       `source` is a hack.
       @selector = @selector.source if @selector.is_a?(Regexp)
-
+      
       case @method
       when :name
         if @value.nil?
