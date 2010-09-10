@@ -2,39 +2,39 @@ module OperaWatir
   module Collections
 
     def areas
-      Collection.new(self, Area) {|d| d.findElementsByTagName('area')}
+      Collection.new(self, Area)
     end
 
     def buttons
-      Collection.new(self, Button) {|d| d.findElementsByTagName('button')}
+      Collection.new(self, Button)
     end
 
     def checkboxes
-      Collection.new(self, CheckBox) {|d| d.findElementsByTagName('checkbox')}
+      Collection.new(self, CheckBox)
     end
 
     def dds
-      Collection.new(self, DD) {|d| d.findElementsByTagName('dd')}
+      Collection.new(self, DD)
     end
 
     def dels
-      Collection.new(self, Del) {|d| d.findElementsByTagName('del')}
+      Collection.new(self, Del)
     end
 
     def divs
-      Collection.new(self, Div) {|d| d.findElementsByTagName('div')}
+      Collection.new(self, Div)
     end
 
     def dls
-      Collection.new(self, Dl) {|d| d.findElementsByTagName('dl')}
+      Collection.new(self, Dl)
     end
 
     def dts
-      Collection.new(self, Dt) {|d| d.findElementsByTagName('dt')}
+      Collection.new(self, Dt)
     end
 
     def ems
-      Collection.new(self, Em) {|d| d.findElementsByTagName('em')}
+      Collection.new(self, Em)
     end
 
     def file_fields
@@ -42,11 +42,11 @@ module OperaWatir
     end
 
     def forms
-      Collection.new(self, Form) {|d| d.findElementsByTagName('form')}
+      Collection.new(self, Form)
     end
 
     def frames
-      Collection.new(self, Frame) {|d| d.findElementsByTagName('frame')}
+      Collection.new(self, Frame)
     end
 
     def hiddens
@@ -54,119 +54,119 @@ module OperaWatir
     end
 
     def h1s
-      Collection.new(self, H1) {|d| d.findElementsByTagName('h1')}
+      Collection.new(self, H1)
     end
 
     def h2s
-      Collection.new(self, H2) {|d| d.findElementsByTagName('h2')}
+      Collection.new(self, H2)
     end
 
     def h3s
-      Collection.new(self, H3) {|d| d.findElementsByTagName('h3')}
+      Collection.new(self, H3)
     end
 
     def h4s
-      Collection.new(self, H4) {|d| d.findElementsByTagName('h4')}
+      Collection.new(self, H4)
     end
 
     def h5s
-      Collection.new(self, H5) {|d| d.findElementsByTagName('h5')}
+      Collection.new(self, H5)
     end
 
     def h6s
-      Collection.new(self, H6) {|d| d.findElementsByTagName('h6')}
+      Collection.new(self, H6)
     end
 
     def images
-      Collection.new(self, Image) {|d| d.findElementsByTagName('img')}
+      Collection.new(self, Image)
     end
 
     def inss
-      Collection.new(self, Ins) {|d| d.findElementsByTagName('ins')}
+      Collection.new(self, Ins)
     end
 
     def labels
-      Collection.new(self, Label) {|d| d.findElementsByTagName('label')}
+      Collection.new(self, Label)
     end
 
     def links
-      Collection.new(self, Link) {|d| d.findElementsByTagName('a')}
+      Collection.new(self, Link)
     end
 
     def lis
-      Collection.new(self, Li) {|d| d.findElementsByTagName('li')}
+      Collection.new(self, Li)
     end
 
     def maps
-      Collection.new(self, Map) {|d| d.findElementsByTagName('map')}
+      Collection.new(self, Map)
     end
 
     def metas
-      Collection.new(self, Meta) {|d| d.findElementsByTagName('meta')}
+      Collection.new(self, Meta)
     end
 
     def ols
-      Collection.new(self, Ol) {|d| d.findElementsByTagName('ol')}
+      Collection.new(self, Ol)
     end
 
     def options
-      Collection.new(self, Option) {|d| d.findElementsByTagName('option')}
+      Collection.new(self, Option)
     end
 
     def pres
-      Collection.new(self, Pre) {|d| d.findElementsByTagName('pre')}
+      Collection.new(self, Pre)
     end
 
     def ps
-      Collection.new(self, P) {|d| d.findElementsByTagName('p')}
+      Collection.new(self, P)
     end
 
     def radios
-      Collection.new(self, Radio) {|d| d.findElementsByTagName('radio')}
+      Collection.new(self, Radio)
     end
 
     def select_lists
-      Collection.new(self, SelectList) {|d| d.findElementsByTagName('select')}
+      Collection.new(self, SelectList)
     end
 
     def spans
-      Collection.new(self, Span) {|d| d.findElementsByTagName('span')}
+      Collection.new(self, Span)
     end
 
     def strongs
-      Collection.new(self, Strong) {|d| d.findElementsByTagName('strong')}
+      Collection.new(self, Strong)
     end
 
     def tbodys
-      Collection.new(self, TBody) {|d| d.findElementsByTagName('tbody')}
+      Collection.new(self, TBody)
     end
 
     def cells
-      Collection.new(self, Td) {|d| d.findElementsByTagName('td')}
+      Collection.new(self, Td)
     end
 
     def tfoots
-      Collection.new(self, TFoot) {|d| d.findElementsByTagName('tfoot')}
+      Collection.new(self, TFoot)
     end
 
     def theads
-      Collection.new(self, THead) {|d| d.findElementsByTagName('thead')}
+      Collection.new(self, THead)
     end
 
     def rows
-      Collection.new(@driver.findElementsByTagName('tr').map {|element| OperaWatir::Tr.new_with_element(self, element)})
+      Collection.new(self, Tr)
     end
 
     def tables
-      Collection.new(self, Table) {|d| d.findElementsByTagName('table')}
+      Collection.new(self, Table)
     end
 
     def text_fields
-      Collection.new(self, TextField) {|d| d.findElementsByTagName('input')}
+      Collection.new(self, TextField) {|d| d.findElementsByCssSelector('input[type=text]')}
     end
 
     def uls
-      Collection.new(self, UL) {|d| d.findElementsByTagName('ul')}
+      Collection.new(self, UL)
     end
 
   private
@@ -176,10 +176,12 @@ module OperaWatir
 
       attr_accessor :root, :klass
 
-      def initialize(root, klass)
+      def initialize(root, klass, &blk)
         self.root, self.klass = root, klass
 
-        @elements = yield(root.element).map {|element| klass.new_with_element(root.element, element)}
+        @elements = (block_given? ? blk : default_finder).
+          call(root.element).
+          map {|element| klass.new_with_element(root.element, element)}
       end
 
       def length
@@ -205,6 +207,10 @@ module OperaWatir
 
       def last
         @elements.last
+      end
+
+      def default_finder
+        lambda {|root| root.findElementsByTagName(klass.tag)}
       end
 
     end
