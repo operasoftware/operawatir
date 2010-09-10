@@ -42,6 +42,11 @@ module OperaWatir
   end
 
   class Hidden < NonControlElement
+
+    def self.xpath
+      'input[type() = hidden]'
+    end
+
   end
 
   class Ins < NonControlElement

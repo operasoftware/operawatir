@@ -23,6 +23,14 @@ module OperaWatir
       end
     end
 
+    def self.tag
+      name.downcase.to_sym
+    end
+
+    def self.xpath
+      tag.to_s
+    end
+
     attr_writer :element
 
     def self.new_with_element(container, element)
@@ -215,16 +223,16 @@ module OperaWatir
       when :text
         @container.driver.findElementByLinkText(@selector)
       when :href, :url
-        @container.driver.findElementByXPath("//a[@href='#{@selector}']")
+        @container.driver.findElementByXPath("//#{self.class.xpath}[@href='#{@selector}']")
       when :title
-        @container.driver.findElementByXPath("//*[@title='#{@selector}']")
+        @container.driver.findElementByXPath("//#{self.class.xpath}[@title='#{@selector}']")
       when :index
         raise "watir index starts from 1" if @selector.to_i.zero?
-        @container.driver.findElementByXPath("//*[#{@selector.to_i+1}]")
+        @container.driver.findElementByXPath("//#{self.class.xpath}[#{@selector.to_i}]")
       when :value
-        @container.driver.findElementByXPath("//*[@value='#{@selector}' or text()='#{@selector}']")
+        @container.driver.findElementByXPath("//#{self.class.xpath}[@value='#{@selector}' or text()='#{@selector}']")
       when :class
-        @container.driver.findElementByXPath("//*[@class='#{@selector}']")
+        @container.driver.findElementByXPath("//#{self.class.xpath}[@class='#{@selector}']")
       when :tag_name
         @container.driver.findElementByTagName(@selector)
       else
