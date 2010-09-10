@@ -5,6 +5,10 @@ module OperaWatir
       :href
     end
 
+    def self.tag
+      :a
+    end
+
     element_attr_reader :href, :title
 
     alias_method :url, :href
