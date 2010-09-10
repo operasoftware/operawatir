@@ -1,6 +1,10 @@
 module OperaWatir
   class SelectList < WebElement
 
+    def self.tag
+      :select
+    end
+
     # Options needs to return an array of string values, rather than nodes
     alias_method :option_elements, :options
 
