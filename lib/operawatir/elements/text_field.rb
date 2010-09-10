@@ -1,6 +1,14 @@
 module OperaWatir
   class TextField < WebElement
 
+    def self.tag
+      :input
+    end
+
+    def xpath
+      'input[type () = text]'
+    end
+
     def set(text)
       clear unless value.empty?
       element.sendKeys(text.split(//).to_java(:string))
@@ -13,6 +21,9 @@ module OperaWatir
 
 
   class FileField < TextField
+
+    def self.tag; :input; end
+
     def set(path)
       clear unless value.empty?
       element.click 1, 0
