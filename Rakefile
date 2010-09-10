@@ -36,6 +36,7 @@ end
 
 Spec::Rake::SpecTask.new do |t|
   t.spec_files = FileList['spec/**/*.rb']
+  t.spec_opts = ['--options spec/spec.opts'] if File.exist?('spec/spec.opts')
 end
 
 task :bump do
