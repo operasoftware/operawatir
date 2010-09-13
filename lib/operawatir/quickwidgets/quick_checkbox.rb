@@ -6,7 +6,7 @@ module OperaWatir
     # Raises:
     # NoSuchElementException::  if the element is not found.
     def checked?
-      @element.isSelected
+      element.isSelected
     end
     
   end
