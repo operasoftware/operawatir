@@ -1,34 +1,10 @@
 module OperaWatir
   class QuickWidget
 
-    def initialize(container,how,what)
-      @container,@how, @what = container, how, what
-    end
-
-    # Locate the element on the page.  Elements can be located using one
-    # of the following selectors:
-    #
-    # * name
-    # * id
-    #
-    # Raises:
-    # NoSuchElementException:  if element is not found.
-    def locate
-      case @how
-      when :name
-        @element = @container.driver.findWidgetByName(-1, @what)
-      end
-    end
-
-    # Checks whether element exists or not.
-    #
-    # Raises:
-    # NoSuchElementException::  if element is is not found.
-    def assert_exists
-      locate
-      unless @element
-        raise NoSuchElementException, "Element #{@what} not found using #{@how}"
-      end
+    def initialize(container, method, selector)
+      @container = container
+      @method    = method
+      @selector  = selector
     end
 
      # Checks if the provided text matches with the contents of text
@@ -42,7 +18,7 @@ module OperaWatir
      #   false otherwise.
      def contains?(target)
        return false unless exists?
-       text = @element.getText
+       text = element.getText
        return false if text.nil?
        text.include?(target)
      end
@@ -71,8 +47,7 @@ module OperaWatir
     # Raises:
     # NoSuchElementException:  if element is not found.
     def enabled?
-      locate
-      return @element.isEnabled
+      element.isEnabled
     end
       
 
@@ -89,8 +64,31 @@ module OperaWatir
     # Raises:
     # NoSuchElementException::   if the element is not found.
     def text
-      assert_exists
-      @element.getText
+      element.getText
+    end
+
+private
+  
+    # Return the element
+    #
+    # Raises:
+    # NoSuchElementException::   if the element is not found.
+    def element
+      @elm ||= find || raise(NoSuchElementException, "Element #{@selector} not found using #{@method}")
+    end
+
+    # Finds the element on the page.  Elements can be located using one
+    # of the following selectors:
+    #
+    # * name
+    #
+    # Raises:
+    # NoSuchElementException:  if element is not found.
+    def find
+      case @method
+      when :name
+        @element = @container.driver.findWidgetByName(-1, @selector)
+      end
     end
 
     
