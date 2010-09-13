@@ -7,24 +7,6 @@ module OperaWatir
       @selector  = selector
     end
 
-     # Checks if the provided text matches with the contents of text
-     # field.  Text can be a string or regular expression.
-     #
-     # Input:
-     # target::  text to be verified.
-     #
-     # Output:
-     #   True if provided text matches with the contents of text field,
-     #   false otherwise.
-     def contains?(target)
-       return false unless exists?
-       text = element.getText
-       return false if text.nil?
-       text.include?(target)
-     end
- 
-     alias_method :verify_contains, :contains?
-
     # Checks whether element exists or not.
     #
     # Raises:
@@ -50,25 +32,24 @@ module OperaWatir
       element.isEnabled
     end
       
-
-    # Checks if element is enabled or not.
-    #
-    # Raises:
-    # ObjectDisabledException::  if element is disabled and you are attempting to use it.
-    def assert_enabled
-      raise ObjectDisabledException, "Element #{@method} and #{@selector} is disabled" unless enabled?
-    end
-
-    # Return the text of the widget
+	# Return the text of the widget
     #
     # Raises:
     # NoSuchElementException::   if the element is not found.
     def text
       element.getText
     end
+    
+    def verify_text(string_id)
+      element.verifyText(string_id);
+    end
+    
+    def verify_includes_text(string_id)
+      element.verifyContainsText(string_id)
+    end
 
 private
-  
+    
     # Return the element
     #
     # Raises:
@@ -91,7 +72,6 @@ private
       end
     end
 
-    
   end
 end
 
