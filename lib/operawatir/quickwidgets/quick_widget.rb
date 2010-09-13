@@ -17,8 +17,6 @@ module OperaWatir
       case @how
       when :name
         @element = @container.driver.findWidgetByName(-1, @what)
-      when :id
-        @element = @container.driver.findElementById(-1, @what)
       end
     end
 
