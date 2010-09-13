@@ -9,6 +9,9 @@ module OperaWatir
       element.isSelected
     end
     
+    #def set
+    #def clear
+    
   end
     
 end
