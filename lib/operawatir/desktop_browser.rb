@@ -51,6 +51,10 @@ module OperaWatir
       opera_desktop_action("Cancel")
       wait_for_window_close(win_name)
     end
+    
+    def widgets(win_name)
+      @driver.getQuickWidgetList(win_name)
+    end
   end
 end
 
