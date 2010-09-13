@@ -2,7 +2,7 @@ module OperaWatir
   class QuickButton < QuickWidget
     
     def default?
-      @element.IsDefault
+      element.isDefault
     end
     
   end
