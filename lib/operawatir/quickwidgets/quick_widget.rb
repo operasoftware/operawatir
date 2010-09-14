@@ -32,7 +32,7 @@ module OperaWatir
       element.isEnabled
     end
       
-	# Return the text of the widget
+    # Returns the text of the widget
     #
     # Raises:
     # NoSuchElementException::   if the element is not found.
@@ -40,14 +40,26 @@ module OperaWatir
       element.getText
     end
     
+    # Returns the text of the widget
+    #
+    # Raises:
+    # NoSuchElementException::   if the element is not found.
     def name
       element.getName
     end
     
+    # Checks if the element text is the one given as parameter.
+    #
+    # Raises:
+    # NoSuchElementException::   if the element is not found.
     def verify_text(string_id)
       element.verifyText(string_id);
     end
     
+    # Checks if the element text includes the one given as parameter.
+    #
+    # Raises:
+    # NoSuchElementException::   if the element is not found.
     def verify_includes_text(string_id)
       element.verifyContainsText(string_id)
     end
