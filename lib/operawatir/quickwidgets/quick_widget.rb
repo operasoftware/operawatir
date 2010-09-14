@@ -32,7 +32,21 @@ module OperaWatir
       element.isEnabled
     end
       
-    # Returns the text of the widget
+    # Returns true if the element is visible, false if it isn't.  First
+    # checks if element exists or not.  Then checks if element is enabled
+    # or not.
+    #
+    # Output: 
+    #   Returns true if element exists and is visible, else returns
+    #   false.
+    #
+    # Raises:
+    # NoSuchElementException:  if element is not found.
+    def visible?
+      element.isVisible
+    end
+
+    # Return the text of the widget
     #
     # Raises:
     # NoSuchElementException::   if the element is not found.
