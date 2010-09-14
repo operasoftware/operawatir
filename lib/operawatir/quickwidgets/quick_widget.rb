@@ -61,6 +61,14 @@ module OperaWatir
     def name
       element.getName
     end
+
+    # Returns the type of the widget
+    #
+    # Raises:
+    # NoSuchElementException::   if the element is not found.
+    def type
+      element.getType
+    end
     
     # Checks if the element text is the one given as parameter.
     #
