@@ -101,6 +101,15 @@ module OperaWatir
       @driver.getQuickWidgetList(win_name)
     end
    
+   # Retrieves the name of a window based on it's id
+   #
+   # Arguments:
+   # win_id:    id of the window
+   #
+   def get_window_name(win_id)
+     @driver.getWindowName(win_id)
+   end
+
     # Set preference pref in prefs section prefs_section to value specified
     #
     # Arguments:
