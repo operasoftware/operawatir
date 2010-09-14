@@ -55,6 +55,20 @@ module OperaWatir
     def widgets(win_name)
       @driver.getQuickWidgetList(win_name)
     end
+   
+    def set_preference(prefs_section, pref, value)
+      @driver.get("opera:config")
+      execute_script("opera.setPreference(\'#{prefs_section}\', \'#{pref}\', #{value});")
+      back 
+    end
+    
+    def get_preference(prefs_section, pref)
+      @driver.get("opera:config")
+      value = execute_script("opera.getPreference('#{prefs_section}','#{pref}');")
+      back 
+      value
+    end
+       
   end
 end
 

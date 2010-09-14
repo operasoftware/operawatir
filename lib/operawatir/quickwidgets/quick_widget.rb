@@ -13,8 +13,8 @@ module OperaWatir
     # NoSuchElementException::  if element is is not found.
     def exist?
       !!element
-    rescue NoSuchElementException
-      false
+      rescue NoSuchElementException
+        false
     end
     alias_method :exists?, :exist?
     
@@ -38,6 +38,10 @@ module OperaWatir
     # NoSuchElementException::   if the element is not found.
     def text
       element.getText
+    end
+    
+    def name
+      element.getName
     end
     
     def verify_text(string_id)
