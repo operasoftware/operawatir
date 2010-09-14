@@ -74,12 +74,25 @@ module OperaWatir
     # action_name:: name of the action to execute
     # param:: parameters to the action
     #
-    def open_dialog_with_action(win_name, action_name, *param)
+    def open_window_with_action(win_name, action_name, *param)
       wait_start
       @driver.operaDesktopAction(action_name, param.to_java(:String))
       wait_for_window_shown(win_name)
     end
 
+   # Executes the action given by paramter action_name, and waits for
+   # the dialog with window name win_name to be shown
+   #
+   # Arguments:
+   # win_name::  name of the window
+   # action_name:: name of the action to execute
+   # param:: parameters to the action
+   #
+   def open_dialog_with_action(win_name, action_name, *param)
+     open_window_with_action(win_name, action_name, *param)
+   end
+
+    
     # Close the dialog with window name win_name
     # Returns when the dialog is closed
     #
@@ -99,6 +112,10 @@ module OperaWatir
     #
     def widgets(win_name)
       @driver.getQuickWidgetList(win_name)
+    end
+    
+    def windows
+      @driver.getWindowList
     end
    
    # Retrieves the name of a window based on it's id
