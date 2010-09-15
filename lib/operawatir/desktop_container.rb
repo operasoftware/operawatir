@@ -51,7 +51,7 @@ module OperaWatir
     #
     # Raises:
     # NoSuchElementException::  if element is not found.
-    def quick_dialog_tab(how, what)
+    def quick_dialogtab(how, what)
       QuickDialogTab.new(self, how, what)
     end
 
