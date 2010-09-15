@@ -19,7 +19,7 @@ module OperaWatir
 
     def self.element_attr_reader(*attrs)
       attrs.each do |attr|
-        define_method(attr.to_sym) { element.get_attribute(attr)}
+        define_method(attr.to_sym) { get_attribute(attr)}
       end
     end
 
@@ -95,8 +95,8 @@ module OperaWatir
       element.getText
     end
 
-    def get_attribute(name)
-      element.getAttribute(name.to_s) || ''
+    def get_attribute(attr)
+      element.getAttribute(attr.to_s) || ''
     end
 
     def contains?(target)
@@ -233,7 +233,7 @@ module OperaWatir
         @container.driver.findElementByXPath("//#{self.class.xpath}[@title='#{@selector}']")
       when :index
         raise "watir index starts from 1" if @selector.to_i.zero?
-        @container.driver.findElementByXPath("//#{self.class.xpath}[#{@selector.to_i}]")
+        @container.driver.findElementByXPath("//descendant::#{self.class.xpath}[#{@selector.to_i}]")
       when :value
         @container.driver.findElementByXPath("//#{self.class.xpath}[@value='#{@selector}' or text()='#{@selector}']")
       when :class
@@ -248,4 +248,5 @@ module OperaWatir
     end
   end
 end
+
 
