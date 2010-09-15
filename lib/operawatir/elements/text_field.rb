@@ -5,8 +5,9 @@ module OperaWatir
       :input
     end
 
-    def xpath
-      'input[type () = text]'
+    def self.xpath
+      # This is insane, but it's the only way to comply with the spec.
+      "//descendant::input[(@type != 'checkbox' and @type != 'radio' and @type != 'submit' and @type != 'image' and @type != 'reset' and @type != 'button' and @type != 'hidden' and @type != 'file') or not(@type)] | //descendant::textarea"
     end
 
     def set(text)

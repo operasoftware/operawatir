@@ -162,7 +162,7 @@ module OperaWatir
     end
 
     def text_fields
-      Collection.new(self, TextField) {|d| d.findElementsByCssSelector('input[type=text]')}
+      Collection.new(self, TextField) {|d| d.findElementsByXPath(TextField.xpath)}
     end
 
     def uls
