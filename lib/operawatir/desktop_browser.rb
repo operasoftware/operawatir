@@ -37,6 +37,20 @@ module OperaWatir
     end
 
    # Executes the action given by paramter action_name, and waits for
+   # the window with window name win_name to close
+   #
+   # Arguments:
+   # win_name::  name of the window to wait to closed (Pass a blank string for any window)
+   # action_name:: name of the action to execute
+   # param::  (Optional)  Optional parameter to be supplied with the Opera action.
+   #
+   def close_window_with_action(win_name, action_name, *param)
+     wait_start
+     @driver.operaDesktopAction(action_name, param.to_java(:String))
+     wait_for_window_close(win_name)
+   end
+
+   # Executes the action given by paramter action_name, and waits for
    # the dialog with window name win_name to be shown
    #
    # Arguments:
