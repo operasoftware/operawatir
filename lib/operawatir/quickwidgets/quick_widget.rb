@@ -72,6 +72,10 @@ module OperaWatir
     
     # Checks if the element text is the one given as parameter.
     #
+    # Arguments:
+    # string_id:: String ID to use to load the string from the current
+    #             language file in Opera and verify against 
+    #
     # Raises:
     # NoSuchElementException::   if the element is not found.
     def verify_text(string_id)
@@ -79,6 +83,10 @@ module OperaWatir
     end
     
     # Checks if the element text includes the one given as parameter.
+    #
+    # Arguments:
+    # string_id:: String ID to use to load the string from the current
+    #             language file in Opera and verify against 
     #
     # Raises:
     # NoSuchElementException::   if the element is not found.
