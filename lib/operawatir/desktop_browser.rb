@@ -15,7 +15,8 @@ module OperaWatir
     #
     # Arguments:
     # name::   name of the Opera action to be performed.
-    # param::  (Optional.)  Optional parameter to be supplied with the Opera action.
+    # param::  (Optional)  Optional parameter to be supplied with the Opera action.
+    #
     def opera_desktop_action(name, *param)
       @driver.operaDesktopAction(name, param.to_java(:String))
     end
@@ -25,9 +26,9 @@ module OperaWatir
     # the window with window name win_name to be shown
     #
     # Arguments:
-    # win_name::  name of the window
+    # win_name::  name of the window to wait to be shown (Pass a blank string for any window)
     # action_name:: name of the action to execute
-    # param:: parameters to the action
+    # param::  (Optional)  Optional parameter to be supplied with the Opera action.
     #
     def open_window_with_action(win_name, action_name, *param)
       wait_start
@@ -39,9 +40,9 @@ module OperaWatir
    # the dialog with window name win_name to be shown
    #
    # Arguments:
-   # win_name::  name of the window
+   # win_name::  name of the window to wait to be shown (Pass a blank string for any window)
    # action_name:: name of the action to execute
-   # param:: parameters to the action
+   # param::  (Optional)  Optional parameter to be supplied with the Opera action.
    #
    def open_dialog_with_action(win_name, action_name, *param)
      open_window_with_action(win_name, action_name, *param)
@@ -52,7 +53,7 @@ module OperaWatir
     # Returns when the dialog is closed
     #
     # Arguments:
-    # win_name::  name of the window
+    # win_name:: name of the window to wait to be closed  (Pass a blank string for any window)
     #
     def close_dialog(win_name)
       wait_start
@@ -63,7 +64,7 @@ module OperaWatir
     # Retrieves an iterator over all widgets in the window with window name win_name
     #
     # Arguments:
-    # win_name::  name of the window
+    # win_name:: name of the window
     #
     def widgets(win_name)
       @driver.getQuickWidgetList(win_name)
