@@ -84,6 +84,10 @@ module OperaWatir
       @driver.getQuickWidgetList(win_name)
     end
     
+    # Retrieves an iterator over all open windows
+    #
+    # Arguments:
+    #
     def windows
       @driver.getWindowList
     end
