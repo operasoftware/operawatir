@@ -6,6 +6,11 @@ module OperaWatir
       @method    = method
       @selector  = selector
     end
+    
+    
+    def click
+      element.click
+    end
 
     # Checks whether element exists or not.
     #
