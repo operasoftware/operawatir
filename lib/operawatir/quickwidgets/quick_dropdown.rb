@@ -1,13 +1,13 @@
 module OperaWatir
   class QuickDropdown < QuickWidget
     
-    # Is the specified option (value) selected?  Returns true or false.
+    # Is the entry with the given string_id selected?  Returns true or false.
     #
     # Raises:
     # NoSuchElementException:  if element is not found.
-    def selected?(text)
-      element.text==text
+    def selected?(string_id)
+      element.isSelected(string_id)
     end
- 
+   
   end
 end 
