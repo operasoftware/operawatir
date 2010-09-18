@@ -42,11 +42,14 @@ task :bump do
   v = ENV['VERSION']
   abort("usage: rake bump VERSION=\"new version number\"") unless v
 
+  time = Time.new
+  date = time.strftime("%Y-%m-%d %H:%M:%S")
+
   system "git stash &&
        echo '#{v}' > VERSION &&
        git add VERSION &&
        ! git commit --verbose --message 'Version #{v}.' &&
-       git tag -a '#{v}' &&
+       git tag -a '#{v}' -m 'Version #{v}.  Released #{date}.' &&
        git push --tags &&
        git stash apply"
 end
