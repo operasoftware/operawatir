@@ -80,16 +80,7 @@ module OperaWatir
 
         File.expand_path(File.dirname(local_helper))
         require local_helper
-
-        # We have three types of paths that can be set:  Either they are URLs,
-        # absolute paths or relative paths to the interactive resources.
-        #
-        # URLs are not given any special treatment.  Relative paths are
-        # expanded based on where the script's location is.  Relative and
-        # absolute paths are then given the "file://" protocol which Opera
-        # requires to access local files.
         OperaWatir::Helper.files = format_path(OperaWatir::Helper.files, true)
-          unless OperaWatir::Helper.files =~ /^(http|https|ftp|file):\/\//
       end
 
       # Environmental variables (OPERA_PATH, OPERA_ARGS, OPERA_INSPECTR)
