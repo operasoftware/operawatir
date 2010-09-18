@@ -2,11 +2,10 @@
 
 == Description
 
-OperaWatir is our implementation of the {Watir
-API}[http://wtr.rubyforge.org/rdoc/1.6.5/], originally developed for
-Internet Explorer by an independent third-party.  This documentation
-will describe how to get OperaWatir running on your machine and how to
-write and run tests with it.
+OperaWatir is our implementation of the Watir v1.x API, originally
+developed for Internet Explorer by an independent third-party.  This
+documentation will describe how to get OperaWatir running on your
+machine and how to write and run tests with it.
 
 Watir (pronounced water) is an acronym for “Web Application Testing in
 Ruby”, and is comprised of a toolkit used to automate interactions with
@@ -19,9 +18,9 @@ behaves properly.
 
 == Installation
 
-See {INSTALL}[link:./files/INSTALL.html].
+See INSTALL.
 
 == License
 
-See {LICENSE}[link:./files/LICENSE.html].
+See LICENSE.
 
