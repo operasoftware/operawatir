@@ -3,6 +3,7 @@ begin
   require "operawatir"
   require "spec/runner/formatter/base_text_formatter"
   require "rbconfig"
+  require "pathname"
 rescue LoadError
 end
 
@@ -31,6 +32,7 @@ module OperaWatir
         configure
       end
 
+      # Configures the RSpec suite we are about to run.
       def configure
         Spec::Runner.configure do |config|
           config.include(PathHelper)
@@ -58,7 +60,7 @@ module OperaWatir
         OperaWatir::Helper.browser_args = [] if OperaWatir::Helper.browser_args.nil?
         OperaWatir::Helper.persistent_browser = false
         OperaWatir::Helper.inspectr = false
-        OperaWatir::Helper.files = "file://" + File.expand_path(File.dirname(Dir.pwd) + "/interactive") + "/"
+        OperaWatir::Helper.files = format_path(base_path + "/interactive")
         OperaWatir::Helper.terminal_size = detect_terminal_size
       end
 
@@ -68,14 +70,43 @@ module OperaWatir
         load_environmental_variables
       end
 
-      # Loads helper file.
+      # Loads helper file.  Helper files are named “helper.rb” and are
+      # located in the test script's directory.
       def load_helper
         # Load local helper file, if it exists
-        local_helper = File.expand_path(File.dirname(Dir.pwd + "/" + Spec::Runner.options.files[0]) + "/helper.rb")
+        local_helper = File.expand_path(base_path + "/helper.rb")
 
         if File.exists?(local_helper)
           File.expand_path(File.dirname(local_helper))
           require local_helper
+        else
+          return
+        end
+
+        # We have three types of paths that can be set:  Either they are URLs,
+        # absolute paths or relative paths to the interactive resources.
+        #
+        # URLs are not given any special treatment.  Relative paths are
+        # expanded based on where the script's location is.  Relative and
+        # absolute paths are then given the "file://" protocol which Opera
+        # requires to access local files.
+        unless OperaWatir::Helper.files =~ /^(http|https|ftp|file):\/\//
+          case (Pathname.new OperaWatir::Helper.files).absolute?
+          when false
+            tmp_files = File.expand_path(base_path + "/" + OperaWatir::Helper.files)
+            OperaWatir::Helper.files = File.expand_path(base_path + "/" + OperaWatir::Helper.files)
+          when true
+            tmp_files = OperaWatir::Helper.files
+          end
+
+          # Add "file://" protocol.
+          OperaWatir::Helper.files = format_path(OperaWatir::Helper.files)
+
+          # Complain if directory doesn't exist.
+          unless File.directory?(tmp_files)
+            puts "operahelper: Invalid base URI (“" + tmp_files + "”)"
+            exit
+          end
         end
       end
 
@@ -154,10 +185,15 @@ module OperaWatir
 
           # Start inspecting
           Thread.new do
-            puts "Starting inspectr on process id #" + pid.to_s
+            puts "operahelper: Starting inspectr on process id #" + pid.to_s
             exec(inspectr_path + " " + pid.to_s)
           end
         end
+      end
+
+      # Returns the base path of the script.  (Not the current working directory!)
+      def base_path
+        File.expand_path(Dir.pwd + "/" + File.dirname(Spec::Runner.options.files[0]))
       end
 
       # Returns the platform type.
@@ -201,6 +237,19 @@ module OperaWatir
           false
         end
       end
+
+      # Adds "file://" protocol to the specified path if it is not
+      # already set to another protocol.
+      #
+      # Opera requires this to be set so it knows to look for the files
+      # in the local file system.
+      def format_path(path)
+         if path =~ /^(http|https|ftp|file):/
+           path
+         else
+           "file://" + path + "/"
+         end
+      end
     end
 
     module BrowserHelper
@@ -210,9 +259,11 @@ module OperaWatir
     end
 
     module PathHelper
+      # Allows retreiving and setting the OperaWatir::Helper.files
+      # variable.
       def files (new_path = nil)
         if new_path
-          OperaWatir::Helper.files = new_path
+          OperaWatir::Helper.files = format_path(new_path)
         else
           OperaWatir::Helper.files
         end
