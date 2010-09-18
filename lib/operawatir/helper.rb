@@ -76,12 +76,10 @@ module OperaWatir
         # Load local helper file, if it exists
         local_helper = File.expand_path(base_path + "/helper.rb")
 
-        if File.exists?(local_helper)
-          File.expand_path(File.dirname(local_helper))
-          require local_helper
-        else
-          return
-        end
+        return unless File.exists?(local_helper)
+
+        File.expand_path(File.dirname(local_helper))
+        require local_helper
 
         # We have three types of paths that can be set:  Either they are URLs,
         # absolute paths or relative paths to the interactive resources.
@@ -90,24 +88,8 @@ module OperaWatir
         # expanded based on where the script's location is.  Relative and
         # absolute paths are then given the "file://" protocol which Opera
         # requires to access local files.
-        unless OperaWatir::Helper.files =~ /^(http|https|ftp|file):\/\//
-          case (Pathname.new OperaWatir::Helper.files).absolute?
-          when false
-            tmp_files = File.expand_path(base_path + "/" + OperaWatir::Helper.files)
-            OperaWatir::Helper.files = File.expand_path(base_path + "/" + OperaWatir::Helper.files)
-          when true
-            tmp_files = OperaWatir::Helper.files
-          end
-
-          # Add "file://" protocol.
-          OperaWatir::Helper.files = format_path(OperaWatir::Helper.files)
-
-          # Complain if directory doesn't exist.
-          unless File.directory?(tmp_files)
-            puts "operahelper: Invalid base URI (“" + tmp_files + "”)"
-            exit
-          end
-        end
+        OperaWatir::Helper.files = format_path(OperaWatir::Helper.files, true)
+          unless OperaWatir::Helper.files =~ /^(http|https|ftp|file):\/\//
       end
 
       # Environmental variables (OPERA_PATH, OPERA_ARGS, OPERA_INSPECTR)
@@ -243,12 +225,19 @@ module OperaWatir
       #
       # Opera requires this to be set so it knows to look for the files
       # in the local file system.
-      def format_path(path)
-         if path =~ /^(http|https|ftp|file):/
-           path
-         else
-           "file://" + path + "/"
-         end
+      def format_path(path, check = false)
+        if path =~ /^(http|https|ftp|file):/
+          path
+        else
+          path = File.expand_path(base_path + "/" + path) unless (Pathname.new path).absolute?
+
+          if check && !File.directory?(path)
+            puts "operahelper: Invalid base URI (“" + path + "”)"
+            exit
+          end
+
+          "file://" + path + "/"
+        end
       end
     end
 
@@ -263,7 +252,7 @@ module OperaWatir
       # variable.
       def files (new_path = nil)
         if new_path
-          OperaWatir::Helper.files = format_path(new_path)
+          OperaWatir::Helper.files = OperaWatir::Helper.format_path(new_path)
         else
           OperaWatir::Helper.files
         end
