@@ -271,7 +271,7 @@ class OperaHelperFormatter < Spec::Runner::Formatter::BaseTextFormatter
   end
 
   def example_group_started (example_group_proxy)
-    message = "\n" + line +
+    message = line +
       example_group_proxy.description + " (" + example_group_proxy.examples.size.to_s + " examples)\n" +
       line
 
