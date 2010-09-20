@@ -75,10 +75,8 @@ module OperaWatir
       def load_helper
         # Load local helper file, if it exists
         local_helper = File.expand_path(base_path + "/helper.rb")
-
         return unless File.exists?(local_helper)
 
-        File.expand_path(File.dirname(local_helper))
         require local_helper
         OperaWatir::Helper.files = format_path(OperaWatir::Helper.files, true)
       end
@@ -166,7 +164,11 @@ module OperaWatir
 
       # Returns the base path of the script.  (Not the current working directory!)
       def base_path
-        File.expand_path(Dir.pwd + "/" + File.dirname(Spec::Runner.options.files[0]))
+        if (Pathname.new Spec::Runner.options.files[0]).absolute?
+          File.dirname(Spec::Runner.options.files[0])
+        else
+          File.expand_path(Dir.pwd + "/" + File.dirname(Spec::Runner.options.files[0]))
+        end
       end
 
       # Returns the platform type.
