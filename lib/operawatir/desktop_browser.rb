@@ -109,9 +109,10 @@ module OperaWatir
     # value:: The value to set the preference to
     #
     def set_preference(prefs_section, pref, value)
+      open_window_with_action("Document Window", "Open url in new page", "opera:config")
       @driver.get("opera:config")
       execute_script("opera.setPreference(\'#{prefs_section}\', \'#{pref}\', #{value});")
-      back 
+      close_window_with_action("Document Window", "Close page", "1")
     end
     
    # Get value of preference pref in prefs section prefs_section 
@@ -120,9 +121,10 @@ module OperaWatir
    # prefs_section:: The prefs section the pref belongs to
    # pref:: The preference to get
     def get_preference(prefs_section, pref)
+      open_window_with_action("Document Window", "Open url in new page", "opera:config")
       @driver.get("opera:config")
       value = execute_script("opera.getPreference('#{prefs_section}','#{pref}');")
-      back 
+      close_window_with_action("Document Window", "Close page", "1")
       value
     end
 
