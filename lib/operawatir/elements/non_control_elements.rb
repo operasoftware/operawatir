@@ -77,10 +77,18 @@ module OperaWatir
   class Strong < NonControlElement
   end
 
-  class TBody < NonControlElement
+  class TableBody < NonControlElement
+    def self.tag
+      :tbody
+    end
   end
 
-  class Td < NonControlElement
+  class TableCell < NonControlElement
+    element_attr_reader :colspan
+    
+    def self.tag
+      :td
+    end
   end
 
   class TFoot < NonControlElement
@@ -89,10 +97,20 @@ module OperaWatir
   class THead < NonControlElement
   end
 
-  class Tr < NonControlElement
+  class Row < NonControlElement
+    def self.tag
+      :tr
+    end
   end
 
   class Table < NonControlElement
+
+    def body
+      bodies.first
+    end
+
+    alias_method :row, :rows
+
   end
 
   class Ul < NonControlElement

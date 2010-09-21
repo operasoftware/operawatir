@@ -146,13 +146,16 @@ module OperaWatir
     def strong(method=nil, selector=nil, value=nil)
      Strong.new self, method, selector, value
     end
-
+    
     def tbody(method=nil, selector=nil, value=nil)
       TableBody.new self, method, selector, value
     end
+    
+    # I'm aliasing this because body clashes.
+    alias_method :body, :tbody
 
     def cell(method=nil, selector=nil, value=nil)
-      Td.new self, method, selector, value
+      TableCell.new self, method, selector, value
     end
 
     def tfoot(method=nil, selector=nil, value=nil)

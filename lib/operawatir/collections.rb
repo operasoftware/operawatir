@@ -137,12 +137,14 @@ module OperaWatir
       Collection.new(self, Strong)
     end
 
-    def tbodys
-      Collection.new(self, TBody)
+    def tbodies
+      Collection.new(self, TableBody)
     end
 
+    alias_method :bodies, :tbodies
+
     def cells
-      Collection.new(self, Td)
+      Collection.new(self, TableCell)
     end
 
     def tfoots
@@ -154,7 +156,7 @@ module OperaWatir
     end
 
     def rows
-      Collection.new(self, Tr)
+      Collection.new(self, Row)
     end
 
     def tables
