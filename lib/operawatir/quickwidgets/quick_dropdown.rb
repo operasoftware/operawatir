@@ -8,6 +8,10 @@ module OperaWatir
     def selected?(string_id)
       element.isSelected(string_id)
     end
-   
+    
+    def correct_type?
+      @element.getType == "dropdown";
+    end
+       
   end
 end 
