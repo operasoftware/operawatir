@@ -8,8 +8,12 @@ module OperaWatir
     end
     
     
-    def click
-      element.click
+    def click(button = MouseButton::LEFT, num_times = 1, modifier = Modifier::NONE)
+      element.click(button, num_times, modifier)
+    end
+
+    def right_click(button = MouseButton::RIGHT, num_times = 1, modifier = Modifier::NONE)
+      element.click(button, num_times, modifier)
     end
 
     # Checks whether element exists or not.
