@@ -7,13 +7,16 @@ module OperaWatir
       @selector  = selector
     end
     
-    
     def click(button = MouseButton::LEFT, num_times = 1, modifier = Modifier::NONE)
       element.click(button, num_times, modifier)
     end
 
     def right_click(button = MouseButton::RIGHT, num_times = 1, modifier = Modifier::NONE)
       element.click(button, num_times, modifier)
+    end
+    
+    def correct_type?
+      false
     end
 
     # Checks whether element exists or not.
@@ -22,7 +25,7 @@ module OperaWatir
     # NoSuchElementException::  if element is is not found.
     def exist?
       !!element
-      rescue NoSuchElementException
+      rescue Exceptions::UnknownObjectException
         false
     end
     alias_method :exists?, :exist?
@@ -110,7 +113,7 @@ private
     # Raises:
     # NoSuchElementException::   if the element is not found.
     def element
-      @elm ||= find || raise(NoSuchElementException, "Element #{@selector} not found using #{@method}")
+      @elm ||= find || raise(Exceptions::UnknownObjectException, "Element #{@selector} not found using #{@method}")
     end
 
     # Finds the element on the page.  Elements can be located using one
@@ -121,9 +124,13 @@ private
     # Raises:
     # NoSuchElementException:  if element is not found.
     def find
+      raise TypeError unless @selector.is_a?(String)
+
       case @method
       when :name
         @element = @container.driver.findWidgetByName(-1, @selector)
+        raise(Exceptions::UnknownObjectException, "Element #{@selector} has wrong type") unless correct_type?
+        @element
       end
     end
 
