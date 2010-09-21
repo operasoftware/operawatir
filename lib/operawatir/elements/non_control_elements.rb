@@ -3,6 +3,7 @@ module OperaWatir
   end
 
   class Area < NonControlElement
+    element_attr_reader :shape, :href
   end
 
   class Dd < NonControlElement
