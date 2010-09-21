@@ -118,8 +118,8 @@ module OperaWatir
       element.clear
     end
 
-    def value
-      element.getValue
+    def text
+      (element.getText || '').strip
     end
 
     def text
