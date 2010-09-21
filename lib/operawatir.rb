@@ -16,6 +16,7 @@ module OperaWatir
     class MissingWayOfFindingObjectException < OperaWatirException; end
     class UnknownFrameException < OperaWatirException; end
     class NoValueFoundException < OperaWatirException; end
+    class ObjectDisabledException < OperaWatirException; end
   end
 end
 
