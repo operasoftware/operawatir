@@ -10,5 +10,9 @@ module OperaWatir
       element.isSelected
     end
     
+    def correct_type?
+      @element.getType == "checkbox";
+    end
+    
   end
 end
