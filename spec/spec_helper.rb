@@ -3,6 +3,7 @@ require "operawatir"
 require "spec/watirspec/spec_helper"
 
 include OperaWatir::Exceptions
+include OperaWatir
 
 WatirSpec.implementation do |browser|
   browser.name          = :opera

@@ -14,7 +14,7 @@ module OperaWatir
     end
 
     def option(method, value)
-      option_elements.select {|option| option.send(method) == value}
+      option_elements.find {|option| option.send(method) == value}
     end
 
     def select(value)
