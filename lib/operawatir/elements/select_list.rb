@@ -9,9 +9,13 @@ module OperaWatir
     alias_method :option_elements, :options
 
     def options
+      element # raises exception if element doesn't exist
       option_elements.map {|opt| opt.label}
     end
 
+    def option(method, value)
+      option_elements.select {|option| option.send(method) == value}
+    end
 
     def select(value)
       find_option_by_label(value).select!
@@ -27,13 +31,9 @@ module OperaWatir
     def selected_options
       option_elements.select {|opt| opt.selected?}.map {|opt| opt.text}
     end
-
-    # def option(method, value)
-    #   options.find {|option| option.send(method) == value }
-    # end
-
+    
     def multiple?
-      get_attribute('multiple') == 'true'
+      get_attribute('multiple') == 'multiple'
     end
 
     # Dangerous override.
@@ -42,7 +42,7 @@ module OperaWatir
     end
 
     def disabled?
-      get_attribute('disabled') != 'true'
+      get_attribute('disabled') == 'true'
     end
 
     def includes?(val)
@@ -53,6 +53,11 @@ module OperaWatir
 
     # TODO There is no way to set an attribute, or set the selected attribute.
     def clear
+      element
+    end
+
+    def value
+      option_elements.select {|opt| opt.selected?}.map {|opt| opt.value}.last
     end
 
   private
@@ -81,9 +86,7 @@ module OperaWatir
     end
 
     def label
-      # TODO || '' is a hack. get_attribute needs to work
-      sval = (text || '').strip
-      sval.length.zero? ? get_attribute('label') : sval
+      text.strip.length.zero? ? get_attribute('label') : text.strip
     end
 
   end
