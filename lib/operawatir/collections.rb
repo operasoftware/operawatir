@@ -171,6 +171,8 @@ module OperaWatir
 
   private
 
+    # Watir Collectins are 1 indexed.
+
     class Collection
       include Enumerable
 
