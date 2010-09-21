@@ -10,5 +10,9 @@ module OperaWatir
       element.isDefault
     end
     
+    def correct_type?
+      @element.getType == "button";
+    end
+    
   end
 end
