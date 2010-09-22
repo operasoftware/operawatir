@@ -1,24 +1,63 @@
 module OperaWatir
   class QuickWidget
+    
+    UNKNOWN = 0
+    BUTTON = 1
+    CHECKBOX = 2
+    DIALOGTAB = 3
+    DROPDOWN = 4
+    EDITFIELD = 5
+    LABEL = 6
+    RADIOBUTTON = 7
 
+    WIDGET_ENUM_MAP = { :unknown => UNKNOWN, 
+                        :button => BUTTON, 
+                        :checkbox => CHECKBOX,
+                        :dialogtab => DIALOGTAB,
+                        :dropdown => DROPDOWN,
+                        :editfield => EDITFIELD,
+                        :label => LABEL,
+                        :radiobutton => RADIOBUTTON
+    } 
+    
+    #MouseButton
+    #import com.opera.core.systems.scope.protos.DesktopWmProtos.QuickWidgetInfo.QuickWidgetType;
+    #Get Widget Type (we don't need SearchType - that's hidden
+    #WIDGET_ENUM_MAP = constants.inject({}) do |acc, const|
+    #  puts const.inspect
+    #  acc[const.to_s.downcase.to_sym] = QuickWidget.const_get(const)
+    #  acc
+    #end
+    puts WIDGET_ENUM_MAP
+    
+    #ENUM_MAP = constants.inject({}) do |acc, const|
+    #  puts const.inspect
+    #  acc[const.to_s.downcase.to_sym] = QuickWidget.const_get(const)
+    #  acc
+    #end
+    
     def initialize(container, method, selector)
       @container = container
       @method    = method
       @selector  = selector
     end
     
-    def click(button = MouseButton::LEFT, num_times = 1, modifier = Modifier::NONE)
-      element.click(button, num_times, modifier)
+    
+    def click(button = 0, num_times = 1, modifier = 0)
+       element.click(button, num_times, modifier)
     end
+    #def click(button, times = 1, *opts)
+      #puts "Click #{button} #{times} times"
+     # opts.each { |opt| puts opt }
+     # opts.map {|mod| self.class.const_get(mod.to_s.upcase.to_sym)}.
+      #          each {|mod| puts "Modifier #{mod} held down" }
+      #element.click(button, times, opts)
+    #end
 
-    def right_click(button = MouseButton::RIGHT, num_times = 1, modifier = Modifier::NONE)
-      element.click(button, num_times, modifier)
+    def right_click
+      click()
     end
     
-    def correct_type?
-      false
-    end
-
     # Checks whether element exists or not.
     #
     # Raises:
@@ -79,7 +118,7 @@ module OperaWatir
     # Raises:
     # NoSuchElementException::   if the element is not found.
     def type
-      element.getType
+      element.getType # TODO: This must be mapped
     end
     
     # Checks if the element text is the one given as parameter.
@@ -105,6 +144,11 @@ module OperaWatir
     def verify_includes_text(string_id)
       element.verifyContainsText(string_id)
     end
+    
+    #def drag_and_drop_on(other)
+    #   element.dragAndDropOn other
+    #end
+
 
 private
     
