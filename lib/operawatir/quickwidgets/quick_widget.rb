@@ -12,15 +12,20 @@ module OperaWatir
     #} 
     
     WIDGET_ENUM_MAP = DesktopWmProtos::QuickWidgetInfo::QuickWidgetType.constants.inject({}) do |acc, const|
-      puts const.inspect
+      #puts const.inspect
       acc[const.to_s.downcase.to_sym] = DesktopWmProtos::QuickWidgetInfo::QuickWidgetType.const_get(const)
       acc
     end
     
-    def initialize(container, method, selector)
+    def initialize(container, method, selector=nil)
       @container = container
-      @method    = method
-      @selector  = selector
+
+      if method.is_a? Java::ComOperaCoreSystems::QuickWidget
+        @elm = method
+      else
+        @method    = method
+        @selector  = selector.to_s
+      end
     end
     
     
@@ -150,8 +155,6 @@ private
     # Raises:
     # NoSuchElementException:  if element is not found.
     def find
-      raise TypeError unless @selector.is_a?(String)
-
       case @method
       when :name
         #puts "--- constants ---"
