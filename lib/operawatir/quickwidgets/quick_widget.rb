@@ -1,40 +1,21 @@
 module OperaWatir
   class QuickWidget
     
-    UNKNOWN = 0
-    BUTTON = 1
-    CHECKBOX = 2
-    DIALOGTAB = 3
-    DROPDOWN = 4
-    EDITFIELD = 5
-    LABEL = 6
-    RADIOBUTTON = 7
-
-    WIDGET_ENUM_MAP = { :unknown => UNKNOWN, 
-                        :button => BUTTON, 
-                        :checkbox => CHECKBOX,
-                        :dialogtab => DIALOGTAB,
-                        :dropdown => DROPDOWN,
-                        :editfield => EDITFIELD,
-                        :label => LABEL,
-                        :radiobutton => RADIOBUTTON
-    } 
+    #WIDGET_ENUM_MAP = { :unknown => DesktopWmProtos::QuickWidgetInfo::QuickWidgetType::UNKNOWN, 
+    #                    :button => DesktopWmProtos::QuickWidgetInfo::QuickWidgetType::BUTTON, 
+    #                    :checkbox => DesktopWmProtos::QuickWidgetInfo::QuickWidgetType::CHECKBOX,
+    #                    :dialogtab => DesktopWmProtos::QuickWidgetInfo::QuickWidgetType::DIALOGTAB,
+    #                    :dropdown => DesktopWmProtos::QuickWidgetInfo::QuickWidgetType::DROPDOWN,
+    #                    :editfield => DesktopWmProtos::QuickWidgetInfo::QuickWidgetType::EDITFIELD,
+    #                    :label => DesktopWmProtos::QuickWidgetInfo::QuickWidgetType::LABEL,
+    #                    :radiobutton => DesktopWmProtos::QuickWidgetInfo::QuickWidgetType::RADIOBUTTON
+    #} 
     
-    #MouseButton
-    #import com.opera.core.systems.scope.protos.DesktopWmProtos.QuickWidgetInfo.QuickWidgetType;
-    #Get Widget Type (we don't need SearchType - that's hidden
-    #WIDGET_ENUM_MAP = constants.inject({}) do |acc, const|
-    #  puts const.inspect
-    #  acc[const.to_s.downcase.to_sym] = QuickWidget.const_get(const)
-    #  acc
-    #end
-    puts WIDGET_ENUM_MAP
-    
-    #ENUM_MAP = constants.inject({}) do |acc, const|
-    #  puts const.inspect
-    #  acc[const.to_s.downcase.to_sym] = QuickWidget.const_get(const)
-    #  acc
-    #end
+    WIDGET_ENUM_MAP = DesktopWmProtos::QuickWidgetInfo::QuickWidgetType.constants.inject({}) do |acc, const|
+      puts const.inspect
+      acc[const.to_s.downcase.to_sym] = DesktopWmProtos::QuickWidgetInfo::QuickWidgetType.const_get(const)
+      acc
+    end
     
     def initialize(container, method, selector)
       @container = container
@@ -172,6 +153,11 @@ private
 
       case @method
       when :name
+        #puts "--- constants ---"
+        #puts DesktopWmProtos::QuickWidgetInfo::QuickWidgetType.constants
+        #puts "-----"
+        #puts WIDGET_ENUM_MAP
+        #puts "-----------------"
         @element = @container.driver.findWidgetByName(-1, @selector)
         raise(Exceptions::UnknownObjectException, "Element #{@selector} has wrong type") unless correct_type?
         @element

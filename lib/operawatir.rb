@@ -29,6 +29,7 @@ include_class org.openqa.selenium.NoSuchElementException
 include_class com.opera.core.systems.OperaDesktopDriver
 include_class com.opera.core.systems.OperaDriver
 include_class com.opera.core.systems.OperaWebElement
+include_class com.opera.core.systems.scope.protos.DesktopWmProtos
 
 require "operawatir/elements"
 require "operawatir/collections"
