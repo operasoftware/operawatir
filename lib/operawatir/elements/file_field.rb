@@ -2,7 +2,7 @@ module OperaWatir
   class FileField < TextField
 
     def self.xpath
-      'input[type() = file]'
+      'input[@type = "file"]'
     end
 
     def set(path)
