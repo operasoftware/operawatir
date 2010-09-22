@@ -11,7 +11,7 @@ module OperaWatir
     end
     
     def correct_type?
-      @element.getType == "checkbox";
+      @element.getType == WIDGET_ENUM_MAP[:checkbox];
     end
     
   end
