@@ -99,7 +99,8 @@ module OperaWatir
     # Raises:
     # NoSuchElementException::   if the element is not found.
     def type
-      element.getType # TODO: This must be mapped
+      # BUTTON => :button # :button => BUTTON
+      WIDGET_ENUM_MAP.invert[element.getType]
     end
     
     # Checks if the element text is the one given as parameter.
