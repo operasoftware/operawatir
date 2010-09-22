@@ -14,7 +14,7 @@ module OperaWatir
     end
 
     def dds
-      Collection.new(self, DD)
+      Collection.new(self, Dd)
     end
 
     def dels
@@ -38,7 +38,7 @@ module OperaWatir
     end
 
     def file_fields
-      Collection.new(self, FileField) {|d| d.findElementsByCssSelector('input[type=file]')}
+      Collection.new(self, FileField) {|root| root.findElementsByXPath(FileField.xpath)}
     end
 
     def forms
@@ -50,7 +50,7 @@ module OperaWatir
     end
 
     def hiddens
-      Collection.new(self, Hidden) {|d| d.findElementsByCssSelector('input[type=hidden]')}
+      Collection.new(self, Hidden) {|root| root.findElementsByXPath(Hidden.xpath)}
     end
 
     def h1s
@@ -81,7 +81,7 @@ module OperaWatir
       Collection.new(self, Image)
     end
 
-    def inss
+    def inses
       Collection.new(self, Ins)
     end
 

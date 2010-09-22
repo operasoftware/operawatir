@@ -5,7 +5,7 @@ module OperaWatir
       :img
     end
 
-    element_attr_reader :src, :title
+    element_attr_reader :src, :title, :alt
 
     # TODO
 

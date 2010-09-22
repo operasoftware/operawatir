@@ -45,12 +45,16 @@ module OperaWatir
   class Hidden < NonControlElement
 
     def self.xpath
-      'input[type() = hidden]'
+      'input[@type = "hidden"]'
     end
 
   end
 
   class Ins < NonControlElement
+  end
+
+  class Label < NonControlElement
+    element_attr_reader :for
   end
 
   class Map < NonControlElement
