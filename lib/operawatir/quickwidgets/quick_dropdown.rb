@@ -10,8 +10,14 @@ module OperaWatir
     end
     
     def correct_type?
-      @element.getType == "dropdown";
+      @element.getType == WIDGET_ENUM_MAP[:dropdown];
     end
-       
+    
+    #def select(string_id)
+    #  click(1,1)
+      #Move mouse to entry
+      #click entry
+    #end
+    #alias_method :set, :select
   end
 end 

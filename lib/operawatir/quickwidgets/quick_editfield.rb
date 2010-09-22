@@ -1,8 +1,7 @@
 module OperaWatir
   class QuickEditField < QuickWidget
     def correct_type?
-      #puts @element.getType
-      @element.getType == "multiline_edit" || @element.getType == "edit"
+      @element.getType == WIDGET_ENUM_MAP[:editfield]
     end
     
     #def set(text)

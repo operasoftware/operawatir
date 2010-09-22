@@ -11,7 +11,7 @@ module OperaWatir
     end
     
     def correct_type?
-      @element.getType == "button";
+      @element.getType == WIDGET_ENUM_MAP[:button];
     end
     
   end
