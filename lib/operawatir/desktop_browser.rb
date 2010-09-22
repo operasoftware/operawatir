@@ -100,8 +100,15 @@ module OperaWatir
    def get_window_name(win_id)
      @driver.getWindowName(win_id)
    end
+   
+    # Send key events to the browser instance.  I.e. “Down” (arrow
+    # down), “Space” (space key), “Home”, &c.
+   def keyPress(key, modifiers={})
+      @driver.keyPress(key, modifiers)
+    end
 
-    # Set preference pref in prefs section prefs_section to value specified
+    
+     # Set preference pref in prefs section prefs_section to value specified
     #
     # Arguments:
     # prefs_section:: The prefs section the pref belongs to
