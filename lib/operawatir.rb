@@ -30,6 +30,7 @@ include_class com.opera.core.systems.OperaDesktopDriver
 include_class com.opera.core.systems.OperaDriver
 include_class com.opera.core.systems.OperaWebElement
 include_class com.opera.core.systems.scope.protos.DesktopWmProtos
+include_class com.opera.core.systems.QuickWidget
 
 require "operawatir/elements"
 require "operawatir/collections"

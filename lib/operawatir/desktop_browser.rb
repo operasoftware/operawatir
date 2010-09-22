@@ -81,16 +81,35 @@ module OperaWatir
     # win_name:: name of the window
     #
     def widgets(win_name)
-      @driver.getQuickWidgetList(win_name)
+      @driver.getQuickWidgetList(win_name).map do |java_widget|
+        case java_widget.getType
+          when QuickWidget::WIDGET_ENUM_MAP[:button]
+            QuickButton.new(self,java_widget)
+          when QuickWidget::WIDGET_ENUM_MAP[:checkbox]
+            QuickCheckbox.new(self,java_widget)
+          when QuickWidget::WIDGET_ENUM_MAP[:dialogtab]
+            QuickDialogTab.new(self,java_widget)
+          when QuickWidget::WIDGET_ENUM_MAP[:dropdown]
+            QuickDropdown.new(self,java_widget)
+          when QuickWidget::WIDGET_ENUM_MAP[:editfield]
+            QuickEditField.new(self,java_widget)
+          when QuickWidget::WIDGET_ENUM_MAP[:label]
+            QuickLabel.new(self,java_widget)
+          when QuickWidget::WIDGET_ENUM_MAP[:radiobutton]
+            QuickRadioButton.new(self,java_widget)
+        else
+          QuickWidget.new(self,java_widget)
+        end
+      end.to_a
     end
     
     # Retrieves an iterator over all open windows
     #
     # Arguments:
     #
-    def windows
-      @driver.getWindowList
-    end
+#    def windows
+ #     @driver.getWindowList
+  #  end
    
    # Retrieves the name of a window based on it's id
    #
