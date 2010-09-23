@@ -1,6 +1,7 @@
 module OperaWatir
  class DesktopBrowser < Browser
     include DesktopContainer
+    include DesktopEnums
     
     def initialize (executable_location = nil, *arguments)
       if executable_location.nil?
@@ -121,10 +122,13 @@ module OperaWatir
      @driver.getWindowName(win_id)
    end
    
-    # Send key events to the browser instance.  I.e. “Down” (arrow
-    # down), “Space” (space key), “Home”, &c.
-   def keyPress(key, modifiers={})
-      @driver.keyPress(key, modifiers)
+    # 
+    # tmp 
+    def key_press(key, *opts)
+      #KEYMODIFIER_ENUM_MAP.each { |k, v| puts "#{k},#{v}"}
+      list = Java::JavaUtil::ArrayList.new
+      opts.each { |mod| list << KEYMODIFIER_ENUM_MAP[mod] }
+      @driver.keyPress(key, list)
     end
 
     
