@@ -11,15 +11,32 @@ module OperaWatir
     #                    :radiobutton => DesktopWmProtos::QuickWidgetInfo::QuickWidgetType::RADIOBUTTON
     #} 
     
+    #MOUSEBUTTON_ENUM_MAP = {:left => SystemInputProtos::MouseInfo::MouseButton::LEFT,
+    #                        :right => SystemInputProtos::MouseInfo::MouseButton::RIGHT,
+    #                        :middle => SystemInputProtos::MouseInfo::MouseButton::MIDDLE }
+    #KEYMODIFIER_ENUM_MAP = {
+    #                        :none => SystemInputProtos::ModifierPressed::NONE ...
+    #} 
+    
     WIDGET_ENUM_MAP = DesktopWmProtos::QuickWidgetInfo::QuickWidgetType.constants.inject({}) do |acc, const|
-      #puts const.inspect
-      acc[const.to_s.downcase.to_sym] = DesktopWmProtos::QuickWidgetInfo::QuickWidgetType.const_get(const)
-      acc
+          #puts const.inspect
+          acc[const.to_s.downcase.to_sym] = DesktopWmProtos::QuickWidgetInfo::QuickWidgetType.const_get(const)
+          acc
+        end
+        
+    MOUSEBUTTON_ENUM_MAP = SystemInputProtos::MouseInfo::MouseButton.constants.inject({}) do |acc, const|
+       acc[const.to_s.downcase.to_sym] = SystemInputProtos::MouseInfo::MouseButton.const_get(const)  
+       acc
     end
     
+    KEYMODIFIER_ENUM_MAP = SystemInputProtos::ModifierPressed.constants.inject({}) do |acc, const|
+      acc[const.to_s.downcase.to_sym] = SystemInputProtos::ModifierPressed.const_get(const)
+      acc
+    end
+      
     def initialize(container, method, selector=nil)
       @container = container
-
+                            
       if method.is_a? Java::ComOperaCoreSystems::QuickWidget
         @elm = method
       else
@@ -27,24 +44,35 @@ module OperaWatir
         @selector  = selector.to_s
       end
     end
-    
-    
-    def click(button = 0, num_times = 1, modifier = 0)
-       element.click(button, num_times, modifier)
-    end
-    #def click(button, times = 1, *opts)
-      #puts "Click #{button} #{times} times"
-     # opts.each { |opt| puts opt }
-     # opts.map {|mod| self.class.const_get(mod.to_s.upcase.to_sym)}.
-      #          each {|mod| puts "Modifier #{mod} held down" }
-      #element.click(button, times, opts)
-    #end
 
+    # Click widget
+    #
+    # Params: button (:left, :right, :middle)
+    #         times
+    #         modifiers ([:shift, :ctrl, ...]
+    #
+    # Raises:
+    # NoSuchElementException::  if element is is not found.
+    def click(button = :left, times = 1, *opts)
+      opts.map {|mod| self.class.const_get(mod.to_s.upcase.to_sym)}.
+          each {|mod| puts "Modifier #{mod} held down - #{self.class.const_get(mod.to_s.upcase.to_sym)}" }
+      button = MOUSEBUTTON_ENUM_MAP[button]
+      list = Java::JavaUtil::ArrayList.new
+      opts.each { |mod| list.add mod }
+      element.click(button, times, list)
+    end
+
+    # Raises:
+    # NoSuchElementException::  if element is is not found.
+    
+    #
+    # Raises:
+    # NoSuchElementException::  if element is is not found.
     def right_click
-      click()
+      click(:right, 1)
     end
     
-    # Checks whether element exists or not.
+    # Checks whether widget exists or not.
     #
     # Raises:
     # NoSuchElementException::  if element is is not found.
@@ -157,17 +185,12 @@ private
     def find
       case @method
       when :name
-        #puts "--- constants ---"
-        #puts DesktopWmProtos::QuickWidgetInfo::QuickWidgetType.constants
-        #puts "-----"
-        #puts WIDGET_ENUM_MAP
-        #puts "-----------------"
         @element = @container.driver.findWidgetByName(-1, @selector)
         raise(Exceptions::UnknownObjectException, "Element #{@selector} has wrong type") unless correct_type?
         @element
       end
     end
-
+    
   end
 end
 
