@@ -12,7 +12,7 @@ module OperaWatir
     #} 
     
     WIDGET_ENUM_MAP = DesktopWmProtos::QuickWidgetInfo::QuickWidgetType.constants.inject({}) do |acc, const|
-      puts const.inspect
+      #puts const.inspect
       acc[const.to_s.downcase.to_sym] = DesktopWmProtos::QuickWidgetInfo::QuickWidgetType.const_get(const)
       acc
     end
@@ -86,6 +86,14 @@ module OperaWatir
       element.getText
     end
     
+  # Returns the type of the widget
+      #
+      # Raises:
+      # NoSuchElementException::   if the element is not found.
+      def type
+        element.getType
+      end
+    
     # Returns the text of the widget
     #
     # Raises:
@@ -94,14 +102,6 @@ module OperaWatir
       element.getName
     end
 
-    # Returns the type of the widget
-    #
-    # Raises:
-    # NoSuchElementException::   if the element is not found.
-    def type
-      # BUTTON => :button # :button => BUTTON
-      WIDGET_ENUM_MAP.invert[element.getType]
-    end
     
     # Checks if the element text is the one given as parameter.
     #
