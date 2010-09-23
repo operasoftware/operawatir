@@ -54,8 +54,8 @@ module OperaWatir
     # Raises:
     # NoSuchElementException::  if element is is not found.
     def click(button = :left, times = 1, *opts)
-      opts.map {|mod| self.class.const_get(mod.to_s.upcase.to_sym)}.
-          each {|mod| puts "Modifier #{mod} held down - #{self.class.const_get(mod.to_s.upcase.to_sym)}" }
+      opts.map {|mod| self.class.const_get(mod.to_s.upcase.to_sym)}#.
+          #each {|mod| puts "Modifier #{mod} held down"" }
       button = MOUSEBUTTON_ENUM_MAP[button]
       list = Java::JavaUtil::ArrayList.new
       opts.each { |mod| list.add mod }
