@@ -17,10 +17,15 @@ module OperaWatir
       acc
     end
     
-    def initialize(container, method, selector)
+    def initialize(container, method, selector=nil)
       @container = container
-      @method    = method
-      @selector  = selector
+
+      if method.is_a? Java::ComOperaCoreSystems::QuickWidget
+        @elm = method
+      else
+        @method    = method
+        @selector  = selector.to_s
+      end
     end
     
     
@@ -150,8 +155,6 @@ private
     # Raises:
     # NoSuchElementException:  if element is not found.
     def find
-      raise TypeError unless @selector.is_a?(String)
-
       case @method
       when :name
         #puts "--- constants ---"
