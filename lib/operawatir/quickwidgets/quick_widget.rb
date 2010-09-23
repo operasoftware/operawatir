@@ -96,7 +96,7 @@ module OperaWatir
       # Raises:
       # NoSuchElementException::   if the element is not found.
       def type
-        element.getType
+        WIDGET_ENUM_MAP.invert[element.getType]
       end
     
     # Returns the text of the widget
