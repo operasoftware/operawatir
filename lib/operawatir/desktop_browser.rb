@@ -107,9 +107,11 @@ module OperaWatir
     #
     # Arguments:
     #
-#    def windows
- #     @driver.getWindowList
-  #  end
+    #def windows
+    #  @driver.getWindowList.map do |window|
+    #    QuickWindow.new(self,window)
+    #  end.to_a
+    #end
    
    # Retrieves the name of a window based on it's id
    #
