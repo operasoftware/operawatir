@@ -1,39 +1,12 @@
 module OperaWatir
   class QuickWidget
     
-    #WIDGET_ENUM_MAP = { :unknown => DesktopWmProtos::QuickWidgetInfo::QuickWidgetType::UNKNOWN, 
-    #                    :button => DesktopWmProtos::QuickWidgetInfo::QuickWidgetType::BUTTON, 
-    #                    :checkbox => DesktopWmProtos::QuickWidgetInfo::QuickWidgetType::CHECKBOX,
-    #                    :dialogtab => DesktopWmProtos::QuickWidgetInfo::QuickWidgetType::DIALOGTAB,
-    #                    :dropdown => DesktopWmProtos::QuickWidgetInfo::QuickWidgetType::DROPDOWN,
-    #                    :editfield => DesktopWmProtos::QuickWidgetInfo::QuickWidgetType::EDITFIELD,
-    #                    :label => DesktopWmProtos::QuickWidgetInfo::QuickWidgetType::LABEL,
-    #                    :radiobutton => DesktopWmProtos::QuickWidgetInfo::QuickWidgetType::RADIOBUTTON
-    #} 
-    
-    #MOUSEBUTTON_ENUM_MAP = {:left => SystemInputProtos::MouseInfo::MouseButton::LEFT,
-    #                        :right => SystemInputProtos::MouseInfo::MouseButton::RIGHT,
-    #                        :middle => SystemInputProtos::MouseInfo::MouseButton::MIDDLE }
-    #KEYMODIFIER_ENUM_MAP = {
-    #                        :none => SystemInputProtos::ModifierPressed::NONE ...
-    #} 
-    
     WIDGET_ENUM_MAP = DesktopWmProtos::QuickWidgetInfo::QuickWidgetType.constants.inject({}) do |acc, const|
-          #puts const.inspect
-          acc[const.to_s.downcase.to_sym] = DesktopWmProtos::QuickWidgetInfo::QuickWidgetType.const_get(const)
-          acc
-        end
+      #puts const.inspect
+      acc[const.to_s.downcase.to_sym] = DesktopWmProtos::QuickWidgetInfo::QuickWidgetType.const_get(const)
+    acc
+    end
         
-    MOUSEBUTTON_ENUM_MAP = SystemInputProtos::MouseInfo::MouseButton.constants.inject({}) do |acc, const|
-       acc[const.to_s.downcase.to_sym] = SystemInputProtos::MouseInfo::MouseButton.const_get(const)  
-       acc
-    end
-    
-    KEYMODIFIER_ENUM_MAP = SystemInputProtos::ModifierPressed.constants.inject({}) do |acc, const|
-      acc[const.to_s.downcase.to_sym] = SystemInputProtos::ModifierPressed.const_get(const)
-      acc
-    end
-      
     def initialize(container, method, selector=nil)
       @container = container
                             
@@ -54,17 +27,13 @@ module OperaWatir
     # Raises:
     # NoSuchElementException::  if element is is not found.
     def click(button = :left, times = 1, *opts)
-      opts.map {|mod| self.class.const_get(mod.to_s.upcase.to_sym)}#.
-          #each {|mod| puts "Modifier #{mod} held down"" }
-      button = MOUSEBUTTON_ENUM_MAP[button]
+      #DesktopEnums::KEYMODIFIER_ENUM_MAP.each { |k, v| puts "#{k},#{v}"}
+      button = DesktopEnums::MOUSEBUTTON_ENUM_MAP[button]
       list = Java::JavaUtil::ArrayList.new
-      opts.each { |mod| list.add mod }
+      opts.each { |mod| list << DesktopEnums::KEYMODIFIER_ENUM_MAP[mod] }
       element.click(button, times, list)
     end
 
-    # Raises:
-    # NoSuchElementException::  if element is is not found.
-    
     #
     # Raises:
     # NoSuchElementException::  if element is is not found.
@@ -190,7 +159,5 @@ private
         @element
       end
     end
-    
   end
 end
-
