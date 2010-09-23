@@ -1,11 +1,10 @@
 module OperaWatir
  class DesktopBrowser < Browser
     include DesktopContainer
-
+    
     def initialize (executable_location = nil, *arguments)
       if executable_location.nil?
         @driver = OperaDesktopDriver.new
-        @frame = '_top'
       else
         @driver = OperaDesktopDriver.new(executable_location, arguments.to_java(:String))
       end
