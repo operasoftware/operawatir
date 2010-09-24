@@ -55,8 +55,11 @@ module OperaWatir
         end
       end
 
-      # Sets defaults to OperaHelper's configuration options.
+      # Sets defaults to OperaHelper's and RSpec's configuration options.
       def defaults
+        # RSpec messes up colours on Windows, so we must disable them.
+        Spec::Runner.options.colour = true unless platform == :windows
+
         OperaWatir::Helper.browser_args = [] if OperaWatir::Helper.browser_args.nil?
         OperaWatir::Helper.persistent_browser = false
         OperaWatir::Helper.inspectr = false
@@ -308,6 +311,6 @@ module Spec
   end
 end
 
-Spec::Runner.options.colour = true
+
 OperaWatir::Helper.execute
 
