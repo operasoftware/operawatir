@@ -123,14 +123,18 @@ module OperaWatir
    end
    
     # 
-    # tmp 
+    #  
     def key_press(key, *opts)
+      puts "key_press #{key}" 
       #KEYMODIFIER_ENUM_MAP.each { |k, v| puts "#{k},#{v}"}
       list = Java::JavaUtil::ArrayList.new
       opts.each { |mod| list << KEYMODIFIER_ENUM_MAP[mod] }
       @driver.keyPress(key, list)
     end
 
+    def type(text)
+      text.each_char { | t | key_press t }
+    end
     
      # Set preference pref in prefs section prefs_section to value specified
     #
