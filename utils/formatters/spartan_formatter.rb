@@ -12,5 +12,15 @@ class SpartanFormatter < Spec::Runner::Formatter::BaseTextFormatter
     output.puts(message)
     output.flush
   end
+
+  def example_pending(example, message, deprecated_pending_location=nil)
+    message = "#{example.description}\tPENDING\n"
+    output.puts(message)
+    output.flush
+  end
+
+  def dump_summary(duration, example_count, failure_count, pending_count); end
+  def dump_pending; end
+  def dump_failure(counter, failure); end
 end
 
