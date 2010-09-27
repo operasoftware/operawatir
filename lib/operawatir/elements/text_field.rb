@@ -19,5 +19,5 @@ module OperaWatir
       element.sendKeys(path.split(//).to_java(:string))
     end
   end
-
 end
+
