@@ -10,7 +10,6 @@ module OperaWatir
     def set?
       element.isSelected
     end
-
     alias_method :checked?, :set?
 
   end
