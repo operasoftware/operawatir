@@ -33,9 +33,9 @@ module OperaWatir
       Collection.new(@driver.findElementsByTagName("dt").map { |element| OperaWatir::Dt.new(self, element) } )
     end
 
-    def elements
-      raise Exceptions::NotImplementedException,
-        "method elements has not yet been implemented"
+    def elements(method = nil, selector = nil, value = nil)
+      # FIXME:  Needs to fetch element-specific functionality.
+      Collection.new(@driver.findElementsByXPath(selector).map { |element| OperaWatir::Element.new(self, element) } )
     end
 
     def ems
