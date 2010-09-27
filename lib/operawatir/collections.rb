@@ -34,7 +34,8 @@ module OperaWatir
     end
 
     def elements
-      raise "TODO"
+      raise Exceptions::NotImplementedException,
+        "method elements has not yet been implemented"
     end
 
     def ems
