@@ -117,7 +117,7 @@ module OperaWatir
       false
     end
 
-    def take_screenshot(file_name, time_out)
+    def take_screenshot(file_name, time_out = 0)
       element.saveScreenshot(file_name, time_out)
     end
 
