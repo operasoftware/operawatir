@@ -21,7 +21,7 @@ module OperaWatir
       end
     end
 
-    def initialize(container, method=nil, selector=nil, value=nil)
+    def initialize(container, method = nil, selector = nil, value = nil)
       @container, @value = container, value
 
       if method.is_a? OperaWebElement
