@@ -17,7 +17,7 @@ module OperaWatir
 
     def self.element_attr_reader(*attrs)
       attrs.each do |attr|
-        define_method(attr.to_sym) { element.get_attribute(attr)}
+        define_method(attr.to_sym) { element.get_attribute(attr) }
       end
     end
 
@@ -50,7 +50,7 @@ module OperaWatir
     end
     alias_method :exists?, :exist?
 
-    def click(x=nil, y=nil)
+    def click(x = nil, y = nil)
       x.nil? && y.nil? ? element.click : element.click(x.to_i, y.to_i)
     end
 
@@ -81,6 +81,7 @@ module OperaWatir
     def get_attribute(name)
       element.getAttribute(name.to_s) || ''
     end
+    alias_method :attribute_value, :get_attribute
 
     def contains?(target)
       val = element.getValue
@@ -89,9 +90,7 @@ module OperaWatir
     rescue Exceptions::UnknownObjectException
       false
     end
-
     alias_method :verify_contains, :contains?
-
 
     def submit
       element.submit
@@ -139,34 +138,46 @@ module OperaWatir
       {:x => loc.x.to_i, :y => loc.y.to_i}
     end
 
-    def fire_event(event, x=0, y=0)
+    def fire_event(event, x = 0, y = 0)
       x += location[:x]
       y += location[:y]
 
+      # In the case that event is given as symbol, we convert it to a
+      # string.
+      event = event.to_s
+
       case event
-      when "onMouseOver"
-        mouse_action(x,y)
-      when "onMouseOut"
-        mouse_action(x,y)
-        mouse_action(0,0)
-      when "onMouseDown"
+      when /^onMouseOver/i
+        mouse_action(x, y)
+      when /^onMouseOut/i
+        mouse_action(x, y)
+        mouse_action(0, 0)
+      when /^onMouseDown/i
         mouse_action(x, y, LEFT_DOWN)
-      when "onMouseUp"
-        mouse_action(x,y, LEFT_UP)
-      when "onMouseMove"
-        mouse_action(x,y)
-        mouse_action(x+1,y+1)
+      when /^onMouseUp/i
+        mouse_action(x, y, LEFT_UP)
+      when /^onMouseMove/i
+        mouse_action(x, y)
+        mouse_action(x + 1, y + 1)
+      when /^onClick/i
+        click
+      when /^onDblClick/i
+        double_click
+      when /^(onAbort|onBlur|onChange|onError|onFocus|onLoad|onReset|onResize
+              onScroll|onSelect|onSubmit|onUnload)/i
+        raise Exceptions::NotImplementedException,
+          "Event #{event} has not been implemented for use with fire_event method yet."
       end
     end
 
     # Attributes
 
     def id
-      get_attribute 'id'
+      get_attribute "id"
     end
 
     def class_name
-      get_attribute 'class'
+      get_attribute "class"
     end
 
     element_attr_reader :name, :style
@@ -176,12 +187,11 @@ module OperaWatir
     def element
       @elm ||= find || raise(Exceptions::UnknownObjectException, "Element #{@selector} not found using #{@method}")
     end
-
     alias_method :elm, :element
 
     def mouse_action(x, y, *actions)
-      sum = actions.inject(0){ |sum, item| sum + item}
-      @container.driver.mouseEvent(x,y,sum)
+      sum = actions.inject(0) { |sum, item| sum + item }
+      @container.driver.mouseEvent(x, y, sum)
     end
 
     def find
