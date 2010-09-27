@@ -15,6 +15,7 @@ module OperaWatir
     class UnknownObjectException < OperaWatirException; end
     class MissingWayOfFindingObjectException < OperaWatirException; end
     class UnknownFrameException < OperaWatirException; end
+    class NotImplementedException < OperaWatirException; end
   end
 end
 
@@ -28,6 +29,7 @@ include_class org.openqa.selenium.NoSuchElementException
 include_class com.opera.core.systems.OperaDriver
 include_class com.opera.core.systems.OperaWebElement
 
-require 'operawatir/elements'
-require 'operawatir/collections'
-require 'operawatir/browser'
+require "operawatir/elements"
+require "operawatir/collections"
+require "operawatir/browser"
+
