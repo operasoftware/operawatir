@@ -9,3 +9,4 @@ module OperaWatir
 
   end
 end
+
