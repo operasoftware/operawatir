@@ -2,7 +2,7 @@ require "operawatir/helper"
 
 describe "fire_event" do
   before(:all) do
-    OperaWatir::Helper.files = "file:///home/andreastt/tmp/fire_event/"
+#    OperaWatir::Helper.files = "./in"
   end
 
   # onMouseOver 
