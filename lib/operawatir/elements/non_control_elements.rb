@@ -53,7 +53,6 @@ module OperaWatir
   class Ol < NonControlElement
   end
 
-
   class Li < NonControlElement
   end
 
@@ -89,5 +88,5 @@ module OperaWatir
 
   class Ul < NonControlElement
   end
-
 end
+
