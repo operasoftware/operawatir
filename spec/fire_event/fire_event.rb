@@ -1,10 +1,6 @@
 require "operawatir/helper"
 
 describe "fire_event" do
-  before(:all) do
-#    OperaWatir::Helper.files = "./in"
-  end
-
   # onMouseOver 
   it "should fire event onMouseOver with symbol" do
     browser.goto files + "onMouseOver.html"
