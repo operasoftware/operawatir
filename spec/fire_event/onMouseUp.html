@@ -1,0 +1,45 @@
+<!doctype html>
+<meta charset="utf-8" />
+<title>fire_event onMouseUp test case</title>
+
+<p>
+  You should see the word “PASS” below.
+</p>
+
+<p id="result">FAIL</p>
+
+<hr />
+
+<form id="elements" onSubmit="return false;">
+  <button>foo</button>
+  <input type="checkbox" />
+  <input type="file" />
+  <input type="image" />
+  <a href="#">foo</a>
+  <input type="radio" />
+  <select><option>foo</option></select>
+  <select multiple><option>foo</option></select>
+  <input type="text" />
+  <textarea></textarea>
+  <p>foo</p>
+</form>
+
+<script>
+
+  var eventType = "mouseup";
+  var elementList = document.getElementById("elements").elements;
+  var successfulList = new Array();
+
+  for (i = 0; i < elementList.length; i++) {
+    elementList[i].addEventListener(eventType, eventHandler, true);
+  }
+
+  function eventHandler (e) {
+    successfulList.push(e);
+
+    if (successfulList.length == elementList.length)
+      document.getElementById("result").innerHTML = "PASS";
+  }
+
+</script>
+
