@@ -11,17 +11,6 @@ module OperaWatir
       end
     end
 
-    # Execute specified Opera action in the correct input context
-    #
-    # Arguments:
-    # name::   name of the Opera action to be performed.
-    # param::  (Optional)  Optional parameter to be supplied with the Opera action.
-    #
-    def opera_desktop_action(name, *param)
-      @driver.operaDesktopAction(name, param.to_java(:String))
-    end
-
-
     # Executes the action given by paramter action_name, and waits for
     # the window with window name win_name to be shown
     #
@@ -36,6 +25,20 @@ module OperaWatir
       wait_for_window_shown(win_name)
     end
 
+   # Executes the keypress with modifiers, and waits for
+   # the window with window name win_name to be shown
+   #
+   # Arguments:
+   # win_name::  name of the window to wait to be shown (Pass a blank string for any window)
+   # key::       key to press
+   # opts::      (Optional)  Optional modifiers to hold (e.g. :ctrl, :shift)
+   #
+   def open_window_with_key_press(win_name, key, *opts)
+     wait_start
+     key_press(key, *opts)
+     wait_for_window_shown(win_name)
+   end
+
    # Executes the action given by paramter action_name, and waits for
    # the window with window name win_name to close
    #
@@ -47,6 +50,20 @@ module OperaWatir
    def close_window_with_action(win_name, action_name, *param)
      wait_start
      @driver.operaDesktopAction(action_name, param.to_java(:String))
+     wait_for_window_close(win_name)
+   end
+
+   # Executes the keypress with modifiers, and waits for
+   # the window with window name win_name to close
+   #
+   # Arguments:
+   # win_name::  name of the window to wait to closed (Pass a blank string for any window)
+   # key::       key to press
+   # opts::      (Optional)  Optional modifiers to hold (e.g. :ctrl, :shift)
+   #
+   def close_window_with_key_press(win_name, key, *opts)
+     wait_start
+     key_press(key, *opts)
      wait_for_window_close(win_name)
    end
 
@@ -122,20 +139,6 @@ module OperaWatir
      @driver.getWindowName(win_id)
    end
    
-    # 
-    #  
-    def key_press(key, *opts)
-      puts "key_press #{key}" 
-      #KEYMODIFIER_ENUM_MAP.each { |k, v| puts "#{k},#{v}"}
-      list = Java::JavaUtil::ArrayList.new
-      opts.each { |mod| list << KEYMODIFIER_ENUM_MAP[mod] }
-      @driver.keyPress(key, list)
-    end
-
-    def type(text)
-      text.each_char { | t | key_press t }
-    end
-    
      # Set preference pref in prefs section prefs_section to value specified
     #
     # Arguments:
@@ -165,6 +168,30 @@ module OperaWatir
 
     
    private
+
+   # Execute specified Opera action in the correct input context
+   #
+   # Arguments:
+   # name::   name of the Opera action to be performed.
+   # param::  (Optional)  Optional parameter to be supplied with the Opera action.
+   #
+   def opera_desktop_action(name, *param)
+     @driver.operaDesktopAction(name, param.to_java(:String))
+   end
+
+   # 
+   #  
+   def key_press(key, *opts)
+   #  puts "key_press #{key}" 
+     #KEYMODIFIER_ENUM_MAP.each { |k, v| puts "#{k},#{v}"}
+     list = Java::JavaUtil::ArrayList.new
+     opts.each { |mod| list << KEYMODIFIER_ENUM_MAP[mod] }
+     @driver.keyPress(key, list)
+   end
+
+   def type(text)
+     text.each_char { | t | key_press t }
+   end
        
    # 
    #

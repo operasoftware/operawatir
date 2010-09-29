@@ -18,29 +18,6 @@ module OperaWatir
       end
     end
 
-    # Click widget
-    #
-    # Params: button (:left, :right, :middle)
-    #         times
-    #         modifiers ([:shift, :ctrl, ...]
-    #
-    # Raises:
-    # NoSuchElementException::  if element is is not found.
-    def click(button = :left, times = 1, *opts)
-      #DesktopEnums::KEYMODIFIER_ENUM_MAP.each { |k, v| puts "#{k},#{v}"}
-      button = DesktopEnums::MOUSEBUTTON_ENUM_MAP[button]
-      list = Java::JavaUtil::ArrayList.new
-      opts.each { |mod| list << DesktopEnums::KEYMODIFIER_ENUM_MAP[mod] }
-      element.click(button, times, list)
-    end
-
-    #
-    # Raises:
-    # NoSuchElementException::  if element is is not found.
-    def right_click
-      click(:right, 1)
-    end
-    
     # Checks whether widget exists or not.
     #
     # Raises:
@@ -88,13 +65,38 @@ module OperaWatir
       element.getText
     end
     
-  # Returns the type of the widget
-      #
-      # Raises:
-      # NoSuchElementException::   if the element is not found.
-      def type
-        WIDGET_ENUM_MAP.invert[element.getType]
-      end
+    # Return the text of the widget
+    #
+    # Raises:
+    # NoSuchElementException::   if the element is not found.
+    def type_text(text)
+      text.each_char { | t | key_press_internal t }
+      
+      # No event yet so just cheat and sleep
+      sleep(0.2);
+
+      # Return what is in the field to check
+      element.getText
+    end
+
+    # Return the text of the widget
+    #
+    # Raises:
+    # NoSuchElementException::   if the element is not found.
+    def key_press(key, *opts)
+      key_press_internal(key, *opts)
+      
+      # No event yet so just cheat and sleep
+      sleep(0.1);
+    end
+  
+    # Returns the type of the widget
+    #
+    # Raises:
+    # NoSuchElementException::   if the element is not found.
+    def type
+      WIDGET_ENUM_MAP.invert[element.getType]
+    end
     
     # Returns the text of the widget
     #
@@ -133,8 +135,48 @@ module OperaWatir
     #   element.dragAndDropOn other
     #end
 
+    #
+    # Raises:
+    # NoSuchElementException::  if element is is not found.
+    def click_to_focus
+      click()
+      
+      # No event yet so just cheat and sleep
+      sleep(0.5);
+    end
+
 
 private
+    # Click widget
+    #
+    # Params: button (:left, :right, :middle)
+    #         times
+    #         modifiers ([:shift, :ctrl, ...]
+    #
+    # Raises:
+    # NoSuchElementException::  if element is is not found.
+    def click(button = :left, times = 1, *opts)
+      #DesktopEnums::KEYMODIFIER_ENUM_MAP.each { |k, v| puts "#{k},#{v}"}
+      button = DesktopEnums::MOUSEBUTTON_ENUM_MAP[button]
+      list = Java::JavaUtil::ArrayList.new
+      opts.each { |mod| list << DesktopEnums::KEYMODIFIER_ENUM_MAP[mod] }
+      element.click(button, times, list)
+    end
+    
+    #
+    # Raises:
+    # NoSuchElementException::  if element is is not found.
+    def right_click
+      click(:right, 1)
+    end
+
+    def key_press_internal(key, *opts)
+    #  puts "key_press #{key}" 
+      #KEYMODIFIER_ENUM_MAP.each { |k, v| puts "#{k},#{v}"}
+      list = Java::JavaUtil::ArrayList.new
+      opts.each { |mod| list << KEYMODIFIER_ENUM_MAP[mod] }
+      @container.driver.keyPress(key, list)
+    end
     
     # Return the element
     #
