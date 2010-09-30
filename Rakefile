@@ -36,15 +36,8 @@ end
 #  rdoc.rdoc_dir = "doc" # rdoc output folder
 #  rdoc.options = "--line-numbers", "--charset=utf-8"
 #end
-
-YARD::Rake::YardocTask.new do |yard|
-  yard.files = ["lib/**/*.rb"]
-  yard.options += [
-    "--title", "OperaWatir #{OPERAWATIR_VERSION} Documentation",
-    "--files", "INSTALL,LICENSE",
-    "--template-path", "./utils/",
-    "--template", "doc_template"
-  ]
+YARD::Rake::YardocTask.new do |t|
+  t.files = ['lib/**/*.rb']
 end
 
 Spec::Rake::SpecTask.new do |t|
