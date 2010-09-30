@@ -1,12 +1,8 @@
 module OperaWatir
   class QuickWidget
-    
-    WIDGET_ENUM_MAP = DesktopWmProtos::QuickWidgetInfo::QuickWidgetType.constants.inject({}) do |acc, const|
-      #puts const.inspect
-      acc[const.to_s.downcase.to_sym] = DesktopWmProtos::QuickWidgetInfo::QuickWidgetType.const_get(const)
-    acc
-    end
-        
+    include DesktopCommon
+#    include DesktopEnums
+
     def initialize(container, method, selector=nil)
       @container = container
                             
@@ -65,31 +61,6 @@ module OperaWatir
       element.getText
     end
     
-    # Return the text of the widget
-    #
-    # Raises:
-    # NoSuchElementException::   if the element is not found.
-    def type_text(text)
-      text.each_char { | t | key_press_internal t }
-      
-      # No event yet so just cheat and sleep
-      sleep(0.2);
-
-      # Return what is in the field to check
-      element.getText
-    end
-
-    # Return the text of the widget
-    #
-    # Raises:
-    # NoSuchElementException::   if the element is not found.
-    def key_press(key, *opts)
-      key_press_internal(key, *opts)
-      
-      # No event yet so just cheat and sleep
-      sleep(0.1);
-    end
-  
     # Returns the type of the widget
     #
     # Raises:
@@ -135,18 +106,22 @@ module OperaWatir
     #   element.dragAndDropOn other
     #end
 
+private
+
+    def driver
+      @container.driver
+    end
+
     #
     # Raises:
     # NoSuchElementException::  if element is is not found.
-    def click_to_focus
+    def focus_with_click
       click()
       
       # No event yet so just cheat and sleep
-      sleep(0.5);
+      sleep(0.1);
     end
-
-
-private
+    
     # Click widget
     #
     # Params: button (:left, :right, :middle)
@@ -169,14 +144,6 @@ private
     def right_click
       click(:right, 1)
     end
-
-    def key_press_internal(key, *opts)
-    #  puts "key_press #{key}" 
-      #KEYMODIFIER_ENUM_MAP.each { |k, v| puts "#{k},#{v}"}
-      list = Java::JavaUtil::ArrayList.new
-      opts.each { |mod| list << KEYMODIFIER_ENUM_MAP[mod] }
-      @container.driver.keyPress(key, list)
-    end
     
     # Return the element
     #
@@ -196,7 +163,7 @@ private
     def find
       case @method
       when :name
-        @element = @container.driver.findWidgetByName(-1, @selector)
+        @element = driver.findWidgetByName(-1, @selector)
         raise(Exceptions::UnknownObjectException, "Element #{@selector} has wrong type") unless correct_type?
         @element
       end

@@ -1,7 +1,8 @@
 module OperaWatir
  class DesktopBrowser < Browser
     include DesktopContainer
-    include DesktopEnums
+    include DesktopCommon
+#    include DesktopEnums
     
     def initialize (executable_location = nil, *arguments)
       if executable_location.nil?
@@ -25,6 +26,8 @@ module OperaWatir
       wait_for_window_shown(win_name)
     end
 
+   alias_method :open_dialog_with_action, :open_window_with_action
+
    # Executes the keypress with modifiers, and waits for
    # the window with window name win_name to be shown
    #
@@ -38,6 +41,8 @@ module OperaWatir
      key_press(key, *opts)
      wait_for_window_shown(win_name)
    end
+
+   alias_method :open_dialog_with_key_press, :open_window_with_key_press
 
    # Executes the action given by paramter action_name, and waits for
    # the window with window name win_name to close
@@ -53,6 +58,8 @@ module OperaWatir
      wait_for_window_close(win_name)
    end
 
+   alias_method :close_dialog_with_action, :close_window_with_action
+
    # Executes the keypress with modifiers, and waits for
    # the window with window name win_name to close
    #
@@ -67,29 +74,18 @@ module OperaWatir
      wait_for_window_close(win_name)
    end
 
-   # Executes the action given by paramter action_name, and waits for
-   # the dialog with window name win_name to be shown
-   #
-   # Arguments:
-   # win_name::  name of the window to wait to be shown (Pass a blank string for any window)
-   # action_name:: name of the action to execute
-   # param::  (Optional)  Optional parameter to be supplied with the Opera action.
-   #
-   def open_dialog_with_action(win_name, action_name, *param)
-     open_window_with_action(win_name, action_name, *param)
-   end
+   alias_method :close_dialog_with_key_press, :close_window_with_key_press
 
-    
-    # Close the dialog with window name win_name
+    # Close the dialog with window name win_name using the "Cancel" action
     # Returns when the dialog is closed
     #
     # Arguments:
     # win_name:: name of the window to wait to be closed  (Pass a blank string for any window)
     #
-    def close_dialog(win_name)
+    def close_dialog(dialog_name)
       wait_start
       opera_desktop_action("Cancel")
-      wait_for_window_close(win_name)
+      wait_for_window_close(dialog_name)
     end
     
     # Retrieves an iterator over all widgets in the window with window name win_name
@@ -165,10 +161,12 @@ module OperaWatir
       close_window_with_action("Document Window", "Close page", "1")
       value
     end
-
+   
+    # Special method to access the driver
+    attr_reader :driver
     
-   private
-
+ private
+   
    # Execute specified Opera action in the correct input context
    #
    # Arguments:
@@ -176,67 +174,7 @@ module OperaWatir
    # param::  (Optional)  Optional parameter to be supplied with the Opera action.
    #
    def opera_desktop_action(name, *param)
-     @driver.operaDesktopAction(name, param.to_java(:String))
-   end
-
-   # 
-   #  
-   def key_press(key, *opts)
-   #  puts "key_press #{key}" 
-     #KEYMODIFIER_ENUM_MAP.each { |k, v| puts "#{k},#{v}"}
-     list = Java::JavaUtil::ArrayList.new
-     opts.each { |mod| list << KEYMODIFIER_ENUM_MAP[mod] }
-     @driver.keyPress(key, list)
-   end
-
-   def type(text)
-     text.each_char { | t | key_press t }
-   end
-       
-   # 
-   #
-   def wait_start
-     @driver.waitStart()
-   end
-
-   # Waits for the window specified by parameter win_name to be shown
-   # If no parameter is specified, waits for any window show event
-   #
-   # Arguments:
-   # win_name::  name of the window
-   #
-   def wait_for_window_shown(win_name = "")
-     @driver.waitForWindowShown(win_name)
-   end
-
-   # Waits for window updated event on the window given by win_name
-   # If no parameter is specified, waits for any window updated event
-   #
-   # Arguments:
-   # win_name::  name of the window
-   #
-   def wait_for_window_updated(win_name = "")
-     @driver.waitForWindowUpdated(win_name)
-   end
-
-   # Waits for window activated event on the window given by win_name
-   # If no parameter is specified, waits for any window activated event
-   #
-   # Arguments:
-   # win_name::  name of the window
-   #
-   def wait_for_window_activated(win_name = "")
-     @driver.waitForWindowActivated(win_name)
-   end
-
-   # Waits for window closed event on the window given by win_name
-   # If no parameter is specified, waits for any window closed event
-   #
-   # Arguments:
-   # win_name::  name of the window
-   #
-   def wait_for_window_close(win_name = "")
-     @driver.waitForWindowClose(win_name)
+     driver.operaDesktopAction(name, param.to_java(:String))
    end
   end
 end
