@@ -1,23 +1,25 @@
 module OperaWatir
   class QuickDropdown < QuickWidget
-    
-    # Is the entry with the given string_id selected?  Returns true or false.
-    #
-    # Raises:
-    # NoSuchElementException:  if element is not found.
-    def selected?(string_id)
-      element.isSelected(string_id)
-    end
-    
+
+    # @private
+    # Checks the type of the widget is correct
     def correct_type?
       @element.getType == WIDGET_ENUM_MAP[:dropdown];
     end
     
-    #def select(string_id)
-    #  click(1,1)
-      #Move mouse to entry
-      #click entry
-    #end
-    #alias_method :set, :select
+    ######################################################################
+    # Checks if the item selected in the dropdown matches the text loaded
+    # from Opera using the string_id
+    #
+    # @param [String] string_id String ID to use to load the string from the current
+    #                 language file (e.g. "D_NEW_PREFERENCES_GENERAL")
+    #
+    # @return [Boolean] true if the dropdown has the item with the 
+    #                   string_id selected, otherwise false
+    #
+    def selected?(string_id)
+      element.isSelected(string_id)
+    end
+    
   end
 end 

@@ -1,9 +1,9 @@
 module OperaWatir
- class DesktopBrowser < Browser
+  class DesktopBrowser < Browser
     include DesktopContainer
     include DesktopCommon
-#    include DesktopEnums
     
+    # @private
     def initialize (executable_location = nil, *arguments)
       if executable_location.nil?
         @driver = OperaDesktopDriver.new
@@ -11,87 +11,122 @@ module OperaWatir
         @driver = OperaDesktopDriver.new(executable_location, arguments.to_java(:String))
       end
     end
-
-    # Executes the action given by paramter action_name, and waits for
+      
+    ######################################################################
+    # Executes the action given by action_name, and waits for
     # the window with window name win_name to be shown
     #
-    # Arguments:
-    # win_name::  name of the window to wait to be shown (Pass a blank string for any window)
-    # action_name:: name of the action to execute
-    # param::  (Optional)  Optional parameter to be supplied with the Opera action.
+    # @example
+    #   $browser.open_window_with_action("New Preferences Dialog", "Show preferences")
+    #   $browser.open_window_with_action("New Preferences Dialog", "Show preferences", "1")
     #
-    def open_window_with_action(win_name, action_name, *param)
+    # @param [String] win_name    name of the window that will be opened (Pass a blank string for any window)
+    # @param [String] action_name name of the action to execute to open the window
+    # @param [String] param       optional parameter(s) to be supplied with the Opera action.
+    #
+    # @return [int] Window ID of the window shown or 0 if no window is shown
+    #
+    def open_window_with_action(win_name, action_name, *params)
       wait_start
-      @driver.operaDesktopAction(action_name, param.to_java(:String))
+      @driver.operaDesktopAction(action_name, params.to_java(:String))
       wait_for_window_shown(win_name)
     end
-
-   alias_method :open_dialog_with_action, :open_window_with_action
-
-   # Executes the keypress with modifiers, and waits for
-   # the window with window name win_name to be shown
-   #
-   # Arguments:
-   # win_name::  name of the window to wait to be shown (Pass a blank string for any window)
-   # key::       key to press
-   # opts::      (Optional)  Optional modifiers to hold (e.g. :ctrl, :shift)
-   #
-   def open_window_with_key_press(win_name, key, *opts)
-     wait_start
-     key_press(key, *opts)
-     wait_for_window_shown(win_name)
-   end
-
-   alias_method :open_dialog_with_key_press, :open_window_with_key_press
-
-   # Executes the action given by paramter action_name, and waits for
-   # the window with window name win_name to close
-   #
-   # Arguments:
-   # win_name::  name of the window to wait to closed (Pass a blank string for any window)
-   # action_name:: name of the action to execute
-   # param::  (Optional)  Optional parameter to be supplied with the Opera action.
-   #
-   def close_window_with_action(win_name, action_name, *param)
-     wait_start
-     @driver.operaDesktopAction(action_name, param.to_java(:String))
-     wait_for_window_close(win_name)
-   end
-
-   alias_method :close_dialog_with_action, :close_window_with_action
-
-   # Executes the keypress with modifiers, and waits for
-   # the window with window name win_name to close
-   #
-   # Arguments:
-   # win_name::  name of the window to wait to closed (Pass a blank string for any window)
-   # key::       key to press
-   # opts::      (Optional)  Optional modifiers to hold (e.g. :ctrl, :shift)
-   #
-   def close_window_with_key_press(win_name, key, *opts)
-     wait_start
-     key_press(key, *opts)
-     wait_for_window_close(win_name)
-   end
-
-   alias_method :close_dialog_with_key_press, :close_window_with_key_press
-
-    # Close the dialog with window name win_name using the "Cancel" action
-    # Returns when the dialog is closed
+    
+    alias_method :open_dialog_with_action, :open_window_with_action
+    
+    ######################################################################
+    # Presses the key, with optional modifiers, and waits for
+    # the window with window name win_name to be shown
     #
-    # Arguments:
-    # win_name:: name of the window to wait to be closed  (Pass a blank string for any window)
+    # @example
+    #   $browser.open_window_with_key_press("New Preferences Dialog", "F12")
+    #   $browser.open_window_with_key_press("New Preferences Dialog", "F12", :ctrl, :shift)
+    #
+    # @param [String]  win_name    name of the window that will be opened (Pass a blank string for any window)
+    # @param [String]  key         key to press (e.g. "a" or "backspace")
+    # @param [String]  modifiers   optional modifier(s) to hold down while pressing the key (e.g. :shift, :ctrl)
+    #
+    # @return [int] Window ID of the window shown or 0 if no window is shown
+    #
+    def open_window_with_key_press(win_name, key, *modifiers)
+      wait_start
+      key_press(key, *modifiers)
+      wait_for_window_shown(win_name)
+    end
+    
+    alias_method :open_dialog_with_key_press, :open_window_with_key_press
+    
+    ######################################################################
+    # Executes the action given by action_name, and waits for
+    # the window with window name win_name to close
+    #
+    # @example
+    #   $browser.close_window_with_action("New Preferences Dialog", "Cancel")
+    #   $browser.close_window_with_action("New Preferences Dialog", "Cancel", "1")
+    #
+    # @param [String] win_name    name of the window that will be closed (Pass a blank string for any window)
+    # @param [String] action_name name of the action to execute to close the window
+    # @param [String] param       optional parameter(s) to be supplied with the Opera action.
+    #
+    # @return [int] Window ID of the window closed or 0 if no window is closed
+    #
+    def close_window_with_action(win_name, action_name, *params)
+      wait_start
+      @driver.operaDesktopAction(action_name, params.to_java(:String))
+      wait_for_window_close(win_name)
+    end
+    
+    alias_method :close_dialog_with_action, :close_window_with_action
+    
+    ######################################################################
+    # Presses the key, with optional modifiers, and waits for
+    # the window with window name win_name to close
+    #
+    # @example
+    #   $browser.close_window_with_key_press("New Preferences Dialog", "Esc")
+    #   $browser.close_window_with_key_press("New Preferences Dialog", "w", :ctrl)
+    #
+    # @param [String]  win_name    name of the window that will be closed (Pass a blank string for any window)
+    # @param [String]  key         key to press (e.g. "a" or "backspace")
+    # @param [String]  modifiers   optional modifier(s) to hold down while pressing the key (e.g. :shift, :ctrl)
+    #
+    # @return [int] Window ID of the window closed or 0 if no window is closed
+    #
+    def close_window_with_key_press(win_name, key, *opts)
+      wait_start
+      key_press(key, *opts)
+      wait_for_window_close(win_name)
+    end
+    
+    alias_method :close_dialog_with_key_press, :close_window_with_key_press
+    
+    ######################################################################
+    # Close the dialog with name dialog_name, using the "Cancel" action
+    #
+    # @param [String] win_name name of the window that will be closed (Pass a blank string for any window)
+    #
+    # @return [int] Window ID of the dialog closed or 0 if no window is closed
     #
     def close_dialog(dialog_name)
       wait_start
       opera_desktop_action("Cancel")
       wait_for_window_close(dialog_name)
     end
-    
-    # Retrieves an iterator over all widgets in the window with window name win_name
+      
+    ######################################################################
+    # Retrieves an array of all widgets in the window with window 
+    # name win_name
     #
-    # Arguments:
-    # win_name:: name of the window
+    # @example
+    #   $browser.widgets(window_name).each do |quick_widget|
+    #     if quick_widget.name.length > 0 then
+    #       print "   Name:" + quick_widget.name + "\n"
+    #     end
+    #   end
+    #
+    # @param [String] win_name name of the window to retrieve the list of widgets from
+    #
+    # @return [Array] Array of widgets retrieved from the window
     #
     def widgets(win_name)
       @driver.getQuickWidgetList(win_name).map do |java_widget|
@@ -116,31 +151,23 @@ module OperaWatir
       end.to_a
     end
     
-    # Retrieves an iterator over all open windows
+    ######################################################################
+    # Retrieves the name of a window based on it's id
     #
-    # Arguments:
+    # @param [int] win_id Window ID to retrieve the name for
     #
-    #def windows
-    #  @driver.getWindowList.map do |window|
-    #    QuickWindow.new(self,window)
-    #  end.to_a
-    #end
-   
-   # Retrieves the name of a window based on it's id
-   #
-   # Arguments:
-   # win_id:    id of the window
-   #
-   def get_window_name(win_id)
-     @driver.getWindowName(win_id)
-   end
-   
-     # Set preference pref in prefs section prefs_section to value specified
+    # @return [String] Name of the window
     #
-    # Arguments:
-    # prefs_section:: The prefs section the pref belongs to
-    # pref:: The preference to set
-    # value:: The value to set the preference to
+    def get_window_name(win_id)
+      @driver.getWindowName(win_id)
+    end
+     
+    ######################################################################
+    # Set preference pref in prefs section prefs_section to value specified
+    #
+    # @param [String] prefs_section The prefs section the pref belongs to
+    # @param [String] pref          The preference to set
+    # @param [String] value         The value to set the preference to
     #
     def set_preference(prefs_section, pref, value)
       open_window_with_action("Document Window", "Open url in new page", "opera:config")
@@ -148,12 +175,15 @@ module OperaWatir
       execute_script("opera.setPreference(\'#{prefs_section}\', \'#{pref}\', #{value});")
       close_window_with_action("Document Window", "Close page", "1")
     end
-    
-   # Get value of preference pref in prefs section prefs_section 
-   #
-   # Arguments:
-   # prefs_section:: The prefs section the pref belongs to
-   # pref:: The preference to get
+      
+    ######################################################################
+    # Get value of preference pref in prefs section prefs_section 
+    #
+    # @param [String] prefs_section The prefs section the pref belongs to
+    # @param [String] pref          The preference to get
+    #
+    # @return [String] value        The value of the preference
+    #
     def get_preference(prefs_section, pref)
       open_window_with_action("Document Window", "Open url in new page", "opera:config")
       @driver.get("opera:config")
@@ -161,21 +191,17 @@ module OperaWatir
       close_window_with_action("Document Window", "Close page", "1")
       value
     end
-   
+     
+    # @private
     # Special method to access the driver
     attr_reader :driver
     
- private
-   
-   # Execute specified Opera action in the correct input context
-   #
-   # Arguments:
-   # name::   name of the Opera action to be performed.
-   # param::  (Optional)  Optional parameter to be supplied with the Opera action.
-   #
-   def opera_desktop_action(name, *param)
-     driver.operaDesktopAction(name, param.to_java(:String))
-   end
+private
+    
+    # Launchs an opera action in the correct context
+    def opera_desktop_action(name, *param)
+      driver.operaDesktopAction(name, param.to_java(:String))
+    end
   end
 end
 

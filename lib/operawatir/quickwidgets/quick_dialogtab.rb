@@ -1,9 +1,15 @@
 module OperaWatir
   class QuickDialogTab < QuickWidget
+
+    # @private
+    # Checks the type of the widget is correct
     def correct_type?
       @element.getType == WIDGET_ENUM_MAP[:dialogtab];
     end
     
+    ######################################################################
+    # Switch to the dialog tab by clicking on it 
+    #
     def open_tab_with_click
       click()
       

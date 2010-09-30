@@ -1,22 +1,29 @@
 module OperaWatir
   class QuickButton < QuickWidget
  
-    # Is the specified button the default one. Returns true if is default,
-    # otherwise, returns false. 
-    #
-    # Raises:
-    # NoSuchElementException::   if the element is not found.
-    def default?
-      element.isDefault
-    end
-    
+    # @private
+    # Checks the type of the widget is correct
     def correct_type?
       @element.getType == WIDGET_ENUM_MAP[:button];
     end
 
+    ######################################################################
+    # Checks if the button is the default button
     #
-    # Raises:
-    # NoSuchElementException::  if element is is not found.
+    # @return [Boolean] true if the default button otherwise false
+    #
+    def default?
+      element.isDefault
+    end
+    
+    ######################################################################
+    # Clicks the button, and waits for the window with window name 
+    # win_name to be shown
+    #
+    # @param [String] win_name name of the window that will be opened (Pass a blank string for any window)
+    #
+    # @return [int] Window ID of the window shown or 0 if no window is shown
+    #
     def open_window_with_click(win_name)
       wait_start
       click()
@@ -25,9 +32,14 @@ module OperaWatir
     
     alias_method :open_dialog_with_click, :open_window_with_click
     
+    ######################################################################
+    # Clicks the button, and waits for the window with window name 
+    # win_name to closed
     #
-    # Raises:
-    # NoSuchElementException::  if element is is not found.
+    # @param [String] win_name name of the window that will be closed (Pass a blank string for any window)
+    #
+    # @return [int] Window ID of the window is closed or 0 if no window is closed
+    #
     def close_window_with_click(win_name)
       wait_start
       click()

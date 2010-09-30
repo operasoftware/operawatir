@@ -1,8 +1,8 @@
 module OperaWatir
   class QuickWidget
     include DesktopCommon
-#    include DesktopEnums
 
+    # @private
     def initialize(container, method, selector=nil)
       @container = container
                             
@@ -14,10 +14,11 @@ module OperaWatir
       end
     end
 
-    # Checks whether widget exists or not.
+    ######################################################################
+    # Checks whether a widget exists or not
     #
-    # Raises:
-    # NoSuchElementException::  if element is is not found.
+    # @return [Boolean] true if the widget exists otherwise false
+    #
     def exist?
       !!element
       rescue Exceptions::UnknownObjectException
@@ -25,96 +26,88 @@ module OperaWatir
     end
     alias_method :exists?, :exist?
     
-    # Returns true if the element is enabled, false if it isn't.  First
-    # checks if element exists or not.  Then checks if element is enabled
-    # or not.
+    ######################################################################
+    # Checks if a widget is enabled or not
     #
-    # Output: 
-    #   Returns true if element exists and is enabled, else returns
-    #   false.
+    # @return [Boolean] true if enabled otherwise false
     #
-    # Raises:
-    # NoSuchElementException:  if element is not found.
     def enabled?
       element.isEnabled
     end
       
-    # Returns true if the element is visible, false if it isn't.  First
-    # checks if element exists or not.  Then checks if element is enabled
-    # or not.
+    ######################################################################
+    # Checks if a widget is visible or not
     #
-    # Output: 
-    #   Returns true if element exists and is visible, else returns
-    #   false.
+    # @return [Boolean] true if visible otherwise false
     #
-    # Raises:
-    # NoSuchElementException:  if element is not found.
     def visible?
       element.isVisible
     end
 
-    # Return the text of the widget
+    ######################################################################
+    # Get the text of the widget
     #
-    # Raises:
-    # NoSuchElementException::   if the element is not found.
+    # @note This method should not be used to check the text in a widget if
+    #       the text is in the Opera language file. Use verify_text or
+    #       verify_includes_text instead
+    #
+    # @return [String] text of the widget
+    #
     def text
       element.getText
     end
     
-    # Returns the type of the widget
+    ######################################################################
+    # Gets the type of a widget
     #
-    # Raises:
-    # NoSuchElementException::   if the element is not found.
+    # @return [Symbol] type of the widget (e.g. :dropdown, :button)
+    #
     def type
       WIDGET_ENUM_MAP.invert[element.getType]
     end
     
-    # Returns the text of the widget
+    ######################################################################
+    # Get the name of the widget (as it appears in dialog.ini or code)
     #
-    # Raises:
-    # NoSuchElementException::   if the element is not found.
+    # @return [String] name of the widget
+    #
     def name
       element.getName
     end
 
-    
-    # Checks if the element text is the one given as parameter.
+    ######################################################################
+    # Checks that the text in the widget matches the text as loaded
+    # from the current language file in Opera using the string_id
     #
-    # Arguments:
-    # string_id:: String ID to use to load the string from the current
-    #             language file in Opera and verify against 
+    # @param [String] string_id String ID to use to load the string from the current
+    #                 language file (e.g. "D_NEW_PREFERENCES_GENERAL")
+    # 
+    # @return [Boolean] true if the text matches, otherwise false
     #
-    # Raises:
-    # NoSuchElementException::   if the element is not found.
     def verify_text(string_id)
       element.verifyText(string_id);
     end
     
-    # Checks if the element text includes the one given as parameter.
+    ######################################################################
+    # Checks that the text in the widget includes the text as loaded
+    # from the current language file in Opera using the string_id
     #
-    # Arguments:
-    # string_id:: String ID to use to load the string from the current
-    #             language file in Opera and verify against 
+    # @param [String] string_id String ID to use to load the string from the current
+    #                 language file (e.g. "D_NEW_PREFERENCES_GENERAL")
+    # 
+    # @return [Boolean] true if the text is included, otherwise false
     #
-    # Raises:
-    # NoSuchElementException::   if the element is not found.
     def verify_includes_text(string_id)
       element.verifyContainsText(string_id)
     end
     
-    #def drag_and_drop_on(other)
-    #   element.dragAndDropOn other
-    #end
-
 private
 
     def driver
       @container.driver
     end
 
-    #
-    # Raises:
-    # NoSuchElementException::  if element is is not found.
+    # Focus a widget with a click
     def focus_with_click
       click()
       
@@ -123,13 +116,6 @@ private
     end
     
     # Click widget
-    #
-    # Params: button (:left, :right, :middle)
-    #         times
-    #         modifiers ([:shift, :ctrl, ...]
-    #
-    # Raises:
-    # NoSuchElementException::  if element is is not found.
     def click(button = :left, times = 1, *opts)
       #DesktopEnums::KEYMODIFIER_ENUM_MAP.each { |k, v| puts "#{k},#{v}"}
       button = DesktopEnums::MOUSEBUTTON_ENUM_MAP[button]
@@ -138,28 +124,17 @@ private
       element.click(button, times, list)
     end
     
-    #
-    # Raises:
-    # NoSuchElementException::  if element is is not found.
+    # Right click a widget
     def right_click
       click(:right, 1)
     end
     
     # Return the element
-    #
-    # Raises:
-    # NoSuchElementException::   if the element is not found.
     def element
       @elm ||= find || raise(Exceptions::UnknownObjectException, "Element #{@selector} not found using #{@method}")
     end
 
-    # Finds the element on the page.  Elements can be located using one
-    # of the following selectors:
-    #
-    # * name
-    #
-    # Raises:
-    # NoSuchElementException:  if element is not found.
+    # Finds the element on the page.  
     def find
       case @method
       when :name

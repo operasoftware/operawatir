@@ -7,6 +7,7 @@ require "rake/testtask"
 require "yard"
 require "spec/rake/spectask"
 
+
 OPERAWATIR_VERSION = File.read("VERSION").strip
 
 spec = Gem::Specification.new do |s|
@@ -43,6 +44,13 @@ end
 Spec::Rake::SpecTask.new do |t|
   t.spec_files = FileList["spec/**/*.rb"]
 end
+
+task :yard do
+  sh 'yard doc --no-private --files LICENSE,INSTALL'
+end
+
+task :doc => :yard
+CLEAN.add 'doc'
 
 task :bump do
   v = ENV["VERSION"]
