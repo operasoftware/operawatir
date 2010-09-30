@@ -6,9 +6,6 @@ begin
 rescue LoadError
 end
 
-#require "ruby-debug"
-#debugger
-
 module OperaWatir
   module Helper
     class << self
