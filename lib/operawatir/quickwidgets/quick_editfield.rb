@@ -1,21 +1,29 @@
 module OperaWatir
   class QuickEditField < QuickWidget
+
+    # @private
+    # Checks the type of the widget is correct
     def correct_type?
       @element.getType == WIDGET_ENUM_MAP[:editfield]
     end
 
-    public :focus_with_click
-        
-    #def set(text)
-       #clear unless value.empty?
-    #   element.click 1, 0
-    #   element.sendKeys(text.split(//).to_java(:string))
-    #end
-
-    # Return the text of the widget
+    ######################################################################
+    # Set focus to the edit field by clicking on it
     #
-    # Raises:
-    # NoSuchElementException::   if the element is not found.
+    def focus_with_click
+      super
+    end
+        
+    ######################################################################
+    # Types a text string into the edit field
+    #
+    # @note Only chanracters that appear on the keyboard that is currently
+    #       selected can be typed
+    #
+    # @param [String] text text string to type in
+    # 
+    # @return [String] contents of the edit field after typing has completed
+    #
     def type_text(text)
       text.each_char { | t | key_press t }
       
@@ -26,15 +34,15 @@ module OperaWatir
       element.getText
     end
 
+    ######################################################################
+    # Clears the contents of the edit field
     #
-    # Raises:
-    # NoSuchElementException::  if element is is not found.
     def clear
       key_press("a", :ctrl)
       key_press("backspace")
       
       # Cheat until we have an event
-      sleep(0.1)
+      sleep(0.2)
     end
     
   end
