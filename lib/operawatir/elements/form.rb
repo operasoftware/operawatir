@@ -1,9 +1,5 @@
 module OperaWatir
+  # Class for +form+ elements
   class Form < WebElement
-
-    # TODO: Implement
-    def submit
-    end
-
   end
 end

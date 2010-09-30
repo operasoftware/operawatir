@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 module OperaWatir
   class Browser
     include Elements
@@ -6,13 +5,22 @@ module OperaWatir
 
     attr_reader :driver
     alias_method :element, :driver
-    
+
+    # Starts a new browser instance and navigates to a page
+    #
+    # @param [String] url the URL the browser should open at
+    # @return [Browser] new browser instance
     def self.start(url, *args)
       b = new(*args)
       b.goto url
       b
     end
 
+    # Initializes a new browser instance
+    #
+    # @param [String] executable_location the path to the Opera binary
+    # @param [String...] arguments  any extra arguments to be passed to the
+    #   binary
     def initialize(executable_location = nil, *arguments)
       if executable_location.nil?
         @driver = OperaDriver.new
@@ -22,7 +30,8 @@ module OperaWatir
       end
     end
 
-    # Loads the given URL in the browser.  Waits for the page to get loaded.
+    # Loads the given URL in the browser. Waits for the page to load
+    # @param [String] url The address to go to
     def goto(url = "")
       raise 'You need to specify an address' if url.empty?
       driver.get(url)
@@ -35,11 +44,12 @@ module OperaWatir
 
     # Cleans up and close the connection to the browser instance.  Will
     # not terminate the browser program.
+    # @private
     def clean_up
       driver.cleanUp
     end
 
-    # Returns the title of the page.
+    # @return [String] title of the page
     def title
       driver.getTitle
     end
@@ -47,32 +57,35 @@ module OperaWatir
     # Closes the open page/tab.
     def close
       driver.close
-  end
+    end
 
-    # Returns the full text of the active page.
+    # @return [String] The full text of the active page.
     def text
       driver.getText
     end
 
-    # TODO Doesn't return doctype
+    # @return [String] the HTML source of the current page
+    # @todo Doesn't return doctype
     def html
       driver.getPageSource
     end
 
+    # @return [Boolean] Wether the brower exists or not
     def exist?
       url != ''
     end
 
-    # TODO
+    # @todo
     def contains_text?(a)
     end
 
     alias_method :contains_text, :contains_text?
 
-    # TODO
+    # @todo
     def document
     end
 
+    # @private
     def element_by_xpath(selector)
       driver.findElementByXPath(selector)
     end
@@ -94,9 +107,8 @@ module OperaWatir
 
     # Switches focus (active page) to the specified frame.
     #
-    # Input:
-    # how::  Supply method for locating frame, by send the argument <tt>:name</tt> or <tt>:index</tt>.
-    # what::  Specify which frame.  Depending on what type of selector you are using, specify the frame's name or its index.
+    # @param [Symbol] how How to locate the frame, either by :name or :index
+    # @param [String, Integer] what What to locate the frame by
     def frame(how, what)
       case how
       when :name
@@ -112,9 +124,14 @@ module OperaWatir
       driver.switchTo.defaultContent
     end
 
+    # @return [Array] List of open frames
+    def frames
+      driver.listFrames
+    end
+
     # Output a list of frames to the console.
+    # @private
     def show_frames
-      frames = driver.listFrames
       puts "There are #{frames.length.to_s} frames"
       frames.each_with_index { |frame,i|
         puts "frame index:#{(i.to_i+1).to_s} name:#{frame.to_s}"
@@ -129,61 +146,76 @@ module OperaWatir
     alias_method :quit, :close_all
 
     # Executes the given JavaScript string, and returns the result.
+    #
+    # @param [String] source Javascript source
+    # @return [String] result
     def execute_script(source)
       driver.executeScript(source, [].to_java(:String))
     end
 
     # Send key events to the browser instance.  I.e. “Down” (arrow
     # down), “Space” (space key), “Home”, &c.
+    #
+    # @see #key_down
+    # @see #key_up
     def key(key)
       driver.key(key)
     end
 
     # Enables you to hold down a key, i.e. “Ctrl”, “Alt”, “Shift”, &c.
-    # Remember to release the keys afterwards with the key_up method.
+    #
+    # @param [String] key Key to press. Either a character or "Ctrl", "Alt", "Shift" etc.
+    # @see #key_up
+    # @note Remember to release the keys afterwards with #key_up.
     def key_down(key)
       driver.keyDown(key)
     end
 
     # Releases a held down key.
+    #
+    # @param [String] key Key to release. Either a character or "Ctrl", "Alt", "Shift" etc.
+    # @see #key_down
     def key_up(key)
       driver.keyUp(key)
     end
 
-    # Types given text directly in to the browser.  The text will be
+    # Types given text directly in to the browser. The text will be
     # inputted to the page depending on where the focus is.
+    #
+    # @param [String] text sequence of keys to type
     def type(text)
       driver.type(text)
     end
 
-    # Return current URI.
+    # @return [String] the current URI.
     def url
       driver.getCurrentUrl
     end
 
     # Execute specified Opera action.
     #
-    # Arguments:
-    # name::   name of the Opera action to be performed.
-    # param::  (Optional.)  Optional parameter to be supplied with the Opera action.
-    def opera_action(name, *param)
-      driver.operaAction(name, param.to_java(:String))
+    # @param [Symbol] name the name of the action
+    # @param [String...] params any additional parameters for the action
+    def opera_action(name, *params)
+      driver.operaAction(name, params.to_java(:String))
     end
 
     # Takes screenshot of the entire page.
     #
-    # Arguments:
-    # file_name::  the absolute file path you wish to save the screenshot to.
-    # time_out::   will attempt to perform the action until the time out is reached.
+    # @param [String] file_name The absolute path the the output file
+    # @param [Integer] time_out Will attempt to take screenshot until
+    #   +timeout+ is reached
+    # @param [String] hashes cache hash
     def take_screenshot(file_name,hashes,time_out)
       driver.saveScreenshot(file_name, time_out, hashes.to_java(:String))
     end
 
-    # Will return the hash of the visual representation of the entire
-    # page, which can be used for reference tests.
+    # Hashes the visual representation of the page. Can be used for reference
+    #   tests.
     #
-    # Arguments:
-    # time_out::  Will attempt to get the hash of the page until the time out is reached.
+    # @param [Integer=50] time_out Will wait +time_out+ seconds before
+    #   aborting hash.
+    # @todo Implement timeout
     def get_hash(time_out = 50)
       driver.findElementByTagName('body').getImageHash
     end
@@ -193,35 +225,39 @@ module OperaWatir
     # configuration, and from build to build.  The Opera actions
     # available to devices-type builds will vary greatly from those
     # available to desktop-types.
+    # @private
     def opera_action_list
       driver.getOperaActionList
     end
 
-    # Returns the number of open pages/tabs.
+    # @return [Integer] The number of open pages/tabs.
     def open_tabs
       driver.getWindowHandles.size
     end
 
-    # Will return the garbage collection.
+    # @private
     def gc
       driver.gc
     end
 
-    # Checks if OperaWatir is connected to any browser instance.  Will
-    # return true or false.
+    # @private
+    # Checks if OperaWatir is connected to any browser instance.
+    # @return [Boolean]
     def is_connected?
       driver.isConnected
     end
 
-    # Returns the Process identifier (pid), a number used by Unix
-    # kernels and Windows operating systems to identify a process.
+    # @private
+    # @return [Integer] the Process identifier (pid), a number used by Unix
+    #   kernels and Windows operating systems to identify a process.
     def pid
       driver.getPid
     end
 
-    # Returns the version number of OperaDriver.  Please note that the
-    # version number of webdriver-opera _is not_ related to the version
-    # number for OperaWatir.
+    # @private
+    # @return [String] the version number of OperaDriver.
+    # @note   The version number of webdriver-opera _is not_ related to the
+    #         version number for OperaWatir.
     def version
       driver.getOperaDriverVersion
     end

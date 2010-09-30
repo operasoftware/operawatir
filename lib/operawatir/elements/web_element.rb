@@ -3,43 +3,29 @@ module OperaWatir
 
     include Collections
 
-    LEFT = 3
-    RIGHT = 12
-    MIDDLE = 48
-    LEFT_DOWN = 1
-    LEFT_UP = 2
-    RIGHT_DOWN = 4
-    RIGHT_UP = 8
-    MIDDLE_DOWN = 16
-    MIDDLE_UP = 32
-
+    # The default way of finding an element
+    # @return [:id]
     def self.default_method
       :id
     end
 
+    # Inferrs the tagname from the classname
+    # @note This isn't 100% perfect as WatirSpec imposes specific classnames for some tests.
+    # @example
+    #   class HoobaFaluba < WebElement; end
+    #   HoobaFaluba.tag # => :hoobafaluba
+    def self.tag
+      name.split('::').last.downcase.to_sym
+    end
+
+    # @private
     def self.element_attr_reader(*attrs)
       attrs.each do |attr|
         define_method(attr.to_sym) { get_attribute(attr)}
       end
     end
 
-    def self.tag
-      # HACK
-      name.split('::').last.downcase.to_sym
-    end
-
-    def self.xpath
-      tag.to_s
-    end
-
-    attr_writer :element
-
-    def self.new_with_element(container, element)
-      elm = new(container)
-      elm.element = element
-      elm
-    end
-
+    # @todo Document
     def initialize(container, method=nil, selector=nil, value=nil)
       @container, @value = container, value
 
@@ -52,14 +38,22 @@ module OperaWatir
       end
     end
 
+    # @return [true, false] wether the element is enabled or not.
     def enabled?
       element.isEnabled
     end
 
+    # @return [true, false] wether the element is disabled or not.
+    def disabled?
+      !enabled
+    end
+
+    # @raise ObjectDisabledException unless the element is enabled.
     def assert_enabled
       raise Exceptions::ObjectDisabledException, "Element #{@method} and #{@selector} is disabled" unless enabled?
     end
 
+    # @return [true, false] if the element exists or not.
     def exist?
       !!element
     rescue Exceptions::UnknownObjectException
@@ -67,39 +61,55 @@ module OperaWatir
     end
     alias_method :exists?, :exist?
 
+    # Clicks the element. Can specify the specic position to click.
+    # @param Integer x
+    # @param Integer y
+    # @example
+    #   image.click # Clicks the image at 0,0 (relative to the image)
+    #   image.click(10, 10) # Clicks the image at 10,10 (relative to the image)
     def click(x=nil, y=nil)
       x.nil? && y.nil? ? element.click : element.click(x.to_i, y.to_i)
     end
 
+    # Click the element and don't block waiting for a response.
     def click_no_wait
       element.click 1
     end
 
+    # Click the element twice.
     def double_click
       element.click 2
     end
 
+    # Click the element three times in a row.
     def triple_click
       element.click 3
     end
 
+    # Click the element four times in a row.
     def quadruple_click
       element.click 4
     end
 
+    # Right clock the element.
     def right_click
       element.rightClick
     end
 
+    # Returns the text of the element
     def text
       element.getText
     end
 
+    # Returns the value of an elements attribute
+    # @param [#to_s] attribute name
+    # @return [String] attribute value, or an empty string if the attribute doesn't exist
     def get_attribute(attr)
       element.getAttribute(attr.to_s) || ''
     end
 
-    def contains?(target)
+    # @return [TrueClass, FalseClass] if the element's value includes some text.
+    def include?(target)
       val = element.getValue
       return false if val.nil?
       val.include?(target)
@@ -107,57 +117,128 @@ module OperaWatir
       false
     end
 
-    alias_method :verify_contains, :contains?
+    alias_method :contains?, :include?
+    alias_method :verify_contains, :include?
 
-
+    # Submits an element
+    # @example
+    #   form.submit # Does what is expected
+    #   button.submit # Doesn't do what is expected
     def submit
       element.submit
     end
 
+    # Clears the element
     def clear
       element.clear
     end
 
+    # @return text of the element. All suppounding whitespace is stripped.
+    # @note if the element doesn't have any text an empty string is returned.
     def text
       (element.getText || '').strip
     end
 
-    def text
-      (element.getText || '').strip
-    end
-
+    # @return the value of the element
     def value
       element.getValue || ''
     end
 
+    # @return the name of the element
+    # @note this is overridden in a non-standard way with input fields.
+    # @example
+    #   button.type # => 'BUTTON'
+    #   text_input_field.type # => 'text'
     def type
       element.getElementName
     end
 
-    # TODO
-    def disabled?
-      false
-    end
-
+    # Takes a screenshot of an element and saves it to a file.
+    # @param [String] file_name The name of the file to be saved
+    # @param [Numeric] time_out The number of seconds before execution stops.
     def take_screenshot(file_name, time_out)
       element.saveScreenshot(file_name, time_out)
     end
 
+    # Drags and then drops the element on another element
+    # @param other The other element
     def drag_and_drop_on(other)
       element.dragAndDropOn other
     end
 
+    # @return a hash of an element, depending on what it looks like.
+    # @example
+    #   # <p>A paragraph</a>
+    #   # <p style="color:red;">A paragraph</a>
+    #   p1.visual_hash == p2.visual_hash # => false
     def visual_hash
       element.getImageHash
     end
 
+    # @return [TrueClass, FalseClass] wether the element looks the same as another element
     def compare_hash(other)
       visual_hash == other.visual_hash
     end
 
+    # @return {:x => Numeric, :y => Numeric} the x and y coordinates of the element
     def location
       loc = element.getLocation
       {:x => loc.x.to_i, :y => loc.y.to_i}
+    end
+
+    # @attr_reader String id
+    def id
+      get_attribute 'id'
+    end
+
+    # @attr_reader String element classes
+    def class_name
+      get_attribute 'class'
+    end
+
+    # @attr_reader String element name
+    element_attr_reader :name
+
+    # @attr_reader String element style
+    element_attr_reader :style
+
+    # @attr_reader String element index
+    element_attr_reader :index
+
+    # @attr_reader String element title
+    element_attr_reader :title
+
+  private
+
+    # @private
+    LEFT = 3
+    # @private
+    RIGHT = 12
+    # @private
+    MIDDLE = 48
+    # @private
+    LEFT_DOWN = 1
+    # @private
+    LEFT_UP = 2
+    # @private
+    RIGHT_DOWN = 4
+    # @private
+    RIGHT_UP = 8
+    # @private
+    MIDDLE_DOWN = 16
+    # @private
+    MIDDLE_UP = 32
+
+    def self.xpath
+      tag.to_s
+    end
+
+    attr_writer :element
+
+    def self.new_with_element(container, element)
+      elm = new(container)
+      elm.element = element
+      elm
     end
 
     def fire_event(event, x=0, y=0)
@@ -180,25 +261,11 @@ module OperaWatir
       end
     end
 
-    # Attributes
-
-    def id
-      get_attribute 'id'
-    end
-
-    def class_name
-      get_attribute 'class'
-    end
-
-    element_attr_reader :name, :style, :value, :index, :title
-
     def element
       @element ||= find || raise(Exceptions::UnknownObjectException, "Element #{@selector} not found using #{@method}")
     end
 
     alias_method :elm, :element
-
-  private
 
     def mouse_action(x, y, *actions)
       sum = actions.inject(0){ |sum, item| sum + item}
@@ -208,10 +275,10 @@ module OperaWatir
     def find
       raise TypeError unless @selector.is_a?(String) || @selector.is_a?(Regexp) || @selector.is_a?(Fixnum)
 
-      # TODO: webdriver-opera needs to accept regexes for findElementBy*
-      #       `source` is a hack.
+      # @todo webdriver-opera needs to accept regexes for findElementBy*
+      #       +source+ is a hack.
       @selector = @selector.source if @selector.is_a?(Regexp)
-      
+
       case @method
       when :name
         if @value.nil?
