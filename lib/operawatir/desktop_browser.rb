@@ -44,7 +44,7 @@ module OperaWatir
     #
     # @param [String]  win_name    name of the window that will be opened (Pass a blank string for any window)
     # @param [String]  key         key to press (e.g. "a" or "backspace")
-    # @param [String]  modifiers   optional modifier(s) to hold down while pressing the key (e.g. :shift, :ctrl)
+    # @param [String]  modifiers   optional modifier(s) to hold down while pressing the key (e.g. :shift, :ctrl, :alt, :meta)
     #
     # @return [int] Window ID of the window shown or 0 if no window is shown
     #
@@ -88,7 +88,7 @@ module OperaWatir
     #
     # @param [String]  win_name    name of the window that will be closed (Pass a blank string for any window)
     # @param [String]  key         key to press (e.g. "a" or "backspace")
-    # @param [String]  modifiers   optional modifier(s) to hold down while pressing the key (e.g. :shift, :ctrl)
+    # @param [String]  modifiers   optional modifier(s) to hold down while pressing the key (e.g. :shift, :ctrl, :alt, :meta)
     #
     # @return [int] Window ID of the window closed or 0 if no window is closed
     #
@@ -195,7 +195,7 @@ module OperaWatir
     # @private
     # Special method to access the driver
     attr_reader :driver
-    
+
 private
     
     # Launchs an opera action in the correct context

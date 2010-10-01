@@ -1,129 +1,108 @@
 module OperaWatir
   module DesktopContainer
     
+    ######################################################################
     # Method for accessing a button element
     #
-    # Arguments:
-    # how::   (Symbol.)  Selector for how we are to locate the element.
-    # what::  (String.)  (Optional.)  Integer, string or regular expression; depending on which selector you are using.
+    # @example
+    #   $browser.quick_button(:name, "button_OK")
     #
-    # Selectors (for <tt>:how</tt>):
-    # * name
+    # @param [String] how   Method to find the element. Currently only :name is supported
+    # @param [String] what  Search text to find the element with. Currently name of the button 
     #
-    # Returns:
-    # A Button object.
+    # @return [Object] button object if found, otherwise null
     #
-    # Raises:
-    # NoSuchElementException::  if element is not found.
     def quick_button(how, what)
       QuickButton.new(self, how, what)
     end
 
-    # Method for accessing a checkbox
+    ######################################################################
+    # Method for accessing a checkbox element
     #
-    # Arguments:
-    # how::   (Symbol.)  Selector for how we are to locate the element.
-    # what::  (String.)  (Optional.)  Integer, string or regular expression; depending on which selector you are using.
+    # @example
+    #   $browser.quick_checkbox(:name, "Enable_wand_checkbox")
     #
-    # Selectors (for <tt>:how</tt>):
-    # * name
+    # @param [String] how   Method to find the element. Currently only :name is supported
+    # @param [String] what  Search text to find the element with. Currently name of the checkbox 
     #
-    # Returns:
-    # A QuickCheckbox object.
+    # @return [Object] checkbox object if found, otherwise null
     #
-    # Raises:
-    # NoSuchElementException::  if element is not found.
     def quick_checkbox(how, what)
       QuickCheckbox.new(self, how, what)
     end
 
-    # Method for accessing a Dialog tab
+    ######################################################################
+    # Method for accessing a tab on a tabbed dialog
     #
-    # Arguments:
-    # how::   (Symbol.)  Selector for how we are to locate the element.
-    # what::  (String.)  (Optional.)  Integer, string or regular expression; depending on which selector you are using.
+    # @example
+    #   $browser.quick_dialogtab(:name, "tab_prefs_forms")
     #
-    # Selectors (for <tt>:how</tt>):
-    # * name
+    # @param [String] how   Method to find the element. Currently only :name is supported
+    # @param [String] what  Search text to find the element with. Currently name of the dialog tab 
     #
-    # Returns:
-    # A QuickDialogTab object.
+    # @return [Object] dialog tab object if found, otherwise null
     #
-    # Raises:
-    # NoSuchElementException::  if element is not found.
     def quick_dialogtab(how, what)
       QuickDialogTab.new(self, how, what)
     end
 
-    # Method for accessing a button element, typically a <button> or <input type="submit" /> tag.
+    ######################################################################
+    # Method for accessing a combobox (i.e. dropdown) element
     #
-    # Arguments:
-    # how::   (Symbol.)  Selector for how we are to locate the element.
-    # what::  (String.)  (Optional.)  Integer, string or regular expression; depending on which selector you are using.
+    # @example
+    #   $browser.quick_dropdown(:name, "Startup_mode_dropdown")
     #
-    # Selectors (for <tt>:how</tt>):
-    # * name
+    # @param [String] how   Method to find the element. Currently only :name is supported
+    # @param [String] what  Search text to find the element with. Currently name of the drop down 
     #
-    # Returns:
-    # A Button object.
+    # @return [Object] drop down object if found, otherwise null
     #
-    # Raises:
-    # NoSuchElementException::  if element is not found.
     def quick_dropdown(how, what)
       QuickDropdown.new(self, how, what)
     end
 
     
-    # Method for accessing an EditField
+    ######################################################################
+    # Method for accessing an edit or multiedit element
     #
-    # Arguments:
-    # how::   (Symbol.)  Selector for how we are to locate the element.
-    # what::  (String.)  (Optional.)  Integer, string or regular expression; depending on which selector you are using.
+    # @example
+    #   $browser.quick_editfield(:name, "Startpage_edit")
     #
-    # Selectors (for <tt>:how</tt>):
-    # * name
+    # @param [String] how   Method to find the element. Currently only :name is supported
+    # @param [String] what  Search text to find the element with. Currently name of the edit field 
     #
-    # Returns:
-    # A QuickEditField object.
+    # @return [Object] edit field object if found, otherwise null
     #
-    # Raises:
-    # NoSuchElementException::  if element is not found.
     def quick_editfield(how, what)
       QuickEditField.new(self, how, what)
     end
 
-    # Method for accessing a Label, 
+    ######################################################################
+    # Method for accessing a label element
     #
-    # Arguments:
-    # how::   (Symbol.)  Selector for how we are to locate the element.
-    # what::  (String.)  (Optional.)  Integer, string or regular expression; depending on which selector you are using.
+    # @example
+    #   $browser.quick_label(:name, "label_for_Popups_dropdown")
     #
-    # Selectors (for <tt>:how</tt>):
-    # * name
+    # @param [String] how   Method to find the element. Currently only :name is supported
+    # @param [String] what  Search text to find the element with. Currently name of the label 
     #
-    # Returns:
-    # A QuickLabel object.
+    # @return [Object] label object if found, otherwise null
     #
-    # Raises:
-    # NoSuchElementException::  if element is not found.
     def quick_label(how,what)
       QuickLabel.new(self,how,what)
     end
 
-    # Method for accessing a radiobutton element
+    ######################################################################
+    # Method for accessing a radio button element
     #
-    # Arguments:
-    # how::   (Symbol.)  Selector for how we are to locate the element.
-    # what::  (String.)  (Optional.)  Integer, string or regular expression; depending on which selector you are using.
+    # @example
+    #   $browser.quick_radiobutton(:name, "Accept_cookies_radio")
     #
-    # Selectors (for <tt>:how</tt>):
-    # * name
+    # @param [String] how   Method to find the element. Currently only :name is supported
+    # @param [String] what  Search text to find the element with. Currently name of the radio button 
     #
-    # Returns:
-    # A QuickRadioButton object.
+    # @return [Object] radio button object if found, otherwise null
     #
-    # Raises:
-    # NoSuchElementException::  if element is not found.
     def quick_radiobutton(how, what)
       QuickRadioButton.new(self, how, what)
     end
