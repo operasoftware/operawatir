@@ -1,3 +1,6 @@
+# SpartanFormatter is intended for use with Opera's internal testing
+# environment SPARTAN.
+
 require "spec/runner/formatter/base_text_formatter"
 
 class SpartanFormatter < Spec::Runner::Formatter::BaseTextFormatter
