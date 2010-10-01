@@ -16,5 +16,15 @@ module OperaWatir
       element.isSelected
     end
     
+    ######################################################################
+    # Clicks a radio button or checkbox and toggles it state
+    #
+    def toggle_with_click
+      click()
+      
+      # Cheat since we don't have an even yet 
+      sleep(0.1)
+    end
+    
   end
 end
