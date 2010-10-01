@@ -1,8 +1,10 @@
 module OperaWatir
+  # @private
+  # This module is to share functions in the driver between modules so 
+  # should not be in the documentation
   module DesktopCommon
     include DesktopEnums
 
-    # Common functions shared by the main driver and quick widgets
 private
 
     def key_press(key, *opts)
