@@ -182,7 +182,7 @@ module OperaWatir
     # @param [String] prefs_section The prefs section the pref belongs to
     # @param [String] pref          The preference to get
     #
-    # @return [String] value        The value of the preference
+    # @return [String] The value of the preference
     #
     def get_preference(prefs_section, pref)
       open_window_with_action("Document Window", "Open url in new page", "opera:config")
@@ -190,6 +190,15 @@ module OperaWatir
       value = execute_script("opera.getPreference('#{prefs_section}','#{pref}');")
       close_window_with_action("Document Window", "Close page", "1")
       value
+    end
+    
+    ######################################################################
+    # Returns true if the test is running on Mac 
+    #
+    # @return [Boolean] true we the operating system is Mac, otherwise false 
+    #
+    def mac?
+      Config::CONFIG['target_os'] == "darwin"
     end
      
     # @private
