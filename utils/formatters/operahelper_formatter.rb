@@ -1,3 +1,10 @@
+# OperaHelperFormatter is intended for use with OperaHelper, which can
+# be loaded using
+#
+#   require "operawatir/helper"
+#
+# in your RSpec test suite.
+
 class OperaHelperFormatter < Spec::Runner::Formatter::BaseTextFormatter
   def example_failed (example, counter, failure)
     output.puts message example, colorize_failure("FAILED", failure)
