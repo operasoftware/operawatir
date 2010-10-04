@@ -166,6 +166,9 @@ module OperaWatir
       when /^onBlur/i
         click
         click(0, 0)
+      when /^onScroll/i
+        @container.key "Down"
+        @container.key "Up"
       when /^(onAbort|onChange|onError|onLoad|onReset|onResize
               onScroll|onSelect|onSubmit|onUnload)/i
         raise Exceptions::NotImplementedException,
