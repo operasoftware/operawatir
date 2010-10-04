@@ -183,7 +183,7 @@ describe "fire_event" do
   end
 
 
-  # FIXME: onAbort
+  # onAbort cannot be automated using Watir.
 
  
   # onBlur
@@ -283,6 +283,5 @@ describe "fire_event" do
 
 
   # FIXME:  onUnload
-
 end
 

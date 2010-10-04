@@ -17,12 +17,14 @@
   <input type="image" />
   <a href="#">foo</a>
   <input type="radio" />
-  <select><option>foo</option></select>
+  <select onChange="alert('changed!');"><option>foo</option></select>
   <select multiple><option>foo</option></select>
   <input type="text" />
   <textarea></textarea>
   <p>foo</p>
 </form>
+
+<button onClick="this.innerHTML='clicked!';" onChange="alert('foo');">click</button>
 
 <script>
 
