@@ -159,11 +159,14 @@ module OperaWatir
       when /^onMouseMove/i
         mouse_action(x, y)
         mouse_action(x + 1, y + 1)
-      when /^onClick/i
+      when /^(onClick|onFocus)/i
         click
       when /^onDblClick/i
         double_click
-      when /^(onAbort|onBlur|onChange|onError|onFocus|onLoad|onReset|onResize
+      when /^onBlur/i
+        click
+        click(0, 0)
+      when /^(onAbort|onChange|onError|onLoad|onReset|onResize
               onScroll|onSelect|onSubmit|onUnload)/i
         raise Exceptions::NotImplementedException,
           "Event #{event} has not been implemented for use with fire_event method yet."
