@@ -60,7 +60,7 @@ module OperaWatir
       # Cheat since we don't have an even yet 
       sleep(0.1)
       
-      element.getValue
+      element(true).getValue
     end
     
     ######################################################################

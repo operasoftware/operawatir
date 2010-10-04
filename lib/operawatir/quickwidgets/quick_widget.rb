@@ -130,8 +130,13 @@ private
     end
     
     # Return the element
-    def element
-      @elm ||= find || raise(Exceptions::UnknownObjectException, "Element #{@selector} not found using #{@method}")
+    def element(refresh = false)
+      if (@elm == nil || refresh == true)
+        @elm = find
+      end
+      
+      raise(Exceptions::UnknownObjectException, "Element #{@selector} not found using #{@method}") unless @elm 
+      @elm
     end
 
     # Finds the element on the page.  
