@@ -21,6 +21,11 @@ module OperaWatir
       acc[const.to_s.downcase.to_sym] = DesktopWmProtos::QuickWidgetInfo::QuickWidgetType.const_get(const)
       acc
     end
+    
+    WINDOW_ENUM_MAP = DesktopWmProtos::DesktopWindowInfo::DesktopWindowType.constants.inject({}) do |acc, const|
+      acc[const.to_s.downcase.to_sym] = DesktopWmProtos::DesktopWindowInfo::DesktopWindowType.const_get(const)
+      acc
+    end
 
   end
 end

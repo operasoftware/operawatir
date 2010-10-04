@@ -32,6 +32,7 @@ include_class com.opera.core.systems.OperaWebElement
 include_class com.opera.core.systems.scope.protos.DesktopWmProtos
 include_class com.opera.core.systems.scope.protos.SystemInputProtos
 include_class com.opera.core.systems.QuickWidget
+include_class com.opera.core.systems.QuickWindow
 
 require "operawatir/elements"
 require "operawatir/collections"
@@ -41,3 +42,4 @@ require "operawatir/desktop_common"
 require "operawatir/desktop_container"
 require "operawatir/desktop_browser"
 require "operawatir/quickwidgets"
+require 'operawatir/quick_window'
