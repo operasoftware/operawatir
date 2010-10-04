@@ -53,7 +53,6 @@ module OperaWatir
     # TODO
     def contains_text?
     end
-
     alias_method :contains_text, :contains_text?
 
     # TODO
@@ -142,6 +141,7 @@ module OperaWatir
     def type(text)
       @driver.type(text)
     end
+    alias_method :type_keys, :type
 
     # Return current URI.
     def url
