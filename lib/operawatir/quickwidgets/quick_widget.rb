@@ -74,6 +74,15 @@ module OperaWatir
     def name
       element.getName
     end
+    
+    ######################################################################
+    # Get a string representation of the widget
+    #
+    # @return [String] representation of the widget
+    #
+    def to_s
+      "#{type.to_s.capitalize} #{name}, visible=#{visible?}, enabled=#{enabled?}, text=#{text}"
+    end
 
     ######################################################################
     # Checks that the text in the widget matches the text as loaded
@@ -127,6 +136,11 @@ private
     # Right click a widget
     def right_click
       click(:right, 1)
+    end
+    
+    # double click widget
+    def double_click
+      click(:left, 2) 
     end
     
     # Return the element
