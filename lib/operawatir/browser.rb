@@ -8,7 +8,7 @@ module OperaWatir
     def initialize (executable_location = nil, *arguments)
       if executable_location.nil?
         @driver = OperaDriver.new
-        @frame = '_top'
+        @frame = "_top"
       else
         @driver = OperaDriver.new(executable_location, arguments.to_java(:String))
       end
@@ -16,7 +16,7 @@ module OperaWatir
 
     # Loads the given URL in the browser.  Waits for the page to get loaded.
     def goto(url = "")
-      raise 'You need to specify an address' if url.empty?
+      raise "You need to specify an address" if url.empty?
       @driver.get(url)
     end
 
@@ -104,7 +104,7 @@ module OperaWatir
       frames = @driver.listFrames
       puts "There are #{frames.length.to_s} frames"
       frames.each_with_index { |frame,i|
-        puts "frame index:#{(i.to_i+1).to_s} name:#{frame.to_s}"
+        puts "frame index: #{(i.to_i + 1).to_s} name: #{frame.to_s}"
       }
     end
 
@@ -172,7 +172,7 @@ module OperaWatir
     # Arguments:
     # time_out::  Will attempt to get the hash of the page until the time out is reached.
     def get_hash(time_out = 50)
-      @driver.findElementByTagName('body').getImageHash
+      @driver.findElementByTagName("body").getImageHash
     end
 
     # Returns a full list of available Opera actions in the Opera build
