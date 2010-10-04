@@ -169,8 +169,8 @@ module OperaWatir
       when /^onScroll/i
         @container.key "Down"
         @container.key "Up"
-      when /^(onAbort|onChange|onError|onLoad|onReset|onResize
-              onScroll|onSelect|onSubmit|onUnload)/i
+      when /^(onAbort|onChange|onError|onLoad|onReset|onResize|
+              onSelect|onSubmit|onUnload)/i
         raise Exceptions::NotImplementedException,
           "Event #{event} has not been implemented for use with fire_event method yet."
       end
