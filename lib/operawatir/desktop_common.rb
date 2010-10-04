@@ -8,7 +8,7 @@ module OperaWatir
 private
 
     def key_press(key, *opts)
-    #  puts "key_press #{key}" 
+      #puts "key_press #{key}, opts #{opts}" 
       #KEYMODIFIER_ENUM_MAP.each { |k, v| puts "#{k},#{v}"}
       list = Java::JavaUtil::ArrayList.new
       opts.each { |mod| list << KEYMODIFIER_ENUM_MAP[mod] }
