@@ -126,7 +126,7 @@ module OperaWatir
     # Method for accessing a addressfield object
     #
     # @example
-    #   $browser.quick_treeview(:name, "Address field")
+    #   $browser.quick_addressfield(:name, "Address field")
     #
     # @param [String] how   Method to find the element. Currently only :name is supported
     # @param [String] what  Search text to find the element with. Currently name of the treeview button 
