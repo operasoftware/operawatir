@@ -31,8 +31,5 @@ module OperaWatir
       element(true).isSelected
     end
     
-    def to_s
-      super + ", checked=#{checked?}"
-    end
   end
 end
