@@ -71,10 +71,5 @@ module OperaWatir
     def value
       element.getValue
     end
-    
-    def to_s
-      super + ", value=#{value}, default=#{default?}"
-    end
-
   end
 end

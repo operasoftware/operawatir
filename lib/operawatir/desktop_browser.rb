@@ -151,12 +151,6 @@ module OperaWatir
       end.to_a
     end
     
-    def windows
-      @driver.getWindowList.map do |java_window|
-        QuickWindow.new(self,java_window)
-      end
-    end
-    
     ######################################################################
     # Retrieves the name of a window based on it's id
     #
@@ -205,10 +199,6 @@ module OperaWatir
     #
     def mac?
       Config::CONFIG['target_os'] == "darwin"
-    end
-    
-    def unix?
-      Config::CONFIG['target_os'] == "linux"
     end
      
     # @private
