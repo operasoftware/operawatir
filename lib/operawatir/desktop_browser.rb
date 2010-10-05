@@ -124,7 +124,7 @@ module OperaWatir
     #     end
     #   end
     #
-    # @param [String] win_name name of the window to retrieve the list of widgets from
+    # @param win_name [String] name or [int] id of the window to retrieve the list of widgets from,
     #
     # @return [Array] Array of widgets retrieved from the window
     #
@@ -201,6 +201,15 @@ module OperaWatir
     #
     def mac?
       Config::CONFIG['target_os'] == "darwin"
+    end
+    
+    ######################################################################
+    # Returns true if the test is running on Linux 
+    #
+    # @return [Boolean] true we the operating system is Linux, otherwise false 
+    #
+    def linux?
+      Config::CONFIG['target_os'] == "linux"
     end
      
     # @private
