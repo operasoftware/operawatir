@@ -49,6 +49,18 @@ module OperaWatir
     alias_method :close_dialog_with_click, :close_window_with_click
     
     ######################################################################
+    # Clicks the button, and waits for loading to finish
+    #
+    # @return [int] Window ID of the window shown or 0 if no window is shown
+    #
+    def goto_url_with_click(win_name)
+      wait_start
+      click()
+      wait_for_window_loaded(win_name)
+    end
+        
+    
+    ######################################################################
     # Clicks a button or expand control and toggles it state
     #
     # @return [int] the new state of the button or expand control,
