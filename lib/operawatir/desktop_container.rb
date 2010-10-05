@@ -106,6 +106,21 @@ module OperaWatir
     def quick_radiobutton(how, what)
       QuickRadioButton.new(self, how, what)
     end
-  end
+
+    ######################################################################
+    # Method for accessing a tree view element
+    #
+    # @example
+    #   $browser.quick_treeview(:name, "Web_search_treeview")
+    #
+    # @param [String] how   Method to find the element. Currently only :name is supported
+    # @param [String] what  Search text to find the element with. Currently name of the treeview button 
+    #
+    # @return [Object] radio button object if found, otherwise null
+    #
+    def quick_treeview(how, what)
+      QuickTreeView.new(self, how, what)
+    end
+end
 end
 
