@@ -20,7 +20,7 @@ module OperaWatir
     # Clicks a radio button or checkbox and toggles it state
     #
     # @return [int] the new state of the radio button or checkbox,
-    #               0 for not checked, or 1 for checked
+    #               false for not checked, or true for checked
     #
     def toggle_with_click
       click()
