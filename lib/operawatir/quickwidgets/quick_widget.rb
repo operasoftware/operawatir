@@ -100,29 +100,29 @@ module OperaWatir
     def verify_includes_text(string_id)
       element.verifyContainsText(string_id)
     end
-    
+      
 private
 
     def driver
       @container.driver
     end
-
+    
+    # Click widget
+    def click(button = :left, times = 1, *opts)
+       #DesktopEnums::KEYMODIFIER_ENUM_MAP.each { |k, v| puts "#{k},#{v}"}
+       button = DesktopEnums::MOUSEBUTTON_ENUM_MAP[button]
+       list = Java::JavaUtil::ArrayList.new
+       opts.each { |mod| list << DesktopEnums::KEYMODIFIER_ENUM_MAP[mod] }
+       element.click(button, times, list)
+     end
+    
     # Focus a widget with a click
     def focus_with_click
       click()
-      
       # No event yet so just cheat and sleep
       sleep(0.1);
     end
     
-    # Click widget
-    def click(button = :left, times = 1, *opts)
-      #DesktopEnums::KEYMODIFIER_ENUM_MAP.each { |k, v| puts "#{k},#{v}"}
-      button = DesktopEnums::MOUSEBUTTON_ENUM_MAP[button]
-      list = Java::JavaUtil::ArrayList.new
-      opts.each { |mod| list << DesktopEnums::KEYMODIFIER_ENUM_MAP[mod] }
-      element.click(button, times, list)
-    end
     
     # Right click a widget
     def right_click
@@ -132,7 +132,7 @@ private
     # Return the element
     def element(refresh = false)
       if (@elm == nil || refresh == true)
-        @elm = find
+       @elm = find
       end
       
       raise(Exceptions::UnknownObjectException, "Element #{@selector} not found using #{@method}") unless @elm 
@@ -144,9 +144,13 @@ private
       case @method
       when :name
         @element = driver.findWidgetByName(-1, @selector)
-        raise(Exceptions::UnknownObjectException, "Element #{@selector} has wrong type") unless correct_type?
-        @element
+      when :string_id
+        @element = driver.findWidgetByStringId(-1, @selector)
+      when :text
+        @element = driver.findWidgetByText(-1, @selector)
       end
+      raise(Exceptions::UnknownObjectException, "Element #{@selector} has wrong type") unless correct_type?
+      @element
     end
   end
 end
