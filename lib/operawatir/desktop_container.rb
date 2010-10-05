@@ -116,9 +116,39 @@ module OperaWatir
     # @param [String] how   Method to find the element. Currently only :name is supported
     # @param [String] what  Search text to find the element with. Currently name of the treeview button 
     #
-    # @return [Object] radio button object if found, otherwise null
+    # @return [Object] treeview object if found, otherwise null
     #
     def quick_treeview(how, what)
+      QuickTreeView.new(self, how, what)
+    end
+    
+    ######################################################################
+    # Method for accessing a addressfield object
+    #
+    # @example
+    #   $browser.quick_treeview(:name, "Address field")
+    #
+    # @param [String] how   Method to find the element. Currently only :name is supported
+    # @param [String] what  Search text to find the element with. Currently name of the treeview button 
+    #
+    # @return [Object] addressfield object if found, otherwise null
+    #
+    def quick_addressfield(how, what)
+       QuickTreeView.new(self, how, what)
+    end
+        
+    ######################################################################
+    # Method for accessing a searchfield element
+    #
+    # @example
+    #   $browser.quick_searchfield(:name, "Web_search_searchfield")
+    #
+    # @param [String] how   Method to find the element. Currently only :name is supported
+    # @param [String] what  Search text to find the element with. Currently name of the treeview button 
+    #
+    # @return [Object] searchfield object if found, otherwise null
+    #
+    def quick_searchfield(how, what)
       QuickTreeView.new(self, how, what)
     end
 end
