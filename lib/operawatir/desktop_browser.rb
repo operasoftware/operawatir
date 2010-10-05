@@ -145,6 +145,8 @@ module OperaWatir
             QuickLabel.new(self,java_widget)
           when QuickWidget::WIDGET_ENUM_MAP[:radiobutton]
             QuickRadioButton.new(self,java_widget)
+          when QuickWidget::WIDGET_ENUM_MAP[:treeview]
+            QuickTreeView.new(self,java_widget)
         else
           QuickWidget.new(self,java_widget)
         end
