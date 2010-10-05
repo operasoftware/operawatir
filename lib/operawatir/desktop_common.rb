@@ -36,6 +36,10 @@ private
     def wait_for_window_close(win_name = "")
       driver.waitForWindowClose(win_name)
     end
+    
+    def wait_for_window_loaded(win_name = "")
+      driver.waitForWindowLoaded(win_name)
+    end
 
   end
 end
