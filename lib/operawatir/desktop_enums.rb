@@ -17,7 +17,6 @@ module OperaWatir
 
     # Enum for the widget types
     WIDGET_ENUM_MAP = DesktopWmProtos::QuickWidgetInfo::QuickWidgetType.constants.inject({}) do |acc, const|
-      #puts const.inspect
       acc[const.to_s.downcase.to_sym] = DesktopWmProtos::QuickWidgetInfo::QuickWidgetType.const_get(const)
       acc
     end

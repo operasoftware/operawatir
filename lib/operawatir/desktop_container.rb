@@ -134,7 +134,7 @@ module OperaWatir
     # @return [Object] addressfield object if found, otherwise null
     #
     def quick_addressfield(how, what)
-       QuickTreeView.new(self, how, what)
+       QuickAddressField.new(self, how, what)
     end
         
     ######################################################################
@@ -149,7 +149,7 @@ module OperaWatir
     # @return [Object] searchfield object if found, otherwise null
     #
     def quick_searchfield(how, what)
-      QuickTreeView.new(self, how, what)
+      QuickSearchField.new(self, how, what)
     end
 end
 end

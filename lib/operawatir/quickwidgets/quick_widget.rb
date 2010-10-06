@@ -138,7 +138,7 @@ private
       raise(Exceptions::UnknownObjectException, "Element #{@selector} not found using #{@method}") unless @elm 
       @elm
     end
-
+    
     # Finds the element on the page.  
     def find
       case @method
