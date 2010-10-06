@@ -134,7 +134,7 @@ module OperaWatir
     # @return [Object] addressfield object if found, otherwise null
     #
     def quick_addressfield(how, what)
-       QuickAddressField.new(self, how, what)
+       QuickAddressField.new(self, how)
     end
         
     ######################################################################
@@ -150,6 +150,21 @@ module OperaWatir
     #
     def quick_searchfield(how, what)
       QuickSearchField.new(self, how, what)
+    end
+    
+    ######################################################################
+    # Method for accessing a toolbar element
+    #
+    # @example
+    #   $browser.quick_toolbar(:name, "Document_toolbar")
+    #
+    # @param [String] how   Method to find the element. Currently only :name is supported
+    # @param [String] what  Search text to find the element with. Currently name of the treeview button 
+    #
+    # @return [Object] toolbar object if found, otherwise null
+    #
+    def quick_toolbar(how, what)
+      QuickToolbar.new(self, how, what)
     end
 end
 end
