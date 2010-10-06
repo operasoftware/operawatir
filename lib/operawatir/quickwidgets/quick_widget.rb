@@ -149,6 +149,7 @@ private
       when :text
         @element = driver.findWidgetByText(-1, @selector)
       end
+      raise(Exceptions::UnknownObjectException, "Element #{@selector} not found using #{@method}") unless @element 
       raise(Exceptions::UnknownObjectException, "Element #{@selector} has wrong type") unless correct_type?
       @element
     end
