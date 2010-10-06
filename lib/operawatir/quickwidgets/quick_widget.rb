@@ -13,7 +13,7 @@ module OperaWatir
         @selector  = selector.to_s
       end
     end
-
+    
     ######################################################################
     # Checks whether a widget exists or not
     #
