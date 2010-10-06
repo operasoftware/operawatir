@@ -1,9 +1,9 @@
 module OperaWatir
   class QuickWidget
     include DesktopCommon
-
+    
     # @private
-    def initialize(container, method, selector=nil)
+    def initialize(container, method, selector=nil, location=nil)
       @container = container
                             
       if method.is_a? Java::ComOperaCoreSystems::QuickWidget
@@ -11,9 +11,35 @@ module OperaWatir
       else
         @method    = method
         @selector  = selector.to_s
+        @location     = location
       end
     end
     
+    def quick_button(how, what)
+      @container.quick_button(how, what, element.getName)
+    end
+    def quick_checkbox(how, what)
+      @container.quick_checkbox(how, what, element.getName)
+    end
+    def quick_dropdown(how, what)
+      @container.quick_dropdown(how, what, element.getName)
+    end
+    def quick_editfield(how, what)
+      @container.quick_editfield(how, what, element.getName)
+    end
+    def quick_label(how,what)
+      @container.quick_label(how, what, element.getName)
+    end
+    def quick_radiobutton(how, what)
+      @container.quick_radiobutton(how, what, element.getName)
+    end
+    def quick_addressfield(how, what)
+      @container.quick_addressfield(how, what, element.getName)
+    end
+    def quick_searchfield(how, what)
+      @container.quick_searchfield(how, what, element.getName)
+    end
+        
     ######################################################################
     # Checks whether a widget exists or not
     #
@@ -143,7 +169,11 @@ private
     def find
       case @method
       when :name
-        @element = driver.findWidgetByName(-1, @selector)
+        if @location 
+          @element = driver.findWidgetByName(-1, @selector, location)
+        else
+          @element = driver.findWidgetByName(-1, @selector)
+        end
       when :string_id
         @element = driver.findWidgetByStringId(-1, @selector)
       when :text
