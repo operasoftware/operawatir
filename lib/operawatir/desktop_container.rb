@@ -12,8 +12,8 @@ module OperaWatir
     #
     # @return [Object] button object if found, otherwise null
     #
-    def quick_button(how, what, where=nil)
-      QuickButton.new(self, how, what, where)
+    def quick_button(how, what)
+      QuickButton.new(self, how, what)
     end
 
     ######################################################################
@@ -27,8 +27,8 @@ module OperaWatir
     #
     # @return [Object] checkbox object if found, otherwise null
     #
-    def quick_checkbox(how, what, where=nil)
-      QuickCheckbox.new(self, how, what, where)
+    def quick_checkbox(how, what)
+      QuickCheckbox.new(self, how, what)
     end
 
     ######################################################################
@@ -57,8 +57,8 @@ module OperaWatir
     #
     # @return [Object] drop down object if found, otherwise null
     #
-    def quick_dropdown(how, what,where=nil)
-      QuickDropdown.new(self, how, what, where)
+    def quick_dropdown(how, what)
+      QuickDropdown.new(self, how, what)
     end
 
     
@@ -73,8 +73,8 @@ module OperaWatir
     #
     # @return [Object] edit field object if found, otherwise null
     #
-    def quick_editfield(how, what,where=nil)
-      QuickEditField.new(self, how, what, where)
+    def quick_editfield(how, what)
+      QuickEditField.new(self, how, what)
     end
 
     ######################################################################
@@ -88,8 +88,8 @@ module OperaWatir
     #
     # @return [Object] label object if found, otherwise null
     #
-    def quick_label(how,what, where = nil)
-      QuickLabel.new(self,how,what, where)
+    def quick_label(how, what)
+      QuickLabel.new(self,how,what)
     end
 
     ######################################################################
@@ -103,8 +103,8 @@ module OperaWatir
     #
     # @return [Object] radio button object if found, otherwise null
     #
-    def quick_radiobutton(how, what, where=nil)
-      QuickRadioButton.new(self, how, what, where)
+    def quick_radiobutton(how, what)
+      QuickRadioButton.new(self, how, what)
     end
 
     ######################################################################
@@ -133,8 +133,8 @@ module OperaWatir
     #
     # @return [Object] addressfield object if found, otherwise null
     #
-    def quick_addressfield(how, what, where=nil)
-       QuickAddressField.new(self, how, what, where)
+    def quick_addressfield(how, what)
+       QuickAddressField.new(self, how, what)
     end
         
     ######################################################################
@@ -148,8 +148,8 @@ module OperaWatir
     #
     # @return [Object] searchfield object if found, otherwise null
     #
-    def quick_searchfield(how, what, where=nil)
-      QuickSearchField.new(self, how, what, where=nil)
+    def quick_searchfield(how, what)
+      QuickSearchField.new(self, how, what)
     end
     
     ######################################################################
@@ -163,9 +163,52 @@ module OperaWatir
     #
     # @return [Object] toolbar object if found, otherwise null
     #
-    def quick_toolbar(how, what, where=nil)
-      QuickToolbar.new(self, how, what, where)
+    def quick_toolbar(how, what)
+      QuickToolbar.new(self, how, what)
     end
+    
+    
+    # @private
+    def local_quick_button(how, what, where)
+      QuickButton.new(self, how, what, where)
+    end
+    
+    # @private
+    def local_quick_checkbox(how, what, where)
+      QuickCheckbox.new(self, how, what, where)
+    end
+    
+    # @private
+    def local_quick_dropdown(how, what, where)
+      QuickDropDown.new(self, how, what, where)
+    end 
+    
+    # @private
+    def local_quick_editfield(how, what, where)
+      QuickEditField.new(self, how, what,where)
+    end
+    
+    # @private
+    def local_quick_label(how,what, where)
+      QuickLabel.new(self, how, what, where)
+    end
+    
+    # @private
+    def local_quick_radiobutton(how, what, where)
+      QuickRadioButton.new(self, how, what, where)
+    end
+    
+    # @private
+    def local_quick_addressfield(how, what, where)
+      QuickAddressField.new(self, how, what, where)
+    end
+    
+    # @private
+    def local_quick_searchfield(how, what)
+      QuickSearchField.new(self, how, what, where)
+    end
+            
+
 end
 end
 

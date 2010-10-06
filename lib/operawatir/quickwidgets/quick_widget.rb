@@ -16,28 +16,28 @@ module OperaWatir
     end
     
     def quick_button(how, what)
-      @container.quick_button(how, what, element.getName)
+      @container.local_quick_button(how, what, element.getName)
     end
     def quick_checkbox(how, what)
-      @container.quick_checkbox(how, what, element.getName)
+      @container.local_quick_checkbox(how, what, element.getName)
     end
     def quick_dropdown(how, what)
-      @container.quick_dropdown(how, what, element.getName)
+      @container.local_quick_dropdown(how, what, element.getName)
     end
     def quick_editfield(how, what)
-      @container.quick_editfield(how, what, element.getName)
+      @container.local_quick_editfield(how, what, element.getName)
     end
     def quick_label(how,what)
-      @container.quick_label(how, what, element.getName)
+      @container.local_quick_label(how, what, element.getName)
     end
     def quick_radiobutton(how, what)
-      @container.quick_radiobutton(how, what, element.getName)
+      @container.local_quick_radiobutton(how, what, element.getName)
     end
     def quick_addressfield(how, what)
-      @container.quick_addressfield(how, what, element.getName)
+      @container.local_quick_addressfield(how, what, element.getName)
     end
     def quick_searchfield(how, what)
-      @container.quick_searchfield(how, what, element.getName)
+      @container.local_quick_searchfield(how, what, element.getName)
     end
         
     ######################################################################
