@@ -129,6 +129,11 @@ module OperaWatir
       element.getImageHash
     end
 
+    def get_hash
+      warn "`get_hash' is deprecated.  Use `visual_hash' instead."
+      visual_hash
+    end
+
     def compare_hash(other)
       visual_hash == other.visual_hash
     end
