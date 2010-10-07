@@ -104,6 +104,7 @@ module OperaWatir
       element.getValue
     end
     alias_method :text, :value
+    alias_method :to_s, :value
 
     def type
       element.getElementName
