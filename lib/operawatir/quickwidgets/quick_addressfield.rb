@@ -17,7 +17,7 @@ module OperaWatir
     #
     def load_page_with_key_press(key, *modifiers)
       wait_start
-      click()
+      key_press(key, *modifiers)
       wait_for_window_loaded("")
     end
     
