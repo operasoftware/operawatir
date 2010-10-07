@@ -129,12 +129,12 @@ module OperaWatir
     #   $browser.quick_addressfield(:name, "Address field")
     #
     # @param [String] how   Method to find the element. Currently only :name is supported
-    # @param [String] what  Search text to find the element with. Currently name of the treeview button 
+    # @param [String] what  Search text to find the element with. Currently name of the address field 
     #
     # @return [Object] addressfield object if found, otherwise null
     #
-    def quick_addressfield(how, what)
-       QuickAddressField.new(self, how, what)
+    def quick_addressfield(how, what, where=nil)
+       QuickAddressField.new(self, how, what, where)
     end
         
     ######################################################################
@@ -144,12 +144,12 @@ module OperaWatir
     #   $browser.quick_searchfield(:name, "Web_search_searchfield")
     #
     # @param [String] how   Method to find the element. Currently only :name is supported
-    # @param [String] what  Search text to find the element with. Currently name of the treeview button 
+    # @param [String] what  Search text to find the element with. Currently name of the searchfield 
     #
     # @return [Object] searchfield object if found, otherwise null
     #
-    def quick_searchfield(how, what)
-      QuickSearchField.new(self, how, what)
+    def quick_searchfield(how, what, where=nil)
+      QuickSearchField.new(self, how, what, where)
     end
     
     ######################################################################
@@ -159,7 +159,7 @@ module OperaWatir
     #   $browser.quick_toolbar(:name, "Document_toolbar")
     #
     # @param [String] how   Method to find the element. Currently only :name is supported
-    # @param [String] what  Search text to find the element with. Currently name of the treeview button 
+    # @param [String] what  Search text to find the element with. Currently name of the toolbar 
     #
     # @return [Object] toolbar object if found, otherwise null
     #
@@ -204,11 +204,9 @@ module OperaWatir
     end
     
     # @private
-    def local_quick_searchfield(how, what)
+    def local_quick_searchfield(how, what, where)
       QuickSearchField.new(self, how, what, where)
     end
-            
-
-end
+  end
 end
 

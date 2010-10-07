@@ -11,7 +11,7 @@ module OperaWatir
       else
         @method    = method
         @selector  = selector.to_s
-        @location     = location
+        @location  = location
       end
     end
     
@@ -169,8 +169,8 @@ private
     def find
       case @method
       when :name
-        if @location 
-          @element = driver.findWidgetByName(-1, @selector, location)
+        if @location != nil
+          @element = driver.findWidgetByName(-1, @selector, @location)
         else
           @element = driver.findWidgetByName(-1, @selector)
         end
