@@ -79,7 +79,7 @@ module OperaWatir
     end
 
     def get_attribute(name)
-      element.getAttribute(name.to_s) || ''
+      element.getAttribute(name.to_s) || ""
     end
     alias_method :attribute_value, :get_attribute
 
@@ -145,7 +145,32 @@ module OperaWatir
       # In the case that event is given as symbol, we convert it to a
       # string.
       event = event.to_s
+      event =~ /on(.*)/i
+      event = $1 if $1
+      event = event.downcase.to_sym
 
+      # TODO: Should this be moved to OperaDriver instead?
+      case event
+      when :abort, :blur, :change, :error, :focus, :load, :reset,
+        :resize, :scroll, :submit, :unload
+        type = "HTMLEvents";
+        init = "initEvent(\"#{event.to_s}\", true, true)"
+      when :click, :dblclick, :mousedown, :mousemove, :mouseout,
+        :mouseover, :mouseup
+        type = "MouseEvents"
+        init = "initMouseEvent(\"#{event.to_s}\", true, true, window, 1, 0, 0, 0, 0, false, false, false, false, 0, null)"
+      else
+        raise Exceptions::NotImplementedException,
+          "Event on#{event} is not a valid ECMAscript event for OperaWatir."
+      end
+
+      script = "var event = document.createEvent(\"#{type}\"); " +
+        "event." + init + "; " +
+        "locator.dispatchEvent(event);"
+
+      element.callMethod(script);
+          
+=begin
       case event
       when /^onMouseOver/i
         mouse_action(x, y)
@@ -174,6 +199,7 @@ module OperaWatir
         raise Exceptions::NotImplementedException,
           "Event #{event} has not been implemented for use with fire_event method yet."
       end
+=end
     end
 
     # Attributes
@@ -228,7 +254,7 @@ module OperaWatir
         @container.driver.findElementByXPath("//*[@title='#{@selector}']")
       when :index
         raise "watir index starts from 1" if @selector.to_i.zero?
-        @container.driver.findElementByXPath("//*[#{@selector.to_i+1}]")
+        @container.driver.findElementByXPath("//*[#{@selector.to_i + 1}]")
       when :value
         @container.driver.findElementByXPath("//*[@value='#{@selector}' or text()='#{@selector}']")
       when :class

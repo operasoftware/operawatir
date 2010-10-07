@@ -35,7 +35,7 @@ module OperaWatir
 
     def elements(method = nil, selector = nil, value = nil)
       # FIXME:  Needs to fetch element-specific functionality.
-      Collection.new(@driver.findElementsByXPath(selector).map { |element| OperaWatir::Element.new(self, element) } )
+      Collection.new(@driver.findElementsByXPath(selector).map { |element| OperaWatir::Element.new(self, method, selector, value) } )
     end
 
     def ems

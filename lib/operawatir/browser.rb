@@ -88,7 +88,7 @@ module OperaWatir
       when :name
         @driver.switchTo.frame(what)
       when :index
-        @driver.switchTo.frame(what.to_i - 1) #index starts from 1 in watir
+        @driver.switchTo.frame(what.to_i - 1)  # index starts from 1 in watir
       end
       self
     end
