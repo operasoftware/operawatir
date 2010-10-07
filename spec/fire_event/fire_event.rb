@@ -5,7 +5,6 @@ describe "fire_event" do
     browser.p(:id, "result").verify_contains("PASS").should == true
   end
 
-=begin
   # onMouseOver 
   it "should fire event onMouseOver with symbol" do
     browser.goto files + "onMouseOver.html"
@@ -23,7 +22,7 @@ describe "fire_event" do
   end
 
   it "should fire event onMouseOver with lowercase string" do
-    browser.goto files + "onMouseOut.html"
+    browser.goto files + "onMouseOver.html"
     browser.elements(:xpath, "//form/*").each { |e| e.fire_event("onmouseover") }
   end
 
@@ -227,7 +226,6 @@ describe "fire_event" do
     browser.goto files + "onFocus.html"
     browser.elements(:xpath, "//form/*").each { |e| e.fire_event("onfocus") }
   end
-=end
 
   # FIXME: onLoad
 
@@ -238,7 +236,6 @@ describe "fire_event" do
   # FIXME:  onResize
 
 
-  # FIXME:  onScroll
   it "should fire event onScroll with symbol" do
     browser.goto files + "onScroll.html"
     browser.element(:xpath, "//body").fire_event(:onScroll)
@@ -259,7 +256,7 @@ describe "fire_event" do
     browser.element(:xpath, "//body").fire_event("onscroll")
   end
 
-
+  
   # FIXME:  onSelect
 
 
