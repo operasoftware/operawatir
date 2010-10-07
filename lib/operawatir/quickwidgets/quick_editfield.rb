@@ -44,6 +44,40 @@ module OperaWatir
       # Cheat until we have an event
       sleep(0.2)
     end
-    
+
+private    
+    # Presses the key, and waits for loading to finish
+    def load_page_with_key_press(key, *modifiers)
+      wait_start
+      key_press(key, *modifiers)
+      wait_for_window_loaded("")
+    end
+
+    # Enter some text and hit enter to do the action for the field
+    def enter_text_and_hit_enter(text)
+      loaded_url = ""
+      
+      # Set focus
+      focus_with_click()
+      # Clear the field
+      clear()
+      # Type in the text
+      typed_text = type_text(text)
+      
+      # Check that the typing matched what was expected
+      if typed_text == text
+        # Hit Enter to load the typed in url
+        win_id = load_page_with_key_press("Enter")
+        
+        # Check that the page actually loaded in a window
+        if win_id > 0
+          # Refresh the control and get the text after the page as loaded
+          loaded_url = element(true).getText
+        end
+      end
+      
+      loaded_url
+    end
+
   end
 end
