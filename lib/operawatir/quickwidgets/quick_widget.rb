@@ -1,6 +1,7 @@
 module OperaWatir
   class QuickWidget
     include DesktopCommon
+    include DesktopContainer
     
     # @private
     def initialize(container, method, selector=nil, location=nil)
@@ -15,31 +16,6 @@ module OperaWatir
       end
     end
     
-    def quick_button(how, what)
-      @container.local_quick_button(how, what, element.getName)
-    end
-    def quick_checkbox(how, what)
-      @container.local_quick_checkbox(how, what, element.getName)
-    end
-    def quick_dropdown(how, what)
-      @container.local_quick_dropdown(how, what, element.getName)
-    end
-    def quick_editfield(how, what)
-      @container.local_quick_editfield(how, what, element.getName)
-    end
-    def quick_label(how,what)
-      @container.local_quick_label(how, what, element.getName)
-    end
-    def quick_radiobutton(how, what)
-      @container.local_quick_radiobutton(how, what, element.getName)
-    end
-    def quick_addressfield(how, what)
-      @container.local_quick_addressfield(how, what, element.getName)
-    end
-    def quick_searchfield(how, what)
-      @container.local_quick_searchfield(how, what, element.getName)
-    end
-        
     ######################################################################
     # Checks whether a widget exists or not
     #
@@ -127,12 +103,13 @@ module OperaWatir
       element.verifyContainsText(string_id)
     end
       
-private
-
+    # @private
     def driver
       @container.driver
     end
-    
+
+private
+
     # Click widget
     def click(button = :left, times = 1, *opts)
        #DesktopEnums::KEYMODIFIER_ENUM_MAP.each { |k, v| puts "#{k},#{v}"}
