@@ -217,6 +217,10 @@ module OperaWatir
     attr_reader :driver
 
 private
+    # Gets the parent widget name of which there is none here
+    def parent_widget
+      nil
+    end
     
     # Launchs an opera action in the correct context
     def opera_desktop_action(name, *param)

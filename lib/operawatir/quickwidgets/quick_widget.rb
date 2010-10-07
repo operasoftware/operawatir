@@ -109,7 +109,11 @@ module OperaWatir
     end
 
 private
-
+    # Gets the parent widget name
+    def parent_widget
+      element.getName()
+    end
+    
     # Click widget
     def click(button = :left, times = 1, *opts)
        #DesktopEnums::KEYMODIFIER_ENUM_MAP.each { |k, v| puts "#{k},#{v}"}
@@ -132,6 +136,11 @@ private
       click(:right, 1)
     end
     
+    # double click widget
+    def double_click
+      click(:left, 2) 
+    end
+
     # Return the element
     def element(refresh = false)
       if (@elm == nil || refresh == true)
@@ -157,7 +166,7 @@ private
         @element = driver.findWidgetByText(-1, @selector)
       end
       raise(Exceptions::UnknownObjectException, "Element #{@selector} not found using #{@method}") unless @element 
-      raise(Exceptions::UnknownObjectException, "Element #{@selector} has wrong type") unless correct_type?
+      raise(Exceptions::UnknownObjectException, "Element #{@selector} has wrong type #{@element.getType}") unless correct_type?
       @element
     end
   end
