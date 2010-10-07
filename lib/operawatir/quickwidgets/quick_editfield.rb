@@ -31,7 +31,7 @@ module OperaWatir
       sleep(0.2);
 
       # Return what is in the field to check
-      element.getText
+      element(true).getText
     end
 
     ######################################################################

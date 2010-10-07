@@ -21,5 +21,38 @@ module OperaWatir
       wait_for_window_loaded("")
     end
     
+    ######################################################################
+    # Enters the url into the addres field, and waits for loading to finish
+    #
+    # @param [String] url   Web Address to load
+    #
+    # @return [String] text in the address field after the page is loaded
+    #                   or a blank string
+    #
+    def load_page_with_url(url)
+      loaded_url = ""
+      
+      # Set focus
+      focus_with_click()
+      # Clear the field
+      clear()
+      # Type in the url
+      typed_text = type_text(url)
+      
+      # Check that the typing matched what was expected
+      if typed_text == url
+        # Hit Enter to load the typed in url
+        win_id = load_page_with_key_press("Enter")
+        
+        # Check that the page actually loaded in a window
+        if win_id > 0
+          # Refresh the control and get the text after the page as loaded
+          loaded_url = element(true).getText
+        end
+      end
+      
+      loaded_url
+    end
+    
   end
 end
