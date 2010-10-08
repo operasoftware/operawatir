@@ -81,6 +81,20 @@ module OperaWatir
       @elm.getWindowID
     end
 
+    ######################################################################
+    # Prints out all of the internal information about the window. Used
+    # to discover the names of widgets and windows to use in the tests
+    #
+    def print_window_info
+      puts "    Name: " + name
+      puts "   Title: " + title
+      puts "      ID: " + id.to_s
+      puts "    Type: " + type.to_s
+      puts "OnScreen: " + on_screen?.to_s
+      puts "     Pos: x=" + @elm.getLocation().x.to_s + ", y=" + @elm.getLocation().y.to_s
+      puts "    Size: width=" + @elm.getSize().width.to_s + ", height=" + @elm.getSize().height.to_s
+      puts ""
+    end
     
 private
 
