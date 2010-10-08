@@ -13,7 +13,7 @@ module OperaWatir
     # @return [Object] button object if found, otherwise null
     #
     def quick_button(how, what)
-      QuickButton.new(self, how, what, parent_widget)
+      QuickButton.new(self, how, what, parent_widget, get_window_id)
     end
 
     ######################################################################
@@ -28,7 +28,7 @@ module OperaWatir
     # @return [Object] checkbox object if found, otherwise null
     #
     def quick_checkbox(how, what)
-      QuickCheckbox.new(self, how, what, parent_widget)
+      QuickCheckbox.new(self, how, what, parent_widget, get_window_id)
     end
 
     ######################################################################
@@ -43,7 +43,7 @@ module OperaWatir
     # @return [Object] dialog tab object if found, otherwise null
     #
     def quick_dialogtab(how, what)
-      QuickDialogTab.new(self, how, what, parent_widget)
+      QuickDialogTab.new(self, how, what, parent_widget, get_window_id)
     end
 
     ######################################################################
@@ -58,7 +58,7 @@ module OperaWatir
     # @return [Object] drop down object if found, otherwise null
     #
     def quick_dropdown(how, what)
-      QuickDropdown.new(self, how, what, parent_widget)
+      QuickDropdown.new(self, how, what, parent_widget, get_window_id)
     end
 
     
@@ -74,7 +74,7 @@ module OperaWatir
     # @return [Object] edit field object if found, otherwise null
     #
     def quick_editfield(how, what)
-      QuickEditField.new(self, how, what, parent_widget)
+      QuickEditField.new(self, how, what, parent_widget, get_window_id)
     end
 
     ######################################################################
@@ -89,7 +89,7 @@ module OperaWatir
     # @return [Object] label object if found, otherwise null
     #
     def quick_label(how, what)
-      QuickLabel.new(self, how, what, parent_widget)
+      QuickLabel.new(self, how, what, parent_widget, get_window_id)
     end
 
     ######################################################################
@@ -104,7 +104,7 @@ module OperaWatir
     # @return [Object] radio button object if found, otherwise null
     #
     def quick_radiobutton(how, what)
-      QuickRadioButton.new(self, how, what, parent_widget)
+      QuickRadioButton.new(self, how, what, parent_widget, get_window_id)
     end
 
     ######################################################################
@@ -119,7 +119,7 @@ module OperaWatir
     # @return [Object] treeview object if found, otherwise null
     #
     def quick_treeview(how, what)
-      QuickTreeView.new(self, how, what, parent_widget)
+      QuickTreeView.new(self, how, what, parent_widget, get_window_id)
     end
     
     ######################################################################
@@ -134,7 +134,7 @@ module OperaWatir
     # @return [Object] addressfield object if found, otherwise null
     #
     def quick_addressfield(how, what)
-       QuickAddressField.new(self, how, what, parent_widget)
+       QuickAddressField.new(self, how, what, parent_widget, get_window_id)
     end
         
     ######################################################################
@@ -149,7 +149,7 @@ module OperaWatir
     # @return [Object] searchfield object if found, otherwise null
     #
     def quick_searchfield(how, what)
-      QuickSearchField.new(self, how, what, parent_widget)
+      QuickSearchField.new(self, how, what, parent_widget, get_window_id)
     end
     
     ######################################################################
@@ -164,9 +164,24 @@ module OperaWatir
     # @return [Object] toolbar object if found, otherwise null
     #
     def quick_toolbar(how, what)
-      QuickToolbar.new(self, how, what, parent_widget)
+      QuickToolbar.new(self, how, what, parent_widget, get_window_id)
     end
     
-   end
+    ######################################################################
+    # Method for accessing a window
+    #
+    # @example
+    #   $browser.quick_window(:name, "Browser Window")
+    #
+    # @param [String] how   Method to find the element. Currently only :name is supported
+    # @param [String] what  Search text to find the element with. Currently name of the window 
+    #
+    # @return [Object] window object if found, otherwise null
+    #
+    def quick_window(how, what)
+      QuickWindow.new(self, how, what)
+    end
+
+  end
 end
 

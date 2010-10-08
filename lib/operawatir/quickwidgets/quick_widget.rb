@@ -4,7 +4,7 @@ module OperaWatir
     include DesktopContainer
     
     # @private
-    def initialize(container, method, selector=nil, location=nil)
+    def initialize(container, method, selector=nil, location=nil, window_id=-1)
       @container = container
                             
       if method.is_a? Java::ComOperaCoreSystems::QuickWidget
@@ -13,6 +13,7 @@ module OperaWatir
         @method    = method
         @selector  = selector.to_s
         @location  = location
+        @window_id  = window_id
       end
     end
     
@@ -114,8 +115,8 @@ module OperaWatir
       puts " Parent: " + element.getParentName()
       puts "Visible: " + visible?.to_s
       puts "Enabled: " + enabled?.to_s
-      puts "    Pos: x=" + element.getLocation().x.to_s + ", y=" + element.getLocation().y.to_s
-      puts "   Size: width=" + element.getSize().width.to_s + ", height=" + element.getSize().height.to_s
+      puts "    Pos: x=" + element.getRect().x.to_s + ", y=" + element.getRect().y.to_s
+      puts "   Size: width=" + element.getRect().width.to_s + ", height=" + element.getRect().height.to_s
       puts ""
     end
           
@@ -128,6 +129,13 @@ private
     # Gets the parent widget name
     def parent_widget
       element.getName()
+    end
+
+    # Gets the window id to use for the search
+    def get_window_id
+      # Need to pass on the current setting of @window_id to make
+      # nesting of quick widgets work
+      @window_id
     end
     
     # Click widget
@@ -171,15 +179,16 @@ private
     def find
       case @method
       when :name
+        #puts "Widget: " + @window_id.to_s + ", " + @selector.to_s + ", " + @location.to_s
         if @location != nil
-          @element = driver.findWidgetByName(-1, @selector, @location)
+          @element = driver.findWidgetByName(@window_id, @selector, @location)
         else
-          @element = driver.findWidgetByName(-1, @selector)
+          @element = driver.findWidgetByName(@window_id, @selector)
         end
       when :string_id
-        @element = driver.findWidgetByStringId(-1, @selector)
+        @element = driver.findWidgetByStringId(@window_id, @selector)
       when :text
-        @element = driver.findWidgetByText(-1, @selector)
+        @element = driver.findWidgetByText(@window_id, @selector)
       end
       raise(Exceptions::UnknownObjectException, "Element #{@selector} not found using #{@method}") unless @element 
       raise(Exceptions::UnknownObjectException, "Element #{@selector} has wrong type #{@element.getType}") unless correct_type?

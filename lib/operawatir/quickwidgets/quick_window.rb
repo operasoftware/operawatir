@@ -1,6 +1,7 @@
 module OperaWatir
   class QuickWindow
     include DesktopCommon
+    include DesktopContainer
 
     # @private
     def initialize(container, method, selector=nil)
@@ -20,7 +21,7 @@ module OperaWatir
     # @return [Boolean] true if the widget exists otherwise false
     #
     def exist?
-      !!@elm
+      !!element
       rescue Exceptions::UnknownObjectException
         false
     end
@@ -32,7 +33,7 @@ module OperaWatir
     # @return [Boolean] true if visible otherwise false
     #
     def visible?
-      @elm.isVisible
+      element.isVisible
     end
 
     ######################################################################
@@ -50,7 +51,7 @@ module OperaWatir
     # @return [String] name of the widget
     #
     def name
-      @elm.getName
+      element.getName
     end
     
     ######################################################################
@@ -59,7 +60,7 @@ module OperaWatir
     # @return [String] name of the widget
     #
     def title
-      @elm.getTitle
+      element.getTitle
     end
         
     
@@ -73,12 +74,12 @@ module OperaWatir
     end
     
     def on_screen?
-      @elm.isOnScreen
+      element.isOnScreen
     end
 
 
     def id
-      @elm.getWindowID
+      element.getWindowID
     end
 
     ######################################################################
@@ -91,24 +92,46 @@ module OperaWatir
       puts "      ID: " + id.to_s
       puts "    Type: " + type.to_s
       puts "OnScreen: " + on_screen?.to_s
-      puts "     Pos: x=" + @elm.getLocation().x.to_s + ", y=" + @elm.getLocation().y.to_s
-      puts "    Size: width=" + @elm.getSize().width.to_s + ", height=" + @elm.getSize().height.to_s
+      puts "     Pos: x=" + element.getRect().x.to_s + ", y=" + element.getRect().y.to_s
+      puts "    Size: width=" + element.getRect().width.to_s + ", height=" + element.getRect().height.to_s
       puts ""
     end
-    
-private
 
+    # @private    
     def driver
       @container.driver
     end
 
-    #def find
-    #  case @method
-    #  when :name
-    #    @element = driver.findWidgetByName(-1, @selector)
-    #    raise(Exceptions::UnknownObjectException, "Element #{@selector} has wrong type") unless correct_type?
-    #    @element
-    #  end
-    #end
+private
+
+    # Gets the parent widget name of which there is none here
+    def parent_widget
+      nil
+    end
+
+    # Gets the window id to use for the search
+    def get_window_id
+      element.getWindowID
+    end
+
+    # Return the element
+    def element(refresh = false)
+      if (@elm == nil || refresh == true)
+       @elm = find
+      end
+      
+      raise(Exceptions::UnknownObjectException, "Window #{@selector} not found using #{@method}") unless @elm 
+      @elm
+    end
+    
+    # Finds the element on the page.  
+    def find
+      case @method
+      when :name
+        @element = driver.findWindowByName(@selector)
+      end
+      raise(Exceptions::UnknownObjectException, "Window #{@selector} not found using #{@method}") unless @element 
+      @element
+    end
   end
 end

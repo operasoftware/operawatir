@@ -28,4 +28,3 @@ require "operawatir/desktop_common"
 require "operawatir/desktop_container"
 require "operawatir/desktop_browser"
 require "operawatir/quickwidgets"
-

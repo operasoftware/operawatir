@@ -222,6 +222,11 @@ private
       nil
     end
     
+    # Gets the window id to use for the search
+    def get_window_id
+      -1
+    end
+    
     # Launchs an opera action in the correct context
     def opera_desktop_action(name, *param)
       driver.operaDesktopAction(name, param.to_java(:String))
