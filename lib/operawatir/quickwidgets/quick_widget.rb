@@ -102,7 +102,23 @@ module OperaWatir
     def verify_includes_text(string_id)
       element.verifyContainsText(string_id)
     end
-      
+
+    ######################################################################
+    # Prints out all of the internal information about the widget. Used
+    # to discover the names of widgets and windows to use in the tests
+    #
+    def print_widget_info
+      puts "   Name: " + name
+      puts "   Text: " + text
+      puts "   Type: " + type.to_s
+      puts " Parent: " + element.getParentName()
+      puts "Visible: " + visible?.to_s
+      puts "Enabled: " + enabled?.to_s
+      puts "    Pos: x=" + element.getLocation().x.to_s + ", y=" + element.getLocation().y.to_s
+      puts "   Size: width=" + element.getSize().width.to_s + ", height=" + element.getSize().height.to_s
+      puts ""
+    end
+          
     # @private
     def driver
       @container.driver
