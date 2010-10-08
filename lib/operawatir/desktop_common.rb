@@ -38,7 +38,10 @@ private
     end
     
     def wait_for_window_loaded(win_name = "")
-      driver.waitForWindowLoaded(win_name)
+      win_id = driver.waitForWindowLoaded(win_name)
+      # Hack to allow for Javascript focus events and the like
+      sleep(0.1)
+      win_id
     end
 
   end
