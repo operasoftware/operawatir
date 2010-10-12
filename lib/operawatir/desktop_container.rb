@@ -43,7 +43,7 @@ module OperaWatir
     # @return [Object] dialog tab object if found, otherwise null
     #
     def quick_dialogtab(how, what)
-      QuickDialogTab.new(self, how, what, parent_widget, get_window_id)
+      QuickDialogTab.new(self, how, what, parent_widget,get_window_id)
     end
 
     ######################################################################
@@ -134,7 +134,7 @@ module OperaWatir
     # @return [Object] addressfield object if found, otherwise null
     #
     def quick_addressfield(how, what)
-       QuickAddressField.new(self, how, what, parent_widget, get_window_id)
+        QuickAddressField.new(self, how, what, parent_widget, get_window_id)
     end
         
     ######################################################################
