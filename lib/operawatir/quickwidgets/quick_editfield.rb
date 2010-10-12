@@ -75,7 +75,7 @@ private
         
         # Check that the page actually loaded in a window
         if win_id > 0
-         # Refresh the control and get the text after the page as loaded
+          # Refresh the control and get the text after the page as loaded
           loaded_url = element(true).getText
         end
       end
