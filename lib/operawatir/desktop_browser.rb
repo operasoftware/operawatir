@@ -58,26 +58,6 @@ module OperaWatir
     
     
     ######################################################################
-    # Clicks the specified webpage button, and waits for
-    # the window with window name win_name to be shown
-    # Use for clicks that will open a dialog
-    #
-    # @example
-    #   $browser.open_window_with_button_click(:id, "SignIn")
-    #
-    # @param [symbol]  search_type key to press (e.g. "a" or "backspace")
-    # @param [String]  control     
-    #
-    # @return [int] Window ID of the window shown or 0 if no window is shown
-    #
-    def open_window_with_button_click(search_type, control) 
-      wait_start 
-      super.button(search_type, control).click_no_wait #click waits for window to open? 
-      wait_for_window_to_shown("") 
-    end
-    
-    
-    ######################################################################
     # Executes the action given by action_name, and waits for
     # the window with window name win_name to close
     #
