@@ -62,19 +62,31 @@ module OperaWatir
         
     
     ######################################################################
+    # Clicks a tab button to focus the tab/page
+    #
+    #
+    def focus_tab_with_click
+      click
+      
+      # Cheat since we don't have an event yet 
+      sleep(0.1)
+    end
+    
+    ######################################################################
     # Clicks a button or expand control and toggles it state
     #
     # @return [int] the new state of the button or expand control,
     #               0 for not pressed, or 1 for pressed
     #
     def toggle_with_click
-      click()
-      
-      # Cheat since we don't have an even yet 
+      click
+          
+      # Cheat since we don't have an event yet 
       sleep(0.1)
-      
+        
       element(true).getValue
     end
+      
     
     ######################################################################
     # Gets the value of the button or expand control.

@@ -157,7 +157,7 @@ private
     
     # Focus a widget with a click
     def focus_with_click
-      click()
+      click
       # No event yet so just cheat and sleep
       sleep(0.1);
     end
