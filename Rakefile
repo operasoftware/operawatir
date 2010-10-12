@@ -1,50 +1,58 @@
 require 'rubygems'
-require 'rake'
+require 'bundler/setup'
+Bundler.require
+
 require 'rake/clean'
 require 'rake/gempackagetask'
-require 'spec/rake/spectask'
-require 'yard'
+require 'rspec/core/rake_task'
+require 'yard/rake/yardoc_task'
 
-spec = Gem::Specification.new do |s|
-  s.name = 'OperaWatir'
-  s.version = File.read('VERSION').strip
-  s.has_rdoc = true
-  s.extra_rdoc_files = ['README', 'LICENSE']
-  s.summary = 'OperaWatir on OperaDriver engine'
-  s.description = s.summary
-  s.author = 'Deniz Turkoglu'
-  s.email = 'dturkoglu@opera.com'
-  s.files = %w(README LICENSE VERSION Rakefile) + Dir.glob('{lib,spec,utils}/**/*')
-  s.require_path = 'lib'
+
+def name
+  @name ||= File.basename(Dir['*.gemspec'].first, '.gemspec')
 end
 
-Rake::GemPackageTask.new(spec) do |p|
-  p.gem_spec = spec
-  p.need_tar = true
-  p.need_zip = true
+def gemspec_file
+  "#{name}.gemspec"
 end
 
-task :yard do
-  sh 'yard doc --no-private --files LICENSE,INSTALL'
+def spec
+  @spec
+end
+
+load(gemspec_file)
+
+
+Rake::GemPackageTask.new(spec) do |t|
+  t.need_tar = true
+  t.need_zip = true
+end
+
+CLEAN.add 'pkg'
+
+
+RSpec::Core::RakeTask.new do |t|
+end
+
+
+YARD::Rake::YardocTask.new do |t|
+  t.options = ['--no-private']
+  t.files   = spec.files
 end
 
 task :doc => :yard
+
 CLEAN.add 'doc'
 
-Spec::Rake::SpecTask.new do |t|
-  t.spec_files = FileList['spec/**/*.rb']
-  t.spec_opts = ['--options spec/spec.opts'] if File.exist?('spec/spec.opts')
-end
-
-task :bump do
-  v = ENV['VERSION']
-  abort("usage: rake bump VERSION=\"new version number\"") unless v
-
-  system "git stash &&
-       echo '#{v}' > VERSION &&
-       git add VERSION &&
-       ! git commit --verbose --message 'Version #{v}.' &&
-       git tag -a '#{v}' &&
-       git push --tags &&
-       git stash apply"
-end
+# task :bump do
+#   v = ENV['VERSION']
+#   abort("usage: rake bump VERSION=\"new version number\"") unless v
+# 
+#   system "git stash &&
+#        echo '#{v}' > VERSION &&
+#        git add VERSION &&
+#        ! git commit --verbose --message 'Version #{v}.' &&
+#        git tag -a '#{v}' &&
+#        git push --tags &&
+#        git stash apply"
+# end

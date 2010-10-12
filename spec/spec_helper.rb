@@ -1,18 +1,19 @@
-$LOAD_PATH.unshift File.join(File.dirname(__FILE__), "..", "lib")
-require "operawatir"
-require "spec/watirspec/spec_helper"
+$LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
+Bundler.require :spec
 
-include OperaWatir::Exceptions
+require 'operawatir'
+require 'spec/watirspec/spec_helper'
+
 include OperaWatir
+include OperaWatir::Exceptions
 
 WatirSpec.implementation do |browser|
   browser.name          = :opera
   browser.browser_class = OperaWatir::Browser
-  browser.guard_proc = lambda do |guards|
+  
+  browser.guard_proc    = lambda do |guards|
     guards.any? {|guard| [:watir, :opera].include?(guard)}
   end
-
 end
 
-WatirSpec::SpecHelper.execute
-
+WatirSpec::Runner.execute
