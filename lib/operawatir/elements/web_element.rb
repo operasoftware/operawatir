@@ -25,6 +25,20 @@ module OperaWatir
       end
     end
 
+    def self.new_with_element(container, element)
+      elm = new(container)
+      elm.element = element
+      elm
+    end
+
+    attr_writer :element
+
+    def element
+      @element ||= find || raise(Exceptions::UnknownObjectException, "Element #{@selector} not found using #{@method}")
+    end
+
+    alias_method :elm, :element
+
     # @todo Document
     def initialize(container, method=nil, selector=nil, value=nil)
       @container, @value = container, value
@@ -45,7 +59,7 @@ module OperaWatir
 
     # @return [true, false] wether the element is disabled or not.
     def disabled?
-      !enabled
+      !enabled?
     end
 
     # @raise ObjectDisabledException unless the element is enabled.
@@ -139,6 +153,10 @@ module OperaWatir
       (element.getText || '').strip
     end
 
+    def html
+      element.getHTML
+    end
+
     # @return the value of the element
     def value
       element.getValue || ''
@@ -184,6 +202,11 @@ module OperaWatir
     def location
       loc = element.getLocation
       {:x => loc.x.to_i, :y => loc.y.to_i}
+    end
+
+    # @return [String] the outer HTML of the element
+    def html
+      element.getHTML
     end
 
     # @attr_reader String id
@@ -233,14 +256,6 @@ module OperaWatir
       tag.to_s
     end
 
-    attr_writer :element
-
-    def self.new_with_element(container, element)
-      elm = new(container)
-      elm.element = element
-      elm
-    end
-
     def fire_event(event, x=0, y=0)
       x += location[:x]
       y += location[:y]
@@ -260,12 +275,6 @@ module OperaWatir
         mouse_action(x+1,y+1)
       end
     end
-
-    def element
-      @element ||= find || raise(Exceptions::UnknownObjectException, "Element #{@selector} not found using #{@method}")
-    end
-
-    alias_method :elm, :element
 
     def mouse_action(x, y, *actions)
       sum = actions.inject(0){ |sum, item| sum + item}
@@ -298,11 +307,17 @@ module OperaWatir
         @container.driver.findElementByXPath("//#{self.class.xpath}[@href='#{@selector}']")
       when :title
         @container.driver.findElementByXPath("//#{self.class.xpath}[@title='#{@selector}']")
+      when :alt
+        @container.driver.findElementByXPath("//#{self.class.xpath}[@alt='#{@selector}']")
+      when :src
+        @container.driver.findElementByXPath("//#{self.class.xpath}[@src='#{@selector}']")
       when :index
         raise "watir index starts from 1" if @selector.to_i.zero?
         @container.driver.findElementByXPath("//descendant::#{self.class.xpath}[#{@selector.to_i}]")
       when :value
         @container.driver.findElementByXPath("//#{self.class.xpath}[@value='#{@selector}' or text()='#{@selector}']")
+      when :text
+        @container.driver.findElementByXPath("//#{self.class.xpath}[text()='#{@selector}']")
       when :class
         @container.driver.findElementByXPath("//#{self.class.xpath}[@class='#{@selector}']")
       when :tag_name
