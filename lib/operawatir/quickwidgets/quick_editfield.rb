@@ -18,7 +18,7 @@ module OperaWatir
     # Types a text string into the edit field
     #
     # @note Only chanracters that appear on the keyboard that is currently
-    #       selected can be typed
+    #       selected can be typed, and the edit field must have focus.
     #
     # @param [String] text text string to type in
     # 
@@ -37,6 +37,8 @@ module OperaWatir
     ######################################################################
     # Clears the contents of the edit field
     #
+    # @note The edit field must have focus for this method to work
+    #
     def clear
       key_press("a", :ctrl)
       key_press("backspace")
@@ -45,7 +47,8 @@ module OperaWatir
       sleep(0.2)
     end
 
-private    
+private  
+    # @private
     # Presses the key, and waits for loading to finish
     def load_page_with_key_press(key, *modifiers)
       wait_start
@@ -53,6 +56,7 @@ private
       wait_for_window_loaded("")
     end
 
+    # @private
     # Enter some text and hit enter to do the action for the field
     def enter_text_and_hit_enter(text)
       loaded_url = ""
