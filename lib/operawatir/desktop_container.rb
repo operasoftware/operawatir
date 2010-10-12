@@ -15,6 +15,7 @@ module OperaWatir
     def quick_button(how, what)
       QuickButton.new(self, how, what, parent_widget, window_id)
     end
+    alias_method :quick_tab, :quick_button
 
     ######################################################################
     # Method for accessing a checkbox element

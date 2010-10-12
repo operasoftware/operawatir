@@ -62,7 +62,7 @@ private
       loaded_url = ""
       
       # Set focus
-      focus_with_click()
+      focus_with_click
       # Clear the field
       clear()
       # Type in the text
