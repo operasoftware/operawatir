@@ -4,6 +4,8 @@ module OperaWatir
     include DesktopContainer
     
     # @private
+    # window_id is set if constructor is called on a (parent) window
+    # location is set is this is called on a (parent) widget
     def initialize(container, method, selector=nil, location=nil, window_id=-1)
       @container = container
                             
@@ -14,6 +16,7 @@ module OperaWatir
         @selector  = selector.to_s
         @location  = location
         @window_id  = window_id
+        #puts "Constructed widget #{@selector} inside #{@location} in window with id #{@window_id}"
       end
     end
     
@@ -90,6 +93,8 @@ module OperaWatir
     def verify_text(string_id)
       element.verifyText(string_id);
     end
+  
+    alias_method :is_text?, :verify_text
     
     ######################################################################
     # Checks that the text in the widget includes the text as loaded
@@ -103,6 +108,8 @@ module OperaWatir
     def verify_includes_text(string_id)
       element.verifyContainsText(string_id)
     end
+    
+    alias_method :includes_text?, :verify_includes_text
 
     ######################################################################
     # Prints out all of the internal information about the widget. Used
@@ -180,7 +187,7 @@ private
     def find
       case @method
       when :name
-        #puts "Widget: " + @window_id.to_s + ", " + @selector.to_s + ", " + @location.to_s
+        #puts "Find Widget: " + @window_id.to_s + ", " + @selector.to_s + ", " + @location.to_s
         if @location != nil
           @element = driver.findWidgetByName(@window_id, @selector, @location)
         else
@@ -190,6 +197,9 @@ private
         @element = driver.findWidgetByStringId(@window_id, @selector)
       when :text
         @element = driver.findWidgetByText(@window_id, @selector)
+      end
+      if @window_id < 0 && @element != nil
+         @window_id = @element.getParentWindowId
       end
       raise(Exceptions::UnknownObjectException, "Element #{@selector} not found using #{@method}") unless @element 
       raise(Exceptions::UnknownObjectException, "Element #{@selector} has wrong type #{@element.getType}") unless correct_type?
