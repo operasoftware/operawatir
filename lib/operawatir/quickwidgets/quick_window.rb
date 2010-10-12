@@ -110,6 +110,7 @@ private
     end
 
     # Gets the window id to use for the search
+    #TODO: Use id above
     def get_window_id
       element.getWindowID
     end
