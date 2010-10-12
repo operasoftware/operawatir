@@ -194,6 +194,13 @@ module OperaWatir
       value
     end
     
+    def load_page_with_key_press(key, *modifiers)
+         wait_start
+         key_press(key, *modifiers)
+         wait_for_window_loaded("")
+    end
+
+    
     ######################################################################
     # Returns true if the test is running on Mac 
     #

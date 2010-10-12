@@ -66,7 +66,7 @@ private
       # Clear the field
       clear()
       # Type in the text
-      typed_text = type_text(text)
+      typed_text = type_text(text) #Opens dropdown window
       
       # Check that the typing matched what was expected
       if typed_text == text
@@ -75,7 +75,7 @@ private
         
         # Check that the page actually loaded in a window
         if win_id > 0
-          # Refresh the control and get the text after the page as loaded
+         # Refresh the control and get the text after the page as loaded
           loaded_url = element(true).getText
         end
       end
