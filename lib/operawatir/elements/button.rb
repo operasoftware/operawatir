@@ -1,7 +1,7 @@
 module OperaWatir
   # Class for +button, input[type=submit]+ elements
   class Button < WebElement
-
+    
     # @return [:value]
     def self.default_method
       :value
@@ -12,7 +12,7 @@ module OperaWatir
   private
 
     def self.xpath
-      "//button | //input[@type = 'button' or @type = 'submit']"
+      "//descendant::button | //descendant::input[@type = 'button' or @type = 'submit'])"
     end
 
   end
