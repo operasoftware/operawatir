@@ -230,7 +230,7 @@ private
     end
     
     # Gets the window id to use for the search
-    def get_window_id
+    def window_id
       -1
     end
     

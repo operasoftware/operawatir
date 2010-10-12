@@ -78,10 +78,12 @@ module OperaWatir
     end
 
 
-    def id
+    def window_id
       element.getWindowID
     end
-
+    
+    alias_method :id, :window_id
+        
     ######################################################################
     # Prints out all of the internal information about the window. Used
     # to discover the names of widgets and windows to use in the tests
@@ -107,12 +109,6 @@ private
     # Gets the parent widget name of which there is none here
     def parent_widget
       nil
-    end
-
-    # Gets the window id to use for the search
-    #TODO: Use id above
-    def get_window_id
-      element.getWindowID
     end
 
     # Return the element
