@@ -140,7 +140,7 @@ private
     end
 
     # Gets the window id to use for the search
-    def get_window_id
+    def window_id
       # Need to pass on the current setting of @window_id to make
       # nesting of quick widgets work
       @window_id
