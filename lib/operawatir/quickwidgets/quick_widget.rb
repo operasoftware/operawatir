@@ -80,6 +80,15 @@ module OperaWatir
     def name
       element.getName
     end
+    
+    ######################################################################
+    # Get a string representation of the widget
+    #
+    # @return [String] representation of the widget
+    #
+    def to_s
+      "#{type.to_s.capitalize} #{name}, visible=#{visible?}, enabled=#{enabled?}, text=#{text}, parentName=#{parent_name}"
+    end
 
     ######################################################################
     # Checks that the text in the widget matches the text as loaded
@@ -134,9 +143,21 @@ module OperaWatir
     end
 
 private
-    # Gets the parent widget name
+    # Gets the widget name (used as parent name when creating child widget)
     def parent_widget
-      element.getName()
+      case @method
+      when :name
+        element.getName()
+      when :text
+        element.getText()
+      when :pos
+        raise(Error, "SearchType position not supported yes") 
+      end
+    end
+    
+    #Get parent widget name
+    def parent_name
+      element.getParentName()
     end
 
     # Gets the window id to use for the search
@@ -176,7 +197,7 @@ private
     # Return the element
     def element(refresh = false)
       if (@elm == nil || refresh == true)
-       @elm = find
+        @elm = find
       end
       
       raise(Exceptions::UnknownObjectException, "Element #{@selector} not found using #{@method}") unless @elm 
@@ -187,7 +208,7 @@ private
     def find
       case @method
       when :name
-        #puts "Find Widget: " + @window_id.to_s + ", " + @selector.to_s + ", " + @location.to_s
+        #puts "<find> Find Widget by name: " + @window_id.to_s + ", " + @selector.to_s + ", " + @location.to_s
         if @location != nil
           @element = driver.findWidgetByName(@window_id, @selector, @location)
         else
@@ -197,7 +218,7 @@ private
         @element = driver.findWidgetByStringId(@window_id, @selector)
       when :text
         @element = driver.findWidgetByText(@window_id, @selector)
-      end
+     end
       if @window_id < 0 && @element != nil
          @window_id = @element.getParentWindowId
       end
