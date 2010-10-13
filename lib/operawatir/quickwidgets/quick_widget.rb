@@ -215,9 +215,17 @@ private
           @element = driver.findWidgetByName(@window_id, @selector)
         end
       when :string_id
-        @element = driver.findWidgetByStringId(@window_id, @selector)
+        if @location != nil
+          @lement = driver.findWidgetByStringId(@window_id, @selector, @location)
+        else
+          @element = driver.findWidgetByStringId(@window_id, @selector)
+        end
       when :text
-        @element = driver.findWidgetByText(@window_id, @selector)
+        if @location != nil
+          @element = driver.findWidgetByText(@window_id, @selector, @location)
+        else
+          @element = driver.findWidgetByText(@window_id, @selector)
+        end
      end
       if @window_id < 0 && @element != nil
          @window_id = @element.getParentWindowId
