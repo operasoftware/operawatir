@@ -22,7 +22,7 @@ module OperaWatir
     # @return [String] Returns a string representing the tab button
     #
     def to_s
-      "TabButton #{name}, visible=#{visible?}, enabled=#{enabled?}, text=#{text}"
+      "TabButton #{name}, visible=#{visible?}, enabled=#{enabled?}, text=#{text}, position=#{row},#{col}"
     end
 
   end

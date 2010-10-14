@@ -130,6 +130,7 @@ module OperaWatir
       end
     end
     
+   
     ######################################################################
     # Prints out all of the internal information about the widget. Used
     # to discover the names of widgets and windows to use in the tests
@@ -169,6 +170,16 @@ private
           element.getText()
         end
       end
+    end
+
+    # Get row    
+    def row
+      element.getColumn()
+    end
+
+    # Get column
+    def col
+      element.getRow()
     end
     
     #Get parent widget name
