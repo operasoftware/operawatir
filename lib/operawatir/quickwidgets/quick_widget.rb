@@ -121,6 +121,16 @@ module OperaWatir
     alias_method :includes_text?, :verify_includes_text
 
     ######################################################################
+    # Prints out all of the row/col information in single lines. Used to
+    # check items from lists
+    #
+    def print_row
+      if element.getColumn() == 0
+        puts "Parent: " + element.getParentName() + ", Item: " + element.getRow().to_s + ", Text: " + text
+      end
+    end
+    
+    ######################################################################
     # Prints out all of the internal information about the widget. Used
     # to discover the names of widgets and windows to use in the tests
     #

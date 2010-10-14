@@ -183,6 +183,21 @@ module OperaWatir
     end
     
     ######################################################################
+    # Method for accessing a tree item in a treeview
+    #
+    # @example
+    #   $browser.quick_treeview(:name, "Server_treeview").quick_treeitem(:pos, )
+    #
+    # @param [String] how   Method to find the element. Currently only :name is supported
+    # @param [String] what  Search text to find the element with. Currently name of the treeitem 
+    #
+    # @return [Object] toolbar object if found, otherwise null
+    #
+    def quick_treeitem(how, what)
+      QuickTreeItem.new(self, how, what, parent_widget, window_id)
+    end
+
+    ######################################################################
     # Method for accessing a window
     #
     # @example
