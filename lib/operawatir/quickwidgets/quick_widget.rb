@@ -13,7 +13,7 @@ module OperaWatir
         @elm = method
       else
         @method    = method
-        @selector  = selector.to_s
+        @selector  = selector
         @location  = location
         @window_id  = window_id
         #puts "Constructed widget #{@selector} inside #{@location} in window with id #{@window_id}"
@@ -161,7 +161,13 @@ private
       when :text
         element.getText()
       when :pos
-        raise(Error, "SearchType position not supported ") 
+        # Pos items will have the name as the parent or
+        # the text if there is no name
+        if element.getName().to_s.length > 0
+          element.getName()
+        else
+          element.getText()
+        end
       end
     end
     
@@ -179,12 +185,16 @@ private
     
     # Click widget
     def click(button = :left, times = 1, *opts)
-       #DesktopEnums::KEYMODIFIER_ENUM_MAP.each { |k, v| puts "#{k},#{v}"}
-       button = DesktopEnums::MOUSEBUTTON_ENUM_MAP[button]
-       list = Java::JavaUtil::ArrayList.new
-       opts.each { |mod| list << DesktopEnums::KEYMODIFIER_ENUM_MAP[mod] }
-       element.click(button, times, list)
-     end
+      if visible? == true
+        #DesktopEnums::KEYMODIFIER_ENUM_MAP.each { |k, v| puts "#{k},#{v}"}
+        button = DesktopEnums::MOUSEBUTTON_ENUM_MAP[button]
+        list = Java::JavaUtil::ArrayList.new
+        opts.each { |mod| list << DesktopEnums::KEYMODIFIER_ENUM_MAP[mod] }
+        element.click(button, times, list)
+      else
+        raise(Exceptions::UnknownObjectException, "Widget #{name} not visible")
+      end 
+    end
     
     # Focus a widget with a click
     def focus_with_click
@@ -235,6 +245,12 @@ private
           @element = driver.findWidgetByText(@window_id, @selector, @location)
         else
           @element = driver.findWidgetByText(@window_id, @selector)
+        end
+      when :pos
+        if @location != nil
+          @element = driver.findWidgetByPosition(@window_id, @selector[0], @selector[1], @location)
+        else
+          @element = driver.findWidgetByPosition(@window_id, @selector[0], @selector[1])
         end
      end
       if @window_id < 0 && @element != nil
