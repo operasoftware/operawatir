@@ -151,7 +151,7 @@ private
       when :text
         element.getText()
       when :pos
-        raise(Error, "SearchType position not supported yes") 
+        raise(Error, "SearchType position not supported ") 
       end
     end
     
