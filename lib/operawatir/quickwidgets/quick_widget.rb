@@ -185,7 +185,8 @@ private
     
     # Click widget
     def click(button = :left, times = 1, *opts)
-      if visible? == true
+      # Dialog tabs are always visible even if the page they are connected to isn't
+      if visible? == true or type == :dialogtab
         #DesktopEnums::KEYMODIFIER_ENUM_MAP.each { |k, v| puts "#{k},#{v}"}
         button = DesktopEnums::MOUSEBUTTON_ENUM_MAP[button]
         list = Java::JavaUtil::ArrayList.new
@@ -226,9 +227,9 @@ private
     
     # Finds the element on the page.  
     def find
+      #puts "<find> Find Widget by " + @method.to_s + " " + @window_id.to_s + ", " + @selector.to_s + ", " + @location.to_s
       case @method
       when :name
-        #puts "<find> Find Widget by name: " + @window_id.to_s + ", " + @selector.to_s + ", " + @location.to_s
         if @location != nil
           @element = driver.findWidgetByName(@window_id, @selector, @location)
         else
@@ -236,7 +237,7 @@ private
         end
       when :string_id
         if @location != nil
-          @lement = driver.findWidgetByStringId(@window_id, @selector, @location)
+          @element = driver.findWidgetByStringId(@window_id, @selector, @location)
         else
           @element = driver.findWidgetByStringId(@window_id, @selector)
         end
