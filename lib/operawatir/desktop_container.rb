@@ -8,7 +8,7 @@ module OperaWatir
     #   $browser.quick_button(:name, "button_OK")
     #
     # @param [String] how   Method to find the element. Currently only :name is supported
-    # @param [String] what  Search text to find the element with. Currently name of the button 
+    # @param [String] what  Search text to find the element with. Currently name or text of the button 
     #
     # @return [Object] button object if found, otherwise null
     #
@@ -23,7 +23,7 @@ module OperaWatir
     #   $browser.quick_tab(:name, "button_OK")
     #
     # @param [String] how   Method to find the element. 
-    # @param [String] what  Search text to find the element with. Currently name of the button
+    # @param [String] what  Search text to find the element with. Currently title of the tab
     #     or [Fixnum] what  Position of tab  
     #
     # @example
