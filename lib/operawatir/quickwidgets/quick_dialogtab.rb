@@ -14,7 +14,7 @@ module OperaWatir
       click()
       
       # No event yet so just cheat and sleep
-      sleep(0.2);
+      sleep(0.1);
     end
   end  
 end
