@@ -1,7 +1,8 @@
-require "java"
-include Java
-
 module OperaWatir; end 
+require 'operawatir/version'
+
+require 'java'
+include Java
 
 %w(commons-jxpath-1.3.jar protobuf-java-2.3.0.jar webdriver-common.jar
    winp-1.14.jar webdriver-opera.jar).
@@ -14,6 +15,8 @@ include_class com.opera.core.systems.OperaDriver
 include_class com.opera.core.systems.OperaWebElement
 
 require 'operawatir/exceptions'
-require 'operawatir/collections'
-require 'operawatir/elements'
+require 'operawatir/selector'
+require 'operawatir/element'
+require 'operawatir/collection'
+require 'operawatir/window'
 require 'operawatir/browser'
