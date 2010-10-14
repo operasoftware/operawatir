@@ -20,12 +20,12 @@ module OperaWatir
     # Method for accessing a button element
     #
     # @example
-    #   $browser.quick_button(:name, "button_OK")
+    #   $browser.quick_tab(:name, "button_OK")
     #
     # @param [String] how   Method to find the element. Currently only :name is supported
     # @param [String] what  Search text to find the element with. Currently name of the button 
     #
-    # @return [Object] button object if found, otherwise null
+    # @return [Object] tab button object if found, otherwise null
     #
     def quick_tab(how, what)
       QuickTab.new(self, how, what, parent_widget, window_id)
