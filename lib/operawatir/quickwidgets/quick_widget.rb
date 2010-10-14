@@ -158,17 +158,13 @@ private
     def parent_widget
       case @method
       when :name
-        element.getName()
+        name
       when :text
-        element.getText()
+        text
       when :pos
         # Pos items will have the name as the parent or
         # the text if there is no name
-        if element.getName().to_s.length > 0
-          element.getName()
-        else
-          element.getText()
-        end
+        name.length > 0 ? name : text
       end
     end
 

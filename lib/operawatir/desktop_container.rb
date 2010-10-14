@@ -22,8 +22,12 @@ module OperaWatir
     # @example
     #   $browser.quick_tab(:name, "button_OK")
     #
-    # @param [String] how   Method to find the element. Currently only :name is supported
-    # @param [String] what  Search text to find the element with. Currently name of the button 
+    # @param [String] how   Method to find the element. 
+    # @param [String] what  Search text to find the element with. Currently name of the button
+    #     or [Fixnum] what  Position of tab  
+    #
+    # @example
+    #   $browser.quick_toolbar(:name, "Pagebar").quick_tab(:pos, 1)
     #
     # @return [Object] tab button object if found, otherwise null
     #
