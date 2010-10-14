@@ -8,14 +8,15 @@ module OperaWatir
     end
 
     ######################################################################
-    # Set focus to the edit field by clicking on it
+    # Set focus to the tree item field by clicking on it
     #
     def focus_with_click
       super
     end
         
     ######################################################################
-    # Switch to the dialog tab by clicking on it 
+    # Switch to the tree view tab by clicking on it (e.g. on the 
+    # Advanced page of the preferences dialog) 
     #
     def open_tab_with_click
       click()
