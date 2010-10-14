@@ -27,8 +27,8 @@ module OperaWatir
       acc
     end
     
-    WIDGET_SEARCHTYPE_ENUM_MAP = DesktopWmProtos::QuickWidgetSearchType.constants.inject({}) do |acc, const|
-      acc[const.to_s.downcase.to_sym] = DesktopWmProtos::QuickWidgetSearchType.const_get(const)
+    WIDGET_SEARCHTYPE_ENUM_MAP = DesktopWmProtos::QuickWidgetSearch::QuickWidgetSearchType.constants.inject({}) do |acc, const|
+      acc[const.to_s.downcase.to_sym] = DesktopWmProtos::QuickWidgetSearch::QuickWidgetSearchType.const_get(const)
       acc
     end
 
