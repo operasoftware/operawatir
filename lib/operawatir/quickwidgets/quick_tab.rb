@@ -15,7 +15,7 @@ module OperaWatir
     #
     # @return [int] Window ID of the window shown or 0 if no window is shown
     #
-    def focus_with_click
+    def open_tab_with_click
       wait_start
       click 
       wait_for_window_activated("Document Window")
