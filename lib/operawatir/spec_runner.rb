@@ -38,8 +38,7 @@ module OperaWatir::SpecRunner
     RSpec.configure do |config|
       config.include SpecHelpers
       config.after(:suite) do
-        # M-m-m-mega hack
-        OperaWatir::SpecRunner.browser.active_window.close
+        OperaWatir::SpecRunner.browser.quit
       end
     end
   end
