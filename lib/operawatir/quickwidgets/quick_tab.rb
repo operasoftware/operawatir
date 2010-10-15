@@ -21,14 +21,5 @@ module OperaWatir
       wait_for_window_activated("Document Window")
     end
         
-    ######################################################################
-    # Gets a string representation of the tab button 
-    #
-    # @return [String] Returns a string representing the tab button
-    #
-    def to_s
-      "#{super}, position=#{row},#{col}"
-    end
-
   end
 end
