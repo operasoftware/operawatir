@@ -70,7 +70,7 @@ module OperaWatir
     # @return [String] representation of the widget
     #
     def to_s
-      "#{type} #{name}, id=#{id}, on_screen=#{on_screen?}"
+      "#{type} #{name}, title=#{title}, id=#{id}, on_screen=#{on_screen?}"
     end
     
     def on_screen?

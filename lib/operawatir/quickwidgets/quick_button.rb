@@ -42,10 +42,10 @@ module OperaWatir
     #
     def close_window_with_click(win_name)
       wait_start
-      click()
+      click
       wait_for_window_close(win_name)
     end
-
+    
     alias_method :close_dialog_with_click, :close_window_with_click
     
     ######################################################################
