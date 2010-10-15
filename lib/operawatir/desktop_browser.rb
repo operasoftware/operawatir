@@ -153,6 +153,42 @@ module OperaWatir
         end
       end.to_a
     end
+   
+    #@private
+    # Retrieves an array of all windows 
+    #
+    # @return [Array] Array of windows
+    #
+    def windows
+      @driver.getWindowList.map do |java_window|
+        QuickWindow.new(self,java_window)
+      end.to_a
+    end
+    
+    #@private
+    # Retrieve all tabs
+    def open_pages
+      @driver.getWindowList.map do |java_window|
+        if java_window.getName() == "Document Window"
+          QuickWindow.new(self,java_window)
+        end
+      end 
+    end
+    
+=begin
+    def tab_buttons
+      tab_buttons = []
+      widgets.each do |widget|
+        tab_buttons << widget if widget.type == :tab
+      end
+    end
+=end
+    
+    def print_tabs
+      open_pages.each do |tab| 
+        puts tab.to_s
+      end
+    end
     
     ######################################################################
     # Retrieves the name of a window based on it's id
