@@ -53,7 +53,7 @@ module OperaWatir
     #
     # @return [int] Window ID of the window shown or 0 if no window is shown
     #
-    def load_page_with_click()
+    def load_page_with_click
       wait_start
       click()
       # Just wait for the load
