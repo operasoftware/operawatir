@@ -30,6 +30,21 @@ module OperaWatir
 
       element(true).isSelected
     end
+
+    
+    ######################################################################
+    # Clicks the checkbox, and waits for the window with window name 
+    # win_name to be shown
+    #
+    # @param [String] win_name name of the window that will be opened (Pass a blank string for any window)
+    #
+    # @return [int] Window ID of the window shown or 0 if no window is shown
+    #
+    def open_dialog_with_click(win_name)
+      wait_start
+      click()
+      wait_for_window_shown(win_name)
+    end
     
   end
 end
