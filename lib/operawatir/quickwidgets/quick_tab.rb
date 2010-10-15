@@ -11,10 +11,11 @@ module OperaWatir
     #
     # @return [int] Window ID of the window shown or 0 if no window is shown
     #
-    def open_tab_with_click()
-      open_window_with_click("Document Window")
+    def focus_with_click
+      wait_start
+      click 
+      wait_for_window_activated("Document Window")
     end
-    alias_method :open_page_with_click, :open_tab_with_click
         
     ######################################################################
     # Gets a string representation of the tab button 
