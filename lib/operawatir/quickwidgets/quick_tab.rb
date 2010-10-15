@@ -2,7 +2,11 @@ module OperaWatir
   class QuickTab < QuickButton
  
     # @private
-    # def correct_type? - super works fine here
+    # Checks the type of the widget is correct
+    def correct_type?
+      @element.getType == WIDGET_ENUM_MAP[:tabbutton]
+    end
+
     
     ######################################################################
     # Clicks the tab button, and waits for the tab to be shown / switches to the page
@@ -23,7 +27,7 @@ module OperaWatir
     # @return [String] Returns a string representing the tab button
     #
     def to_s
-      "TabButton #{name}, visible=#{visible?}, enabled=#{enabled?}, text=#{text}, position=#{row},#{col}"
+      "#{super}, position=#{row},#{col}"
     end
 
   end
