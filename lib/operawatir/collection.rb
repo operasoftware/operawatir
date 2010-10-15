@@ -9,26 +9,22 @@ class OperaWatir::Collection
   
   # TODO Refactor
   def add_selector(method, value)
-    selectors << Selector.new(method, :==, value)
+    selectors << Selector.new(method, value)
   end
 
   def elements
     @elements ||= selectors.inject(parent.elements) do |elms, selector|
-      if elms.nil?
-        selector.find(parent)
-      else
-        selector.refine(elms)
-      end
+      selector.find(elms || parent)
     end
   end
   
   def exist?
     !elements.empty?
+  rescue OperaWatir::Exceptions::UnknownObjectException
+    false
   end
   
-  def id
-    map_or_return {|elm| elm.id}
-  end
+  alias_method :exists?, :exist?
 
   def singular?
     elements.size < 2
@@ -38,8 +34,14 @@ class OperaWatir::Collection
     elements.each(&blk)
   end
   
+  # TODO Turn into method_missing
+  def id
+    map_or_return {|elm| elm.id}
+  end
+  
 private
   
+  # TODO Refactor?
   def map_or_return(&blk)
     if singular?
       blk.call(elements.first)

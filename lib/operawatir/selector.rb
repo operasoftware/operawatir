@@ -6,7 +6,8 @@ class Selector
   
   self.finders, self.refinements = {}, {}
   
-  attr_accessor :type, :operator, :value
+  attr_accessor :type, :value
+  attr_writer :operator
   
   def self.find_by(type, &blk)
     finders[type] = blk
@@ -16,24 +17,27 @@ class Selector
     refinements[type] = blk
   end
   
-  def initialize(type, operator, value)
-    self.type, self.operator, self.value = type, operator, value
+  def initialize(type, value, operator=nil)
+    self.type, self.value, self.operator = type, value, operator
+  end
+  
+  def operator
+    @operator || (value.is_a?(Regexp) ? :=~ : :==)
   end
   
   def finder
-    self.class.finders[type]
-  end
-  
-  def find(window)
-    finder.call(window, self)
+    self.class.finders[type] || self.class.finders[:all]
   end
   
   def refinement
-    self.class.refinements[self.class.refinements.has_key?(type) ? type : :attribute]
+    self.class.refinements[type] || self.class.refinements[:attribute]
   end
   
-  def refine(collection)
-    refinement.call(collection, self)
+  def find(obj)
+    result = (obj.is_a?(OperaWatir::Window) ? finder : refinement).
+              call(obj, self)
+    raise OperaWatir::Exceptions::UnknownObjectException if result.empty?
+    result
   end
   
 end
@@ -48,12 +52,20 @@ Selector.find_by :xpath do |window, s|
   window.find_elements_by_xpath(s.value)
 end
 
+Selector.find_by :all do |window, s|
+  window.find_all_elements
+end
+
 Selector.refine_by :index do |collection, s|
-  [collection[s.value]]
+  [collection[s.value] || raise(OperaWatir::Exceptions::UnknownObjectException)]
 end
 
 Selector.refine_by :attribute do |collection, s|
   collection.select do |element|
     element.has_attribute?(s.type) && element[s.type].send(s.operator, s.value)
   end
+end
+
+Selector.refine_by :xpath do |_,_|
+  raise "YOU CAN'T RUN AN XPATH ON AN ELEMENT!"
 end
