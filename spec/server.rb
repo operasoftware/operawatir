@@ -1,40 +1,14 @@
 # encoding: utf-8
+
 class WatirSpec::Server < Sinatra::Base
 
-  def self.run!
-    Thread.abort_on_exception = true
-    
-    running = false
-    thr = Thread.new do
-      detect_rack_handler.run(self, :Host => host, :Port => port) do
-        running = true
-      end
-    end
-    sleep 0.1 until running
-  end
-
-  def self.free_port_starting_at(no)
-    until free_port?(no)
-      no += 1
-    end
-    no
-  end
-  
-  def self.free_port?(no)
-    s = TCPServer.new(host, no)
-    s.close
-    true
-  rescue SocketError, Errno::EADDRINUSE
-    false
-  end
-  
   set :public,      WatirSpec.fixture_path
   set :static,      true
   set :run,         false
   set :environment, :production
   set :host,        'localhost'
-  set :port,        free_port_starting_at(2000)
-  set :server,      %w[mongrel webrick]
+  set :port,        2000
+  set :server,      %w[thin mongrel webrick]
 
   get '/' do
     self.class.name

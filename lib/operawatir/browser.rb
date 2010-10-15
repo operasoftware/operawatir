@@ -6,10 +6,10 @@ class OperaWatir::Browser
   attr_accessor :active_window
 
   def initialize(bin_path=nil, *args)
-    self.driver = unless bin_path.nil?
+    self.driver = if bin_path
       OperaDriver.new(bin_path, *args)
     else
-      OperaDriver.new
+      OperaDriver.new(*args)
     end
 
     self.active_window = OperaWatir::Window.new(self)
@@ -28,18 +28,8 @@ class OperaWatir::Browser
     driver.quit
   end
   
-  def close
-    driver.close
-  end
-  
-private
-
-  def gc
-    driver.gc
-  end
-
-  def pid
-    driver.getPid
+  def close_all
+    driver.closeAll
   end
 
 end

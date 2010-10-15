@@ -7,7 +7,7 @@ class OperaWatir::Element
   # Attributes
   
   def [](attr)
-    node.getAttribute(attr.to_s)
+    node.getAttribute(attr.to_s) || ''
   end
   
   def method_missing(attr, *args, &blk)

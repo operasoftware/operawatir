@@ -1,4 +1,6 @@
-module OperaWatir; end 
+$LOAD_PATH.unshift File.expand_path('..', __FILE__)
+
+module OperaWatir; end
 require 'operawatir/version'
 
 require 'java'
@@ -20,3 +22,5 @@ require 'operawatir/element'
 require 'operawatir/collection'
 require 'operawatir/window'
 require 'operawatir/browser'
+
+require 'operawatir/compat'
