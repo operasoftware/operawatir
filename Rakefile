@@ -21,7 +21,6 @@ end
 
 load(gemspec_file)
 
-
 Rake::GemPackageTask.new(spec) do |t|
   t.need_tar = true
   t.need_zip = true
@@ -29,10 +28,8 @@ end
 
 CLEAN.add 'pkg'
 
-
 RSpec::Core::RakeTask.new do |t|
 end
-
 
 YARD::Rake::YardocTask.new do |t|
   t.options = ['--no-private']
