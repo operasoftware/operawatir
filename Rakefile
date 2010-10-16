@@ -7,7 +7,6 @@ require 'rake/gempackagetask'
 require 'rspec/core/rake_task'
 require 'yard/rake/yardoc_task'
 
-
 def name
   @name ||= File.basename(Dir['*.gemspec'].first, '.gemspec')
 end
