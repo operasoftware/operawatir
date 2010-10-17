@@ -111,9 +111,9 @@ module OperaWatir
         end
         
         # If user is on Mac OS X and an *.app file has been specified for OPERA_PATH,
-        # we need to open it with the command “open” because OS X doesn't follow
-        # Unix-philosophy.
-        executable = "open \"#{executable}\"" if platform == :macosx and executable =~ /.app$/
+        # we need to locate the actual executable because OS X doesn't follow Unix-
+        # philosophy.
+        executable = "#{executable}/Contents/MacOS/Opera" if platform == :macosx and executable =~ /.app$/
 
         # Arguments
         helper_args = OperaWatir::Helper.browser_args
