@@ -1,23 +1,8 @@
+module OperaWatir; end
+require "operawatir/version"
+
 require "java"
 include Java
-
-module OperaWatir
-  VERSION = File.read(File.join(File.dirname(__FILE__), "..", "VERSION")).strip
-
-  def self.version
-    VERSION
-  end
-
-  module Exceptions
-
-    class OperaWatirException < StandardError; end
-
-    class UnknownObjectException < OperaWatirException; end
-    class MissingWayOfFindingObjectException < OperaWatirException; end
-    class UnknownFrameException < OperaWatirException; end
-    class NotImplementedException < OperaWatirException; end
-  end
-end
 
 %w(commons-jxpath-1.3.jar protobuf-java-2.3.0.jar webdriver-common.jar
    winp-1.14.jar webdriver-opera.jar).
@@ -29,7 +14,7 @@ include_class org.openqa.selenium.NoSuchElementException
 include_class com.opera.core.systems.OperaDriver
 include_class com.opera.core.systems.OperaWebElement
 
+require "operawatir/exceptions"
 require "operawatir/elements"
 require "operawatir/collections"
 require "operawatir/browser"
-
