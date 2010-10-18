@@ -7,9 +7,9 @@ class OperaWatir::Browser
 
   def initialize(bin_path=nil, *args)
     self.driver = if bin_path
-      OperaDriver.new(bin_path, *args)
+      OperaDriver.new(bin_path, args.to_java(:string))
     else
-      OperaDriver.new(*args)
+      OperaDriver.new
     end
 
     self.active_window = OperaWatir::Window.new(self)
