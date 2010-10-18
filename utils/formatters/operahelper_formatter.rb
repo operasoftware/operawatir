@@ -25,7 +25,7 @@ class OperaHelperFormatter < Spec::Runner::Formatter::BaseTextFormatter
 
   def example_group_started (example_group_proxy)
     message = line +
-      example_group_proxy.description + ' (' + example_group_proxy.examples.size.to_s + ' examples)\n' +
+      example_group_proxy.description + ' (' + example_group_proxy.examples.size.to_s + " examples)\n" +
       line
 
     output.puts(message)
@@ -45,7 +45,7 @@ class OperaHelperFormatter < Spec::Runner::Formatter::BaseTextFormatter
       i += 1
     end while i < OperaWatir::Helper.terminal_size[0]
 
-    message += '\n'
+    message += "\n"
     return message
   end
 end
