@@ -42,6 +42,8 @@ module OperaWatir::Helper
   end
 
   def configure_rspec
+    Spec::Runner.options.colour = true unless platform == :windows
+
     #RSpec.configure do |config|
     Spec::Runner.configure do |config|
       config.include Helpers
