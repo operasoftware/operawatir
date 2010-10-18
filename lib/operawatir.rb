@@ -24,3 +24,4 @@ require 'operawatir/window'
 require 'operawatir/browser'
 
 require 'operawatir/compat'
+
