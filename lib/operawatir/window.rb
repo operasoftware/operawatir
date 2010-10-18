@@ -19,7 +19,8 @@ class OperaWatir::Window
     self.browser = browser
   end
 
-# Navigation
+
+  # Navigation
 
   def back
     driver.navigate.back
@@ -76,7 +77,8 @@ class OperaWatir::Window
     driver.executeScript(js, [])
   end
 
-# Keyboard
+
+  # Keyboard
 
   def key(key)
     driver.key(key)
@@ -95,7 +97,7 @@ class OperaWatir::Window
   end
 
 
-# Opera Specific
+  # Opera-specific
 
   def screenshot(file_name, hashes, time_out)
     driver.saveScreenshot(file_name, time_out, hashes.to_java(:String))
@@ -105,14 +107,13 @@ class OperaWatir::Window
     document.visual_hash timeout
   end
 
-
   # TODO Should be private
   def elements
     nil
   end
 
 
-# Finders
+  # Finders
 
   def find_elements_by_tag_name(name)
     driver.findElementsByTagName(name).to_a.map{|node|
@@ -133,3 +134,4 @@ private
   end
 
 end
+
