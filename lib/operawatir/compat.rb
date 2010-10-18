@@ -21,3 +21,4 @@ module OperaWatir::Compat
          '-- should include modules now --'
   end
 end
+

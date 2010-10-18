@@ -1,2 +1,2 @@
-module OperaWatir::Compat::Selector
-end
+module OperaWatir::Compat::Selector; end
+
