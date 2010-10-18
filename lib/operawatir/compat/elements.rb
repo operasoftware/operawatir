@@ -1,6 +1,6 @@
 %w(web_element non_control_elements button checkbox element form image link
    radio select_list text_field).
-   each { |elm| require "operawatir/elements/#{elm}" }
+   each { |elm| require "operawatir/compat/elements/#{elm}" }
 
 module OperaWatir::Compat
   module Elements

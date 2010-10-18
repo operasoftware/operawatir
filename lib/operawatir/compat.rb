@@ -12,8 +12,8 @@ require 'operawatir/compat/deprecation'
 require 'operawatir/compat/browser'
 require 'operawatir/compat/window'
 require 'operawatir/compat/selector'
-require 'operawatir/compat/collection'
-require 'operawatir/compat/element'
+require 'operawatir/compat/collections'
+require 'operawatir/compat/elements'
 
 module OperaWatir::Compat
   def self.included?(klass)

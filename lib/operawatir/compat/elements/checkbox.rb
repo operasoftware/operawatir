@@ -1,15 +1,17 @@
-module OperaWatir::Compat::Elements::Checkbox < WebElement
+module OperaWatir::Compat::Elements
+  class CheckBox < WebElement
 
-  def set(value = true)
-    until checked? == value
-      element.toggle
+    def set(value = true)
+      until checked? == value
+        element.toggle
+      end
     end
-  end
 
-  def set?
-    element.isSelected
-  end
-  alias_method :checked?, :set?
+    def set?
+      element.isSelected
+    end
+    alias_method :checked?, :set?
 
+  end
 end
 
