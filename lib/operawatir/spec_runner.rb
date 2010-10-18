@@ -53,8 +53,10 @@ module OperaWatir::Helper
   end
 
   def inspectr_path
+    # This must change at some point, because we will have different executables for
+    # Mac OS X, GNU/Linux and Windows.
     File.join File.expand_path('../../../utils', __FILE__),
-              (RUBY_PLATFORM =~ /mswin|msys|mingw32/ ? 'inspectr.exe' : 'inspectr')
+              (platform == :windows ? 'inspectr.exe' : 'inspectr')
   end
 
   def spawn_inspectr
@@ -64,6 +66,21 @@ module OperaWatir::Helper
       puts "Starting inspectr with PID ##{browser.pid}"
       exec inspectr, browser.pid.to_s
     end
+  end
+
+  def platform
+    @platform ||= case Config::CONFIG['host_os']
+                  #when /java/
+                  #  :java
+                  when /mswin|msys|mingw32/
+                    :windows
+                  when /darwin/
+                    :macosx
+                  when /linux/
+                    :linux
+                  else
+                    Config::CONFIG['host_os'] || RUBY_PLATFORM
+                  end
   end
 
   def run!
@@ -85,6 +102,13 @@ module OperaWatir::Helper
         OperaWatir::Helper.files
       end
     end
+  end
+end
+
+class Spec::Runner::Options
+  def formatters
+    @format_options = [['OperaHelperFormatter', @output_stream]] if @format_options.nil?
+    @formatters ||= load_formatters(@format_options, EXAMPLE_FORMATTERS)
   end
 end
 
