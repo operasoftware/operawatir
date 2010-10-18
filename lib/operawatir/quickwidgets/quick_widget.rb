@@ -145,6 +145,7 @@ module OperaWatir
       puts "    Pos: x=" + element.getRect().x.to_s + ", y=" + element.getRect().y.to_s
       puts "   Size: width=" + element.getRect().width.to_s + ", height=" + element.getRect().height.to_s
       puts "    Ref: row=" + element.getRow().to_s + ", col=" + element.getColumn().to_s
+      puts "selected: " + element.isSelected().to_s
       puts ""
     end
           
