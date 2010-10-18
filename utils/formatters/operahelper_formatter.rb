@@ -5,25 +5,27 @@
 #
 # in your RSpec test suite.
 
+require 'spec/runner/formatter/base_text_formatter'
+
 class OperaHelperFormatter < Spec::Runner::Formatter::BaseTextFormatter
   def example_failed (example, counter, failure)
-    output.puts message example, colorize_failure("FAILED", failure)
+    output.puts message example, colorize_failure('FAILED', failure)
     output.flush
   end
 
   def example_passed (example)
-    output.puts message example, green("PASSED")
+    output.puts message example, green('PASSED')
     output.flush
   end
 
   def example_pending (example, message)
-    output.puts message example, blue("PENDING")
+    output.puts message example, blue('PENDING')
     output.flush
   end
 
   def example_group_started (example_group_proxy)
     message = line +
-      example_group_proxy.description + " (" + example_group_proxy.examples.size.to_s + " examples)\n" +
+      example_group_proxy.description + ' (' + example_group_proxy.examples.size.to_s + ' examples)\n' +
       line
 
     output.puts(message)
@@ -35,15 +37,16 @@ class OperaHelperFormatter < Spec::Runner::Formatter::BaseTextFormatter
   end
 
   def line
-    message = ""
+    message = ''
     i = 0
 
     begin
-      message += "-"
+      message += '-'
       i += 1
     end while i < OperaWatir::Helper.terminal_size[0]
 
-    message += "\n"
+    message += '\n'
     return message
   end
 end
+
