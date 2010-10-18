@@ -12,7 +12,7 @@ module OperaWatir
     #
     def focus_with_click
       # First scroll the item into view
-      scroll_item_into_view
+      scroll_item_into_view unless visible?
       super
     end
         
@@ -55,57 +55,40 @@ private
     # @private
     # Scrolls the item into view if required
     def scroll_item_into_view
-      if visible? == false
-        lowest = nil
-        first = true
-        current_loop = 0
-        num_list_treeitems = 10000000
+      # Make sure we have a window id
+      win_id = window_id >= 0 ? window_id : driver.getActiveWindowID()
       
-        # Make sure we have a window id
-        win_id = window_id 
-        if win_id < 0
-          win_id = driver.getActiveWindowID()
-        end
-
-        
-        while current_loop < num_list_treeitems do
-          num_list_treeitems = 0
-          driver.getQuickWidgetList(driver.getWindowName(win_id)).map do |java_widget|
-            # Only get the tree items that have the parent of this item
-            if java_widget.getType == QuickWidget::WIDGET_ENUM_MAP[:treeitem] and
-              java_widget.getParentName() == parent_name
-               
-               # Retain the lowest one for clicking and page down
-               if lowest == nil or java_widget.getRow() < lowest.getRow()
-                 lowest = java_widget
-               end
-               
-               # Check if we have found it
-               if java_widget.getName() == name and java_widget.getText() == text and java_widget.isVisible()
-                 # The element is now visible so return and it will be clicked!
-                 # Force the element list to be refreshed with what is in view now
-                 element(true)
-                 return
-               end
-               
-               num_list_treeitems += 1;
-            end
-          end
-          
-          # First time select the lowest one and click it
-          if first == true
-            # Didn't find a visible item so let's scroll!
-            qw = QuickTreeItem.new(self,lowest)
-            qw.focus_with_click
-            key_press("PageDown")
-            first = false
-          end
-          key_press("PageDown")
-          current_loop += 1
-        end
+      # Filter only treeitems in parent_treeview
+      treeitems = driver.getQuickWidgetList(win_id).select do |wdg|
+        wdg.getType == QuickWidget::WIDGET_ENUM_MAP[:treeitem] && wdg.getParentName == parent_name
       end
+      
+      # Get the first visible item
+      lowest = treeitems.find { | item| item.visible? } #This will always be a parent item, not a child
+      # Assume list is ordered? => lower row means scroll up, higher row means scroll down
+      key = row < lowest.row ? "PageUp" : "PageDown"
+
+      #Select the first item on visible part of list, and select it
+      qw = QuickTreeItem.new(self,lowest)
+      qw.focus_with_click
+      key_press(key)
+      
+      #First scroll
+      key_press(key)
+      
+      visible_treeitems = driver.getQuickWidgetList(win_id).select do |wdg|
+        wdg.getType == QuickWidget::WIDGET_ENUM_MAP[:treeitem] && wdg.getParentName == parent_name && wdg.visible?
+      end
+
+      # Stop scrolling if we have run through the whole list, the item is then a child and won't get visible
+      max_times = treeitems.length / visible_treeitems.length + 1
+      until element(true).visible? || max_times < 0
+          key_press(key) 
+          max_times-=1
+      end
+      
     end
   end
-
+  
 end
 

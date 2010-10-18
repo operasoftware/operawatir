@@ -177,6 +177,7 @@ module OperaWatir
       end 
     end
     
+    #@private
     def tab_buttons
       tab_buttons = []
       widgets("Browser Window").each do |widget|
@@ -187,12 +188,14 @@ module OperaWatir
       tab_buttons
     end
     
+    #@private
     def print_tab_buttons
       tab_buttons.each do |btn|
         puts btn.to_s
       end
     end
     
+    #@private
     def print_tabs
       open_pages.each do |tab| 
         puts tab.to_s
