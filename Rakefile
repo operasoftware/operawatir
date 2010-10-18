@@ -7,6 +7,7 @@ require "rake/testtask"
 require "yard"
 require "spec/rake/spectask"
 
+
 OPERAWATIR_VERSION = File.read("VERSION").strip
 
 spec = Gem::Specification.new do |s|
@@ -36,20 +37,20 @@ end
 #  rdoc.rdoc_dir = "doc" # rdoc output folder
 #  rdoc.options = "--line-numbers", "--charset=utf-8"
 #end
-
-YARD::Rake::YardocTask.new do |yard|
-  yard.files = ["lib/**/*.rb"]
-  yard.options += [
-    "--title", "OperaWatir #{OPERAWATIR_VERSION} Documentation",
-    "--files", "INSTALL,LICENSE",
-    "--template-path", "./utils/",
-    "--template", "doc_template"
-  ]
+YARD::Rake::YardocTask.new do |t|
+  t.files = ['lib/**/*.rb']
 end
 
 Spec::Rake::SpecTask.new do |t|
   t.spec_files = FileList["spec/**/*.rb"]
 end
+
+task :yard do
+  sh 'yard doc --no-private --files LICENSE,INSTALL'
+end
+
+task :doc => :yard
+CLEAN.add 'doc'
 
 task :bump do
   v = ENV["VERSION"]

@@ -11,10 +11,21 @@ include Java
 include_class org.openqa.selenium.WebDriver
 include_class org.openqa.selenium.RenderedWebElement
 include_class org.openqa.selenium.NoSuchElementException
+include_class com.opera.core.systems.OperaDesktopDriver
 include_class com.opera.core.systems.OperaDriver
 include_class com.opera.core.systems.OperaWebElement
+include_class com.opera.core.systems.scope.protos.DesktopWmProtos
+include_class com.opera.core.systems.scope.protos.SystemInputProtos
+include_class com.opera.core.systems.QuickWidget
 
 require "operawatir/exceptions"
 require "operawatir/elements"
 require "operawatir/collections"
 require "operawatir/browser"
+
+require "operawatir/desktop_enums"
+require "operawatir/desktop_common"
+require "operawatir/desktop_container"
+require "operawatir/desktop_browser"
+require "operawatir/quickwidgets"
+
