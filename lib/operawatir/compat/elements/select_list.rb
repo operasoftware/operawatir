@@ -25,15 +25,15 @@ module OperaWatir::Compat::Elements
   private
 
     def find_option_by_val(items, value)
-      options.find { |item| item.getValue == value } ||
-        raise Exceptions::UnknownObjectException,
-          "Unable to locate Option, using :value and #{value.inspect}")
+#      options.find { |item| item.getValue == value } ||
+#        raise OperaWatir::Exceptions::UnknownObjectException,
+#          "Unable to locate Option, using :value and #{value.inspect}"
     end
 
     def find_option_by_text(items, text)
-      items.find { |item| item.getText == text } ||
-        raise Exceptions::UnknownObjectException,
-          "Unable to locate Option, using :text and #{text.inspect}")
+#      items.find { |item| item.getText == text } ||
+#        raise OperaWatir::Exceptions::UnknownObjectException,
+#          "Unable to locate Option, using :text and #{text.inspect}"
     end
   end
 
