@@ -8,3 +8,4 @@ group :spec do
   gem 'mongrel'
   gem 'sinatra'
 end
+
