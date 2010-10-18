@@ -22,7 +22,7 @@ class OperaWatir::Element
     self['id']
   end
   
-  # HACK Should be built into node
+  # FIXME: HACK Should be built into node
   def has_attribute?(attr)
     !self[attr].nil?
   end
@@ -107,3 +107,4 @@ private
   attr_accessor :node
 
 end
+
