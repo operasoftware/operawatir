@@ -29,7 +29,7 @@ module OperaWatir::Helper
 
   default_attr_accessor :path,          nil
   default_attr_accessor :args,          ''
-  default_attr_accessor :files,         "file://#{File.expand_path('../interactive', Dir.pwd)}"
+  default_attr_accessor :files,         "file://#{File.expand_path('interactive', Dir.pwd)}/"
   default_attr_accessor :inspectr,      false
   default_attr_accessor :terminal_size, [80,24]
 
