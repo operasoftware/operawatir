@@ -15,8 +15,9 @@ require 'lib/operawatir/version'
   
   s.platform         = 'jruby'
   s.has_rdoc         = true
-  s.extra_rdoc_files = ['README.rdoc']
+  s.extra_rdoc_files = ['README']
   
   s.require_path = 'lib'
-  s.files        = %w(README.rdoc Rakefile) + Dir['lib/**/*']  
+  s.files        = %w(README Rakefile) + Dir['lib/**/*']  
 end
+
