@@ -37,6 +37,9 @@ module OperaWatir
     #
     # @return [Boolean] true if enabled otherwise false
     #
+    # @raise [Exceptions::UnknownObjectException] if the widget could not be found
+    #           using the specified method  
+    #
     def enabled?
       element.isEnabled
     end
@@ -45,6 +48,9 @@ module OperaWatir
     # Checks if a widget is visible or not
     #
     # @return [Boolean] true if visible otherwise false
+    #
+    # @raise [Exceptions::UnknownObjectException] if the widget cannot be found
+    #           using the specified method  
     #
     def visible?
       element.isVisible
@@ -59,6 +65,9 @@ module OperaWatir
     #
     # @return [String] text of the widget
     #
+    # @raise [Exceptions::UnknownObjectException] if the widget cannot be found
+    #           using the specified method  
+    #
     def text
       element.getText
     end
@@ -68,6 +77,9 @@ module OperaWatir
     #
     # @return [Symbol] type of the widget (e.g. :dropdown, :button)
     #
+    # @raise [Exceptions::UnknownObjectException] if the widget cannot be found 
+    #               using the specified method
+    #    
     def type
       WIDGET_ENUM_MAP.invert[element.getType]
     end
@@ -77,6 +89,9 @@ module OperaWatir
     #
     # @return [String] name of the widget
     #
+    # @raise [Exceptions::UnknownObjectException] if the widget cannot be found
+    #               using the specified method
+    #
     def name
       element.getName
     end
@@ -85,6 +100,9 @@ module OperaWatir
     # Get a string representation of the widget
     #
     # @return [String] representation of the widget
+    #
+    # @raise [Exceptions::UnknownObjectException] if the widget cannot be found
+    #               using the specified method
     #
     def to_s
       "#{type.to_s.capitalize} #{name}, visible=#{visible?}, enabled=#{enabled?}, text=#{text}, parentName=#{parent_name}, position=#{row},#{col}"
@@ -98,6 +116,9 @@ module OperaWatir
     #                 language file (e.g. "D_NEW_PREFERENCES_GENERAL")
     # 
     # @return [Boolean] true if the text matches, otherwise false
+    #
+    # @raise [Exceptions::UnknownObjectException] if the widget cannot be found
+    #               using the specified method
     #
     def verify_text(string_id)
       element.verifyText(string_id);
@@ -114,6 +135,9 @@ module OperaWatir
     # 
     # @return [Boolean] true if the text is included, otherwise false
     #
+    # @raise [Exceptions::UnknownObjectException] if the widget cannot be found
+    #               using the specified method
+    #
     def verify_includes_text(string_id)
       element.verifyContainsText(string_id)
     end
@@ -123,6 +147,9 @@ module OperaWatir
     ######################################################################
     # Prints out all of the row/col information in single lines. Used to
     # check items from lists
+    #
+    # @raise [Exceptions::UnknownObjectException] if the widget cannot be found
+    #               using the specified method
     #
     def print_row
       if element.getColumn() == 0
@@ -134,6 +161,9 @@ module OperaWatir
     ######################################################################
     # Prints out all of the internal information about the widget. Used
     # to discover the names of widgets and windows to use in the tests
+    #
+    # @raise [Exceptions::UnknownObjectException] if the widget cannot be found
+    #           using the specified method 
     #
     def print_widget_info
       puts "   Name: " + name
@@ -201,7 +231,7 @@ private
         opts.each { |mod| list << DesktopEnums::KEYMODIFIER_ENUM_MAP[mod] }
         element.click(button, times, list)
       else
-        raise(Exceptions::UnknownObjectException, "Widget #{name} not visible")
+        raise(DesktopExceptions::WidgetNotVisibleException, "Widget #{name} not visible")
       end 
     end
     
