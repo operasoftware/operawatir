@@ -11,6 +11,15 @@ module OperaWatir
         @driver = OperaDesktopDriver.new(executable_location, arguments.to_java(:String))
       end
     end
+
+    # @private
+    # Hack overload to allow for timing of the OnLoaded event that can cause 
+    # dialogs to autoclose in Dialog.cpp when then OnUrlChanged is fired 
+    # after a dialog is opened
+    def goto(url = "")
+      super
+      sleep(1)
+    end
       
     ######################################################################
     # Executes the action given by action_name, and waits for
