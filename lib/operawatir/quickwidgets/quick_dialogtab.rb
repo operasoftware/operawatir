@@ -10,8 +10,11 @@ module OperaWatir
     ######################################################################
     # Switch to the dialog tab by clicking on it 
     #
+    # @raise [DesktopExceptions::WidgetNotVisibleException] if the dialogtab 
+    #            is not visible
+    #
     def open_tab_with_click
-      click()
+      click
       
       # No event yet so just cheat and sleep
       sleep(0.1);
