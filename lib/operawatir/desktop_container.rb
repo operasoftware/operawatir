@@ -24,7 +24,7 @@ module OperaWatir
     #
     # @param [String] how   Method to find the element. 
     # @param [String] what  Search text to find the element with. Currently title of the tab
-    #     or [Fixnum] what  Position of tab  
+    #     or [Fixnum] what  Position of tab. Note first tab has position 0
     #
     # @example
     #   $browser.quick_toolbar(:name, "Pagebar").quick_tab(:pos, 1)
