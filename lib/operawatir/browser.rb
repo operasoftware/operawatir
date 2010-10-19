@@ -179,7 +179,7 @@ module OperaWatir
     # @param [Integer] will attempt to perform the action until the time out is
     #   reached.
     # @return [String] MD5 hash of the full page's screenshot.
-    def take_screenshot(file_name,hashes,time_out)
+    def take_screenshot(file_name,hashes=[],time_out=2)
       @driver.saveScreenshot(file_name, time_out, hashes.to_java(:string))
     end
 
