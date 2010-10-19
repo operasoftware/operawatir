@@ -15,6 +15,9 @@ module OperaWatir
     #
     # @return [int] Window ID of the window shown or 0 if no window is shown 
     #
+    # @raise [DesktopExceptions::WidgetNotVisibleException] if the tab button
+    #            is not visible
+    #
     def open_tab_with_click
       wait_start
       click 
