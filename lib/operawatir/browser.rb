@@ -10,7 +10,7 @@ module OperaWatir
         @driver = OperaDriver.new
         @frame = '_top'
       else
-        @driver = OperaDriver.new(executable_location, arguments.to_java(:String))
+        @driver = OperaDriver.new(executable_location, arguments.to_java(:string))
       end
     end
 
@@ -116,7 +116,7 @@ module OperaWatir
 
     # Executes the given JavaScript string, and returns the result.
     def execute_script(source)
-      @driver.executeScript(source, [].to_java(:String))
+      @driver.executeScript(source, [].to_java(:string))
     end
 
     # Send key events to the browser instance.  I.e. “Down” (arrow
@@ -154,7 +154,7 @@ module OperaWatir
     # name::   name of the Opera action to be performed.
     # param::  (Optional.)  Optional parameter to be supplied with the Opera action.
     def opera_action(name, *param)
-      @driver.operaAction(name, param.to_java(:String))
+      @driver.operaAction(name, param.to_java(:string))
     end
 
     # Takes screenshot of the entire page.
@@ -163,7 +163,7 @@ module OperaWatir
     # file_name::  the absolute file path you wish to save the screenshot to.
     # time_out::   will attempt to perform the action until the time out is reached.
     def take_screenshot(file_name,hashes,time_out)
-      @driver.saveScreenshot(file_name, time_out, hashes.to_java(:String))
+      @driver.saveScreenshot(file_name, time_out, hashes.to_java(:string))
     end
 
     # Will return the hash of the visual representation of the entire
