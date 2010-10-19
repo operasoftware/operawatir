@@ -120,9 +120,7 @@ module OperaWatir
     #
     # @example
     #   $browser.widgets(window_name).each do |quick_widget|
-    #     if quick_widget.name.length > 0 then
-    #       print "   Name:" + quick_widget.name + "\n"
-    #     end
+    #       puts quick_widget.to_s
     #   end
     #
     # @param win_name [String] name or [int] id of the window to retrieve the list of widgets from,
@@ -243,6 +241,19 @@ module OperaWatir
       value
     end
     
+    ######################################################################
+    # Presses the key, with optional modifiers, and waits for loaded event
+    #
+    # @example
+    #   $browser.quick_toolbar(:name, "Document Toolbar").quick_addressfield(:name, "tba_address_field").\n
+    #                          type_text(text_to_type).should == text_to_type
+    #   $browser.open_window_with_key_press("Enter").should > 0
+    #
+    # @param [String]  key         key to press (e.g. "a" or "backspace")
+    # @param [String]  modifiers   optional modifier(s) to hold down while pressing the key (e.g. :shift, :ctrl, :alt, :meta)
+    #
+    # @return [int] Window ID of the window loaded or 0 if no window is loaded
+    #
     def load_page_with_key_press(key, *modifiers)
          wait_start
          key_press(key, *modifiers)
