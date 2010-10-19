@@ -259,15 +259,6 @@ module OperaWatir
       Config::CONFIG['target_os'] == "darwin"
     end
     
-    ######################################################################
-    # Returns true if the test is running on Linux 
-    #
-    # @return [Boolean] true we the operating system is Linux, otherwise false 
-    #
-    def linux?
-      Config::CONFIG['target_os'] == "linux"
-    end
-     
     # @private
     # Special method to access the driver
     attr_reader :driver
