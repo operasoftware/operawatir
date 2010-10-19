@@ -24,9 +24,12 @@ module OperaWatir
     #
     # @return [int] Window ID of the window shown or 0 if no window is shown
     #
+    # @raise [DesktopExceptions::WidgetNotVisibleException] if the button
+    #            is not visible
+    #
     def open_window_with_click(win_name)
       wait_start
-      click()
+      click
       wait_for_window_shown(win_name)
     end
     
@@ -39,6 +42,9 @@ module OperaWatir
     # @param [String] win_name name of the window that will be closed (Pass a blank string for any window)
     #
     # @return [int] Window ID of the window is closed or 0 if no window is closed
+    #
+    # @raise [DesktopExceptions::WidgetNotVisibleException] if the button
+    #            is not visible
     #
     def close_window_with_click(win_name)
       wait_start
@@ -53,6 +59,9 @@ module OperaWatir
     #
     # @return [int] Window ID of the window shown or 0 if no window is shown
     #
+    # @raise [DesktopExceptions::WidgetNotVisibleException] if the button
+    #            is not visible
+    #
     def load_page_with_click
       wait_start
       click()
@@ -66,6 +75,9 @@ module OperaWatir
     #
     # @return [int] the new state of the button or expand control,
     #               0 for not pressed, or 1 for pressed
+    #
+    # @raise [DesktopExceptions::WidgetNotVisibleException] if the button
+    #            is not visible
     #
     def toggle_with_click
       click
@@ -82,6 +94,8 @@ module OperaWatir
     #
     # @return [int] 0 if not pressed, or 1 if pressed
     #
+    # @raise [Exceptions::UnknownObjectException] if the widget could not be found
+    #           using the specified method
     def value
       element.getValue
     end
