@@ -189,11 +189,6 @@ module OperaWatir
       @driver.getWindowHandles.size
     end
 
-    # Will return the garbage collection.
-    def gc
-      @driver.gc
-    end
-
     # Checks if OperaWatir is connected to any browser instance.  Will
     # return true or false.
     def is_connected?
