@@ -8,7 +8,7 @@ module OperaWatir
     def initialize (executable_location = nil, *arguments)
       if executable_location.nil?
         @driver = OperaDriver.new
-        @frame = "_top"
+        @frame = '_top'
       else
         @driver = OperaDriver.new(executable_location, arguments.to_java(:String))
       end
