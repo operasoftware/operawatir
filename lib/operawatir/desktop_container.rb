@@ -215,7 +215,9 @@ module OperaWatir
     #   $browser.quick_window(:name, "Cycler Window")
     #
     # @param [String] how   Method to find the element. Currently only :name is supported
-    # @param [String] what  Search text to find the element with. Name of window  
+    # @param [String] what  or [int] window_id Search text to find the element with. Name of window
+    #                       or the windows window_id
+    #                         
     #
     # @return [Object] window object if found, otherwise nil
     #
