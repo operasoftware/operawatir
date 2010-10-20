@@ -10,5 +10,6 @@ module OperaWatir::DesktopExceptions
   # Raised when a method is called on a control that is not visible
   # corresponding element.
   class WidgetNotVisibleException < OperaWatirException; end
+  class UnsupportedActionException < OperaWatirException; end
   
 end
