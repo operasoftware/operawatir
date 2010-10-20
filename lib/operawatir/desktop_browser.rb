@@ -3,7 +3,8 @@ module OperaWatir
     include DesktopContainer
     include DesktopCommon
     
-    ExcludedActions = ["Open url in new page"]
+    ExcludedActions = ["Open url in new page", "Open url in current page", "Open url in background page",
+      "Open url in new window"]
     
     # @private
     def initialize (executable_location = nil, *arguments)
@@ -40,6 +41,7 @@ module OperaWatir
       if ExcludedActions.include?(action_name) then
         raise(DesktopExceptions::UnsupportedActionException, "Action #{action_name} not supported")
       end
+      
       wait_start
       @driver.operaDesktopAction(action_name, params.to_java(:String))
       wait_for_window_shown(win_name)
@@ -47,6 +49,28 @@ module OperaWatir
     
     alias_method :open_dialog_with_action, :open_window_with_action
     
+    ######################################################################
+    # Executes the action given by action_name, and waits for
+    # the window with window name win_name to be loaded
+    #
+    # @example
+    #   $browser.load_window_with_action("Document Window", "Open url in new page")
+    #
+    # @param [String] win_name    name of the window that will be opened (Pass a blank string for any window)
+    # @param [String] action_name name of the action to execute to open the window
+    # @param [String] param       optional parameter(s) to be supplied with the Opera action.
+    #
+    # @return [int] Window ID of the window shown or 0 if no window is shown
+    def load_window_with_action(win_name, action_name, *params)
+      if ExcludedActions.include?(action_name) 
+        wait_start
+        @driver.operaDesktopAction(action_name, params.to_java(:String))
+        wait_for_window_loaded(win_name)
+      else
+        raise(DesktopExceptions::UnsupportedActionException, "Action #{action_name} not supported")
+      end
+    end
+       
     ######################################################################
     # Presses the key, with optional modifiers, and waits for
     # the window with window name win_name to be shown
@@ -167,7 +191,7 @@ module OperaWatir
       end.to_a
     end
    
-    #@private
+    ####################################################
     # Retrieves an array of all windows 
     #
     # @return [Array] Array of windows
@@ -199,21 +223,12 @@ module OperaWatir
       tab_buttons
     end
     
-    #@private
-    def print_tab_buttons
-      tab_buttons.each do |btn|
-        puts btn.to_s
-      end
-    end
-    
-    #@private
-    def print_tabs
-      open_pages.each do |tab| 
-        puts tab.to_s
-      end
-    end
-    
-=begin    
+=begin
+    # Return collection for each widget type
+    # example $browser.quick_buttons
+    #         $browser.quick_treeitems
+    #         ....
+    #    
     WIDGET_ENUM_MAP.keys.each do |widget_type|
       my_type = "quick_" << widget_type.to_s
       if my_type == "quick_search"
