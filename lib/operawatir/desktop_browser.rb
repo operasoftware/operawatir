@@ -3,6 +3,8 @@ module OperaWatir
     include DesktopContainer
     include DesktopCommon
     
+    ExcludedActions = ["Open url in new page"]
+    
     # @private
     def initialize (executable_location = nil, *arguments)
       if executable_location.nil?
@@ -36,6 +38,9 @@ module OperaWatir
     # @return [int] Window ID of the window shown or 0 if no window is shown
     #
     def open_window_with_action(win_name, action_name, *params)
+      if ExcludedActions.include?(action_name) then
+        raise(DesktopExceptions::UnsupportedActionException, "Action #{action_name} not supported")
+      end
       wait_start
       @driver.operaDesktopAction(action_name, params.to_java(:String))
       wait_for_window_shown(win_name)
@@ -82,7 +87,7 @@ module OperaWatir
     #
     def close_window_with_action(win_name, action_name, *params)
       wait_start
-      @driver.operaDesktopAction(action_name, params.to_java(:String))
+      @driver.operaDesktopAction(action_name, params.to_java(:String)) 
       wait_for_window_close(win_name)
     end
     
