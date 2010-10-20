@@ -289,7 +289,7 @@ module OperaWatir
     # @example
     #   $browser.quick_toolbar(:name, "Document Toolbar").quick_addressfield(:name, "tba_address_field").\n
     #                          type_text(text_to_type).should == text_to_type
-    #   $browser.open_window_with_key_press("Enter").should > 0
+    #   $browser.load_page_with_key_press("Enter").should > 0
     #
     # @param [String]  key         key to press (e.g. "a" or "backspace")
     # @param [String]  modifiers   optional modifier(s) to hold down while pressing the key (e.g. :shift, :ctrl, :alt, :meta)
