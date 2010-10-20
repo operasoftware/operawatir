@@ -209,6 +209,20 @@ module OperaWatir
       end
     end
     
+=begin    
+    WIDGET_ENUM_MAP.keys.each do |widget_type|
+      my_type = "quick_" << widget_type.to_s
+      if my_type == "quick_search"
+        my_type << "es"
+      else
+        my_type << "s"
+      end
+      define_method(my_type.to_sym) do |win|
+        widgets(win).select { |w| w.type == widget_type}
+      end
+    end
+=end
+    
     ######################################################################
     # Retrieves the name of a window based on it's id
     #
