@@ -11,7 +11,7 @@ module OperaWatir
         @elm = method
       else
         @method    = method
-        @selector  = selector.to_s
+        @selector  = selector
       end
     end
 
@@ -148,6 +148,8 @@ private
       case @method
       when :name
         @element = driver.findWindowByName(@selector)
+      when :id
+        @element = driver.findWindowById(@selector)
       end
       raise(Exceptions::UnknownObjectException, "Window #{@selector} not found using #{@method}") unless @element 
       @element
