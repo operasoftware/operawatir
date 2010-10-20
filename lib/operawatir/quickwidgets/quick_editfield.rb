@@ -70,19 +70,17 @@ private
       clear()
       # Type in the text
       typed_text = type_text(text) #Opens dropdown window
-      
-      # Check that the typing matched what was expected
-      if typed_text == text
+      # Check that some text was typed, note the text might be changed in the
+      # url field so it might be different
+      if typed_text.length > 0
         # Hit Enter to load the typed in url
         win_id = load_page_with_key_press("Enter")
-        
         # Check that the page actually loaded in a window
         if win_id > 0
           # Refresh the control and get the text after the page as loaded
           loaded_url = element(true).getText
         end
       end
-      
       loaded_url
     end
 
