@@ -83,10 +83,10 @@ private
       #Select the first item on visible part of list, and select it
       qw = QuickTreeItem.new(self,lowest)
       qw.focus_with_click
-      key_press(key)
+      key_press_direct(key)
       
       #First scroll
-      key_press(key)
+      key_press_direct(key)
       
       visible_treeitems = driver.getQuickWidgetList(win_id).select do |wdg|
         wdg.getType == QuickWidget::WIDGET_ENUM_MAP[:treeitem] && wdg.getParentName == parent_name && wdg.visible?
@@ -95,7 +95,7 @@ private
       # Stop scrolling if we have run through the whole list, the item is then a child and won't get visible
       max_times = treeitems.length / visible_treeitems.length + 1
       until element(true).visible? || max_times < 0
-          key_press(key) 
+          key_press_direct(key) 
           max_times-=1
       end
       
