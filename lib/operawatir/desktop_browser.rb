@@ -242,7 +242,7 @@ module OperaWatir
       tab_buttons
     end
     
-=begin
+#=begin
     # Return collection for each widget type
     # example $browser.quick_buttons
     #         $browser.quick_treeitems
@@ -250,7 +250,7 @@ module OperaWatir
     #    
     WIDGET_ENUM_MAP.keys.each do |widget_type|
       my_type = "quick_" << widget_type.to_s
-      if my_type == "quick_search"
+      if my_type == "quick_search" || my_type == "quick_checkbox"
         my_type << "es"
       else
         my_type << "s"
@@ -259,7 +259,7 @@ module OperaWatir
         widgets(win).select { |w| w.type == widget_type}
       end
     end
-=end
+#=end
     
     ######################################################################
     # Retrieves the name of a window based on it's id
