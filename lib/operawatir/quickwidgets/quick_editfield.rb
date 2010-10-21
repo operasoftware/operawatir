@@ -51,7 +51,7 @@ module OperaWatir
     end
 
     ######################################################################
-    # Presses a key inclding modifiers
+    # Presses a key including modifiers
     #
     # @example
     #   $browser.quick_toolbar(:name, "Document Toolbar").quick_addressfield(:name, "tba_address_field").key_press("a", :ctrl)
