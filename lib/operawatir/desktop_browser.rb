@@ -70,7 +70,7 @@ module OperaWatir
         raise(DesktopExceptions::UnsupportedActionException, "Action #{action_name} not supported")
       end
     end
-       
+
     ######################################################################
     # Presses the key, with optional modifiers, and waits for
     # the window with window name win_name to be shown
@@ -81,18 +81,36 @@ module OperaWatir
     #
     # @param [String]  win_name    name of the window that will be opened (Pass a blank string for any window)
     # @param [String]  key         key to press (e.g. "a" or "backspace")
-    # @param [String]  modifiers   optional modifier(s) to hold down while pressing the key (e.g. :shift, :ctrl, :alt, :meta)
+    # @param [Symbol]  modifiers   optional modifier(s) to hold down while pressing the key (e.g. :shift, :ctrl, :alt, :meta)
     #
     # @return [int] Window ID of the window shown or 0 if no window is shown
     #
     def open_window_with_key_press(win_name, key, *modifiers)
       wait_start
-      key_press(key, *modifiers)
+      key_press_direct(key, *modifiers)
       wait_for_window_shown(win_name)
     end
     
     alias_method :open_dialog_with_key_press, :open_window_with_key_press
     
+    ######################################################################
+    # Opens a new tab and loads the url entered, then waits for
+    # a dialog to be shown based on the url entered
+    #
+    # @param [String] dialog_name name of the dialog that will be closed 
+    #                       (Pass a blank string for any window)
+    # @param [String] url to load 
+    #
+    # @return [int] Window ID of the dialog closed or 0 if no window is closed
+    #
+    # @return [int] Window ID of the dialog closed or 0 if no window is closed
+    #
+    def open_dialog_with_url(dialog_name, url)
+      wait_start
+      @driver.operaDesktopAction("Open url in new page", [url].to_java(:String))
+      # The loading of the page will happen first then the dialog will be shown
+      wait_for_window_shown(dialog_name)
+    end
     
     ######################################################################
     # Executes the action given by action_name, and waits for
@@ -126,13 +144,13 @@ module OperaWatir
     #
     # @param [String]  win_name    name of the window that will be closed (Pass a blank string for any window)
     # @param [String]  key         key to press (e.g. "a" or "backspace")
-    # @param [String]  modifiers   optional modifier(s) to hold down while pressing the key (e.g. :shift, :ctrl, :alt, :meta)
+    # @param [Symbol]  modifiers   optional modifier(s) to hold down while pressing the key (e.g. :shift, :ctrl, :alt, :meta)
     #
     # @return [int] Window ID of the window closed or 0 if no window is closed
     #
     def close_window_with_key_press(win_name, key, *opts)
       wait_start
-      key_press(key, *opts)
+      key_press_direct(key, *opts)
       wait_for_window_close(win_name)
     end
     
@@ -141,7 +159,8 @@ module OperaWatir
     ######################################################################
     # Close the dialog with name dialog_name, using the "Cancel" action
     #
-    # @param [String] win_name name of the window that will be closed (Pass a blank string for any window)
+    # @param [String] dialog_name name of the dialog that will be closed 
+    #                 (Pass a blank string for any window)
     #
     # @return [int] Window ID of the dialog closed or 0 if no window is closed
     #
@@ -261,7 +280,7 @@ module OperaWatir
     # @param [String] value         The value to set the preference to
     #
     def set_preference(prefs_section, pref, value)
-      open_window_with_action("Document Window", "Open url in new page", "opera:config")
+      load_window_with_action("Document Window", "Open url in new page", "opera:config")
       @driver.get("opera:config")
       execute_script("opera.setPreference(\'#{prefs_section}\', \'#{pref}\', #{value});")
       close_window_with_action("Document Window", "Close page", "1")
@@ -276,7 +295,7 @@ module OperaWatir
     # @return [String] The value of the preference
     #
     def get_preference(prefs_section, pref)
-      open_window_with_action("Document Window", "Open url in new page", "opera:config")
+      load_window_with_action("Document Window", "Open url in new page", "opera:config")
       @driver.get("opera:config")
       value = execute_script("opera.getPreference('#{prefs_section}','#{pref}');")
       close_window_with_action("Document Window", "Close page", "1")
@@ -292,13 +311,13 @@ module OperaWatir
     #   $browser.load_page_with_key_press("Enter").should > 0
     #
     # @param [String]  key         key to press (e.g. "a" or "backspace")
-    # @param [String]  modifiers   optional modifier(s) to hold down while pressing the key (e.g. :shift, :ctrl, :alt, :meta)
+    # @param [Symbol]  modifiers   optional modifier(s) to hold down while pressing the key (e.g. :shift, :ctrl, :alt, :meta)
     #
     # @return [int] Window ID of the window loaded or 0 if no window is loaded
     #
     def load_page_with_key_press(key, *modifiers)
          wait_start
-         key_press(key, *modifiers)
+         key_press_direct(key, *modifiers)
          wait_for_window_loaded("")
     end
 
@@ -331,6 +350,7 @@ private
     def opera_desktop_action(name, *param)
       driver.operaDesktopAction(name, param.to_java(:String))
     end
+
   end
 end
 
