@@ -129,6 +129,8 @@ class OperaWatir::Window
 
 private
 
+  # @private
+  # @return [Object] the driver instance.
   def driver
     browser.driver
   end
