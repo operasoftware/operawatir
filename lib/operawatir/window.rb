@@ -116,15 +116,15 @@ class OperaWatir::Window
   # Finders
 
   def find_elements_by_tag_name(name)
-    driver.findElementsByTagName(name).to_a.map{|node|
+    driver.findElementsByTagName(name).to_a.map do |node|
       OperaWatir::Element.new(node)
-    }
+    end
   end
 
   def find_elements_by_xpath(xpath)
-    driver.findElementsByXpath(xpath).to_a.map{|node|
+    driver.findElementsByXpath(xpath).to_a.map do |node|
       OperaWatir::Element.new(node)
-    }
+    end
   end
 
 private
