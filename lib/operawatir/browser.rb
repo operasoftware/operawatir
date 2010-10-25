@@ -32,4 +32,8 @@ class OperaWatir::Browser
     driver.closeAll
   end
 
+  def version
+    driver.getOperaDriverVersion
+  end
+
 end
