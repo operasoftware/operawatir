@@ -1,5 +1,7 @@
 module OperaWatir
 
+  attr_accessor :driver
+
   # @private
   VERSION = File.read(File.join(File.dirname(__FILE__), "../..", "VERSION")).strip
   
@@ -8,4 +10,13 @@ module OperaWatir
     VERSION
   end
   
+  def driver_version
+    driver.getOperaDriverVersion
+  end
+
+  # TODO
+  def platform; end
+  def version; end
+  def build; end
+
 end
