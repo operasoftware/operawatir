@@ -32,13 +32,4 @@ class OperaWatir::Browser
     driver.closeAll
   end
 
-  def driver_version
-    driver.getOperaDriverVersion
-  end
-
-  # TODO
-  def platform; end
-  def version; end
-  def build; end
-
 end
