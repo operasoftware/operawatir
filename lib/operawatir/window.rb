@@ -105,6 +105,7 @@ class OperaWatir::Window
   def visual_hash(time_out=50)
     document.visual_hash timeout
   end
+  alias_method :get_hash, :visual_hash
 
   # TODO Should be private
   def elements
