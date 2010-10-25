@@ -98,7 +98,7 @@ class OperaWatir::Window
 
   # Opera-specific
 
-  def screenshot(file_name, hashes = [], time_out = 2)
+  def screenshot(file_name, hashes=[], time_out=2)
     driver.saveScreenshot(file_name, time_out, hashes.to_java(:string))
   end
 
