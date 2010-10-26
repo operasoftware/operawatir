@@ -3,6 +3,7 @@ module OperaWatir
     include DesktopContainer
     include DesktopCommon
     
+    #@private
     ExcludedActions = ["Open url in new page", "Open url in current page", "Open url in background page",
       "Open url in new window"]
     
@@ -94,14 +95,28 @@ module OperaWatir
     alias_method :open_dialog_with_key_press, :open_window_with_key_press
     
     ######################################################################
+    # Clicks the key and modifiers and waits for a new tab to be activated
+    #
+    # @param [String]  key         key to press (e.g. "a" or "backspace")
+    # @param [Symbol]  modifiers   optional modifier(s) to hold down while pressing 
+    #                                the key (e.g. :shift, :ctrl, :alt, :meta)
+    #
+    # @return [int] Window ID of the document window (tab) that is activated, or 0 if no tab
+    #   is being activated
+    #
+    def activate_tab_with_key_press(key, *modifiers)
+      wait_start
+      key_press_direct(key, *modifiers)
+      wait_for_window_activated("Document Window")
+    end
+    
+    ######################################################################
     # Opens a new tab and loads the url entered, then waits for
     # a dialog to be shown based on the url entered
     #
     # @param [String] dialog_name name of the dialog that will be closed 
     #                       (Pass a blank string for any window)
     # @param [String] url to load 
-    #
-    # @return [int] Window ID of the dialog closed or 0 if no window is closed
     #
     # @return [int] Window ID of the dialog closed or 0 if no window is closed
     #
