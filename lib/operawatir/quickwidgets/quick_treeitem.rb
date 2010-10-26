@@ -37,7 +37,7 @@ module OperaWatir
     # @raise [DesktopExceptions::WidgetNotVisibleException] if the treeitem
     #            is not visible
     #
-    def open_tab_with_click
+    def activate_tab_with_click
       click
       
       # No event yet so just cheat and sleep
@@ -67,6 +67,7 @@ private
     # @private
     # Scrolls the item into view if required
     def scroll_item_into_view
+      
       # Make sure we have a window id
       win_id = window_id >= 0 ? window_id : driver.getActiveWindowID()
       
