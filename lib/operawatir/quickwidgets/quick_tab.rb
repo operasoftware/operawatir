@@ -18,13 +18,11 @@ module OperaWatir
     # @raise [DesktopExceptions::WidgetNotVisibleException] if the tab button
     #            is not visible
     #
-    def open_tab_with_click
+    def activate_tab_with_click
       wait_start
       click 
       wait_for_window_activated("Document Window")
     end
-    
-    alias_method :open_page_with_click, :open_tab_with_click    
     
   end
 end

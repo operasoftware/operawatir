@@ -13,7 +13,7 @@ module OperaWatir
     # @raise [DesktopExceptions::WidgetNotVisibleException] if the dialogtab 
     #            is not visible
     #
-    def open_tab_with_click
+    def activate_tab_with_click
       click
       
       # No event yet so just cheat and sleep
