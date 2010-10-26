@@ -231,7 +231,7 @@ private
         opts.each { |mod| list << DesktopEnums::KEYMODIFIER_ENUM_MAP[mod] }
         element.click(button, times, list)
       else
-        raise(DesktopExceptions::WidgetNotVisibleException, "Widget #{name} not visible")
+        raise(DesktopExceptions::WidgetNotVisibleException, "Widget #{name.length > 0 ? name : text} not visible")
       end 
     end
     
