@@ -2,7 +2,7 @@ module OperaWatir
   
   module Compat; end
   
-  def self.compatiblity!
+  def self.compatibility!
     include Compat
   end
   
@@ -24,4 +24,3 @@ module OperaWatir::Compat
     OperaWatir::Selector.send :include, OperaWatir::Compat::Selector
   end
 end
-
