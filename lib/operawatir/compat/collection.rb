@@ -1,11 +1,5 @@
 module OperaWatir::Compat::Collection
 
-  def [](index)
-    super(index - 1)
-  end
-  
-private
-
   def self.def_responder(*methods)
     methods.each do |method|
       define_method method.to_sym do
@@ -14,10 +8,12 @@ private
     end
   end
   
-public
-  
   def_responder :name
-
+  
+  def [](index)
+    super(index - 1)
+  end
+  
   #   def areas
   #     Collection.new(@driver.findElementsByTagName("areas").map { |element| OperaWatir::Area.new(self, element) } )
   #   end
