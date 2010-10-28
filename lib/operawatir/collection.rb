@@ -1,4 +1,5 @@
 class OperaWatir::Collection
+  extend Forwardable
   include Enumerable
   
   attr_accessor :selectors, :parent
@@ -30,24 +31,21 @@ class OperaWatir::Collection
     elements.size < 2
   end
   
-  def each(&blk)
-    elements.each(&blk)
+  def_delegators :elements, :each, :length, :[]
+
+  # No call to super. OperaWatir collections are completely transparent.
+  def method_missing(method, *args, &blk)
+    map_or_return {|elm| elm.send(method, *args, &blk) }
   end
   
-  # TODO Turn into method_missing
   def id
     map_or_return {|elm| elm.id}
   end
   
 private
   
-  # TODO Refactor?
   def map_or_return(&blk)
-    if singular?
-      blk.call(elements.first)
-    else
-      map(&blk)
-    end
+    singular? ? blk.call(elements.first) : map(&blk)
   end
   
 end

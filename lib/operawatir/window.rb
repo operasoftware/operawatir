@@ -1,17 +1,4 @@
-module WatirHelpers
-
-  def area(type=nil, value=nil)
-    c = OperaWatir::Collection.new(self)
-    c.add_selector :tag, 'area'
-    c.add_selector(type, value) if !type.nil? && !value.nil?
-    c
-  end
-
-end
-
 class OperaWatir::Window
-
-  include WatirHelpers
 
   attr_accessor :browser
 
@@ -125,6 +112,19 @@ class OperaWatir::Window
     driver.findElementsByXpath(xpath).to_a.map{|node|
       OperaWatir::Element.new(node)
     }
+  end
+  
+  def find_all_elements
+    raise 'Not Implmented Yet'
+  end
+  
+  # TODO Refactor
+  def method_missing(tag, *args, &blk)
+    type, value = args
+    c = OperaWatir::Collection.new(self)
+    c.add_selector(:tag, tag.to_s)
+    c.add_selector(type, value) if !type.nil? && !value.nil?
+    c
   end
 
 private

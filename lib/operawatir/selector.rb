@@ -65,8 +65,3 @@ Selector.refine_by :attribute do |collection, s|
     element.has_attribute?(s.type) && element[s.type].send(s.operator, s.value)
   end
 end
-
-Selector.refine_by :xpath do |_,_|
-  raise "YOU CAN'T RUN AN XPATH ON AN ELEMENT!"
-end
-

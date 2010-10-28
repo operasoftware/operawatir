@@ -1,29 +1,35 @@
-require 'rubygems'
-require 'bundler/setup'
-Bundler.require
-
 require 'rake/clean'
-require 'rake/gempackagetask'
+require 'jeweler'
 require 'rspec/core/rake_task'
 require 'yard/rake/yardoc_task'
 
-def name
-  @name ||= File.basename(Dir['*.gemspec'].first, '.gemspec')
-end
+require './lib/operawatir/version'
 
-def gemspec_file
-  "#{name}.gemspec"
-end
+Jeweler::Tasks.new do |gem|
+  gem.name    = 'operawatir'
+  gem.version = OperaWatir::VERSION
+  gem.date    = Date.today.to_s
 
-def spec
-  @spec
-end
+  gem.authors     = ['Deniz Turkoglu', 'Andreas Tolf Tolfsen', 'Chris Lloyd']
+  gem.email       = ['dturkoglu@opera.com', 'andreastt@opera.com', 'christopherl@opera.com']
+  gem.homepage    = 'http://opera.github.com/operawatir'
+  gem.summary     = 'OperaWatir on OperaDriver engine'
+  gem.description = gem.summary
 
-load(gemspec_file)
+  gem.rubyforge_project = gem.name
 
-Rake::GemPackageTask.new(spec) do |t|
-  t.need_tar = true
-  t.need_zip = true
+  gem.platform         = 'jruby'
+  gem.has_rdoc         = true
+  gem.extra_rdoc_files = ['README']
+
+  gem.add_dependency 'rspec', '>= 2'
+
+  gem.add_development_dependency 'rake'
+  gem.add_development_dependency 'yard'
+  gem.add_development_dependency 'mongrel', '>= 1.2.0.pre2'
+  gem.add_development_dependency 'sinatra', '>= 1.1'
+
+  gem.files.exclude '.gitignore'
 end
 
 CLEAN.add 'pkg'
@@ -33,7 +39,6 @@ end
 
 YARD::Rake::YardocTask.new do |t|
   t.options = ['--no-private']
-  t.files   = spec.files
 end
 
 task :doc => :yard
@@ -52,4 +57,3 @@ CLEAN.add 'doc'
 #        git push --tags &&
 #        git stash apply"
 # end
-

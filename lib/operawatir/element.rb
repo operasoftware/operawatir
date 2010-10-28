@@ -1,5 +1,6 @@
-class OperaWatir::Element
-
+class OperaWatir::Element  
+  extend Forwardable
+  
   def initialize(node)
     self.node = node
   end
@@ -19,37 +20,25 @@ class OperaWatir::Element
   end
   
   def id
-    self['id']
+    self[:id]
   end
   
-  # FIXME: HACK Should be built into node
+  # FIXME: HACK Should be built into OperaWebdriver
   def has_attribute?(attr)
     !self[attr].nil?
   end
-
-  def enabled?
-    node.isEnabled
-  end
   
-  def text
-    node.getText
-  end
+  def_delegator :node, :isEnabled, :enabled?
 
-  def html
-    node.getHTML
-  end
-
-  def value
-    node.getValue
-  end
-
-  def tag
-    node.getElementName
-  end
+  def_delegator :node, :getText, :text
   
-  def clear
-    node.clear
-  end
+  def_delegator :node, :getHTML, :html
+  
+  def_delegator :node, :getValue, :value
+
+  def_delegator :node, :getElementName, :tagname
+
+  def_delegator :node, :clear, :clear
   
   
   # Events
@@ -82,9 +71,7 @@ class OperaWatir::Element
     node.dragAndDropOn other.node
   end
   
-  def submit
-    node.submit
-  end
+  def_delegator :node, :submit
   
   
   # UI
@@ -93,9 +80,7 @@ class OperaWatir::Element
     node.saveScreenshot(file_name, time_out)
   end
   
-  def visual_hash
-    node.getImageHash
-  end
+  def_delegator :node, :getImageHash, :visual_hash
   
   def location
     loc = node.getLocation

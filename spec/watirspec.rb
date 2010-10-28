@@ -8,15 +8,7 @@ module WatirSpec
   def host
     "http://#{Server.bind}:#{Server.port}"
   end
-  
-  def fixture_path
-    './fixtures'
-  end
 
-  def fixture(*paths)
-    [host, *paths].join('/')
-  end
-  
   def guards
     @guards ||= []
   end
@@ -24,4 +16,11 @@ module WatirSpec
   def guarded?
     !!@guarded
   end
+  
+  module Helpers
+    def fixture(*paths)
+      [WatirSpec.host, *paths].join('/')
+    end
+  end
+  
 end

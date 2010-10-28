@@ -1,10 +1,10 @@
 # encoding: utf-8
-require File.expand_path("../spec_helper", __FILE__)
+require File.expand_path("../../spec_helper", __FILE__)
 
 describe "Areas" do
 
   before :each do
-    browser.goto(WatirSpec.files + "/images.html")
+    browser.goto fixture('images.html')
   end
 
   bug "http://github.com/jarib/celerity/issues#issue/25", :celerity do

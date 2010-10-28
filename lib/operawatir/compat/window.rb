@@ -1,2 +1,2 @@
-module OperaWatir::Compat::Window; end
-
+module OperaWatir::Compat::Window
+end

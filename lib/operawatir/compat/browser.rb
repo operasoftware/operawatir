@@ -1,2 +1,2 @@
-module OperaWatir::Compat::Browser; end
-
+module OperaWatir::Compat::Browser
+end
