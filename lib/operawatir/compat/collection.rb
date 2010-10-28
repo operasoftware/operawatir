@@ -1,7 +1,6 @@
 module OperaWatir::Compat::Collection
 
   def [](index)
-    puts index, (index-1)
     super(index - 1)
   end
   
