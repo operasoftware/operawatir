@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 require 'rspec'
 
 class Object
@@ -73,9 +74,9 @@ module OperaWatir::Waiter
     # TODO Not sure of this
     def files(new_path=nil)
       if new_path
-        OperaWatir::Helper.files = new_path
+        OperaWatir::Waiter.files = new_path
       else
-        OperaWatir::Helper.files
+        OperaWatir::Waiter.files
       end
     end
   end
