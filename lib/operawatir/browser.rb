@@ -2,7 +2,6 @@ class OperaWatir::Browser
 
   attr_accessor :driver
   
-  # FIXME: HACK For the moment OperaWatir doesn't support multiple windows.
   attr_accessor :active_window
 
   def initialize(bin_path=nil, *args)

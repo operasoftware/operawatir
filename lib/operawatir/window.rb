@@ -58,10 +58,10 @@ class OperaWatir::Window
   def document
   end
 
-  def eval(js)
+  def eval_js(js)
     driver.executeScript(js, [])
   end
-  alias_method :execute_script, :eval
+  alias_method :execute_script, :eval_js
 
 
   # Keyboard

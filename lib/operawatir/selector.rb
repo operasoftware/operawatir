@@ -1,4 +1,4 @@
-class Selector
+class OperaWatir::Selector
   
   class << self
     attr_accessor :finders, :refinements
@@ -34,34 +34,33 @@ class Selector
   end
   
   def find(obj)
-    result = (obj.is_a?(OperaWatir::Window) ? finder : refinement).
-              call(obj, self)
+    result = instance_exec(obj, &(obj.is_a?(OperaWatir::Window) ? finder : refinement))
     raise OperaWatir::Exceptions::UnknownObjectException if result.empty?
     result
   end
   
-end
-
-# TODO Instance eval block so the selector doesn't need to be passed in.
-#      The first time it is spelled out for clarity.
-Selector.find_by :tag do |window, selector|
-  window.find_elements_by_tag_name(selector.value)
-end
-
-Selector.find_by :xpath do |window, s|
-  window.find_elements_by_xpath(s.value)
-end
-
-Selector.find_by :all do |window, s|
-  window.find_all_elements
-end
-
-Selector.refine_by :index do |collection, s|
-  [collection[s.value] || raise(OperaWatir::Exceptions::UnknownObjectException)]
-end
-
-Selector.refine_by :attribute do |collection, s|
-  collection.select do |element|
-    element.has_attribute?(s.type) && element[s.type].send(s.operator, s.value)
+  # Selectors
+  
+  find_by :tag do |window|
+    window.find_elements_by_tag_name(value)
   end
+
+  find_by :xpath do |window|
+    window.find_elements_by_xpath(value)
+  end
+
+  find_by :all do |window|
+    window.find_all_elements
+  end
+
+  refine_by :index do |collection|
+    [collection[value] || raise(OperaWatir::Exceptions::UnknownObjectException)]
+  end
+
+  refine_by :attribute do |collection|
+    collection.select do |element|
+      element.has_attribute?(type) && element[type].send(operator, value)
+    end
+  end
+  
 end

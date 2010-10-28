@@ -8,6 +8,7 @@ module WatirSpec
   def host
     "http://#{Server.bind}:#{Server.port}"
   end
+  alias_method :files, :host
 
   def guards
     @guards ||= []
@@ -18,6 +19,10 @@ module WatirSpec
   end
   
   module Helpers
+    def browser
+      OperaWatir::Waiter.browser
+    end
+    
     def fixture(*paths)
       [WatirSpec.host, *paths].join('/')
     end

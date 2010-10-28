@@ -1,1 +1,0 @@
-#!/usr/bin/env jruby -S rspec --color
