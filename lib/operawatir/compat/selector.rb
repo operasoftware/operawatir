@@ -14,6 +14,7 @@ module OperaWatir::Compat::Selector
         [collection[value-1] || raise(OperaWatir::Exceptions::UnknownObjectException)]
       end
       
+      # TODO Refactor
       refine_by :url do |collection|
         collection.select do |element|
           element.has_attribute?(:href) && element[:href].send(operator, value)
@@ -23,6 +24,7 @@ module OperaWatir::Compat::Selector
       refine_by :attribute do |collection|
         raise TypeError if value.is_a?(Float)
         
+        # TODO Refactor
         raise OperaWatir::Exceptions::MissingWayOfFindingObjectException unless [:id, :name, :title, :url, :href, :xpath, :index].include?(type)
         
         collection.select do |element|
