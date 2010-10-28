@@ -1,12 +1,15 @@
 # encoding: utf-8
+require 'sinatra/base'
 
-class WatirSpec::Server < Sinatra::Base
+class WatirSpec::Server < ::Sinatra::Base
 
-  set :public,      WatirSpec.fixture_path
+  set :app_file,    __FILE__
+  set :root,        File.dirname(__FILE__)
+  set :public,      lambda { File.join(root, 'fixtures')}
   set :static,      true
   set :run,         false
   set :environment, :production
-  set :host,        'localhost'
+  set :bind,        'localhost'
   set :port,        2000
   set :server,      %w[thin mongrel webrick]
 

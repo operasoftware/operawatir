@@ -1,8 +1,5 @@
 $LOAD_PATH.unshift File.expand_path('..', __FILE__)
-
-module OperaWatir; end
-require 'operawatir/version'
-
+require 'forwardable'
 require 'java'
 include Java
 
@@ -15,6 +12,9 @@ include_class org.openqa.selenium.RenderedWebElement
 include_class org.openqa.selenium.NoSuchElementException
 include_class com.opera.core.systems.OperaDriver
 include_class com.opera.core.systems.OperaWebElement
+
+module OperaWatir; end
+require 'operawatir/version'
 
 require 'operawatir/exceptions'
 require 'operawatir/selector'

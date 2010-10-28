@@ -14,6 +14,10 @@ class OperaWatir::Browser
 
     self.active_window = OperaWatir::Window.new(self)
   end
+  
+  def name
+    'Opera'
+  end
 
   def goto(url)
     active_window.url = url
