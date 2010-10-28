@@ -10,7 +10,7 @@ class OperaWatir::Collection
   
   # TODO Refactor
   def add_selector(method, value)
-    selectors << Selector.new(method, value)
+    selectors << OperaWatir::Selector.new(method, value)
   end
 
   def elements
