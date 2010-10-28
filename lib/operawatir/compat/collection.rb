@@ -5,10 +5,19 @@ module OperaWatir::Compat::Collection
     super(index - 1)
   end
   
-  def name
-    method_missing(:name)
-  end
+private
 
+  def self.def_responder(*methods)
+    methods.each do |method|
+      define_method method.to_sym do
+        method_missing method.to_sym # LOL, Watirspec
+      end
+    end
+  end
+  
+public
+  
+  def_responder :name
 
   #   def areas
   #     Collection.new(@driver.findElementsByTagName("areas").map { |element| OperaWatir::Area.new(self, element) } )
