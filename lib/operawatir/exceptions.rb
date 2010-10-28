@@ -35,6 +35,5 @@ module OperaWatir::Exceptions
   
   # Raised when trying to access a table cell that doesn't exist.
   class UnknownCellException < OperaWatirException; end
-
 end
 

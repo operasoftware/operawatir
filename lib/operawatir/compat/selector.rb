@@ -6,8 +6,7 @@ module OperaWatir::Compat::Selector
       # We don't implement selecting a tag then refining it with an XPath. To
       # do that would require a custom XPath parser/compiler.
       refine_by :xpath do |collection|
-        warn "Finding elements by Xpath is a noop, returning original collection"
-        raise OperaWatir::Exceptions::UnknownObjectException
+        deprecation! 'Refining collection by xpath', 'Fix by using browser.element(:xpath => ...)'
       end
       
       # Watir1 breaks all computer science idioms and is 1 indexed.
