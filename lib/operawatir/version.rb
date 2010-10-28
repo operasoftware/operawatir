@@ -8,4 +8,13 @@ module OperaWatir
     VERSION
   end
   
+  def self.driver_version
+    driver.getOperaDriverVersion
+  end
+  
+  # TODO
+  def self.platform; end
+  def self.version; end
+  def self.build; end
+
 end

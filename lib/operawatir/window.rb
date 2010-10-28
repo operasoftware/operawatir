@@ -40,9 +40,7 @@ class OperaWatir::Window
   def url=(url)
     driver.get(url)
   end
-
-  # TODO Deprecate
-  alias_method :goto, :url=
+  alias_method :goto, :url=  # deprecate?
 
   def text
     driver.getText
@@ -63,6 +61,7 @@ class OperaWatir::Window
   def eval(js)
     driver.executeScript(js, [])
   end
+  alias_method :execute_script, :eval
 
 
   # Keyboard
@@ -86,13 +85,14 @@ class OperaWatir::Window
 
   # Opera-specific
 
-  def screenshot(file_name, hashes, time_out)
+  def screenshot(file_name, hashes=[], time_out=2)
     driver.saveScreenshot(file_name, time_out, hashes.to_java(:string))
   end
 
   def visual_hash(time_out=50)
     document.visual_hash timeout
   end
+  alias_method :get_hash, :visual_hash
 
   # TODO Should be private
   def elements
@@ -103,15 +103,15 @@ class OperaWatir::Window
   # Finders
 
   def find_elements_by_tag_name(name)
-    driver.findElementsByTagName(name).to_a.map{|node|
+    driver.findElementsByTagName(name).to_a.map do |node|
       OperaWatir::Element.new(node)
-    }
+    end
   end
 
   def find_elements_by_xpath(xpath)
-    driver.findElementsByXpath(xpath).to_a.map{|node|
+    driver.findElementsByXpath(xpath).to_a.map do |node|
       OperaWatir::Element.new(node)
-    }
+    end
   end
   
   def find_all_elements
@@ -129,6 +129,8 @@ class OperaWatir::Window
 
 private
 
+  # @private
+  # @return [Object] the driver instance.
   def driver
     browser.driver
   end
