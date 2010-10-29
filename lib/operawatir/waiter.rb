@@ -47,7 +47,7 @@ module OperaWatir::Waiter
   
   def inspectr_path
     File.join File.expand_path('../../../utils', __FILE__),
-              (RUBY_PLATFORM =~ /mswin|msys|mingw32/ ? 'inspectr.exe' : 'inspectr')
+              (Config::CONFIG['os_host'] =~ /mswin|msys|mingw32/ ? 'inspectr.exe' : 'inspectr')
   end
   
   def spawn_inspectr
