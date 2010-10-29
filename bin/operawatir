@@ -1,1 +1,2 @@
-#!/usr/bin/env jruby -S rspec --color
+#!/bin/sh
+/usr/bin/env jruby -S rspec --color $1
