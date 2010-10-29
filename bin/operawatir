@@ -1,12 +1,15 @@
-#!/usr/bin/jruby
+#!/bin/sh
+jruby -S rspec --color $1
 
-require 'rubygems'
-require 'rbconfig'
-require 'rspec'
+##!/usr/bin/jruby
 
-Rspec.configuration.color_enabled = true unless Config::CONFIG['host_os'] =~ /mswin|msys|mingw32/
+#require 'rubygems'
+#require 'rbconfig'
+#require 'rspec'
 
-version = ">= 0"
-gem 'rspec-core', version
-load Gem.bin_path('rspec-core', 'rspec', version)
+#spec.configuration.color_enabled = true unless Config::CONFIG['host_os'] =~ /mswin|msys|mingw32/
+
+#version = ">= 0"
+#gem 'rspec-core', version
+#load Gem.bin_path('rspec-core', 'rspec', version)
 
