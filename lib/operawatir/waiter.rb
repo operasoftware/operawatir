@@ -50,10 +50,10 @@ module OperaWatir::Waiter
   end
   
   def spawn_inspectr
-    abort 'operahelper: Unable to locate inspectr executable' unless File.exist?(inspectr_path)
+    abort 'operawatir: Unable to locate inspectr executable' unless File.exist?(inspectr_path)
     
     Thread.new do
-      puts "Starting inspectr with PID ##{browser.pid}"
+      puts "Attaching inspectr to PID ##{browser.pid}"
       exec inspectr, browser.pid.to_s
     end
   end
@@ -63,6 +63,7 @@ module OperaWatir::Waiter
     spawn_inspectr if inspectr.truthy?
     configure_rspec
   end
+
   
   # Helpers included for each Spec
   
