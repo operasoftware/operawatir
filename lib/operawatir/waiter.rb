@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 require 'rspec'
+require 'rbconfig'
 
 class Object
   
