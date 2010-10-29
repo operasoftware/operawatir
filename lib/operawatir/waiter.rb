@@ -38,6 +38,7 @@ module OperaWatir::Waiter
   def configure_rspec
     RSpec.configure do |config|
       config.include SpecHelpers
+
       config.after(:suite) do
         OperaWatir::Waiter.browser.quit
       end
