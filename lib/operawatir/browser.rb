@@ -62,4 +62,10 @@ class OperaWatir::Browser
     driver.getPid
   end
 
+  def platform; end
+ 
+  def build; end
+
+  def path; end
+
 end
