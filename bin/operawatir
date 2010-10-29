@@ -7,5 +7,7 @@ require 'rspec'
 #RSpec::Runner.options.colour = true unless Config::CONFIG["host_os"] =~ /mswin|msys|mingw32/
 
 Rspec.configuration.color_enabled = true
-load Gem.bin_path('rspec-core', 'rspec')
+version = ">= 0"
+gem 'rspec-core', version
+load Gem.bin_path('rspec-core', 'rspec', version)
 
