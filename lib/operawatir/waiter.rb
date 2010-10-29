@@ -51,6 +51,7 @@ module OperaWatir::Waiter
   end
   
   def spawn_inspectr
+    abort 'operawatir: inspectr is not supported on your operating system' unless Config::CONFIG['os_host'] =~ /linux/
     abort 'operawatir: Unable to locate inspectr executable' unless File.exist?(inspectr_path)
     
     Thread.new do
