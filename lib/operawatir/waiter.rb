@@ -4,8 +4,8 @@ require 'rbconfig'
 
 class Object
   
-  # Determines if a configuration file (helper.rb) is true or false. The user 
-  # might enter “true”, 1 or true.
+  # Determines if a configuration file (helper.rb) is true or
+  # false. The user might enter “true”, 1 or true.
   def truthy?
     self && !['false', 'no', 'n', '0', 0].include?(self)
   end
