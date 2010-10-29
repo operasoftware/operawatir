@@ -4,7 +4,7 @@ module OperaWatir
     include DesktopCommon
     
     #@private
-    ExcludedActions = ["Open url in new page", "Open url in current page", "Open url in background page",
+    LoadActions = ["Open url in new page", "Open url in current page", "Open url in background page",
       "Open url in new window"]
     
     # @private
@@ -35,11 +35,12 @@ module OperaWatir
     #
     # @param [String] win_name    name of the window that will be opened (Pass a blank string for any window)
     # @param [String] action_name name of the action to execute to open the window
+    #                             the action cannot be a load action, see LoadActions
     # @param [String] param       optional parameter(s) to be supplied with the Opera action.
     #
     # @return [int] Window ID of the window shown or 0 if no window is shown
     def open_window_with_action(win_name, action_name, *params)
-      if ExcludedActions.include?(action_name) then
+      if LoadActions.include?(action_name) then
         raise(DesktopExceptions::UnsupportedActionException, "Action #{action_name} not supported")
       end
       
@@ -59,11 +60,12 @@ module OperaWatir
     #
     # @param [String] win_name    name of the window that will be opened (Pass a blank string for any window)
     # @param [String] action_name name of the action to execute to open the window
+    #                             the action has to be one of those in LoadActions
     # @param [String] param       optional parameter(s) to be supplied with the Opera action.
     #
     # @return [int] Window ID of the window shown or 0 if no window is shown
     def load_window_with_action(win_name, action_name, *params)
-      if ExcludedActions.include?(action_name) 
+      if LoadActions.include?(action_name) 
         wait_start
         @driver.operaDesktopAction(action_name, params.to_java(:String))
         wait_for_window_loaded(win_name)
@@ -239,23 +241,14 @@ module OperaWatir
     #@private
     # Retrieve all tabs
     def open_pages
-      @driver.getWindowList.map do |java_window|
-        if java_window.getName() == "Document Window"
-          QuickWindow.new(self,java_window)
-        end
-      end 
+      windows.select { |win| win.name == "Document Window" }
     end
     
     #@private
-    def tab_buttons
-      tab_buttons = []
-      widgets("Browser Window").each do |widget|
-        if widget.type == :tabbutton
-          tab_buttons << widget
-        end
-      end
-      tab_buttons
-    end
+    # Not needed as quick_tabs is def. below
+    #def tab_buttons
+    #  widgets("Browser Window").select { | w | w.type == :tabbutton }
+    #end
     
 #=begin
     # Return collection for each widget type
@@ -367,5 +360,6 @@ private
     end
 
   end
+  
 end
 
