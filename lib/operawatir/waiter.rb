@@ -70,7 +70,7 @@ module OperaWatir::Waiter
     def browser
       OperaWatir::Waiter.browser
     end
-    
+
     # TODO Not sure of this
     def files(new_path=nil)
       if new_path
