@@ -229,6 +229,9 @@ private
         button = DesktopEnums::MOUSEBUTTON_ENUM_MAP[button]
         list = Java::JavaUtil::ArrayList.new
         opts.each { |mod| list << DesktopEnums::KEYMODIFIER_ENUM_MAP[mod] }
+        if enabled? == false # FIXME : Throw exception
+          puts "Element is not enabled!!"
+        end
         element.click(button, times, list)
       else
         raise(DesktopExceptions::WidgetNotVisibleException, "Widget #{name.length > 0 ? name : text} not visible")
