@@ -1,2 +1,6 @@
 #!/bin/sh
-/usr/bin/env jruby -S rspec --color $1
+if [ $0 -eq "--ng"] then
+/usr/bin/env jruby -S rspec --color $*
+else
+/usr/bin/env jruby --ng -S rspec --color $*
+fi
