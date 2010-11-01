@@ -1,13 +1,17 @@
 # -*- coding: utf-8 -*-
+
 require 'rspec'
 require 'rbconfig'
 
 class Object
-  
-  # Determines if a configuration file (helper.rb) is true or
-  # false. The user might enter “true”, 1 or true.
   def truthy?
-    self && !['false', 'no', 'n', '0', 0].include?(self)
+
+    # FIXME: Should we not check for truthfulness instead, and presume
+    # that anything else passed to be false?  Below we are doing the
+    # opposite.
+    #self && !['false', 'no', 'n', '0', 0].include?(self)
+
+    self && [true, 'true', 'yes', 'y', '1', 1].include?(self)
   end
 end
 
@@ -21,10 +25,16 @@ module OperaWatir::Waiter
     end
     attr_writer attr.to_sym
   end
-  
+
+  # TODO: Make nice configuration block
+  def self.configure
+    yield configuration if block_given?
+  end
+
+  # FIXME: These accessor settings are parsed procedurally, is this what we want?
   default_attr_accessor :path,          nil
   default_attr_accessor :args,          ''
-  default_attr_accessor :files,         "file://#{File.expand_path('../interactive', Dir.pwd)}"
+  default_attr_accessor :files,         "file://localhost/#{File.expand_path('interactive', File.dirname(RSpec.configuration.files_to_run[0]))}/"
   default_attr_accessor :inspectr,      false
   default_attr_accessor :terminal_size, [80,24]
   
@@ -35,7 +45,7 @@ module OperaWatir::Waiter
   def helper_file
     File.expand_path(File.join(Dir.pwd, 'helper.rb'))
   end
-  
+
   def configure_rspec
     RSpec.configure do |config|
       config.include SpecHelpers
@@ -57,7 +67,7 @@ module OperaWatir::Waiter
     
     Thread.new do
       puts "Attaching inspectr to PID ##{browser.pid}"
-      exec inspectr, browser.pid.to_s
+      exec inspectr_path, browser.pid.to_s
     end
   end
 
@@ -83,6 +93,6 @@ module OperaWatir::Waiter
         OperaWatir::Waiter.files
       end
     end
+    alias_method :files=, :files
   end
-
 end
