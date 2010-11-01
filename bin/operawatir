@@ -1,0 +1,2 @@
+#!/bin/sh
+jruby -S spec --format specdoc --color $*
