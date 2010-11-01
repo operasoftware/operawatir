@@ -2,6 +2,7 @@
 
 require 'rspec'
 require 'rbconfig'
+require 'ostruct'
 
 class Object
   def truthy?
@@ -18,28 +19,50 @@ end
 
 module OperaWatir::Waiter
   extend self
-  
+
   def self.default_attr_accessor(attr, default)
     define_method attr.to_sym do
-      ENV["OPERA_#{attr.to_s.upcase}"] || instance_variable_get("@#{attr}") || default
+      default || instance_variable_get("@#{attr}") || ENV["OPERA_#{attr.to_s.upcase}"]
     end
     attr_writer attr.to_sym
   end
 
-  # TODO: Make nice configuration block
-  def self.configure
-    yield configuration if block_given?
+  def defaults
+    configure do |c|
+      c.path          = nil
+      c.args          = ''
+      c.files         = "file://localhost/#{File.expand_path('interactive', File.dirname(RSpec.configuration.files_to_run[0]))}"
+      c.inspectr      = false
+      c.terminal_size = [80,24]
+    end
   end
 
-  # FIXME: These accessor settings are parsed procedurally, is this what we want?
-  default_attr_accessor :path,          nil
-  default_attr_accessor :args,          ''
-  default_attr_accessor :files,         "file://localhost/#{File.expand_path('interactive', File.dirname(RSpec.configuration.files_to_run[0]))}/"
-  default_attr_accessor :inspectr,      false
-  default_attr_accessor :terminal_size, [80,24]
-  
+  def configure(*args, &block)
+    HelperConfig.block_to_hash(block).each do |setting, value|
+      default_attr_accessor setting, value
+    end
+  end
+
+  class HelperConfig < OpenStruct
+    def self.block_to_hash(block=nil)
+      config = self.new
+      if block
+        block.call(config)
+        config.to_hash
+      else
+        {}
+      end
+    end
+    
+    def to_hash
+      @table
+    end
+  end
+
+  defaults
+
   def browser
-    @browser ||= OperaWatir::Browser.new(path, *args.split(' '))
+    @browser ||= OperaWatir::Browser.new(path, *args.split(' ').to_java(:string))
   end
   
   def helper_file
@@ -58,11 +81,11 @@ module OperaWatir::Waiter
   
   def inspectr_path
     File.join File.expand_path('../../../utils', __FILE__),
-              (Config::CONFIG['os_host'] =~ /mswin|msys|mingw32/ ? 'inspectr.exe' : 'inspectr')
+              (Config::CONFIG['host_os'] =~ /mswin|msys|mingw32/ ? 'inspectr.exe' : 'inspectr')
   end
   
   def spawn_inspectr
-    abort 'operawatir: inspectr is not supported on your operating system' unless Config::CONFIG['os_host'] =~ /linux/
+    abort 'operawatir: inspectr is not supported on your operating system' unless Config::CONFIG['host_os'] =~ /linux/
     abort 'operawatir: Unable to locate inspectr executable' unless File.exist?(inspectr_path)
     
     Thread.new do
@@ -70,11 +93,12 @@ module OperaWatir::Waiter
       exec inspectr_path, browser.pid.to_s
     end
   end
-
+  
   def run!
     require helper_file if File.exist?(helper_file)
     spawn_inspectr if inspectr.truthy?
     configure_rspec
+    RSpec::Core::Runner.autorun
   end
 
   
@@ -94,5 +118,14 @@ module OperaWatir::Waiter
       end
     end
     alias_method :files=, :files
+  end
+end
+
+# Overriding trapping in RSpec.
+module RSpec
+  module Core
+    class Runner
+      def self.trap_interrupt; end
+    end
   end
 end
