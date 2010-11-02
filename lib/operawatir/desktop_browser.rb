@@ -258,6 +258,7 @@ module OperaWatir
     #    
     WIDGET_ENUM_MAP.keys.each do |widget_type|
       my_type = "quick_" << widget_type.to_s
+      type = my_type
       if my_type == "quick_search" || my_type == "quick_checkbox"
         my_type << "es"
       else
@@ -342,6 +343,86 @@ module OperaWatir
     # @private
     # Special method to access the driver
     attr_reader :driver
+    
+    ######################################################################
+    # Clear all private data (as in Delete Private data Dialog) 
+    #
+    # @return [int] 0 if operation failed 
+    #
+    def clear_all_private_data
+      win_id = open_dialog_with_action("Clear Private Data Dialog", "Delete private data")
+      return 0 if win_id == 0
+      
+      #Ensure is Expanded
+      if quick_button(:name, "Destails_expand").value == 0
+        quick_button(:name, "Destails_expand").toggle_with_click
+      end
+           
+      quick_checkboxes("Clear Private Data Dialog").each do |box|
+        #puts "checkbox #{box.name}"
+        if box.checked? == false
+          #TODO: This should be fixed. the iterator should return real widget objects
+          quick_checkbox(:name, box.name).toggle_with_click
+        end
+      end
+      
+      #Delete all
+      win_id = quick_button(:name, "button_OK").close_dialog_with_click("Clear Private Data Dialog")
+    end
+    
+    ######################################################################
+    # Clear typed and visited history
+    #
+    def clear_history
+      #TODO: Use Delete Private Data Dialog?
+      opera_desktop_action("Clear visited history")
+      opera_desktop_action("Clear typed in history")
+    end
+    
+    ######################################################################
+    #  
+    #
+    #  
+    #
+    def clear_cache
+      #TODO: Use Delete Private Data Dialog?
+      opera_desktop_action("Clear disk cache")
+    end
+    
+    ######################################################################
+    # 
+    #
+    #  
+    #
+    def close_all_tabs
+=begin      
+      if open_dialog_with_action("Close All Confirm Dialog", "Close all") > 0
+         quick_button(:name, "button_OK).close_dialog_with_click("Close All Confirm Dialog")
+      end
+=end
+      (quick_tabbuttons("Browser Window").length - 1).times do
+        quick_tab(:pos, 1).close_window_with_click("Document Window")
+      end
+
+    end
+    
+    #####################################################################
+    # 
+    #
+    #  
+    #
+    def close_all_dialogs
+      #TODO:
+       
+    end
+    
+    
+=begin  
+  TODO:  
+  delete cookies
+  reset main window   
+=end    
+    
 
 private
     # Gets the parent widget name of which there is none here
