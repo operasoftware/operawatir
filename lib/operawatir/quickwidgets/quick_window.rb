@@ -41,7 +41,7 @@ module OperaWatir
     ######################################################################
     # Gets the type of a widget
     #
-    # @return [Symbol] type of the widget (e.g. :dropdown, :button)
+    # @return [Symbol] type of the window (e.g. :dropdown, :button)
     #
     def type
       WINDOW_ENUM_MAP.invert[@elm.getType]
