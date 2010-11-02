@@ -156,7 +156,13 @@ module OperaWatir
         puts "Parent: " + element.getParentName() + ", Item: " + element.getRow().to_s + ", Text: " + text
       end
     end
-    
+
+    # @return position for elements that have a position, else false
+    def position
+      [row, col] if type == :treeitem
+      col if type == :tabbutton
+      false
+    end
    
     ######################################################################
     # Prints out all of the internal information about the widget. Used
@@ -223,19 +229,17 @@ private
     
     # Click widget
     def click(button = :left, times = 1, *opts)
+      raise Exceptions::ObjectDisabledException, "Element #{@selector} is disabled" unless enabled?
       # Dialog tabs are always visible even if the page they are connected to isn't
       if visible? == true or type == :dialogtab
         #DesktopEnums::KEYMODIFIER_ENUM_MAP.each { |k, v| puts "#{k},#{v}"}
         button = DesktopEnums::MOUSEBUTTON_ENUM_MAP[button]
         list = Java::JavaUtil::ArrayList.new
         opts.each { |mod| list << DesktopEnums::KEYMODIFIER_ENUM_MAP[mod] }
-        if enabled? == false # FIXME : Throw exception
-          puts "Element is not enabled!!"
-        end
         element.click(button, times, list)
       else
         raise(DesktopExceptions::WidgetNotVisibleException, "Widget #{name.length > 0 ? name : text} not visible")
-      end 
+      end
     end
     
     # Focus a widget with a click
