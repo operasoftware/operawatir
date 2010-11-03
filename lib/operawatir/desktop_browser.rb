@@ -9,7 +9,7 @@ module OperaWatir
     
     # @private
     def initialize (executable_location = nil, *arguments)
-      if executable_location.nil?
+      if executable_location.nil? or executable_location.length == 0
         @driver = OperaDesktopDriver.new
       else
         @driver = OperaDesktopDriver.new(executable_location, arguments.to_java(:String))
