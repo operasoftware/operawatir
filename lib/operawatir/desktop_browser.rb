@@ -330,6 +330,24 @@ module OperaWatir
          wait_for_window_loaded("")
     end
 
+    ######################################################################
+    # Returns the full path to the Opera executable 
+    #
+    # @return [String] Full path to the opera executable 
+    #
+    def get_opera_path
+      @driver.getOperaPath()
+    end
+
+    ######################################################################
+    # Returns an array of full paths to each folder that holds 
+    # Opera preferences
+    #
+    # @return [Array] Array of full paths to Opera preference folders  
+    #
+    def get_opera_preferences_paths
+      @driver.getPreferencesPaths().to_a
+    end
     
     ######################################################################
     # Returns true if the test is running on Mac 
