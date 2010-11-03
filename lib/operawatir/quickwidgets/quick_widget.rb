@@ -270,25 +270,26 @@ private
       @elm
     end
     
+    def set_selector
+      if @elm.name.length > 0
+        @selector = @elm.name
+      elsif @elm.text.length > 0
+        @selector = @elm.text
+      elsif @elm.type == :treeitem
+        @selector = [@elm.row, @elm.col]
+      elsif @elm.type == :tabbutton
+        @selector = @elm.col
+      end
+      @location = @elm.parentName
+    end
+    
     # Finds the element on the page.  
     def find
-=begin
-      #TODO: Add and fix the  helper functions that use the iterators
-      #If @method set and we do new find because of refresh, need to get @selector first
+      #If @method set and we do new find because of refresh, we need to get @selector first
       #Have the java object because the construct was done on it
-      if (@selector == nil && @elm!= nil)
-        if @elm.name.length > 0
-          @selector = @elm.name
-        else if @elm.text.length > 0
-          @selector = @elm.text
-        else if @elm.type == :treeitem
-          @selector = [@elm.row, @elm.col]
-        else if @elm.type == :tabbutton
-          @selector = @elm.col
-        end
-        @location = @elm.parentName
+      if @selector == nil && @elm != nil
+        set_selector
       end
-=end      
       #puts "<find> Find Widget by " + @method.to_s + " " + @window_id.to_s + ", " + @selector.to_s + ", " + @location.to_s
       case @method
       when :name
