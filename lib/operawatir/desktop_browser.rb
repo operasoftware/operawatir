@@ -340,15 +340,32 @@ module OperaWatir
     end
 
     ######################################################################
-    # Returns an array of full paths to each folder that holds 
-    # Opera preferences
+    # Returns the full path to the Opera large preferences folder 
     #
-    # @return [Array] Array of full paths to Opera preference folders  
+    # @return [String] Full path to the large preferences folder
     #
-    def get_opera_preferences_paths
-      @driver.getPreferencesPaths().to_a
+    def get_large_preferences_path
+      @driver.getLargePreferencesPath()
     end
-    
+  
+    ######################################################################
+    # Returns the full path to the Opera small preferences folder 
+    #
+    # @return [String] Full path to the small preferences folder
+    #
+    def get_small_preferences_path
+      @driver.getSmallPreferencesPath()
+    end
+  
+    ######################################################################
+    # Returns the full path to the Opera cache preferences folder 
+    #
+    # @return [String] Full path to the cache preferences folder
+    #
+    def get_cache_preferences_path
+      @driver.getCachePreferencesPath()
+    end
+
     ######################################################################
     # Returns true if the test is running on Mac 
     #
