@@ -378,10 +378,13 @@ module OperaWatir
            
       quick_checkboxes("Clear Private Data Dialog").each do |box|
         #puts "checkbox #{box.name}"
+        box.toggle_with_click unless box.checked?
+=begin
         if box.checked? == false
           #TODO: This should be fixed. the iterator should return real widget objects
           quick_checkbox(:name, box.name).toggle_with_click
         end
+=end        
       end
       
       #Delete all
@@ -418,10 +421,14 @@ module OperaWatir
          quick_button(:name, "button_OK).close_dialog_with_click("Close All Confirm Dialog")
       end
 =end
+=begin
       (quick_tabbuttons("Browser Window").length - 1).times do
         quick_tab(:pos, 1).close_window_with_click("Document Window")
       end
-
+=end      
+      quick_tabbuttons("Browser Window").each do |btn|
+        btn.close_window_with_click("Document Window") unless btn.position == 0
+      end
     end
     
     #####################################################################
