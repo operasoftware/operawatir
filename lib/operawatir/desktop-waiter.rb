@@ -82,6 +82,12 @@ module OperaWatir::Waiter
           OperaWatir::Waiter.browser.quit_driver
         end
       end
+      config.before(:all) do
+        #set_prefs
+      end
+      config.after(:all) do
+        #delete_prefs
+      end
     end
   end
   
@@ -135,20 +141,36 @@ module RSpec
     end
   end
 end
+
+=begin
+def paths(dir)
+  Dir["#{dir}/*.rb"]
+end
+=end
 =begin
 def remove_prefs_folders
-    get_opera_preferences_paths.each do |folder|
-      if File.directory?(folder)
-        Dir.rmdir(folder)
-      end
-    end
+  if File.directory?(get_cache_preferences_path)
+     Dir.rmdir(get_cache_preferences_path)
   end
+  if File.directory?(get_small_preferences_path)
+      Dir.rmdir(get_small_preferences_path)
+  end
+  if File.directory?(get_large_preferences_path)
+     Dir.rmdir(get_large_preferences_path)
+  end
+end
   
   #paths contains the folders to copy
   #get_opera_preferences_paths gives where to copy them
-  def copy_prefs_folders(paths)
-    paths.each do | path |
-      
+  def copy_prefs_folders(path)
+    Dir["#{path}/*"].each do |p|
+      if p == "Mail" || p == "Widgets" || p == "Unite"
+        get_small_preferences_path
+        FileUtils.cp_r(p, get_small_preferences_path)
+      else
+        FileUtils.cp_r(p, get_small_preferences_path)  
+      end
     end
+ 
   end
 =end
