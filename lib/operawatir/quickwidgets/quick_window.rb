@@ -44,7 +44,8 @@ module OperaWatir
     # @return [Symbol] type of the window (e.g. :dropdown, :button)
     #
     def type
-      WINDOW_ENUM_MAP.invert[@elm.getType]
+      return WINDOW_ENUM_MAP.invert[@elm.getType] unless @elm == nil
+      return WINDOW_ENUM_MAP.invert[element.getType] 
     end
     
     ######################################################################
