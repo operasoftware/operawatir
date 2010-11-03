@@ -159,8 +159,8 @@ module OperaWatir
 
     # @return position for elements that have a position, else false
     def position
-      [row, col] if type == :treeitem
-      col if type == :tabbutton
+      return [row, col] if type == :treeitem
+      return col if type == :tabbutton
       false
     end
    
@@ -193,6 +193,9 @@ module OperaWatir
 private
     # Gets the widget name (used as parent name when creating child widget)
     def parent_widget
+      if @selector == nil && @elm != nil
+         set_selector
+      end
       case @method
       when :name
         name
@@ -272,15 +275,20 @@ private
     
     def set_selector
       if @elm.name.length > 0
+        @method = :name
         @selector = @elm.name
       elsif @elm.text.length > 0
+        @method = :text
         @selector = @elm.text
       elsif @elm.type == :treeitem
+        @method = :pos
         @selector = [@elm.row, @elm.col]
       elsif @elm.type == :tabbutton
+        @method = :pos
         @selector = @elm.col
       end
-      @location = @elm.parentName
+      @location = element.getParentName()
+      @window_id = -1
     end
     
     # Finds the element on the page.  
