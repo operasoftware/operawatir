@@ -363,9 +363,9 @@ module OperaWatir
     attr_reader :driver
     
     ######################################################################
-    # Clear all private data (as in Delete Private data Dialog) 
+    # Clear all private data (as in Delete Private Data Dialog) 
     #
-    # @return [int] 0 if operation failed 
+    # @return [int] 0 if operation failed, else > 0 
     #
     def clear_all_private_data
       win_id = open_dialog_with_action("Clear Private Data Dialog", "Delete private data")
@@ -377,14 +377,7 @@ module OperaWatir
       end
            
       quick_checkboxes("Clear Private Data Dialog").each do |box|
-        #puts "checkbox #{box.name}"
         box.toggle_with_click unless box.checked?
-=begin
-        if box.checked? == false
-          #TODO: This should be fixed. the iterator should return real widget objects
-          quick_checkbox(:name, box.name).toggle_with_click
-        end
-=end        
       end
       
       #Delete all
@@ -416,18 +409,11 @@ module OperaWatir
     #  
     #
     def close_all_tabs
-=begin      
-      if open_dialog_with_action("Close All Confirm Dialog", "Close all") > 0
-         quick_button(:name, "button_OK).close_dialog_with_click("Close All Confirm Dialog")
-      end
-=end
-=begin
-      (quick_tabbuttons("Browser Window").length - 1).times do
-        quick_tab(:pos, 1).close_window_with_click("Document Window")
-      end
-=end      
       quick_tabbuttons("Browser Window").each do |btn|
-        btn.close_window_with_click("Document Window") unless btn.position == 0
+        #Tab button is in Browser window which is prob not the active window,
+        #so we cannot do this the easy way           
+        #btn.quick_button(:name, "pb_CloseButton").close_window_with_click("Document Window") unless btn.position == 0
+        quick_window(:name, "Browser Window").quick_tab(:pos, btn.position).quick_button(:name, "pb_CloseButton").close_window_with_click("Document Window") unless btn.position == 0
       end
     end
     
@@ -437,18 +423,27 @@ module OperaWatir
     #  
     #
     def close_all_dialogs
-      #TODO:
-       
+      win_id = driver.getActiveWindowID()
+      until quick_window(:id, win_id).type != :dialog do
+        win = quick_window(:id, driver.getActiveWindowID())
+        if win.type == :dialog
+          close_dialog(win.name)
+          if (driver.getActiveWindowID() != win_id)
+            win_id = driver.getActiveWindowID()
+          else
+            break
+          end
+        end
+      end
     end
     
     
 =begin  
   TODO:  
-  delete cookies
-  reset main window   
+  def delete_cookies
+  def reset_main_window
 =end    
-    
-
+  
 private
     # Gets the parent widget name of which there is none here
     def parent_widget
