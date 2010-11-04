@@ -95,7 +95,7 @@ RSpec.configure do |c|
   c.formatter 	  = "documentation"
 end
 
-require 'operawatir/waiter'
+require 'operawatir/desktop-waiter'
 
 OperaWatir::Waiter.configure do |c|
   c.path = options.executable

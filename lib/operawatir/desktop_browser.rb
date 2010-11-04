@@ -24,6 +24,13 @@ module OperaWatir
       super
       sleep(1)
     end
+
+    ######################################################################
+    # Quits the driver without exiting Opera
+    #
+    def quit_driver()
+      @driver.shutdown
+    end
       
     ######################################################################
     # Executes the action given by action_name, and waits for
