@@ -62,7 +62,7 @@ module OperaWatir
       def defaults
         # RSpec messes up colours on Windows, so we must disable them.
         #Spec::Runner.options.colour = true unless platform == :windows
-        RSpec.configure.enabled_color = true unless platform == :windows
+        #RSpec.configure.color_enabled = true unless platform == :windows
 
         OperaWatir::Helper.browser_args = [] if OperaWatir::Helper.browser_args.nil?
         OperaWatir::Helper.persistent_browser = false
