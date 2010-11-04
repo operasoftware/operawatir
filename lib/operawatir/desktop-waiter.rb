@@ -74,7 +74,13 @@ module OperaWatir::Waiter
       config.include SpecHelpers
 
       config.after(:suite) do
-        OperaWatir::Waiter.browser.quit
+        # Only exit if the envrionment variable is set
+        if ENV["OPERA_PATH"].to_s.length > 0
+          OperaWatir::Waiter.browser.quit
+        else
+          # Just shutsdown the driver
+          OperaWatir::Waiter.browser.quit_driver
+        end
       end
     end
   end
