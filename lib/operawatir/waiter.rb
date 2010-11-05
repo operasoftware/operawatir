@@ -35,6 +35,10 @@ module OperaWatir::Waiter
     File.expand_path(File.join(Dir.pwd, 'helper.rb'))
   end
   
+  def preferences_path
+     @preferences ||= broweser.getPreferencesPath
+  end
+  
   def configure_rspec
     RSpec.configure do |config|
       config.include SpecHelpers

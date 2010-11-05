@@ -1,5 +1,7 @@
-class OperaWatir::Element  
+module OperaWatir
+class Element
   extend Forwardable
+  
   
   def initialize(node)
     self.node = node
@@ -91,5 +93,6 @@ private
 
   attr_accessor :node
 
+end
 end
 

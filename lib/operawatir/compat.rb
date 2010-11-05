@@ -1,6 +1,7 @@
 module OperaWatir
   
-  module Compat; end
+  module Compat
+  end
   
   def self.compatibility!
     include Compat
@@ -15,7 +16,9 @@ require 'operawatir/compat/collection'
 require 'operawatir/compat/element'
 require 'operawatir/compat/selector'
 
-module OperaWatir::Compat
+module OperaWatir
+module Compat
+  
   def self.included(klass)
     OperaWatir::Browser.send :include, OperaWatir::Compat::Browser
     OperaWatir::Window.send :include, OperaWatir::Compat::Window
@@ -23,4 +26,6 @@ module OperaWatir::Compat
     OperaWatir::Element.send :include, OperaWatir::Compat::Element
     OperaWatir::Selector.send :include, OperaWatir::Compat::Selector
   end
+  
+end
 end

@@ -28,6 +28,7 @@ Jeweler::Tasks.new do |gem|
   gem.add_development_dependency 'yard'
   gem.add_development_dependency 'mongrel', '>= 1.2.0.pre2'
   gem.add_development_dependency 'sinatra', '>= 1.1'
+  gem.add_development_dependency 'rr'
 
   gem.files.exclude '.gitignore'
 end
