@@ -5,7 +5,7 @@ class OperaWatir::Window
   def initialize(browser)
     self.browser = browser
   end
-
+  
 
   # Navigation
 
@@ -94,36 +94,48 @@ class OperaWatir::Window
   end
   alias_method :get_hash, :visual_hash
 
-  # TODO Should be private
-  def elements
-    nil
-  end
-
-
+  
   # Finders
-
-  def find_elements_by_tag_name(name)
-    driver.findElementsByTagName(name).to_a.map do |node|
-      OperaWatir::Element.new(node)
-    end
-  end
-
-  def find_elements_by_xpath(xpath)
-    driver.findElementsByXpath(xpath).to_a.map do |node|
+  
+  def find_by_id(id)
+    OperaWatir::Collection.new self, driver.findElementsById(id).to_a.map do |node|
       OperaWatir::Element.new(node)
     end
   end
   
-  def find_all_elements
-    raise 'Not Implmented Yet'
+  def find_by_class(klass)
+    OperaWatir::Collection.new self, driver.findElementsByClassName(klass).to_a.map do |node|
+      OperaWatir::Element.new(node)
+    end
   end
   
-  # TODO Refactor
-  def method_missing(tag, *args, &blk)
-    type, value = args
+  def find_by_tag(tag)
+    OperaWatir::Collection.new self, driver.findElementsByTagName(tag).to_a.map do |node|
+      OperaWatir::Element.new(node)
+    end
+  end
+  
+  def find_by_css(css)
+    OperaWatir::Collection.new self, driver.findElementsByCssSelector(css).to_a.map do |node|
+      OperaWatir::Element.new(node)
+    end
+  end
+  
+  def find_by_xpath(xpath)
+    OperaWatir::Collection.new self, driver.findElementsByXpath(xpath).to_a.map do |node|
+      OperaWatir::Element.new(node)
+    end
+  end
+  
+  def element(*attribs, &blk)
+    method_missing('*', *attribs, &blk)
+  end
+  alias_method :elements, :element
+    
+  def method_missing(tag, *attribs, &blk)
     c = OperaWatir::Collection.new(self)
-    c.add_selector(:tag, tag.to_s)
-    c.add_selector(type, value) if !type.nil? && !value.nil?
+    c.selector.find_by_tag tag
+    c.selector.find_by_attribs(*attribs) unless attribs.empty?
     c
   end
 
@@ -136,4 +148,3 @@ private
   end
 
 end
-

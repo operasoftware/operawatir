@@ -1,4 +1,9 @@
 # encoding: utf-8
+require 'spec_helper'
+require 'guards'
+require 'server'
+
+require 'operawatir/helper'
 
 module WatirSpec
   extend self
@@ -28,4 +33,16 @@ module WatirSpec
     end
   end
   
+end
+
+include OperaWatir::Exceptions
+
+include WatirSpec::Guard::Helpers
+
+RSpec.configure do |config|
+  config.include WatirSpec::Helpers
+  
+  config.before(:suite) do
+    Thread.new { WatirSpec::Server.run! }
+  end
 end

@@ -1,4 +1,5 @@
 module OperaWatir
+class OperaWatir
 
   # @private
   VERSION = "0.2.10".freeze
@@ -17,4 +18,5 @@ module OperaWatir
   def self.version; end
   def self.build; end
 
+end
 end
