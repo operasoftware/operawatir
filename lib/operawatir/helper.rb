@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 begin
   require "rubygems"
   require "operawatir"
@@ -35,7 +36,8 @@ module OperaWatir
 
       # Configures the RSpec suite we are about to run.
       def configure
-        Spec::Runner.configure do |config|
+        #Spec::Runner.configure do |config|
+        RSpec.configure do |config|
           config.include(PathHelper)
           config.include(BrowserHelper)
 
@@ -59,7 +61,8 @@ module OperaWatir
       # Sets defaults to OperaHelper's and RSpec's configuration options.
       def defaults
         # RSpec messes up colours on Windows, so we must disable them.
-        Spec::Runner.options.colour = true unless platform == :windows
+        #Spec::Runner.options.colour = true unless platform == :windows
+        RSpec.configuration.color_enabled = true unless platform == :windows
 
         OperaWatir::Helper.browser_args = [] if OperaWatir::Helper.browser_args.nil?
         OperaWatir::Helper.persistent_browser = false
@@ -168,10 +171,16 @@ module OperaWatir
 
       # Returns the base path of the script.  (Not the current working directory!)
       def base_path
-        if (Pathname.new Spec::Runner.options.files[0]).absolute?
-          File.dirname(Spec::Runner.options.files[0])
+        #if (Pathname.new Spec::Runner.options.files[0]).absolute?
+        #  File.dirname(Spec::Runner.options.files[0])
+        #else
+        #  File.expand_path(Dir.pwd + "/" + File.dirname(Spec::Runner.options.files[0]))
+        #end
+
+        if (Pathname.new RSpec.configuration.files_to_run[0]).absolute?
+          File.dirname(RSpec.configuration.files_to_run[0])
         else
-          File.expand_path(Dir.pwd + "/" + File.dirname(Spec::Runner.options.files[0]))
+          File.expand_path(Dir.pwd + '/' + File.dirname(RSpec.configuration.files_to_run[0]))
         end
       end
 
