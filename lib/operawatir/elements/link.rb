@@ -5,7 +5,7 @@ module OperaWatir
       :href
     end
 
-    element_attr_reader :href, :title
+    element_attr_reader :href, :title, :text
 
     alias_method :url, :href
 
