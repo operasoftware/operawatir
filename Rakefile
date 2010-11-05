@@ -46,15 +46,3 @@ task :doc => :yard
 
 CLEAN.add 'doc'
 
-# task :bump do
-#   v = ENV['VERSION']
-#   abort("usage: rake bump VERSION=\"new version number\"") unless v
-# 
-#   system "git stash &&
-#        echo '#{v}' > VERSION &&
-#        git add VERSION &&
-#        ! git commit --verbose --message 'Version #{v}.' &&
-#        git tag -a '#{v}' &&
-#        git push --tags &&
-#        git stash apply"
-# end

@@ -1,11 +1,11 @@
-module OperaWatir
-class Element
+class OperaWatir::Element
   extend Forwardable
   
   
   def initialize(node)
     self.node = node
   end
+
   
   # Attributes
   
@@ -31,15 +31,10 @@ class Element
   end
   
   def_delegator :node, :isEnabled, :enabled?
-
   def_delegator :node, :getText, :text
-  
   def_delegator :node, :getHTML, :html
-  
   def_delegator :node, :getValue, :value
-
   def_delegator :node, :getElementName, :tagname
-
   def_delegator :node, :clear, :clear
   
   
@@ -94,5 +89,3 @@ private
   attr_accessor :node
 
 end
-end
-
