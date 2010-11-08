@@ -4,7 +4,7 @@ module OperaWatir
     # @private
     # Checks the type of the widget is correct
     def correct_type?
-      @element.getType == WIDGET_ENUM_MAP[:button];
+      @element.getType == WIDGET_ENUM_MAP[:button]
     end
 
     ######################################################################
@@ -24,9 +24,12 @@ module OperaWatir
     #
     # @return [int] Window ID of the window shown or 0 if no window is shown
     #
+    # @raise [DesktopExceptions::WidgetNotVisibleException] if the button
+    #            is not visible
+    #
     def open_window_with_click(win_name)
       wait_start
-      click()
+      click
       wait_for_window_shown(win_name)
     end
     
@@ -40,13 +43,32 @@ module OperaWatir
     #
     # @return [int] Window ID of the window is closed or 0 if no window is closed
     #
+    # @raise [DesktopExceptions::WidgetNotVisibleException] if the button
+    #            is not visible
+    #
     def close_window_with_click(win_name)
       wait_start
-      click()
+      click
       wait_for_window_close(win_name)
     end
-
+    
     alias_method :close_dialog_with_click, :close_window_with_click
+    
+    ######################################################################
+    # Clicks the button, and waits for loading to finish
+    #
+    # @return [int] Window ID of the window shown or 0 if no window is shown
+    #
+    # @raise [DesktopExceptions::WidgetNotVisibleException] if the button
+    #            is not visible
+    #
+    def load_page_with_click
+      wait_start
+      click()
+      # Just wait for the load
+      wait_for_window_loaded("")
+    end
+        
     
     ######################################################################
     # Clicks a button or expand control and toggles it state
@@ -54,20 +76,26 @@ module OperaWatir
     # @return [int] the new state of the button or expand control,
     #               0 for not pressed, or 1 for pressed
     #
+    # @raise [DesktopExceptions::WidgetNotVisibleException] if the button
+    #            is not visible
+    #
     def toggle_with_click
-      click()
-      
-      # Cheat since we don't have an even yet 
+      click
+          
+      # Cheat since we don't have an event yet 
       sleep(0.1)
-      
+        
       element(true).getValue
     end
+      
     
     ######################################################################
     # Gets the value of the button or expand control.
     #
     # @return [int] 0 if not pressed, or 1 if pressed
     #
+    # @raise [Exceptions::UnknownObjectException] if the widget could not be found
+    #           using the specified method
     def value
       element.getValue
     end
