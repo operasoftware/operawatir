@@ -1,16 +1,8 @@
 # -*- coding: utf-8 -*-
-begin
-  require "rubygems"
-  require "operawatir"
-  require "spec/runner/formatter/base_text_formatter"
-  require "rbconfig"
-  require "pathname"
-  require File.expand_path(File.dirname(__FILE__) + "../../../utils/formatters/operahelper_formatter.rb")
-rescue LoadError
-end
-
-#require "ruby-debug"
-#debugger
+require "rubygems"
+require "operawatir"
+require "rbconfig"
+require "pathname"
 
 module OperaWatir
   module Helper
@@ -262,17 +254,6 @@ module OperaWatir
         else
           OperaWatir::Helper.files
         end
-      end
-    end
-  end
-end
-
-module Spec
-  module Runner
-    class Options
-      def formatters
-        @format_options = [["OperaHelperFormatter", @output_stream]] if @format_options.nil?
-        @formatters ||= load_formatters(@format_options, EXAMPLE_FORMATTERS)
       end
     end
   end
