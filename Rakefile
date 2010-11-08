@@ -7,7 +7,6 @@ require './lib/operawatir/version'
 
 Jeweler::Tasks.new do |gem|
   gem.name    = 'operawatir'
-  gem.version = OperaWatir::VERSION
   gem.date    = Date.today.to_s
 
   gem.authors     = ['Deniz Turkoglu', 'Andreas Tolf Tolfsen', 'Chris Lloyd']
