@@ -1,12 +1,11 @@
 module OperaWatir
 
   # @private
-  VERSION = '0.2.14'.freeze
+  VERSION = File.read(File.join(File.dirname(__FILE__), '../..', 'VERSION')).strip
 
   # @return [String] current version of OperaWatir
   def self.version
-    VERSION
+    OperaWatir::VERSION
   end
-
 end
 
