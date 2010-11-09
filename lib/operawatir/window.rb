@@ -104,25 +104,25 @@ class OperaWatir::Window
   end
   
   def find_by_class(klass)
-    OperaWatir::Collection.new self, driver.findElementsByClassName(klass).to_a.map do |node|
+    driver.findElementsByClassName(klass).to_a.map do |node|
       OperaWatir::Element.new(node)
     end
   end
   
   def find_by_tag(tag)
-    OperaWatir::Collection.new self, driver.findElementsByTagName(tag).to_a.map do |node|
+    driver.findElementsByTagName(tag).to_a.map do |node|
       OperaWatir::Element.new(node)
     end
   end
   
   def find_by_css(css)
-    OperaWatir::Collection.new self, driver.findElementsByCssSelector(css).to_a.map do |node|
+    driver.findElementsByCssSelector(css).to_a.map do |node|
       OperaWatir::Element.new(node)
     end
   end
   
   def find_by_xpath(xpath)
-    OperaWatir::Collection.new self, driver.findElementsByXpath(xpath).to_a.map do |node|
+    driver.findElementsByXpath(xpath).to_a.map do |node|
       OperaWatir::Element.new(node)
     end
   end
@@ -134,8 +134,8 @@ class OperaWatir::Window
     
   def method_missing(tag, *attribs, &blk)
     c = OperaWatir::Collection.new(self)
-    c.selector.find_by_tag tag
-    c.selector.find_by_attribs(*attribs) unless attribs.empty?
+    c.selector.tag tag
+    c.selector.attrib(attribs.first => attribs.last) unless attribs.empty?
     c
   end
 

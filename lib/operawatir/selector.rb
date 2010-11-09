@@ -1,5 +1,5 @@
 class OperaWatir::Selector
-  TYPES = [:id, :class, :tag, :css, :xpath, :attribs]
+  ROOT_OPS = [:id, :class, :tag, :css, :xpath]
 
   attr_accessor :collection, :ops
 
@@ -7,32 +7,37 @@ class OperaWatir::Selector
     self.collection, self.ops = collection, []
   end
 
-  TYPES.each do |type|
-    op = "find_by_#{type}".to_sym
-    define_method op do |value|
+  ROOT_OPS.each do |op|
+    define_method(op) do |value|
       self.ops << [op, value]
     end
   end
   
-  def find_by_attribs(method, value)
-    self.ops << [:find_by_attribs, {method => value}]
+  def attrib(attribs={})
+    self.ops << [:attrib, attribs]
   end
-
+  
   def apply(parent)
     ops.inject(nil) do |elements, op|
-      
-      if parent.is_a?(Window) and elements.nil?
-        parent.send(op.first, op.last)
-      else
-        send(op.first)
+      if ROOT_OPS.include?(op.first)
+        elements = parent.send("find_by_#{op.first}", op.last)
       end
-      puts
-      puts "elements: #{elements}, op: #{op.first}(#{op.last.inspect})"
-      puts
-      a  = elements.send(op.first, op.last)
-      puts a
-      a
       
+      if elements.nil?
+        elements = parent.elements
+      end
+      
+      if !ROOT_OPS.include?(op.first)
+        elements = collection.class.refine_by_attributes(elements, op.last)
+      end
+      
+      puts
+      puts "ELEMENTS = #{elements.inspect}"
+      puts
+      
+      elements
     end
+    
   end
+  
 end
