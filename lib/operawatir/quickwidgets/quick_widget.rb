@@ -189,6 +189,18 @@ module OperaWatir
     def driver
       @container.driver
     end
+    
+    #Get parent widget name
+    def parent_name
+      element.getParentName()
+    end
+    
+    # Focus a widget with a click
+    def focus_with_click
+      click
+      # No event yet so just cheat and sleep
+      sleep(0.1);
+    end
 
 private
     # Gets the widget name (used as parent name when creating child widget)
@@ -218,11 +230,6 @@ private
       element.getColumn()
     end
     
-    #Get parent widget name
-    def parent_name
-      element.getParentName()
-    end
-
     # Gets the window id to use for the search
     def window_id
       # Need to pass on the current setting of @window_id to make
@@ -244,14 +251,6 @@ private
         raise(DesktopExceptions::WidgetNotVisibleException, "Widget #{name.length > 0 ? name : text} not visible")
       end
     end
-    
-    # Focus a widget with a click
-    def focus_with_click
-      click
-      # No event yet so just cheat and sleep
-      sleep(0.1);
-    end
-    
     
     # Right click a widget
     def right_click
