@@ -29,6 +29,19 @@ module OperaWatir
       # For now there is no difference to focusing
       focus_with_click
     end
+    
+    ######################################################################
+    # Expands a tree item when it is double clicked
+    #
+    # @raise [DesktopExceptions::WidgetNotVisibleException] if the treeitem 
+    #            is not visible
+    #
+    def expand_with_double_click
+      scroll_item_into_view unless visible?
+      double_click
+      # No event yet so just cheat and sleep
+      sleep(0.1);
+    end
         
     ######################################################################
     # Switch to the tree view tab by clicking on it (e.g. on the 
