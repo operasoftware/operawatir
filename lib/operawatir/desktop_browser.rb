@@ -443,7 +443,7 @@ module OperaWatir
     
     #####################################################################
     # 
-    #
+    # Close all open dialogs
     #  
     #
     def close_all_dialogs
