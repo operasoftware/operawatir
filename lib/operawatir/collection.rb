@@ -9,7 +9,7 @@ class OperaWatir::Collection
   attr_writer :elements
 
   def initialize(parent, elements=nil)
-    self.selector = OperaWatir::Selector.new
+    self.selector = OperaWatir::Selector.new(self)
     self.parent, self.elements = parent, elements
   end
 
@@ -47,37 +47,28 @@ class OperaWatir::Collection
     elements.inject([]) do |nodes, element|
       nodes << element.node.findElementsById(id)
       nodes
-    end
-  end
-  
-  def find_by_class(klass)
-    driver.findElementsByClassName(klass).to_a.map do |node|
-      OperaWatir::Element.new(node)
-    end
+    end.map {|e| OperaWatir::Element.new(e)}
   end
   
   def find_by_tag(tag)
-    driver.findElementsByTagName(tag).to_a.map do |node|
-      OperaWatir::Element.new(node)
-    end
+    elements.inject([]) do |nodes, element|
+      nodes << element.node.findElementsByTagName(tag)
+      nodes
+    end.map {|e| OperaWatir::Element.new(e)}
   end
   
-  def find_by_css(css)
-    driver.findElementsByCssSelector(css).to_a.map do |node|
-      OperaWatir::Element.new(node)
-    end
-  end
-  
-  def find_by_xpath(xpath)
-    driver.findElementsByXpath(xpath).to_a.map do |node|
-      OperaWatir::Element.new(node)
-    end
-  end
-  
-  def find_by_attribs(attribs)
+  def self.refine_by_attributes(elements, attribs)
+    
+    return [elements[attribs[:index]]] if attribs[:index]
+    
     elements.select do |elm|
       attribs.all? do |attrib, value|
-        elm.send(attrib) == value
+        # Hack
+        if value.is_a? Regexp
+          elm.send(attrib) =~ value
+        else
+          elm.send(attrib) == value
+        end
       end
     end
   end
