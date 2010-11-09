@@ -62,6 +62,7 @@ module OperaWatir
     end
     
     alias_method :open_dialog_with_double_click, :open_window_with_double_click
+    
 
 private
     # @private
