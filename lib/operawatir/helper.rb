@@ -1,16 +1,8 @@
 # -*- coding: utf-8 -*-
-begin
-  require "rubygems"
-  require "operawatir"
-  require "spec/runner/formatter/base_text_formatter"
-  require "rbconfig"
-  require "pathname"
-  require File.expand_path(File.dirname(__FILE__) + "../../../utils/formatters/operahelper_formatter.rb")
-rescue LoadError
-end
-
-#require "ruby-debug"
-#debugger
+require "rubygems"
+require "operawatir"
+require "rbconfig"
+require "pathname"
 
 module OperaWatir
   module Helper
@@ -62,7 +54,7 @@ module OperaWatir
       def defaults
         # RSpec messes up colours on Windows, so we must disable them.
         #Spec::Runner.options.colour = true unless platform == :windows
-        #RSpec.configure.color_enabled = true unless platform == :windows
+        RSpec.configuration.color_enabled = true unless platform == :windows
 
         OperaWatir::Helper.browser_args = [] if OperaWatir::Helper.browser_args.nil?
         OperaWatir::Helper.persistent_browser = false
@@ -171,17 +163,16 @@ module OperaWatir
 
       # Returns the base path of the script.  (Not the current working directory!)
       def base_path
- #       if (Pathname.new Spec::Runner.options.files[0]).absolute?
- #         File.dirname(Spec::Runner.options.files[0])
- #       else
- #         File.expand_path(Dir.pwd + "/" + File.dirname(Spec::Runner.options.files[0]))
-#        end
-
+        #if (Pathname.new Spec::Runner.options.files[0]).absolute?
+        #  File.dirname(Spec::Runner.options.files[0])
+        #else
+        #  File.expand_path(Dir.pwd + "/" + File.dirname(Spec::Runner.options.files[0]))
+        #end
         if (Pathname.new RSpec.configuration.files_to_run[0]).absolute?
           File.dirname(RSpec.configuration.files_to_run[0])
         else
           File.expand_path(Dir.pwd + '/' + File.dirname(RSpec.configuration.files_to_run[0]))
-          end
+        end
       end
 
       # Returns the platform type.
@@ -262,17 +253,6 @@ module OperaWatir
         else
           OperaWatir::Helper.files
         end
-      end
-    end
-  end
-end
-
-module Spec
-  module Runner
-    class Options
-      def formatters
-        @format_options = [["OperaHelperFormatter", @output_stream]] if @format_options.nil?
-        @formatters ||= load_formatters(@format_options, EXAMPLE_FORMATTERS)
       end
     end
   end

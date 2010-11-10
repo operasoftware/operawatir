@@ -1,70 +1,47 @@
-require "rubygems"
-require "rake"
-require "rake/clean"
-require "rake/gempackagetask"
-#require "rake/rdoctask"
-require "rake/testtask"
-require "yard"
-require "spec/rake/spectask"
+require 'rake/clean'
+require 'jeweler'
+require 'rspec/core/rake_task'
+require 'yard/rake/yardoc_task'
 
+require './lib/operawatir/version'
 
-OPERAWATIR_VERSION = File.read("VERSION").strip
+Jeweler::Tasks.new do |gem|
+  gem.name    = 'operawatir'
+  gem.date    = Date.today.to_s
 
-spec = Gem::Specification.new do |s|
-  s.name = "OperaWatir"
-  s.version = OPERAWATIR_VERSION
-  s.has_rdoc = true
-#  s.extra_rdoc_files = ["README", "LICENSE"]
-  s.summary = "OperaWatir on OperaDriver engine"
-  s.description = s.summary
-  s.author = "Deniz Turkoglu"
-  s.email = "dturkoglu@opera.com"
-  s.files = %w(README LICENSE VERSION Rakefile) + Dir.glob("{lib,spec,utils}/**/*")
-  s.require_path = "lib"
+  gem.authors     = ['Deniz Turkoglu', 'Andreas Tolf Tolfsen', 'Chris Lloyd']
+  gem.email       = ['dturkoglu@opera.com', 'andreastt@opera.com', 'christopherl@opera.com']
+  gem.homepage    = 'http://opera.github.com/operawatir'
+  gem.summary     = 'OperaWatir on OperaDriver engine'
+  gem.description = gem.summary
+
+  gem.rubyforge_project = gem.name
+
+  gem.platform         = 'jruby'
+  gem.has_rdoc         = true
+  gem.extra_rdoc_files = ['README']
+
+  gem.add_dependency 'rspec', '>= 2'
+
+  gem.add_development_dependency 'rake'
+  gem.add_development_dependency 'yard'
+  gem.add_development_dependency 'mongrel', '>= 1.2.0.pre2'
+  gem.add_development_dependency 'sinatra', '>= 1.1'
+  gem.add_development_dependency 'rr'
+
+  gem.files.exclude '.gitignore'
 end
 
-Rake::GemPackageTask.new(spec) do |p|
-  p.gem_spec = spec
-  p.need_tar = true
-  p.need_zip = true
+CLEAN.add 'pkg'
+
+RSpec::Core::RakeTask.new do |t|
 end
 
-#Rake::RDocTask.new do |rdoc|
-#  files = ["README", "LICENSE", "INSTALL", "lib/**/*.rb"]
-#  rdoc.rdoc_files.add(files)
-#  rdoc.main = "README" # page to start on
-#  rdoc.title = "OperaWatir Documentation"
-#  rdoc.rdoc_dir = "doc" # rdoc output folder
-#  rdoc.options = "--line-numbers", "--charset=utf-8"
-#end
 YARD::Rake::YardocTask.new do |t|
-  t.files = ['lib/**/*.rb']
-end
-
-Spec::Rake::SpecTask.new do |t|
-  t.spec_files = FileList["spec/**/*.rb"]
-end
-
-task :yard do
-  sh 'yard doc --no-private --files LICENSE,INSTALL'
+  t.options = ['--no-private']
 end
 
 task :doc => :yard
+
 CLEAN.add 'doc'
-
-task :bump do
-  v = ENV["VERSION"]
-  abort("usage: rake bump VERSION=\"new version number\"") unless v
-
-  time = Time.new
-  date = time.strftime("%Y-%m-%d %H:%M:%S")
-
-  system "git stash &&
-       echo '#{v}' > VERSION &&
-       git add VERSION &&
-       ! git commit --verbose --message 'Version #{v}.' &&
-       git tag -a '#{v}' -m 'Version #{v}.  Released #{date}.' &&
-       git push --tags &&
-       git stash apply"
-end
 

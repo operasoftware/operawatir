@@ -7,8 +7,8 @@ module OperaWatir
 
 private
 
-    def key_press(key, *opts)
-      #puts "key_press #{key}, opts #{opts}" 
+    def key_press_direct(key, *opts)
+      #puts "key_press_direct #{key}, opts #{opts}" 
       #KEYMODIFIER_ENUM_MAP.each { |k, v| puts "#{k},#{v}"}
       list = Java::JavaUtil::ArrayList.new
       opts.each { |mod| list << KEYMODIFIER_ENUM_MAP[mod] }
@@ -35,6 +35,13 @@ private
  
     def wait_for_window_close(win_name = "")
       driver.waitForWindowClose(win_name)
+    end
+    
+    def wait_for_window_loaded(win_name = "")
+      win_id = driver.waitForWindowLoaded(win_name)
+      # Hack to allow for Javascript focus events and the like
+      sleep(0.1)
+      win_id
     end
 
   end

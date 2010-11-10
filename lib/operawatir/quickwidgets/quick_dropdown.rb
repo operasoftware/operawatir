@@ -4,7 +4,7 @@ module OperaWatir
     # @private
     # Checks the type of the widget is correct
     def correct_type?
-      @element.getType == WIDGET_ENUM_MAP[:dropdown];
+      @element.getType == WIDGET_ENUM_MAP[:dropdown]
     end
     
     ######################################################################
@@ -17,6 +17,8 @@ module OperaWatir
     # @return [Boolean] true if the dropdown has the item with the 
     #                   string_id selected, otherwise false
     #
+    # @raise [Exceptions::UnknownObjectException] if the widget could not be found
+    #           using the specified method
     def selected?(string_id)
       element.isSelected(string_id)
     end
