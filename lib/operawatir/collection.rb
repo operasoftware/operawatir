@@ -19,6 +19,11 @@ class OperaWatir::Collection
     end
   end
   
+  def add_selector(type, value)
+    self.selectors << OperaWatir::Selector.new(self, type, value)
+  end
+  
+  
   
   def exist?
     !elements.empty?
@@ -33,19 +38,14 @@ class OperaWatir::Collection
   end
   
   def_delegators :elements, :each, :length, :[], :empty?
-
-  # No call to super. OperaWatir collections are completely transparent.
-  # def method_missing(method, *args, &blk)
-  #   warn "[MISSING] #{self.class} missing #{method}"
-  #   map_or_return {|elm| elm.send(method, *args, &blk) }
-  # end
-                                  
+  
   def id
     map_or_return {|elm| elm.id}
   end
   
-  def add_selector(type, value)
-    self.selectors << OperaWatir::Selector.new(self, type, value)
+  # No call to super. OperaWatir collections are completely transparent.
+  def method_missing(method, *args, &blk)
+    map_or_return {|elm| elm.send(method, *args, &blk) }
   end
   
 # private

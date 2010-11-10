@@ -8,7 +8,7 @@ class OperaWatir::Selector
     when 0
       args
     when 1
-      args.first.map {|type, value| new(collection, type, value)}
+      args.first.map {|attribute, value| new(collection, :attribute, attribute, value)}
     else
       [new(
         collection,
