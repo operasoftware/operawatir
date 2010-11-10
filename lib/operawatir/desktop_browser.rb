@@ -3,6 +3,9 @@ module OperaWatir
     include DesktopContainer
     include DesktopCommon
     
+    ExcludedActions = ["Open url in new page", "Open url in current page", "Open url in background page",
+      "Open url in new window"]
+    
     # @private
     def initialize (executable_location = nil, *arguments)
       if executable_location.nil?
@@ -10,6 +13,15 @@ module OperaWatir
       else
         @driver = OperaDesktopDriver.new(executable_location, arguments.to_java(:String))
       end
+    end
+
+    # @private
+    # Hack overload to allow for timing of the OnLoaded event that can cause 
+    # dialogs to autoclose in Dialog.cpp when then OnUrlChanged is fired 
+    # after a dialog is opened
+    def goto(url = "")
+      super
+      sleep(1)
     end
       
     ######################################################################
@@ -25,8 +37,11 @@ module OperaWatir
     # @param [String] param       optional parameter(s) to be supplied with the Opera action.
     #
     # @return [int] Window ID of the window shown or 0 if no window is shown
-    #
     def open_window_with_action(win_name, action_name, *params)
+      if ExcludedActions.include?(action_name) then
+        raise(DesktopExceptions::UnsupportedActionException, "Action #{action_name} not supported")
+      end
+      
       wait_start
       @driver.operaDesktopAction(action_name, params.to_java(:String))
       wait_for_window_shown(win_name)
@@ -34,6 +49,28 @@ module OperaWatir
     
     alias_method :open_dialog_with_action, :open_window_with_action
     
+    ######################################################################
+    # Executes the action given by action_name, and waits for
+    # the window with window name win_name to be loaded
+    #
+    # @example
+    #   $browser.load_window_with_action("Document Window", "Open url in new page")
+    #
+    # @param [String] win_name    name of the window that will be opened (Pass a blank string for any window)
+    # @param [String] action_name name of the action to execute to open the window
+    # @param [String] param       optional parameter(s) to be supplied with the Opera action.
+    #
+    # @return [int] Window ID of the window shown or 0 if no window is shown
+    def load_window_with_action(win_name, action_name, *params)
+      if ExcludedActions.include?(action_name) 
+        wait_start
+        @driver.operaDesktopAction(action_name, params.to_java(:String))
+        wait_for_window_loaded(win_name)
+      else
+        raise(DesktopExceptions::UnsupportedActionException, "Action #{action_name} not supported")
+      end
+    end
+
     ######################################################################
     # Presses the key, with optional modifiers, and waits for
     # the window with window name win_name to be shown
@@ -44,17 +81,36 @@ module OperaWatir
     #
     # @param [String]  win_name    name of the window that will be opened (Pass a blank string for any window)
     # @param [String]  key         key to press (e.g. "a" or "backspace")
-    # @param [String]  modifiers   optional modifier(s) to hold down while pressing the key (e.g. :shift, :ctrl, :alt, :meta)
+    # @param [Symbol]  modifiers   optional modifier(s) to hold down while pressing the key (e.g. :shift, :ctrl, :alt, :meta)
     #
     # @return [int] Window ID of the window shown or 0 if no window is shown
     #
     def open_window_with_key_press(win_name, key, *modifiers)
       wait_start
-      key_press(key, *modifiers)
+      key_press_direct(key, *modifiers)
       wait_for_window_shown(win_name)
     end
     
     alias_method :open_dialog_with_key_press, :open_window_with_key_press
+    
+    ######################################################################
+    # Opens a new tab and loads the url entered, then waits for
+    # a dialog to be shown based on the url entered
+    #
+    # @param [String] dialog_name name of the dialog that will be closed 
+    #                       (Pass a blank string for any window)
+    # @param [String] url to load 
+    #
+    # @return [int] Window ID of the dialog closed or 0 if no window is closed
+    #
+    # @return [int] Window ID of the dialog closed or 0 if no window is closed
+    #
+    def open_dialog_with_url(dialog_name, url)
+      wait_start
+      @driver.operaDesktopAction("Open url in new page", [url].to_java(:String))
+      # The loading of the page will happen first then the dialog will be shown
+      wait_for_window_shown(dialog_name)
+    end
     
     ######################################################################
     # Executes the action given by action_name, and waits for
@@ -72,7 +128,7 @@ module OperaWatir
     #
     def close_window_with_action(win_name, action_name, *params)
       wait_start
-      @driver.operaDesktopAction(action_name, params.to_java(:String))
+      @driver.operaDesktopAction(action_name, params.to_java(:String)) 
       wait_for_window_close(win_name)
     end
     
@@ -88,13 +144,13 @@ module OperaWatir
     #
     # @param [String]  win_name    name of the window that will be closed (Pass a blank string for any window)
     # @param [String]  key         key to press (e.g. "a" or "backspace")
-    # @param [String]  modifiers   optional modifier(s) to hold down while pressing the key (e.g. :shift, :ctrl, :alt, :meta)
+    # @param [Symbol]  modifiers   optional modifier(s) to hold down while pressing the key (e.g. :shift, :ctrl, :alt, :meta)
     #
     # @return [int] Window ID of the window closed or 0 if no window is closed
     #
     def close_window_with_key_press(win_name, key, *opts)
       wait_start
-      key_press(key, *opts)
+      key_press_direct(key, *opts)
       wait_for_window_close(win_name)
     end
     
@@ -103,7 +159,8 @@ module OperaWatir
     ######################################################################
     # Close the dialog with name dialog_name, using the "Cancel" action
     #
-    # @param [String] win_name name of the window that will be closed (Pass a blank string for any window)
+    # @param [String] dialog_name name of the dialog that will be closed 
+    #                 (Pass a blank string for any window)
     #
     # @return [int] Window ID of the dialog closed or 0 if no window is closed
     #
@@ -119,12 +176,10 @@ module OperaWatir
     #
     # @example
     #   $browser.widgets(window_name).each do |quick_widget|
-    #     if quick_widget.name.length > 0 then
-    #       print "   Name:" + quick_widget.name + "\n"
-    #     end
+    #       puts quick_widget.to_s
     #   end
     #
-    # @param [String] win_name name of the window to retrieve the list of widgets from
+    # @param win_name [String] name or [int] id of the window to retrieve the list of widgets from,
     #
     # @return [Array] Array of widgets retrieved from the window
     #
@@ -145,11 +200,66 @@ module OperaWatir
             QuickLabel.new(self,java_widget)
           when QuickWidget::WIDGET_ENUM_MAP[:radiobutton]
             QuickRadioButton.new(self,java_widget)
+          when QuickWidget::WIDGET_ENUM_MAP[:treeview]
+            QuickTreeView.new(self,java_widget)
+          when QuickWidget::WIDGET_ENUM_MAP[:treeitem]
+            QuickTreeItem.new(self,java_widget)
         else
           QuickWidget.new(self,java_widget)
         end
       end.to_a
     end
+   
+    ####################################################
+    # Retrieves an array of all windows 
+    #
+    # @return [Array] Array of windows
+    #
+    def windows
+      @driver.getWindowList.map do |java_window|
+        QuickWindow.new(self,java_window)
+      end.to_a
+    end
+    
+    #@private
+    # Retrieve all tabs
+    def open_pages
+      @driver.getWindowList.map do |java_window|
+        if java_window.getName() == "Document Window"
+          QuickWindow.new(self,java_window)
+        end
+      end 
+    end
+    
+    #@private
+    def tab_buttons
+      tab_buttons = []
+      widgets("Browser Window").each do |widget|
+        if widget.type == :tabbutton
+          tab_buttons << widget
+        end
+      end
+      tab_buttons
+    end
+    
+#=begin
+    # Return collection for each widget type
+    # example $browser.quick_buttons
+    #         $browser.quick_treeitems
+    #         ....
+    #    
+    WIDGET_ENUM_MAP.keys.each do |widget_type|
+      my_type = "quick_" << widget_type.to_s
+      if my_type == "quick_search" || my_type == "quick_checkbox"
+        my_type << "es"
+      else
+        my_type << "s"
+      end
+      define_method(my_type.to_sym) do |win|
+        widgets(win).select { |w| w.type == widget_type}
+      end
+    end
+#=end
     
     ######################################################################
     # Retrieves the name of a window based on it's id
@@ -170,7 +280,7 @@ module OperaWatir
     # @param [String] value         The value to set the preference to
     #
     def set_preference(prefs_section, pref, value)
-      open_window_with_action("Document Window", "Open url in new page", "opera:config")
+      load_window_with_action("Document Window", "Open url in new page", "opera:config")
       @driver.get("opera:config")
       execute_script("opera.setPreference(\'#{prefs_section}\', \'#{pref}\', #{value});")
       close_window_with_action("Document Window", "Close page", "1")
@@ -185,12 +295,32 @@ module OperaWatir
     # @return [String] The value of the preference
     #
     def get_preference(prefs_section, pref)
-      open_window_with_action("Document Window", "Open url in new page", "opera:config")
+      load_window_with_action("Document Window", "Open url in new page", "opera:config")
       @driver.get("opera:config")
       value = execute_script("opera.getPreference('#{prefs_section}','#{pref}');")
       close_window_with_action("Document Window", "Close page", "1")
       value
     end
+    
+    ######################################################################
+    # Presses the key, with optional modifiers, and waits for loaded event
+    #
+    # @example
+    #   $browser.quick_toolbar(:name, "Document Toolbar").quick_addressfield(:name, "tba_address_field").\n
+    #                          type_text(text_to_type).should == text_to_type
+    #   $browser.load_page_with_key_press("Enter").should > 0
+    #
+    # @param [String]  key         key to press (e.g. "a" or "backspace")
+    # @param [Symbol]  modifiers   optional modifier(s) to hold down while pressing the key (e.g. :shift, :ctrl, :alt, :meta)
+    #
+    # @return [int] Window ID of the window loaded or 0 if no window is loaded
+    #
+    def load_page_with_key_press(key, *modifiers)
+         wait_start
+         key_press_direct(key, *modifiers)
+         wait_for_window_loaded("")
+    end
+
     
     ######################################################################
     # Returns true if the test is running on Mac 
@@ -200,17 +330,27 @@ module OperaWatir
     def mac?
       Config::CONFIG['target_os'] == "darwin"
     end
-     
+    
     # @private
     # Special method to access the driver
     attr_reader :driver
 
 private
+    # Gets the parent widget name of which there is none here
+    def parent_widget
+      nil
+    end
+    
+    # Gets the window id to use for the search
+    def window_id
+      -1
+    end
     
     # Launchs an opera action in the correct context
     def opera_desktop_action(name, *param)
       driver.operaDesktopAction(name, param.to_java(:String))
     end
+
   end
 end
 

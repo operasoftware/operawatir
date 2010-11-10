@@ -1,10 +1,10 @@
 module OperaWatir
-  class QuickLabel < QuickWidget
+  class QuickTreeView < QuickWidget
 
     # @private
     # Checks the type of the widget is correct
     def correct_type?
-      @element.getType == WIDGET_ENUM_MAP[:label]
+      @element.getType == WIDGET_ENUM_MAP[:treeview]
     end
     
   end
