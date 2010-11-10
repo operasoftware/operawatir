@@ -4,17 +4,19 @@ class OperaWatir::Collection
   extend Forwardable
   include Enumerable
   
-  attr_accessor :selector, :parent
+  attr_accessor :selectors, :parent
 
   attr_writer :elements
 
-  def initialize(parent, elements=nil)
-    self.selector = OperaWatir::Selector.new(self)
-    self.parent, self.elements = parent, elements
+  def initialize(parent)
+    self.parent, self.selectors = parent, []
   end
-
+  
+  # This is the meat and bones of Watir2
   def elements
-    @elements ||= selector.apply(parent)
+    @elements ||= selectors.inject(nil) do |elms, selector|
+      selector.apply_to(elms)
+    end
   end
   
   
@@ -33,44 +35,17 @@ class OperaWatir::Collection
   def_delegators :elements, :each, :length, :[], :empty?
 
   # No call to super. OperaWatir collections are completely transparent.
-  def method_missing(method, *args, &blk)
-    warn "[MISSING] #{self.class} missing #{method}"
-    map_or_return {|elm| elm.send(method, *args, &blk) }
-  end
+  # def method_missing(method, *args, &blk)
+  #   warn "[MISSING] #{self.class} missing #{method}"
+  #   map_or_return {|elm| elm.send(method, *args, &blk) }
+  # end
                                   
   def id
     map_or_return {|elm| elm.id}
   end
   
-  
-  def find_by_id(id)
-    elements.inject([]) do |nodes, element|
-      nodes << element.node.findElementsById(id)
-      nodes
-    end.map {|e| OperaWatir::Element.new(e)}
-  end
-  
-  def find_by_tag(tag)
-    elements.inject([]) do |nodes, element|
-      nodes << element.node.findElementsByTagName(tag)
-      nodes
-    end.map {|e| OperaWatir::Element.new(e)}
-  end
-  
-  def self.refine_by_attributes(elements, attribs)
-    
-    return [elements[attribs[:index]]] if attribs[:index]
-    
-    elements.select do |elm|
-      attribs.all? do |attrib, value|
-        # Hack
-        if value.is_a? Regexp
-          elm.send(attrib) =~ value
-        else
-          elm.send(attrib) == value
-        end
-      end
-    end
+  def add_selector(type, value)
+    self.selectors << OperaWatir::Selector.new(self, type, value)
   end
   
 # private
