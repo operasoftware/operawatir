@@ -141,7 +141,14 @@ class OperaWatir::Window
     c
   end
   
-  
+  def areas(*args, &blk)
+    c = OperaWatir::Collection.new(self)
+    c.add_selector :tag, :area
+    OperaWatir::Selector.parse(c, *args).each do |s|
+      c.selectors << s
+    end
+    c
+  end
 
 private
 
