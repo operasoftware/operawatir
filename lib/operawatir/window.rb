@@ -94,26 +94,33 @@ class OperaWatir::Window
   end
   alias_method :get_hash, :visual_hash
 
-  
+
   # Finders
-  
-  # def method_missing(tag, *args, &blk)
-  #   c = OperaWatir::Collection.new(self)
-  #   c.add_selector :tag, tag
-  #   # OperaWatir::Selector.parse(self, *args).each do |selector|
-  #   #   c.selectors << selector
-  #   # end
-  #   c
-  # end
-  
+
+  def area(attributes={})
+    OperaWatir::Collection.new(self).tap do |c|
+      c.add_selector :tag, :area
+      c.add_selector :attributes, attributes
+    end
+  end
+
+  def areas(attributes={})
+    OperaWatir::Collection.new(self).tap do |c|
+      c.add_selector :tag, :area
+      c.add_selector :attributes, attributes
+    end
+  end
+
   def find_elements_by_id(value)
-    warn "Id Not Implemented Yet"
-    []
+    driver.findElementsById(value).to_a.map do |node|
+      OperaWatir::Element.new(node)
+    end
   end
   
   def find_elements_by_class(value)
-    warn "Class Not Implemented Yet"
-    []
+    driver.findElementsByClassName(value).to_a.map do |node|
+      OperaWatir::Element.new(node)
+    end
   end
   
   def find_elements_by_tag(value)
@@ -123,31 +130,15 @@ class OperaWatir::Window
   end
   
   def find_elements_by_css(value)
-    warn "CSS Not Implemented Yet"
-    []
+    driver.findElementsByCssSelector(value).to_a.map do |node|
+      OperaWatir::Element.new(node)
+    end
   end
   
   def find_elements_by_xpath(value)
-    warn "Xpath Not Implemented Yet"
-    []
-  end
-  
-  def area(*args, &blk)
-    c = OperaWatir::Collection.new(self)
-    c.add_selector :tag, :area
-    OperaWatir::Selector.parse(c, *args).each do |s|
-      c.selectors << s
+    driver.findElementsByXpath(value).to_a.map do |node|
+      OperaWatir::Element.new(node)
     end
-    c
-  end
-  
-  def areas(*args, &blk)
-    c = OperaWatir::Collection.new(self)
-    c.add_selector :tag, :area
-    OperaWatir::Selector.parse(c, *args).each do |s|
-      c.selectors << s
-    end
-    c
   end
 
 private
