@@ -8,14 +8,26 @@ module OperaWatir
 private
 
     def key_press_direct(key, *opts)
-      #puts "key_press_direct #{key}, opts #{opts}" 
-      #KEYMODIFIER_ENUM_MAP.each { |k, v| puts "#{k},#{v}"}
       list = Java::JavaUtil::ArrayList.new
       opts.each { |mod| list << KEYMODIFIER_ENUM_MAP[mod] }
       driver.keyPress(key, list)
     end
- 
-    # Private wait functions
+    
+    def key_down(key, *opts)
+      puts "keydown"
+      list = Java::JavaUtil::ArrayList.new
+      opts.each { |mod| list << KEYMODIFIER_ENUM_MAP[mod] }
+      driver.keyDown(key, list)
+    end
+    
+    def key_up(key, *opts)
+      puts "keyup"
+      list = Java::JavaUtil::ArrayList.new
+      opts.each { |mod| list << KEYMODIFIER_ENUM_MAP[mod] }
+      driver.keyUp(key, list)
+    end
+    
+   # Private wait functions
     #
     def wait_start
       driver.waitStart()
