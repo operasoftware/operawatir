@@ -5,7 +5,12 @@ class OperaWatir::Element
   def initialize(node)
     self.node = node
   end
-
+  
+  def ==(other)
+    other.respond_to?(:node) ? node == other.node : super
+  end
+  alias_method :eql?, :==
+  
   
   # Attributes
   
@@ -82,6 +87,38 @@ class OperaWatir::Element
   def location
     loc = node.getLocation
     {:x => loc.x.to_i, :y => loc.y.to_i}
+  end
+  
+  
+  
+  def find_elements_by_id(value)
+    node.findElementsById(value).to_a.map do |n|
+      OperaWatir::Element.new(n)
+    end
+  end
+  
+  def find_elements_by_class(value)
+    node.findElementsByClassName(value).to_a.map do |n|
+      OperaWatir::Element.new(n)
+    end
+  end
+  
+  def find_elements_by_tag(value)
+    node.findElementsByTagName(value).to_a.map do |n|
+      OperaWatir::Element.new(n)
+    end
+  end
+  
+  def find_elements_by_css(value)
+    node.findElementsByCssSelector(value).to_a.map do |n|
+      OperaWatir::Element.new(n)
+    end
+  end
+  
+  def find_elements_by_xpath(value)
+    node.findElementsByXpath(value).to_a.map do |n|
+      OperaWatir::Element.new(n)
+    end
   end
   
 private

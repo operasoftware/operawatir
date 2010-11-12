@@ -3,19 +3,18 @@ class OperaWatir::Selector
   
   attr_accessor :type, :attribute, :value
   
-  def self.parse(collection, *args)
-    case args.length
-    when 0
-      args
-    when 1
-      args.first.map {|attribute, value| new(collection, :attribute, attribute, value)}
+  
+  def self.parse_and_build(collection, *args)
+    parse(args).map do |params|
+      new(collection, *params)
+    end
+  end
+  
+  def self.parse(args)
+    if args.empty?
+      [[:index, 0]]
     else
-      [new(
-        collection,
-        (args[0] == :index ? :index : :attribute),
-        args[0],
-        args[1]
-      )]
+      args.first.map {|name, value| [:attribute, name, value]}
     end
   end
   
@@ -44,23 +43,28 @@ private
     BASIC_TYPES.include?(type)
   end
 
-  def operator
-    value.respond_to?(:match) ? :match : :==
+  def self.operator(obj)
+    obj.respond_to?(:match) ? :match : :==
   end
 
   def finder_method
     "find_elements_by_#{type}".to_sym
   end
-
+  
   def find_elements_by_index(elements)
-    elements.select do |element|
-      elements.index(element) == value
+    # TODO Refactor
+    if value < elements.length
+      [elements[value]]
+    else
+      []
     end
   end
   
-  def find_elements_by_attribute(elements)
+  def find_elements_by_attributes(elements)
     elements.select do |element|
-      element.send(attribute).send(operator, value)
+      value.all? do |key, val|
+        element.send(key).send(self.class.operator(val), val)
+      end
     end
   end
   
