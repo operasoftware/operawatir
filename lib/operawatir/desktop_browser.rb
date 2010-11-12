@@ -115,9 +115,13 @@ module OperaWatir
     #
     def activate_tab_with_key_press(key, *modifiers)
       wait_start
-      #key_down(key,*modifiers)
-      #key_up(key, *modifiers)
-      key_press_direct(key, *modifiers)
+      # TODO: FIXME. key_down and up are not yet implemented on mac and windows
+      if linux? 
+        key_down(key,*modifiers)
+        key_up(key, *modifiers)
+      else
+        key_press_direct(key, *modifiers)
+      end
       wait_for_window_activated("Document Window")
      end
     
@@ -403,6 +407,10 @@ module OperaWatir
     def mac?
       Config::CONFIG['target_os'] == "darwin"
     end
+    
+    def linux?
+       Config::CONFIG['target_os'] == "linux"
+     end
     
     # @private
     # Special method to access the driver
