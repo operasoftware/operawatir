@@ -27,16 +27,6 @@ module OperaWatir::Waiter
     attr_writer attr.to_sym
   end
 
-  def defaults
-    configure do |c|
-      c.path          = nil
-      c.args          = ''
-      c.files         = "file://localhost/#{File.expand_path('interactive', File.dirname(RSpec.configuration.files_to_run[0]))}"
-      c.inspectr      = false
-      c.terminal_size = [80,24]
-    end
-  end
-
   def configure(*args, &block)
     HelperConfig.block_to_hash(block).each do |setting, value|
       default_attr_accessor setting, value
@@ -59,7 +49,13 @@ module OperaWatir::Waiter
     end
   end
 
-  defaults
+  configure do |c|
+    c.path          = nil
+    c.args          = ''
+    c.files         = "file://localhost/#{File.expand_path('interactive', File.dirname(RSpec.configuration.files_to_run[0]))}"
+    c.inspectr      = false
+    c.terminal_size = [80,24]
+  end
 
   def browser
     @browser ||= OperaWatir::Browser.new(path, *args.split(' ').to_java(:string))
