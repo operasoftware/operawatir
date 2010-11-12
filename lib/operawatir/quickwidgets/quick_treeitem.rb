@@ -42,6 +42,13 @@ module OperaWatir
       # No event yet so just cheat and sleep
       sleep(0.1);
     end
+    
+    alias_method :unexpand_with_double_click, :expand_with_double_click
+    
+    #def key_press(key, *opts)
+    #  key_press_direct(key, *opts)
+    #  sleep(0.1)
+    #end
         
     ######################################################################
     # Switch to the tree view tab by clicking on it (e.g. on the 
