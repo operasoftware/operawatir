@@ -23,29 +23,53 @@ class OperaWatir::Collection
     self.selectors << OperaWatir::Selector.new(self, type, value)
   end
   
-  
-  
   def exist?
     !elements.empty?
   rescue OperaWatir::Exceptions::UnknownObjectException
     false
   end
-  
   alias_method :exists?, :exist?
 
   def single?
-    elements.size == 1
+    elements.length == 1
   end
   
   def_delegators :elements, :each, :length, :[], :empty?
   
-  def id
-    map_or_return {|elm| elm.id}
+  def [](index)
+    OperaWatir::Collection.new(self).tap do |c|
+      c.add_selector :index, index
+    end
   end
   
-  # No call to super. OperaWatir collections are completely transparent.
+  def first
+    OperaWatir::Collection.new(self).tap do |c|
+      c.add_selector :index, 0
+    end
+  end
+  
+  def last
+    OperaWatir::Collection.new(self).tap do |c|
+      c.add_selector :index, elements.length - 1
+    end
+  end
+  
+  OperaWatir::Selector::BASIC_TYPES.each do |type|
+    define_method("find_elements_by_#{type}") do |value|
+      elements.inject([]) do |elms, element|
+        elms | element.send("find_elements_by_#{type}", value)
+      end
+    end
+  end
+  
+  
+  # No call to super. Collections are completely opaque proxies.
   def method_missing(method, *args, &blk)
     map_or_return {|elm| elm.send(method, *args, &blk) }
+  end
+  
+  def id
+    map_or_return {|elm| elm.id}
   end
   
 # private
