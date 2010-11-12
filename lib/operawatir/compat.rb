@@ -1,14 +1,3 @@
-module OperaWatir
-  
-  module Compat
-  end
-  
-  def self.compatibility!
-    include Compat
-  end
-  
-end
-
 require 'operawatir/compat/deprecation'
 require 'operawatir/compat/browser'
 require 'operawatir/compat/window'
@@ -17,15 +6,13 @@ require 'operawatir/compat/element'
 require 'operawatir/compat/selector'
 
 module OperaWatir
-module Compat
   
-  def self.included(klass)
-    OperaWatir::Browser.send :include, OperaWatir::Compat::Browser
-    OperaWatir::Window.send :include, OperaWatir::Compat::Window
-    OperaWatir::Collection.send :include, OperaWatir::Compat::Collection
-    OperaWatir::Element.send :include, OperaWatir::Compat::Element
-    OperaWatir::Selector.send :include, OperaWatir::Compat::Selector
+  def self.compatibility!
+    Browser.send :include, Compat::Browser
+    Window.send :include, Compat::Window
+    Collection.send :include, Compat::Collection
+    Element.send :include, Compat::Element
+    Selector.send :include, Compat::Selector
   end
   
-end
 end

@@ -1,25 +1,4 @@
-module OperaWatir::Compat::Deprecation
-  
-  def self.included(klass)
-    klass.extend ClassMethods
-  end
-  
-  module ClassMethods
-  end
-  
-  def deprecation(desc, fix)
-    warn OperaWatir::Exceptions::DeprecationException.new(desc, fix, caller).message
-  end
-  
-  def deprecation!(desc, fix)
-    raise OperaWatir::Exceptions::DeprecationException.new(desc, fix, caller)
-  end
-  
-end
-
 class OperaWatir::Exceptions::DeprecationException < OperaWatir::Exceptions::OperaWatirException
-  
-  LIB_PATHS = [File.expand_path('../../../', __FILE__)] + Gem.all_load_paths
   
   def initialize(desc, fix, trace)
     @desc, @fix = desc, fix
@@ -32,6 +11,8 @@ class OperaWatir::Exceptions::DeprecationException < OperaWatir::Exceptions::Ope
 
 private
 
+  LIB_PATHS = [File.expand_path('../../../', __FILE__)] + Gem.all_load_paths
+
   def clean_backtrace(trace)
     trace.reject do |line|
       LIB_PATHS.any? do |lib_path|
@@ -42,9 +23,22 @@ private
   
 end
 
+module OperaWatir
+  module Compat
+    module Deprecation
+      
+      def deprecation(desc, fix)
+        warn OperaWatir::Exceptions::DeprecationException.new(desc, fix, caller).message
+      end
+  
+      def deprecation!(desc, fix)
+        raise OperaWatir::Exceptions::DeprecationException.new(desc, fix, caller)
+      end
+      
+    end
+  end
+end
 
 class Object
   include OperaWatir::Compat::Deprecation
 end
-
-
