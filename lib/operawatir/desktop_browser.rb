@@ -115,9 +115,11 @@ module OperaWatir
     #
     def activate_tab_with_key_press(key, *modifiers)
       wait_start
+      #key_down(key,*modifiers)
+      #key_up(key, *modifiers)
       key_press_direct(key, *modifiers)
       wait_for_window_activated("Document Window")
-    end
+     end
     
     ######################################################################
     # Opens a new tab and loads the url entered, then waits for
@@ -439,8 +441,7 @@ module OperaWatir
     
     ######################################################################
     #  
-    #
-    #  
+    # Clear disk cache
     #
     def clear_cache
       #TODO: Use Delete Private Data Dialog?
@@ -449,8 +450,7 @@ module OperaWatir
     
     ######################################################################
     # 
-    #
-    #  
+    # Close all open tabs (except last one)
     #
     def close_all_tabs
       quick_tabbuttons("Browser Window").each do |btn|
@@ -464,7 +464,6 @@ module OperaWatir
     #####################################################################
     # 
     # Close all open dialogs
-    #  
     #
     def close_all_dialogs
       win_id = driver.getActiveWindowID()
