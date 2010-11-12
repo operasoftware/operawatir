@@ -11,5 +11,6 @@ module OperaWatir::DesktopExceptions
   # corresponding element.
   class WidgetNotVisibleException < OperaWatirException; end
   class UnsupportedActionException < OperaWatirException; end
+  class WidgetDisabledException < OperaWatirException; end
   
 end

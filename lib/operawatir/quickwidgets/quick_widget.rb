@@ -190,7 +190,8 @@ module OperaWatir
       @container.driver
     end
     
-    #Get parent widget name
+    # parent is container
+    # Get parent widget name
     def parent_name
       element.getParentName()
     end
@@ -203,6 +204,7 @@ module OperaWatir
     end
 
 private
+    
     # Gets the widget name (used as parent name when creating child widget)
     def parent_widget
       if @selector == nil && @elm != nil
@@ -239,7 +241,7 @@ private
     
     # Click widget
     def click(button = :left, times = 1, *opts)
-      raise Exceptions::ObjectDisabledException, "Element #{@selector} is disabled" unless enabled?
+      raise Exceptions::WidgetDisabledException, "Element #{@selector} is disabled" unless enabled?
       # Dialog tabs are always visible even if the page they are connected to isn't
       if visible? == true or type == :dialogtab
         #DesktopEnums::KEYMODIFIER_ENUM_MAP.each { |k, v| puts "#{k},#{v}"}
