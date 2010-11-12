@@ -336,6 +336,26 @@ module OperaWatir
          key_press_direct(key, *modifiers)
          wait_for_window_loaded("")
     end
+    
+    ##############################################################################
+    # Clicks the element specified by method and selector, 
+    # and waits for the window with name win_name to be shown
+    #
+    # @param [WebElement]  element   element to click
+    # @param [String]    win_name    Name of window to be shown
+    #
+    # @return [int] Window ID of the window shown or 0 if no window is shown
+    #
+=begin    
+    # or open_dialog_with_click(type, method, selector, win_name)
+    # open_dialog_with_click(:button, :id, "text", win_name)
+=end   
+    def open_dialog_with_click(method, selector, win_name)
+      wait_start
+      OperaWatir::WebElement.new(self, method, selector).click
+      wait_for_window_shown(win_name)
+    end
+
 
     ######################################################################
     # Returns the full path to the Opera executable 
