@@ -74,6 +74,10 @@ module OperaWatir
       element.rightClick
     end
 
+    def middle_click
+      element.middleClick
+    end
+
     def text
       element.getText
     end
