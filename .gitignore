@@ -2,5 +2,3 @@ pkg
 spec/spec.opts
 .yardoc
 doc
-*.gemspec
-
