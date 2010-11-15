@@ -3,21 +3,6 @@ class OperaWatir::Selector
   
   attr_accessor :type, :attribute, :value
   
-  
-  def self.parse_and_build(collection, *args)
-    parse(args).map do |params|
-      new(collection, *params)
-    end
-  end
-  
-  def self.parse(args)
-    if args.empty?
-      [[:index, 0]]
-    else
-      args.first.map {|name, value| [:attribute, name, value]}
-    end
-  end
-  
   def initialize(collection, type, attribute, value=nil)
     self.collection, self.type = collection, type
     
@@ -29,7 +14,7 @@ class OperaWatir::Selector
     if basic?
       collection.parent.send(finder_method, value)
     else
-      send(finder_method, elements || collection.parent.elements)
+      send(finder_method, elements || collection.parent.raw_elements)
     end.tap do |result|
       raise(OperaWatir::Exceptions::UnknownObjectException) if result.empty?
     end
@@ -49,15 +34,6 @@ private
 
   def finder_method
     "find_elements_by_#{type}".to_sym
-  end
-  
-  def find_elements_by_index(elements)
-    # TODO Refactor
-    if value < elements.length
-      [elements[value]]
-    else
-      []
-    end
   end
   
   def find_elements_by_attributes(elements)
