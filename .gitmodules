@@ -1,0 +1,3 @@
+[submodule "spec/new_watirspec"]
+	path = spec/new_watirspec
+	url = ssh://dvcs.oslo.osa/var/git/core-systems/watirspec.git
