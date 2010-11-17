@@ -5,7 +5,7 @@ module OperaWatir
     # Method for accessing a button element
     #
     # @example
-    #   $browser.quick_button(:name, "button_OK")
+    #   browser.quick_button(:name, "button_OK")
     #
     # @param [String] how   Method to find the element. :name, :text or :string_id of the button
     # @param [String] what  Search text to find the element with. Currently name, text or string_id 
@@ -25,8 +25,8 @@ module OperaWatir
     #                         Currently text or position of the tab button, first tab button has position 0.
     #
     # @example
-    #   $browser.quick_window(:name, "Browser Window").quick_toolbar(:name, "Pagebar").quick_tab(:pos, 1)
-    #   $browser.quick_window(:name, "Browser Window").quick_toolbar(:name, "Pagebar").quick_tab(:text, "Connect to Debugger")
+    #   browser.quick_window(:name, "Browser Window").quick_toolbar(:name, "Pagebar").quick_tab(:pos, 1)
+    #   browser.quick_window(:name, "Browser Window").quick_toolbar(:name, "Pagebar").quick_tab(:text, "Connect to Debugger")
     #
     # @return [Object] tab button object if found, otherwise nil
     #
@@ -43,7 +43,7 @@ module OperaWatir
     # Method for accessing a checkbox element
     #
     # @example
-    #   $browser.quick_checkbox(:name, "Enable_wand_checkbox")
+    #   browser.quick_checkbox(:name, "Enable_wand_checkbox")
     #
     # @param [String] how   Method to find the element. :name, :text or :string_id
     # @param [String] what  Search text to find element with. 
@@ -58,7 +58,7 @@ module OperaWatir
     # Method for accessing a tab on a tabbed dialog
     #
     # @example
-    #   $browser.quick_dialogtab(:name, "tab_prefs_forms")
+    #   browser.quick_dialogtab(:name, "tab_prefs_forms")
     #
     # @param [String] how   Method to find the element. :name, :string_id or :text 
     # @param [String] what  Search text to find the element with.  
@@ -73,7 +73,7 @@ module OperaWatir
     # Method for accessing a combobox (i.e. dropdown) element
     #
     # @example
-    #   $browser.quick_dropdown(:name, "Startup_mode_dropdown")
+    #   browser.quick_dropdown(:name, "Startup_mode_dropdown")
     #
     # @param [String] how   Method to find the element. :name, :string_id or :text
     # @param [String] what  Search text to find the element with.  
@@ -89,7 +89,7 @@ module OperaWatir
     # Method for accessing an edit or multiedit element
     #
     # @example
-    #   $browser.quick_editfield(:name, "Startpage_edit")
+    #   browser.quick_editfield(:name, "Startpage_edit")
     #
     # @param [String] how   Method to find the element. :name, :string_id or :text
     # @param [String] what  Search text to find the element with.  
@@ -104,7 +104,7 @@ module OperaWatir
     # Method for accessing a label element
     #
     # @example
-    #   $browser.quick_label(:name, "label_for_Popups_dropdown")
+    #   browser.quick_label(:name, "label_for_Popups_dropdown")
     #
     # @param [String] how   Method to find the element. :name, :string_id or :text
     # @param [String] what  Search text to find the element with.  
@@ -119,7 +119,7 @@ module OperaWatir
     # Method for accessing a radio button element
     #
     # @example
-    #   $browser.quick_radiobutton(:name, "Accept_cookies_radio")
+    #   browser.quick_radiobutton(:name, "Accept_cookies_radio")
     #
     # @param [String] how   Method to find the element. :name, :string_id or :text
     # @param [String] what  Search text to find the element with.  
@@ -134,7 +134,7 @@ module OperaWatir
     # Method for accessing a tree view element
     #
     # @example
-    #   $browser.quick_treeview(:name, "Web_search_treeview")
+    #   browser.quick_treeview(:name, "Web_search_treeview")
     #
     # @param [String] how   Method to find the element. :name, :string_id or :text
     # @param [String] what  Search text to find the element with. 
@@ -149,7 +149,7 @@ module OperaWatir
     # Method for accessing an addressfield object
     #
     # @example
-    #   $browser.quick_toolbar(:name, "Document Toolbar").quick_addressfield(:name, "tba_addressfield")
+    #   browser.quick_toolbar(:name, "Document Toolbar").quick_addressfield(:name, "tba_addressfield")
     #
     # @param [String] how   Method to find the element. :name, :string_id or :text
     # @param [String] what  Search text to find the element with.  
@@ -164,7 +164,7 @@ module OperaWatir
     # Method for accessing a searchfield element
     #
     # @example
-    #   $browser.quick_searchfield(:name, "Web_search_searchfield")
+    #   browser.quick_searchfield(:name, "Web_search_searchfield")
     #
     # @param [String] how   Method to find the element. :name, :string_id or :text
     # @param [String] what  Search text to find the element with. 
@@ -179,7 +179,7 @@ module OperaWatir
     # Method for accessing a toolbar element
     #
     # @example
-    #   $browser.quick_toolbar(:name, "Document_toolbar")
+    #   browser.quick_toolbar(:name, "Document_toolbar")
     #
     # @param [String] how   Method to find the element. :name, :string_id or :text
     # @param [String] what  Search text to find the element with.  
@@ -194,7 +194,7 @@ module OperaWatir
     # Method for accessing a tree item in a treeview
     #
     # @example
-    #   $browser.quick_treeview(:name, "Server_treeview").quick_treeitem(:pos, [2,0])
+    #   browser.quick_treeview(:name, "Server_treeview").quick_treeitem(:pos, [2,0])
     #
     # @param [String] how   Method to find the element. :name, :string_id or :text
     # @param [String] what  Search text to find the element with. Text or position 
@@ -210,9 +210,9 @@ module OperaWatir
     # Method for accessing a window
     #
     # @example
-    #   $browser.quick_window(:name, "Browser Window")
-    #   $browser.quick_window(:name, "Document Window")
-    #   $browser.quick_window(:name, "Cycler Window")
+    #   browser.quick_window(:name, "Browser Window")
+    #   browser.quick_window(:name, "Document Window")
+    #   browser.quick_window(:name, "Cycler Window")
     #
     # @param [String] how   Method to find the element. Currently only :name is supported
     # @param [String] what  or [int] window_id Search text to find the element with. Name of window

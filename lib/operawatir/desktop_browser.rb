@@ -37,8 +37,8 @@ module OperaWatir
     # the window with window name win_name to be shown
     #
     # @example
-    #   $browser.open_window_with_action("New Preferences Dialog", "Show preferences")
-    #   $browser.open_window_with_action("New Preferences Dialog", "Show preferences", "1")
+    #   browser.open_window_with_action("New Preferences Dialog", "Show preferences")
+    #   browser.open_window_with_action("New Preferences Dialog", "Show preferences", "1")
     #
     # @param [String] win_name    name of the window that will be opened (Pass a blank string for any window)
     # @param [String] action_name name of the action to execute to open the window
@@ -63,7 +63,7 @@ module OperaWatir
     # the window with window name win_name to be loaded
     #
     # @example
-    #   $browser.load_window_with_action("Document Window", "Open url in new page")
+    #   browser.load_window_with_action("Document Window", "Open url in new page", "http://elg.no")
     #
     # @param [String] win_name    name of the window that will be opened (Pass a blank string for any window)
     # @param [String] action_name name of the action to execute to open the window
@@ -86,8 +86,8 @@ module OperaWatir
     # the window with window name win_name to be shown
     #
     # @example
-    #   $browser.open_window_with_key_press("New Preferences Dialog", "F12")
-    #   $browser.open_window_with_key_press("New Preferences Dialog", "F12", :ctrl, :shift)
+    #   browser.open_window_with_key_press("New Preferences Dialog", "F12")
+    #   browser.open_window_with_key_press("New Preferences Dialog", "F12", :ctrl, :shift)
     #
     # @param [String]  win_name    name of the window that will be opened (Pass a blank string for any window)
     # @param [String]  key         key to press (e.g. "a" or "backspace")
@@ -147,8 +147,8 @@ module OperaWatir
     # the window with window name win_name to close
     #
     # @example
-    #   $browser.close_window_with_action("New Preferences Dialog", "Cancel")
-    #   $browser.close_window_with_action("New Preferences Dialog", "Cancel", "1")
+    #   browser.close_window_with_action("New Preferences Dialog", "Cancel")
+    #   browser.close_window_with_action("New Preferences Dialog", "Cancel", "1")
     #
     # @param [String] win_name    name of the window that will be closed (Pass a blank string for any window)
     # @param [String] action_name name of the action to execute to close the window
@@ -169,8 +169,8 @@ module OperaWatir
     # the window with window name win_name to close
     #
     # @example
-    #   $browser.close_window_with_key_press("New Preferences Dialog", "Esc")
-    #   $browser.close_window_with_key_press("New Preferences Dialog", "w", :ctrl)
+    #   browser.close_window_with_key_press("New Preferences Dialog", "Esc")
+    #   browser.close_window_with_key_press("New Preferences Dialog", "w", :ctrl)
     #
     # @param [String]  win_name    name of the window that will be closed (Pass a blank string for any window)
     # @param [String]  key         key to press (e.g. "a" or "backspace")
@@ -205,7 +205,7 @@ module OperaWatir
     # name win_name
     #
     # @example
-    #   $browser.widgets(window_name).each do |quick_widget|
+    #   browser.widgets(window_name).each do |quick_widget|
     #       puts quick_widget.to_s
     #   end
     #
@@ -265,8 +265,8 @@ module OperaWatir
     
 #=begin
     # Return collection for each widget type
-    # example $browser.quick_buttons
-    #         $browser.quick_treeitems
+    # example browser.quick_buttons
+    #         browser.quick_treeitems
     #         ....
     #    
     WIDGET_ENUM_MAP.keys.each do |widget_type|
@@ -328,9 +328,9 @@ module OperaWatir
     # Presses the key, with optional modifiers, and waits for loaded event
     #
     # @example
-    #   $browser.quick_toolbar(:name, "Document Toolbar").quick_addressfield(:name, "tba_address_field").\n
+    #   browser.quick_toolbar(:name, "Document Toolbar").quick_addressfield(:name, "tba_address_field").\n
     #                          type_text(text_to_type).should == text_to_type
-    #   $browser.load_page_with_key_press("Enter").should > 0
+    #   browser.load_page_with_key_press("Enter").should > 0
     #
     # @param [String]  key         key to press (e.g. "a" or "backspace")
     # @param [Symbol]  modifiers   optional modifier(s) to hold down while pressing the key (e.g. :shift, :ctrl, :alt, :meta)
