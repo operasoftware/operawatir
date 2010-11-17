@@ -304,7 +304,7 @@ module OperaWatir
     def set_preference(prefs_section, pref, value)
       load_window_with_action("Document Window", "Open url in new page", "opera:config")
       @driver.get("opera:config")
-      execute_script("opera.setPreference(\'#{prefs_section}\', \'#{pref}\', #{value});")
+      execute_script("opera.setPreference(\'#{prefs_section}\', \'#{pref}\', \'#{value}\');")
       close_window_with_action("Document Window", "Close page", "1")
     end
       
