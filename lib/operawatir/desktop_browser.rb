@@ -129,7 +129,7 @@ module OperaWatir
     # Opens a new tab and loads the url entered, then waits for
     # a dialog to be shown based on the url entered
     #
-    # @param [String] dialog_name name of the dialog that will be closed 
+    # @param [String] dialog_name name of the dialog that will be opened 
     #                       (Pass a blank string for any window)
     # @param [String] url to load 
     #
