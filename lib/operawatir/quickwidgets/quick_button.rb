@@ -15,7 +15,7 @@ module OperaWatir
     def default?
       element.isDefault
     end
-    
+
     ######################################################################
     # Clicks the button, and waits for the window with window name 
     # win_name to be shown
@@ -34,6 +34,21 @@ module OperaWatir
     end
     
     alias_method :open_dialog_with_click, :open_window_with_click
+
+    ######################################################################
+    # Clicks the button, and waits for the dialog wizard to switch
+    # to the next page
+    #
+    # @return [int] Window ID of the dialog wizard or 0 if no window is shown
+    #
+    # @raise [DesktopExceptions::WidgetNotVisibleException] if the button
+    #            is not visible
+    #
+    def change_page_with_click()
+      wait_start
+      click
+      wait_for_window_shown("")
+    end
     
     ######################################################################
     # Clicks the button, and waits for the window with window name 
