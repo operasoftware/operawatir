@@ -422,6 +422,9 @@ module OperaWatir
     # @return [int] 0 if operation failed, else > 0 
     #
     def clear_all_private_data
+      
+      #FIXME: Set CheckFlags to uncheck to prevent storing the settings used here
+      
       win_id = open_dialog_with_action("Clear Private Data Dialog", "Delete private data")
       return 0 if win_id == 0
       
@@ -436,6 +439,10 @@ module OperaWatir
       
       #Delete all
       win_id = quick_button(:name, "button_OK").close_dialog_with_click("Clear Private Data Dialog")
+      
+      #FIXME: Reset CheckFlags
+      
+      win_id
     end
     
     ######################################################################
