@@ -133,7 +133,7 @@ module OperaWatir
     #                       (Pass a blank string for any window)
     # @param [String] url to load 
     #
-    # @return [int] Window ID of the dialog closed or 0 if no window is closed
+    # @return [int] Window ID of the dialog opened or 0 if no window is opened
     #
     def open_dialog_with_url(dialog_name, url)
       wait_start
