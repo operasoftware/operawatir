@@ -102,7 +102,21 @@ module OperaWatir
         
       element(true).getValue
     end
+  
+    ######################################################################
+    # Clicks button to close the toolbar 
+    #
+    # @raise [DesktopExceptions::WidgetNotVisibleException] if the button
+    #            is not visible
+    #
+    def close_toolbar_with_click
+      click
       
+      # Cheat since we don't have an event yet
+      sleep(0.1)
+    end
+          
+    alias_method :close_panel_with_click, :close_toolbar_with_click
     
     ######################################################################
     # Gets the value of the button or expand control.
