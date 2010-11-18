@@ -99,5 +99,16 @@ module OperaWatir
     def value
       element.getValue
     end
+    
+    ######################################################################
+    # Pauses to wait for security dialogs when buttons are not active
+    # right away on opening 
+    #
+    # @return [Boolean] Returns true if the button becomes active
+    #
+    def wait_for_enabled
+      wait_for_widget_enabled
+    end
+    
   end
 end

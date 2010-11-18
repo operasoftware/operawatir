@@ -29,7 +29,7 @@ module OperaWatir
       # For now there is no difference to focusing
       focus_with_click
     end
-    
+
     ######################################################################
     # Expands a tree item when it is double clicked
     #
@@ -43,7 +43,7 @@ module OperaWatir
       sleep(0.1);
     end
     
-    alias_method :unexpand_with_double_click, :expand_with_double_click
+    alias_method :collapse_with_double_click, :expand_with_double_click
     
     ######################################################################
     # Presses a key including modifiers

@@ -55,6 +55,28 @@ private
       sleep(0.1)
       win_id
     end
+    
+    def wait_for_widget_enabled
+      max_timeout = 1.5
+      curr_timeout = 0.0
+      step = 0.1
+      
+      while curr_timeout < max_timeout  
+        if element(true).isEnabled == true
+          break
+        end
 
+        sleep(step)
+        curr_timeout += step
+      end
+      
+      # Check we didn't exceed the timeout
+      if curr_timeout >= max_timeout
+        return false
+      end
+      
+      # Return true
+      true
+    end
   end
 end
