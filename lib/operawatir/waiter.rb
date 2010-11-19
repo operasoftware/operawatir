@@ -110,7 +110,7 @@ module OperaWatir::Waiter
     end
 
     def window
-      OperaWatir::Browser.active_window
+      browser.active_window
     end
 
     # TODO Not sure of this
