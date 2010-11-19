@@ -156,7 +156,13 @@ module OperaWatir
         puts "Parent: " + element.getParentName() + ", Item: " + element.getRow().to_s + ", Text: " + text
       end
     end
-    
+
+    # @return position for elements that have a position, else false
+    def position
+      return [row, col] if type == :treeitem
+      return col if type == :tabbutton
+      false
+    end
    
     ######################################################################
     # Prints out all of the internal information about the widget. Used
@@ -183,10 +189,25 @@ module OperaWatir
     def driver
       @container.driver
     end
+    
+    #Get parent widget name
+    def parent_name
+      element.getParentName()
+    end
+    
+    # Focus a widget with a click
+    def focus_with_click
+      click
+      # No event yet so just cheat and sleep
+      sleep(0.1);
+    end
 
 private
     # Gets the widget name (used as parent name when creating child widget)
     def parent_widget
+      if @selector == nil && @elm != nil
+         set_selector
+      end
       case @method
       when :name
         name
@@ -209,11 +230,6 @@ private
       element.getColumn()
     end
     
-    #Get parent widget name
-    def parent_name
-      element.getParentName()
-    end
-
     # Gets the window id to use for the search
     def window_id
       # Need to pass on the current setting of @window_id to make
@@ -223,6 +239,7 @@ private
     
     # Click widget
     def click(button = :left, times = 1, *opts)
+      raise Exceptions::ObjectDisabledException, "Element #{@selector} is disabled" unless enabled?
       # Dialog tabs are always visible even if the page they are connected to isn't
       if visible? == true or type == :dialogtab
         #DesktopEnums::KEYMODIFIER_ENUM_MAP.each { |k, v| puts "#{k},#{v}"}
@@ -231,17 +248,9 @@ private
         opts.each { |mod| list << DesktopEnums::KEYMODIFIER_ENUM_MAP[mod] }
         element.click(button, times, list)
       else
-        raise(DesktopExceptions::WidgetNotVisibleException, "Widget #{name} not visible")
-      end 
+        raise(DesktopExceptions::WidgetNotVisibleException, "Widget #{name.length > 0 ? name : text} not visible")
+      end
     end
-    
-    # Focus a widget with a click
-    def focus_with_click
-      click
-      # No event yet so just cheat and sleep
-      sleep(0.1);
-    end
-    
     
     # Right click a widget
     def right_click
@@ -263,8 +272,31 @@ private
       @elm
     end
     
+    def set_selector
+      if @elm.name.length > 0
+        @method = :name
+        @selector = @elm.name
+      elsif @elm.text.length > 0
+        @method = :text
+        @selector = @elm.text
+      elsif @elm.type == :treeitem
+        @method = :pos
+        @selector = [@elm.row, @elm.col]
+      elsif @elm.type == :tabbutton
+        @method = :pos
+        @selector = @elm.col
+      end
+      @location = element.getParentName()
+      @window_id = -1
+    end
+    
     # Finds the element on the page.  
     def find
+      #If @method set and we do new find because of refresh, we need to get @selector first
+      #Have the java object because the construct was done on it
+      if @selector == nil && @elm != nil
+        set_selector
+      end
       #puts "<find> Find Widget by " + @method.to_s + " " + @window_id.to_s + ", " + @selector.to_s + ", " + @location.to_s
       case @method
       when :name

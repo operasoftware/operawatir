@@ -13,18 +13,18 @@ module OperaWatir
     #
     # @param [String] win_name name of the window that will be opened (Pass a blank string for any window)
     #
-    # @return [int] Window ID of the window shown or 0 if no window is shown 
+    # @return [int] Window ID of the window activated, 
+    #               0 if the window is already the active one,
+    #               or if no window is active 
     #
     # @raise [DesktopExceptions::WidgetNotVisibleException] if the tab button
     #            is not visible
     #
-    def open_tab_with_click
+    def activate_tab_with_click
       wait_start
       click 
       wait_for_window_activated("Document Window")
     end
-    
-    alias_method :open_page_with_click, :open_tab_with_click    
     
   end
 end

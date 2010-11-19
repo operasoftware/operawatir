@@ -3,12 +3,13 @@ module OperaWatir
     include DesktopContainer
     include DesktopCommon
     
-    ExcludedActions = ["Open url in new page", "Open url in current page", "Open url in background page",
+    #@private
+    LoadActions = ["Open url in new page", "Open url in current page", "Open url in background page",
       "Open url in new window"]
     
     # @private
     def initialize (executable_location = nil, *arguments)
-      if executable_location.nil?
+      if executable_location.nil? or executable_location.length == 0
         @driver = OperaDesktopDriver.new
       else
         @driver = OperaDesktopDriver.new(executable_location, arguments.to_java(:String))
@@ -23,6 +24,13 @@ module OperaWatir
       super
       sleep(1)
     end
+
+    ######################################################################
+    # Quits the driver without exiting Opera
+    #
+    def quit_driver()
+      @driver.shutdown
+    end
       
     ######################################################################
     # Executes the action given by action_name, and waits for
@@ -34,11 +42,12 @@ module OperaWatir
     #
     # @param [String] win_name    name of the window that will be opened (Pass a blank string for any window)
     # @param [String] action_name name of the action to execute to open the window
+    #                             the action cannot be a load action, see LoadActions
     # @param [String] param       optional parameter(s) to be supplied with the Opera action.
     #
     # @return [int] Window ID of the window shown or 0 if no window is shown
     def open_window_with_action(win_name, action_name, *params)
-      if ExcludedActions.include?(action_name) then
+      if LoadActions.include?(action_name) then
         raise(DesktopExceptions::UnsupportedActionException, "Action #{action_name} not supported")
       end
       
@@ -58,11 +67,12 @@ module OperaWatir
     #
     # @param [String] win_name    name of the window that will be opened (Pass a blank string for any window)
     # @param [String] action_name name of the action to execute to open the window
+    #                             the action has to be one of those in LoadActions
     # @param [String] param       optional parameter(s) to be supplied with the Opera action.
     #
     # @return [int] Window ID of the window shown or 0 if no window is shown
     def load_window_with_action(win_name, action_name, *params)
-      if ExcludedActions.include?(action_name) 
+      if LoadActions.include?(action_name) 
         wait_start
         @driver.operaDesktopAction(action_name, params.to_java(:String))
         wait_for_window_loaded(win_name)
@@ -94,14 +104,28 @@ module OperaWatir
     alias_method :open_dialog_with_key_press, :open_window_with_key_press
     
     ######################################################################
+    # Clicks the key and modifiers and waits for a new tab to be activated
+    #
+    # @param [String]  key         key to press (e.g. "a" or "backspace")
+    # @param [Symbol]  modifiers   optional modifier(s) to hold down while pressing 
+    #                                the key (e.g. :shift, :ctrl, :alt, :meta)
+    #
+    # @return [int] Window ID of the document window (tab) that is activated, or 0 if no tab
+    #   is being activated
+    #
+    def activate_tab_with_key_press(key, *modifiers)
+      wait_start
+      key_press_direct(key, *modifiers)
+      wait_for_window_activated("Document Window")
+    end
+    
+    ######################################################################
     # Opens a new tab and loads the url entered, then waits for
     # a dialog to be shown based on the url entered
     #
     # @param [String] dialog_name name of the dialog that will be closed 
     #                       (Pass a blank string for any window)
     # @param [String] url to load 
-    #
-    # @return [int] Window ID of the dialog closed or 0 if no window is closed
     #
     # @return [int] Window ID of the dialog closed or 0 if no window is closed
     #
@@ -224,23 +248,14 @@ module OperaWatir
     #@private
     # Retrieve all tabs
     def open_pages
-      @driver.getWindowList.map do |java_window|
-        if java_window.getName() == "Document Window"
-          QuickWindow.new(self,java_window)
-        end
-      end 
+      windows.select { |win| win.name == "Document Window" }
     end
     
     #@private
-    def tab_buttons
-      tab_buttons = []
-      widgets("Browser Window").each do |widget|
-        if widget.type == :tabbutton
-          tab_buttons << widget
-        end
-      end
-      tab_buttons
-    end
+    # Not needed as quick_tabs is def. below
+    #def tab_buttons
+    #  widgets("Browser Window").select { | w | w.type == :tabbutton }
+    #end
     
 #=begin
     # Return collection for each widget type
@@ -250,6 +265,7 @@ module OperaWatir
     #    
     WIDGET_ENUM_MAP.keys.each do |widget_type|
       my_type = "quick_" << widget_type.to_s
+      type = my_type
       if my_type == "quick_search" || my_type == "quick_checkbox"
         my_type << "es"
       else
@@ -321,7 +337,42 @@ module OperaWatir
          wait_for_window_loaded("")
     end
 
-    
+    ######################################################################
+    # Returns the full path to the Opera executable 
+    #
+    # @return [String] Full path to the opera executable 
+    #
+    def get_opera_path
+      @driver.getOperaPath()
+    end
+
+    ######################################################################
+    # Returns the full path to the Opera large preferences folder 
+    #
+    # @return [String] Full path to the large preferences folder
+    #
+    def get_large_preferences_path
+      @driver.getLargePreferencesPath()
+    end
+  
+    ######################################################################
+    # Returns the full path to the Opera small preferences folder 
+    #
+    # @return [String] Full path to the small preferences folder
+    #
+    def get_small_preferences_path
+      @driver.getSmallPreferencesPath()
+    end
+  
+    ######################################################################
+    # Returns the full path to the Opera cache preferences folder 
+    #
+    # @return [String] Full path to the cache preferences folder
+    #
+    def get_cache_preferences_path
+      @driver.getCachePreferencesPath()
+    end
+
     ######################################################################
     # Returns true if the test is running on Mac 
     #
@@ -334,7 +385,89 @@ module OperaWatir
     # @private
     # Special method to access the driver
     attr_reader :driver
-
+    
+    ######################################################################
+    # Clear all private data (as in Delete Private Data Dialog) 
+    #
+    # @return [int] 0 if operation failed, else > 0 
+    #
+    def clear_all_private_data
+      win_id = open_dialog_with_action("Clear Private Data Dialog", "Delete private data")
+      return 0 if win_id == 0
+      
+      #Ensure is Expanded
+      if quick_button(:name, "Destails_expand").value == 0
+        quick_button(:name, "Destails_expand").toggle_with_click
+      end
+           
+      quick_checkboxes("Clear Private Data Dialog").each do |box|
+        box.toggle_with_click unless box.checked?
+      end
+      
+      #Delete all
+      win_id = quick_button(:name, "button_OK").close_dialog_with_click("Clear Private Data Dialog")
+    end
+    
+    ######################################################################
+    # Clear typed and visited history
+    #
+    def clear_history
+      #TODO: Use Delete Private Data Dialog?
+      opera_desktop_action("Clear visited history")
+      opera_desktop_action("Clear typed in history")
+    end
+    
+    ######################################################################
+    #  
+    #
+    #  
+    #
+    def clear_cache
+      #TODO: Use Delete Private Data Dialog?
+      opera_desktop_action("Clear disk cache")
+    end
+    
+    ######################################################################
+    # 
+    #
+    #  
+    #
+    def close_all_tabs
+      quick_tabbuttons("Browser Window").each do |btn|
+        #Tab button is in Browser window which is prob not the active window,
+        #so we cannot do this the easy way           
+        #btn.quick_button(:name, "pb_CloseButton").close_window_with_click("Document Window") unless btn.position == 0
+        quick_window(:name, "Browser Window").quick_tab(:pos, btn.position).quick_button(:name, "pb_CloseButton").close_window_with_click("Document Window") unless btn.position == 0
+      end
+    end
+    
+    #####################################################################
+    # 
+    # Close all open dialogs
+    #  
+    #
+    def close_all_dialogs
+      win_id = driver.getActiveWindowID()
+      until quick_window(:id, win_id).type != :dialog do
+        win = quick_window(:id, driver.getActiveWindowID())
+        if win.type == :dialog
+          close_dialog(win.name)
+          if (driver.getActiveWindowID() != win_id)
+            win_id = driver.getActiveWindowID()
+          else
+            break
+          end
+        end
+      end
+    end
+    
+    
+=begin  
+  TODO:  
+  def delete_cookies
+  def reset_main_window
+=end    
+  
 private
     # Gets the parent widget name of which there is none here
     def parent_widget
@@ -352,5 +485,6 @@ private
     end
 
   end
+  
 end
 

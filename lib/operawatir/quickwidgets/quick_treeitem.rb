@@ -29,6 +29,19 @@ module OperaWatir
       # For now there is no difference to focusing
       focus_with_click
     end
+    
+    ######################################################################
+    # Expands a tree item when it is double clicked
+    #
+    # @raise [DesktopExceptions::WidgetNotVisibleException] if the treeitem 
+    #            is not visible
+    #
+    def expand_with_double_click
+      scroll_item_into_view unless visible?
+      double_click
+      # No event yet so just cheat and sleep
+      sleep(0.1);
+    end
         
     ######################################################################
     # Switch to the tree view tab by clicking on it (e.g. on the 
@@ -37,7 +50,7 @@ module OperaWatir
     # @raise [DesktopExceptions::WidgetNotVisibleException] if the treeitem
     #            is not visible
     #
-    def open_tab_with_click
+    def activate_tab_with_click
       click
       
       # No event yet so just cheat and sleep
@@ -62,11 +75,13 @@ module OperaWatir
     end
     
     alias_method :open_dialog_with_double_click, :open_window_with_double_click
+    
 
 private
     # @private
     # Scrolls the item into view if required
     def scroll_item_into_view
+      
       # Make sure we have a window id
       win_id = window_id >= 0 ? window_id : driver.getActiveWindowID()
       
