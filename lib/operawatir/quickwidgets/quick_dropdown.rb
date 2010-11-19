@@ -1,5 +1,5 @@
 module OperaWatir
-  class QuickDropdown < QuickWidget
+  class QuickDropdown < QuickEditField #QuickWidget
 
     # @private
     # Checks the type of the widget is correct

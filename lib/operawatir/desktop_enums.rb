@@ -23,6 +23,7 @@ module OperaWatir
     end
     
     WINDOW_ENUM_MAP = DesktopWmProtos::DesktopWindowInfo::DesktopWindowType.constants.inject({}) do |acc, const|
+      #puts const.inspect
       acc[const.to_s.downcase.to_sym] = DesktopWmProtos::DesktopWindowInfo::DesktopWindowType.const_get(const)
       acc
     end
