@@ -17,6 +17,7 @@ Jeweler::Tasks.new do |gem|
 
   gem.rubyforge_project = gem.name
 
+  gem.platform         = 'jruby'
   gem.has_rdoc         = true
   gem.extra_rdoc_files = ['README']
 
