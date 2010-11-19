@@ -52,7 +52,7 @@ module OperaWatir::Waiter
   configure do |c|
     c.path          = nil
     c.args          = ''
-    c.files         = "file://localhost/#{File.expand_path('interactive', File.dirname(RSpec.configuration.files_to_run[0]))}"
+    c.files         = "file://localhost/#{File.expand_path('interactive', File.dirname(RSpec.configuration.files_to_run[0].to_s))}"
     c.inspectr      = false
     c.terminal_size = [80,24]
   end
