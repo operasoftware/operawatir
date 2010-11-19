@@ -1,38 +1,29 @@
 class OperaWatir::Element
   extend Forwardable
   
-  
   def initialize(node)
     self.node = node
   end
   
-  def ==(other)
-    other.respond_to?(:node) ? node == other.node : super
-  end
-  alias_method :eql?, :==
-  
   
   # Attributes
   
-  def [](attr)
-    node.getAttribute(attr.to_s) || ''
+  def attr(name)
+    node.getAttribute(name.to_s)
   end
   
-  def method_missing(attr, *args, &blk)
-    if self[attr] != nil
-      self[attr]
-    else
-      super
-    end
+  # TODO Move to Webdriver
+  # Relies on getAttribute returning nil
+  def attr?(name)
+    !attr(name).nil?
+  end
+  
+  def method_missing(name, *args, &blk)
+    attr?(name) ? attr(name) : super
   end
   
   def id
-    self[:id]
-  end
-  
-  # FIXME: HACK Should be built into OperaWebdriver
-  def has_attribute?(attr)
-    !self[attr].nil?
+    attr(:id)
   end
   
   def_delegator :node, :isEnabled, :enabled?
@@ -90,6 +81,7 @@ class OperaWatir::Element
   end
   
   
+  # Finders
   
   def find_elements_by_id(value)
     node.findElementsById(value).to_a.map do |n|
