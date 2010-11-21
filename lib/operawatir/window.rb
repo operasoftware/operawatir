@@ -41,6 +41,7 @@ class OperaWatir::Window
     driver.get(url)
   end
   alias_method :goto, :url=  # deprecate?
+  alias_method :url, :url=
 
   def text
     driver.getText
