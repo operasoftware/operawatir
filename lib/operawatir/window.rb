@@ -42,7 +42,6 @@ class OperaWatir::Window
     driver.get(url)
   end
   alias_method :goto, :url=  # deprecate?
-  alias_method :url, :url=
 
   def text
     driver.getText
@@ -61,7 +60,7 @@ class OperaWatir::Window
   end
 
   def eval_js(js)
-    driver.executeScript(js, [])
+    driver.executeScript(js.to_java(:string), [])
   end
   alias_method :execute_script, :eval_js
 
