@@ -60,9 +60,13 @@ class OperaWatir::Window
   end
 
   def eval_js(js)
-    driver.executeScript(js, [].to_java(:string))
+    object = driver.executeScript(js, [].to_java(:string))
   end
   alias_method :execute_script, :eval_js
+
+  def ruby_array_from_java_array_list(java_array_list)
+    java_array_list[1, java_array_list.length-2].split(", ")
+  end
 
 
   # Keyboard
