@@ -63,10 +63,25 @@ class OperaWatir::Browser
     driver.getPid
   end
 
+  # Get the target device's platform.  This is not equivalent of the
+  # platform the OperaWatir server might be running on.
+  #
+  # @return [String] operating system flavour.
   def platform; end
 
+  # Will fetch the build number for the attached browser instance.
+  #
+  # @return [Integer] build number of attached browser instance.
   def build; end
 
+  # Get the full path to the attached browser binary.
+  #
+  # @return [String] path to the attached browser's binary.
   def path; end
+
+  # Fetches the user agent (UA) string the browser currently uses.
+  #
+  # @return [String] user agent string.
+  def ua_string end
 
 end
