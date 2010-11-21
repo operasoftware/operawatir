@@ -21,6 +21,7 @@ class OperaWatir::Window
     driver.stop
   end
 
+  # FIXME No window management support
   def close
     driver.close
   end
