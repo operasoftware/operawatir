@@ -60,7 +60,7 @@ class OperaWatir::Window
   end
 
   def eval_js(js)
-    driver.executeScript(js.to_java(:string), [])
+    driver.executeScript(js, [].to_java(:string))
   end
   alias_method :execute_script, :eval_js
 
