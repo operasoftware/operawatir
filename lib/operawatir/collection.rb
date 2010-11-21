@@ -6,58 +6,37 @@ class OperaWatir::Collection
   
   attr_accessor :selectors, :parent
 
-  attr_writer :elements
-
   def initialize(parent)
     self.parent, self.selectors = parent, []
-  end
-  
-  # This is the meat and bones of Watir2
-  def elements
-    @elements ||= selectors.inject(nil) do |elms, selector|
-      selector.apply_to(elms)
-    end
   end
   
   def add_selector(type, value)
     self.selectors << OperaWatir::Selector.new(self, type, value)
   end
   
+  def parse_and_build_selector_from_attributes(*attributes)
+    add_selector :attribute, attributes.first
+  end
+  
+  
   def exist?
-    !elements.empty?
+    !_elms.empty?
   rescue OperaWatir::Exceptions::UnknownObjectException
     false
   end
   alias_method :exists?, :exist?
 
   def single?
-    elements.length == 1
+    _elms.length == 1
   end
   
-  def_delegators :elements, :each, :length, :[], :empty?
+  def_delegators :elms, :each, :length, :size, :[], :first, :last, :empty?
   
-  def [](index)
-    OperaWatir::Collection.new(self).tap do |c|
-      c.add_selector :index, index
-    end
-  end
-  
-  def first
-    OperaWatir::Collection.new(self).tap do |c|
-      c.add_selector :index, 0
-    end
-  end
-  
-  def last
-    OperaWatir::Collection.new(self).tap do |c|
-      c.add_selector :index, elements.length - 1
-    end
-  end
-  
+  # Proxy for find_elements_by_id, find_elements_by_tag etc.
   OperaWatir::Selector::BASIC_TYPES.each do |type|
     define_method("find_elements_by_#{type}") do |value|
-      elements.inject([]) do |elms, element|
-        elms | element.send("find_elements_by_#{type}", value)
+      _elms.inject([]) do |col, element|
+        col | element.send("find_elements_by_#{type}", value)
       end
     end
   end
@@ -72,10 +51,22 @@ class OperaWatir::Collection
     map_or_return {|elm| elm.id}
   end
   
-# private
+  # Public interface to elms, used in Selector
+  def raw_elements
+    _elms
+  end
+  
+private
+  
+  # This is the meat and bones of Watir2
+  def _elms
+    @_elms ||= selectors.inject(nil) do |elms, selector|
+      selector.apply_to(elms)
+    end
+  end
   
   def map_or_return(&blk)
-    single? ? blk.call(elements.first) : map(&blk)
+    single? ? blk.call(elms.first) : map(&blk)
   end
   
 end

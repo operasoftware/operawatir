@@ -27,16 +27,6 @@ module OperaWatir::Waiter
     attr_writer attr.to_sym
   end
 
-  def defaults
-    configure do |c|
-      c.path          = nil
-      c.args          = ''
-      c.files         = "file://localhost/#{File.expand_path('interactive', File.dirname(RSpec.configuration.files_to_run[0]))}"
-      c.inspectr      = false
-      c.terminal_size = [80,24]
-    end
-  end
-
   def configure(*args, &block)
     HelperConfig.block_to_hash(block).each do |setting, value|
       default_attr_accessor setting, value
@@ -53,26 +43,32 @@ module OperaWatir::Waiter
         {}
       end
     end
-    
+
     def to_hash
       @table
     end
   end
 
-  defaults
+  configure do |c|
+    c.path          = nil
+    c.args          = ''
+    c.files         = "file://localhost/#{File.expand_path('interactive', File.dirname(RSpec.configuration.files_to_run[0].to_s))}"
+    c.inspectr      = false
+    c.terminal_size = [80,24]
+  end
 
   def browser
     @browser ||= OperaWatir::Browser.new(path, *args.split(' ').to_java(:string))
   end
-  
+
   def helper_file
     File.expand_path(File.join(Dir.pwd, 'helper.rb'))
   end
-  
+
   def preferences_path
      @preferences ||= broweser.getPreferencesPath
   end
-  
+
   def configure_rspec
     RSpec.configure do |config|
       config.include SpecHelpers
@@ -82,22 +78,22 @@ module OperaWatir::Waiter
       end
     end
   end
-  
+
   def inspectr_path
     File.join File.expand_path('../../../utils', __FILE__),
               (Config::CONFIG['host_os'] =~ /mswin|msys|mingw32/ ? 'inspectr.exe' : 'inspectr')
   end
-  
+
   def spawn_inspectr
     abort 'operawatir: inspectr is not supported on your operating system' unless Config::CONFIG['host_os'] =~ /linux/
     abort 'operawatir: Unable to locate inspectr executable' unless File.exist?(inspectr_path)
-    
+
     Thread.new do
       puts "Attaching inspectr to PID ##{browser.pid}"
       exec inspectr_path, browser.pid.to_s
     end
   end
-  
+
   def run!
     require helper_file if File.exist?(helper_file)
     spawn_inspectr if inspectr.truthy?
@@ -105,12 +101,16 @@ module OperaWatir::Waiter
     RSpec::Core::Runner.autorun
   end
 
-  
+
   # Helpers included for each Spec
-  
+
   module SpecHelpers
     def browser
       OperaWatir::Waiter.browser
+    end
+
+    def window
+      browser.active_window
     end
 
     # TODO Not sure of this

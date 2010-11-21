@@ -97,20 +97,24 @@ class OperaWatir::Window
 
   # Finders
 
-  def area(attributes={})
+  def area(*attributes)
     OperaWatir::Collection.new(self).tap do |c|
       c.add_selector :tag, :area
-      c.add_selector :attributes, attributes
+      c.parse_and_build_selector_from_attributes *attributes
     end
   end
-
-  def areas(attributes={})
+  
+  def tag(name)
     OperaWatir::Collection.new(self).tap do |c|
-      c.add_selector :tag, :area
-      c.add_selector :attributes, attributes
+      c.add_selector :tag, name
     end
   end
-
+  
+  def elements
+    tag('*')
+  end
+  
+  
   def find_elements_by_id(value)
     driver.findElementsById(value).to_a.map do |node|
       OperaWatir::Element.new(node)
