@@ -40,7 +40,7 @@ class OperaWatir::Browser
     driver.quit
   end
 
-  # FIXME: Obsolete?
+  # TODO: This should be on Windows
   def close_all
     driver.closeAll
   end
@@ -82,6 +82,6 @@ class OperaWatir::Browser
   # Fetches the user agent (UA) string the browser currently uses.
   #
   # @return [String] user agent string.
-  def ua_string end
+  def ua_string; end
 
 end
