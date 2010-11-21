@@ -5,7 +5,7 @@ class OperaWatir::Window
   def initialize(browser)
     self.browser = browser
   end
-  
+
 
   # Navigation
 
@@ -103,44 +103,44 @@ class OperaWatir::Window
       c.parse_and_build_selector_from_attributes *attributes
     end
   end
-  
+
   def tag(name)
     OperaWatir::Collection.new(self).tap do |c|
       c.add_selector :tag, name
     end
   end
-  
+
   def elements
     tag('*')
   end
-  
-  
+
+
   def find_elements_by_id(value)
     driver.findElementsById(value).to_a.map do |node|
       OperaWatir::Element.new(node)
     end
   end
-  
+
   def find_elements_by_class(value)
     driver.findElementsByClassName(value).to_a.map do |node|
       OperaWatir::Element.new(node)
     end
   end
-  
+
   def find_elements_by_tag(value)
     driver.findElementsByTagName(value).to_a.map do |node|
       OperaWatir::Element.new(node)
     end
   end
-  
+
   def find_elements_by_css(value)
     driver.findElementsByCssSelector(value).to_a.map do |node|
       OperaWatir::Element.new(node)
     end
   end
-  
+
   def find_elements_by_xpath(value)
-    driver.findElementsByXpath(value).to_a.map do |node|
+    driver.findElementsByXPath(value).to_a.map do |node|
       OperaWatir::Element.new(node)
     end
   end
