@@ -12,7 +12,7 @@ class OperaWatir::Browser
 
     self.active_window = OperaWatir::Window.new(self)
   end
-  
+
   # Get the name of the browser currently being run.
   #
   # @return [String] name of browser currently used.
@@ -25,7 +25,8 @@ class OperaWatir::Browser
     active_window
   end
   alias_method :goto, :url=  # deprecate?
-  
+  alias_method :url, :url=
+
   # Query to see if the browser instance is still connected.
   #
   # @return [Boolean] whether driver is still connected to browser
@@ -33,12 +34,12 @@ class OperaWatir::Browser
   def connected?
     driver.isConnected
   end
-  
-  # Tell the browser instance to quit and shut down. 
+
+  # Tell the browser instance to quit and shut down.
   def quit
     driver.quit
   end
-  
+
   # FIXME: Obsolete?
   def close_all
     driver.closeAll
@@ -63,7 +64,7 @@ class OperaWatir::Browser
   end
 
   def platform; end
- 
+
   def build; end
 
   def path; end
