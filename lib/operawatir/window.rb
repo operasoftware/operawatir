@@ -51,7 +51,7 @@ class OperaWatir::Window
   end
 
   # TODO HACK
-  def exist?
+  def exists?
     url != ''
   end
 
