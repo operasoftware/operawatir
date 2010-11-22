@@ -28,17 +28,6 @@ module OperaWatir
     alias_method :exists?, :exist?
     
     ######################################################################
-    # Checks if a widget is visible or not
-    #
-    # @return [Boolean] true if visible otherwise false
-    #
-    # @raise [Exceptions::UnknownObjectException] if the window could not be found
-    #           using the specified method
-    def visible?
-      element.isVisible
-    end
-
-    ######################################################################
     # Gets the type of a widget
     #
     # @return [Symbol] type of the window (e.g. :dropdown, :button)
@@ -91,6 +80,8 @@ module OperaWatir
     def on_screen?
       element.isOnScreen
     end
+    
+    alias_method :visible?, :on_screen?
 
     ######################################################################
     # Get the window id
