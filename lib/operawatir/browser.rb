@@ -27,6 +27,10 @@ class OperaWatir::Browser
   alias_method :goto, :url=  # deprecate?
   alias_method :url, :url=
 
+  def exists?
+    true
+  end
+
   # Query to see if the browser instance is still connected.
   #
   # @return [Boolean] whether driver is still connected to browser
@@ -34,10 +38,9 @@ class OperaWatir::Browser
   def connected?
     driver.isConnected
   end
-  alias_method :is_connected?, :connected?
 
   # Instruct the browser instance to quit and shut down.
-  def quit
+  def quit!
     driver.quit
   end
 
@@ -53,7 +56,11 @@ class OperaWatir::Browser
   # @seealso OperaWatir.version
   # @return [String] driver version.
   def version
-    driver.getOperaDriverVersion
+    version = driver.getOperaDriverVersion
+
+    puts version.inspect
+
+    version
   end
 
   # Get process identifier for spawned Opera browser instance.  This
@@ -68,22 +75,30 @@ class OperaWatir::Browser
   # platform the OperaWatir server might be running on.
   #
   # @return [String] operating system flavour.
-  def platform; end
+  def platform
+    driver.getPlatform
+  end
 
   # Will fetch the build number for the attached browser instance.
   #
   # @return [Integer] build number of attached browser instance.
-  def build; end
+  def build
+    driver.getBuild
+  end
 
   # Get the full path to the attached browser binary.
   #
   # @return [String] path to the attached browser's binary.
-  def path; end
+  def path
+    driver.getPath
+  end
 
   # Fetches the user agent (UA) string the browser currently uses.
   #
   # @return [String] user agent string.
-  def ua_string; end
+  def ua_string
+    driver.getUaString
+  end
 
   # Is attached browser instance of type internal build or public
   # desktop?
