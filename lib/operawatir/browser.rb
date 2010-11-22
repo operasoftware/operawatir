@@ -89,7 +89,7 @@ class OperaWatir::Browser
   #
   # @return [Boolean] true if browser attached is of type desktop,
   #                   false otherwise.
-  def is_desktop?
+  def desktop?
     false
   end
 
