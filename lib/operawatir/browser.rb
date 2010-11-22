@@ -34,6 +34,7 @@ class OperaWatir::Browser
   def connected?
     driver.isConnected
   end
+  alias_method :is_connected?, :connected?
 
   # Instruct the browser instance to quit and shut down.
   def quit
