@@ -12,7 +12,7 @@ class OperaWatir::Browser
 
     self.active_window = OperaWatir::Window.new(self)
   end
-  
+
   # Get the name of the browser currently being run.
   #
   # @return [String] name of browser currently used.
@@ -25,7 +25,8 @@ class OperaWatir::Browser
     active_window
   end
   alias_method :goto, :url=  # deprecate?
-  
+  alias_method :url, :url=
+
   # Query to see if the browser instance is still connected.
   #
   # @return [Boolean] whether driver is still connected to browser
@@ -33,13 +34,13 @@ class OperaWatir::Browser
   def connected?
     driver.isConnected
   end
-  
-  # Tell the browser instance to quit and shut down. 
+
+  # Tell the browser instance to quit and shut down.
   def quit
     driver.quit
   end
-  
-  # FIXME: Obsolete?
+
+  # TODO: This should be on Windows
   def close_all
     driver.closeAll
   end
@@ -62,10 +63,25 @@ class OperaWatir::Browser
     driver.getPid
   end
 
+  # Get the target device's platform.  This is not equivalent of the
+  # platform the OperaWatir server might be running on.
+  #
+  # @return [String] operating system flavour.
   def platform; end
- 
+
+  # Will fetch the build number for the attached browser instance.
+  #
+  # @return [Integer] build number of attached browser instance.
   def build; end
 
+  # Get the full path to the attached browser binary.
+  #
+  # @return [String] path to the attached browser's binary.
   def path; end
+
+  # Fetches the user agent (UA) string the browser currently uses.
+  #
+  # @return [String] user agent string.
+  def ua_string; end
 
 end
