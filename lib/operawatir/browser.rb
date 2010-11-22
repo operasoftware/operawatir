@@ -84,4 +84,13 @@ class OperaWatir::Browser
   # @return [String] user agent string.
   def ua_string; end
 
+  # Is attached browser instance of type internal build or public
+  # desktop?
+  #
+  # @return [Boolean] true if browser attached is of type desktop,
+  #                   false otherwise.
+  def is_desktop?
+    false
+  end
+
 end
