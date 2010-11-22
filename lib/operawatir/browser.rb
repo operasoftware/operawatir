@@ -35,7 +35,7 @@ class OperaWatir::Browser
     driver.isConnected
   end
 
-  # Tell the browser instance to quit and shut down.
+  # Instruct the browser instance to quit and shut down.
   def quit
     driver.quit
   end
