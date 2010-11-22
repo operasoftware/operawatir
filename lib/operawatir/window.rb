@@ -51,7 +51,7 @@ class OperaWatir::Window
     driver.getPageSource
   end
 
-  # TODO HACK
+  # TODO: Expose window querying from driver
   def exists?
     url != ''
   end
