@@ -163,6 +163,11 @@ module OperaWatir
       return col if type == :tabbutton
       false
     end
+    
+    def drag_and_drop_on(other)
+      element.dragAndDropOn other
+    end
+
    
     ######################################################################
     # Prints out all of the internal information about the widget. Used
