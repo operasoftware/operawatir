@@ -14,23 +14,22 @@ class OperaWatir::Collection
     self.selectors << OperaWatir::Selector.new(self, type, value)
   end
   
-  def parse_and_build_selector_from_attributes(*attributes)
-    add_selector :attribute, attributes.first
+  def add_selector_from_arguments(args)
+    add_selector :attribute, args.first
   end
-  
   
   def exist?
     !_elms.empty?
   rescue OperaWatir::Exceptions::UnknownObjectException
     false
   end
-  alias_method :exists?, :exist?
+  alias_method :exists?, :exist? # LOL Ruby
 
   def single?
     _elms.length == 1
   end
   
-  def_delegators :elms, :each, :length, :size, :[], :first, :last, :empty?
+  def_delegators :_elms, :each, :length, :size, :[], :first, :last, :empty?
   
   # Proxy for find_elements_by_id, find_elements_by_tag etc.
   OperaWatir::Selector::BASIC_TYPES.each do |type|
@@ -66,7 +65,7 @@ private
   end
   
   def map_or_return(&blk)
-    single? ? blk.call(elms.first) : map(&blk)
+    single? ? blk.call(_elms.first) : map(&blk)
   end
   
 end
