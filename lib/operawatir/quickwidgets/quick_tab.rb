@@ -7,10 +7,19 @@ module OperaWatir
       @element.getType == WIDGET_ENUM_MAP[:tabbutton]
     end
     
+    ######################################################################
+    # Drag and drop this tab on tab tab_target
+    #
+    # @param [QuickTab] tab button to drop this tab on
+    #
+    #
+    # @raise [DesktopExceptions::UnknownObjectException] if the target is not a tab
+    #
     def move_with_drag(tab_target)
       raise(Exceptions::UnknownObjectException) unless tab_target.type == :tabbutton
       drag_and_drop_on(tab_target)
       
+      sleep(0.1)
     end
 
     
