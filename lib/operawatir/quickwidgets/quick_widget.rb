@@ -20,6 +20,12 @@ module OperaWatir
       end
     end
     
+    def open_window_with_hover(win_name = "")
+      wait_start
+      element.hover
+      wait_for_window_shown(win_name)
+    end
+    
     ######################################################################
     # Checks whether a widget exists or not
     #
@@ -164,11 +170,6 @@ module OperaWatir
       false
     end
     
-    def drag_and_drop_on(other)
-      element.dragAndDropOn other.element
-    end
-
-   
     ######################################################################
     # Prints out all of the internal information about the widget. Used
     # to discover the names of widgets and windows to use in the tests
@@ -223,6 +224,10 @@ protected
     
 private
     
+   def drag_and_drop_on(other)
+     element.dragAndDropOn other.element
+   end
+
     # Gets the widget name (used as parent name when creating child widget)
     def parent_widget
       if @selector == nil && @elm != nil
