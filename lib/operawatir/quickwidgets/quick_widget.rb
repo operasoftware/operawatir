@@ -165,7 +165,7 @@ module OperaWatir
     end
     
     def drag_and_drop_on(other)
-      element.dragAndDropOn other
+      element.dragAndDropOn other.element
     end
 
    
@@ -208,6 +208,19 @@ module OperaWatir
       sleep(0.1);
     end
 
+protected
+    #@private
+    # Return the element
+    def element(refresh = false)
+      if (@elm == nil || refresh == true)
+        @elm = find
+      end
+      
+      raise(Exceptions::UnknownObjectException, "Element #{@selector} not found using #{@method}") unless @elm 
+      @elm
+    end
+    
+    
 private
     
     # Gets the widget name (used as parent name when creating child widget)
@@ -269,15 +282,6 @@ private
       click(:left, 2) 
     end
 
-    # Return the element
-    def element(refresh = false)
-      if (@elm == nil || refresh == true)
-        @elm = find
-      end
-      
-      raise(Exceptions::UnknownObjectException, "Element #{@selector} not found using #{@method}") unless @elm 
-      @elm
-    end
     
     def set_selector
       if @elm.name.length > 0
