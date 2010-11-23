@@ -102,10 +102,10 @@ class OperaWatir::Window
 
   # Finders
 
-  def area(*attributes)
+  def area(*arguments)
     OperaWatir::Collection.new(self).tap do |c|
       c.add_selector :tag, :area
-      c.parse_and_build_selector_from_attributes *attributes
+      c.add_selector_from_arguments arguments
     end
   end
 
