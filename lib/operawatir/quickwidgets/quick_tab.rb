@@ -6,6 +6,12 @@ module OperaWatir
     def correct_type?
       @element.getType == WIDGET_ENUM_MAP[:tabbutton]
     end
+    
+    def move_with_drag(tab_target)
+      raise(Exceptions::UnknownObjectException) unless tab_target.type == :tabbutton
+      drag_and_drop_on(tab_target)
+      
+    end
 
     
     ######################################################################
