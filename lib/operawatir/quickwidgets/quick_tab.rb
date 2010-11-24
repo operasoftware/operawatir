@@ -17,7 +17,7 @@ module OperaWatir
     #
     def move_with_drag(tab_target)
       raise(Exceptions::UnknownObjectException) unless tab_target.type == :tabbutton
-      drag_and_drop_on(tab_target, :middle)
+      drag_and_drop_on(tab_target, :center)
       
       sleep(0.1)
     end
@@ -32,8 +32,8 @@ module OperaWatir
     def group_with_drag(tab_target)
       raise(Exceptions::UnknownObjectException) unless tab_target.type == :tabbutton
       
-      #Figure out whether to drop left or right
-      left_of?(tab_target) ? drag_and_drop_on(tab_target, :left) : drag_and_drop_on(tab_target, :right)
+      # Drop on the edge of a tab to make the grouping work
+      drag_and_drop_on(tab_target, :edge)
       
       sleep(0.1)
     end
@@ -57,12 +57,5 @@ module OperaWatir
       wait_for_window_activated("Document Window")
     end
 
- private
-  
-    #FIXME: ?? In the Java ??       
-    def left_of?(other)
-      element.getRect().x <= other.element.getRect().x
-    end
-    
   end
 end

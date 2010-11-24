@@ -224,8 +224,8 @@ protected
     
 private
     
-   def drag_and_drop_on(other, pos)
-     element.dragAndDropOn(other.element, MOUSEPOSITION_ENUM_MAP[pos])
+   def drag_and_drop_on(other, drop_pos)
+     element.dragAndDropOn(other.element, DROPPOSITION_ENUM_MAP[drop_pos])
    end
 
     # Gets the widget name (used as parent name when creating child widget)
