@@ -33,5 +33,10 @@ module OperaWatir
       acc
     end
 
+    MOUSEPOSITION_ENUM_MAP = QuickWidget::MousePosition.constants.inject({}) do |acc, const|
+      puts const.inspect
+      acc[const.to_s.downcase.to_sym] = QuickWidget::MousePosition.const_get(const)
+      acc
+    end 
   end
 end
