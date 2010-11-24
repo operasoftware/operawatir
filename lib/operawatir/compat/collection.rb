@@ -53,7 +53,7 @@ class OperaWatir::Collection
   end
 
   # Define methods to satisfy #respond_to? which is used in the tests.
-  [:accesskey, :contenteditable, :contextmenu, :dir, :draggable, :itemid, :itemprop, :itemref, :itemscope, :itemtype, :hidden, :lang, :role, :style, :spellcheck, :tabindex, :title].each do |name|
+  [:name, :title].each do |name|
     define_method(name) {method_missing(name)}
   end
 
