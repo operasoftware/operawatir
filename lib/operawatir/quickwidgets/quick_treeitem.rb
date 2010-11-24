@@ -70,7 +70,7 @@ module OperaWatir
     ######################################################################
     # Checks if the checkbox is checked
     #
-    # @return [Boolean] true if the checkbox is checked otherwise false
+    # @return [Boolean] true if the item is selected
     #
     # @raise [Exceptions::UnknownObjectException] if the widget could not be found
     #           using the specified method
