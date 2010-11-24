@@ -108,6 +108,13 @@ class OperaWatir::Window
       c.add_selector_from_arguments arguments
     end
   end
+  
+  def areas
+    OperaWatir::Collection.new(self).tap do |c|
+      c.add_selector :tag, :area
+    end
+  end
+  
 
   def tag(name)
     OperaWatir::Collection.new(self).tap do |c|
