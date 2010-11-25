@@ -5,7 +5,7 @@ class OperaWatir::Window
   def initialize(browser)
     self.browser = browser
   end
-  
+
 
   # Navigation
 
@@ -21,6 +21,7 @@ class OperaWatir::Window
     driver.stop
   end
 
+  # FIXME No window management support
   def close
     driver.close
   end
@@ -50,8 +51,8 @@ class OperaWatir::Window
     driver.getPageSource
   end
 
-  # TODO HACK
-  def exist?
+  # TODO: Expose window querying from driver
+  def exists?
     url != ''
   end
 
@@ -59,9 +60,13 @@ class OperaWatir::Window
   end
 
   def eval_js(js)
-    driver.executeScript(js, [])
+    object = driver.executeScript(js, [].to_java(:string))
   end
   alias_method :execute_script, :eval_js
+
+  def ruby_array_from_java_array_list(java_array_list)
+    java_array_list[1, java_array_list.length-2].split(", ")
+  end
 
 
   # Keyboard
@@ -97,50 +102,57 @@ class OperaWatir::Window
 
   # Finders
 
-  def area(*attributes)
+  def area(*arguments)
     OperaWatir::Collection.new(self).tap do |c|
       c.add_selector :tag, :area
-      c.parse_and_build_selector_from_attributes *attributes
+      c.add_selector_from_arguments arguments
     end
   end
   
+  def areas
+    OperaWatir::Collection.new(self).tap do |c|
+      c.add_selector :tag, :area
+    end
+  end
+  
+
   def tag(name)
     OperaWatir::Collection.new(self).tap do |c|
       c.add_selector :tag, name
     end
   end
-  
+
   def elements
     tag('*')
   end
-  
-  
+
+
   def find_elements_by_id(value)
     driver.findElementsById(value).to_a.map do |node|
       OperaWatir::Element.new(node)
     end
   end
-  
+
   def find_elements_by_class(value)
     driver.findElementsByClassName(value).to_a.map do |node|
       OperaWatir::Element.new(node)
     end
   end
-  
+
   def find_elements_by_tag(value)
     driver.findElementsByTagName(value).to_a.map do |node|
       OperaWatir::Element.new(node)
     end
   end
-  
+
   def find_elements_by_css(value)
     driver.findElementsByCssSelector(value).to_a.map do |node|
       OperaWatir::Element.new(node)
     end
   end
-  
+
   def find_elements_by_xpath(value)
-    driver.findElementsByXpath(value).to_a.map do |node|
+    driver.findElementsByXPath(value).to_a.map do |node|
       OperaWatir::Element.new(node)
     end
   end

@@ -58,7 +58,15 @@ module OperaWatir::Waiter
   end
 
   def browser
-    @browser ||= OperaWatir::Browser.new(path, *args.split(' ').to_java(:string))
+    @browser ||= new_browser_instance
+  end
+
+  def new_browser_instance
+    OperaWatir::Browser.new(path, *args.split(' ').to_java(:string))
+  end
+
+  def reconnect
+    @browser = new_browser_instance
   end
 
   def helper_file
@@ -74,7 +82,7 @@ module OperaWatir::Waiter
       config.include SpecHelpers
 
       config.after(:suite) do
-        OperaWatir::Waiter.browser.quit
+        OperaWatir::Waiter.browser.quit!
       end
     end
   end
