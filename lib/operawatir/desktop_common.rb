@@ -52,7 +52,9 @@ private
     def wait_for_window_loaded(win_name = "")
       win_id = driver.waitForWindowLoaded(win_name)
       # Hack to allow for Javascript focus events and the like
-      sleep(0.1)
+      # We need to increase this until we have fixed the bug with the 
+      # tab title taking extra time to change
+      sleep(0.5)
       win_id
     end
     
