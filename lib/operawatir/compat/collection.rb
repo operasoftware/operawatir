@@ -49,11 +49,11 @@ class OperaWatir::Collection
   
   # Watir1 Collections are 1 indexed *headslap*
   def [](index)
-    super(index -1)
+    _elms[index - 1]
   end
 
   # Define methods to satisfy #respond_to? which is used in the tests.
-  [:name].each do |name|
+  [:accesskey, :contenteditable, :contextmenu, :dir, :draggable, :itemid, :itemprop, :itemref, :itemscope, :itemtype, :hidden, :lang, :role, :style, :spellcheck, :tabindex, :title].each do |name|
     define_method(name) {method_missing(name)}
   end
 
