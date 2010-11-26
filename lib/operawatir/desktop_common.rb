@@ -6,6 +6,33 @@ module OperaWatir
     include DesktopEnums
 
 private
+    def opera_desktop_action(action_name, *params)
+      data = 0
+      data_string = ""
+      data_string_param = ""
+      
+      # Sort the parameters into the variables based
+      # on type and order
+      params.each { |param| 
+        if param.is_a? Integer
+          data = param
+        end
+
+        if param.is_a? String
+          if data_string.empty?
+            data_string = param
+          elsif 
+            data_string_param = param
+          end
+        end
+      }
+      
+      #puts "data: " + data.to_s
+      #puts "data_string: " + data_string
+      #puts "data_string_param: " + data_string_param
+      
+      @driver.operaDesktopAction(action_name, data, data_string, data_string_param)
+    end
 
     def key_press_direct(key, *opts)
       list = Java::JavaUtil::ArrayList.new

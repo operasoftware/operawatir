@@ -52,7 +52,7 @@ module OperaWatir
       end
       
       wait_start
-      @driver.operaDesktopAction(action_name, params.to_java(:String))
+      opera_desktop_action(action_name, *params)
       wait_for_window_shown(win_name)
     end
     
@@ -74,7 +74,7 @@ module OperaWatir
     def load_window_with_action(win_name, action_name, *params)
       if LoadActions.include?(action_name) 
         wait_start
-        @driver.operaDesktopAction(action_name, params.to_java(:String))
+        opera_desktop_action(action_name, *params)
         wait_for_window_loaded(win_name)
       else
         raise(DesktopExceptions::UnsupportedActionException, "Action #{action_name} not supported")
@@ -137,7 +137,7 @@ module OperaWatir
     #
     def open_dialog_with_url(dialog_name, url)
       wait_start
-      @driver.operaDesktopAction("Open url in new page", [url].to_java(:String))
+      opera_desktop_action("Open url in new page", url)
       # The loading of the page will happen first then the dialog will be shown
       wait_for_window_shown(dialog_name)
     end
@@ -158,7 +158,7 @@ module OperaWatir
     #
     def close_window_with_action(win_name, action_name, *params)
       wait_start
-      @driver.operaDesktopAction(action_name, params.to_java(:String)) 
+      opera_desktop_action(action_name, *params) 
       wait_for_window_close(win_name)
     end
     
@@ -512,12 +512,6 @@ private
     def window_id
       -1
     end
-    
-    # Launchs an opera action in the correct context
-    def opera_desktop_action(name, *param)
-      driver.operaDesktopAction(name, param.to_java(:String))
-    end
-
   end
   
 end
