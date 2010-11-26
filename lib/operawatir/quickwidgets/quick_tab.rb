@@ -36,6 +36,9 @@ module OperaWatir
       drag_and_drop_on(tab_target, :edge)
       
       sleep(0.1)
+      
+      #Get the  number of tabs in the group
+      element(true).value
     end
     
         
