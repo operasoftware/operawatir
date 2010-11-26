@@ -207,8 +207,8 @@ module OperaWatir
     #                 the alignment of
     # @param [int] alignment of the toolbar to set
     #
-    def set_alignment_with_action(toobar_name, alignment)
-      opera_desktop_action("Set alignment", toobar_name, alignment)
+    def set_alignment_with_action(toolbar_name, alignment)
+      opera_desktop_action("Set alignment", toolbar_name, alignment)
       sleep(0.1) 
     end
 
