@@ -201,6 +201,18 @@ module OperaWatir
     end
       
     ######################################################################
+    # Sets the alignment of a toolbar or panel
+    #
+    # @param [String] toobar_name name of the panel or toolbar to change
+    #                 the alignment of
+    # @param [int] alignment of the toolbar to set
+    #
+    def set_alignment_with_action(toobar_name, alignment)
+      opera_desktop_action("Set alignment", toobar_name, alignment)
+      sleep(0.1) 
+    end
+
+    ######################################################################
     # Retrieves an array of all widgets in the window with window 
     # name win_name
     #
