@@ -118,6 +118,14 @@ module OperaWatir
           
     alias_method :close_panel_with_click, :close_toolbar_with_click
     
+    def expand_with_click
+      click
+      sleep(0.1)
+      #No refresh element because it might not be there still (after click):)
+    end
+    
+    alias_method :collapse_with_click, :expand_with_click
+    
     ######################################################################
     # Gets the value of the button or expand control.
     #
