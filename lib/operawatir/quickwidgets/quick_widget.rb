@@ -265,8 +265,15 @@ private
     # Click widget
     def click(button = :left, times = 1, *opts)
       raise Exceptions::WidgetDisabledException, "Element #{@selector} is disabled" unless enabled?
+      
+      #Some buttons etc. aren't visible until hovering them
+      if (visible? == false and type != :dialogtab)
+        element.hover()
+        element(true)
+      end
+      
       # Dialog tabs are always visible even if the page they are connected to isn't
-      if visible? == true or type == :dialogtab
+      if visible? == true or type == :dialogtab 
         #DesktopEnums::KEYMODIFIER_ENUM_MAP.each { |k, v| puts "#{k},#{v}"}
         button = DesktopEnums::MOUSEBUTTON_ENUM_MAP[button]
         list = Java::JavaUtil::ArrayList.new
