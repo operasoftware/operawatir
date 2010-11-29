@@ -455,8 +455,10 @@ module OperaWatir
         #Tab button is in Browser window which is prob not the active window,
         #so we cannot do this the easy way           
         #btn.quick_button(:name, "pb_CloseButton").close_window_with_click("Document Window") unless btn.position == 0
-        puts "Current tab = #{btn}"
-        #quick_window(:name, "Browser Window").quick_tab(:pos, btn.position).quick_button(:name, "pb_CloseButton").close_window_with_click("Document Window") unless btn.position == 0
+        #puts "Current tab = #{btn}"
+        if btn.position != 0 or btn.value > 1 then
+          quick_window(:name, "Browser Window").quick_tab(:pos, btn.position).quick_button(:name, "pb_CloseButton").close_window_with_click("Document Window")
+        end  
       end
     end
     
