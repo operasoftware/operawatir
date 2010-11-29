@@ -208,6 +208,11 @@ module OperaWatir
       # No event yet so just cheat and sleep
       sleep(0.1);
     end
+    
+    #@private
+    def value
+      return element.getValue
+    end
 
 protected
     #@private
@@ -233,11 +238,14 @@ private
       if @selector == nil && @elm != nil
          set_selector
       end
+      
+      #FIXME: Shouldn't this always be name if present, then text if present, else pos?
       case @method
       when :name
         name
       when :text
-        text
+        #text
+        name.length > 0 ? name : text
       when :pos
         # Pos items will have the name as the parent or
         # the text if there is no name
@@ -305,9 +313,12 @@ private
       elsif @elm.type == :treeitem
         @method = :pos
         @selector = [@elm.row, @elm.col]
+=begin          
+      # tabbuttons now specified by generated name
       elsif @elm.type == :tabbutton
         @method = :pos
         @selector = @elm.col
+=end        
       end
       @location = element.getParentName()
       @window_id = -1
