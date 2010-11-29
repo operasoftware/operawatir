@@ -480,7 +480,7 @@ module OperaWatir
     # Close all open tabs (except last one)
     #
     def close_all_tabs
-      quick_tabbuttons("Browser Window").each do |btn|
+      quick_tabbuttons("Browser Window").reverse_each do |btn|
         #Tab button is in Browser window which is prob not the active window,
         #so we cannot do this the easy way           
         #btn.quick_button(:name, "pb_CloseButton").close_window_with_click("Document Window") unless btn.position == 0
