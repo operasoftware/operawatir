@@ -4,7 +4,7 @@ class OperaWatir::Selector
   attr_accessor :type, :attribute, :value
 
   def initialize(collection, type, value)
-    self.collection, self.type, self.value = collection, type, value
+    self.collection, self.type, self.value = collection, type, value || ''
   end
 
   def apply_to(elements)
@@ -26,13 +26,14 @@ private
   end
 
   def self.operator(obj)
-    obj.respond_to?(:match) ? :match : :==
+    #obj.respond_to?(:match) ? :match : :==
+    :==  # FIXME
   end
 
   def finder_method
     "find_elements_by_#{type}".to_sym
   end
-  
+
   def find_elements_by_attribute(elements)
     elements.select do |element|
       value.all? do |key, val|
@@ -40,5 +41,5 @@ private
       end
     end
   end
-  
+
 end
