@@ -29,6 +29,8 @@ module OperaWatir
     #
     # @raise [DesktopExceptions::UnknownObjectException] if the target is not a tab
     #
+    # @return [int] the number of tabs in this tab group, or 1 if this is not a tab group button,
+    #               in which case it represents only 1 tab, itself
     def group_with_drag(tab_target)
       raise(Exceptions::UnknownObjectException) unless tab_target.type == :tabbutton
       
@@ -36,6 +38,9 @@ module OperaWatir
       drag_and_drop_on(tab_target, :edge)
       
       sleep(0.1)
+      
+      #Get the  number of tabs in the group
+      element(true).value
     end
     
         
