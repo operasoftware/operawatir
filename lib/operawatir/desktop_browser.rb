@@ -450,11 +450,13 @@ module OperaWatir
     # Close all open tabs (except last one)
     #
     def close_all_tabs
-      quick_tabbuttons("Browser Window").reverse_each do |btn|
+      #The collection has the activate tab first and then the rest sorted on number, so resort to get on descending position
+      quick_tabbuttons("Browser Window").sort {|t1, t2| (t2.position <=> t1.position) }.each do |btn|
         #Tab button is in Browser window which is prob not the active window,
         #so we cannot do this the easy way           
         #btn.quick_button(:name, "pb_CloseButton").close_window_with_click("Document Window") unless btn.position == 0
-        quick_window(:name, "Browser Window").quick_tab(:pos, btn.position).quick_button(:name, "pb_CloseButton").close_window_with_click("Document Window") unless btn.position == 0
+        puts "Current tab = #{btn}"
+        #quick_window(:name, "Browser Window").quick_tab(:pos, btn.position).quick_button(:name, "pb_CloseButton").close_window_with_click("Document Window") unless btn.position == 0
       end
     end
     
