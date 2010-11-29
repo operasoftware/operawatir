@@ -205,6 +205,23 @@ module OperaWatir
     def quick_treeitem(how, what)
       QuickTreeItem.new(self, how, what, parent_widget, window_id)
     end
+ 
+   ######################################################################
+   # Method for accessing a thumbnail (speeddial, thumbnail when  hovering tab groups)
+   #
+   # @example
+   #   browser.quick_thumbnail(:name, "Thumbnail 1")
+   #   browser.quick_thumbnail(:name, "Speed Dial 2")
+   #
+   # @param [String] how   Method to find the element. :name, :string_id or :text
+   # @param [String] what  Search text to find the element with. Text or position 
+   #                        of treeitem. Position is specified as [row, column]
+   #
+   # @return [Object] thumbnail object if found, otherwise nil
+   #
+    def quick_thumbnail(how, what)
+      QuickThumbnail.new(self, how, what, parent_widget, window_id)
+    end
 
     ######################################################################
     # Method for accessing a window
