@@ -220,6 +220,41 @@ module OperaWatir
       @driver.isConnected
     end
 
+    ######################################################################
+    # Set preference pref in prefs section prefs_section to value specified
+    #
+    # @param [String] prefs_section The prefs section the pref belongs to
+    # @param [String] pref          The preference to set
+    # @param [String] value         The value to set the preference to
+    #
+    def set_preference(prefs_section, pref, value)
+      @driver.setPref(prefs_section, pref, value.to_s)
+    end
+      
+    ######################################################################
+    # Get value of preference pref in prefs section prefs_section 
+    #
+    # @param [String] prefs_section The prefs section the pref belongs to
+    # @param [String] pref          The preference to get
+    #
+    # @return [String] The value of the preference
+    #
+    def get_preference(prefs_section, pref)
+      @driver.getPref(prefs_section, pref)
+    end
+    
+    ######################################################################
+    # Get default value of preference pref in prefs section prefs_section 
+    #
+    # @param [String] prefs_section The prefs section the pref belongs to
+    # @param [String] pref          The preference to get
+    #
+    # @return [String] The value of the preference
+    #
+    def get_default_preference(prefs_section, pref)
+      @driver.getDefaultPref(prefs_section, pref)
+    end
+    
     # Returns the process identifier (pid), a number used by Unix
     # kernels and Windows operating systems to identify a process.
     #

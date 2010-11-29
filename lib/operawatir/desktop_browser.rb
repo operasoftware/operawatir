@@ -307,36 +307,6 @@ module OperaWatir
     end
      
     ######################################################################
-    # Set preference pref in prefs section prefs_section to value specified
-    #
-    # @param [String] prefs_section The prefs section the pref belongs to
-    # @param [String] pref          The preference to set
-    # @param [String] value         The value to set the preference to
-    #
-    def set_preference(prefs_section, pref, value)
-      load_window_with_action("Document Window", "Open url in new page", "opera:config")
-      @driver.get("opera:config")
-      execute_script("opera.setPreference(\'#{prefs_section}\', \'#{pref}\', \'#{value}\');")
-      close_window_with_action("Document Window", "Close page", "1")
-    end
-      
-    ######################################################################
-    # Get value of preference pref in prefs section prefs_section 
-    #
-    # @param [String] prefs_section The prefs section the pref belongs to
-    # @param [String] pref          The preference to get
-    #
-    # @return [String] The value of the preference
-    #
-    def get_preference(prefs_section, pref)
-      load_window_with_action("Document Window", "Open url in new page", "opera:config")
-      @driver.get("opera:config")
-      value = execute_script("opera.getPreference('#{prefs_section}','#{pref}');")
-      close_window_with_action("Document Window", "Close page", "1")
-      value
-    end
-    
-    ######################################################################
     # Presses the key, with optional modifiers, and waits for loaded event
     #
     # @example
