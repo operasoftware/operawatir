@@ -97,8 +97,8 @@ end
 require 'operawatir/waiter'
 
 OperaWatir::Waiter.configure do |c|
-  c.path = options.executable
-  c.args = options.options
+  c.path     = options.executable
+  c.args     = options.options
   c.inspectr = options.inspectr
 end
 
