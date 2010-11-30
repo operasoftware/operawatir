@@ -11,32 +11,32 @@ describe "CheckBox" do
 
   describe "#exists?" do
     it "returns true if the checkbox button exists" do
-      browser.checkbox(:id, "new_user_interests_books").should exist
-      browser.checkbox(:id, /new_user_interests_books/).should exist
-      browser.checkbox(:name, "new_user_interests").should exist
-      browser.checkbox(:name, /new_user_interests/).should exist
-      browser.checkbox(:value, "books").should exist
-      browser.checkbox(:value, /books/).should exist
+      browser.checkbox(:id, "new_user_interests_books").exists?.should be_true
+      browser.checkbox(:id, /new_user_interests_books/).exists?.should be_true
+      browser.checkbox(:name, "new_user_interests").exists?.should be_true
+      browser.checkbox(:name, /new_user_interests/).exists?.should be_true
+      browser.checkbox(:value, "books").exists?.should be_true
+      browser.checkbox(:value, /books/).exists?.should be_true
       # not sure what :text is supposed to represent here
-      # browser.checkbox(:text, "books").should exist
-      # browser.checkbox(:text, /books/).should exist
-      browser.checkbox(:class, "fun").should exist
-      browser.checkbox(:class, /fun/).should exist
-      browser.checkbox(:index, 1).should exist
-      browser.checkbox(:xpath, "//input[@id='new_user_interests_books']").should exist
+      # browser.checkbox(:text, "books").exists?.should be_true
+      # browser.checkbox(:text, /books/).exists?.should be_true
+      browser.checkbox(:class, "fun").exists?.should be_true
+      browser.checkbox(:class, /fun/).exists?.should be_true
+      browser.checkbox(:index, 1).exists?.should be_true
+      browser.checkbox(:xpath, "//input[@id='new_user_interests_books']").exists?.should be_true
     end
 
     it "returns true if the element exists (default how = :name)" do
-      browser.checkbox("new_user_interests").should exist
+      browser.checkbox("new_user_interests").exists?.should be_true
     end
 
     it "returns true if the checkbox button exists (search by name and value)" do
-      browser.checkbox(:name, "new_user_interests", 'cars').should exist
+      browser.checkbox(:name, "new_user_interests", 'cars').exists?.should be_true
       browser.checkbox(:xpath, "//input[@name='new_user_interests' and @value='cars']").set
     end
 
     it "returns the first checkbox if given no args" do
-      browser.checkbox.should exist
+      browser.checkbox.exists?.should be_true
     end
 
     it "returns false if the checkbox button does not exist" do
@@ -62,8 +62,8 @@ describe "CheckBox" do
     end
 
     it "returns true for checkboxs with a string value" do
-      browser.checkbox(:name, 'new_user_interests', 'books').should exist
-      browser.checkbox(:name, 'new_user_interests', 'cars').should exist
+      browser.checkbox(:name, 'new_user_interests', 'books').exists?.should be_true
+      browser.checkbox(:name, 'new_user_interests', 'cars').exists?.should be_true
     end
 
     it "raises TypeError when 'what' argument is invalid" do
