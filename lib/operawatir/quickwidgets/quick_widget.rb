@@ -276,7 +276,7 @@ private
       
       #Some buttons etc. aren't visible until hovering them
       if (visible? == false and type != :dialogtab)
-        element.hover()
+        element.hover
         element(true)
       end
       

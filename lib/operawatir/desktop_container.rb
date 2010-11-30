@@ -220,6 +220,11 @@ module OperaWatir
    # @return [Object] thumbnail object if found, otherwise nil
    #
     def quick_thumbnail(how, what)
+      if how == :pos
+         if what.is_a? Fixnum
+           what = [0, what]
+         end
+       end
       QuickThumbnail.new(self, how, what, parent_widget, window_id)
     end
 
