@@ -18,7 +18,7 @@ describe "Button" do
     end
   end
 
-  describe "what" do
+  describe "how" do
     it "can be :id" do
       browser.button(:id, "new_user_submit").should exist
     end
