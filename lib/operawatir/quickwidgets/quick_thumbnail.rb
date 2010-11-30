@@ -1,5 +1,5 @@
 module OperaWatir
-  class QuickThumbnail < QuickWidget
+  class QuickThumbnail < QuickButton
  
     # @private
     # Checks the type of the widget is correct
