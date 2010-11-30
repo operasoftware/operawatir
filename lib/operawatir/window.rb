@@ -102,19 +102,27 @@ class OperaWatir::Window
 
   # Finders
 
+  def method_missing(tag, *args)
+    OperaWatir::Collection.new(self).tap do |c|
+      c.add_selector :tag, tag
+      c.add_selector_from_arguments args
+    end
+  end
+
+=begin
   def area(*arguments)
     OperaWatir::Collection.new(self).tap do |c|
       c.add_selector :tag, :area
       c.add_selector_from_arguments arguments
     end
   end
-  
+
   def areas
     OperaWatir::Collection.new(self).tap do |c|
       c.add_selector :tag, :area
     end
   end
-  
+=end
 
   def tag(name)
     OperaWatir::Collection.new(self).tap do |c|

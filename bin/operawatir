@@ -7,6 +7,7 @@ require 'ostruct'
 require 'rbconfig'
 require 'rspec'
 require 'operawatir'
+require 'operawatir/settings'
 
 class Options
 
@@ -86,7 +87,7 @@ end
 options = Options.parse(ARGV)
 
 abort 'operawatir: You need to specify at least one test file to run' if ARGV.empty?
-abort 'operawatir: --ng and --check-syntax is disabled for now' if options.ng or options.check_syntax
+abort 'operawatir: --ng and --check-syntax are disabled for now' if options.ng or options.check_syntax
 
 RSpec.configure do |c|
   c.color_enabled = options.color
@@ -94,12 +95,11 @@ RSpec.configure do |c|
   c.files_to_run  = ARGV
 end
 
-require 'operawatir/waiter'
-
-OperaWatir::Waiter.configure do |c|
-  c.path = options.executable
-  c.args = options.options
-  c.inspectr = options.inspectr
+# TODO: How to pass this to helper?
+$settings = OperaWatir::Settings.new do |s|
+  s.path     = options.executable
+  s.args     = options.options
+  s.inspectr = options.inspectr
 end
 
-OperaWatir::Waiter.run!
+OperaWatir::Helper.run!
