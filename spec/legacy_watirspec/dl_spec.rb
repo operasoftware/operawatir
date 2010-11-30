@@ -10,18 +10,33 @@ describe "Dl" do
   # Exists method
   describe "#exists?" do
     it "returns true if the element exists" do
-      browser.dl(:id, "experience-list").should exist
-      browser.dl(:class, "list").should exist
-      browser.dl(:xpath, "//dl[@id='experience-list']").should exist
-      browser.dl(:index, 1).should exist
-    end
-
-    it "returns the first dl if given no args" do
-      browser.dl.should exist
+      browser.dl(:id, "experience-list").exists?.should be_true
     end
 
     it "returns false if the element does not exist" do
       browser.dl(:id, "no_such_id").should_not exist
+    end
+  end
+
+  describe "how" do
+    it "can be :id" do
+      browser.dl(:id, "experience-list").exists?.should be_true
+    end
+
+    it "can be :class" do
+      browser.dl(:class, "list").exists?.should be_true
+    end
+
+    it "can be :xpath" do
+      browser.dl(:xpath, "//dl[@id='experience-list']").exists?.should be_true
+    end
+
+    it "can be :index" do
+      browser.dl(:index, 1).exists?.should be_true
+    end
+
+    it "returns the first dl if not given" do
+      browser.dl.exists?.should be_true
     end
 
     it "raises TypeError when 'what' argument is invalid" do
@@ -45,9 +60,6 @@ describe "Dl" do
 
     it "raises UnknownObjectException if the element does not exist" do
       lambda { browser.dl(:id, "no_such_id").class_name }.should raise_error(UnknownObjectException)
-      lambda { browser.dl(:title, "no_such_title").class_name }.should raise_error(UnknownObjectException)
-      lambda { browser.dl(:index, 1337).class_name }.should raise_error(UnknownObjectException)
-      lambda { browser.dl(:xpath, "//dl[@id='no_such_id']").class_name }.should raise_error(UnknownObjectException)
     end
   end
 
@@ -62,8 +74,6 @@ describe "Dl" do
 
     it "raises UnknownObjectException if the element does not exist" do
       lambda {browser.dl(:id, "no_such_id").id }.should raise_error(UnknownObjectException)
-      lambda {browser.dl(:title, "no_such_id").id }.should raise_error(UnknownObjectException)
-      lambda {browser.dl(:index, 1337).id }.should raise_error(UnknownObjectException)
     end
   end
 
@@ -84,19 +94,6 @@ describe "Dl" do
 
     it "raises UnknownObjectException if the element does not exist" do
       lambda { browser.dl(:id, "no_such_id").text }.should raise_error(UnknownObjectException)
-      lambda { browser.dl(:title, "no_such_title").text }.should raise_error(UnknownObjectException)
-      lambda { browser.dl(:index, 1337).text }.should raise_error(UnknownObjectException)
-      lambda { browser.dl(:xpath, "//dl[@id='no_such_id']").text }.should raise_error(UnknownObjectException)
-    end
-  end
-
-  describe "#respond_to?" do
-    it "returns true for all attribute methods" do
-      browser.dl(:index, 1).should respond_to(:id)
-      browser.dl(:index, 1).should respond_to(:class_name)
-      browser.dl(:index, 1).should respond_to(:style)
-      browser.dl(:index, 1).should respond_to(:text)
-      browser.dl(:index, 1).should respond_to(:title)
     end
   end
 
@@ -110,9 +107,6 @@ describe "Dl" do
 
     it "raises UnknownObjectException if the element does not exist" do
       lambda { browser.dl(:id, "no_such_id").click }.should raise_error(UnknownObjectException)
-      lambda { browser.dl(:title, "no_such_title").click }.should raise_error(UnknownObjectException)
-      lambda { browser.dl(:index, 1337).click }.should raise_error(UnknownObjectException)
-      lambda { browser.dl(:xpath, "//dl[@id='no_such_id']").click }.should raise_error(UnknownObjectException)
     end
   end
 
