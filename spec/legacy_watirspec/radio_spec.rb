@@ -10,47 +10,50 @@ describe "Radio" do
   # Exists method
   describe "#exists?" do
     it "returns true if the radio button exists" do
-      browser.radio(:id, "new_user_newsletter_yes").should exist
-      browser.radio(:id, /new_user_newsletter_yes/).should exist
-      browser.radio(:name, "new_user_newsletter").should exist
-      browser.radio(:name, /new_user_newsletter/).should exist
-      browser.radio(:value, "yes").should exist
-      browser.radio(:value, /yes/).should exist
-      # TODO: figure out what :text means for a radio button
-      # browser.radio(:text, "yes").should exist
-      # browser.radio(:text, /yes/).should exist
-      browser.radio(:class, "huge").should exist
-      browser.radio(:class, /huge/).should exist
-      browser.radio(:index, 1).should exist
-      browser.radio(:xpath, "//input[@id='new_user_newsletter_yes']").should exist
-    end
-
-    it "returns the first radio if given no args" do
-      browser.radio.should exist
-    end
-
-    it "returns true if the element exists (default how = :name)" do
-      browser.radio("new_user_newsletter").should exist
-    end
-
-    it "returns true if the radio button exists (search by name and value)" do
-      browser.radio(:name, "new_user_newsletter", 'yes').should exist
-      browser.radio(:xpath, "//input[@name='new_user_newsletter' and @value='yes']").set
+      browser.radio(:id, "new_user_newsletter_yes").exists?.should be_true
     end
 
     it "returns false if the radio button does not exist" do
       browser.radio(:id, "no_such_id").should_not exist
-      browser.radio(:id, /no_such_id/).should_not exist
-      browser.radio(:name, "no_such_name").should_not exist
-      browser.radio(:name, /no_such_name/).should_not exist
-      browser.radio(:value, "no_such_value").should_not exist
-      browser.radio(:value, /no_such_value/).should_not exist
-      browser.radio(:text, "no_such_text").should_not exist
-      browser.radio(:text, /no_such_text/).should_not exist
-      browser.radio(:class, "no_such_class").should_not exist
-      browser.radio(:class, /no_such_class/).should_not exist
-      browser.radio(:index, 1337).should_not exist
-      browser.radio(:xpath, "input[@id='no_such_id']").should_not exist
+    end
+  end
+
+  describe "how" do
+    it "can be :id" do
+      browser.radio(:id, "new_user_newsletter_yes").exists?.should be_true
+    end
+
+    it "can be :name" do
+      browser.radio(:name, "new_user_newsletter").exists?.should be_true
+    end
+
+    it "can be :value" do
+      browser.radio(:value, "yes").exists?.should be_true
+    end
+
+    it "can be :class" do
+      browser.radio(:class, "huge").exists?.should be_true
+    end
+
+    it "can be :index" do
+      browser.radio(:index, 1).exists?.should be_true
+    end
+
+    it "can be :xpath" do
+      browser.radio(:xpath, "//input[@id='new_user_newsletter_yes']").exists?.should be_true
+    end
+
+    it "returns the first radio if given no args" do
+      browser.radio.exists?.should be_true
+    end
+
+    it "defaults to :name" do
+      browser.radio("new_user_newsletter").exists?.should be_true
+    end
+
+    it "returns true if the radio button exists (search by name and value)" do
+      browser.radio(:name, "new_user_newsletter", 'yes').exists?.should be_true
+      browser.radio(:xpath, "//input[@name='new_user_newsletter' and @value='yes']").set
     end
 
     it "returns false if the radio button does not exist (search by name and value)" do
@@ -61,8 +64,8 @@ describe "Radio" do
     end
 
     it "returns true for radios with a string value" do
-      browser.radio(:name, 'new_user_newsletter', 'yes').should exist
-      browser.radio(:name, 'new_user_newsletter', 'no').should exist
+      browser.radio(:name, 'new_user_newsletter', 'yes').exists?.should be_true
+      browser.radio(:name, 'new_user_newsletter', 'no').exists?.should be_true
     end
 
     it "raises TypeError when 'what' argument is invalid" do
@@ -151,32 +154,18 @@ describe "Radio" do
     end
   end
 
-  describe "#respond_to?" do
-    it "returns true for all attribute methods" do
-      browser.radio(:index, 1).should respond_to(:class_name)
-      browser.radio(:index, 1).should respond_to(:id)
-      browser.radio(:index, 1).should respond_to(:name)
-      browser.radio(:index, 1).should respond_to(:title)
-      browser.radio(:index, 1).should respond_to(:type)
-      browser.radio(:index, 1).should respond_to(:value)
-    end
-  end
-
   # Access methods
   describe "#enabled?" do
     it "returns true if the radio button is enabled" do
       browser.radio(:id, "new_user_newsletter_yes").should be_enabled
-      browser.radio(:xpath, "//input[@id='new_user_newsletter_yes']").should be_enabled
     end
 
     it "returns false if the radio button is disabled" do
       browser.radio(:id, "new_user_newsletter_nah").should_not be_enabled
-      browser.radio(:xpath,"//input[@id='new_user_newsletter_nah']").should_not be_enabled
     end
 
     it "raises UnknownObjectException if the radio button doesn't exist" do
       lambda { browser.radio(:id, "no_such_id").enabled?  }.should raise_error(UnknownObjectException)
-      lambda { browser.radio(:xpath, "//input[@id='no_such_id']").enabled?  }.should raise_error(UnknownObjectException)
     end
   end
 
@@ -208,13 +197,11 @@ describe "Radio" do
 
     it "raises UnknownObjectException if the radio button doesn't exist" do
       lambda { browser.radio(:name, "no_such_id").clear }.should raise_error(UnknownObjectException)
-      lambda { browser.radio(:xpath, "//input[@id='no_such_id']").clear  }.should raise_error(UnknownObjectException)
     end
 
     it "raises ObjectDisabledException if the radio is disabled" do
       browser.radio(:id, "new_user_newsletter_nah").should_not be_set
       lambda { browser.radio(:id, "new_user_newsletter_nah").clear }.should raise_error(ObjectDisabledException)
-      lambda { browser.radio(:xpath, "//input[@id='new_user_newsletter_nah']").clear }.should raise_error(ObjectDisabledException)
     end
   end
 
