@@ -10,34 +10,43 @@ describe "Li" do
   # Exists method
   describe "#exist?" do
     it "returns true if the 'li' exists" do
-      browser.li(:id, "non_link_1").should exist
-      browser.li(:id, /non_link_1/).should exist
-      browser.li(:text, "Non-link 3").should exist
-      browser.li(:text, /Non-link 3/).should exist
-      browser.li(:class, "nonlink").should exist
-      browser.li(:class, /nonlink/).should exist
-      browser.li(:index, 1).should exist
-      browser.li(:xpath, "//li[@id='non_link_1']").should exist
-    end
-
-    it "returns true if the element exists (default how = :id)" do
-      browser.li("non_link_1").should exist
-    end
-
-    it "returns the first element if given no args" do
-      browser.li.should exist
+      browser.li(:id, "non_link_1").exists?.should be_true
     end
 
     it "returns false if the 'li' doesn't exist" do
       browser.li(:id, "no_such_id").should_not exist
-      browser.li(:id, /no_such_id/).should_not exist
-      browser.li(:text, "no_such_text").should_not exist
-      browser.li(:text, /no_such_text/).should_not exist
-      browser.li(:class, "no_such_class").should_not exist
-      browser.li(:class, /no_such_class/).should_not exist
-      browser.li(:index, 1337).should_not exist
-      browser.li(:xpath, "//li[@id='no_such_id']").should_not exist
     end
+  end
+
+  describe "how" do
+    it "can be :id" do
+      browser.li(:id, "non_link_1").exists?.should be_true
+    end
+
+    it "can be :text" do
+      browser.li(:text, "Non-link 3").exists?.should be_true
+    end
+
+    it "can be :class" do
+      browser.li(:class, "nonlink").exists?.should be_true
+    end
+
+    it "can be :index" do
+      browser.li(:index, 1).exists?.should be_true
+    end
+
+    it "can be :xpath" do
+      browser.li(:xpath, "//li[@id='non_link_1']").exists?.should be_true
+    end
+
+    it "defaults to :id" do
+      browser.li("non_link_1").exists?.should be_true
+    end
+
+    it "returns the first element if given no args" do
+      browser.li.exists?.should be_true
+    end
+
 
     it "raises TypeError when 'what' argument is invalid" do
       lambda { browser.li(:id, 3.14).exists? }.should raise_error(TypeError)
@@ -74,7 +83,6 @@ describe "Li" do
 
     it "raises UnknownObjectException if the li doesn't exist" do
       lambda { browser.li(:id, "no_such_id").id }.should raise_error(UnknownObjectException)
-      lambda { browser.li(:index, 1337).id }.should raise_error(UnknownObjectException)
     end
   end
 
@@ -89,7 +97,6 @@ describe "Li" do
 
     it "raises UnknownObjectException if the li doesn't exist" do
       lambda { browser.li(:id, 'no_such_id').title }.should raise_error( UnknownObjectException)
-      lambda { browser.li(:xpath, "//li[@id='no_such_id']").title }.should raise_error( UnknownObjectException)
     end
   end
 
@@ -104,16 +111,6 @@ describe "Li" do
 
     it "raises UnknownObjectException if the li doesn't exist" do
       lambda { browser.li(:id, 'no_such_id').text }.should raise_error( UnknownObjectException)
-      lambda { browser.li(:xpath , "//li[@id='no_such_id']").text }.should raise_error( UnknownObjectException)
-    end
-  end
-
-  describe "#respond_to?" do
-    it "returns true for all attribute methods" do
-      browser.li(:index, 1).should respond_to(:class_name)
-      browser.li(:index, 1).should respond_to(:id)
-      browser.li(:index, 1).should respond_to(:text)
-      browser.li(:index, 1).should respond_to(:title)
     end
   end
 
