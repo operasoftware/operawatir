@@ -246,6 +246,8 @@ module OperaWatir
             QuickTreeView.new(self,java_widget)
           when QuickWidget::WIDGET_ENUM_MAP[:treeitem]
             QuickTreeItem.new(self,java_widget)
+          when QuickWidget::WIDGET_ENUM_MAP[:thumbnail]
+            QuickTreeItem.new(self,java_widget)
         else
           QuickWidget.new(self,java_widget)
         end
