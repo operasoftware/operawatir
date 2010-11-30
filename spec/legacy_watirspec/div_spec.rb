@@ -9,38 +9,46 @@ describe "Div" do
 
   # Exists method
   describe "#exists?" do
-    it "returns true if the element exists" do
-      browser.div(:id, "header").should exist
-      browser.div(:id, /header/).should exist
-      browser.div(:title, "Header and primary navigation").should exist
-      browser.div(:title, /Header and primary navigation/).should exist
-      browser.div(:text, "This is a footer.").should exist
-      browser.div(:text, /This is a footer\./).should exist
-      browser.div(:class, "profile").should exist
-      browser.div(:class, /profile/).should exist
-      browser.div(:index, 1).should exist
-      browser.div(:xpath, "//div[@id='header']").should exist
-    end
-
-    it "returns true if the element exists (default how = :id)" do
-      browser.div("header").should exist
-    end
-
-    it "returns the first div if given no args" do
-      browser.div.should exist
+    it "returns true if the element does not exist" do
+      browser.div(:id, "header").exists?.should be_true
     end
 
     it "returns false if the element does not exist" do
       browser.div(:id, "no_such_id").should_not exist
-      browser.div(:id, /no_such_id/).should_not exist
-      browser.div(:title, "no_such_title").should_not exist
-      browser.div(:title, /no_such_title/).should_not exist
-      browser.div(:text, "no_such_text").should_not exist
-      browser.div(:text, /no_such_text/).should_not exist
-      browser.div(:class, "no_such_class").should_not exist
-      browser.div(:class, /no_such_class/).should_not exist
-      browser.div(:index, 1337).should_not exist
-      browser.div(:xpath, "//div[@id='no_such_id']").should_not exist
+    end
+  end
+
+  describe "how" do
+    it "can be :id" do
+      browser.div(:id, "header").exists?.should be_true
+    end
+
+    it "can be :title" do
+      browser.div(:title, "Header and primary navigation").exists?.should be_true
+    end
+
+    it "can be :text" do
+      browser.div(:text, "This is a footer.").exists?.should be_true
+    end
+
+    it "can be :class" do
+      browser.div(:class, "profile").exists?.should be_true
+    end
+
+    it "can be :index" do
+      browser.div(:index, 1).exists?.should be_true
+    end
+
+    it "can be :xpath" do
+      browser.div(:xpath, "//div[@id='header']").exists?.should be_true
+    end
+
+    it "defaults to :id)" do
+      browser.div("header").exists?.should be_true
+    end
+
+    it "returns the first div if not given" do
+      browser.div.exists?.should be_true
     end
 
     it "raises TypeError when 'what' argument is invalid" do
@@ -65,9 +73,6 @@ describe "Div" do
 
     it "raises UnknownObjectException if the element does not exist" do
       lambda { browser.div(:id, "no_such_id").class_name }.should raise_error(UnknownObjectException)
-      lambda { browser.div(:title, "no_such_title").class_name }.should raise_error(UnknownObjectException)
-      lambda { browser.div(:index, 1337).class_name }.should raise_error(UnknownObjectException)
-      lambda { browser.div(:xpath, "//div[@id='no_such_id']").class_name }.should raise_error(UnknownObjectException)
     end
   end
 
@@ -82,8 +87,6 @@ describe "Div" do
 
     it "raises UnknownObjectException if the element does not exist" do
       lambda {browser.div(:id, "no_such_id").id }.should raise_error(UnknownObjectException)
-      lambda {browser.div(:title, "no_such_id").id }.should raise_error(UnknownObjectException)
-      lambda {browser.div(:index, 1337).id }.should raise_error(UnknownObjectException)
     end
 
     it "should take all conditions into account when locating by id" do
@@ -103,8 +106,6 @@ describe "Div" do
 
     it "raises UnknownObjectException if the element does not exist" do
       lambda {browser.div(:id, "no_such_id").name }.should raise_error(UnknownObjectException)
-      lambda {browser.div(:title, "no_such_title").name }.should raise_error(UnknownObjectException)
-      lambda {browser.div(:index, 1337).name }.should raise_error(UnknownObjectException)
     end
   end
 
@@ -122,8 +123,6 @@ describe "Div" do
       end
     end
 
-
-
     it "returns an empty string if the element exists but the attribute doesn't" do
       browser.div(:id, 'promo').style.should == ""
     end
@@ -137,7 +136,6 @@ describe "Div" do
     it "returns the text of the div" do
       browser.div(:id, "footer").text.strip.should == "This is a footer."
       browser.div(:title, "Closing remarks").text.strip.should == "This is a footer."
-      browser.div(:xpath, "//div[@id='footer']").text.strip.should == "This is a footer."
     end
 
     it "returns an empty string if the element exists but contains no text" do
@@ -152,9 +150,6 @@ describe "Div" do
 
     it "raises UnknownObjectException if the element does not exist" do
       lambda { browser.div(:id, "no_such_id").text }.should raise_error(UnknownObjectException)
-      lambda { browser.div(:title, "no_such_title").text }.should raise_error(UnknownObjectException)
-      lambda { browser.div(:index, 1337).text }.should raise_error(UnknownObjectException)
-      lambda { browser.div(:xpath, "//div[@id='no_such_id']").text }.should raise_error(UnknownObjectException)
     end
   end
 
@@ -169,19 +164,6 @@ describe "Div" do
 
     it "raises UnknownObjectException if the element does not exist" do
       lambda {browser.div(:id, "no_such_id").value }.should raise_error(UnknownObjectException)
-      lambda {browser.div(:title, "no_such_title").value }.should raise_error(UnknownObjectException)
-      lambda {browser.div(:index, 1337).value }.should raise_error(UnknownObjectException)
-    end
-  end
-
-  describe "#respond_to?" do
-    it "returns true for all attribute methods" do
-      browser.div(:index, 1).should respond_to(:class_name)
-      browser.div(:index, 1).should respond_to(:id)
-      browser.div(:index, 1).should respond_to(:name)
-      browser.div(:index, 1).should respond_to(:style)
-      browser.div(:index, 1).should respond_to(:text)
-      browser.div(:index, 1).should respond_to(:value)
     end
   end
 
@@ -195,9 +177,6 @@ describe "Div" do
 
     it "raises UnknownObjectException if the element does not exist" do
       lambda { browser.div(:id, "no_such_id").click }.should raise_error(UnknownObjectException)
-      lambda { browser.div(:title, "no_such_title").click }.should raise_error(UnknownObjectException)
-      lambda { browser.div(:index, 1337).click }.should raise_error(UnknownObjectException)
-      lambda { browser.div(:xpath, "//div[@id='no_such_id']").click }.should raise_error(UnknownObjectException)
     end
   end
 
