@@ -68,7 +68,7 @@ module OperaWatir
     end
         
     ######################################################################
-    # Checks if the checkbox is checked
+    # Checks if the treeitem is selected
     #
     # @return [Boolean] true if the item is selected
     #
