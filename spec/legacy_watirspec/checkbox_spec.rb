@@ -12,16 +12,11 @@ describe "CheckBox" do
   describe "#exists?" do
     it "returns true if the checkbox button exists" do
       browser.checkbox(:id, "new_user_interests_books").exists?.should be_true
-      browser.checkbox(:id, /new_user_interests_books/).exists?.should be_true
       browser.checkbox(:name, "new_user_interests").exists?.should be_true
-      browser.checkbox(:name, /new_user_interests/).exists?.should be_true
       browser.checkbox(:value, "books").exists?.should be_true
-      browser.checkbox(:value, /books/).exists?.should be_true
       # not sure what :text is supposed to represent here
       # browser.checkbox(:text, "books").exists?.should be_true
-      # browser.checkbox(:text, /books/).exists?.should be_true
       browser.checkbox(:class, "fun").exists?.should be_true
-      browser.checkbox(:class, /fun/).exists?.should be_true
       browser.checkbox(:index, 1).exists?.should be_true
       browser.checkbox(:xpath, "//input[@id='new_user_interests_books']").exists?.should be_true
     end
@@ -41,15 +36,10 @@ describe "CheckBox" do
 
     it "returns false if the checkbox button does not exist" do
       browser.checkbox(:id, "no_such_id").should_not exist
-      browser.checkbox(:id, /no_such_id/).should_not exist
       browser.checkbox(:name, "no_such_name").should_not exist
-      browser.checkbox(:name, /no_such_name/).should_not exist
       browser.checkbox(:value, "no_such_value").should_not exist
-      browser.checkbox(:value, /no_such_value/).should_not exist
       browser.checkbox(:text, "no_such_text").should_not exist
-      browser.checkbox(:text, /no_such_text/).should_not exist
       browser.checkbox(:class, "no_such_class").should_not exist
-      browser.checkbox(:class, /no_such_class/).should_not exist
       browser.checkbox(:index, 1337).should_not exist
       browser.checkbox(:xpath, "//input[@id='no_such_id']").should_not exist
     end
