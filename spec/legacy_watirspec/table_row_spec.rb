@@ -9,25 +9,33 @@ describe "TableRow" do
 
   describe "#exists?" do
     it "returns true if the table row exists" do
-      browser.row(:id, "outer_first").should exist
-      browser.row(:id, /outer_first/).should exist
-      browser.row(:index, 1).should exist
-      browser.row(:xpath, "//tr[@id='outer_first']")
-    end
-
-    it "returns the first row if given no args" do
-      browser.row.should exist
-    end
-
-    it "returns true if the element exists (default how = :id)" do
-      browser.row("outer_last").should exist
+      browser.row(:id, "outer_first").exists?.should be_true
     end
 
     it "returns false if the table row doesn't exist" do
       browser.row(:id, "no_such_id").should_not exist
-      browser.row(:id, /no_such_id/).should_not exist
-      browser.row(:index, 1337).should_not exist
-      browser.row(:xpath, "//tr[@id='no_such_id']")
+    end
+  end
+
+  describe "how" do
+    it "can be :id" do
+      browser.row(:id, "outer_first").exists?.should be_true
+    end
+
+    it "can be :index" do
+      browser.row(:index, 1).exists?.should be_true
+    end
+
+    it "can be :xpath" do
+      browser.row(:xpath, "//tr[@id='outer_first']")
+    end
+
+    it "defaults to :id" do
+      browser.row("outer_last").exists?.should be_true
+    end
+
+    it "returns the first row if given no args" do
+      browser.row.exists?.should be_true
     end
 
     it "raises TypeError when 'what' argument is invalid" do
