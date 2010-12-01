@@ -14,6 +14,7 @@ module OperaWatir
     #
     # @raise [DesktopExceptions::UnknownObjectException] if the target is not a thumbnail
     #
+    #@private
     def move_with_drag(tab_target)
       raise(Exceptions::UnknownObjectException) unless tab_target.type == :thumbnail
       drag_and_drop_on(tab_target, :center)
