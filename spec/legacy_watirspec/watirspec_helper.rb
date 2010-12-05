@@ -31,9 +31,7 @@ module WatirSpec
   end
 
   module Helpers
-    def browser
-      OperaWatir::Waiter.browser
-    end
+    include OperaWatir::Helper::BrowserHelper
 
     def fixture(*paths)
       [WatirSpec.host, *paths].join('/')

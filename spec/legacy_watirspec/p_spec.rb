@@ -10,33 +10,36 @@ describe "P" do
   # Exists method
   describe "#exist?" do
     it "returns true if the 'p' exists" do
-      browser.p(:id, "lead").should exist
-      browser.p(:id, /lead/).should exist
-      browser.p(:text, "Dubito, ergo cogito, ergo sum.").should exist
-      browser.p(:text, /Dubito, ergo cogito, ergo sum/).should exist
-      browser.p(:class, "lead").should exist
-      browser.p(:class, /lead/).should exist
-      browser.p(:index, 1).should exist
-      browser.p(:xpath, "//p[@id='lead']").should exist
+      browser.p(:id, "lead").exists?.should be_true
+    end
+    it "returns false if the 'p' doesn't exist" do
+      browser.p(:id, "no_such_id").should_not exist
+    end
+  end
+
+  describe "how" do
+    it "can be :id" do
+      browser.p(:id, "lead").exists?.should be_true
+    end
+
+    it "can be :text" do
+      browser.p(:text, "Dubito, ergo cogito, ergo sum.").exists?.should be_true
+    end
+
+    it "can be :class" do
+      browser.p(:class, "lead").exists?.should be_true
+    end
+
+    it "can be :index" do
+      browser.p(:index, 1).exists?.should be_true
     end
 
     it "returns true if the element exists (default how = :id)" do
-      browser.p("lead").should exist
+      browser.p("lead").exists?.should be_true
     end
 
     it "returns the first p if given no args" do
-      browser.p.should exist
-    end
-
-    it "returns false if the 'p' doesn't exist" do
-      browser.p(:id, "no_such_id").should_not exist
-      browser.p(:id, /no_such_id/).should_not exist
-      browser.p(:text, "no_such_text").should_not exist
-      browser.p(:text, /no_such_text/).should_not exist
-      browser.p(:class, "no_such_class").should_not exist
-      browser.p(:class, /no_such_class/).should_not exist
-      browser.p(:index, 1337).should_not exist
-      browser.p(:xpath, "//p[@id='no_such_id']").should_not exist
+      browser.p.exists?.should be_true
     end
 
     it "raises TypeError when 'what' argument is invalid" do
@@ -74,7 +77,6 @@ describe "P" do
 
     it "raises UnknownObjectException if the p doesn't exist" do
       lambda { browser.p(:id, "no_such_id").id }.should raise_error(UnknownObjectException)
-      lambda { browser.p(:index, 1337).id }.should raise_error(UnknownObjectException)
     end
   end
 
@@ -89,7 +91,6 @@ describe "P" do
 
     it "raises UnknownObjectException if the p doesn't exist" do
       lambda { browser.p(:id, "no_such_id").name }.should raise_error(UnknownObjectException)
-      lambda { browser.p(:index, 1337).name }.should raise_error(UnknownObjectException)
     end
   end
 
@@ -104,7 +105,6 @@ describe "P" do
 
     it "raises UnknownObjectException if the p doesn't exist" do
       lambda { browser.p(:id, 'no_such_id').title }.should raise_error( UnknownObjectException)
-      lambda { browser.p(:xpath, "//p[@id='no_such_id']").title }.should raise_error( UnknownObjectException)
     end
   end
 
@@ -119,7 +119,6 @@ describe "P" do
 
     it "raises UnknownObjectException if the p doesn't exist" do
       lambda { browser.p(:id, 'no_such_id').text }.should raise_error( UnknownObjectException)
-      lambda { browser.p(:xpath , "//p[@id='no_such_id']").text }.should raise_error( UnknownObjectException)
     end
   end
 
@@ -135,17 +134,6 @@ describe "P" do
     it "raises UnknownObjectException if the p doesn't exist" do
       lambda { browser.p(:id , "no_such_id").value }.should raise_error(UnknownObjectException)
       lambda { browser.p(:index , 1337).value }.should raise_error(UnknownObjectException)
-    end
-  end
-
-  describe "#respond_to?" do
-    it "returns true for all attribute methods" do
-      browser.p(:index, 1).should respond_to(:class_name)
-      browser.p(:index, 1).should respond_to(:id)
-      browser.p(:index, 1).should respond_to(:name)
-      browser.p(:index, 1).should respond_to(:title)
-      browser.p(:index, 1).should respond_to(:text)
-      browser.p(:index, 1).should respond_to(:value)
     end
   end
 

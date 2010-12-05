@@ -10,29 +10,36 @@ describe "TableCell" do
   # Exists
   describe "#exists?" do
     it "returns true when the table cell exists" do
-      browser.cell(:id, 't1_r2_c1').should exist
-      browser.cell(:id, /t1_r2_c1/).should exist
-      browser.cell(:text, 'Table 1, Row 3, Cell 1').should exist
-      browser.cell(:text, /Table 1/).should exist
-      browser.cell(:index, 1).should exist
-      browser.cell(:xpath, "//td[@id='t1_r2_c1']").should exist
+      browser.cell(:id, 't1_r2_c1').exists?.should be_true
+    end
+    it "returns false when the table cell does not exist" do
+      browser.cell(:id, 'no_such_id').should_not exist
+    end
+  end
+
+  describe "how" do
+    it "can be :id" do
+      browser.cell(:id, 't1_r2_c1').exists?.should be_true
+    end
+
+    it "can be :text" do
+      browser.cell(:text, 'Table 1, Row 3, Cell 1').exists?.should be_true
+    end
+
+    it "can be :index" do
+      browser.cell(:index, 1).exists?.should be_true
+    end
+
+    it "can be :xpath" do
+      browser.cell(:xpath, "//td[@id='t1_r2_c1']").exists?.should be_true
     end
 
     it "returns true if the element exists (default how = :id)" do
-      browser.cell("t1_r2_c1").should exist
+      browser.cell("t1_r2_c1").exists?.should be_true
     end
 
     it "returns the first cell if given no args" do
-      browser.cell.should exist
-    end
-
-    it "returns false when the table cell does not exist" do
-      browser.cell(:id, 'no_such_id').should_not exist
-      browser.cell(:id, /no_such_id/).should_not exist
-      browser.cell(:text, 'no_such_text').should_not exist
-      browser.cell(:text, /no_such_text/).should_not exist
-      browser.cell(:index, 1337).should_not exist
-      browser.cell(:xpath, "//td[@id='no_such_id']").should_not exist
+      browser.cell.exists?.should be_true
     end
 
     it "raises TypeError when 'what' argument is invalid" do
@@ -65,12 +72,4 @@ describe "TableCell" do
       browser.cell(:id, 'no_colspan').colspan.should == 1
     end
   end
-
-  describe "#respond_to?" do
-    it "returns true for all attribute methods" do
-      browser.cell(:index, 1).should respond_to(:text)
-      browser.cell(:index, 1).should respond_to(:colspan)
-    end
-  end
-
 end

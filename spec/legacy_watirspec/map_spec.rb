@@ -10,29 +10,36 @@ describe "Map" do
   # Exists method
   describe "#exist?" do
     it "returns true if the 'map' exists" do
-      browser.map(:id, "triangle_map").should exist
-      browser.map(:id, /triangle_map/).should exist
-      browser.map(:name, "triangle_map").should exist
-      browser.map(:name, /triangle_map/).should exist
-      browser.map(:index, 1).should exist
-      browser.map(:xpath, "//map[@id='triangle_map']").should exist
+      browser.map(:id, "triangle_map").exists?.should be_true
+    end
+    it "returns false if the 'map' doesn't exist" do
+      browser.map(:id, "no_such_id").should_not exist
+    end
+  end
+
+  describe "how" do
+    it "can be :id" do
+      browser.map(:id, "triangle_map").exists?.should be_true
+    end
+
+    it "can be :name" do
+      browser.map(:name, "triangle_map").exists?.should be_true
+    end
+
+    it "can be :index" do
+      browser.map(:index, 1).exists?.should be_true
+    end
+
+    it "can be :xpath" do
+      browser.map(:xpath, "//map[@id='triangle_map']").exists?.should be_true
     end
 
     it "returns true if the element exists (default how = :id)" do
-      browser.map("triangle_map").should exist
+      browser.map("triangle_map").exists?.should be_true
     end
 
     it "returns the first map if given no args" do
-      browser.map.should exist
-    end
-
-    it "returns false if the 'map' doesn't exist" do
-      browser.map(:id, "no_such_id").should_not exist
-      browser.map(:id, /no_such_id/).should_not exist
-      browser.map(:name, "no_such_id").should_not exist
-      browser.map(:name, /no_such_id/).should_not exist
-      browser.map(:index, 1337).should_not exist
-      browser.map(:xpath, "//map[@id='no_such_id']").should_not exist
+      browser.map.exists?.should be_true
     end
 
     it "raises TypeError when 'what' argument is invalid" do
@@ -56,7 +63,6 @@ describe "Map" do
 
     it "raises UnknownObjectException if the p doesn't exist" do
       lambda { browser.map(:id, "no_such_id").id }.should raise_error(UnknownObjectException)
-      lambda { browser.map(:index, 1337).id }.should raise_error(UnknownObjectException)
     end
   end
 
@@ -71,14 +77,6 @@ describe "Map" do
 
     it "raises UnknownObjectException if the p doesn't exist" do
       lambda { browser.map(:id, "no_such_id").name }.should raise_error(UnknownObjectException)
-      lambda { browser.map(:index, 1337).name }.should raise_error(UnknownObjectException)
-    end
-  end
-
-  describe "#respond_to?" do
-    it "returns true for all attribute methods" do
-      browser.map(:index, 1).should respond_to(:id)
-      browser.map(:index, 1).should respond_to(:name)
     end
   end
 
