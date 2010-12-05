@@ -10,42 +10,41 @@ describe "Image" do
   # Exists method
   describe "#exists?" do
     it "returns true when the image exists" do
-      browser.image(:id, 'square').should exist
-      browser.image(:id, /square/).should exist
-      browser.image(:name, 'circle').should exist
-      browser.image(:name, /circle/).should exist
-
-      bug "WTR-347", :watir do
-        browser.image(:src, 'images/circle.jpg').should exist
-      end
-
-      browser.image(:src, /circle/).should exist
-      browser.image(:alt, 'circle').should exist
-      browser.image(:alt, /cir/).should exist
-      browser.image(:title, 'Circle').should exist
-    end
-
-    it "returns the first image if given no args" do
-      browser.image.should exist
-    end
-
-    bug "WTR-347", :watir do
-      it "returns true if the element exists (default how = :src)" do
-        browser.image("images/circle.jpg").should exist
-      end
+      browser.image(:id, 'square').exists?.should be_true
     end
 
     it "returns false when the image doesn't exist" do
       browser.image(:id, 'no_such_id').should_not exist
-      browser.image(:id, /no_such_id/).should_not exist
-      browser.image(:name, 'no_such_name').should_not exist
-      browser.image(:name, /no_such_name/).should_not exist
-      browser.image(:src, 'no_such_src').should_not exist
-      browser.image(:src, /no_such_src/).should_not exist
-      browser.image(:alt, 'no_such_alt').should_not exist
-      browser.image(:alt, /no_such_alt/).should_not exist
-      browser.image(:title, 'no_such_title').should_not exist
-      browser.image(:title, /no_such_title/).should_not exist
+    end
+  end
+
+  describe "how" do
+    it "can be :id" do
+      browser.image(:id, 'square').exists?.should be_true
+    end
+
+    it "can be :name" do
+      browser.image(:name, 'circle').exists?.should be_true
+    end
+
+    it "can be :src" do
+      browser.image(:src, 'images/circle.jpg').exists?.should be_true
+    end
+
+    it "can be :alt" do
+      browser.image(:alt, 'circle').exists?.should be_true
+    end
+
+    it "can be :title" do
+      browser.image(:title, 'Circle').exists?.should be_true
+    end
+
+    it "returns the first image if given no args" do
+      browser.image.exists?.should be_true
+    end
+
+    it "defaults to :src" do
+      browser.image("images/circle.jpg").exists?.should be_true
     end
 
     it "raises TypeError when 'what' argument is invalid" do
@@ -129,24 +128,10 @@ describe "Image" do
     end
   end
 
-  describe "#respond_to?" do
-    it "returns true for all attribute methods" do
-      browser.image(:index, 1).should respond_to(:class_name)
-      browser.image(:index, 1).should respond_to(:id)
-      browser.image(:index, 1).should respond_to(:name)
-      browser.image(:index, 1).should respond_to(:style)
-      browser.image(:index, 1).should respond_to(:text)
-      browser.image(:index, 1).should respond_to(:value)
-    end
-  end
-
   # Manipulation methods
   describe "#click" do
     it "raises UnknownObjectException when the image doesn't exist" do
       lambda { browser.image(:id, 'missing_attribute').click }.should raise_error(UnknownObjectException)
-      lambda { browser.image(:name, 'missing_attribute').click }.should raise_error(UnknownObjectException)
-      lambda { browser.image(:src, 'missing_attribute').click }.should raise_error(UnknownObjectException)
-      lambda { browser.image(:alt, 'missing_attribute').click }.should raise_error(UnknownObjectException)
     end
   end
 
@@ -204,7 +189,6 @@ describe "Image" do
     it "returns true if the image has been loaded" do
       browser.image(:name, 'circle').should be_loaded
       browser.image(:alt, 'circle').should be_loaded
-      browser.image(:alt, /circle/).should be_loaded
     end
 
     it "returns false if the image has not been loaded" do
@@ -213,10 +197,6 @@ describe "Image" do
 
     it "raises UnknownObjectException if the image doesn't exist" do
       lambda { browser.image(:name, 'no_such_image').loaded? }.should raise_error(UnknownObjectException)
-      lambda { browser.image(:id, 'no_such_image').loaded? }.should raise_error(UnknownObjectException)
-      lambda { browser.image(:src, 'no_such_image').loaded? }.should raise_error(UnknownObjectException)
-      lambda { browser.image(:alt, 'no_such_image').loaded? }.should raise_error(UnknownObjectException)
-      lambda { browser.image(:index, 1337).loaded? }.should raise_error(UnknownObjectException)
     end
   end
 
