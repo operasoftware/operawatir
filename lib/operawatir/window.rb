@@ -118,31 +118,50 @@ class OperaWatir::Window
     tag('*')
   end
 
-
+  # Locate eleements by ID.
+  #
+  # @private
+  # @return [Array] an array of found elements.
   def find_elements_by_id(value)
     driver.findElementsById(value).to_a.map do |node|
       OperaWatir::Element.new(node)
     end
   end
 
+  # Locate elements by class.
+  #
+  # @private
+  # @return [Array] an array of found elements.
   def find_elements_by_class(value)
     driver.findElementsByClassName(value).to_a.map do |node|
       OperaWatir::Element.new(node)
     end
   end
 
+  # Locate elements by tag name.
+  #
+  # @private
+  # @return [Array] an array of found elements.
   def find_elements_by_tag(value)
     driver.findElementsByTagName(value).to_a.map do |node|
       OperaWatir::Element.new(node)
     end
   end
 
+  # Locate elements by CSS selector.
+  #
+  # @private
+  # @returns [Array] an array of found elements.
   def find_elements_by_css(value)
     driver.findElementsByCssSelector(value).to_a.map do |node|
       OperaWatir::Element.new(node)
     end
   end
 
+  # Locate elements by XPath expression.
+  #
+  # @private
+  # @returns [Array] an array of found elements.
   def find_elements_by_xpath(value)
     driver.findElementsByXPath(value).to_a.map do |node|
       OperaWatir::Element.new(node)
