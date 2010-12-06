@@ -46,3 +46,4 @@ end
 task :doc => :yard
 
 CLEAN.add 'doc'
+
