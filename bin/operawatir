@@ -15,15 +15,15 @@ class Options
     options = OpenStruct.new
 
     options.ng           = false
-    options.inspectr     = ENV['OPERA_INSPECTR'] || ''
     options.color        = Config::CONFIG['host_os'] =~ /mswin|msys|mingw32/ ? false : true
     options.check_syntax = false
     options.format       = 'progress'
-    options.executable   = ENV['OPERA_PATH'] || ''
-    options.options      = ENV['OPERA_ARGS'] || ''
+    options.launcher     = nil
+    options.executable   = nil
+    options.options      = nil
 
     opts = OptionParser.new do |opts|
-      opts.banner = "Usage: operawatir [--ng] [-i|--inspectr] [--color] [-c|--check-syntax]\n" +
+      opts.banner = "Usage: operawatir [--ng] [[-l|--launcher=BINARY] [--color] [-c|--check-syntax]\n" +
         "       [-f|--format=FORMAT[:OUT_FILE]] [-e|--executable=BINARY] [-o|--options=OPTIONS]\n" +
         "       [-h|--help] [-v|--version] FILES"
 
@@ -35,8 +35,8 @@ class Options
         options.ng = ng
       end
 
-      opts.on('-i', '--inspectr', 'Attach inspectr to browser instance') do |i|
-        options.inspectr = i
+      opts.on('-l', '--launcher=EXECUTABLE', 'Path to launcher binary') do |c|
+        options.launcher = c
       end
 
       opts.on('--color', 'Enable colorized output (default: enabled)') do |c|
@@ -89,6 +89,9 @@ options = Options.parse(ARGV)
 abort 'operawatir: You need to specify at least one test file to run' if ARGV.empty?
 abort 'operawatir: --ng and --check-syntax are disabled for now' if options.ng or options.check_syntax
 
+warn 'operawatir: Launcher binary is not specified.' unless options.launcher
+warn 'operawatir: Browser binary is not specified.' unless options.executable
+
 RSpec.configure do |c|
   c.color_enabled = options.color
   c.formatter     = options.format
@@ -99,7 +102,9 @@ end
 $settings = OperaWatir::Settings.new do |s|
   s.path     = options.executable
   s.args     = options.options
-  s.inspectr = options.inspectr
+  s.launcher = options.launcher
 end
 
+require 'operawatir/helper'
 OperaWatir::Helper.run!
+
