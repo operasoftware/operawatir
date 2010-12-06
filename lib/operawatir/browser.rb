@@ -1,14 +1,27 @@
+# -*- coding: utf-8 -*-
 class OperaWatir::Browser
 
   attr_accessor :driver
   attr_accessor :active_window
 
+=begin
   def initialize(bin_path=nil, *args)
     self.driver = if bin_path
       OperaDriver.new(bin_path, args.to_java(:string))
     else
       OperaDriver.new
     end
+
+    self.active_window = OperaWatir::Window.new(self)
+  end
+=end
+
+  def initialize(settings=nil)
+    self.driver = if settings
+                    OperaDriver.new(settings)
+                  else
+                    OperaDriver.new
+                  end
 
     self.active_window = OperaWatir::Window.new(self)
   end
@@ -24,7 +37,6 @@ class OperaWatir::Browser
     active_window.url = url
     active_window
   end
-  alias_method :goto, :url=  # deprecate?
   alias_method :url, :url=
 
   def exists?
@@ -56,11 +68,7 @@ class OperaWatir::Browser
   # @seealso OperaWatir.version
   # @return [String] driver version.
   def version
-    version = driver.getOperaDriverVersion
-
-    puts version.inspect
-
-    version
+    driver.getOperaDriverVersion
   end
 
   # Get process identifier for spawned Opera browser instance.  This
@@ -107,6 +115,48 @@ class OperaWatir::Browser
   #                   false otherwise.
   def desktop?
     false
+  end
+
+  # Send key events to the browser instance.  I.e. “Down” (arrow
+  # down), “Space” (space key), “Home”, &c.
+  #
+  # @param [String] key to be pressed once.
+  def key(key)
+    @driver.key(key)
+  end
+
+  # Enables you to hold down a key, i.e. “Ctrl”, “Alt”, “Shift”, &c.
+  # Remember to release the keys afterwards with the key_up method.
+  #
+  # @param [String] key to be pressed down.
+  def key_down(key)
+    @driver.keyDown(key)
+  end
+
+  # Releases a held down key.
+  #
+  # @param [String] key to be lifted.
+  def key_up(key)
+    @driver.keyUp(key)
+  end
+
+  # Types given text directly in to the browser.  The text will be
+  # inputted to the page depending on where the focus is.
+  #
+  # @param [String] text to be typed.
+  def type(text)
+    @driver.type(text)
+  end
+
+  # Full list of available Opera actions in the Opera build you're
+  # using.  Note that this list varies from configuration to
+  # configuration, and from build to build.  The Opera actions
+  # available to devices-type builds will vary greatly from those
+  # available to desktop-types.
+  #
+  # @return [String] list of available Opera actions.
+  def opera_action_list
+    @driver.getOperaActionList
   end
 
 end
