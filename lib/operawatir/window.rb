@@ -97,7 +97,6 @@ class OperaWatir::Window
   def visual_hash(time_out=50)
     document.visual_hash timeout
   end
-  alias_method :get_hash, :visual_hash
 
 
   # Finders
@@ -108,21 +107,6 @@ class OperaWatir::Window
       c.add_selector_from_arguments args
     end
   end
-
-=begin
-  def area(*arguments)
-    OperaWatir::Collection.new(self).tap do |c|
-      c.add_selector :tag, :area
-      c.add_selector_from_arguments arguments
-    end
-  end
-
-  def areas
-    OperaWatir::Collection.new(self).tap do |c|
-      c.add_selector :tag, :area
-    end
-  end
-=end
 
   def tag(name)
     OperaWatir::Collection.new(self).tap do |c|

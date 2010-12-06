@@ -7,14 +7,23 @@ class Object
 end
 
 module OperaWatir
-
   class Settings
-    def initialize(*args, &block)
+
+    attr_accessor :driver_settings
+
+    def initialize(&block)
       SettingsHelper.block_to_hash(block).each do |setting, value|
         self.class.send(:define_method, setting.to_sym) do
-          value || instance_variable_get("@#{attr}")
+          value.to_s || instance_variable_get("@#{attr}")
         end
       end
+
+      self.driver_settings = OperaDriverSettings.new
+
+      driver_settings.setRunOperaLauncherFromOperaDriver true
+      driver_settings.setOperaLauncherBinary launcher
+      driver_settings.setOperaBinaryLocation path
+      driver_settings.setOperaBinaryArguments args #.to_java(:string) || ''
     end
   end
 
@@ -23,7 +32,7 @@ module OperaWatir
       config = self.new
 
       if block
-        block.call(confi)
+        block.call(config)
         config.to_hash
       else
         {}
