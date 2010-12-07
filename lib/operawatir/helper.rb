@@ -1,5 +1,9 @@
 # -*- coding: utf-8 -*-
 
+# You need to set the OPERA_LAUNCHER and OPERA_PATH environment variables
+# for this Helper to work.
+
+require 'operawatir'
 require 'rspec'
 require 'rbconfig'
 require 'ostruct'
@@ -20,9 +24,13 @@ module OperaWatir::Helper
   end
 
   def new_browser_instance
-    #OperaWatir::Browser.new(path, *args.split(' ').to_java(:string))
+    settings = OperaWatir::Settings.new do |config|
+      config.launcher = ENV['OPERA_LAUNCHER']
+      config.path = ENV['OPERA_PATH']
+      config.args = ''
+    end
 
-    OperaWatir::Browser.new($settings.driver_settings)
+    OperaWatir::Browser.new(settings.driver_settings)
   end
 
   def helper_file
@@ -34,7 +42,7 @@ module OperaWatir::Helper
       config.include SpecHelpers
 
       config.after(:suite) do
-        OperaWatir::Helper.browser.quit!
+        @browser.quit!
       end
     end
   end

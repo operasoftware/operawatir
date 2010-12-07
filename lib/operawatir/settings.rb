@@ -23,7 +23,7 @@ module OperaWatir
       driver_settings.setRunOperaLauncherFromOperaDriver true
       driver_settings.setOperaLauncherBinary launcher
       driver_settings.setOperaBinaryLocation path
-      driver_settings.setOperaBinaryArguments args #.to_java(:string) || ''
+      driver_settings.setOperaBinaryArguments args
     end
   end
 
