@@ -91,6 +91,43 @@ class OperaWatir::Element
 
   def_delegator :node, :submit
 
+  def text=(string)
+    node.sendKeys(string.split(//).to_java(:string))
+  end
+
+  def fire_event(event, x = 0, y = 0)
+    x += location[:x]
+    y += location[:y]
+
+    # In the case that event is given as symbol, we convert it to a
+    # string.
+    event = event.to_s
+    event =~ /on(.*)/i
+    event = $1 if $1
+    event = event.downcase.to_sym
+
+    # TODO: Should this be moved to OperaDriver instead?
+    case event
+    when :abort, :blur, :change, :error, :focus, :load, :reset,
+      :resize, :scroll, :submit, :unload
+      type = 'HTMLEvents';
+      init = "initEvent(\"#{event.to_s}\", true, true)"
+    when :click, :dblclick, :mousedown, :mousemove, :mouseout,
+      :mouseover, :mouseup
+      type = 'MouseEvents'
+      init = "initMouseEvent(\"#{event.to_s}\", true, true, window, 1, 0, 0, 0, 0, false, false, false, false, 0, null)"
+    else
+      raise Exceptions::NotImplementedException,
+      "Event on#{event} is not a valid ECMAscript event for OperaWatir."
+    end
+
+    script = "var event = document.createEvent(\"#{type}\"); " +
+      "event.#{init}; " +
+      "locator.dispatchEvent(event);"
+
+    node.callMethod(script)
+  end
+
 
   # UI
 

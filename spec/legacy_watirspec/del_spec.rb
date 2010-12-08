@@ -9,34 +9,42 @@ describe "Del" do
 
   # Exists method
   describe "#exist?" do
-    it "returns true if the 'del' exists" do
-      browser.del(:id, "lead").should exist
-      browser.del(:id, /lead/).should exist
-      browser.del(:text, "This is a deleted text tag 1").should exist
-      browser.del(:text, /This is a deleted text tag 1/).should exist
-      browser.del(:class, "lead").should exist
-      browser.del(:class, /lead/).should exist
-      browser.del(:index, 1).should exist
-      browser.del(:xpath, "//del[@id='lead']").should exist
-    end
-
-    it "returns true if the element exists (default how = :id)" do
-      browser.del("lead").should exist
-    end
-
-    it "returns the first del if given no args" do
-      browser.del.should exist
+    it "returns true if the element exists" do
+      browser.del(:id, "lead").exists?.should be_true
     end
 
     it "returns false if the element doesn't exist" do
       browser.del(:id, "no_such_id").should_not exist
-      browser.del(:id, /no_such_id/).should_not exist
-      browser.del(:text, "no_such_text").should_not exist
-      browser.del(:text, /no_such_text/).should_not exist
-      browser.del(:class, "no_such_class").should_not exist
-      browser.del(:class, /no_such_class/).should_not exist
-      browser.del(:index, 1337).should_not exist
-      browser.del(:xpath, "//del[@id='no_such_id']").should_not exist
+    end
+  end
+
+  describe "how" do
+    it "can be :id" do
+      browser.del(:id, "lead").exists?.should be_true
+    end
+
+    it "can be :text" do
+      browser.del(:text, "This is a deleted text tag 1").exists?.should be_true
+    end
+
+    it "can be :lead" do
+      browser.del(:class, "lead").exists?.should be_true
+    end
+
+    it "can be :index" do
+      browser.del(:index, 1).exists?.should be_true
+    end
+
+    it "can be :xpath" do
+      browser.del(:xpath, "//del[@id='lead']").exists?.should be_true
+    end
+
+    it "defaults to :id)" do
+      browser.del("lead").exists?.should be_true
+    end
+
+    it "returns the first del if not given" do
+      browser.del.exists?.should be_true
     end
 
     it "raises TypeError when 'what' argument is invalid" do
@@ -89,7 +97,6 @@ describe "Del" do
 
     it "raises UnknownObjectException if the del doesn't exist" do
       lambda { browser.del(:id, "no_such_id").name }.should raise_error(UnknownObjectException)
-      lambda { browser.del(:index, 1337).name }.should raise_error(UnknownObjectException)
     end
   end
 
@@ -104,7 +111,6 @@ describe "Del" do
 
     it "raises UnknownObjectException if the del doesn't exist" do
       lambda { browser.del(:id, 'no_such_id').title }.should raise_error( UnknownObjectException)
-      lambda { browser.del(:xpath, "//del[@id='no_such_id']").title }.should raise_error( UnknownObjectException)
     end
   end
 
@@ -119,7 +125,6 @@ describe "Del" do
 
     it "raises UnknownObjectException if the del doesn't exist" do
       lambda { browser.del(:id, 'no_such_id').text }.should raise_error( UnknownObjectException)
-      lambda { browser.del(:xpath , "//del[@id='no_such_id']").text }.should raise_error( UnknownObjectException)
     end
   end
 
@@ -134,18 +139,6 @@ describe "Del" do
 
     it "raises UnknownObjectException if the del doesn't exist" do
       lambda { browser.del(:id , "no_such_id").value }.should raise_error(UnknownObjectException)
-      lambda { browser.del(:index , 1337).value }.should raise_error(UnknownObjectException)
-    end
-  end
-
-  describe "#respond_to?" do
-    it "returns true for all attribute methods" do
-      browser.del(:index, 1).should respond_to(:class_name)
-      browser.del(:index, 1).should respond_to(:id)
-      browser.del(:index, 1).should respond_to(:name)
-      browser.del(:index, 1).should respond_to(:title)
-      browser.del(:index, 1).should respond_to(:text)
-      browser.del(:index, 1).should respond_to(:value)
     end
   end
 
