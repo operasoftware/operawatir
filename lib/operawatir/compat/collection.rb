@@ -2,7 +2,8 @@ class OperaWatir::Collection
   
   # Aliases that Watir1 defines for certain attributes
   ATTRIBUTE_ALIASES = {
-    :url => :href
+    :url => :href,
+    :class => :class_name
   }
   
   DEFAULT_ATTRIBUTES = {}
@@ -27,7 +28,7 @@ class OperaWatir::Collection
       raise OperaWatir::Exceptions::MissingWayOfFindingObjectException
     
     # ('foo') => :attribute, {:id => 'foo'}
-    elsif [String, Regexp].any? {|k| args.first.is_a?(k)}
+    elsif !args.first.is_a?(Symbol)
       type, value = :attribute, {
         # TODO Lookup default attribute from tagname
         :id => args.first
@@ -44,7 +45,7 @@ class OperaWatir::Collection
       }
     end
     
-    add_selector type, value
+    selector.send(type, value)
   end
   
   # Watir1 Collections are 1 indexed *headslap*
@@ -53,8 +54,14 @@ class OperaWatir::Collection
   end
 
   # Define methods to satisfy #respond_to? which is used in the tests.
-  [:name, :title].each do |name|
+  [:name, :title, :type, :class_name, :text, :style, :value].each do |name|
     define_method(name) {method_missing(name)}
   end
-
+  
+  # Checks and raises error if elements dont' exist
+  def to_s
+    raw_elements
+    super
+  end
+  
 end

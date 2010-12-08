@@ -4,7 +4,23 @@ class OperaWatir::Element
   def initialize(node)
     self.node = node
   end
-
+  
+  # TODO Need support for this in Webdriver
+  def hash
+    node.hash
+  end
+  
+  def ==(other)
+    node.equals other.node
+  end
+  
+  def eql?(other)
+    is_a?(other.class) && self == other
+  end
+  
+  def hash
+    node.hashCode
+  end
 
   # Attributes
 
@@ -25,7 +41,16 @@ class OperaWatir::Element
   def id
     attr(:id)
   end
-
+  
+  def type
+    attr(:type)
+  end
+  
+  def class_name
+    attr(:class)
+  end
+  
+  
   def_delegator :node, :isEnabled, :enabled?
   def_delegator :node, :getText, :text
   def_delegator :node, :getHTML, :html
@@ -89,13 +114,13 @@ class OperaWatir::Element
     end
   end
 
-  def find_elements_by_class(value)
+  def find_elements_by_class_name(value)
     node.findElementsByClassName(value).to_a.map do |n|
       OperaWatir::Element.new(n)
     end
   end
 
-  def find_elements_by_tag(value)
+  def find_elements_by_tag_name(value)
     node.findElementsByTagName(value).to_a.map do |n|
       OperaWatir::Element.new(n)
     end
@@ -108,12 +133,12 @@ class OperaWatir::Element
   end
 
   def find_elements_by_xpath(value)
-    node.findElementsByXpath(value).to_a.map do |n|
+    node.findElementsByXPath(value).to_a.map do |n|
       OperaWatir::Element.new(n)
     end
   end
 
-private
+# private
 
   attr_accessor :node
 

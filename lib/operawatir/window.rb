@@ -64,10 +64,6 @@ class OperaWatir::Window
   end
   alias_method :execute_script, :eval_js
 
-  def ruby_array_from_java_array_list(java_array_list)
-    java_array_list[1, java_array_list.length-2].split(", ")
-  end
-
 
   # Keyboard
 
@@ -102,16 +98,16 @@ class OperaWatir::Window
 
   # Finders
   
-  def method_missing(tag, *arguments, &block)
-    OperaWatir::Collection.new(self).tap do |c|
-      c.add_selector :tag, tag
-      c.add_selector_from_arguments arguments
-    end
-  end
+  # def method_missing(tag, *arguments, &block)
+  #   OperaWatir::Collection.new(self).tap do |c|
+  #     c.add_selector :tag, tag
+  #     c.add_selector_from_arguments arguments
+  #   end
+  # end
 
   def tag(name)
     OperaWatir::Collection.new(self).tap do |c|
-      c.add_selector :tag, name
+      c.selector.tag name
     end
   end
 
@@ -119,20 +115,21 @@ class OperaWatir::Window
     tag('*')
   end
 
-
+private
+  
   def find_elements_by_id(value)
     driver.findElementsById(value).to_a.map do |node|
       OperaWatir::Element.new(node)
     end
   end
 
-  def find_elements_by_class(value)
+  def find_elements_by_class_name(value)
     driver.findElementsByClassName(value).to_a.map do |node|
       OperaWatir::Element.new(node)
     end
   end
 
-  def find_elements_by_tag(value)
+  def find_elements_by_tag_name(value)
     driver.findElementsByTagName(value).to_a.map do |node|
       OperaWatir::Element.new(node)
     end
@@ -149,9 +146,7 @@ class OperaWatir::Window
       OperaWatir::Element.new(node)
     end
   end
-
-private
-
+  
   # @private
   # @return [Object] the driver instance.
   def driver
