@@ -8,59 +8,63 @@ describe "Button" do
   end
 
   # Exists method
-  describe "#exists?" do
-    it "returns true if the button exists" do
+  describe '#exists?' do
+    it 'is true if the button exists' do
+      browser.button(:id, "new_user_submit").exists?.should be_true
+    end
+
+    it 'is false if the button exists' do
+      browser.button(:id, "hoobaflooba").exists?.should be_false
+    end
+  end
+
+  describe "how" do
+    it "can be :id" do
       browser.button(:id, "new_user_submit").should exist
-      browser.button(:id, /new_user_submit/).should exist
+    end
+
+    it "can be :name" do
       browser.button(:name, "new_user_reset").should exist
-      browser.button(:name, /new_user_reset/).should exist
+    end
+
+    it "can be :value" do
       browser.button(:value, "Button 2").should exist
-      browser.button(:value, /Button 2/).should exist
+    end
+
+    it "can be :src" do
       browser.button(:src, "images/button.jpg").should exist
-      browser.button(:src, /button.jpg/).should exist
+    end
+
+    it "can be :text" do
       browser.button(:text, "Button 2").should exist
-      browser.button(:text, /Button 2/).should exist
+    end
+
+    it "can be :class" do
       browser.button(:class, "image").should exist
-      browser.button(:class, /image/).should exist
+    end
+
+    it "can be :index" do
       browser.button(:index, 1).should exist
+    end
+
+    it "can be :xpath" do
       browser.button(:xpath, "//input[@id='new_user_submit']").should exist
+    end
+
+    it "can be :alt" do
       browser.button(:alt, "Create a new user").should exist
-      browser.button(:alt, /Create a/).should exist
     end
 
-    it "returns true if the button exists (how = :caption)" do
+    it "can be :caption" do
       browser.button(:caption, "Button 2").should exist
-      browser.button(:caption, /Button 2/).should exist
     end
 
-    it "returns true if the button exists (default how = :value)" do
+    it "defaults to :value" do
       browser.button("Submit").should exist
     end
 
-    it "returns the first button if given no args" do
+    it "returns the first button if not given" do
       browser.button.should exist
-    end
-
-    it "returns false if the button doesn't exist" do
-      browser.button(:id, "no_such_id").should_not exist
-      browser.button(:id, /no_such_id/).should_not exist
-      browser.button(:name, "no_such_name").should_not exist
-      browser.button(:name, /no_such_name/).should_not exist
-      browser.button(:value, "no_such_value").should_not exist
-      browser.button(:value, /no_such_value/).should_not exist
-      browser.button(:src, "no_such_src").should_not exist
-      browser.button(:src, /no_such_src/).should_not exist
-      browser.button(:text, "no_such_text").should_not exist
-      browser.button(:text, /no_such_text/).should_not exist
-      browser.button(:class, "no_such_class").should_not exist
-      browser.button(:class, /no_such_class/).should_not exist
-      browser.button(:index, 1337).should_not exist
-      browser.button(:xpath, "//input[@id='no_such_id']").should_not exist
-    end
-
-    it "checks the tag name and type attribute when locating by xpath" do
-      browser.button(:xpath, "//input[@type='text']").should_not exist
-      browser.button(:xpath, "//input[@type='button']").should exist
     end
 
     it "raises TypeError when 'what' argument is invalid" do
@@ -74,8 +78,8 @@ describe "Button" do
 
   # Attribute methods
   describe "#class_name" do
-    it "returns the class name of the button" do
-      browser.button(:name, "new_user_image").class_name.should == "image"
+    it "returns all classes of the button" do
+      browser.button(:name, "new_user_image").class_name.should == "image test"
     end
 
     it "returns an empty string if the button has no class name" do
@@ -85,9 +89,7 @@ describe "Button" do
 
   describe "#id" do
     it "returns the id if the button exists" do
-      browser.button(:index, 1).id.should == 'new_user_submit'
-      browser.button(:index, 2).id.should == 'new_user_reset'
-      browser.button(:index, 3).id.should == 'new_user_button'
+      browser.button(:id, "new_user_submit").should exist.id.should == 'new_user_submit'
     end
 
     it "raises UnknownObjectException if button does not exist" do
@@ -97,9 +99,7 @@ describe "Button" do
 
   describe "#name" do
     it "returns the name if button exists" do
-      browser.button(:index, 1).name.should == 'new_user_submit'
-      browser.button(:index, 2).name.should == 'new_user_reset'
-      browser.button(:index, 3).name.should == 'new_user_button'
+      browser.button(:id, "new_user_submit").name.should == 'new_user_submit'
     end
 
     it "raises UnknownObjectException if the button does not exist" do
@@ -194,27 +194,14 @@ describe "Button" do
     end
   end
 
-  describe "#respond_to?" do
-    it "returns true for all attribute methods" do
-      browser.button(:index, 1).should respond_to(:class_name)
-      browser.button(:index, 1).should respond_to(:id)
-      browser.button(:index, 1).should respond_to(:name)
-      browser.button(:index, 1).should respond_to(:src)
-      browser.button(:index, 1).should respond_to(:style)
-      browser.button(:index, 1).should respond_to(:title)
-      browser.button(:index, 1).should respond_to(:type)
-      browser.button(:index, 1).should respond_to(:value)
-    end
-  end
-
   # Access methods
   describe "#enabled?" do
     it "returns true if the button is enabled" do
-      browser.button(:name, 'new_user_submit').should be_enabled
+      browser.button(:name, 'new_user_submit').enabled?.should be_true
     end
 
     it "returns false if the button is disabled" do
-      browser.button(:name, 'new_user_submit_disabled').should_not be_enabled
+      browser.button(:name, 'new_user_submit_disabled').enabled?.should be_false
     end
 
     it "raises UnknownObjectException if the button doesn't exist" do
@@ -224,11 +211,11 @@ describe "Button" do
 
   describe "#disabled?" do
     it "returns false when button is enabled" do
-      browser.button(:name, 'new_user_submit').should_not be_disabled
+      browser.button(:name, 'new_user_submit').disabled?.should be_false
     end
 
     it "returns true when button is disabled" do
-      browser.button(:name, 'new_user_submit_disabled').should be_disabled
+      browser.button(:name, 'new_user_submit_disabled').disabled?.should be_true
     end
 
     it "raises UnknownObjectException if button does not exist" do
@@ -239,7 +226,6 @@ describe "Button" do
   # Manipulation methods
   describe "#click" do
     it "clicks the button if it exists" do
-      browser.goto(WatirSpec.host + "/forms_with_input_elements.html")
       browser.button(:id, 'new_user_submit').click
       browser.text.should include("You posted the following content:")
     end

@@ -11,7 +11,11 @@ class OperaWatir::Collection
     self.parent, self.selector = parent, OperaWatir::Selector.new(self)
     @_elms = elms
   end
-  
+
+  def add_selector_from_arguments(args)
+    selector.attribute args.first
+  end
+
   def exist?
     !raw_elements.empty?
   rescue OperaWatir::Exceptions::UnknownObjectException
@@ -61,28 +65,28 @@ class OperaWatir::Collection
   def method_missing(method, *args, &blk)
     map_or_return {|elm| elm.send(method, *args, &blk) }
   end
-  
+
   def id
     map_or_return {|elm| elm.id}
   end
-  
+
   # Public interface to elms, used in Selector
   def raw_elements
     _elms.tap do |e|
       raise(OperaWatir::Exceptions::UnknownObjectException) if e.empty?
     end
   end
-  
+
 private
-  
+
   def _elms
     @_elms ||= selector.eval
   end
   
   attr_writer :_elms
-  
+
   def map_or_return(&blk)
     single? ? blk.call(raw_elements.first) : map(&blk)
   end
-  
+
 end

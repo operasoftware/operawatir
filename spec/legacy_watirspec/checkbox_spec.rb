@@ -10,60 +10,48 @@ describe "CheckBox" do
   # Exists method
 
   describe "#exists?" do
-    it "returns true if the checkbox button exists" do
-      browser.checkbox(:id, "new_user_interests_books").should exist
-      browser.checkbox(:id, /new_user_interests_books/).should exist
-      browser.checkbox(:name, "new_user_interests").should exist
-      browser.checkbox(:name, /new_user_interests/).should exist
-      browser.checkbox(:value, "books").should exist
-      browser.checkbox(:value, /books/).should exist
-      # not sure what :text is supposed to represent here
-      # browser.checkbox(:text, "books").should exist
-      # browser.checkbox(:text, /books/).should exist
-      browser.checkbox(:class, "fun").should exist
-      browser.checkbox(:class, /fun/).should exist
-      browser.checkbox(:index, 1).should exist
-      browser.checkbox(:xpath, "//input[@id='new_user_interests_books']").should exist
-    end
-
-    it "returns true if the element exists (default how = :name)" do
-      browser.checkbox("new_user_interests").should exist
-    end
-
-    it "returns true if the checkbox button exists (search by name and value)" do
-      browser.checkbox(:name, "new_user_interests", 'cars').should exist
-      browser.checkbox(:xpath, "//input[@name='new_user_interests' and @value='cars']").set
-    end
-
-    it "returns the first checkbox if given no args" do
-      browser.checkbox.should exist
-    end
-
     it "returns false if the checkbox button does not exist" do
       browser.checkbox(:id, "no_such_id").should_not exist
-      browser.checkbox(:id, /no_such_id/).should_not exist
       browser.checkbox(:name, "no_such_name").should_not exist
-      browser.checkbox(:name, /no_such_name/).should_not exist
       browser.checkbox(:value, "no_such_value").should_not exist
-      browser.checkbox(:value, /no_such_value/).should_not exist
       browser.checkbox(:text, "no_such_text").should_not exist
-      browser.checkbox(:text, /no_such_text/).should_not exist
       browser.checkbox(:class, "no_such_class").should_not exist
-      browser.checkbox(:class, /no_such_class/).should_not exist
       browser.checkbox(:index, 1337).should_not exist
       browser.checkbox(:xpath, "//input[@id='no_such_id']").should_not exist
     end
+  end
 
-    it "returns false if the checkbox button does not exist (search by name and value)" do
-      browser.checkbox(:name, "new_user_interests", 'no_such_value').should_not exist
-      browser.checkbox(:xpath, "//input[@name='new_user_interests' and @value='no_such_value']").should_not exist
-      browser.checkbox(:name, "no_such_name", 'cars').should_not exist
-      browser.checkbox(:xpath, "//input[@name='no_such_name' and @value='cars']").should_not exist
+  describe "how" do
+    it "can be :id" do
+      browser.checkbox(:id, "new_user_interests_books").exists?.should be_true
     end
 
-    it "returns true for checkboxs with a string value" do
-      browser.checkbox(:name, 'new_user_interests', 'books').should exist
-      browser.checkbox(:name, 'new_user_interests', 'cars').should exist
+    it "can be :name" do
+      browser.checkbox(:name, "new_user_interests").exists?.should be_true
+    end
+
+    it "can be :value" do
+      browser.checkbox(:value, "books").exists?.should be_true
+    end
+
+    it "can be :class" do
+      browser.checkbox(:class, "fun").exists?.should be_true
+    end
+
+    it "can be :index" do
+      browser.checkbox(:index, 1).exists?.should be_true
+    end
+
+    it "can be :xpath" do
+      browser.checkbox(:xpath, "//input[@id='new_user_interests_books']").exists?.should be_true
+    end
+
+    it "defaults to :name" do
+      browser.checkbox("new_user_interests").exists?.should be_true
+    end
+
+    it "returns the first checkbox if not given" do
+      browser.checkbox.exists?.should be_true
     end
 
     it "raises TypeError when 'what' argument is invalid" do
@@ -72,6 +60,20 @@ describe "CheckBox" do
 
     it "raises MissingWayOfFindingObjectException when 'how' argument is invalid" do
       lambda { browser.checkbox(:no_such_how, 'some_value').exists? }.should raise_error(MissingWayOfFindingObjectException)
+    end
+  end
+
+  describe "value" do
+    it "can be passed a value for the checkbox" do
+      browser.checkbox(:name, "new_user_interests", 'cars').exists?.should be_true
+    end
+
+    it "does not exist if there is no checkbox with the value" do
+      browser.checkbox(:name, "new_user_interests", 'no_such_value').should_not exist
+    end
+
+    it "does not exist if there is no group with the value" do
+      browser.checkbox(:name, "no_such_name", 'cars').should_not exist
     end
   end
 
@@ -153,28 +155,15 @@ describe "CheckBox" do
     end
   end
 
-  describe "#respond_to?" do
-    it "returns true for all attribute methods" do
-      browser.checkbox(:index, 1).should respond_to(:class_name)
-      browser.checkbox(:index, 1).should respond_to(:id)
-      browser.checkbox(:index, 1).should respond_to(:name)
-      browser.checkbox(:index, 1).should respond_to(:title)
-      browser.checkbox(:index, 1).should respond_to(:type)
-      browser.checkbox(:index, 1).should respond_to(:value)
-    end
-  end
-
   # Access methods
 
   describe "#enabled?" do
     it "returns true if the checkbox button is enabled" do
-      browser.checkbox(:id, "new_user_interests_books").should be_enabled
-      browser.checkbox(:xpath, "//input[@id='new_user_interests_books']").should be_enabled
+      browser.checkbox(:id, "new_user_interests_books").enabled?.should be_true
     end
 
     it "returns false if the checkbox button is disabled" do
-      browser.checkbox(:id, "new_user_interests_dentistry").should_not be_enabled
-      browser.checkbox(:xpath,"//input[@id='new_user_interests_dentistry']").should_not be_enabled
+      browser.checkbox(:id, "new_user_interests_dentistry").enabled?.should be_false
     end
 
     it "raises UnknownObjectException if the checkbox button doesn't exist" do
@@ -185,11 +174,11 @@ describe "CheckBox" do
 
   describe "#disabled?" do
     it "returns true if the checkbox is disabled" do
-      browser.checkbox(:id, 'new_user_interests_dentistry').should be_disabled
+      browser.checkbox(:id, 'new_user_interests_dentistry').disabled?.should be_true
     end
 
     it "returns false if the checkbox is enabled" do
-      browser.checkbox(:id, 'new_user_interests_books').should_not be_disabled
+      browser.checkbox(:id, 'new_user_interests_books').disabled?.should be_false
     end
 
     it "raises UnknownObjectException if the checkbox doesn't exist" do
@@ -201,36 +190,34 @@ describe "CheckBox" do
 
   describe "#clear" do
     it "raises ObjectDisabledException if the checkbox is disabled" do
-      browser.checkbox(:id, "new_user_interests_dentistry").should_not be_set
+      browser.checkbox(:id, "new_user_interests_dentistry").set?.should be_false
       lambda { browser.checkbox(:id, "new_user_interests_dentistry").clear }.should raise_error(ObjectDisabledException)
-      lambda { browser.checkbox(:xpath, "//input[@id='new_user_interests_dentistry']").clear }.should raise_error(ObjectDisabledException)
     end
 
     it "clears the checkbox button if it is set" do
       browser.checkbox(:id, "new_user_interests_books").clear
-      browser.checkbox(:id, "new_user_interests_books").should_not be_set
+      browser.checkbox(:id, "new_user_interests_books").set?.should be_false
     end
 
     it "clears the checkbox button when found by :xpath" do
       browser.checkbox(:xpath, "//input[@id='new_user_interests_books']").clear
-      browser.checkbox(:xpath, "//input[@id='new_user_interests_books']").should_not be_set
+      browser.checkbox(:xpath, "//input[@id='new_user_interests_books']").set?.should be_false
     end
 
     it "raises UnknownObjectException if the checkbox button doesn't exist" do
       lambda { browser.checkbox(:name, "no_such_id").clear }.should raise_error(UnknownObjectException)
-      lambda { browser.checkbox(:xpath, "//input[@id='no_such_id']").clear  }.should raise_error(UnknownObjectException)
     end
   end
 
   describe "#set" do
     it "sets the checkbox button" do
       browser.checkbox(:id, "new_user_interests_cars").set
-      browser.checkbox(:id, "new_user_interests_cars").should be_set
+      browser.checkbox(:id, "new_user_interests_cars").set?.should be_true
     end
 
     it "sets the checkbox button when found by :xpath" do
       browser.checkbox(:xpath, "//input[@id='new_user_interests_cars']").set
-      browser.checkbox(:xpath, "//input[@id='new_user_interests_cars']").should be_set
+      browser.checkbox(:xpath, "//input[@id='new_user_interests_cars']").set?.should be_true
     end
 
     it "fires the onclick event" do
@@ -243,12 +230,10 @@ describe "CheckBox" do
 
     it "raises UnknownObjectException if the checkbox button doesn't exist" do
       lambda { browser.checkbox(:name, "no_such_name").set  }.should raise_error(UnknownObjectException)
-      lambda { browser.checkbox(:xpath, "//input[@name='no_such_name']").set  }.should raise_error(UnknownObjectException)
     end
 
     it "raises ObjectDisabledException if the checkbox is disabled" do
       lambda { browser.checkbox(:id, "new_user_interests_dentistry").set  }.should raise_error(ObjectDisabledException)
-      lambda { browser.checkbox(:xpath, "//input[@id='new_user_interests_dentistry']").set  }.should raise_error(ObjectDisabledException )
     end
   end
 
@@ -256,24 +241,15 @@ describe "CheckBox" do
 
   describe '#set?' do
     it "returns true if the checkbox button is set" do
-      browser.checkbox(:id, "new_user_interests_books").should be_set
+      browser.checkbox(:id, "new_user_interests_books").set?.should be_true
     end
 
     it "returns false if the checkbox button unset" do
-      browser.checkbox(:id, "new_user_interests_cars").should_not be_set
-    end
-
-    it "returns the state for checkboxs with string values" do
-      browser.checkbox(:name, "new_user_interests", 'cars').should_not be_set
-      browser.checkbox(:name, "new_user_interests", 'cars').set
-      browser.checkbox(:name, "new_user_interests", 'cars').should be_set
-      browser.checkbox(:name, "new_user_interests", 'cars').clear
-      browser.checkbox(:name, "new_user_interests", 'cars').should_not be_set
+      browser.checkbox(:id, "new_user_interests_cars").set?.should be_false
     end
 
     it "raises UnknownObjectException if the checkbox button doesn't exist" do
       lambda { browser.checkbox(:id, "no_such_id").set?  }.should raise_error(UnknownObjectException)
-      lambda { browser.checkbox(:xpath, "//input[@id='no_such_id']").set?  }.should raise_error(UnknownObjectException)
     end
   end
 

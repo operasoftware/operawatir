@@ -11,28 +11,32 @@ describe "Ul" do
   describe "#exist?" do
     it "returns true if the 'ul' exists" do
       browser.ul(:id, "navbar").should exist
-      browser.ul(:id, /navbar/).should exist
+    end
+
+    it "returns false if the 'ul' doesn't exist" do
+      browser.ul(:id, "no_such_id").should_not exist
+    end
+  end
+
+  describe "how" do
+    it "can be :id" do
+      browser.ul(:id, "navbar").should exist
+    end
+
+    it "can be :index" do
       browser.ul(:index, 1).should exist
+    end
+
+    it "can be :xpath" do
       browser.ul(:xpath, "//ul[@id='navbar']").should exist
     end
 
-    it "returns true if the element exists (default how = :id)" do
+    it "defaults to :id" do
       browser.ul("navbar").should exist
     end
 
     it "returns the first ul if given no args" do
       browser.ul.should exist
-    end
-
-    it "returns false if the 'ul' doesn't exist" do
-      browser.ul(:id, "no_such_id").should_not exist
-      browser.ul(:id, /no_such_id/).should_not exist
-      browser.ul(:text, "no_such_text").should_not exist
-      browser.ul(:text, /no_such_text/).should_not exist
-      browser.ul(:class, "no_such_class").should_not exist
-      browser.ul(:class, /no_such_class/).should_not exist
-      browser.ul(:index, 1337).should_not exist
-      browser.ul(:xpath, "//ul[@id='no_such_id']").should_not exist
     end
 
     it "raises TypeError when 'what' argument is invalid" do
@@ -70,14 +74,6 @@ describe "Ul" do
 
     it "raises UnknownObjectException if the ul doesn't exist" do
       lambda { browser.ul(:id, "no_such_id").id }.should raise_error(UnknownObjectException)
-      lambda { browser.ul(:index, 1337).id }.should raise_error(UnknownObjectException)
-    end
-  end
-
-  describe "#respond_to?" do
-    it "returns true for all attribute methods" do
-      browser.ul(:index, 1).should respond_to(:class_name)
-      browser.ul(:index, 1).should respond_to(:id)
     end
   end
 

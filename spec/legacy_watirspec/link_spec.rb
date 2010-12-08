@@ -10,47 +10,49 @@ describe "Link" do
   # Exists method
   describe "#exist?" do
     it "returns true if the link exists" do
-      browser.link(:id, 'link_2').should exist
-      browser.link(:id, /link_2/).should exist
-      browser.link(:name, 'bad_attribute').should exist
-      browser.link(:name, /bad_attribute/).should exist
-      browser.link(:title, "link_title_2").should exist
-      browser.link(:title, /link_title_2/).should exist
-      browser.link(:text, "Link 2").should exist
-      browser.link(:text, /Link 2/i).should exist
-      browser.link(:url, 'non_control_elements.html').should exist
-      browser.link(:url, /non_control_elements.html/).should exist
-      browser.link(:index, 2).should exist
-      browser.link(:xpath, "//a[@id='link_2']").should exist
-    end
-
-    bug "WTR-365", :watir do
-      it "returns true if the element exists (default how = :href)" do
-        browser.link(/input_elements/).should exist
-      end
-    end
-
-    it "returns the first link if given no args" do
-      browser.link.should exist
-    end
-
-    it "strips spaces from URL attributes when locating elements" do
-      browser.link(:url, /strip_space$/).should exist
+      browser.link(:id, 'link_2').exists?.should be_true
     end
 
     it "returns false if the link doesn't exist" do
       browser.link(:id, 'no_such_id').should_not exist
-      browser.link(:id, /no_such_id/).should_not exist
-      browser.link(:name, 'no_such_name').should_not exist
-      browser.link(:name, /no_such_name/).should_not exist
-      browser.link(:title, "no_such_title").should_not exist
-      browser.link(:title, /no_such_title/).should_not exist
-      browser.link(:text, "no_such_text").should_not exist
-      browser.link(:text, /no_such_text/i).should_not exist
-      browser.link(:url, 'no_such_href').should_not exist
-      browser.link(:url, /no_such_href/).should_not exist
-      browser.link(:index, 1337).should_not exist
-      browser.link(:xpath, "//a[@id='no_such_id']").should_not exist
+    end
+  end
+
+  describe "how" do
+    it "can be :id" do
+      browser.link(:id, 'link_2').exists?.should be_true
+    end
+
+    it "can be :name" do
+      browser.link(:name, 'bad_attribute').exists?.should be_true
+    end
+
+    it "can be :title" do
+      browser.link(:title, "link_title_2").exists?.should be_true
+    end
+
+    it "can be :text" do
+      browser.link(:text, "Link 2").exists?.should be_true
+    end
+
+    it "can be :url" do
+      browser.link(:url, 'non_control_elements.html').exists?.should be_true
+    end
+
+    it "can be :index" do
+      browser.link(:index, 2).exists?.should be_true
+    end
+
+    it "defaults to :href" do
+      browser.link(/input_elements/).exists?.should be_true
+    end
+
+    it "returns the first link if given no args" do
+      browser.link.exists?.should be_true
+    end
+
+    it "strips spaces from URL attributes when locating elements" do
+      browser.link(:url, /strip_space$/).exists?.should be_true
     end
 
     it "raises TypeError when 'what' argument is invalid" do
@@ -152,19 +154,6 @@ describe "Link" do
 
     it "raises an UnknownObjectException if the link doesn't exist" do
       lambda { browser.link(:index, 1337).title }.should raise_error(UnknownObjectException)
-    end
-  end
-
-  describe "#respond_to?" do
-    it "returns true for all attribute methods" do
-      browser.link(:index, 1).should respond_to(:class_name)
-      browser.link(:index, 1).should respond_to(:href)
-      browser.link(:index, 1).should respond_to(:url)
-      browser.link(:index, 1).should respond_to(:id)
-      browser.link(:index, 1).should respond_to(:name)
-      browser.link(:index, 1).should respond_to(:style)
-      browser.link(:index, 1).should respond_to(:text)
-      browser.link(:index, 1).should respond_to(:title)
     end
   end
 
