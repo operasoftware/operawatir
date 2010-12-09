@@ -1,9 +1,9 @@
 # SpartanFormatter is intended for use with Opera's internal testing
 # environment SPARTAN.
 
-require "spec/runner/formatter/base_text_formatter"
+require 'spec/runner/formatter/base_text_formatter'
 
-class SpartanFormatter < Spec::Runner::Formatter::BaseTextFormatter
+class SpartanFormatter < RSpec::Core::Formatters::BaseTextFormatter
   def example_failed(example, counter, failure)
     message = "#{example.description}\tFAILED\n"
     output.puts(message)
@@ -26,4 +26,3 @@ class SpartanFormatter < Spec::Runner::Formatter::BaseTextFormatter
   def dump_pending; end
   def dump_failure(counter, failure); end
 end
-

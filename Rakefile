@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 require 'rake/clean'
 require 'jeweler'
 require 'rspec/core/rake_task'
@@ -6,11 +7,12 @@ require 'yard/rake/yardoc_task'
 require './lib/operawatir/version'
 
 Jeweler::Tasks.new do |gem|
-  gem.name    = 'operawatir'
-  gem.date    = Date.today.to_s
+  gem.name     = 'operawatir'
+  gem.version  = OperaWatir.version
+  gem.date     = Date.today.to_s
 
-  gem.authors     = ['Deniz Turkoglu', 'Andreas Tolf Tolfsen', 'Chris Lloyd', 'Adam Minchinton', 'Karianne Ekern']
-  gem.email       = ['dturkoglu@opera.com', 'andreastt@opera.com', 'christopherl@opera.com', 'adamm@opera.com', 'karie@opera.com']
+  gem.authors     = ['Deniz Turkoglu', 'Andreas Tolf Tolfsen', 'Chris Lloyd']
+  gem.email       = ['dturkoglu@opera.com', 'andreastt@opera.com', 'christopherl@opera.com']
   gem.homepage    = 'http://opera.github.com/operawatir'
   gem.summary     = 'OperaWatir on OperaDriver engine'
   gem.description = gem.summary
