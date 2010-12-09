@@ -101,19 +101,29 @@ class OperaWatir::Window
     end
   end
 
-  def tag(name)
+
+  [:id, :tag, :css, :xpath].each do |type|
+    define_method("find_by_#{type}") do |name|
+      OperaWatir::Collection.new(self).tap do |c|
+        c.selector.send(type, name.to_s)
+      end
+    end
+  end
+
+  # #class is reserved, so send to #class_name
+  def find_by_class(name)
     OperaWatir::Collection.new(self).tap do |c|
-      c.selector.tag name
+      c.selector.class_name name.to_s
     end
   end
 
   def elements
-    tag('*')
+    find_by_tag('*')
   end
 
 
 private
-  
+
   # Locate elements by id.
   #
   # @return [Array] an array of found elements.
@@ -158,7 +168,7 @@ private
       OperaWatir::Element.new(node)
     end
   end
-  
+
   # @private
   # @return [Object] the driver instance.
   def driver
