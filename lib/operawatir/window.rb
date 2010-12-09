@@ -101,15 +101,19 @@ class OperaWatir::Window
     end
   end
 
-  def find_by_id(name)
-    OperaWatir::Collection.new(self).tap do |c|
-      c.selector.id name
+
+  [:id, :tag, :css, :xpath].each do |type|
+    define_method("find_by_#{type}") do |name|
+      OperaWatir::Collection.new(self).tap do |c|
+        c.selector.send(type, name.to_s)
+      end
     end
   end
 
-  def find_by_tag(name)
+  # #class is reserved, so send to #class_name
+  def find_by_class(name)
     OperaWatir::Collection.new(self).tap do |c|
-      c.selector.tag name
+      c.selector.class_name name.to_s
     end
   end
 
