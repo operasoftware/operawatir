@@ -101,14 +101,20 @@ class OperaWatir::Window
     end
   end
 
-  def tag(name)
+  def find_by_id(name)
+    OperaWatir::Collection.new(self).tap do |c|
+      c.selector.id name
+    end
+  end
+
+  def find_by_tag(name)
     OperaWatir::Collection.new(self).tap do |c|
       c.selector.tag name
     end
   end
 
   def elements
-    tag('*')
+    find_by_tag('*')
   end
 
 
