@@ -4,7 +4,7 @@ require 'set'
 class OperaWatir::Collection
   extend Forwardable
   include Enumerable
-  
+
   attr_accessor :parent, :selector
 
   def initialize(parent, elms=nil)
@@ -26,7 +26,7 @@ class OperaWatir::Collection
   def single?
     raw_elements.length == 1
   end
-  
+
   def_delegators :raw_elements, :each,
                                 :length,
                                 :size,
@@ -34,12 +34,12 @@ class OperaWatir::Collection
                                 :first,
                                 :last,
                                 :empty?
-  
+
   # Set union, used for joining complex finders (specifically for Watir1)
   def +(other)
     self.class.new(parent, raw_elements + other.raw_elements)
   end
-  
+
   # Proxy for find_elements_by_id, find_elements_by_tag etc.
   OperaWatir::Selector::BASIC_TYPES.each do |type|
     define_method("find_elements_by_#{type}") do |value|
@@ -48,7 +48,7 @@ class OperaWatir::Collection
       end
     end
   end
-  
+
   def find_elements_by_attribute(attributes)
     _elms.select do |elm|
       attributes.all? {|attribute, value|
@@ -56,11 +56,11 @@ class OperaWatir::Collection
       }
     end
   end
-  
+
   def find_elements_by_index(n)
     (n >= 0 && n < _elms.length) ? [_elms[n]] : []
   end
-  
+
   # No call to super. Collections are completely opaque proxies.
   def method_missing(method, *args, &blk)
     map_or_return {|elm| elm.send(method, *args, &blk) }
@@ -82,7 +82,7 @@ private
   def _elms
     @_elms ||= selector.eval
   end
-  
+
   attr_writer :_elms
 
   def map_or_return(&blk)
