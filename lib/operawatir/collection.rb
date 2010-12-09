@@ -1,46 +1,66 @@
 require 'forwardable'
+require 'set'
 
 class OperaWatir::Collection
   extend Forwardable
   include Enumerable
+  
+  attr_accessor :parent, :selector
 
-  attr_accessor :selectors, :parent
-
-  def initialize(parent)
-    self.parent, self.selectors = parent, []
-  end
-
-  def add_selector(type, value)
-    self.selectors << OperaWatir::Selector.new(self, type, value)
+  def initialize(parent, elms=nil)
+    self.parent, self.selector = parent, OperaWatir::Selector.new(self)
+    @_elms = elms
   end
 
   def add_selector_from_arguments(args)
-    add_selector :attribute, args.first
+    selector.attribute args.first
   end
 
   def exist?
-    !_elms.empty?
+    !raw_elements.empty?
   rescue OperaWatir::Exceptions::UnknownObjectException
     false
   end
   alias_method :exists?, :exist? # LOL Ruby
 
   def single?
-    _elms.length == 1
+    raw_elements.length == 1
   end
-
-  def_delegators :_elms, :each, :length, :size, :[], :first, :last, :empty?
-
+  
+  def_delegators :raw_elements, :each,
+                                :length,
+                                :size,
+                                :[],
+                                :first,
+                                :last,
+                                :empty?
+  
+  # Set union, used for joining complex finders (specifically for Watir1)
+  def +(other)
+    self.class.new(parent, raw_elements + other.raw_elements)
+  end
+  
   # Proxy for find_elements_by_id, find_elements_by_tag etc.
   OperaWatir::Selector::BASIC_TYPES.each do |type|
     define_method("find_elements_by_#{type}") do |value|
-      _elms.inject([]) do |col, element|
-        col | element.send("find_elements_by_#{type}", value)
+      _elms.inject([]) do |result, element|
+        result | element.send("find_elements_by_#{type}", value.to_s)
       end
     end
   end
-
-
+  
+  def find_elements_by_attribute(attributes)
+    _elms.select do |elm|
+      attributes.all? {|attribute, value|
+        elm.send(attribute).send((value.is_a?(Regexp) ? :match : :==), value)
+      }
+    end
+  end
+  
+  def find_elements_by_index(n)
+    (n >= 0 && n < _elms.length) ? [_elms[n]] : []
+  end
+  
   # No call to super. Collections are completely opaque proxies.
   def method_missing(method, *args, &blk)
     map_or_return {|elm| elm.send(method, *args, &blk) }
@@ -52,20 +72,21 @@ class OperaWatir::Collection
 
   # Public interface to elms, used in Selector
   def raw_elements
-    _elms
+    _elms.tap do |e|
+      raise(OperaWatir::Exceptions::UnknownObjectException) if e.empty?
+    end
   end
 
 private
 
-  # This is the meat and bones of Watir2
   def _elms
-    @_elms ||= selectors.inject(nil) do |elms, selector|
-      selector.apply_to(elms)
-    end
+    @_elms ||= selector.eval
   end
+  
+  attr_writer :_elms
 
   def map_or_return(&blk)
-    single? ? blk.call(_elms.first) : map(&blk)
+    single? ? blk.call(raw_elements.first) : map(&blk)
   end
 
 end

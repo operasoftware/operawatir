@@ -11,5 +11,9 @@ class OperaWatir::Element
   def method_missing(name, *args, &blk)
     attr(name)
   end
-
+  
+  def text
+    node.getText.strip
+  end
+  
 end
