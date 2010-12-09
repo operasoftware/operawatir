@@ -3,3 +3,4 @@ spec/spec.opts
 .yardoc
 doc
 *.gemspec
+test_apc.txt

@@ -64,10 +64,6 @@ class OperaWatir::Window
   end
   alias_method :execute_script, :eval_js
 
-  def ruby_array_from_java_array_list(java_array_list)
-    java_array_list[1, java_array_list.length-2].split(", ")
-  end
-
 
   # Keyboard
 
@@ -98,19 +94,16 @@ class OperaWatir::Window
     document.visual_hash timeout
   end
 
-
-  # Finders
-
   def method_missing(tag, *args)
     OperaWatir::Collection.new(self).tap do |c|
-      c.add_selector :tag, tag
+      c.selector.tag tag
       c.add_selector_from_arguments args
     end
   end
 
   def tag(name)
     OperaWatir::Collection.new(self).tap do |c|
-      c.add_selector :tag, name
+      c.selector.tag name
     end
   end
 
@@ -119,38 +112,53 @@ class OperaWatir::Window
   end
 
 
+private
+  
+  # Locate elements by id.
+  #
+  # @return [Array] an array of found elements.
   def find_elements_by_id(value)
     driver.findElementsById(value).to_a.map do |node|
       OperaWatir::Element.new(node)
     end
   end
 
-  def find_elements_by_class(value)
+  # Locate elements by class.
+  #
+  # @return [Array] an array of found elements.
+  def find_elements_by_class_name(value)
     driver.findElementsByClassName(value).to_a.map do |node|
       OperaWatir::Element.new(node)
     end
   end
 
-  def find_elements_by_tag(value)
+  # Locate elements by tag name.
+  #
+  # @return [Array] an array of found elements.
+  def find_elements_by_tag_name(value)
     driver.findElementsByTagName(value).to_a.map do |node|
       OperaWatir::Element.new(node)
     end
   end
 
+  # Locate elements by CSS selector.
+  #
+  # @returns [Array] an array of found elements.
   def find_elements_by_css(value)
     driver.findElementsByCssSelector(value).to_a.map do |node|
       OperaWatir::Element.new(node)
     end
   end
 
+  # Locate elements by XPath expression.
+  #
+  # @returns [Array] an array of found elements.
   def find_elements_by_xpath(value)
     driver.findElementsByXPath(value).to_a.map do |node|
       OperaWatir::Element.new(node)
     end
   end
-
-private
-
+  
   # @private
   # @return [Object] the driver instance.
   def driver
