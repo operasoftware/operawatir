@@ -113,7 +113,7 @@ class OperaWatir::Window
 
 
 private
-  
+
   # Locate elements by id.
   #
   # @return [Array] an array of found elements.
@@ -158,7 +158,7 @@ private
       OperaWatir::Element.new(node)
     end
   end
-  
+
   # @private
   # @return [Object] the driver instance.
   def driver
