@@ -77,6 +77,12 @@ class OperaWatir::Collection
     end
   end
 
+  def find_by_tag(name)
+    OperaWatir::Collection.new(self).tap do |c|
+      c.selector.tag name
+    end
+  end
+
 private
 
   def _elms
