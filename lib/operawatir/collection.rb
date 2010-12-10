@@ -54,6 +54,16 @@ class OperaWatir::Collection
     map_or_return {|elm| elm.id}
   end
 
+  def attr(name)
+    raw_elements[0].attr(name)
+  end
+
+  def attrs(name)
+    raw_elements.map do |el|
+      el.attr(name)
+    end
+  end
+
   # Finding
   # -------
 
