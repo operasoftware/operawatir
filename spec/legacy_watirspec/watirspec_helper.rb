@@ -31,8 +31,6 @@ module WatirSpec
   end
 
   module Helpers
-    include OperaWatir::Helper::BrowserHelper
-
     def fixture(*paths)
       [WatirSpec.host, *paths].join('/')
     end
@@ -46,6 +44,7 @@ include WatirSpec::Guard::Helpers
 
 RSpec.configure do |config|
   config.include WatirSpec::Helpers
+  config.include OperaWatir::Helper::SpecHelpers
 
   config.before(:suite) do
     Thread.new { WatirSpec::Server.run! }
