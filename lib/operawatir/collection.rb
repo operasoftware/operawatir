@@ -99,30 +99,33 @@ class OperaWatir::Collection
     end
   end
 
-  # No call to super. Collections are completely opaque proxies.
-  # First we pass down to the elements
-  #   If a method is found and it's all booleans, we .all? it
-  #   otherwise we return an array of the results
-  # If no method on the elements is found then we pass it to find_by_tag
-  # NOTE this may cause some problems if people mis-spell things, as you can
-  # call any method on a collection and it will always succeed
-  def method_missing(method, *args, &blk)
-    begin
+  [:id, :class_name, :click!, :checked?, :check!, :uncheck!, :toggle_check!,
+   :enabled?, :enable!, :disable, :visible?, :show!, :hide!].each do |method|
+    define_method(method) do
       result = map_or_return {|elm| elm.send(method, *args, &blk) }
+
+      #   If a method returns all booleans, we .all? it
+      #   otherwise we return an array of the results
       if result.is_a?(Array) and result.all? { |e| !!e == e }
         result.all?
       else
         # Non-array or array of non-booleans
         result
       end
-    rescue
-      # Make sure this is a valid tag name
-      # TODO consider XML and all the valid chars there
-      if method.to_s.match(/^[a-z]+$/i)
-        find_by_tag(method)
-      else
-        raise
-      end
+    end
+  end
+
+  # No call to super. Collections are completely opaque proxies.
+  # First we pass down to the elements
+
+  # If no method on the elements is found then we pass it to find_by_tag
+  # NOTE this may cause some problems if people mis-spell things, as you can
+  # call any method on a collection and it will always succeed
+  def method_missing(method, *args, &blk)
+    if method.to_s.match(/^[a-z]+$/i)
+      find_by_tag(method)
+    else
+      super
     end
   end
 
