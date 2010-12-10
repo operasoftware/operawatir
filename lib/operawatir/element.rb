@@ -4,20 +4,20 @@ class OperaWatir::Element
   def initialize(node)
     self.node = node
   end
-  
+
   # TODO Need support for this in Webdriver
   def hash
     node.hash
   end
-  
+
   def ==(other)
     node.equals other.node
   end
-  
+
   def eql?(other)
     is_a?(other.class) && self == other
   end
-  
+
   def hash
     node.hashCode
   end
@@ -41,16 +41,16 @@ class OperaWatir::Element
   def id
     attr(:id)
   end
-  
+
   def type
     attr(:type)
   end
-  
+
   def class_name
     attr(:class)
   end
-  
-  
+
+
   def_delegator :node, :isEnabled, :enabled?
   def_delegator :node, :getText, :text
   def_delegator :node, :getHTML, :html
