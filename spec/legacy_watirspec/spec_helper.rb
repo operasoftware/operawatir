@@ -1,13 +1,13 @@
 require File.expand_path("../watirspec_helper", __FILE__)
 
-#OperaWatir.compatibility!
+OperaWatir.compatibility!
 
 module LegacyWatirSpecHelpers
   def browser
-    OperaWatir::Helper::BrowserHelper.browser
+    super.active_window
   end
 end
 
 RSpec.configure do |config|
-  config.include OperaWatir::Helper::BrowserHelper
+  config.include LegacyWatirSpecHelpers
 end
