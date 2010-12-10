@@ -25,7 +25,7 @@ class OperaWatir::Element
   # Attributes
 
   def attr(name)
-    node.getAttribute(name.to_s)
+    node.getAttribute(name.to_s.tr('_', '-'))
   end
 
   # TODO Move to Webdriver
@@ -35,7 +35,11 @@ class OperaWatir::Element
   end
 
   def method_missing(name, *args, &blk)
-    attr?(name) ? attr(name) : super
+    begin
+      attr(name)
+    rescue
+      super
+    end
   end
 
   def id
