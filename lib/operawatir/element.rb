@@ -4,20 +4,20 @@ class OperaWatir::Element
   def initialize(node)
     self.node = node
   end
-  
+
   # TODO Need support for this in Webdriver
   def hash
     node.hash
   end
-  
+
   def ==(other)
     node.equals other.node
   end
-  
+
   def eql?(other)
     is_a?(other.class) && self == other
   end
-  
+
   def hash
     node.hashCode
   end
@@ -41,27 +41,45 @@ class OperaWatir::Element
   def id
     attr(:id)
   end
-  
+
   def type
     attr(:type)
   end
-  
+
   def class_name
     attr(:class)
   end
-  
-  
+
+
   def_delegator :node, :isEnabled, :enabled?
+  def_delegator :node, :isSelected, :checked?
+  def_delegator :node, :isSelected, :selected?
+
+  def_delegator :node, :toggle, :toggle_check!
+
   def_delegator :node, :getText, :text
   def_delegator :node, :getHTML, :html
   def_delegator :node, :getValue, :value
   def_delegator :node, :getElementName, :tag_name
   def_delegator :node, :clear, :clear
 
+  def check!
+    result = node.toggle
+    if(result != true)
+      node.toggle
+    end
+  end
+
+  def uncheck!
+    result = node.toggle
+    if(result != false)
+      node.toggle
+    end
+  end
 
   # Events
 
-  def click(x=0, y=0)
+  def click!(x=0, y=0)
     node.click(x.to_i, y.to_i)
   end
 
@@ -95,7 +113,7 @@ class OperaWatir::Element
     node.sendKeys(string.split(//).to_java(:string))
   end
 
-  def fire_event(event, x = 0, y = 0)
+  def fire!(event, x = 0, y = 0)
     x += location[:x]
     y += location[:y]
 
