@@ -35,9 +35,9 @@ class OperaWatir::Element
   end
 
   def method_missing(name, *args, &blk)
-    begin
+    if name.to_s.match(/^[a-z-_]+$/i)
       attr(name)
-    rescue
+    else
       super
     end
   end
@@ -117,7 +117,7 @@ class OperaWatir::Element
     node.sendKeys(string.split(//).to_java(:string))
   end
 
-  def fire!(event, x = 0, y = 0)
+  def trigger!(event, x = 0, y = 0)
     x += location[:x]
     y += location[:y]
 
