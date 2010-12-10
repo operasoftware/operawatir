@@ -40,6 +40,23 @@ class OperaWatir::Collection
     self.class.new(parent, raw_elements + other.raw_elements)
   end
 
+  # Public interface to elms, used in Selector
+  def raw_elements
+    _elms.tap do |e|
+      raise(OperaWatir::Exceptions::UnknownObjectException) if e.empty?
+    end
+  end
+
+  # Attributes
+  # ----------
+
+  def id
+    map_or_return {|elm| elm.id}
+  end
+
+  # Finding
+  # -------
+
   # Proxy for find_elements_by_id, find_elements_by_tag etc.
   OperaWatir::Selector::BASIC_TYPES.each do |type|
     define_method("find_elements_by_#{type}") do |value|
@@ -57,8 +74,19 @@ class OperaWatir::Collection
     end
   end
 
-  def find_elements_by_index(n)
-    (n >= 0 && n < _elms.length) ? [_elms[n]] : []
+  [:id, :tag, :css, :xpath].each do |type|
+    define_method("find_by_#{type}") do |name|
+      OperaWatir::Collection.new(self).tap do |c|
+        c.selector.send(type, name.to_s)
+      end
+    end
+  end
+
+  # #class is reserved, so send to #class_name
+  def find_by_class(name)
+    OperaWatir::Collection.new(self).tap do |c|
+      c.selector.class_name name.to_s
+    end
   end
 
   # No call to super. Collections are completely opaque proxies.
@@ -85,32 +113,6 @@ class OperaWatir::Collection
       else
         raise
       end
-    end
-  end
-
-  def id
-    map_or_return {|elm| elm.id}
-  end
-
-  # Public interface to elms, used in Selector
-  def raw_elements
-    _elms.tap do |e|
-      raise(OperaWatir::Exceptions::UnknownObjectException) if e.empty?
-    end
-  end
-
-  [:id, :tag, :css, :xpath].each do |type|
-    define_method("find_by_#{type}") do |name|
-      OperaWatir::Collection.new(self).tap do |c|
-        c.selector.send(type, name.to_s)
-      end
-    end
-  end
-
-  # #class is reserved, so send to #class_name
-  def find_by_class(name)
-    OperaWatir::Collection.new(self).tap do |c|
-      c.selector.class_name name.to_s
     end
   end
 
