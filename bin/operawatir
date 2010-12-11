@@ -89,8 +89,8 @@ options = Options.parse(ARGV)
 abort 'operawatir: You need to specify at least one test file to run' if ARGV.empty?
 abort 'operawatir: --ng and --check-syntax are disabled for now' if options.ng or options.check_syntax
 
-warn 'operawatir: Launcher binary is not specified.' unless options.launcher
-warn 'operawatir: Browser binary is not specified.' unless options.executable
+warn 'operawatir: Launcher binary is not specified.' unless options.launcher || ENV['OPERA_LAUNCHER']
+warn 'operawatir: Browser binary is not specified.' unless options.executable || ENV['OPERA_PATH']
 
 RSpec.configure do |c|
   c.color_enabled = options.color
