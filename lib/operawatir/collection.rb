@@ -84,6 +84,10 @@ class OperaWatir::Collection
     end
   end
 
+  def find_elements_by_index(n)
+    (n >= 0 && n < _elms.length) ? [_elms[n]] : []
+  end
+
   [:id, :tag, :css, :xpath].each do |type|
     define_method("find_by_#{type}") do |name|
       OperaWatir::Collection.new(self).tap do |c|
@@ -99,6 +103,7 @@ class OperaWatir::Collection
     end
   end
 
+=begin
   [:id, :class_name, :click!, :checked?, :check!, :uncheck!, :toggle_check!,
    :enabled?, :enable!, :disable, :visible?, :show!, :hide!].each do |method|
     define_method(method) do
@@ -114,19 +119,11 @@ class OperaWatir::Collection
       end
     end
   end
+=end
 
   # No call to super. Collections are completely opaque proxies.
-  # First we pass down to the elements
-
-  # If no method on the elements is found then we pass it to find_by_tag
-  # NOTE this may cause some problems if people mis-spell things, as you can
-  # call any method on a collection and it will always succeed
   def method_missing(method, *args, &blk)
-    if method.to_s.match(/^[a-z]+$/i)
-      find_by_tag(method)
-    else
-      super
-    end
+    map_or_return {|elm| elm.send(method, *args, &blk) }
   end
 
 private
