@@ -10,41 +10,42 @@ describe "SelectList" do
   # Exists method
   describe "#exists?" do
     it "returns true if the select list exists" do
-      browser.select_list(:id, 'new_user_country').exists?.should be_true
+      browser.select_list(:id, 'new_user_country').should exist
+      browser.select_list(:id, /new_user_country/).should exist
+      browser.select_list(:name, 'new_user_country').should exist
+      browser.select_list(:name, /new_user_country/).should exist
+      # TODO: check behaviour in Watir
+      # browser.select_list(:value, 'Norway').should exist
+      # browser.select_list(:value, /Norway/).should exist
+      browser.select_list(:text, 'Norway').should exist
+      browser.select_list(:text, /Norway/).should exist
+      browser.select_list(:class, 'country').should exist
+      browser.select_list(:class, /country/).should exist
+      browser.select_list(:index, 1).should exist
+      browser.select_list(:xpath, "//select[@id='new_user_country']").should exist
+    end
+
+    it "returns true if the element exists (default how = :name)" do
+      browser.select_list("new_user_country").should exist
+    end
+
+    it "returns the first select if given no args" do
+      browser.select_list.should exist
     end
 
     it "returns false if the select list doesn't exist" do
       browser.select_list(:id, 'no_such_id').should_not exist
-    end
-  end
-
-  describe "how" do
-    it "can be :id" do
-      browser.select_list(:id, 'new_user_country').exists?.should be_true
-    end
-
-    it "can be :name" do
-      browser.select_list(:name, 'new_user_country').exists?.should be_true
-    end
-
-    it "can be :text" do
-      browser.select_list(:text, 'Norway').exists?.should be_true
-    end
-
-    it "can be :class" do
-      browser.select_list(:class, 'country').exists?.should be_true
-    end
-
-    it "can be :index" do
-      browser.select_list(:index, 1).exists?.should be_true
-    end
-
-    it "defaults to :name" do
-      browser.select_list("new_user_country").exists?.should be_true
-    end
-
-    it "returns the first select if given no args" do
-      browser.select_list.exists?.should be_true
+      browser.select_list(:id, /no_such_id/).should_not exist
+      browser.select_list(:name, 'no_such_name').should_not exist
+      browser.select_list(:name, /no_such_name/).should_not exist
+      browser.select_list(:value, 'no_such_value').should_not exist
+      browser.select_list(:value, /no_such_value/).should_not exist
+      browser.select_list(:text, 'no_such_text').should_not exist
+      browser.select_list(:text, /no_such_text/).should_not exist
+      browser.select_list(:class, 'no_such_class').should_not exist
+      browser.select_list(:class, /no_such_class/).should_not exist
+      browser.select_list(:index, 1337).should_not exist
+      browser.select_list(:xpath, "//select[@id='no_such_id']").should_not exist
     end
 
     it "raises TypeError when 'what' argument is invalid" do
@@ -107,6 +108,16 @@ describe "SelectList" do
 
     it "raises UnknownObjectException if the select list doesn't exist" do
       lambda { browser.select_list(:index, 1337).value }.should raise_error(UnknownObjectException)
+    end
+  end
+
+  describe "#respond_to?" do
+    it "returns true for all attribute methods" do
+      browser.select_list(:index, 1).should respond_to(:class_name)
+      browser.select_list(:index, 1).should respond_to(:id)
+      browser.select_list(:index, 1).should respond_to(:name)
+      browser.select_list(:index, 1).should respond_to(:type)
+      browser.select_list(:index, 1).should respond_to(:value)
     end
   end
 

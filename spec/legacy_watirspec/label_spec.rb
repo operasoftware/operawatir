@@ -10,36 +10,31 @@ describe "Label" do
   # Exists method
   describe "#exists?" do
     it "returns true if the element exists" do
-      browser.label(:id, 'first_label').exists?.should be_true
-    end
-    it "returns false if the element does not exist" do
-      browser.label(:id, 'no_such_id').should_not exist
-    end
-  end
-
-  describe "how" do
-    it "can be :id" do
-      browser.label(:id, 'first_label').exists?.should be_true
+      browser.label(:id, 'first_label').should exist
+      browser.label(:id, /first_label/).should exist
+      browser.label(:text, 'First name').should exist
+      browser.label(:text, /First name/).should exist
+      browser.label(:index, 1).should exist
+      browser.label(:xpath, "//label[@id='first_label']").should exist
     end
 
-    it "can be :text" do
-      browser.label(:text, 'First name').exists?.should be_true
-    end
-
-    it "can be :index" do
-      browser.label(:index, 1).exists?.should be_true
-    end
-
-    it "can be :xpath" do
-      browser.label(:xpath, "//label[@id='first_label']").exists?.should be_true
-    end
-
-    it "defaults to :text" do
-      browser.label("First name").exists?.should be_true
+    bug "WTR-361", :watir do
+      it "returns true if the element exists (default how = :text)" do
+        browser.label("First name").should exist
+      end
     end
 
     it "returns the first label if given no args" do
-      browser.label.exists?.should be_true
+      browser.label.should exist
+    end
+
+    it "returns false if the element does not exist" do
+      browser.label(:id, 'no_such_id').should_not exist
+      browser.label(:id, /no_such_id/).should_not exist
+      browser.label(:text, 'no_such_text').should_not exist
+      browser.label(:text, /no_such_text/).should_not exist
+      browser.label(:index, 1337).should_not exist
+      browser.label(:xpath, "//input[@id='no_such_id']").should_not exist
     end
 
     it "raises TypeError when 'what' argument is invalid" do
@@ -78,5 +73,13 @@ describe "Label" do
       lambda { browser.label(:index, 1337).for }.should raise_error(UnknownObjectException)
     end
   end
+
+  describe "#respond_to?" do
+    it "returns true for all attribute methods" do
+      browser.label(:index, 1).should respond_to(:id)
+      browser.label(:index, 1).should respond_to(:for)
+    end
+  end
+
 
 end

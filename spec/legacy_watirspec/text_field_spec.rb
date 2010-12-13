@@ -11,47 +11,22 @@ describe "TextField" do
   describe "#exists?" do
     it "returns true if the element exists" do
       browser.text_field(:id, 'new_user_email').should exist
-    end
-
-    it "returns false if the element does not exist" do
-      browser.text_field(:id, 'no_such_id').should_not exist
-    end
-  end
-
-  describe "how" do
-    it "can be :id" do
-      browser.text_field(:id, 'new_user_email').should exist
-    end
-
-    it "can be :name" do
+      browser.text_field(:id, /new_user_email/).should exist
       browser.text_field(:name, 'new_user_email').should exist
-    end
-
-    it "can be :value" do
+      browser.text_field(:name, /new_user_email/).should exist
       browser.text_field(:value, 'Developer').should exist
-    end
-
-    it "can be :text" do
+      browser.text_field(:value, /Developer/).should exist
       browser.text_field(:text, 'Developer').should exist
-    end
-
-    it "can be :class" do
+      browser.text_field(:text, /Developer/).should exist
       browser.text_field(:class, 'name').should exist
-    end
-
-    it "can be :index" do
+      browser.text_field(:class, /name/).should exist
       browser.text_field(:index, 1).should exist
-    end
-
-    it "can be :xpath" do
       browser.text_field(:xpath, "//input[@id='new_user_email']").should exist
-    end
-
-    it "can be :label" do
       browser.text_field(:label, "First name").should exist
-    end
+      browser.text_field(:label, /(Last|First) name/).should exist
+     end
 
-    it "defaults to :name" do
+    it "returns true if the element exists (default how = :name)" do
       browser.text_field("new_user_email").should exist
     end
 
@@ -59,12 +34,29 @@ describe "TextField" do
       browser.text_field.should exist
     end
 
-    it "exists if the element exists (no type attribute)" do
+    it "returns true if the element exists (no type attribute)" do
       browser.text_field(:id, 'new_user_first_name').should exist
     end
 
-    it "exists if the element exists (invalid type attribute)" do
+    it "returns true if the element exists (invalid type attribute)" do
       browser.text_field(:id, 'new_user_last_name').should exist
+    end
+
+    it "returns false if the element does not exist" do
+      browser.text_field(:id, 'no_such_id').should_not exist
+      browser.text_field(:id, /no_such_id/).should_not exist
+      browser.text_field(:name, 'no_such_name').should_not exist
+      browser.text_field(:name, /no_such_name/).should_not exist
+      browser.text_field(:value, 'no_such_value').should_not exist
+      browser.text_field(:value, /no_such_value/).should_not exist
+      browser.text_field(:text, 'no_such_text').should_not exist
+      browser.text_field(:text, /no_such_text/).should_not exist
+      browser.text_field(:class, 'no_such_class').should_not exist
+      browser.text_field(:class, /no_such_class/).should_not exist
+      browser.text_field(:index, 1337).should_not exist
+      browser.text_field(:xpath, "//input[@id='no_such_id']").should_not exist
+      browser.text_field(:label, "bad label").should_not exist
+      browser.text_field(:label, /bad label/).should_not exist
     end
 
     it "raises TypeError when 'what' argument is invalid" do
@@ -134,6 +126,17 @@ describe "TextField" do
 
     it "raises UnknownObjectException if the text field doesn't exist" do
       lambda { browser.text_field(:index, 1337).value }.should raise_error(UnknownObjectException)
+    end
+  end
+
+  describe "#respond_to?" do
+    it "returns true for all attribute methods" do
+      browser.text_field(:index, 1).should respond_to(:class_name)
+      browser.text_field(:index, 1).should respond_to(:id)
+      browser.text_field(:index, 1).should respond_to(:name)
+      browser.text_field(:index, 1).should respond_to(:title)
+      browser.text_field(:index, 1).should respond_to(:type)
+      browser.text_field(:index, 1).should respond_to(:value)
     end
   end
 

@@ -9,42 +9,51 @@ describe "Form" do
 
   describe "#exists?" do
     it "returns true if the form exists" do
-      browser.form(:id, 'new_user').exists?.should be_true
+      browser.form(:id, 'new_user').should exist
+      browser.form(:id, /new_user/).should exist
+
+      bug "WTR-355", :watir do
+        browser.form(:class, 'user').should exist
+        browser.form(:class, /user/).should exist
+      end
+
+      browser.form(:method, 'post').should exist
+      browser.form(:method, /post/).should exist
+      browser.form(:action, 'post_to_me').should exist
+      browser.form(:action, /to_me/).should exist
+      browser.form(:index, 1).should exist
+      browser.form(:xpath, "//form[@id='new_user']").should exist
+    end
+
+    it "returns the first form if given no args" do
+      browser.form.should exist
+    end
+
+    it "returns true if the element exists (default how = :name)" do
+      browser.form("user_new").should exist
     end
 
     it "returns false if the form doesn't exist" do
       browser.form(:id, 'no_such_id').should_not exist
       browser.form(:id, /no_such_id/).should_not exist
-    end
-  end
 
-  describe "how" do
-    it "can be :method" do
-      browser.form(:method, 'post').exists?.should be_true
-    end
+      bug "WTR-355", :watir do
+        browser.form(:class, 'no_such_class').should_not exist
+        browser.form(:class, /no_such_class/).should_not exist
+      end
 
-    it "can be :action" do
-      browser.form(:action, 'post_to_me').exists?.should be_true
-    end
-
-    it "can be :index" do
-      browser.form(:index, 1).exists?.should be_true
+      browser.form(:method, 'no_such_method').should_not exist
+      browser.form(:method, /no_such_method/).should_not exist
+      browser.form(:action, 'no_such_action').should_not exist
+      browser.form(:action, /no_such_action/).should_not exist
+      browser.form(:index, 1337).should_not exist
+      browser.form(:xpath, "//form[@id='no_such_id']").should_not exist
     end
 
-    it "can be :xpath" do
-      browser.form(:xpath, "//form[@id='new_user']").exists?.should be_true
-    end
-
-    it "returns the first form if given no args" do
-      browser.form.exists?.should be_true
-    end
-
-    it "defaults to :name)" do
-      browser.form("user_new").exists?.should be_true
-    end
-
-    it "raises TypeError when 'what' argument is invalid" do
-      lambda { browser.form(:id, 3.14).exists? }.should raise_error(TypeError)
+    bug "WTR-356", :watir do
+      it "raises TypeError when 'what' argument is invalid" do
+        lambda { browser.form(:id, 3.14).exists? }.should raise_error(TypeError)
+      end
     end
 
     it "raises MissingWayOfFindingObjectException when 'how' argument is invalid" do
