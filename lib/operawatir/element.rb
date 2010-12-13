@@ -67,7 +67,11 @@ class OperaWatir::Element
   def_delegator :node, :getValue, :value
   def_delegator :node, :getElementName, :tag_name
   def_delegator :node, :clear, :clear
-
+  
+  def disabled?
+    !enabled?
+  end
+  
   def check!
     result = node.toggle
     if(result != true)
