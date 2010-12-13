@@ -15,7 +15,9 @@ include_class com.opera.core.systems.OperaDriver
 include_class com.opera.core.systems.OperaWebElement
 include_class com.opera.core.systems.settings.OperaDriverSettings
 
-module OperaWatir; end
+module OperaWatir
+end
+
 require 'operawatir/version'
 
 require 'operawatir/exceptions'

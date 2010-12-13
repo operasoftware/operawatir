@@ -35,7 +35,7 @@ class OperaWatir::Collection
       }
     
     # (:xpath, '//area') => :xpath, '//area'
-    elsif args.first != :id && OperaWatir::Selector::BASIC_TYPES.include?(args.first)
+    elsif args.first != :id && OperaWatir::Selector::BASE_TYPES.include?(args.first)
       type, value = args.first, args[1]
     
     # (:url, 'foo.html') => :attribute, {:href => 'foo.html'}

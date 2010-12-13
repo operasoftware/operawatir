@@ -1,22 +1,14 @@
 class OperaWatir::Selector
-  BASIC_TYPES = [:id, :class_name, :tag_name, :css, :xpath, :index, :attribute]
-
+  BASE_TYPES       = [:id, :class_name, :tag_name, :css, :xpath]
+  COLLECTION_TYPES = [:index, :attribute]
+  META_TYPES       = [:join, :antijoin]
+  
+  TYPES = BASE_TYPES + COLLECTION_TYPES + META_TYPES
+  
   attr_accessor :collection, :sexp
 
   def initialize(collection, sexp=nil)
     self.collection, self.sexp = collection, sexp
-  end
-
-  # def apply_to(elements)
-  #   if basic?
-  #     collection.parent.send(finder_method, value)
-  #   else
-  #     send(finder_method, elements || collection.parent.raw_elements)
-  #   end
-  # end
-
-  def elements
-    eval(parent)
   end
 
   def eval(exp=sexp)
@@ -37,16 +29,14 @@ class OperaWatir::Selector
     end
   end
 
-  BASIC_TYPES.each do |name|
+  (BASE_TYPES + COLLECTION_TYPES).each do |name|
     define_method name do |val|
       self.sexp = [name, sexp, val]
       self
     end
   end
 
-  alias_method :tag, :tag_name
-
-  [:join, :antijoin].each do |name|
+  META_TYPES.each do |name|
     define_method name do |blk|
       list = BlockBuilder.new(self)
       blk.call(list)
@@ -56,6 +46,10 @@ class OperaWatir::Selector
       self
     end
   end
+  
+  # Handy shortcut
+  
+  alias_method :tag, :tag_name
 
 private
 
