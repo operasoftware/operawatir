@@ -19,11 +19,15 @@ class OperaWatir::Element
   def text
     node.getText.strip
   end
+
+  alias_method :value, :text
   
   # In the compatibility layer as the preferred way of doing this is
   #   elm.text.should include('My string')
   def verify_contains(str)
     text.include?(str)
   end
-  
+
+  alias_method :verify_contains?, :verify_contains
+
 end
