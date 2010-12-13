@@ -147,7 +147,7 @@ class OperaWatir::Element
       type = 'MouseEvents'
       init = "initMouseEvent(\"#{event.to_s}\", true, true, window, 1, 0, 0, 0, 0, false, false, false, false, 0, null)"
     else
-      raise Exceptions::NotImplementedException,
+      raise Exceptions::NotImplementedException, 
       "Event on#{event} is not a valid ECMAscript event for OperaWatir."
     end
 
