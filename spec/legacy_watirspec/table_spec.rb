@@ -11,23 +11,8 @@ describe "Table" do
   describe "#exists?" do
     it "returns true if the table exists" do
       browser.table(:id, 'axis_example').should exist
-    end
-
-    it "returns false if the table does not exist" do
-      browser.table(:id, 'no_such_id').should_not exist
-    end
-  end
-
-  describe "how" do
-    it "can be :id" do
-      browser.table(:id, 'axis_example').should exist
-    end
-
-    it "can be :index" do
+      browser.table(:id, /axis_example/).should exist
       browser.table(:index, 1).should exist
-    end
-
-    it "can be :xpath" do
       browser.table(:xpath, "//table[@id='axis_example']").should exist
     end
 
@@ -35,8 +20,15 @@ describe "Table" do
       browser.table.should exist
     end
 
-    it "defaults to :id" do
+    it "returns true if the element exists (default how = :id)" do
       browser.table("axis_example").should exist
+    end
+
+    it "returns false if the table does not exist" do
+      browser.table(:id, 'no_such_id').should_not exist
+      browser.table(:id, /no_such_id/).should_not exist
+      browser.table(:index, 1337).should_not exist
+      browser.table(:xpath, "//table[@id='no_such_id']").should_not exist
     end
 
     it "checks the tag name when locating by xpath" do
@@ -83,6 +75,7 @@ describe "Table" do
 
     it "raises an UnknownObjectException if the table doesn't exist" do
       lambda { browser.table(:id, 'no_such_id').row_count }.should raise_error(UnknownObjectException)
+      lambda { browser.table(:index, 1337).row_count }.should raise_error(UnknownObjectException)
     end
   end
 
@@ -102,6 +95,7 @@ describe "Table" do
 
     it "raises an UnknownObjectException if the table doesn't exist" do
       lambda { browser.table(:id, 'no_such_id').column_count }.should raise_error(UnknownObjectException)
+      lambda { browser.table(:index, 1337).column_count }.should raise_error(UnknownObjectException)
     end
   end
 

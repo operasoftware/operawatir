@@ -9,42 +9,33 @@ describe "FileField" do
 
   describe "#exist?" do
     it "returns true if the file field exists" do
-      browser.file_field(:id, 'new_user_portrait').exists?.should be_true
+      browser.file_field(:id, 'new_user_portrait').should exist
+      browser.file_field(:id, /new_user_portrait/).should exist
+      browser.file_field(:name, 'new_user_portrait').should exist
+      browser.file_field(:name, /new_user_portrait/).should exist
+      browser.file_field(:class, 'portrait').should exist
+      browser.file_field(:class, /portrait/).should exist
+      browser.file_field(:index, 1).should exist
+      browser.file_field(:xpath, "//input[@id='new_user_portrait']").should exist
+    end
+
+    it "returns the first file field if given no args" do
+      browser.file_field.should exist
+    end
+
+    it "returns true if the element exists (default how = :name)" do
+      browser.file_field("new_user_portrait").should exist
     end
 
     it "returns false if the file field doesn't exist" do
       browser.file_field(:id, 'no_such_id').should_not exist
-    end
-
-  end
-
-  describe "how" do
-    it "can be :id" do
-      browser.file_field(:id, 'new_user_portrait').exists?.should be_true
-    end
-
-    it "can be :name" do
-      browser.file_field(:name, 'new_user_portrait').exists?.should be_true
-    end
-
-    it "can be :class" do
-      browser.file_field(:class, 'portrait').exists?.should be_true
-    end
-
-    it "can be :index" do
-      browser.file_field(:index, 1).exists?.should be_true
-    end
-
-    it "can be :xpath" do
-      browser.file_field(:xpath, "//input[@id='new_user_portrait']").exists?.should be_true
-    end
-
-    it "returns the first file field if given no args" do
-      browser.file_field.exists?.should be_true
-    end
-
-    it "defaults to :name" do
-      browser.file_field("new_user_portrait").exists?.should be_true
+      browser.file_field(:id, /no_such_id/).should_not exist
+      browser.file_field(:name, 'no_such_name').should_not exist
+      browser.file_field(:name, /no_such_name/).should_not exist
+      browser.file_field(:class, 'no_such_class').should_not exist
+      browser.file_field(:class, /no_such_class/).should_not exist
+      browser.file_field(:index, 1337).should_not exist
+      browser.file_field(:xpath, "//input[@id='no_such_id']").should_not exist
     end
 
     it "raises TypeError when 'what' argument is invalid" do
@@ -101,6 +92,17 @@ describe "FileField" do
 
     it "raises UnknownObjectException if the text field doesn't exist" do
       lambda { browser.file_field(:index, 1337).type }.should raise_error(UnknownObjectException)
+    end
+  end
+
+  describe "#respond_to?" do
+    it "returns true for all attribute methods" do
+      browser.file_field(:index, 1).should respond_to(:class_name)
+      browser.file_field(:index, 1).should respond_to(:id)
+      browser.file_field(:index, 1).should respond_to(:name)
+      browser.file_field(:index, 1).should respond_to(:title)
+      browser.file_field(:index, 1).should respond_to(:type)
+      browser.file_field(:index, 1).should respond_to(:value)
     end
   end
 

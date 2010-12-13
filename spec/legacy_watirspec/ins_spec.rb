@@ -8,43 +8,35 @@ describe "Ins" do
   end
 
   # Exists method
-  describe "#exists?" do
+  describe "#exist?" do
     it "returns true if the 'ins' exists" do
-      browser.ins(:id, "lead").exists?.should be_true
-    end
-    it "returns false if the element doesn't exist" do
-      browser.ins(:id, "no_such_id").should_not exist
-
-    end
-  end
-
-  describe "how" do
-    it "can be :id" do
-      browser.ins(:id, "lead").exists?.should be_true
-    end
-
-    it "can be :text" do
-      browser.ins(:text, "This is an inserted text tag 1").exists?.should be_true
-    end
-
-    it "can be :class" do
-      browser.ins(:class, "lead").exists?.should be_true
-    end
-
-    it "can be :index" do
-      browser.ins(:index, 1).exists?.should be_true
-    end
-
-    it "can be :xpath" do
-      browser.ins(:xpath, "//ins[@id='lead']").exists?.should be_true
+      browser.ins(:id, "lead").should exist
+      browser.ins(:id, /lead/).should exist
+      browser.ins(:text, "This is an inserted text tag 1").should exist
+      browser.ins(:text, /This is an inserted text tag 1/).should exist
+      browser.ins(:class, "lead").should exist
+      browser.ins(:class, /lead/).should exist
+      browser.ins(:index, 1).should exist
+      browser.ins(:xpath, "//ins[@id='lead']").should exist
     end
 
     it "returns the first ins if given no args" do
-      browser.ins.exists?.should be_true
+      browser.ins.should exist
     end
 
-    it "defaults to :id" do
-      browser.ins("lead").exists?.should be_true
+    it "returns true if the element exists (default how = :id)" do
+      browser.ins("lead").should exist
+    end
+
+    it "returns false if the element doesn't exist" do
+      browser.ins(:id, "no_such_id").should_not exist
+      browser.ins(:id, /no_such_id/).should_not exist
+      browser.ins(:text, "no_such_text").should_not exist
+      browser.ins(:text, /no_such_text/).should_not exist
+      browser.ins(:class, "no_such_class").should_not exist
+      browser.ins(:class, /no_such_class/).should_not exist
+      browser.ins(:index, 1337).should_not exist
+      browser.ins(:xpath, "//ins[@id='no_such_id']").should_not exist
     end
 
     it "raises TypeError when 'what' argument is invalid" do
@@ -82,6 +74,7 @@ describe "Ins" do
 
     it "raises UnknownObjectException if the ins doesn't exist" do
       lambda { browser.ins(:id, "no_such_id").id }.should raise_error(UnknownObjectException)
+      lambda { browser.ins(:index, 1337).id }.should raise_error(UnknownObjectException)
     end
   end
 
@@ -96,6 +89,7 @@ describe "Ins" do
 
     it "raises UnknownObjectException if the ins doesn't exist" do
       lambda { browser.ins(:id, "no_such_id").name }.should raise_error(UnknownObjectException)
+      lambda { browser.ins(:index, 1337).name }.should raise_error(UnknownObjectException)
     end
   end
 
@@ -110,6 +104,7 @@ describe "Ins" do
 
     it "raises UnknownObjectException if the ins doesn't exist" do
       lambda { browser.ins(:id, 'no_such_id').title }.should raise_error( UnknownObjectException)
+      lambda { browser.ins(:xpath, "//ins[@id='no_such_id']").title }.should raise_error( UnknownObjectException)
     end
   end
 
@@ -124,6 +119,7 @@ describe "Ins" do
 
     it "raises UnknownObjectException if the ins doesn't exist" do
       lambda { browser.ins(:id, 'no_such_id').text }.should raise_error( UnknownObjectException)
+      lambda { browser.ins(:xpath , "//ins[@id='no_such_id']").text }.should raise_error( UnknownObjectException)
     end
   end
 
@@ -138,6 +134,18 @@ describe "Ins" do
 
     it "raises UnknownObjectException if the ins doesn't exist" do
       lambda { browser.ins(:id , "no_such_id").value }.should raise_error(UnknownObjectException)
+      lambda { browser.ins(:index , 1337).value }.should raise_error(UnknownObjectException)
+    end
+  end
+
+  describe "#respond_to?" do
+    it "returns true for all attribute methods" do
+      browser.ins(:index, 1).should respond_to(:class_name)
+      browser.ins(:index, 1).should respond_to(:id)
+      browser.ins(:index, 1).should respond_to(:name)
+      browser.ins(:index, 1).should respond_to(:title)
+      browser.ins(:index, 1).should respond_to(:text)
+      browser.ins(:index, 1).should respond_to(:value)
     end
   end
 
@@ -151,6 +159,7 @@ describe "Ins" do
 
     it "raises UnknownObjectException if the ins doesn't exist" do
       lambda { browser.ins(:id, "no_such_id").click }.should raise_error(UnknownObjectException)
+      lambda { browser.ins(:title, "no_such_title").click }.should raise_error(UnknownObjectException)
     end
   end
 

@@ -10,44 +10,39 @@ describe "Hidden" do
   # Exist method
   describe "#exists?" do
     it "returns true if the element exists" do
-      browser.hidden(:id, 'new_user_interests_dolls').exists?.should be_true
+      browser.hidden(:id, 'new_user_interests_dolls').should exist
+      browser.hidden(:id, /new_user_interests_dolls/).should exist
+      browser.hidden(:name, 'new_user_interests').should exist
+      browser.hidden(:name, /new_user_interests/).should exist
+      browser.hidden(:value, 'dolls').should exist
+      browser.hidden(:value, /dolls/).should exist
+      browser.hidden(:class, 'fun').should exist
+      browser.hidden(:class, /fun/).should exist
+      browser.hidden(:index, 1).should exist
+      browser.hidden(:xpath, "//input[@id='new_user_interests_dolls']").should exist
     end
+
+    it "returns the first hidden if given no args" do
+      browser.hidden.should exist
+    end
+
+    it "returns true if the element exists (default how = :name)" do
+      browser.hidden("new_user_interests").should exist
+    end
+
     it "returns false if the element does not exist" do
       browser.hidden(:id, 'no_such_id').should_not exist
-    end
-  end
-
-  describe "how" do
-    it "can be :id" do
-      browser.hidden(:id, 'new_user_interests_dolls').exists?.should be_true
-    end
-
-    it "can be :name" do
-      browser.hidden(:name, 'new_user_interests').exists?.should be_true
-    end
-
-    it "can be :value" do
-      browser.hidden(:value, 'dolls').exists?.should be_true
-    end
-
-    it "can be :class" do
-      browser.hidden(:class, 'fun').exists?.should be_true
-    end
-
-    it "can be :index" do
-      browser.hidden(:index, 1).exists?.should be_true
-    end
-
-    it "can be :xpath" do
-      browser.hidden(:xpath, "//input[@id='new_user_interests_dolls']").exists?.should be_true
-    end
-
-    it "returns the first hidden if not given" do
-      browser.hidden.exists?.should be_true
-    end
-
-    it "defaults to :name)" do
-      browser.hidden("new_user_interests").exists?.should be_true
+      browser.hidden(:id, /no_such_id/).should_not exist
+      browser.hidden(:name, 'no_such_name').should_not exist
+      browser.hidden(:name, /no_such_name/).should_not exist
+      browser.hidden(:value, 'no_such_value').should_not exist
+      browser.hidden(:value, /no_such_value/).should_not exist
+      browser.hidden(:text, 'no_such_text').should_not exist
+      browser.hidden(:text, /no_such_text/).should_not exist
+      browser.hidden(:class, 'no_such_class').should_not exist
+      browser.hidden(:class, /no_such_class/).should_not exist
+      browser.hidden(:index, 1337).should_not exist
+      browser.hidden(:xpath, "//input[@id='no_such_id']").should_not exist
     end
 
     it "raises TypeError when 'what' argument is invalid" do
@@ -97,6 +92,15 @@ describe "Hidden" do
 
     it "raises UnknownObjectException if the text field doesn't exist" do
       lambda { browser.hidden(:index, 1337).value }.should raise_error(UnknownObjectException)
+    end
+  end
+
+  describe "#respond_to?" do
+    it "returns true for all attribute methods" do
+      browser.hidden(:index, 1).should respond_to(:id)
+      browser.hidden(:index, 1).should respond_to(:name)
+      browser.hidden(:index, 1).should respond_to(:type)
+      browser.hidden(:index, 1).should respond_to(:value)
     end
   end
 
