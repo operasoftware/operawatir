@@ -23,9 +23,12 @@ module OperaWatir::Helper
 
   def configure_rspec!
     RSpec.configure do |config|
-      config.color_enabled = options[:color]
-      config.formatter     = options[:format]
-      config.files_to_run  = options[:files]
+      options.each do |key, value|
+        congif.send("#{key}=", value) if config.respond_to?("#{key}=")
+      end
+      # config.color_enabled = options[:color]
+      # config.formatter     = options[:format]
+      # config.files_to_run  = options[:files]
       
       config.include SpecHelpers
       

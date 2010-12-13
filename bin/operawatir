@@ -36,7 +36,7 @@ EOS
   end
 
   opts.on('--color', 'Enable colorized output (default: enabled)') do |c|
-    @options[:color] = c
+    @options[:color_enabled] = c
   end
 
   opts.on('-c', '--check-syntax', 'Check syntax only') do |c|
@@ -50,8 +50,8 @@ EOS
           :documentation],
           'Specify RSpec output format (OperaHelperFormatter,',
           'SpartanFormatter, Specdoc) and optionally an output',
-          'file') do |format|
-    @options[:format] = format
+          'file') do |formatter|
+    @options[:formatter] = formatter
   end
 
   opts.on('-e', '--executable=EXECUTABLE', 'Browser to run the test with.  ',
@@ -61,7 +61,7 @@ EOS
   
   opts.on('-o', '--options=OPTIONS', 'Options passed to the optional executable.  ',
           'Will override environmental variable OPERA_ARGS') do |o|
-    @options[:options] = o
+    @options[:args] = o
   end
 
   opts.separator ''
@@ -81,7 +81,7 @@ end.parse!(ARGV)
 if ARGV.empty?
   abort 'operawatir: You need to specify at least one test file to run'
 else
-  @options[:files] = ARGV
+  @options[:files_to_run] = ARGV
 end
 
 if @options[:ng] || @options[:check_syntax]
