@@ -1,3 +1,5 @@
+require 'rubygems'
+
 class OperaWatir::Exceptions::DeprecationException < OperaWatir::Exceptions::OperaWatirException
   
   def initialize(desc, fix, trace)

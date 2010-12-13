@@ -3,25 +3,16 @@ class OperaWatir::Browser
 
   attr_accessor :driver
   attr_accessor :active_window
-
-=begin
-  def initialize(bin_path=nil, *args)
-    self.driver = if bin_path
-      OperaDriver.new(bin_path, args.to_java(:string))
-    else
-      OperaDriver.new
-    end
-
-    self.active_window = OperaWatir::Window.new(self)
-  end
-=end
-
-  def initialize(settings=nil)
-    self.driver = if settings
-                    OperaDriver.new(settings)
-                  else
-                    OperaDriver.new
-                  end
+  
+  attr_accessor :options
+  
+  def initialize(options={})
+    self.driver = OperaDriver.new(OperaDriverSettings.new.tap {|s|
+      s.setRunOperaLauncherFromOperaDriver true
+      s.setOperaLauncherBinary ENV['OPERA_LAUNCHER'] || options[:launcher] || ''
+      s.setOperaBinaryLocation ENV['OPERA_PATH'] || options[:path] || ''
+      s.setOperaBinaryArguments ENV['OPERA_ARGS'] || options[:args] || ''
+    })
 
     self.active_window = OperaWatir::Window.new(self)
   end

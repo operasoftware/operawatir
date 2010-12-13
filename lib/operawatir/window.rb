@@ -93,32 +93,28 @@ class OperaWatir::Window
   def visual_hash(time_out=50)
     document.visual_hash timeout
   end
-
-  def method_missing(tag, *args)
-    OperaWatir::Collection.new(self).tap do |c|
-      c.selector.tag tag
-      c.add_selector_from_arguments args
-    end
-  end
-
-
-  [:id, :tag, :css, :xpath].each do |type|
+  
+  # Raw finders
+  
+  OperaWatir::Selector::BASE_TYPES.each do |type|
     define_method("find_by_#{type}") do |name|
       OperaWatir::Collection.new(self).tap do |c|
         c.selector.send(type, name.to_s)
       end
     end
   end
-
-  # #class is reserved, so send to #class_name
-  def find_by_class(name)
-    OperaWatir::Collection.new(self).tap do |c|
-      c.selector.class_name name.to_s
-    end
-  end
-
+  
+  alias_method :find_by_class, :find_by_class_name
+  
   def elements
     find_by_tag('*')
+  end
+
+  def method_missing(tag, *args)
+    OperaWatir::Collection.new(self).tap do |c|
+      c.selector.tag_name tag
+      c.add_selector_from_arguments args
+    end
   end
 
 

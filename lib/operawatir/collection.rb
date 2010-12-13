@@ -47,8 +47,8 @@ class OperaWatir::Collection
     end
   end
 
+
   # Attributes
-  # ----------
 
   def id
     map_or_return {|elm| elm.id}
@@ -64,40 +64,20 @@ class OperaWatir::Collection
     end
   end
 
+
   # Finding
-  # -------
-
-  # Proxy for find_elements_by_id, find_elements_by_tag etc.
-  OperaWatir::Selector::BASIC_TYPES.each do |type|
-    define_method("find_elements_by_#{type}") do |value|
-      _elms.inject([]) do |result, element|
-        result | element.send("find_elements_by_#{type}", value.to_s)
-      end
-    end
-  end
-
-  def find_elements_by_attribute(attributes)
-    _elms.select do |elm|
-      attributes.all? {|attribute, value|
-        elm.send(attribute).send((value.is_a?(Regexp) ? :match : :==), value)
-      }
-    end
-  end
-
-  [:id, :tag, :css, :xpath].each do |type|
+  
+  OperaWatir::Selector::BASE_TYPES.each do |type|
     define_method("find_by_#{type}") do |name|
       OperaWatir::Collection.new(self).tap do |c|
-        c.selector.send(type, name.to_s)
+        c.selector.send(type, name)
       end
     end
   end
+  
+  alias_method :find_by_class, :find_by_class_name
+  alias_method :find_by_tag,   :find_by_tag_name
 
-  # #class is reserved, so send to #class_name
-  def find_by_class(name)
-    OperaWatir::Collection.new(self).tap do |c|
-      c.selector.class_name name.to_s
-    end
-  end
 
   # No call to super. Collections are completely opaque proxies.
   # First we pass down to the elements
@@ -107,27 +87,11 @@ class OperaWatir::Collection
   # NOTE this may cause some problems if people mis-spell things, as you can
   # call any method on a collection and it will always succeed
   def method_missing(method, *args, &blk)
-    begin
-      result = map_or_return {|elm| elm.send(method, *args, &blk) }
-      if result.is_a?(Array) and result.all? { |e| !!e == e }
-        result.all?
-      else
-        # Non-array or array of non-booleans
-        result
-      end
-    rescue
-      # Make sure this is a valid tag name
-      # TODO consider XML and all the valid chars there
-      if method.to_s.match(/^[a-z]+$/i)
-        find_by_tag(method)
-      else
-        raise
-      end
-    end
+    map_or_return {|elm| elm.send(method, *args, &blk) }
   end
 
 private
-
+  
   def _elms
     @_elms ||= selector.eval
   end
@@ -137,5 +101,29 @@ private
   def map_or_return(&blk)
     single? ? blk.call(raw_elements.first) : map(&blk)
   end
-
+  
+  OperaWatir::Selector::BASE_TYPES.each do |type|
+    define_method("find_elements_by_#{type}") do |value|
+      _elms.inject([]) do |result, element|
+        result | element.send("find_elements_by_#{type}", value.to_s)
+      end
+    end
+  end
+  
+  def find_elements_by_attribute(attributes)
+    _elms.select do |elm|
+      attributes.all? {|attribute, value|
+        elm.send(attribute).send((value.is_a?(Regexp) ? :match : :==), value)
+      }
+    end
+  end
+  
+  def find_elements_by_index(index)
+    if index >= 0 && index < _elms.length
+      [_elms[index]]
+    else
+      []
+    end
+  end
+  
 end
