@@ -22,6 +22,7 @@ class OperaWatir::Element
     node.hashCode
   end
 
+
   # Attributes
 
   def attr(name)
@@ -30,12 +31,12 @@ class OperaWatir::Element
 
   # TODO Move to Webdriver
   # Relies on getAttribute returning nil
-  def attr?(name)
+  def has_attribute?(name)
     !attr(name).nil?
   end
 
   def method_missing(name, *args, &blk)
-    attr?(name) ? attr(name) : super
+    has_attribute?(name) ? attr(name) : super
   end
 
   def id
@@ -110,10 +111,12 @@ class OperaWatir::Element
   def_delegator :node, :submit
 
   def text=(string)
-    node.sendKeys(string.split(//).to_java(:string))
+    node.sendKeys(string.split('').to_java(:string))
   end
-
-  def fire!(event, x = 0, y = 0)
+  
+  alias_method :type, :text=
+  
+  def trigger!(event, x = 0, y = 0)
     x += location[:x]
     y += location[:y]
 
@@ -161,6 +164,10 @@ class OperaWatir::Element
   end
 
 
+private
+  
+  attr_accessor :node
+  
   # Finders
 
   def find_elements_by_id(value)
@@ -192,9 +199,5 @@ class OperaWatir::Element
       OperaWatir::Element.new(n)
     end
   end
-
-# private
-
-  attr_accessor :node
 
 end

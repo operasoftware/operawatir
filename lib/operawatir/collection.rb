@@ -78,17 +78,14 @@ class OperaWatir::Collection
   alias_method :find_by_class, :find_by_class_name
   alias_method :find_by_tag,   :find_by_tag_name
 
-
-  # No call to super. Collections are completely opaque proxies.
-  # First we pass down to the elements
-  #   If a method is found and it's all booleans, we .all? it
-  #   otherwise we return an array of the results
-  # If no method on the elements is found then we pass it to find_by_tag
-  # NOTE this may cause some problems if people mis-spell things, as you can
-  # call any method on a collection and it will always succeed
+  # TODO
+  #   - Find tag if method exists in a list of HTML5 elements
+  #   - If ends in ? then check that all returned values are true
+  #   - Else, return attributes from elements
   def method_missing(method, *args, &blk)
     map_or_return {|elm| elm.send(method, *args, &blk) }
   end
+  
 
 private
   
@@ -119,11 +116,7 @@ private
   end
   
   def find_elements_by_index(index)
-    if index >= 0 && index < _elms.length
-      [_elms[index]]
-    else
-      []
-    end
+    (n >= 0 && n < _elms.length) ? [_elms[n]] : []
   end
   
 end
