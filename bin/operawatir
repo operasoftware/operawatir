@@ -89,11 +89,11 @@ if @options[:ng] || @options[:check_syntax]
 end
 
 # TODO Be smarter about figuring out the Opera/Launcher path
-if !@options[:launcher] || !ENV['OPERA_LAUNCHER']
+if !ENV['OPERA_LAUNCHER'] && !@options[:launcher]
   warn 'operawatir: Launch path is not specified.'
 end
 
-if !@options[:path] || !ENV['OPERA_PATH']
+if !ENV['OPERA_PATH'] && !@options[:path]
   warn 'operawatir: Browser path is not specified.'
 end
 
