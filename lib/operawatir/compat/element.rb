@@ -9,11 +9,21 @@ class OperaWatir::Element
   end
 
   def method_missing(name, *args, &blk)
-    attr(name)
+    if !block_given? && args.empty?
+      attr(name)
+    else
+      super
+    end
   end
   
   def text
     node.getText.strip
+  end
+  
+  # In the compatibility layer as the preferred way of doing this is
+  #   elm.text.should include('My string')
+  def verify_contains(str)
+    text.include?(str)
   end
   
 end

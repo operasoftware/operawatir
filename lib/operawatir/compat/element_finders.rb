@@ -128,8 +128,10 @@ module OperaWatir::Compat::ElementFinders
   def_element :table, :tables
   
   def_element :text_field, :text_fields do |selector|
-    selector.tag(:input).attribute(:type => 'text')
-    selector.tag(:textarea)
+    selector.join do |elm|
+      elm.tag(:input).attribute :type => 'text'
+      elm.tag :textarea
+    end
   end
   
   def_element :ul, :uls
