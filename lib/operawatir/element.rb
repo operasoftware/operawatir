@@ -36,7 +36,11 @@ class OperaWatir::Element
   end
 
   def method_missing(name, *args, &blk)
-    has_attribute?(name) ? attr(name) : super
+    if !(block_given? || !args.empty?) && has_attribute?(name)
+      attr(name)
+    else
+      super
+    end
   end
 
   def id
@@ -77,7 +81,8 @@ class OperaWatir::Element
       node.toggle
     end
   end
-
+  
+  
   # Events
 
   def click!(x=0, y=0)
@@ -114,7 +119,7 @@ class OperaWatir::Element
     node.sendKeys(string.split('').to_java(:string))
   end
   
-  alias_method :type, :text=
+  alias_method :set, :text=
   
   def trigger!(event, x = 0, y = 0)
     x += location[:x]

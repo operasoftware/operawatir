@@ -11,10 +11,12 @@ require 'rbconfig'
 module OperaWatir::Helper
   extend self
   
-  attr_accessor :options
+  def settings
+    OperaWatir::Browser.settings
+  end
   
   def browser
-    @browser ||= OperaWatir::Browser.new(options)
+    @browser ||= OperaWatir::Browser.new
   end
   
   def helper_path
@@ -23,21 +25,20 @@ module OperaWatir::Helper
 
   def configure_rspec!
     RSpec.configure do |config|
-      options.each do |key, value|
-        congif.send("#{key}=", value) if config.respond_to?("#{key}=")
-      end
-      # config.color_enabled = options[:color]
-      # config.formatter     = options[:format]
-      # config.files_to_run  = options[:files]
       
+      # Set every RSpec option
+      settings.each do |key, value|
+        config.send("#{key}=", value) if config.respond_to?("#{key}=")
+      end
+            
       config.include SpecHelpers
       
       config.after(:suite) {browser.quit! if browser}
     end
   end
 
-  def run!(options={})
-    self.options = options
+  def run!(settings={})
+    OperaWatir::Browser.settings = settings
     require helper_path if File.exist?(helper_path)
     configure_rspec!
     RSpec::Core::Runner.autorun

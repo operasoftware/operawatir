@@ -1,19 +1,21 @@
 # -*- coding: utf-8 -*-
 class OperaWatir::Browser
 
-  attr_accessor :driver
-  attr_accessor :active_window
+  attr_accessor :driver, :active_window
   
-  attr_accessor :options
+  def self.settings=(settings={})
+    @opera_driver_settings = nil # Bust cache
+    @settings = settings.merge! :launcher => ENV['OPERA_LAUNCHER'] || '',
+                                :path     => ENV['OPERA_PATH'] || '',
+                                :args     => ENV['OPERA_ARGS'] || ''
+  end
   
-  def initialize(options={})
-    self.driver = OperaDriver.new(OperaDriverSettings.new.tap {|s|
-      s.setRunOperaLauncherFromOperaDriver true
-      s.setOperaLauncherBinary ENV['OPERA_LAUNCHER'] || options[:launcher] || ''
-      s.setOperaBinaryLocation ENV['OPERA_PATH'] || options[:path] || ''
-      s.setOperaBinaryArguments ENV['OPERA_ARGS'] || options[:args] || ''
-    })
-
+  def self.settings
+    @settings
+  end
+  
+  def initialize
+    self.driver = OperaDriver.new(self.class.opera_driver_settings)
     self.active_window = OperaWatir::Window.new(self)
   end
 
@@ -148,6 +150,17 @@ class OperaWatir::Browser
   # @return [String] list of available Opera actions.
   def opera_action_list
     @driver.getOperaActionList
+  end
+
+private
+
+  def self.opera_driver_settings
+    @opera_driver_settings ||= OperaDriverSettings.new.tap {|s|
+      s.setRunOperaLauncherFromOperaDriver true
+      s.setOperaLauncherBinary self.settings[:launcher]
+      s.setOperaBinaryLocation self.settings[:path]
+      s.setOperaBinaryArguments self.settings[:args]
+    }
   end
 
 end
