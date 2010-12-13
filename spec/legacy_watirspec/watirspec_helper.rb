@@ -50,3 +50,4 @@ RSpec.configure do |config|
     Thread.new { WatirSpec::Server.run! }
   end
 end
+
