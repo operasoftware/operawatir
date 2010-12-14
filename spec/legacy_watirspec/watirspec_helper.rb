@@ -29,6 +29,10 @@ module WatirSpec
   def guarded?
     !!@guarded
   end
+  
+  def new_browser
+    OperaWatir::Helper.browser
+  end
 
   module Helpers
     def fixture(*paths)

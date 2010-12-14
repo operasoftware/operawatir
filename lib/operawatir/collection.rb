@@ -30,11 +30,15 @@ class OperaWatir::Collection
   def_delegators :raw_elements, :each,
                                 :length,
                                 :size,
-                                :[],
                                 :first,
                                 :last,
                                 :empty?
-
+  
+  
+  def [](n)
+    self.class.new(self).tap {|c| c.selector.index(n) }
+  end
+  
   # Set union, used for joining complex finders (specifically for Watir1)
   def +(other)
     self.class.new(parent, raw_elements + other.raw_elements)
@@ -94,9 +98,12 @@ private
   end
 
   attr_writer :_elms
-
+  
+  # TODO Massive hack: map is overritten in Watir1
+  alias_method :_map, :map
+  
   def map_or_return(&blk)
-    single? ? blk.call(raw_elements.first) : map(&blk)
+    single? ? blk.call(raw_elements.first) : _map(&blk)
   end
   
   OperaWatir::Selector::BASE_TYPES.each do |type|

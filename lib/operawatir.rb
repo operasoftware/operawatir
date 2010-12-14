@@ -21,7 +21,6 @@ end
 require 'operawatir/version'
 
 require 'operawatir/exceptions'
-require 'operawatir/settings'
 require 'operawatir/selector'
 require 'operawatir/element'
 require 'operawatir/collection'

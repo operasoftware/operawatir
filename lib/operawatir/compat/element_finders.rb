@@ -1,13 +1,14 @@
 module OperaWatir::Compat::ElementFinders
   
-  def self.def_element(tag, plural, &blk)
+  def self.def_element(tag, plural, opts={}, &blk)
     blk = block_given? ? blk : lambda {|elm| elm.tag tag}
-
+    
+    default_method = opts[:how] || :id
+    
     define_method tag do |*arguments|
       OperaWatir::Collection.new(self).tap do |c|
-        # puts 'awesome'
         blk.call c.selector
-        c.add_selector_from_arguments arguments
+        c.add_selector_from_arguments arguments, default_method
       end
     end
 
@@ -18,19 +19,23 @@ module OperaWatir::Compat::ElementFinders
     end
   end
   
+  
+  
   def_element :area, :areas
-    
-  def_element :button, :buttons do |selector|
+  
+  def_element :button, :buttons, :how => :value do |selector|
     selector.join do |elm|
       elm.tag(:button)
       elm.tag(:input).join do |input|
         input.attribute :type => 'submit'
         input.attribute :type => 'button'
+        input.attribute :type => 'image'
+        input.attribute :type => 'reset'
       end
     end
   end
     
-  def_element :checkbox, :checkboxes do |selector|
+  def_element :checkbox, :checkboxes, :how => :name do |selector|
     selector.tag(:input).attribute :type => 'checkbox'
   end
   
@@ -48,11 +53,11 @@ module OperaWatir::Compat::ElementFinders
   
   def_element :em, :ems
   
-  def_element :filefield, :filefields do |selector|
+  def_element :file_field, :file_fields, :how => :name do |selector|
     selector.tag(:input).attribute :type => 'file'
   end
   
-  def_element :hidden, :hiddens do |selector|
+  def_element :hidden, :hiddens, :how => :name do |selector|
     selector.tag(:input).attribute :type => 'hidden'
   end
   
@@ -74,12 +79,12 @@ module OperaWatir::Compat::ElementFinders
   
   def_element :ins, :inses
   
-  def_element :label, :labels
+  def_element :label, :labels, :how => :text
   
   def_element :li, :lis
   
   # Oh, nevermind the ACTUAL LINK ELEMENT
-  def_element :link, :links do |selector|
+  def_element :link, :links, :how => :href do |selector|
     selector.tag :a
   end
   
@@ -89,7 +94,7 @@ module OperaWatir::Compat::ElementFinders
   
   def_element :ol, :ols
   
-  def_element :option, :options
+  def_element :option, :options, :how => :text
   
   def_element :p, :ps
   
@@ -105,11 +110,12 @@ module OperaWatir::Compat::ElementFinders
   
   def_element :strong, :strongs
   
-  def_element :table_body, :table_bodies do |selector|
+  # Oh, nevermind the ACTUAL BODY ELEMENT
+  def_element :body, :bodies do |selector|
     selector.tag :tbody
   end
   
-  def_element :table_cell, :table_cells do |selector|
+  def_element :cell, :cells do |selector|
     selector.tag :td
   end
   

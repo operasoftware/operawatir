@@ -3,13 +3,12 @@ class OperaWatir::Collection
   # Aliases that Watir1 defines for certain attributes
   ATTRIBUTE_ALIASES = {
     :url => :href,
-    :class => :class_name
+    :class => :class_name,
+    :tag => :tag_name
   }
   
-  DEFAULT_ATTRIBUTES = {}
-  
   # Welcome to Hacksville, population: too many
-  def add_selector_from_arguments(args)
+  def add_selector_from_arguments(args, default_method)
     # () => :index, 0
     if args.empty?
       type, value = :index, 0
@@ -28,20 +27,19 @@ class OperaWatir::Collection
       raise OperaWatir::Exceptions::MissingWayOfFindingObjectException
     
     # ('foo') => :attribute, {:id => 'foo'}
-    elsif !args.first.is_a?(Symbol)
+    elsif !args.first.is_a?(Symbol) && args[1].nil?
       type, value = :attribute, {
-        # TODO Lookup default attribute from tagname
-        :id => args.first
+        default_method => args.first
       }
     
     # (:xpath, '//area') => :xpath, '//area'
-    elsif args.first != :id && OperaWatir::Selector::BASE_TYPES.include?(args.first)
+    elsif ![:id, :class, :tag].include?(args.first) && OperaWatir::Selector::BASE_TYPES.include?(args.first)
       type, value = args.first, args[1]
     
     # (:url, 'foo.html') => :attribute, {:href => 'foo.html'}
     else
       type, value = :attribute, {
-        (ATTRIBUTE_ALIASES[args.first] || args.first) => args[1]
+        (ATTRIBUTE_ALIASES[args.first.to_sym] || args.first) => args[1]
       }
     end
     

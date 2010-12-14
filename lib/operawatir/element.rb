@@ -7,7 +7,7 @@ class OperaWatir::Element
 
   # TODO Need support for this in Webdriver
   def hash
-    node.hash
+    node.hashCode
   end
 
   def ==(other)
@@ -58,6 +58,9 @@ class OperaWatir::Element
 
   def_delegator :node, :isEnabled, :enabled?
   def_delegator :node, :isSelected, :checked?
+  
+  alias_method :set?, :checked?
+  
   def_delegator :node, :isSelected, :selected?
 
   def_delegator :node, :toggle, :toggle_check!
