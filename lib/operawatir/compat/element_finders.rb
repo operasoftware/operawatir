@@ -1,7 +1,7 @@
 module OperaWatir::Compat::ElementFinders
   
   def self.def_element(tag, plural, &blk)
-    blk = block_given? ? blk : lambda {|elm| elm.tag tag}
+    blk = block_given? ? blk : lambda {|selector| selector.tag tag}
 
     define_method tag do |*arguments|
       OperaWatir::Collection.new(self).tap do |c|
