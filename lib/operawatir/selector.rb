@@ -2,9 +2,9 @@ class OperaWatir::Selector
   BASE_TYPES       = [:id, :class_name, :tag_name, :css, :xpath]
   COLLECTION_TYPES = [:index, :attribute]
   META_TYPES       = [:join, :antijoin]
-  
+
   TYPES = BASE_TYPES + COLLECTION_TYPES + META_TYPES
-  
+
   attr_accessor :collection, :sexp
 
   def initialize(collection, sexp=nil)
@@ -20,8 +20,6 @@ class OperaWatir::Selector
       [:attribute, [:id, nil, sexp.last[:id]], {:tag_name => sexp[1].first}]
     else
       sexp
-    end.tap do |object|
-      #p object
     end
   end
 
@@ -31,7 +29,7 @@ class OperaWatir::Selector
 
   def apply(fn, *args)
     elms = args.shift
-    
+
     # Say hello to the the ol' send trick.
     # Private methods can be called when using send. This "bug" was briefly
     # disabled in 1.9 but people complained because it's very handy (but bad).
@@ -64,31 +62,31 @@ class OperaWatir::Selector
       self
     end
   end
-  
+
   # Handy shortcut
-  
+
   alias_method :tag, :tag_name
 
 private
-  
+
   def apply_join(base, elms)
     elms.inject(base) do |col, elm|
       col | elm
     end
   end
-  
+
   def apply_antijoin(base, elms)
     elms.inject(base) do |col, elm|
       col - elm
     end
   end
-  
+
   def apply_antijoin(elms)
     elms.inject([]) do |result, elm|
       result - elm
     end
   end
-  
+
   class BlockBuilder
     attr_accessor :selector, :items
 
