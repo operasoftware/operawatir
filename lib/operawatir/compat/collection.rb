@@ -47,8 +47,8 @@ class OperaWatir::Collection
   end
   
   # Watir1 Collections are 1 indexed *headslap*
-  def [](index)
-    _elms[index - 1]
+  def [](n)
+    self.class.new(self).tap {|c| c.selector.index(n-1) }
   end
 
   # Define methods to satisfy #respond_to? which is used in the tests.

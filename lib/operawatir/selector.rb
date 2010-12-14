@@ -11,8 +11,22 @@ class OperaWatir::Selector
     self.collection, self.sexp = collection, sexp
   end
 
+  def optimise(sexp)
+    if (
+        sexp.first == :attribute and
+        sexp[1].first == :tag_name and sexp[1][1].nil? and
+        sexp.last.length == 1 and sexp.last.has_key?(:id)
+    )
+      [:attribute, [:id, nil, sexp.last[:id]], {:tag_name => sexp[1].first}]
+    else
+      sexp
+    end.tap do |object|
+      p object
+    end
+  end
+
   def eval(exp=sexp)
-    exp.is_a?(Array) ? apply(*exp.map {|x| eval(x)}) : exp
+    exp.is_a?(Array) ? apply(*optimise(exp).map {|x| eval(x)}) : exp
   end
 
   def apply(fn, *args)

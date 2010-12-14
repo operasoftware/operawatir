@@ -1,5 +1,5 @@
 module OperaWatir::Compat::ElementFinders
-  
+
   def self.def_element(tag, plural, opts={}, &blk)
     blk = block_given? ? blk : lambda {|selector| selector.tag tag}
 
@@ -18,8 +18,7 @@ module OperaWatir::Compat::ElementFinders
       end
     end
   end
-  
-  
+    
   
   def_element :area, :areas
   
