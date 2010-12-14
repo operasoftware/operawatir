@@ -21,7 +21,7 @@ class OperaWatir::Selector
     else
       sexp
     end.tap do |object|
-      p object
+      #p object
     end
   end
 
