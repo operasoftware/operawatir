@@ -6,22 +6,22 @@ describe "Browser" do
   describe "#exists?" do
     it "returns true if we are at a page" do
       browser.goto(WatirSpec.files + "/non_control_elements.html")
-      browser.exists?.should be_true
+      browser.should exist
     end
 
-    it "returns false after #close" do
+    it "returns false after IE#close" do
       b = WatirSpec.new_browser
       b.close
-      b.exists?.should be_false
+      b.should_not exist
     end
   end
 
   describe "#html" do
     # what guard we want to use here kind of depends on how other impls. behave
     not_compliant_on :watir do
-      it "returns the downloaded HTML of the page" do
+      it "returns the downloaed HTML of the page" do
         browser.goto(WatirSpec.files + "/non_control_elements.html")
-        browser.html.should == File.read(File.dirname(__FILE__) + "/fixtures/non_control_elements.html")
+        browser.html.should == File.read(File.dirname(__FILE__) + "/html/non_control_elements.html")
       end
     end
 
@@ -211,19 +211,19 @@ describe "Browser" do
 
     bug "WTR-343", :watir do
       it "finds submit buttons matching the given xpath" do
-        browser.element_by_xpath("//input[@type='submit']").exists?.should be_true
+        browser.element_by_xpath("//input[@type='submit']").should exist
       end
 
       it "finds reset buttons matching the given xpath" do
-        browser.element_by_xpath("//input[@type='reset']").exists?.should be_true
+        browser.element_by_xpath("//input[@type='reset']").should exist
       end
 
       it "finds image buttons matching the given xpath" do
-        browser.element_by_xpath("//input[@type='image']").exists?.should be_true
+        browser.element_by_xpath("//input[@type='image']").should exist
       end
 
       it "finds the element matching the given xpath" do
-        browser.element_by_xpath("//input[@type='password']").exists?.should be_true
+        browser.element_by_xpath("//input[@type='password']").should exist
       end
     end
 

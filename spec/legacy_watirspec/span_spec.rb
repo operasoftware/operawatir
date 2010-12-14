@@ -10,36 +10,33 @@ describe "Span" do
   # Exists method
   describe "#exist?" do
     it "returns true if the 'span' exists" do
-      browser.span(:id, "lead").exists?.should be_true
-    end
-    it "returns false if the element doesn't exist" do
-      browser.span(:id, "no_such_id").should_not exist
-    end
-  end
-
-  describe "how" do
-    it "can be :id" do
-      browser.span(:id, "lead").exists?.should be_true
+      browser.span(:id, "lead").should exist
+      browser.span(:id, /lead/).should exist
+      browser.span(:text, "Dubito, ergo cogito, ergo sum.").should exist
+      browser.span(:text, /Dubito, ergo cogito, ergo sum/).should exist
+      browser.span(:class, "lead").should exist
+      browser.span(:class, /lead/).should exist
+      browser.span(:index, 1).should exist
+      browser.span(:xpath, "//span[@id='lead']").should exist
     end
 
-    it "can be :text" do
-      browser.span(:text, "Dubito, ergo cogito, ergo sum.").exists?.should be_true
-    end
-
-    it "can be :class" do
-      browser.span(:class, "lead").exists?.should be_true
-    end
-
-    it "can be :index" do
-      browser.span(:index, 1).exists?.should be_true
-    end
-
-    it "defaults to :id" do
-      browser.span("lead").exists?.should be_true
+    it "returns true if the element exists (default how = :id)" do
+      browser.span("lead").should exist
     end
 
     it "returns the first span if given no args" do
-      browser.span.exists?.should be_true
+      browser.span.should exist
+    end
+
+    it "returns false if the element doesn't exist" do
+      browser.span(:id, "no_such_id").should_not exist
+      browser.span(:id, /no_such_id/).should_not exist
+      browser.span(:text, "no_such_text").should_not exist
+      browser.span(:text, /no_such_text/).should_not exist
+      browser.span(:class, "no_such_class").should_not exist
+      browser.span(:class, /no_such_class/).should_not exist
+      browser.span(:index, 1337).should_not exist
+      browser.span(:xpath, "//span[@id='no_such_id']").should_not exist
     end
 
     it "raises TypeError when 'what' argument is invalid" do
@@ -77,6 +74,7 @@ describe "Span" do
 
     it "raises UnknownObjectException if the span doesn't exist" do
       lambda { browser.span(:id, "no_such_id").id }.should raise_error(UnknownObjectException)
+      lambda { browser.span(:index, 1337).id }.should raise_error(UnknownObjectException)
     end
   end
 
@@ -91,6 +89,7 @@ describe "Span" do
 
     it "raises UnknownObjectException if the span doesn't exist" do
       lambda { browser.span(:id, "no_such_id").name }.should raise_error(UnknownObjectException)
+      lambda { browser.span(:index, 1337).name }.should raise_error(UnknownObjectException)
     end
   end
 
@@ -105,6 +104,7 @@ describe "Span" do
 
     it "raises UnknownObjectException if the span doesn't exist" do
       lambda { browser.span(:id, 'no_such_id').title }.should raise_error( UnknownObjectException)
+      lambda { browser.span(:xpath, "//span[@id='no_such_id']").title }.should raise_error( UnknownObjectException)
     end
   end
 
@@ -119,6 +119,7 @@ describe "Span" do
 
     it "raises UnknownObjectException if the span doesn't exist" do
       lambda { browser.span(:id, 'no_such_id').text }.should raise_error( UnknownObjectException)
+      lambda { browser.span(:xpath , "//span[@id='no_such_id']").text }.should raise_error( UnknownObjectException)
     end
   end
 
@@ -137,6 +138,17 @@ describe "Span" do
     end
   end
 
+  describe "#respond_to?" do
+    it "returns true for all attribute methods" do
+      browser.span(:index, 1).should respond_to(:class_name)
+      browser.span(:index, 1).should respond_to(:id)
+      browser.span(:index, 1).should respond_to(:name)
+      browser.span(:index, 1).should respond_to(:title)
+      browser.span(:index, 1).should respond_to(:text)
+      browser.span(:index, 1).should respond_to(:value)
+    end
+  end
+
   # Other
   describe "#click" do
     it "fires events" do
@@ -147,6 +159,7 @@ describe "Span" do
 
     it "raises UnknownObjectException if the span doesn't exist" do
       lambda { browser.span(:id, "no_such_id").click }.should raise_error(UnknownObjectException)
+      lambda { browser.span(:title, "no_such_title").click }.should raise_error(UnknownObjectException)
     end
   end
 
