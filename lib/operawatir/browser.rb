@@ -28,7 +28,6 @@ class OperaWatir::Browser
 
   def url=(url)
     active_window.url = url
-    active_window
   end
   alias_method :url, :url=
 
