@@ -125,5 +125,5 @@ private
   def find_elements_by_index(n)
     (n >= 0 && n < _elms.length) ? [_elms[n]] : []
   end
-  
+
 end
