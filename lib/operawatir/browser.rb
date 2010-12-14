@@ -158,7 +158,7 @@ private
       s.setRunOperaLauncherFromOperaDriver true
       s.setOperaLauncherBinary self.settings[:launcher]
       s.setOperaBinaryLocation self.settings[:path]
-      s.setOperaBinaryArguments self.settings[:args]
+      s.setOperaBinaryArguments self.settings[:args] + ' opera:debug'
     }
   end
 
