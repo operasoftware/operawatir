@@ -1,5 +1,7 @@
 module OperaWatir
   
+  module Compat; end
+
   def self.compatibility!
     # require 'operawatir/compat/deprecation'
     require 'operawatir/compat/browser'

@@ -14,86 +14,64 @@ describe "Frame" do
     browser.frame(:id, "frame_2").text_field(:name, 'recieverElement').value.should == 'send_this_value'
   end
 
-  describe "#exists?" do
-    it "returns true if the frame exists" do
-      browser.frame(:id, "frame_1").exists?.should be_true
-    end
-
-    it "returns false if the frame doesn't exist" do
-      browser.frame(:id, "no_such_id").should_not exist
-    end
-  end
-
-  describe "how" do
-    it "can be :id" do
-      browser.frame(:id, "frame_1").exists?.should be_true
-    end
-
-    it "can be :name" do
-      browser.frame(:name, "frame1").exists?.should be_true
-    end
-
-    it "can be :src" do
-      browser.frame(:src, "frame_1.html").exists?.should be_true
-    end
-
-    it "can be :class" do
-      browser.frame(:class, "half").exists?.should be_true
-    end
-
-    it "can be :index" do
-      browser.frame(:index, 1).exists?.should be_true
-    end
-
-    it "returns true if the element exists (default how = :name)" do
-      browser.frame("frame1").exists?.should be_true
-    end
-
-    it "returns the first frame if given no args" do
-      browser.frame.exists?.should be_true
-    end
-
-    it "raises TypeError when 'what' argument is invalid" do
-      lambda { browser.frame(:id, 3.14).exists? }.should raise_error(TypeError)
-    end
-
-    it "raises MissingWayOfFindingObjectException when 'how' argument is invalid" do
-      lambda { browser.frame(:no_such_how, 'some_value').exists? }.should raise_error(MissingWayOfFindingObjectException)
-    end
-  end
-
-  describe "iframe" do
-    before :each do
-      browser.goto(WatirSpec.files + "/iframes.html")
-    end
-
-    describe "how" do
-      it "can be :id" do
-        browser.frame(:id, "frame_1").exists?.should be_true
+  not_compliant_on :watir do
+    describe "#exist?" do
+      it "returns true if the frame exists" do
+        browser.frame(:id, "frame_1").should exist
+        browser.frame(:id, /frame/).should exist
+        browser.frame(:name, "frame1").should exist
+        browser.frame(:name, /frame/).should exist
+        browser.frame(:src, "frame_1.html").should exist
+        browser.frame(:src, /frame_1/).should exist
+        browser.frame(:class, "half").should exist
+        browser.frame(:class, /half/).should exist
+        browser.frame(:index, 1).should exist
+        browser.frame(:xpath, "//frame[@id='frame_1']").should exist
       end
 
-      it "can be :name" do
-        browser.frame(:name, "frame1").exists?.should be_true
-      end
-
-      it "can be :src" do
-        browser.frame(:src, "frame_1.html").exists?.should be_true
-      end
-
-      it "can be :class" do
-        browser.frame(:class, "iframe").exists?.should be_true
-      end
-
-      it "can be :index" do
-        browser.frame(:index, 1).exists?.should be_true
-      end
-
-      it "can be :xpath" do
-        browser.frame(:xpath, "//iframe[@id='frame_1']").exists?.should be_true
+      it "returns true if the iframe exists" do
+        browser.goto(WatirSpec.files + "/iframes.html")
+        browser.frame(:id, "frame_1").should exist
+        browser.frame(:id, /frame/).should exist
+        browser.frame(:name, "frame1").should exist
+        browser.frame(:name, /frame/).should exist
+        browser.frame(:src, "frame_1.html").should exist
+        browser.frame(:src, /frame_1/).should exist
+        browser.frame(:class, "iframe").should exist
+        browser.frame(:class, /iframe/).should exist
+        browser.frame(:index, 1).should exist
+        browser.frame(:xpath, "//iframe[@id='frame_1']").should exist
       end
 
       it "returns true if the element exists (default how = :name)" do
-        browser.frame("frame1").exists?.should be_true
+        browser.frame("frame1").should exist
+        browser.goto(WatirSpec.files + "/iframes.html")
+        browser.frame("frame1").should exist
+      end
+
+      it "returns the first frame if given no args" do
+        browser.frame.should exist
+      end
+
+      it "returns false if the frame doesn't exist" do
+        browser.frame(:id, "no_such_id").should_not exist
+        browser.frame(:id, /no_such_id/).should_not exist
+        browser.frame(:name, "no_such_text").should_not exist
+        browser.frame(:name, /no_such_text/).should_not exist
+        browser.frame(:src, "no_such_src").should_not exist
+        browser.frame(:src, /no_such_src/).should_not exist
+        browser.frame(:class, "no_such_class").should_not exist
+        browser.frame(:class, /no_such_class/).should_not exist
+        browser.frame(:index, 1337).should_not exist
+        browser.frame(:xpath, "//frame[@id='no_such_id']").should_not exist
+      end
+
+      it "raises TypeError when 'what' argument is invalid" do
+        lambda { browser.frame(:id, 3.14).exists? }.should raise_error(TypeError)
+      end
+
+      it "raises MissingWayOfFindingObjectException when 'how' argument is invalid" do
+        lambda { browser.frame(:no_such_how, 'some_value').exists? }.should raise_error(MissingWayOfFindingObjectException)
       end
     end
   end

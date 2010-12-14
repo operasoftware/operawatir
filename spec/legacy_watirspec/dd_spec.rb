@@ -10,33 +10,18 @@ describe "Dd" do
   # Exists method
   describe "#exists?" do
     it "returns true if the element exists" do
-      browser.dd(:id, "someone").exists?.should be_true
+      browser.dd(:id, "someone").should exist
+      browser.dd(:class, "name").should exist
+      browser.dd(:xpath, "//dd[@id='someone']").should exist
+      browser.dd(:index, 1).should exist
+    end
+
+    it "returns the first dd if given no args" do
+      browser.dd.should exist
     end
 
     it "returns false if the element does not exist" do
       browser.dd(:id, "no_such_id").should_not exist
-    end
-  end
-
-  describe "how" do
-    it "can be :id" do
-      browser.dd(:id, "someone").exists?.should be_true
-    end
-
-    it "can be :class" do
-      browser.dd(:class, "name").exists?.should be_true
-    end
-
-    it "can be :xpath" do
-      browser.dd(:xpath, "//dd[@id='someone']").exists?.should be_true
-    end
-
-    it "can be :index" do
-      browser.dd(:index, 1).exists?.should be_true
-    end
-
-    it "returns the first dd if not given" do
-      browser.dd.exists?.should be_true
     end
 
     it "raises TypeError when 'what' argument is invalid" do
@@ -60,6 +45,9 @@ describe "Dd" do
 
     it "raises UnknownObjectException if the element does not exist" do
       lambda { browser.dd(:id, "no_such_id").class_name }.should raise_error(UnknownObjectException)
+      lambda { browser.dd(:title, "no_such_title").class_name }.should raise_error(UnknownObjectException)
+      lambda { browser.dd(:index, 1337).class_name }.should raise_error(UnknownObjectException)
+      lambda { browser.dd(:xpath, "//dd[@id='no_such_id']").class_name }.should raise_error(UnknownObjectException)
     end
   end
 
@@ -74,6 +62,8 @@ describe "Dd" do
 
     it "raises UnknownObjectException if the element does not exist" do
       lambda {browser.dd(:id, "no_such_id").id }.should raise_error(UnknownObjectException)
+      lambda {browser.dd(:title, "no_such_id").id }.should raise_error(UnknownObjectException)
+      lambda {browser.dd(:index, 1337).id }.should raise_error(UnknownObjectException)
     end
   end
 
@@ -94,6 +84,19 @@ describe "Dd" do
 
     it "raises UnknownObjectException if the element does not exist" do
       lambda { browser.dd(:id, "no_such_id").text }.should raise_error(UnknownObjectException)
+      lambda { browser.dd(:title, "no_such_title").text }.should raise_error(UnknownObjectException)
+      lambda { browser.dd(:index, 1337).text }.should raise_error(UnknownObjectException)
+      lambda { browser.dd(:xpath, "//dd[@id='no_such_id']").text }.should raise_error(UnknownObjectException)
+    end
+  end
+
+  describe "#respond_to?" do
+    it "returns true for all attribute methods" do
+      browser.dd(:index, 1).should respond_to(:id)
+      browser.dd(:index, 1).should respond_to(:class_name)
+      browser.dd(:index, 1).should respond_to(:style)
+      browser.dd(:index, 1).should respond_to(:text)
+      browser.dd(:index, 1).should respond_to(:title)
     end
   end
 
@@ -107,6 +110,9 @@ describe "Dd" do
 
     it "raises UnknownObjectException if the element does not exist" do
       lambda { browser.dd(:id, "no_such_id").click }.should raise_error(UnknownObjectException)
+      lambda { browser.dd(:title, "no_such_title").click }.should raise_error(UnknownObjectException)
+      lambda { browser.dd(:index, 1337).click }.should raise_error(UnknownObjectException)
+      lambda { browser.dd(:xpath, "//dd[@id='no_such_id']").click }.should raise_error(UnknownObjectException)
     end
   end
 

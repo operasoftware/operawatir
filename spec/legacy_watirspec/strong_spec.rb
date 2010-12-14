@@ -10,37 +10,33 @@ describe "Strong" do
   # Exists method
   describe "#exist?" do
     it "returns true if the element exists" do
+      browser.strong(:id, "descartes").should exist
+      browser.strong(:id, /descartes/).should exist
+      browser.strong(:text, "Dubito, ergo cogito, ergo sum.").should exist
+      browser.strong(:text, /Dubito, ergo cogito, ergo sum/).should exist
+      browser.strong(:class, "descartes").should exist
+      browser.strong(:class, /descartes/).should exist
+      browser.strong(:index, 1).should exist
+      browser.strong(:xpath, "//strong[@id='descartes']").should exist
+    end
 
+    it "returns true if the element exists (default how = :id)" do
+      browser.strong("descartes").should exist
+    end
+
+    it "returns the first strong if given no args" do
+      browser.strong.should exist
     end
 
     it "returns false if the element doesn't exist" do
       browser.strong(:id, "no_such_id").should_not exist
-    end
-  end
-
-  describe "how" do
-    it "can be :id" do
-      browser.strong(:id, "descartes").exists?.should be_true
-    end
-
-    it "can be :text" do
-      browser.strong(:text, "Dubito, ergo cogito, ergo sum.").exists?.should be_true
-    end
-
-    it "can be :class" do
-      browser.strong(:class, "descartes").exists?.should be_true
-    end
-
-    it "can be :index" do
-      browser.strong(:index, 1).exists?.should be_true
-    end
-
-    it "defaults to :id)" do
-      browser.strong("descartes").exists?.should be_true
-    end
-
-    it "returns the first strong if given no args" do
-      browser.strong.exists?.should be_true
+      browser.strong(:id, /no_such_id/).should_not exist
+      browser.strong(:text, "no_such_text").should_not exist
+      browser.strong(:text, /no_such_text/).should_not exist
+      browser.strong(:class, "no_such_class").should_not exist
+      browser.strong(:class, /no_such_class/).should_not exist
+      browser.strong(:index, 1337).should_not exist
+      browser.strong(:xpath, "//strong[@id='no_such_id']").should_not exist
     end
 
     it "raises TypeError when 'what' argument is invalid" do
@@ -74,6 +70,7 @@ describe "Strong" do
 
     it "raises UnknownObjectException if the element doesn't exist" do
       lambda { browser.strong(:id, "no_such_id").id }.should raise_error(UnknownObjectException)
+      lambda { browser.strong(:index, 1337).id }.should raise_error(UnknownObjectException)
     end
   end
 
@@ -84,7 +81,17 @@ describe "Strong" do
 
     it "raises UnknownObjectException if the element doesn't exist" do
       lambda { browser.strong(:id, 'no_such_id').text }.should raise_error( UnknownObjectException)
+      lambda { browser.strong(:xpath , "//strong[@id='no_such_id']").text }.should raise_error( UnknownObjectException)
     end
   end
+
+  describe "#respond_to?" do
+    it "returns true for all attribute methods" do
+      browser.strong(:index, 1).should respond_to(:class_name)
+      browser.strong(:index, 1).should respond_to(:id)
+      browser.strong(:index, 1).should respond_to(:text)
+    end
+  end
+
   # Other
 end

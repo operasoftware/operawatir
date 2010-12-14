@@ -11,31 +11,11 @@ describe "H1", "H2", "H3", "H4", "H5", "H6" do
   describe "#exist?" do
     it "returns true if the element exists" do
       browser.h1(:id, "header1").should exist
-    end
-
-    it "returns false if the element does not exist" do
-      browser.h1(:id, "no_such_id").should_not exist
-    end
-  end
-
-  describe "how" do
-    it "can be :id" do
-      browser.h1(:id, "header1").should exist
-    end
-
-    it "can be :text" do
+      browser.h2(:id, /header2/).should exist
       browser.h3(:text, "Header 3").should exist
-    end
-
-    it "can be :index" do
+      browser.h4(:text, /Header 4/).should exist
       browser.h5(:index, 1).should exist
-    end
-
-    it "can be :index" do
       browser.h6(:index, 1).should exist
-    end
-
-    it "can be :xpath" do
       browser.h1(:xpath, "//h1[@id='first_header']").should exist
     end
 
@@ -45,6 +25,15 @@ describe "H1", "H2", "H3", "H4", "H5", "H6" do
 
     it "returns the first h1 if given no args" do
       browser.h1.should exist
+    end
+
+    it "returns true if the element exists" do
+      browser.h1(:id, "no_such_id").should_not exist
+      browser.h1(:id, /no_such_id/).should_not exist
+      browser.h1(:text, "no_such_text").should_not exist
+      browser.h1(:text, /no_such_text 1/).should_not exist
+      browser.h1(:index, 1337).should_not exist
+      browser.h1(:xpath, "//p[@id='no_such_id']").should_not exist
     end
 
     it "raises TypeError when 'what' argument is invalid" do
@@ -82,6 +71,7 @@ describe "H1", "H2", "H3", "H4", "H5", "H6" do
 
     it "raises UnknownObjectException if the p doesn't exist" do
       lambda { browser.h1(:id, "no_such_id").id }.should raise_error(UnknownObjectException)
+      lambda { browser.h1(:index, 1337).id }.should raise_error(UnknownObjectException)
     end
   end
 
@@ -97,6 +87,14 @@ describe "H1", "H2", "H3", "H4", "H5", "H6" do
     it "raises UnknownObjectException if the p doesn't exist" do
       lambda { browser.h1(:id, 'no_such_id').text }.should raise_error(UnknownObjectException)
       lambda { browser.h1(:xpath , "//h1[@id='no_such_id']").text }.should raise_error(UnknownObjectException)
+    end
+  end
+
+  describe "#respond_to?" do
+    it "returns true for all attribute methods" do
+      browser.h1(:index, 1).should respond_to(:class_name)
+      browser.h1(:index, 1).should respond_to(:id)
+      browser.h1(:index, 1).should respond_to(:text)
     end
   end
 
