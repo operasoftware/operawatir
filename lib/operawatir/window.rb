@@ -98,6 +98,8 @@ class OperaWatir::Window
   
   OperaWatir::Selector::BASE_TYPES.each do |type|
     define_method("find_by_#{type}") do |name|
+      puts "find_by_#{type} with #{name.inspect}"
+
       OperaWatir::Collection.new(self).tap do |c|
         c.selector.send(type, name.to_s)
       end
@@ -111,6 +113,8 @@ class OperaWatir::Window
   end
 
   def method_missing(tag, *args)
+#    puts "method missing: #{tag} and #{args.inspect}"
+
     OperaWatir::Collection.new(self).tap do |c|
       c.selector.tag_name tag
       c.add_selector_from_arguments args
@@ -160,6 +164,8 @@ private
   #
   # @returns [Array] an array of found elements.
   def find_elements_by_xpath(value)
+    #warn 'window: find_elements_by_xpath'
+
     driver.findElementsByXPath(value).to_a.map do |node|
       OperaWatir::Element.new(node)
     end
