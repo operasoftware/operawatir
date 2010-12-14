@@ -6,9 +6,11 @@ module OperaWatir
     # require 'operawatir/compat/deprecation'
     require 'operawatir/compat/browser'
     require 'operawatir/compat/element_finders'
+    require 'operawatir/compat/window'
     
     Browser.send :include, Compat::Browser
     Window.send :include, Compat::ElementFinders
+    Window.send :include, Compat::Window
     Collection.send :include, Compat::ElementFinders
     
     # TODO Ruby Modules can't override methods defined in their included klass
