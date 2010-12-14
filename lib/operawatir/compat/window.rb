@@ -5,6 +5,7 @@ module OperaWatir
       def contains_text(str)
         text.index(str)
       end
+<<<<<<< HEAD
       
       #alias_method :element_by_xpath, :find_by_xpath
 #      alias_method :elements_by_xpath, :find_elements_by_xpath
@@ -29,6 +30,9 @@ module OperaWatir
 #        end
 #      end
       
+=======
+
+>>>>>>> 4b4eba4db3b4ea80ab071869b5d272dfc6637a5b
     end
   end
 end
