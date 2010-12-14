@@ -2,18 +2,18 @@
 class OperaWatir::Browser
 
   attr_accessor :driver, :active_window
-  
+
   def self.settings=(settings={})
     @opera_driver_settings = nil # Bust cache
     @settings = settings.merge! :launcher => ENV['OPERA_LAUNCHER'] || '',
                                 :path     => ENV['OPERA_PATH'] || '',
                                 :args     => ENV['OPERA_ARGS'] || ''
   end
-  
+
   def self.settings
-    @settings
+    @settings || self.settings = {}
   end
-  
+
   def initialize
     self.driver = OperaDriver.new(self.class.opera_driver_settings)
     self.active_window = OperaWatir::Window.new(self)
@@ -28,7 +28,6 @@ class OperaWatir::Browser
 
   def url=(url)
     active_window.url = url
-    active_window
   end
   alias_method :url, :url=
 
