@@ -84,13 +84,9 @@ describe "Button" do
 
   describe "#id" do
     it "returns the id if the button exists" do
-<<<<<<< HEAD
-      browser.button(:id, "new_user_submit").id.should == 'new_user_submit'
-=======
       browser.button(:index, 1).id.should == 'new_user_submit'
       browser.button(:index, 2).id.should == 'new_user_reset'
       browser.button(:index, 3).id.should == 'new_user_button'
->>>>>>> 1f66e61ea831b1173da8252e51072d3b49ccee8f
     end
 
     it "raises UnknownObjectException if button does not exist" do

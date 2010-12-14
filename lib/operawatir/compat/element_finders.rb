@@ -1,16 +1,9 @@
 module OperaWatir::Compat::ElementFinders
   
-<<<<<<< HEAD
-  def self.def_element(tag, plural, opts={}, &blk)
-    blk = block_given? ? blk : lambda {|elm| elm.tag tag}
-    
-    default_method = opts[:how] || :id
-    
-=======
   def self.def_element(tag, plural, &blk)
     blk = block_given? ? blk : lambda {|selector| selector.tag tag}
 
->>>>>>> 1f66e61ea831b1173da8252e51072d3b49ccee8f
+
     define_method tag do |*arguments|
       OperaWatir::Collection.new(self).tap do |c|
         blk.call c.selector
