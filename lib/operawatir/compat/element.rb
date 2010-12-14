@@ -26,4 +26,61 @@ class OperaWatir::Element
     text.include?(str)
   end
   
+  alias_method :verify_contains?, :verify_contains
+  
+  alias_method :caption, :text
+  
+  def click(x=0, y=0)
+    assert_enabled!
+    node.click(x.to_i, y.to_i)
+  end
+  
+  def clear
+    assert_enabled!
+    node.clear
+  end
+  
+  # Set to text, but check on textboxes.
+  def set(value=nil)
+    if value
+      self.text = value
+    else
+      check!
+    end
+  end
+  
+  def url
+    attr(tag_name == 'A' ? :href : :url)
+  end
+  
+  def selected_options
+    options(:selected?, true)
+  end
+  
+  def selected?(option=nil)
+    if option.nil?
+      selected_options.text.include?(option)
+    else
+      node.isSelected
+    end
+  end
+  
+  def type
+    if tag_name == 'SELECT'
+      attr(:multiple) == 'multiple' ? 'select-multiple' : 'select-one'
+    else
+      attr(:type)
+    end
+  end
+  
+  def colspan
+    attr(:colspan).to_i
+  end
+  
+private
+  
+  def assert_enabled!
+    raise OperaWatir::Exceptions::ObjectDisabledException if disabled?
+  end
+  
 end

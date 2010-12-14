@@ -24,6 +24,8 @@ describe "Pre" do
     end
 
     it "can be :text" do
+      p browser.pre.text
+      
       browser.pre(:text, 'browser.pre(:id, "rspec").exists?.should be_true').exists?.should be_true
     end
 
