@@ -19,10 +19,6 @@ module OperaWatir::Helper
     @browser ||= OperaWatir::Browser.new
   end
   
-  def helper_path
-    File.expand_path(File.join(Dir.pwd, 'helper.rb'))
-  end
-
   def configure_rspec!
     RSpec.configure do |config|
       
@@ -33,13 +29,12 @@ module OperaWatir::Helper
             
       config.include SpecHelpers
       
-      config.after(:suite) {browser.quit! if browser}
+      config.after(:suite) { browser.quit! if browser }
     end
   end
 
   def run!(settings={})
     OperaWatir::Browser.settings = settings
-    require helper_path if File.exist?(helper_path)
     configure_rspec!
     RSpec::Core::Runner.autorun
   end
