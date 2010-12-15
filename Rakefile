@@ -11,8 +11,8 @@ Jeweler::Tasks.new do |gem|
   gem.version  = OperaWatir.version
   gem.date     = Date.today.to_s
 
-  gem.authors     = ['Deniz Turkoglu', 'Andreas Tolf Tolfsen', 'Chris Lloyd']
-  gem.email       = ['dturkoglu@opera.com', 'andreastt@opera.com', 'christopherl@opera.com']
+  gem.authors     = ['Deniz Turkoglu', 'Andreas Tolf Tolfsen', 'Chris Lloyd', 'Stuart Knightley']
+  gem.email       = ['dturkoglu@opera.com', 'andreastt@opera.com', 'christopherl@opera.com', 'stuartk@opera.com']
   gem.homepage    = 'http://opera.github.com/operawatir'
   gem.summary     = 'OperaWatir on OperaDriver engine'
   gem.description = gem.summary
@@ -46,4 +46,3 @@ end
 task :doc => :yard
 
 CLEAN.add 'doc'
-
