@@ -50,7 +50,7 @@ EOS
           [:OperaHelperFormatter, :SpartanFormatter, :progress,
           :documentation],
           'Specify RSpec output format (OperaHelperFormatter,',
-          'SpartanFormatter, proress) and optionally an output',
+          'SpartanFormatter, progess) and optionally an output',
           'file') do |formatter|
     @options[:formatter] = formatter
   end
