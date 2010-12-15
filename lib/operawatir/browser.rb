@@ -45,7 +45,7 @@ class OperaWatir::Browser
 
   # Instruct the browser instance to quit and shut down.
   def quit!
-    driver.quit
+    driver.shutdown
   end
 
   # TODO: This should be on Windows
