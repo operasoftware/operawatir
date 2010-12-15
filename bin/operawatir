@@ -2,15 +2,15 @@
 require 'rubygems'
 require 'optparse'
 require 'rspec'
+require 'rbconfig'
 require 'operawatir'
 require 'operawatir/helper'
 
 @options = {
-  :ng           => false,
-  # Stolen from: http://blog.headius.com/2006/03/ruby-in-rough.html
-  :color        => /mswin|mingw|bccwin|wince|emx/ =~ RUBY_PLATFORM,
-  :check_syntax => false,
-  :format       => 'progress'
+  :ng            => false,
+  :color_enabled => Config::CONFIG['host_os'] =~ /mswin|mingw|bccwin|wince|emx/ ? false : true,
+  :check_syntax  => false,
+  :format        => 'progress'
 }
 
 # TODO
@@ -18,30 +18,31 @@ require 'operawatir/helper'
 
 OptionParser.new do |opts|
   opts.banner = <<EOS
-Usage: operawatir [--ng] [[-l|--launcher=BINARY] [--color] [-c|--check-syntax]
-       [-f|--format=FORMAT[:OUT_FILE]] [-e|--executable=BINARY] [-o|--options=OPTIONS]
-       [-h|--help] [-v|--version] FILES
+Usage: operawatir [-l|--launcher=BINARY] [-e|--executable=BINARY] [--no-color]
+       [-f|--format=FORMAT[:OUT_FILE]] [-o|--options=OPTIONS] [-h|--help]
+       [-v|--version] FILES
 EOS
 
   opts.separator ""
   opts.separator "Specific options:"
 
-  opts.on('--ng', 'Connect to Nailgun server instead of starting our ',
-                  'own JVM') do |ng|
-    @options[:ng] = ng
-  end
-
-  opts.on('-l', '--launcher=EXECUTABLE', 'Path to launcher binary') do |c|
+  opts.on('-l', '--launcher=EXECUTABLE', 'Path to launcher binary, will use environmental ',
+          'variable OPERA_LAUNCHER if not specified') do |c|
     @options[:launcher] = c
   end
 
-  opts.on('--color', 'Enable colorized output (default: enabled)') do |c|
-    @options[:color_enabled] = c
+  opts.on('-e', '--executable=EXECUTABLE', 'Browser to run the test with, will use environmental ',
+          'variable OPERA_PATH if not specified') do |e|
+    @options[:path] = e
   end
 
-  opts.on('-c', '--check-syntax', 'Check syntax only') do |c|
-    @options[:check_syntax] = c
+  opts.on('--no-color', 'Disable colorized output') do |c|
+    @options[:color_enabled] = false
   end
+
+  #opts.on('-c', '--check-syntax', 'Check syntax only') do |c|
+  #  @options[:check_syntax] = true
+  #end
   
   # TODO Needs compatibility with RSpec, allow Opera/Spartan formatters but
   #   fall back to RSpec. Outfile should also be specificed by the "-o" opt.
@@ -49,17 +50,12 @@ EOS
           [:OperaHelperFormatter, :SpartanFormatter, :progress,
           :documentation],
           'Specify RSpec output format (OperaHelperFormatter,',
-          'SpartanFormatter, Specdoc) and optionally an output',
+          'SpartanFormatter, proress) and optionally an output',
           'file') do |formatter|
     @options[:formatter] = formatter
   end
-
-  opts.on('-e', '--executable=EXECUTABLE', 'Browser to run the test with.  ',
-          'Will override environmental variable OPERA_PATH') do |e|
-    @options[:path] = e
-  end
   
-  opts.on('-o', '--options=OPTIONS', 'Options passed to the optional executable.  ',
+  opts.on('-o', '--options=OPTIONS', 'Options passed to the executable.  ',
           'Will override environmental variable OPERA_ARGS') do |o|
     @options[:args] = o
   end
@@ -84,17 +80,10 @@ else
   @options[:files_to_run] = ARGV
 end
 
-if @options[:ng] || @options[:check_syntax]
-  abort 'operawatir: --ng and --check-syntax are disabled for now'
-end
+#abort 'operawatir: --ng and --check-syntax are disabled for now' if @options[:ng] || @options[:check_syntax]
 
 # TODO Be smarter about figuring out the Opera/Launcher path
-if !ENV['OPERA_LAUNCHER'] && !@options[:launcher]
-  warn 'operawatir: Launch path is not specified.'
-end
-
-if !ENV['OPERA_PATH'] && !@options[:path]
-  warn 'operawatir: Browser path is not specified.'
-end
+warn 'operawatir: Launch path is not specified.' if !ENV['OPERA_LAUNCHER'] && !@options[:launcher]
+warn 'operawatir: Browser path is not specified.' if !ENV['OPERA_PATH'] && !@options[:path]
 
 OperaWatir::Helper.run! @options
