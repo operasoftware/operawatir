@@ -12,12 +12,16 @@ class OperaWatir::Selector
   end
 
   def optimise(sexp)
+    # [:attribute, [:tag_name, nil, TAG], {:id => ID}]
+    # =>
+    # [:tag_name, [:id, nil, ID], TAG]
     if (
         sexp.first == :attribute and
         sexp[1].first == :tag_name and sexp[1][1].nil? and
         sexp.last.length == 1 and sexp.last.has_key?(:id)
     )
-      [:attribute, [:id, nil, sexp.last[:id]], {:tag_name => sexp[1].first}]
+      # Need to uppercase the tag name as Element.tag_name is alway uppercase
+      [:attribute, [:id, nil, sexp.last[:id]], {:tag_name => sexp[1].last.to_s.upcase}]
     else
       sexp
     end
