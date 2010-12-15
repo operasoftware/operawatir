@@ -16,65 +16,69 @@ require 'operawatir/helper'
 # TODO
 #   Should steal https://github.com/rspec/rspec-core/blob/master/lib/rspec/core/option_parser.rb
 
-OptionParser.new do |opts|
-  opts.banner = <<EOS
+begin
+  OptionParser.new do |opts|
+    opts.banner = <<EOS
 Usage: operawatir [-l|--launcher=BINARY] [-e|--executable=BINARY] [-a|--args=ARGUMENTS]
        [--no-color] [-f|--format=FORMAT] [-o|--out=FILE] [-h|--help] [-v|--version] FILES
 EOS
 
-  opts.separator ""
-  opts.separator "Specific options:"
+    opts.separator ""
+    opts.separator "Specific options:"
 
-  opts.on('-l', '--launcher=BINARY', 'Path to launcher binary, will use environmental ',
-          'variable OPERA_LAUNCHER if not specified') do |c|
-    @options[:launcher] = c
-  end
+    opts.on('-l', '--launcher=BINARY', 'Path to launcher binary, will use environmental ',
+            'variable OPERA_LAUNCHER if not specified') do |c|
+      @options[:launcher] = c
+    end
 
-  opts.on('-e', '--executable=BINARY', 'Browser to run the test with, will use environmental ',
-          'variable OPERA_PATH if not specified') do |e|
-    @options[:path] = e
-  end
+    opts.on('-e', '--executable=BINARY', 'Browser to run the test with, will use environmental ',
+            'variable OPERA_PATH if not specified') do |e|
+      @options[:path] = e
+    end
 
-  opts.on('-a', '--args=ARGUMENTS', 'Arguments passed to the executable.  ',
-          'Will override environmental variable OPERA_ARGS') do |a|
-    @options[:args] = a
-  end
+    opts.on('-a', '--args=ARGUMENTS', 'Arguments passed to the executable.  ',
+            'Will override environmental variable OPERA_ARGS') do |a|
+      @options[:args] = a
+    end
 
-  opts.on('--no-color', 'Disable colorized output') do |c|
-    @options[:color_enabled] = false
-  end
+    opts.on('--no-color', 'Disable colorized output') do |c|
+      @options[:color_enabled] = false
+    end
 
-  #opts.on('-c', '--check-syntax', 'Check syntax only') do |c|
-  #  @options[:check_syntax] = true
-  #end
+    #opts.on('-c', '--check-syntax', 'Check syntax only') do |c|
+    #  @options[:check_syntax] = true
+    #end
 
-  #opts.on('--ng', 'Connect to Nailgun server instead of starting out ',
-  #        'own JVM') do |ng|
-  #  @options[:ng] = ng
-  #end
+    #opts.on('--ng', 'Connect to Nailgun server instead of starting out ',
+    #        'own JVM') do |ng|
+    #  @options[:ng] = ng
+    #end
   
-  opts.on('-f', '--format=FORMAT',
-          'Specify RSpec output formatter (documentation, html, ',
-          'progress (default), textmate)') do |formatter|
-    @options[:formatter] = formatter
-  end
+    opts.on('-f', '--format=FORMAT',
+            'Specify RSpec output formatter (documentation, html, ',
+            'progress (default), textmate)') do |formatter|
+      @options[:formatter] = formatter
+    end
 
-  opts.on('-o', '--out=FILE', 'Send output to a file instead of STDOUT') do |o|
-    @options[:output_stream] = File.open(o, 'w') or
-      abort "operawatir: Unable to write to file `#{o}'"
-  end
+    opts.on('-o', '--out=FILE', 'Send output to a file instead of STDOUT') do |o|
+      @options[:output_stream] = File.open(o, 'w') or
+        abort "operawatir: Unable to write to file `#{o}'"
+    end
 
-  opts.separator ''
-  opts.separator 'Common options:'
+    opts.separator ''
+    opts.separator 'Common options:'
 
-  opts.on_tail('-h', '--help', 'Show this message') do
-    abort opts
-  end
+    opts.on_tail('-h', '--help', 'Show this message') do
+      abort opts
+    end
 
-  opts.on_tail('-v', '--version', 'Show version') do
-    abort "OperaWatir version #{OperaWatir.version}"
-  end
-end.parse!(ARGV)
+    opts.on_tail('-v', '--version', 'Show version') do
+      abort "OperaWatir version #{OperaWatir.version}"
+    end
+  end.parse!(ARGV)
+rescue OptionParser::InvalidOption => e
+  abort "operawatir: Unknown option `#{e.to_s.sub(/invalid option:\s+/, '')}'"
+end
 
 if ARGV.empty?
   abort 'operawatir: You need to specify at least one test file to run'
