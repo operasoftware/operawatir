@@ -32,6 +32,8 @@ Jeweler::Tasks.new do |gem|
   gem.add_development_dependency 'rr'
 
   gem.files.exclude '.gitignore'
+  gem.files.exclude 'lib/operawatir/desktop*.rb'
+  gem.files.exclude 'lib/operawatir/quickwidgets*'
 end
 
 CLEAN.add 'pkg'
