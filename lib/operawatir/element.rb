@@ -120,6 +120,10 @@ class OperaWatir::Element
     node.dragAndDropOn other.node
   end
 
+  def drag_and_drop_by(x, y)
+    node.dragAndDropBy(x.to_i, y.to_i)
+  end
+
   def_delegator :node, :submit
 
   def text=(string)
