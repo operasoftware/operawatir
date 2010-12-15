@@ -58,9 +58,9 @@ class OperaWatir::Element
 
   def_delegator :node, :isEnabled, :enabled?
   def_delegator :node, :isSelected, :checked?
-  
+
   alias_method :set?, :checked?
-  
+
   def_delegator :node, :isSelected, :selected?
 
   def_delegator :node, :toggle, :toggle_check!
@@ -70,11 +70,11 @@ class OperaWatir::Element
   def_delegator :node, :getValue, :value
   def_delegator :node, :getElementName, :tag_name
   def_delegator :node, :clear, :clear
-  
+
   def disabled?
     !enabled?
   end
-  
+
   def check!
     result = node.toggle
     if(result != true)
@@ -88,8 +88,8 @@ class OperaWatir::Element
       node.toggle
     end
   end
-  
-  
+
+
   # Events
 
   def click!(x=0, y=0)
@@ -125,9 +125,9 @@ class OperaWatir::Element
   def text=(string)
     node.sendKeys(string.split('').to_java(:string))
   end
-  
+
   alias_method :set, :text=
-  
+
   def trigger!(event, x = 0, y = 0)
     x += location[:x]
     y += location[:y]
@@ -150,7 +150,7 @@ class OperaWatir::Element
       type = 'MouseEvents'
       init = "initMouseEvent(\"#{event.to_s}\", true, true, window, 1, 0, 0, 0, 0, false, false, false, false, 0, null)"
     else
-      raise Exceptions::NotImplementedException, 
+      raise Exceptions::NotImplementedException,
       "Event on#{event} is not a valid ECMAscript event for OperaWatir."
     end
 
@@ -177,9 +177,9 @@ class OperaWatir::Element
 
 
 private
-  
+
   attr_accessor :node
-  
+
   # Finders
 
   def find_elements_by_id(value)

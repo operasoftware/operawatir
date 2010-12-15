@@ -33,12 +33,12 @@ class OperaWatir::Collection
                                 :first,
                                 :last,
                                 :empty?
-  
-  
+
+
   def [](n)
     self.class.new(self).tap {|c| c.selector.index(n) }
   end
-  
+
   # Set union, used for joining complex finders (specifically for Watir1)
   def +(other)
     self.class.new(parent, raw_elements + other.raw_elements)
@@ -70,7 +70,7 @@ class OperaWatir::Collection
 
 
   # Finding
-  
+
   OperaWatir::Selector::BASE_TYPES.each do |type|
     define_method("find_by_#{type}") do |name|
       OperaWatir::Collection.new(self).tap do |c|
@@ -78,7 +78,7 @@ class OperaWatir::Collection
       end
     end
   end
-  
+
   alias_method :find_by_class, :find_by_class_name
   alias_method :find_by_tag,   :find_by_tag_name
 
@@ -89,23 +89,23 @@ class OperaWatir::Collection
   def method_missing(method, *args, &blk)
     map_or_return {|elm| elm.send(method, *args, &blk) }
   end
-  
+
 
 private
-  
+
   def _elms
     @_elms ||= selector.eval
   end
 
   attr_writer :_elms
-  
+
   # TODO Massive hack: map is overritten in Watir1
   alias_method :_map, :map
-  
+
   def map_or_return(&blk)
     single? ? blk.call(raw_elements.first) : _map(&blk)
   end
-  
+
   OperaWatir::Selector::BASE_TYPES.each do |type|
     define_method("find_elements_by_#{type}") do |value|
       _elms.inject([]) do |result, element|
@@ -113,7 +113,7 @@ private
       end
     end
   end
-  
+
   def find_elements_by_attribute(attributes)
     _elms.select do |elm|
       attributes.all? {|attribute, value|
@@ -121,7 +121,7 @@ private
       }
     end
   end
-  
+
   def find_elements_by_index(n)
     (n >= 0 && n < _elms.length) ? [_elms[n]] : []
   end
