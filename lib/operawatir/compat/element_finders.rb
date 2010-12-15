@@ -56,6 +56,8 @@ module OperaWatir::Compat::ElementFinders
     selector.tag(:input).attribute :type => 'file'
   end
 
+  def_element :form, :forms
+
   def_element :hidden, :hiddens, :how => :name do |selector|
     selector.tag(:input).attribute :type => 'hidden'
   end
@@ -135,6 +137,7 @@ module OperaWatir::Compat::ElementFinders
   def_element :text_field, :text_fields do |selector|
     selector.join do |elm|
       elm.tag(:input).attribute :type => 'text'
+      elm.tag(:input).attribute :type => 'password'
       elm.tag :textarea
     end
   end
