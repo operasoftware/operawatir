@@ -128,7 +128,7 @@ class OperaWatir::Element
 
   def text=(string)
     # Focus before typing
-    node.click!
+    node.click
     node.sendKeys(string.split('').to_java(:string))
   end
 
