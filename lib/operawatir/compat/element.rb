@@ -20,7 +20,13 @@ class OperaWatir::Element
     node.getText.strip
   end
 
-  alias_method :value, :text
+  def value
+    if tag_name == 'INPUT'
+      attr(:value)
+    else
+      text
+    end
+  end
 
   # In the compatibility layer as the preferred way of doing this is
   #   elm.text.should include('My string')
