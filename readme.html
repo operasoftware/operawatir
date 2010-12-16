@@ -53,7 +53,7 @@
 	  <dt>License</dt>
 	  <dd><a href="https://github.com/operasoftware/operawatir/blob/master/LICENSE">BSD</a></dd>
 
-	  <dt>Project home</dt>
+	  <dt>Project Home</dt>
 	  <dd><a href="http://operawatir.org/">http://operawatir.org/</a></dd>
 
 	  <dt>Source Code</dt>
@@ -140,8 +140,138 @@
 
 	<h3>Examples</h3>
 
-	<p style="background: yellow;">
-	  stuartk's Google Maps tutorial will come here
+	<p>
+	  The Watir API allows you to write scripts that interact with
+	  any web page.  Its primary purpose is to ease test
+	  automation for web applications.  Your scripts can, for
+	  example, before you deploy automatically go through all the
+	  steps your users normally would and alert you of any
+	  regressions.
+        </p>
+
+	<p>
+	  Let's take a closer look at how this works.
+	</p>
+
+<pre><code>require 'operawatir/helper'
+
+browser.goto 'http://en.wikipedia.org/'
+browser.text_field(:id => 'searchInput').set 'Opera'
+browser.button(:id => 'searchButton').click</pre></code>
+
+        <p>
+	  The script above will tell the browser to load
+	  the <a href="http://en.wikipedia.org/">front page of
+	  Wikipedia</a>, write “Opera” in the search field and click
+	  the search button.  If all goes as intended, the browser
+	  will end up
+	  at <a href="http://en.wikipedia.org/wiki/Opera">a relevant
+	  article</a>.
+	</p>
+
+	<p>
+	  To run the script, use the following command:
+	</p>
+
+	<pre><code class="prompt"><span class="prompt">%</span> operawatir <var>example.rb</var></code></pre>
+
+	<p>
+	  As Watir scripts are run in a full-featured browser, all
+	  keypresses and clicks will be interpreted as if they were
+	  real, and invoke attached JavaScript event listeners.  If we
+	  want to test the JavaScript-powered suggestion feature on
+	  the Wikipedia search box, we can do this:
+	</p>
+
+<pre><code>require 'operawatir/helper'
+
+browser.goto 'http://en.wikipedia.org/'
+browser.text_field(:id => 'searchInput').click
+browser.type 'Hello world'
+browser.key 'Down'
+browser.key 'Enter'</code></pre>
+
+        <p>
+	  The first suggested link will be selected by pressing arrow
+	  down (<code>'Down'</code>) and navigated to
+	  (<code>'Enter'</code>).  Using the same key events, you
+	  could even teach a script to play platform games:
+	</p>
+
+<pre><code>require 'operawatir/helper'
+
+browser.goto 'http://www.phoboslab.org/biolab/'
+sleep 2
+browser.key 'X'
+sleep 1
+browser.key_down 'Right'
+5.times { browser.key 'X' }
+2.times { browser.key 'C' }
+browser.key_up 'Right'</code></pre>
+
+        <p>
+	  Sending commands to the browser is great, but sometimes we
+	  want to get something back too.  The following lines of code
+	  will have the browser automatically look up the phone number
+	  of Opera Software in the
+	  <a href="http://gulesider.no/">yellow pages</a> and write it
+	  to the console.
+	</p>
+
+<pre><code>require 'operawatir/helper'
+
+browser.goto 'http://gulesider.no/'
+browser.text_field(:name => 'search_word').set 'Opera Software'
+browser.button(:name => 'btn_cs').click
+puts browser.li(:class => 'tel').text</pre></code>
+
+        <p>
+	  When running proper functional tests on your web application
+	  with Watir, you might want a bit more structured output.  To
+	  define assertions and get pretty test reports, ou can
+	  use <a href="http://rspec.info/">RSpec</a>.
+	</p>
+
+	<p>
+	  A simple test suite looks like this:
+	</p>
+
+<pre><code>require 'operawatir/helper'
+
+describe 'Yellow Pages' do
+  before :each do
+    browser.goto 'http://gulesider.no/'
+  end
+
+  it 'finds the phone number to Opera Software' do
+    window.text_field(:name => 'search_word').set 'Opera Software'
+    window.button(:name => 'btn_cs').click
+    window.li(:class => 'tel').text.should == '24 16 40 00'
+  end
+
+  it 'finds the phone number to the Norwegian Opera and Ballet' do
+    window.text_field(:name => 'search_word').set 'Den Norske Opera'
+    window.button(:name => 'btn_cs').click
+    window.li(:class => 'tel').text.should == '21 42 21 00'
+  end
+end</code></pre>
+
+        <p>
+	  Each block of code corresponds to a single named test case
+	  returning PASS or FAIL.  Whether you got back the expected
+	  and correct return value is evaluated
+	  with <code>.should</code>.  If all tests pass, you will see
+	  the following output:
+	</p>
+
+<pre><code class="no-highlight prompt"><span style="color: rgb(0,255,0)">..</span>
+
+Finished in 2.04 seconds
+2 examples, 0 failures</code></pre>
+
+        <p>
+	  If anything fails, more information about each failure will
+	  be provided.
 	</p>
 
 
