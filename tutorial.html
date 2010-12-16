@@ -295,14 +295,16 @@ to what has been demonstrated here, have a look at the
 use <code>jirb</code> (irb equivalent). Just do the following:</p>
 
 <pre><code class="prompt"><span class="line">jirb</span>
-irb(main):001:0> require 'rubygems'
+irb(main):001:0&gt; require 'rubygems'
 =&gt; true
-irb(main):002:0> require 'operawatir'
+irb(main):002:0&gt; require 'operawatir'
 =&gt; true
-irb(main):002:0> browser = OperaWatir::Browser.new
-jruby-1.5.6 > browser.goto 'http://example.com/'
-              ...
-jruby-1.5.6 > browser.exit
+irb(main):003:0&gt; browser = OperaWatir::Browser.new
+=&gt; #&lt;OperaWatir::Browser:0x1496e57 @active_window=#&lt;OperaWatir::Window:0x1eb1db2 @browser=#&lt;OperaWatir::Browser:0x1496e57 ...&gt;&gt;, @driver=#&lt;Java::ComOperaCoreSystems::OperaDriver:0xeabd2f&gt;&gt;
+irb(main):004:0&gt; browser.goto 'http://sau.no/'
+=&gt; nil
+=&gt; browser.quit
+=&gt; nil
 </code></pre>
 
       </div>

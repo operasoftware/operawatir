@@ -100,7 +100,7 @@ aside {
   padding: 0 1.2em !important;
   margin-left: 1em;
   width: 20%;
-
+  color: rgb(70,70,70);
   border-radius: 7px !important;
   background-color: #E1E1E1;
   font-size: 0.8em;
@@ -244,11 +244,11 @@ footer #logo img {
   visible: hidden;
 }
 
-
 code {
   font-family: 'Monaco', monospace;
   font-size: 95% !important;
   background-color: rgb(225, 225, 225);
+  overflow: auto;
 }
 
 pre code {
