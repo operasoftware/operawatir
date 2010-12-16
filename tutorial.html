@@ -291,12 +291,15 @@ to what has been demonstrated here, have a look at the
 
 <h3>P.S.</h3>
 
-<p>If you want to play with OperaWatir interactively, you can use <code>irb</code>. Just do
-the following:</p>
+<p>If you want to play with OperaWatir interactively, you can
+use <code>jirb</code> (irb equivalent). Just do the following:</p>
 
-<pre><code class="prompt"><span class="line">jruby -S irb</span>
-jruby-1.5.6 > require 'operawatir'
-jruby-1.5.6 > browser = OperaWatir::Browser.new
+<pre><code class="prompt"><span class="line">jirb</span>
+irb(main):001:0> require 'rubygems'
+=&gt; true
+irb(main):002:0> require 'operawatir'
+=&gt; true
+irb(main):002:0> browser = OperaWatir::Browser.new
 jruby-1.5.6 > browser.goto 'http://example.com/'
               ...
 jruby-1.5.6 > browser.exit
