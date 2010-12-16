@@ -135,8 +135,9 @@ class OperaWatir::Element
   alias_method :set, :text=
 
   def trigger!(event, x = 0, y = 0)
-    x += location[:x]
-    y += location[:y]
+    loc = location
+    x += loc[:x]
+    y += loc[:y]
 
     # In the case that event is given as symbol, we convert it to a
     # string.
@@ -167,6 +168,9 @@ class OperaWatir::Element
     node.callMethod(script)
   end
 
+  def visible?
+    node.isVisible()
+  end
 
   # UI
 
