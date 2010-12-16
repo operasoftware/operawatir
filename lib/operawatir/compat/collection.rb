@@ -17,6 +17,13 @@ class OperaWatir::Collection
     elsif args.first == :index
       type, value = :index, args[1].to_i - 1
 
+	# Handle a hash of selectors
+    elsif args.length == 1 and  args.first.is_a? Hash
+      args.first.each_pair do |k, v|
+        add_selector_from_arguments([k, v], default_method)
+      end
+      return
+
     # (:id, 3.14) => TypeError
     elsif args.any? {|arg| ![String, Regexp, Fixnum, Symbol].any?{|k| arg.is_a?(k)}}
       raise TypeError
