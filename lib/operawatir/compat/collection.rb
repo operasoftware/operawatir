@@ -9,12 +9,14 @@ class OperaWatir::Collection
 
   # Welcome to Hacksville, population: too many
 
-  # Creates a new selector based on the arguments given to the Watir 1 browser
-  # methods, e.g. browser.div(:id, 'content').
-  # @param [Array] args The array of arguments passed to the Watir method.
-  # @param [Method] default_method The attribute to use when only a value is
-  #   provided, e.g. browser.div('content').
-  # @return [OperaWatir::Selector] The generated selector
+  # Creates a new selector based on the arguments given to the Watir 1
+  # browser methods, e.g. +browser.div(:id, 'content')+.
+  #
+  # @param [Array] args The array of arguments passed to the Watir
+  #   method.
+  # @param [Method] default_method The attribute to use when only a
+  #   value is provided, e.g. browser.div('content').
+  # @return [OperaWatir::Selector] the generated selector
   def add_selector_from_arguments(args, default_method)
     # () => :index, 0
     if args.empty?
@@ -62,11 +64,12 @@ class OperaWatir::Collection
 
   # Watir1 Collections are 1 indexed *headslap*
 
-  # Gets the element at index, starting from 1 (i.e. [0] in a normal array is
-  # [1] here
+  # Gets the element at index, starting from 1 (i.e. [0] in a normal
+  # array is [1] here.
+  #
   # @param [Fixnum] index The index of the element to retreive
-  # @return [OperaWatir::Collection] A new collection with the selector
-  #   pointing to the given index.
+  # @return [OperaWatir::Collection] A new collection with the
+  #   selector pointing to the given index.
   def [](index)
     self.class.new(self).tap {|c| c.selector.index(index-1) }
   end
@@ -76,7 +79,9 @@ class OperaWatir::Collection
     define_method(name) {method_missing(name)}
   end
 
-  # @return [String] The string representation of this collection
+  # Fetches the string representation of this collection.
+  #
+  # @return [String] the string representation of this collection
   # @raise [OperaWatir::Exceptions::UnknownObjectException]
   def to_s
     raw_elements

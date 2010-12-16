@@ -35,8 +35,10 @@ class OperaWatir::Selector
     elms = args.shift
 
     # Say hello to the the ol' send trick.
-    # Private methods can be called when using send. This "bug" was briefly
-    # disabled in 1.9 but people complained because it's very handy (but bad).
+    #
+    # Private methods can be called when using send. This "bug" was
+    # briefly disabled in 1.9 but people complained because it's very
+    # handy (but bad).
     if elms.nil?
       collection.parent.send("find_elements_by_#{fn}", *args)
     else

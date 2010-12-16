@@ -149,7 +149,7 @@ class OperaWatir::Element
     event = $1 if $1
     event = event.downcase.to_sym
 
-    # TODO: Should this be moved to OperaDriver instead?
+    # TODO Should this be moved to OperaDriver instead?
     case event
     when :abort, :blur, :change, :error, :focus, :load, :reset,
       :resize, :scroll, :submit, :unload

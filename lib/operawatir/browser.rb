@@ -57,7 +57,7 @@ class OperaWatir::Browser
 
   # Closes all windows.
   #
-  # @todo This should be on Windows
+  # TODO This should be on Windows
   def close_all
     driver.closeAll
   end

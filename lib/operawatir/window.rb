@@ -111,8 +111,6 @@ class OperaWatir::Window
   end
 
   def method_missing(tag, *args)
-#    puts "method missing: #{tag} and #{args.inspect}"
-
     OperaWatir::Collection.new(self).tap do |c|
       c.selector.tag_name tag
       c.add_selector_from_arguments args
@@ -124,7 +122,7 @@ private
 
   # Locate elements by id.
   #
-  # @return [Array] an array of found elements.
+  # @return [Array] an array of found elements
   def find_elements_by_id(value)
     driver.findElementsById(value).to_a.map do |node|
       OperaWatir::Element.new(node)
@@ -133,7 +131,7 @@ private
 
   # Locate elements by class.
   #
-  # @return [Array] an array of found elements.
+  # @return [Array] an array of found elements
   def find_elements_by_class_name(value)
     driver.findElementsByClassName(value).to_a.map do |node|
       OperaWatir::Element.new(node)
@@ -142,7 +140,7 @@ private
 
   # Locate elements by tag name.
   #
-  # @return [Array] an array of found elements.
+  # @return [Array] an array of found elements
   def find_elements_by_tag_name(value)
     driver.findElementsByTagName(value).to_a.map do |node|
       OperaWatir::Element.new(node)
@@ -151,7 +149,7 @@ private
 
   # Locate elements by CSS selector.
   #
-  # @return [Array] an array of found elements.
+  # @return [Array] an array of found elements
   def find_elements_by_css(value)
     driver.findElementsByCssSelector(value).to_a.map do |node|
       OperaWatir::Element.new(node)
@@ -160,17 +158,14 @@ private
 
   # Locate elements by XPath expression.
   #
-  # @return [Array] an array of found elements.
+  # @return [Array] an array of found elements
   def find_elements_by_xpath(value)
-    #warn 'window: find_elements_by_xpath'
-
     driver.findElementsByXPath(value).to_a.map do |node|
       OperaWatir::Element.new(node)
     end
   end
 
   # @private
-  # @return [Object] the driver instance.
   def driver
     browser.driver
   end
