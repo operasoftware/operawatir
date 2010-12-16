@@ -124,7 +124,7 @@ class OperaWatir::Element
     node.dragAndDropBy(x.to_i, y.to_i)
   end
 
-  def_delegator :node, :submit
+  def_delegator :node, :submit, :submit!
 
   def text=(string)
     # Focus before typing
