@@ -101,6 +101,10 @@ aside {
   font-size: 0.8em;
 }
 
+ol {
+  margin-left: 3em;
+}
+
 ul {
   margin-left: 1em;
   list-style-image: url("../graphics/bullet-red.gif");
