@@ -2,6 +2,7 @@ module OperaWatir
   
   module Compat; end
 
+  # Switches on compatibility layer (Watir 1 API).
   def self.compatibility!
     # require 'operawatir/compat/deprecation'
     require 'operawatir/compat/browser'
