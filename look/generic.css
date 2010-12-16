@@ -263,7 +263,8 @@ code.prompt {
   color: white;
 }
 
-code.prompt .prompt {
+pre > code.prompt > span.line:before {
+  content: '% ';
   color: rgb(189,186,189);
 }
 
