@@ -43,6 +43,17 @@ class OperaWatir::Element
     node.click(x.to_i, y.to_i)
   end
 
+  def focus
+    trigger! :focus
+  end
+
+  alias_method :fire_event, :trigger!
+
+  def submit
+    assert_exists
+    node.submit
+  end
+
   def clear
     assert_enabled!
     node.clear
