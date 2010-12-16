@@ -20,6 +20,8 @@ class OperaWatir::Element
     node.getText.strip
   end
 
+  alias_method :to_s, :text
+
   def value
     if tag_name == 'INPUT'
       attr(:value)
