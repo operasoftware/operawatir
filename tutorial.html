@@ -78,21 +78,33 @@
   </li>
 
   <li>
-    <p><strong>Linux only.</strong> Add the operawatir bin directory to your path  </p>
-
+    <p><strong>Linux only</strong> Add the operawatir bin directory to your path.</p>
     <pre><code class="prompt"><span class="line">PATH=$PATH:$(dirname `gem which operawatir`)</span>
 <span class="line">PATH=`dirname $PATH`/bin</span></code></pre>
   </li>
 
   <li>
     <p>You will then need to set the environment variables <code>OPERA_PATH</code>
-    and <code>OPERA_LAUNCHER</code>. On Linux this can be done with the following
-    commands:</p>
+    and <code>OPERA_LAUNCHER</code>. This step has separate instructions for
+    Linux and Windows users.</p>
+
+    <h4>Linux</h4>
+    <p>On Linux this can be done with the following commands:</p>
 
     <pre><code class="prompt"><span class="line">OPERA_PATH=`which opera`</span>
 <span class="line">OPERA_LAUNCHER=dirname $(dirname `gem which operawatir`)</span>
 <span class="line">OPERA_LAUNCHER="$OPERA_LAUNCHER/`gem contents operawatir | grep linux_32_launcher`"</span>
 </code></pre>
+
+    <h4>Windows</h4>
+
+    <ul>
+      <li>Right-click "My Computer" and click "Properties"</li>
+      <li>Select the "Advanced tab", click the "Environment variables" button</li>
+      <li>Click the "New" button</li>
+      <li>Add <code>OPERA_PATH</code>, <code>C:\Program Files\Opera\opera.exe</code> and <code>OPERA_LAUNCHER</code>, <code>C:\jruby-1.5.2\lib\ruby\gems\1.8\gems\operawatir-0.2.83-java\launchers\win_32_launcher.exe</code>.</li>
+    </ul>
+
   </li>
 
   <li>
@@ -116,7 +128,7 @@ Finally we need to quit the browser.</p>
 <pre><code>require 'operawatir'
 
 browser = OperaWatir::Browser.new
-browser.url = 'http://maps.google.com'
+browser.goto 'http://maps.google.com'
 
 browser.quit
 </code></pre>
@@ -165,7 +177,7 @@ pressing the enter key. Including our progress so far this gives us the followin
 <pre><code>require 'operawatir'
 
 browser = OperaWatir::Browser.new
-browser.url = 'http://maps.google.com'
+browser.goto 'http://maps.google.com'
 
 # Find the search box
 search = browser.text_field(:id, 'q_d')
@@ -233,7 +245,7 @@ to the DOM before we try and find them.</p>
 <pre><code>require 'operawatir'
 
 browser = OperaWatir::Browser.new
-browser.url = 'http://maps.google.com/'
+browser.goto 'http://maps.google.com/'
 
 puts 'Find the search box'
 search = browser.text_field(:id, 'q_d')

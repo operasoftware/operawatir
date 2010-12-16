@@ -82,6 +82,11 @@ h3 {
   margin: 1em 0 .5em;
 }
 
+h4 {
+  margin: .8em 0;
+  font-size: 120%;
+}
+
 p {
   margin: .8em 0;
 }
@@ -242,9 +247,6 @@ footer #logo img {
 code {
   font-family: 'Monaco', monospace;
   font-size: 95% !important;
-}
-
-p code {
   background-color: rgb(225, 225, 225);
 }
 
