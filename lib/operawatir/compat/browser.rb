@@ -10,6 +10,10 @@ module OperaWatir
         end
       end
 
+      def quit
+        browser.quit!
+      end
+
     end
   end
 end
