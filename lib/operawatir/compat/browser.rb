@@ -10,6 +10,10 @@ module OperaWatir
         end
       end
 
+      def quit
+        quit!
+      end
+
     end
   end
 end
