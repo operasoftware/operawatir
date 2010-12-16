@@ -1,0 +1,6 @@
+--no-private
+--title "OperaWatir"
+--exclude bin/desktopwatir
+--exclude lib/operawatir/desktop*
+--exclude lib/operawatir/quickwidget*
+

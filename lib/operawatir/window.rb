@@ -151,7 +151,7 @@ private
 
   # Locate elements by CSS selector.
   #
-  # @returns [Array] an array of found elements.
+  # @return [Array] an array of found elements.
   def find_elements_by_css(value)
     driver.findElementsByCssSelector(value).to_a.map do |node|
       OperaWatir::Element.new(node)
@@ -160,7 +160,7 @@ private
 
   # Locate elements by XPath expression.
   #
-  # @returns [Array] an array of found elements.
+  # @return [Array] an array of found elements.
   def find_elements_by_xpath(value)
     #warn 'window: find_elements_by_xpath'
 
