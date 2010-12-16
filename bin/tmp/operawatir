@@ -1,2 +1,0 @@
-#!/usr/bin/env bash
-jruby -S operawatir $*

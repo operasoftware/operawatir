@@ -18,14 +18,18 @@ include_class com.opera.core.systems.settings.OperaDriverSettings
 $KCODE = 'u'  # UTF-8 support
 
 # TODO This should be replaced when we decide upon a better way of
-#   enabling the Watir 2 API.
+# enabling the Watir 2 API.
 module OperaWatir
   @shiny = false
 
+  # Activates the Watir 2 API.
   def self.newandshinyplease!
     @shiny = true
   end
 
+  # Queries whether the Watir 2 API is enabled.
+  #
+  # @return [Boolean] whether or not Watir 2 API is enabled.
   def self.newandshinyplease?
     @shiny
   end

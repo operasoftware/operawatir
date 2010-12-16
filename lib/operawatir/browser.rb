@@ -33,6 +33,11 @@ class OperaWatir::Browser
   end
   alias_method :url, :url=
 
+  # Tells you whether the browser object exists.  Note that this is
+  # not the same as checking whether the object is connected to a
+  # browser.
+  #
+  # @return [Boolean] whether Browser object exists.
   def exists?
     true
   end
@@ -50,7 +55,9 @@ class OperaWatir::Browser
     driver.shutdown
   end
 
-  # TODO: This should be on Windows
+  # Closes all windows.
+  #
+  # @todo This should be on Windows
   def close_all
     driver.closeAll
   end
@@ -59,7 +66,6 @@ class OperaWatir::Browser
   # the version number for OperaWatir, which can be retrieved using
   # +OperaWatir.version+ instead.
   #
-  # @seealso OperaWatir.version
   # @return [String] driver version.
   def version
     driver.getOperaDriverVersion

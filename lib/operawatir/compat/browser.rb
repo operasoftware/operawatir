@@ -12,7 +12,7 @@ module OperaWatir
 
       # Quits the browser
       def quit
-        quit!
+        browser.quit!
       end
 
     end
