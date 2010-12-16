@@ -108,11 +108,12 @@ aside {
 
 ul {
   margin-left: 1em;
-  list-style-image: url("../graphics/bullet-red.gif");
+  list-style: none;
 }
 
 ul li {
-  margin-left: 1em;
+  padding-left: 1em;
+  background: url("../graphics/bullet-red.gif") no-repeat 0 0.3em;
 }
 
 dl {
