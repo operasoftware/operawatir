@@ -54,13 +54,59 @@
 
 <h3>Setting up</h3>
 
-<p>First make sure you have installed OperaWatir. If you have trouble check
-that you have all the <a href="TODO LINK HERE">requirements [TODO]</a>, and if
-you still cannot get it working try contacting us on our
-<a href="https://list.opera.com/mailman/listinfo/operawatir-users">mailing list</a>.</p>
+<ol>
+  <li>
+    <p>Before starting you will need to install OperaWatir. This requires:</p>
 
-<pre><code class="prompt"><span class="prompt">%</span> jruby -S gem install operawatir
-<span class="prompt">%</span> operawatir --help</code></pre>
+    <aside>
+      <p>Make sure you have JRuby 1.5.1, <strong>not</strong> 1.5.0 or below, check with <code>jruby -v</code></p>
+    </aside>
+
+    <ul>
+      <li>Opera</li>
+      <li>Java >= 1.6</li>
+      <li>JRuby >= 1.5.1</li>
+    </ul>
+  </li>
+
+  <li>
+    <p>Next install the OperaWatir gem with the following command</p>
+    <pre><code class="prompt"><span class="line">jruby -S gem install operawatir</span></code></pre>
+  </li>
+
+  <li>
+    <p>Check that the gem has installed correctly by running:</p>
+    <pre><code class="prompt"><span class="line">operawatir --help</span></code></pre>
+  </li>
+
+  <li>
+    <p><strong>Linux only.</strong> Add the operawatir bin directory to your path  </p>
+
+    <pre><code class="prompt"><span class="line">PATH=$PATH:$(dirname `gem which operawatir`)</span>
+<span class="line">PATH=`dirname $PATH`/bin</span></code></pre>
+  </li>
+
+  <li>
+    <p>You will then need to set the environment variables <code>OPERA_PATH</code>
+    and <code>OPERA_LAUNCHER</code>. On Linux this can be done with the following
+    commands:</p>
+
+    <pre><code class="prompt"><span class="line">OPERA_PATH=`which opera`</span>
+<span class="line">OPERA_LAUNCHER=dirname $(dirname `gem which operawatir`)</span>
+<span class="line">OPERA_LAUNCHER="$OPERA_LAUNCHER/`gem contents operawatir | grep linux_32_launcher`"</span>
+</code></pre>
+  </li>
+
+  <li>
+    <p>Finally start Opera, go to <code>opera:config</code>, search for ‘auto connect’
+    and enable ‘Proxy Auto Connect’.</p>
+  </li>
+
+  <li>And you are done!</li>
+</ol>
+
+<p>If you have trouble you can contact us on our
+<a href="https://list.opera.com/mailman/listinfo/operawatir-users">mailing list</a>.</p>
 
 <h3>The beginning</h3>
 
@@ -167,11 +213,12 @@ search_button = browser.button(:name, 'btnG')
 web_link = browser.link(:index, 2) # second link on the page</code></pre>
 
 <p>If you still cannot locate the element using these you can use
-<strong>XPath</strong>. XPath is can be very complicated, but we will be using
+<strong>XPath</strong>. XPath can be very complicated, but we will be using
 only the simple selector <code>//div[@log='pan_down']</code>.
 This selects all the <code>&lt;div&gt;</code> elements whose <code>log</code> attribute equals
 '<code>pan_down</code>'. In this case there is only one: the pan down button
-located at the top left of the map. </p>
+located at the top left of the map. We will use a similar selector to get
+the Zoom In button.</p>
 
 <pre><code>pan_down = browser.element_by_xpath("//div[@log='pan_down']")
 zoom_in = browser.element_by_xpath("//div[@title='Zoom In']")</code></pre>
@@ -222,7 +269,7 @@ browser.quit</code></pre>
 
 <h3>Conclusion</h3>
 
-<aside><p>If you want something else to try, see if you can close the left panel (hint:
+<aside><p>If you want to try something yourself, see if you can close the left panel (hint:
 it is an image with an ID of <code>panelarrow2</code>).</p></aside>
 
 <p>Hopefully this has been an enjoyable introduction to OperaWatir, and has shown

@@ -268,6 +268,10 @@ pre > code.prompt > span.line:before {
   color: rgb(189,186,189);
 }
 
+code.prompt span.string { color: #cc9393; }
+code.prompt span.variable { color: #8cd0d3; }
+code.prompt span.symbol { color: #efdcbc; }
+
 #install p {
   font-size: 120%;
 }
