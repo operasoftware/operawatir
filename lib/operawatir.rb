@@ -15,6 +15,8 @@ include_class com.opera.core.systems.OperaDriver
 include_class com.opera.core.systems.OperaWebElement
 include_class com.opera.core.systems.settings.OperaDriverSettings
 
+$KCODE = 'u'  # UTF-8 support
+
 # TODO This should be replaced when we decide upon a better way of
 #   enabling the Watir 2 API.
 module OperaWatir
