@@ -136,6 +136,15 @@ module OperaWatir::Compat::ElementFinders
 
   def_element :text_field, :text_fields do |selector|
     selector.join do |elm|
+      # TODO First test in element_spec.rb fails because we don't treat inputs
+      # with unknown type attributes as text fields. We could reverse this
+      # selector to include anything EXCEPT checkbox, radio, submit, reset,
+      # file, hidden, image and button. This would future proof it somewhat,
+      # but HTML5 types such as "range" do not allow values to be typed in (at
+      # least not in Opera)
+
+      # empty type is text
+      elm.tag(:input).attribute :type => ''
       elm.tag(:input).attribute :type => 'text'
       elm.tag(:input).attribute :type => 'password'
       elm.tag :textarea
