@@ -325,6 +325,7 @@ pre code var {
 #screenshot img {
   float: none;
   margin: 3.2em 0 0 0;
+  opacity: .9;
 }
 
 #install p,
