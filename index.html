@@ -1,1 +1,169 @@
-<!DOCTYPE html><html><h1>OperaWatir
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>OperaWatir</title>
+    <link href="look/generic.css" rel="stylesheet" />
+  </head>
+  <!--<body id="index">-->
+  <body>
+    <div class="ribbon">
+      <a href="http://github.com/operasoftware/operawatir" rel="me">Fork
+        me on Github!</a>
+    </div>
+
+    <header class="highlight-bright">
+      <div class="wrapper">
+        <h1><a href="index.html">OperaWatir</a></h1>
+<!--	<img src="graphics/operawatir.png" alt="OperaWatir" />-->
+
+        <div id="version">
+          <p id="number">Current Release: <strong>0.3</strong></p>
+          <p id="date">Released on 2010-12-17</p>
+          <p id="more">Read <a href="#">release notes</a> and <a href="#">changelog</a></p>
+        </div>
+
+        <nav>
+          <ul>
+            <li class="selected"><a href="index.html">Index</a></li>
+            <li><a href="tutorial.html">Tutorial</a></li>
+            <li><a href="documentation.html">Documentation</a></li>
+            <li><a href="http://github.com/operasoftware/operawatir">Source</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <section id="content">
+      <div class="wrapper">
+	<div class="grid-50-50">
+	  <div class="box first">
+	    <p>
+	      Screenshot here.
+	    </p>
+	  </div>
+
+          <div class="box first">
+            <h2>Drive the web browser</h2>
+
+            <p>
+              Use instructions to tell your web browser what to do.  You can
+              click links, fill out forms, press buttons and do anything a
+              normal user would do.  Watir also checks results, such as whether
+              an expected text appears on the page.
+            </p>
+
+	    <h2>Test the entire stack</h2>
+
+            <p>
+              Leave no stone unturned.  By using a real web browser instead of
+              stupid headless browsers you make sure you do not break anything
+              for your users.  Watir provides end-user emulation, ensuring that
+              your entire stack (HTML, scripts, styling, embedded resources,
+              backend functionality) is working.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="break"></div>
+    </section>
+
+
+    <section class="highlight">
+      <div class="wrapper">
+        <h2>What Is Watir?</h2>
+
+        <img src="graphics/watir.png" alt="Watir logo" />
+
+        <p>
+          <a href="http://watir.com/">Watir</a>
+          (pronounced <em>water</em>) is an acronym for “Web
+          Application Testing in Ruby”, and is a toolkit used for
+          automating interactions with web browsers.  Watir allows you
+          to write tests that are easy to read and maintain.
+        </p>
+
+        <p>
+          Combined with a behavior-driven testing framework such as <a
+            href="http://rspec.info/">RSpec</a>, you can drive actual browsers to
+          test your web applications, emulating user behavior and ensuring
+          that your entire stack works well for end users.
+        </p>
+
+
+        <h2>Install and Use</h2>
+
+        <div id="install" class="grid-50-50">
+          <div class="box first">
+            <p>To install OperaWatir:</p>
+
+            <pre><code class="prompt"><span class="prompt">%</span> jruby -S gem install operawatir</code></pre>
+          </div>
+
+          <div class="box">
+            <p>And, see all the commands:</p>
+
+            <pre><code class="prompt"><span class="prompt">%</span> operawatir --help</code></pre>
+          </div>
+	  <div class="break"></div>
+        </div>
+
+        <div class="grid-50-50">
+          <div class="box first">
+            <h2>How we use watir at Opera</h2>
+
+            <p>
+              At <a href="http://opera.com/">Opera Software</a>, we use Watir
+              not only to test web applications, but also for testing the
+              browser itself.
+            </p>
+
+            <p>
+              We have about <strong>1,200</strong> automated renderer tests
+              running at each new build in our testing framework.
+            </p>
+
+            <p class="small">
+              Do you know anyone using OperaWatir?  <a
+                href="mailto:operawatir-users@opera.com">Let us know!</a>
+            </p>
+          </div>
+
+          <div class="box">
+            <h2>Community</h2>
+
+            <p>
+              OperaWatir is free software, and anyone can contribute.
+            </p>
+
+            <dl>
+              <dt>IRC</dt>
+              <dd><a href="irc://irc.opera.com/watir">#watir</a> on irc.opera.com</dd>
+
+              <dt>Mailing list</dt>
+              <dd><a href="https://list.opera.com/mailman/listinfo/operawatir-users">https://list.opera.com/mailman/listinfo/operawatir-users</a></dd>
+
+              <dt>Github</dt>
+              <dd><a href="http://github.com/operasoftware/operawatir">http://github.com/operasoftware/operawatir</a></dd>
+            </dl>
+          </div>
+        </div>
+      </div>
+
+      <div class="break"></div>
+    </section>
+
+    <footer>
+      <div class="wrapper">
+        <p id="logo">
+          <a href="http://opera.com/"><img src="graphics/opera-footer.gif" alt="" /></a>
+        </p>
+
+        <p>
+          Copyright © 2010 <a href="http://opera.com/">Opera Software ASA</a>.
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>

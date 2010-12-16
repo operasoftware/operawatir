@@ -1,0 +1,363 @@
+@import url("grid.css");
+
+@font-face {
+  font-family: "Cape Arcona";
+  src: url("fonts/CABNDWebBold.otf");
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+header,
+nav,
+section,
+footer {
+  display: block;
+}
+
+body {
+  color: rgb(50,50,50);
+  line-height: 160%;
+  font-family: "Arial", sans-serif;
+  font-size: 14px;
+  overflow-x: hidden;
+}
+
+a {
+  color: rgb(1,116,167);
+}
+
+a:hover {
+  color: rgb(16,150,213);
+}
+
+a img {
+  border: 0;
+}
+
+h1 {
+  font-family: "Didot", "LMRoman12", serif;
+  font-size: 420%;
+  font-weight: normal;
+  letter-spacing: -2px;
+  line-height: 200%;
+  text-shadow: -1px 1px 2px rgb(230,230,230);
+}
+
+h1,
+h1 a {
+  color: rgb(70,70,70);
+  text-decoration: none;
+}
+
+h1 a,
+h1 a:hover {
+  text-decoration: none;
+}
+
+h1 a:hover {
+  color: rgb(50,50,50);
+  text-shadow: 1px 3px 4px rgb(210,210,210);
+}
+
+h2 {
+  font-family: "Cape Arcona", sans-serif;  /* Web font from Cape Arcona <http://www.cape-arcona.com/start.php?link=bndboldweb> */
+  color: rgb(204,15,22);
+  line-height: 150%;
+  font-size: 200%;
+  font-weight: normal;
+  margin-top: 1em;
+}
+
+section#content > .wrapper > h2 {
+  font-size: 320%;
+}
+
+h3 {
+  font-size: 150%;
+  line-height: 180%;
+  font-weight: normal;
+  margin: 1em 0 .5em;
+}
+
+p {
+  margin: .8em 0;
+}
+
+p.small {
+  font-size: 80%;
+}
+
+aside {
+  float: right;
+  padding: 0.4em 1em !important;
+  margin-left: 1em;
+  width: 20%;
+
+  border-radius: 7px !important;
+  background-color: #E1E1E1;
+  font-size: 0.8em;
+}
+
+ul {
+  margin-left: 1em;
+  list-style-image: url("../graphics/bullet-red.gif");
+}
+
+ul li {
+  margin-left: 1em;
+}
+
+dl {
+  width: 100%;
+}
+
+dl dt,
+dl dd {
+  float: left;
+}
+
+dl dt {
+  font-weight: bold;
+  width: 20%;
+}
+
+dl dd {
+  width: 80%;
+}
+
+img {
+  float: right;
+  margin: 0 0 2em 2em;
+}
+
+h2 + img {
+  margin-top: -2.5em;
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+}
+
+nav ul li {
+  display: inline-block;
+  margin: 0 .5em -1px 0;
+}
+
+nav ul li a {
+  display: block;
+  color: rgb(90,90,90);
+  text-decoration: none;
+  background-color: rgb(225,225,225);
+  border-left: 1px solid rgb(224,224,224);
+  border-right: 1px solid rgb(220,220,220);
+  border-top: 3px solid rgb(236,236,236);
+  padding: .4em .6em;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+nav ul li a:hover {
+  border-top-color: rgb(220,220,220);
+  color: rgb(90,90,90);
+}
+
+nav ul li.selected a {
+  background: white;
+}
+
+body#index nav ul li.selected a {
+  background-color: rgb(240,240,240);
+}
+
+section {
+  padding-bottom: 2em;
+}
+
+section#content {
+  min-height: 300px;
+}
+
+footer {
+  clear: left;
+  padding-top: 1em;
+  margin-bottom: 2em;
+  font-size: 80%;
+}
+
+footer,
+footer a,
+footer a:hover,
+footer a:visited {
+  color: rgb(120,120,120);
+}
+
+footer a:hover {
+  text-decoration: none;
+}
+
+footer #logo {
+  float: left;
+}
+
+footer #logo,
+footer #logo img {
+  margin: 0;
+}
+
+.wrapper {
+  width: 960px;
+  margin: 0 auto;
+}
+
+.highlight {
+  background-color: rgb(240,240,240);
+  border-color: rgb(224,224,224);
+  border-style: solid;
+  border-top-width: 1px;
+  border-left: 0;
+  border-right: 0;
+  border-bottom-width: 1px;
+  width: 100%;
+}
+
+.highlight-bright {
+  background-color: rgb(250,250,250);
+  border-bottom: 1px solid rgb(224,224,224);
+}
+
+#index header.highlight-bright {
+  border: 0;
+}
+
+.break {
+  clear: both;
+  visible: hidden;
+}
+
+
+code {
+  font-family: 'Monaco', monospace;
+  font-size: 95% !important;
+}
+
+p code {
+  background-color: rgb(225, 225, 225);
+}
+
+pre code {
+  padding: 1.2em 2.8em !important;
+  border-radius: 7px !important;
+  border: 1px solid rgb(202,202,202);
+}
+
+code.prompt {
+  background-color: rgb(70,70,70);
+  border: 1px solid rgb(180,180,180);
+  box-shadow: 0 0 1em rgb(190,190,190);
+  -moz-box-shadow: 0 0 1em rgb(190,190,190);
+  -webkit-box-shadow: 0 0 1em rgb(190,190,190);
+  color: white;
+}
+
+code.prompt .prompt {
+  color: rgb(189,186,189);
+}
+
+#install p {
+  font-size: 120%;
+}
+
+#install pre {
+  padding: .8em;
+}
+
+#install code {
+  font-size: 120% !important;
+}
+
+pre code var {
+  text-decoration: underline;
+}
+
+
+#version {
+  background-color: white;
+  border-radius: 9px;
+  border: 1px solid rgb(210,210,210);
+  font-size: 110%;
+  text-align: center;
+  padding: .5em;
+  width: 14em;
+  margin-top: -4.5em;
+  float: right;
+  box-shadow: 0 0 1em rgb(190,190,190);
+  -moz-box-shadow: 0 0 1em rgb(190,190,190);
+  -webkit-box-shadow: 0 0 1em rgb(190,190,190);
+}
+
+#version p {
+  margin: 0;
+  line-height: 120%;
+}
+
+#version p#date,
+#version p#more {
+  font-size: 80%;
+}
+
+#version p#number {
+  margin-bottom: .5em;
+}
+
+#banner {
+  min-height: 300px;
+}
+
+#install p,
+#install pre {
+  text-align: center;
+}
+
+#install pre {
+  margin: 0 .5em;
+}
+
+
+/* ribbon */
+.ribbon {
+  background-color: rgb(170,0,0);
+  overflow: hidden;
+  position: absolute;
+  right: -3em;
+  top: 2.5em;
+  -moz-transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  -moz-box-shadow: 0 0 1em rgb(136,136,136);
+  -webkit-box-shadow: 0 0 1em rgb(136,136,136);
+  box-shadow: 0 0 1em rgb(136,136,136);
+}
+
+.ribbon a {
+  border: 1px solid #faa;
+  color: white;
+  display: block;
+  font: bold 81.25% "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+  margin: .05em 0 .075em 0;
+  padding: .5em 3.5em;
+  text-align: center;
+  text-decoration: none;
+  text-shadow: 0 0 .5em #444;
+}
+
+.ribbon a:hover {
+  background-color: rgb(193,0,0);
+  box-shadow: 0 0 1em rgb(202,65,65);
+  -mox-box-shadow: 0 0 1em rgb(202,65,65);
+  -webkit-box-shadow: 0 0 1em rgb(202,65,65);
+}

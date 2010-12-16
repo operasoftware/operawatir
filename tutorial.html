@@ -1,0 +1,189 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Getting Started | OperaWatir</title>
+    <link href="look/generic.css" rel="stylesheet" />
+    <link href="look/github.css" rel="stylesheet" />
+    <script src="scripts/highlight.pack.js"></script>
+    <script>
+      hljs.initHighlightingOnLoad();
+    </script>
+  </head>
+  <body>
+
+    <div class="ribbon">
+      <a href="http://github.com/operasoftware/operawatir" rel="me">Fork
+        me on Github!</a>
+    </div>
+
+    <header class="highlight-bright">
+      <div class="wrapper">
+        <h1><a href="index.html">OperaWatir</a></h1>
+
+        <nav>
+          <ul>
+            <li><a href="index.html">Index</a></li>
+            <li class="selected"><a href="tutorial.html">Tutorial</a></li>
+            <li><a href="documentation.html">Documentation</a></li>
+            <li><a href="http://github.com/operasoftware/operawatir">Source</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <section id="content">
+      <div class="wrapper">
+
+<h2>Getting Started</h2>
+
+<p>
+  The Watir API allows you to write scripts that interact with
+  any web page.  Its primary purpose is to ease test
+  automation for web applications.  Your scripts can, for
+  example, before you deploy automatically go through all the
+  steps your users normally would and alert you of any
+  regressions.
+</p>
+
+<p>
+  In this tutorial we are going to control Google Maps. We will find
+  directions from the Opera headquarters to the Oslo Opera House, and then we
+  will take a closer look at our destination.
+</p>
+
+<h3>Setting up</h3>
+
+<p>First make sure you have installed OperaWatir. If you have trouble check
+that you have all the <a href="TODO LINK HERE">requirements [TODO]</a>, and if
+you still cannot get it working try contacting us on our
+<a href="https://list.opera.com/mailman/listinfo/operawatir-users">mailing list</a>.</p>
+
+<pre><code class="prompt"><span class="prompt">%</span> jruby -S gem install operawatir
+<span class="prompt">%</span> operawatir --help</code></pre>
+
+<h3>The beginning</h3>
+
+<p>In every script you will first need to require OperaWatir, and then start
+Opera. Pretty soon after that you will want to visit a URL. This is simply
+achieved by setting the <code>url</code> property on the <code>browser</code> object.
+Finally we need to quit the browser.</p>
+
+<pre><code>require 'operawatir'
+
+browser = OperaWatir::Browser.new
+browser.url = 'http://maps.google.com'
+
+browser.quit
+</code></pre>
+
+<p>Save this code into a file called <strong><code>tutorial.rb</code></strong>, and then you run
+it using this command:</p>
+
+<pre><code class="prompt"><span class="prompt">%</span> jruby tutorial.rb</code></pre>
+
+<p>Opera will start, wait a moment, and then go and visit Google Maps, and quit.
+Now that we can visit any page we want, it's time to interact with them!</p>
+
+<h3>Finding elements</h3>
+
+<aside>
+ <p id="congratulations">You can find the ID of an element in Opera by right
+  clicking it, selecting ‘Inspect Element’, and looking for the
+  <code>id="…"</code> attribute in the window that appears. Try finding my ID!</p>
+</aside>
+
+<p>To interact with the page you first need to find the element you want to use.
+You can then perform a variety of actions of which the most common are clicking
+and typing in text. Take a look at the <a href="TODO">API Documentation [TODO]</a>
+for more.</p>
+
+<p>In this example we are going to type in the Google Maps search field. There
+are two things you need to find an element with Watir: the type of
+element, and an identifying feature. The easiest way to uniquely identify an
+element is by using the ID, for the search field this is “<code>q_d</code>”.
+This is also a text box and so we use the <code>text_field</code> method.</p>
+
+<pre><code>search = browser.text_field(:id, 'q_d')</code></pre>
+
+<p>Check out the <a href="TODO">documentation [TODO]</a> to see the other
+elements you can find.</p>
+
+<p>Now that we have the search box we want to type something in it.</p>
+
+<h3>The keyboard</h3>
+
+<p>We can type text by using the <code>set</code> method, and press ‘special’
+keys by using the <code>key</code> method. We will use these methods to search
+for the directions from Opera HQ to the Opera House, and submit the form by
+pressing the enter key. Including our progress so far this gives us the following code:</p>
+
+<pre><code>require 'operawatir'
+
+browser = OperaWatir::Browser.new
+browser.url = 'http://maps.google.com'
+
+# Find the search box
+search = browser.text_field(:id, 'q_d')
+
+# Type text and submit the form
+search.set 'Opera Software ASA, Oslo to Den Norske Opera & Ballett'
+browser.key('Enter')
+
+# Wait 3 seconds so that we can see the results
+sleep 3
+
+browser.quit</code></pre>
+
+<p>Try saving this code and running the script using the command in the above
+section. After loading Google Maps, Opera will wait a bit, and then start typing,
+and press enter. The <code>sleep 3</code> will keep Opera open long enough for
+you to see that our search was ambiguous, and we need to click the first result.</p>
+
+<h3>The mouse</h3>
+
+<p>Clicking links is very simple and uses some of the techniques we have already
+learned. First we need to find the link to click, and then we can call the
+<code>click</code> method.</p>
+
+<p>In our search the first suggested result is correct, which always has the ID
+of <code>ddw_dll_1_0</code>. Using the <code>link</code> method to search for
+only links, results in:</p>
+
+<pre><code>browser.link(:id, 'ddw_dll_1_0').click</code></pre>
+
+<p>Put this after the <code>sleep 3</code> above.</p>
+
+<h3>Difficult elements</h3>
+
+<p>Sometimes the element you want does not have an ID. In these cases we need to
+use other tools. First check if the element has a unique <code>title</code> or
+<code>name</code>. Or, if you know it will always be in
+the same position you search by its index.</p>
+
+<pre><code># Examples of alternative selectors
+labs_image = browser.image(:title, 'Google Maps Labs')
+search_button = browser.button(:name, 'btnG')
+web_link = browser.link(:index, 2) # second link on the page</code></pre>
+
+<p>If you still cannot locate the element using these you can use the power-house
+solution: <strong>XPath</strong>.</p>
+
+<p></p>
+      </div>
+    </section>
+
+    <footer>
+      <div class="wrapper">
+        <p id="logo">
+          <a href="http://opera.com/"><img src="graphics/opera-footer.gif" alt="" /></a>
+        </p>
+
+        <p>
+          Copyright © 2010 <a href="http://opera.com/">Opera Software ASA</a>.
+        </p>
+      </div>
+    </footer>
+
+  </body>
+</html>

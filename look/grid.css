@@ -1,0 +1,210 @@
+/*
+ * Grid
+ *
+ * Written by Andreas Tolf Tolfsen <ato@fsfe.org>
+ */
+
+.grid-80-20,
+.grid-75-25,
+.grid-25-75,
+.grid-70-30,
+.grid-30-70,
+.grid-50-50,
+.grid-40-60,
+.grid-60-40,
+.grid-66-33,
+.grid-20-60-20,
+.grid-50-25-25,
+.grid-33-33-33,
+.grid-25-25-25-25 {
+/*	float: left;*/
+	width: 100%;
+	padding-bottom: 1.5em;
+}
+
+.grid-50-50::after {
+  content: "";
+  clear: both;
+  height: 1px;
+  overflow: hidden;
+}
+
+.grid-80-20 .box,
+.grid-75-25 .box,
+.grid-25-75 .box,
+.grid-70-30 .box,
+.grid-30-70 .box,
+.grid-50-50 .box,
+.grid-40-60 .box,
+.grid-60-40 .box,
+.grid-66-33 .box,
+.grid-20-60-20 .box,
+.grid-50-25-25 .box,
+.grid-33-33-33 .box,
+.grid-25-25-25-25 .box {
+	float: right;
+	display: inline;
+	padding-right: 1%;
+}
+
+.grid-80-20 .box.first,
+.grid-75-25 .box.first,
+.grid-25-75 .box.first,
+.grid-70-30 .box.first,
+.grid-30-70 .box.first,
+.grid-50-50 .box.first,
+.grid-40-60 .box.first,
+.grid-60-40 .box.first,
+.grid-66-33 .box.first,
+.grid-20-60-20 .box.first,
+.grid-50-25-25 .box.first,
+.grid-33-33-33 .box.first,
+.grid-25-25-25-25 .box.first {
+	float: left;
+}
+
+.grid-80-20 .box {
+	width: 19%;
+}
+
+.grid-80-20 .box.first {
+	width: 79%;
+}
+
+.grid-75-25 .box,
+.grid-25-75 .box.first {
+	width: 24%;
+}
+
+.grid-75-25 .box.first,
+.grid-25-75 .box {
+	width: 72%;
+	padding-right: 1%;
+
+}
+
+.grid-70-30 .box,
+.grid-30-70 .box.first {
+  width: 29%;
+}
+
+.grid-70-30 .box.first,
+.grid-30-70 .box {
+  width: 69%;
+  padding-right: 1%;
+}
+
+.grid-66-33 .box {
+	width: 32%;
+}
+
+.grid-66-33 .box.first {
+	width: 65%;
+}
+
+.grid-60-40 .box {
+	width: 39%;
+}
+
+.grid-60-40 .box.first {
+	width: 57.5%;
+}
+
+.grid-20-60-20 .box.first {
+	width: 19%;
+}
+
+.grid-50-50 .box,
+.grid-50-50 .box.first {
+	width: 48%;
+}
+
+.grid-40-60 .box {
+  width: 59%;
+}
+
+.grid-40-60 .box.first {
+  width: 39%;
+}
+
+.grid-20-60-20 .box + .box {
+	width: 59%;
+	float: left;
+}
+
+.grid-20-60-20 .box + .box + .box {
+	width: 19%;
+}
+
+.grid-50-25-25 .box {
+	width: 24%;
+}
+
+.grid-50-25-25 .box.first {
+	width: 49%;
+}
+
+.grid-50-25-25 .box + .box {
+	float: left;
+}
+
+.grid-33-33-33 .box {
+	margin-right: 0.5em;
+	width: 31%;
+}
+
+.grid-25-25-25-25 .box {
+	margin-right: 0.5em;
+	width: 24%;
+}
+
+.mod-100 {
+	width: 100%;
+}
+
+.box.mod-80,
+.box.mod-60,
+.box.mod-50,
+.box.mod-true-50,
+.box.mod-39,
+.box.mod-20,
+.box.mod-30 {
+	padding-right: 0;
+}
+
+.box.mod-80 {
+	width: 80%;
+}
+
+.box.mod-75 {
+  width: 74% !important;
+}
+
+.box.mod-60 {
+	width: 59%;
+}
+
+.box.mod-50 {
+	width: 49%;
+}
+
+.box.mod-true-50 {
+	width: 50%;
+}
+
+.box.mod-39 {
+	width: 39%;
+}
+
+.box.mod-30 {
+	width: 30%;
+}
+
+.box.mod-25 {
+	width: 25%;
+}
+
+.box.mod-20 {
+	width: 20%;
+}
+
