@@ -15,7 +15,18 @@ include_class com.opera.core.systems.OperaDriver
 include_class com.opera.core.systems.OperaWebElement
 include_class com.opera.core.systems.settings.OperaDriverSettings
 
+# TODO This should be replaced when we decide upon a better way of
+#   enabling the Watir 2 API.
 module OperaWatir
+  @shiny = false
+
+  def self.newandshinyplease!
+    @shiny = true
+  end
+
+  def self.newandshinyplease?
+    @shiny
+  end
 end
 
 require 'operawatir/version'
@@ -28,5 +39,3 @@ require 'operawatir/window'
 require 'operawatir/browser'
 
 require 'operawatir/compat'
-
-OperaWatir.compatibility!
