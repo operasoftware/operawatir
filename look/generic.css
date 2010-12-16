@@ -92,7 +92,7 @@ p.small {
 
 aside {
   float: right;
-  padding: 0.4em 1em !important;
+  padding: 0 1.2em !important;
   margin-left: 1em;
   width: 20%;
 

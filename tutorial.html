@@ -83,7 +83,7 @@ it using this command:</p>
 <pre><code class="prompt"><span class="prompt">%</span> jruby tutorial.rb</code></pre>
 
 <p>Opera will start, wait a moment, and then go and visit Google Maps, and quit.
-Now that we can visit any page we want, it's time to interact with them!</p>
+Now that we can visit any page we want, it is time to interact with them!</p>
 
 <h3>Finding elements</h3>
 
@@ -166,10 +166,72 @@ labs_image = browser.image(:title, 'Google Maps Labs')
 search_button = browser.button(:name, 'btnG')
 web_link = browser.link(:index, 2) # second link on the page</code></pre>
 
-<p>If you still cannot locate the element using these you can use the power-house
-solution: <strong>XPath</strong>.</p>
+<p>If you still cannot locate the element using these you can use
+<strong>XPath</strong>. XPath is can be very complicated, but we will be using
+only the simple selector <code>//div[@log='pan_down']</code>.
+This selects all the <code>&lt;div&gt;</code> elements whose <code>log</code> attribute equals
+'<code>pan_down</code>'. In this case there is only one: the pan down button
+located at the top left of the map. </p>
 
-<p></p>
+<pre><code>pan_down = browser.element_by_xpath("//div[@log='pan_down']")
+zoom_in = browser.element_by_xpath("//div[@title='Zoom In']")</code></pre>
+
+<p>To have a look at our destination we are going to pan down once, and then click
+the Zoom In button twice.</p>
+
+<h3>Final code</h3>
+
+<p>Here is the complete code. Because Google Maps is an AJAX application we
+have added <code>sleep</code>s to make sure things have loaded and been added
+to the DOM before we try and find them.</p>
+
+<pre><code>require 'operawatir'
+
+browser = OperaWatir::Browser.new
+browser.url = 'http://maps.google.com/'
+
+puts 'Find the search box'
+search = browser.text_field(:id, 'q_d')
+
+puts 'Type text and submit the form'
+search.set 'Opera Software ASA, Oslo to Den Norske Opera & Ballett'
+browser.key('Enter')
+
+sleep 1
+
+puts 'Select the first result'
+browser.link(:id, 'ddw_dll_1_0').click
+
+sleep 2
+
+puts 'Pan down'
+pan_down = browser.element_by_xpath("//div[@log='pan_down']")
+pan_down.click
+
+puts 'Zoom in'
+zoom_in = browser.element_by_xpath("//div[@title='Zoom In']")
+zoom_in.click
+zoom_in.click
+
+puts 'Done'
+
+sleep 10
+
+# End
+browser.quit</code></pre>
+
+<h3>Conclusion</h3>
+
+<aside><p>If you want something else to try, see if you can close the left panel (hint:
+it is an image with an ID of <code>panelarrow2</code>).</p></aside>
+
+<p>Hopefully this has been an enjoyable introduction to OperaWatir, and has shown
+you how easy it is to automatically control the browser. And you are not limited
+to what has been demonstrated here, have a look at the
+<a href="TODO">API Documentation [TODO]</a> to see everything you can do.</p>
+
+<p>Happy testing and automating!</p>
+
       </div>
     </section>
 
