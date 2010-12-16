@@ -111,7 +111,7 @@ ul {
   list-style: none;
 }
 
-ul li {
+#content ul li {
   padding-left: 1em;
   background: url("../graphics/bullet-red.gif") no-repeat 0 0.3em;
 }
