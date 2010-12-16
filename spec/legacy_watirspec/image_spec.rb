@@ -156,7 +156,7 @@ describe "Image" do
       it "returns the date the image was created as reported by the file system" do
         browser.goto(WatirSpec.host + "/images.html")
         image = browser.image(:index, 2)
-        path = "#{File.dirname(__FILE__)}/html/#{image.src}"
+        path = "#{File.dirname(__FILE__)}/fixtures/#{image.src}"
         image.file_created_date.to_i.should == File.mtime(path).to_i
       end
     end
