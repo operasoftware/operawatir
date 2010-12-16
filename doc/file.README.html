@@ -1,0 +1,228 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta name="Content-Type" content="text/html; charset=utf8" />
+<title>OperaWatir</title>
+<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  relpath = '';
+  if (relpath != '') relpath += '/';
+</script>
+<script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+  </head>
+  <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html" title="Index">Index</a> &raquo; 
+    <span class="title">File: README</span>
+  
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  <a id="class_list_link" href="#">Class List</a>
+  <a id="method_list_link" href="#">Method List</a>
+  <a id ="file_list_link" href="#">File List</a>
+</div>
+
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><div id='filecontents'><h1>OperaWatir</h1>
+<h2>Description</h2>
+<p>
+OperaWatir is our implementation of the Watir v1.x API, originally
+developed for Internet Explorer by an independent third-party. This
+documentation will describe how to get OperaWatir running on your machine
+and how to write and run tests with it.
+</p>
+<p>
+Watir (pronounced water) is an acronym for “Web Application Testing in
+Ruby”, and is comprised of a toolkit used to automate interactions with
+web browsers. Watir was originally conceived to to test web applications,
+but Opera Software have since expanded it and made it useful also for doing
+automated testing of the browser itself. Using OperaWatir will allow you to
+drive the Opera web browser as well as extracting useful information for
+testing that the browser renderer behaves properly.
+</p>
+<h2>Installation</h2>
+<p>
+This page describes installing and upgrading OperaWatir and setting up an
+automated testing system on your machine. OperaWatir runs on GNU/Linux and
+Windows operating systems. Other UNIX-like systems, such as BSD and OS X,
+have not been tested but should work. We recommend using Java &gt;= 1.6.0,
+JRuby &gt;= 1.4.0 (ruby 1.8.7 patchlevel 174), RubyGems &gt;= 1.3.5, RSpec
+&gt;= 1.3.0, and a somewhat recent gogi core build of Opera.
+</p>
+<h3>Fresh Installation</h3>
+<h4>Debian</h4>
+<p>
+First, you will need to install Java on your system. On Debian you must
+either enable the non-free repositories or manually download the Sun Java
+package. To enable your non-free repositories, you need to add
+“non-free” to your default repository source in /etc/sources.list.
+lenny is the stable version of Debian, but you can replace this with
+squeeze if you are running Debian squeeze/testing:
+</p>
+<pre class="code">
+  <span class='deb identifier id'>deb</span> <span class='http identifier id'>http</span><span class='symbol val'>:/</span><span class='regexp val'>/ftp.no.debian.org/</span><span class='debian identifier id'>debian</span><span class='div op'>/</span> <span class='lenny identifier id'>lenny</span> <span class='main identifier id'>main</span> <span class='non identifier id'>non</span><span class='minus op'>-</span><span class='free identifier id'>free</span>
+</pre>
+<p>
+Make sure you update your cached package lists if you enabled the non-free
+repositories:
+</p>
+<pre class="code">
+  <span class='string val'>% sudo </span><span class='aptitude identifier id'>aptitude</span> <span class='update identifier id'>update</span>
+</pre>
+<p>
+Sun Java is now easily installable:
+</p>
+<pre class="code">
+  <span class='string val'>% sudo </span><span class='aptitude identifier id'>aptitude</span> <span class='install identifier id'>install</span> <span class='sun identifier id'>sun</span><span class='minus op'>-</span><span class='java6 identifier id'>java6</span><span class='minus op'>-</span><span class='jre identifier id'>jre</span>
+</pre>
+<p>
+If you download the Java package manually you can install it by running the
+following command:
+</p>
+<pre class="code">
+  <span class='string val'>% sudo </span><span class='dpkg identifier id'>dpkg</span> <span class='minus op'>-</span><span class='i identifier id'>i</span> <span class='sun identifier id'>sun</span><span class='minus op'>-</span><span class='java6 identifier id'>java6</span><span class='minus op'>-</span><span class='jre_6 identifier id'>jre_6</span><span class='integer val'>.20</span><span class='minus op'>-</span><span class='dlj identifier id'>dlj</span><span class='minus op'>-</span><span class='integer val'>4_</span><span class='all identifier id'>all</span><span class='dot token'>.</span><span class='deb identifier id'>deb</span>
+</pre>
+<p>
+JRuby is by Debian also considered a non-fre package, but will be available
+to the package system if you have non-free repositories enabled. If you are
+using Debian squeeze/testing and have non-free repositories enabled, it can
+be installed like this:
+</p>
+<pre class="code">
+  <span class='string val'>% sudo </span><span class='aptitude identifier id'>aptitude</span> <span class='install identifier id'>install</span> <span class='jruby identifier id'>jruby</span>
+</pre>
+<p>
+Debian lenny/stable users, or users who prefer to not enable non-free
+repositories, must download the JRuby 1.4 package manually. JRuby 1.4 is
+not yet available in Debian&#8217;s stable non-free repository, but the
+manually downloaded package can be installed like this:
+</p>
+<pre class="code">
+  <span class='string val'>% sudo </span><span class='dpkg identifier id'>dpkg</span> <span class='minus op'>-</span><span class='i identifier id'>i</span> <span class='jruby_1 identifier id'>jruby_1</span><span class='float val'>.4.0</span><span class='minus op'>-</span><span class='integer val'>1_</span><span class='all identifier id'>all</span><span class='dot token'>.</span><span class='deb identifier id'>deb</span>
+</pre>
+<p>
+When you have JRuby installed you must fetch RSpec:
+</p>
+<pre class="code">
+  <span class='string val'>% sudo </span><span class='jruby identifier id'>jruby</span> <span class='minus op'>-</span><span class='S constant id'>S</span> <span class='gem identifier id'>gem</span> <span class='install identifier id'>install</span> <span class='rspec identifier id'>rspec</span>
+</pre>
+<p>
+Finally, download the OperaWatir gem and install it, replacing the wildcard
+below with the correct version number:
+</p>
+<pre class="code">
+  <span class='string val'>% sudo </span><span class='jruby identifier id'>jruby</span> <span class='minus op'>-</span><span class='S constant id'>S</span> <span class='gem identifier id'>gem</span> <span class='install identifier id'>install</span> <span class='operawatir identifier id'>operawatir</span><span class='minus op'>-</span><span class='integer val'>0</span><span class='float val'>.0.2</span><span class='dot token'>.</span><span class='mult op'>*</span><span class='dot token'>.</span><span class='gem identifier id'>gem</span>
+</pre>
+<h4>Ubuntu</h4>
+<p>
+First, install Sun Java on your system by using the following command:
+</p>
+<pre class="code">
+  <span class='string val'>% sudo </span><span class='aptitude identifier id'>aptitude</span> <span class='install identifier id'>install</span> <span class='sun identifier id'>sun</span><span class='minus op'>-</span><span class='java6 identifier id'>java6</span><span class='minus op'>-</span><span class='jre identifier id'>jre</span>
+</pre>
+<p>
+When you have JRuby installed you must fetch RSpec:
+</p>
+<pre class="code">
+  <span class='string val'>% sudo </span><span class='jruby identifier id'>jruby</span> <span class='minus op'>-</span><span class='S constant id'>S</span> <span class='gem identifier id'>gem</span> <span class='install identifier id'>install</span> <span class='rspec identifier id'>rspec</span>
+</pre>
+<p>
+Finally, download the OperaWatir gem and install it, replacing the wildcard
+below with the correct version number:
+</p>
+<pre class="code">
+  <span class='string val'>% sudo </span><span class='jruby identifier id'>jruby</span> <span class='minus op'>-</span><span class='S constant id'>S</span> <span class='gem identifier id'>gem</span> <span class='install identifier id'>install</span> <span class='operawatir identifier id'>operawatir</span><span class='minus op'>-</span><span class='integer val'>0</span><span class='float val'>.0.2</span><span class='dot token'>.</span><span class='mult op'>*</span><span class='dot token'>.</span><span class='gem identifier id'>gem</span>
+</pre>
+<h4>Windows</h4>
+<p>
+First you must install Sun Java on your machine. It is available from
+Oracle&#8217;s website:
+</p>
+<pre class="code">
+  <span class='http identifier id'>http</span><span class='symbol val'>:/</span><span class='regexp val'>/java.com/e</span><span class='n identifier id'>n</span><span class='div op'>/</span><span class='download identifier id'>download</span><span class='div op'>/</span>
+</pre>
+<p>
+Then fetch and install JRuby:
+</p>
+<pre class="code">
+  <span class='http identifier id'>http</span><span class='symbol val'>:/</span><span class='regexp val'>/jruby.org/</span><span class='download identifier id'>download</span>
+</pre>
+<p>
+When you have JRuby installed you must fetch RSpec:
+</p>
+<pre class="code">
+  <span class='jruby identifier id'>jruby</span> <span class='minus op'>-</span><span class='S constant id'>S</span> <span class='gem identifier id'>gem</span> <span class='install identifier id'>install</span> <span class='rspec identifier id'>rspec</span>
+</pre>
+<p>
+Finally, download the OperaWatir gem and install it, replacing the wildcard
+below with the correct version number. Please note that you must be in the
+same directory as to where you downloaded the gem before issuing this
+command:
+</p>
+<pre class="code">
+  <span class='jruby identifier id'>jruby</span> <span class='minus op'>-</span><span class='S constant id'>S</span> <span class='gem identifier id'>gem</span> <span class='install identifier id'>install</span> <span class='operawatir identifier id'>operawatir</span><span class='minus op'>-</span><span class='integer val'>0</span><span class='float val'>.0.2</span><span class='dot token'>.</span><span class='mult op'>*</span><span class='dot token'>.</span><span class='gem identifier id'>gem</span>
+</pre>
+<h3>Upgrading</h3>
+<p>
+It&#8217;s important to note that if you have an old version installed on
+your system, you will most likely need to remove that to make a newer
+version work. To see the gems currently installed on your system:
+</p>
+<pre class="code">
+  <span class='string val'>% jruby </span><span class='minus op'>-</span><span class='S constant id'>S</span> <span class='gem identifier id'>gem</span> <span class='list identifier id'>list</span>
+</pre>
+<p>
+You can remove your old version of OperaWatir with this command (preceded
+by &quot;sudo&quot; if you&#8217;re on an UNIX-like system):
+</p>
+<pre class="code">
+  <span class='string val'>% jruby </span><span class='minus op'>-</span><span class='S constant id'>S</span> <span class='gem identifier id'>gem</span> <span class='uninstall identifier id'>uninstall</span> <span class='OperaWatir constant id'>OperaWatir</span>
+</pre>
+<p>
+If everything else fails you can try include the --install-dir
+parameter to your gem&#8217;s top directory. That will remove the specified
+gem in the specified install directory.
+</p>
+<p>
+If multiple versions of OperaWatir are installed those could also be
+removed by running (also preceded by &quot;sudo&quot; if on UNIX):
+</p>
+<pre class="code">
+  <span class='string val'>% jruby </span><span class='minus op'>-</span><span class='S constant id'>S</span> <span class='gem identifier id'>gem</span> <span class='cleanup identifier id'>cleanup</span> <span class='OperaWatir constant id'>OperaWatir</span>
+</pre>
+<p>
+When OperaWatir has been removed from your system you can proceed with
+installing the new version, following the installation instructions above.
+</p>
+<h2>License</h2>
+<p>
+TODO.
+</p>
+</div></div>
+    
+    <div id="footer">
+  Generated on Thu Dec 16 19:22:41 2010 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.6.3 (ruby-1.8.7).
+</div>
+
+  </body>
+</html>
