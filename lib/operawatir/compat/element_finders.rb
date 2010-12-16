@@ -74,7 +74,7 @@ module OperaWatir::Compat::ElementFinders
 
   def_element :h6, :h6s
 
-  def_element :image, :images do |selector|
+  def_element :image, :images, :how => :src do |selector|
     selector.tag :img
   end
 
@@ -101,7 +101,9 @@ module OperaWatir::Compat::ElementFinders
 
   def_element :pre, :pres
 
-  def_element :radio, :radios
+  def_element :radio, :radios, :how => :name do |selector|
+    selector.tag(:input).attribute :type => 'radio'
+  end
 
   def_element :select_list, :select_lists do |selector|
     selector.tag :select
@@ -136,12 +138,13 @@ module OperaWatir::Compat::ElementFinders
 
   def_element :text_field, :text_fields do |selector|
     selector.join do |elm|
-      # TODO First test in element_spec.rb fails because we don't treat inputs
-      # with unknown type attributes as text fields. We could reverse this
-      # selector to include anything EXCEPT checkbox, radio, submit, reset,
-      # file, hidden, image and button. This would future proof it somewhat,
-      # but HTML5 types such as "range" do not allow values to be typed in (at
-      # least not in Opera)
+      # TODO First test in element_spec.rb fails because we don't
+      # treat inputs with unknown type attributes as text fields. We
+      # could reverse this selector to include anything EXCEPT
+      # checkbox, radio, submit, reset, file, hidden, image and
+      # button. This would future proof it somewhat, but HTML5 types
+      # such as "range" do not allow values to be typed in (at least
+      # not in Opera)
 
       # empty type is text
       elm.tag(:input).attribute :type => ''
