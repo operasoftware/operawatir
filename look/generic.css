@@ -318,6 +318,11 @@ pre code var {
   min-height: 300px;
 }
 
+#screenshot img {
+  float: none;
+  margin: 3.2em 0 0 0;
+}
+
 #install p,
 #install pre {
   text-align: center;

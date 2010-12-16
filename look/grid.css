@@ -18,16 +18,18 @@
 .grid-33-33-33,
 .grid-25-25-25-25 {
 /*	float: left;*/
-	width: 100%;
-	padding-bottom: 1.5em;
+    width: 100%;
+    padding-bottom: 1.5em;
 }
 
+/*
 .grid-50-50::after {
   content: "";
   clear: both;
   height: 1px;
   overflow: hidden;
 }
+*/
 
 .grid-80-20 .box,
 .grid-75-25 .box,
@@ -42,9 +44,9 @@
 .grid-50-25-25 .box,
 .grid-33-33-33 .box,
 .grid-25-25-25-25 .box {
-	float: right;
-	display: inline;
-	padding-right: 1%;
+    float: right;
+    display: inline;
+    padding-right: 1%;
 }
 
 .grid-80-20 .box.first,
@@ -78,14 +80,13 @@
 
 .grid-75-25 .box.first,
 .grid-25-75 .box {
-	width: 72%;
-	padding-right: 1%;
-
+    width: 72%;
+    padding-right: 1%;
 }
 
 .grid-70-30 .box,
 .grid-30-70 .box.first {
-  width: 29%;
+    width: 29%;
 }
 
 .grid-70-30 .box.first,
