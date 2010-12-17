@@ -24,6 +24,7 @@
         <nav>
           <ul>
             <li><a href="index.html">Index</a></li>
+            <li><a href="installation.html">Installation</a></li>
             <li class="selected"><a href="tutorial.html">Tutorial</a></li>
             <li><a href="documentation.html">Documentation</a></li>
             <li><a href="http://github.com/operasoftware/operawatir">Source</a></li>
@@ -41,91 +42,22 @@
   The Watir API allows you to write scripts that interact with
   any web page. <strong>It makes testing web pages easy</strong>. Your scripts
   can automatically go through all the steps your users normally would and alert
-  you of any problems quickly.
+  you of any problems quickly. To be able to run the scripts described in this
+	tutorial, you must first <a href='installation.html'>install</a> OperaWatir
+	and its dependencies.
+
 </p>
 
 <p>
-  In this tutorial we are going to control Google Maps. We will find
+  In this tutorial we are going to control Google Maps.	We will find
   directions from the Opera headquarters to the Oslo Opera House, and then we
   will take a closer look at our destination.
 </p>
 
-<h3>Setting up</h3>
-
-<ol>
-  <li>
-    <p>Before starting you will need to install OperaWatir. This requires:</p>
-
-    <aside>
-      <p>Make sure you have JRuby 1.5.1, <strong>not</strong> 1.5.0 or below. Check with <code>jruby -v</code></p>
-    </aside>
-
-    <ul>
-      <li>Opera (<a href="extra-tutorial.html#install-opera">install instructions</a>)</li>
-      <li>Java >= 1.6 (<a href="extra-tutorial.html#install-java-ubuntu">install instructions</a>)</li>
-      <li>JRuby >= 1.5.1 (<a href="extra-tutorial.html#install-jruby-ubuntu">install instructions</a>)</li>
-    </ul>
-  </li>
-
-  <li>
-    <p>Next install the OperaWatir gem with the following command</p>
-    <pre><code class="prompt"><span class="line">jruby -S gem install operawatir</span></code></pre>
-  </li>
-
-  <li>
-    <p>Check that the gem has installed correctly by running:</p>
-    <pre><code class="prompt"><span class="line">operawatir --help</span></code></pre>
-  </li>
-
-  <li>
-    <p><strong>Linux only</strong> If you have not installed JRuby using
-    <code>rvm</code> in the linked instructions you will need to add the
-    <code>operawatir</code> bin directory to your path.</p>
-    <pre><code class="prompt"><span class="line">PATH=$PATH:$(dirname `gem which operawatir`)</span>
-<span class="line">PATH=`dirname $PATH`/bin</span></code></pre>
-  </li>
-
-  <li>
-    <p>You will then need to set the environment variables <code>OPERA_PATH</code>
-    and <code>OPERA_LAUNCHER</code>. This step has separate instructions for
-    Linux and Windows users.</p>
-
-    <h4>Linux</h4>
-    <p>On Linux this can be done with the following commands:</p>
-
-    <pre><code class="prompt"><span class="line">export OPERA_PATH=`which opera`</span>
-<span class="line">export OPERA_LAUNCHER=$(dirname `jruby -S gem which operawatir`)</span>
-<span class="line">OPERA_LAUNCHER="`dirname $OPERA_LAUNCHER`/`jruby -S gem contents operawatir | grep linux_32_launcher`"</span>
-</code></pre>
-
-    <h4>Windows</h4>
-
-    <ul>
-      <li>Right-click "My Computer" and click "Properties"</li>
-      <li>Select the "Advanced tab", click the "Environment variables" button</li>
-      <li>Click the "New" button</li>
-      <li>Add <code>OPERA_PATH</code>, <code>C:\Program Files\Opera\opera.exe</code> and <code>OPERA_LAUNCHER</code>, <code>C:\jruby-1.5.2\lib\ruby\gems\1.8\gems\operawatir-0.2.83-java\launchers\win_32_launcher.exe</code>.</li>
-    </ul>
-
-  </li>
-
-  <li>
-    <p>Finally start Opera, go to <code>opera:config</code>, search for ‘auto connect’
-    and enable ‘Proxy Auto Connect’.</p>
-  </li>
-
-  <li>Close Opera and you are done!</li>
-</ol>
-
-<p>If you have trouble you can contact us on our
-<a href="https://list.opera.com/mailman/listinfo/operawatir-users">mailing list</a>.</p>
-
-<h3>The beginning</h3>
-
 <p>In every script you will first need to require OperaWatir, and then start
 Opera. Pretty soon after that you will want to visit a URL. This is simply
-achieved by setting the <code>url</code> property on the <code>browser</code> object.
-Finally we need to quit the browser.</p>
+achieved with the <code>browser.goto</code> method. Finally we need to quit
+the browser.</p>
 
 <pre><code>require 'rubygems'
 require 'operawatir'

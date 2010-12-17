@@ -1,0 +1,176 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Getting Started | OperaWatir</title>
+    <link href="look/generic.css" rel="stylesheet" />
+    <link href="look/github.css" rel="stylesheet" />
+    <script src="scripts/highlight.pack.js"></script>
+    <script>
+      hljs.initHighlightingOnLoad();
+    </script>
+  </head>
+  <body>
+
+    <div class="ribbon">
+      <a href="http://github.com/operasoftware/operawatir" rel="me">Fork
+        me on Github!</a>
+    </div>
+
+    <header class="highlight-bright">
+      <div class="wrapper">
+        <h1><a href="index.html">OperaWatir</a></h1>
+
+        <nav>
+          <ul>
+            <li><a href="index.html">Index</a></li>
+            <li class='selected'><a href="installation.html">Installation</a></li>
+            <li><a href="tutorial.html">Tutorial</a></li>
+            <li><a href="documentation.html">Documentation</a></li>
+            <li><a href="http://github.com/operasoftware/operawatir">Source</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <section id="content">
+      <div class="wrapper">
+
+<h2>Installing OperaWatir</h2>
+
+<h3>Installing OperaWatir on Windows</h3>
+
+<ol>
+<li><p>The first thing you'll need for OperaWatir to run is, naturally, Opera. You
+can download it from here: <a
+href='http://www.opera.com/browser/'>http://www.opera.com/browser/</a>.
+Once Opera is installed, some configuration is needed. Navigate to <a
+href='opera:config'>opera:config</a>. Enable "Proxy Auto Connect". Set "Home
+URL" to <var>opera:debug</var> and "Startup Type" to <var>2</var>.
+
+<li><p>Next, you'll need JRuby. You can download this from <a
+href='http://jruby.org/'>jruby.org</a>. Make sure you get JRuby 1.5.1 or above.
+Earlier versions will not work.
+
+<li><p>With that in order, you can install OperaWatir. Open the Windows command
+prompt (Start → Run → <var>cmd</var>) and type the following:
+
+<pre><code class="prompt"><span class="line">jruby -S gem install operawatir</span></code></pre>
+
+<li><p>Now we need to tell OperaWatir where it can find the binaries it depends
+on. This is done with environment variables. To set environment variables on
+Windows XP, right-click "My Computer", click "Properties", find the "Advanced tab"
+and click the "Environment variables" button.
+<p>On Windows 7, you can find these settings under "Control Panel", "System and
+Security", "System", "Advanced system settings" and "Environment variables".
+<p>Click the "New" button to add a new variable. Add the variable <var>OPERA_PATH</var>
+with the value <var>C:\Program Files\Opera\opera.exe</var>. If your Opera
+install is elsewhere, change the value accordingly. Also, set the variable
+<var>OPERA_LAUNCHER</var> to 
+<var>C:\jruby-1.5.2\lib\ruby\gems\1.8\gems\operawatir-0.3-java\launchers\launcher-win32-i86pc.exe</var>.
+If these programs are installed elsewhere on your system, please adjust the
+variables accordingly.
+
+<li><p>And we're done! Read the <a href='tutorial.html'>tutorial</a> to see how
+to write and run your scripts.
+
+<p>Note: On some Windows computers, there is a problem where Opera will not
+automatically connect to the running script. If Opera opens but does't do
+anything, simply click the "Connect" button. Your script should then proceed as
+normal.
+
+</ol>
+
+
+<h3>Installing OperaWatir on GNU/Linux</h3>
+
+
+
+
+
+<!--
+
+
+<ol>
+  <li>
+    <p>Before starting you will need to install OperaWatir. This requires:</p>
+
+    <aside>
+      <p>Make sure you have JRuby 1.5.1, <strong>not</strong> 1.5.0 or below. Check with <code>jruby -v</code></p>
+    </aside>
+
+    <ul>
+      <li>Opera (<a href="extra-tutorial.html#install-opera">install instructions</a>)</li>
+      <li>Java >= 1.6 (<a href="extra-tutorial.html#install-java-ubuntu">install instructions</a>)</li>
+      <li>JRuby >= 1.5.1 (<a href="extra-tutorial.html#install-jruby-ubuntu">install instructions</a>)</li>
+    </ul>
+  </li>
+
+  <li>
+    <p>Next install the OperaWatir gem with the following command</p>
+    <pre><code class="prompt"><span class="line">jruby -S gem install operawatir</span></code></pre>
+  </li>
+
+  <li>
+    <p>Check that the gem has installed correctly by running:</p>
+    <pre><code class="prompt"><span class="line">operawatir --help</span></code></pre>
+  </li>
+
+  <li>
+    <p><strong>Linux only</strong> If you have not installed JRuby using
+    <code>rvm</code> in the linked instructions you will need to add the
+    <code>operawatir</code> bin directory to your path.</p>
+    <pre><code class="prompt"><span class="line">PATH=$PATH:$(dirname `gem which operawatir`)</span>
+<span class="line">PATH=`dirname $PATH`/bin</span></code></pre>
+  </li>
+
+  <li>
+    <p>You will then need to set the environment variables <code>OPERA_PATH</code>
+    and <code>OPERA_LAUNCHER</code>. This step has separate instructions for
+    Linux and Windows users.</p>
+
+    <h4>Linux</h4>
+    <p>On Linux this can be done with the following commands:</p>
+
+    <pre><code class="prompt"><span class="line">export OPERA_PATH=`which opera`</span>
+<span class="line">export OPERA_LAUNCHER=$(dirname `jruby -S gem which operawatir`)</span>
+<span class="line">OPERA_LAUNCHER="`dirname $OPERA_LAUNCHER`/`jruby -S gem contents operawatir | grep linux_32_launcher`"</span>
+</code></pre>
+
+    <h4>Windows</h4>
+
+    <ul>
+      <li>Right-click "My Computer" and click "Properties"</li>
+      <li>Select the "Advanced tab", click the "Environment variables" button</li>
+      <li>Click the "New" button</li>
+      <li>Add <code>OPERA_PATH</code>, <code>C:\Program Files\Opera\opera.exe</code> and <code>OPERA_LAUNCHER</code>, <code>C:\jruby-1.5.2\lib\ruby\gems\1.8\gems\operawatir-0.2.83-java\launchers\win_32_launcher.exe</code>.</li>
+    </ul>
+
+  </li>
+
+  <li>
+    <p>Finally start Opera, go to <code>opera:config</code>, search for ‘auto connect’
+    and enable ‘Proxy Auto Connect’.</p>
+  </li>
+
+  <li>Close Opera and you are done!</li>
+</ol>
+-->
+
+      </div>
+    </section>
+
+    <footer>
+      <div class="wrapper">
+        <p id="logo">
+          <a href="http://opera.com/"><img src="graphics/opera-footer.gif" alt="" /></a>
+        </p>
+
+        <p>
+          Copyright © 2010 <a href="http://opera.com/">Opera Software ASA</a>.
+        </p>
+      </div>
+    </footer>
+
+  </body>
+</html>
