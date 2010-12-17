@@ -13,7 +13,11 @@ class OperaWatir::Collection
   end
 
   def add_selector_from_arguments(args)
-    selector.attribute args.first
+    if not args.empty?
+      args.each do |arg|
+        selector.attribute arg
+      end
+    end
   end
 
   def exist?

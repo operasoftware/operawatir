@@ -11,23 +11,6 @@ class OperaWatir::Selector
     self.collection, self.sexp = collection, sexp
   end
 
-  def optimise(sexp)
-    # [:attribute, [:tag_name, nil, TAG], {:id => ID}]
-    # =>
-    # [:tag_name, [:id, nil, ID], TAG]
-    if (
-        sexp.first == :attribute and
-        sexp[1].first == :tag_name and sexp[1][1].nil? and
-        sexp.last.length == 1 and sexp.last.has_key?(:id) and
-        sexp.last[:id].is_a?(String)
-    )
-      # Need to uppercase the tag name as Element.tag_name is alway uppercase
-      [:attribute, [:id, nil, sexp.last[:id]], {:tag_name => sexp[1].last.to_s.upcase}]
-    else
-      sexp
-    end
-  end
-
   def eval(exp=sexp)
     exp.is_a?(Array) ? apply(*optimise(exp).map {|x| eval(x)}) : exp
   end
@@ -75,6 +58,23 @@ class OperaWatir::Selector
   alias_method :tag, :tag_name
 
 private
+
+  def optimise(sexp)
+    # [:attribute, [:tag_name, nil, TAG], {:id => ID}]
+    # =>
+    # [:tag_name, [:id, nil, ID], TAG]
+    if (
+        sexp.first == :attribute and
+        sexp[1].first == :tag_name and sexp[1][1].nil? and
+        sexp.last.length == 1 and sexp.last.has_key?(:id) and
+        sexp.last[:id].is_a?(String)
+    )
+      # Need to uppercase the tag name as Element.tag_name is alway uppercase
+      [:attribute, [:id, nil, sexp.last[:id]], {:tag_name => sexp[1].last.to_s.upcase}]
+    else
+      sexp
+    end
+  end
 
   def apply_join(base, elms)
     elms.inject(base) do |col, elm|

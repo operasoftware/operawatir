@@ -105,6 +105,7 @@ class OperaWatir::Window
   end
 
   alias_method :find_by_class, :find_by_class_name
+  alias_method :find_by_tag, :find_by_tag_name
 
   def elements
     find_by_tag('*')
