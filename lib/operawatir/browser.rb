@@ -23,7 +23,7 @@ class OperaWatir::Browser
 
   # Get the name of the browser currently being run.
   #
-  # @return [String] name of browser currently used.
+  # @return [String] name of browser currently used
   def name
     'Opera'
   end
@@ -37,7 +37,7 @@ class OperaWatir::Browser
   # not the same as checking whether the object is connected to a
   # browser.
   #
-  # @return [Boolean] whether Browser object exists.
+  # @return [Boolean] whether Browser object exists
   def exists?
     true
   end
@@ -45,7 +45,7 @@ class OperaWatir::Browser
   # Query to see if the browser instance is still connected.
   #
   # @return [Boolean] whether driver is still connected to browser
-  #   instance.
+  #   instance
   def connected?
     driver.isConnected
   end
@@ -66,7 +66,7 @@ class OperaWatir::Browser
   # the version number for OperaWatir, which can be retrieved using
   # +OperaWatir.version+ instead.
   #
-  # @return [String] driver version.
+  # @return [String] driver version
   def version
     driver.getOperaDriverVersion
   end
@@ -74,7 +74,7 @@ class OperaWatir::Browser
   # Get process identifier for spawned Opera browser instance.  This
   # will only work if instance was started through OperaWatir.
   #
-  # @return [Integer] the process ID of the browser instance.
+  # @return [Integer] the process ID of the browser instance
   def pid
     driver.getPid
   end
@@ -82,28 +82,28 @@ class OperaWatir::Browser
   # Get the target device's platform.  This is not equivalent of the
   # platform the OperaWatir server might be running on.
   #
-  # @return [String] operating system flavour.
+  # @return [String] operating system flavour
   def platform
     driver.getPlatform
   end
 
   # Will fetch the build number for the attached browser instance.
   #
-  # @return [Integer] build number of attached browser instance.
+  # @return [Integer] build number of attached browser instance
   def build
     driver.getBuild
   end
 
   # Get the full path to the attached browser binary.
   #
-  # @return [String] path to the attached browser's binary.
+  # @return [String] path to the attached browser's binary
   def path
     driver.getPath
   end
 
   # Fetches the user agent (UA) string the browser currently uses.
   #
-  # @return [String] user agent string.
+  # @return [String] user agent string
   def ua_string
     driver.getUaString
   end
@@ -112,7 +112,7 @@ class OperaWatir::Browser
   # desktop?
   #
   # @return [Boolean] true if browser attached is of type desktop,
-  #                   false otherwise.
+  #   false otherwise
   def desktop?
     false
   end
@@ -120,7 +120,7 @@ class OperaWatir::Browser
   # Send key events to the browser instance.  I.e. “Down” (arrow
   # down), “Space” (space key), “Home”, &c.
   #
-  # @param [String] key to be pressed once.
+  # @param [String] key to be pressed once
   def key(key)
     @driver.key(key)
   end
@@ -128,14 +128,14 @@ class OperaWatir::Browser
   # Enables you to hold down a key, i.e. “Ctrl”, “Alt”, “Shift”, &c.
   # Remember to release the keys afterwards with the key_up method.
   #
-  # @param [String] key to be pressed down.
+  # @param [String] key to be pressed down
   def key_down(key)
     @driver.keyDown(key)
   end
 
   # Releases a held down key.
   #
-  # @param [String] key to be lifted.
+  # @param [String] key to be lifted
   def key_up(key)
     @driver.keyUp(key)
   end
@@ -143,9 +143,17 @@ class OperaWatir::Browser
   # Types given text directly in to the browser.  The text will be
   # inputted to the page depending on where the focus is.
   #
-  # @param [String] text to be typed.
+  # @param [String] text to be typed
   def type(text)
     @driver.type(text)
+  end
+
+  # Sends an Opera action to the browser.
+  #
+  # @param [String] name of the action
+  # @return [String] optional return from the performed action
+  def opera_action(name, *args)
+    @driver.operaAction(name, param.to_java(:string))
   end
 
   # Full list of available Opera actions in the Opera build you're
@@ -154,7 +162,7 @@ class OperaWatir::Browser
   # available to devices-type builds will vary greatly from those
   # available to desktop-types.
   #
-  # @return [String] list of available Opera actions.
+  # @return [String] list of available Opera actions
   def opera_action_list
     @driver.getOperaActionList
   end
