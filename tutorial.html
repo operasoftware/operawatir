@@ -152,7 +152,7 @@ Now that we can visit any page we want, it is time to interact with them!</p>
 <p>To interact with the page you first need to find the element you
 want to use.  You can then perform a variety of actions of which the
 most common are clicking and typing in text. Take a look at
-the <a href="doc/">API Documentation</a> for more.</p>
+the <a href="doc/">API documentation</a> for more.</p>
 
 <p>In this example we are going to type in the Google Maps search field. There
 are two things you need to find an element with Watir: the type of
@@ -162,7 +162,7 @@ This is also a text box and so we use the <code>text_field</code> method.</p>
 
 <pre><code>search = browser.text_field(:id, 'q_d')</code></pre>
 
-<p>Check out the <a href="TODO">documentation [TODO]</a> to see the other
+<p>Check out the <a href="watir1api.html">Watir 1 API</a> to see the other
 elements you can find.</p>
 
 <p>Now that we have the search box we want to type something in it.</p>
@@ -171,7 +171,7 @@ elements you can find.</p>
 
 <p>We can type text by using the <code>set</code> method, and press ‘special’
 keys by using the <code>key</code> method. We will use these methods to search
-for the directions from Opera HQ to the Opera House, and submit the form by
+for the directions from Opera HQ to the Oslo Opera House, and submit the form by
 pressing the enter key. Including our progress so far this gives us the following code:</p>
 
 <pre><code>require 'operawatir'
@@ -179,12 +179,12 @@ pressing the enter key. Including our progress so far this gives us the followin
 browser = OperaWatir::Browser.new
 browser.goto 'http://maps.google.com/'
 
-# Find the search box
+<strong># Find the search box
 search = browser.text_field(:id, 'q_d')
 
 # Type text and submit the form
 search.set 'Opera Software ASA, Oslo to Den Norske Opera & Ballett'
-browser.key('Enter')
+browser.key('Enter')</strong>
 
 # Wait 3 seconds so that we can see the results
 sleep 3
@@ -213,9 +213,9 @@ only links, results in:</p>
 <h3>Difficult elements</h3>
 
 <p>Sometimes the element you want does not have an ID. In these cases we need to
-use other tools. First check if the element has a unique <code>title</code> or
-<code>name</code>. Or, if you know it will always be in
-the same position you search by its index.</p>
+use other tools. If the element has a unique <code>title</code> or
+<code>name</code> you can use these to find elements. Or, if you know it will
+always be in the same position you search by its index.</p>
 
 <pre><code># Examples of alternative selectors
 labs_image = browser.image(:title, 'Google Maps Labs')
@@ -234,7 +234,7 @@ the Zoom In button.</p>
 zoom_in = browser.element_by_xpath("//div[@title='Zoom In']")</code></pre>
 
 <p>To have a look at our destination we are going to pan down once, and then click
-the Zoom In button twice.</p>
+the Zoom In button twice. See if you can work out the code before looking below.</p>
 
 <h3>Final code</h3>
 
@@ -257,7 +257,7 @@ browser.key('Enter')
 sleep 1
 
 puts 'Select the first result'
-browser.link(:id, 'ddw_dll_1_0').click
+<strong>browser.link(:id, 'ddw_dll_1_0').click
 
 sleep 2
 
@@ -268,8 +268,7 @@ pan_down.click
 puts 'Zoom in'
 zoom_in = browser.element_by_xpath("//div[@title='Zoom In']")
 zoom_in.click
-zoom_in.click
-
+zoom_in.click</strong>
 puts 'Done'
 
 sleep 10
@@ -285,7 +284,7 @@ it is an image with an ID of <code>panelarrow2</code>).</p></aside>
 <p>Hopefully this has been an enjoyable introduction to OperaWatir, and has shown
 you how easy it is to automatically control the browser. And you are not limited
 to what has been demonstrated here, have a look at the
-<a href="doc/">API Documentation</a> to see everything you can do.</p>
+<a href="documentation.html">documentation</a> to see everything you can do.</p>
 
 <p>Happy testing and automating!</p>
 
@@ -303,6 +302,9 @@ irb(main):003:0&gt; browser = OperaWatir::Browser.new
 =&gt; #&lt;OperaWatir::Browser:0x1496e57 @active_window=#&lt;OperaWatir::Window:0x1eb1db2 @browser=#&lt;OperaWatir::Browser:0x1496e57 ...&gt;&gt;, @driver=#&lt;Java::ComOperaCoreSystems::OperaDriver:0xeabd2f&gt;&gt;
 irb(main):004:0&gt; browser.goto 'http://sau.no/'
 =&gt; nil
+
+<em>&lt;Enter your Watir commands here&gt;</em>
+
 irb(main):005:0&gt; browser.quit
 =&gt; nil
 </code></pre>
