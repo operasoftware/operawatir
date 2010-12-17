@@ -37,125 +37,76 @@
       <div class="wrapper">
 
 <h2>Installing OperaWatir</h2>
+<p>Below are installation instructions for Windows and GNU/Linux. Mac is not yet supported.</p>
+
 
 <h3>Installing OperaWatir on Windows</h3>
 
 <ol>
-<li><p>The first thing you'll need for OperaWatir to run is, naturally, Opera. You
-can download it from here: <a
-href='http://www.opera.com/browser/'>http://www.opera.com/browser/</a>.
-Once Opera is installed, some configuration is needed. Navigate to <a
-href='opera:config'>opera:config</a>. Enable "Proxy Auto Connect". Set "Home
-URL" to <var>opera:debug</var> and "Startup Type" to <var>2</var>.
+ <li>
+  <p>The first thing you'll need for OperaWatir to run is, naturally, Opera. You can download it from here: <a href='http://www.opera.com/browser/'>http://www.opera.com/browser/</a>. Once Opera is installed, some configuration is needed. Navigate to <a href='opera:config'>opera:config</a>. Enable "Proxy Auto Connect". Set "Home URL" to <var>opera:debug</var> and "Startup Type" to <var>2</var>.
+ </li>
 
-<li><p>Next, you'll need JRuby. You can download this from <a
-href='http://jruby.org/'>jruby.org</a>. Make sure you get JRuby 1.5.1 or above.
-Earlier versions will not work.
+ <li>
+  <p>Next, you'll need JRuby. You can download this from <a href='http://jruby.org/'>jruby.org</a>. Make sure you get JRuby 1.5.1 or above. Earlier versions will not work.
+ </li>
 
-<li><p>With that in order, you can install OperaWatir. Open the Windows command
-prompt (Start → Run → <var>cmd</var>) and type the following:
+ <li>
+  <p>With that in order, you can install OperaWatir. Open the Windows command prompt (Start → Run → <var>cmd</var>) and type the following:
+  <pre><code class="prompt"><span class="line">jruby -S gem install operawatir</span></code></pre>
+ </li>
 
-<pre><code class="prompt"><span class="line">jruby -S gem install operawatir</span></code></pre>
+ <li>
+  <p>Now we need to tell OperaWatir where it can find the binaries it depends on. This is done with environment variables. To set environment variables on Windows XP, right-click "My Computer", click "Properties", find the "Advanced tab" and click the "Environment variables" button.
+  <p>On Windows 7, you can find these settings under "Control Panel", "System and Security", "System", "Advanced system settings" and "Environment variables".
+	<p>Click the "New" button to add a new variable. Add the variable <var>OPERA_PATH</var> with the value <var>C:\Program Files\Opera\opera.exe</var>. If your Opera install is elsewhere, change the value accordingly. Also, set the variable <var>OPERA_LAUNCHER</var> to <var>C:\jruby-1.5.2\lib\ruby\gems\1.8\gems\operawatir-0.3-java\launchers\launcher-win32-i86pc.exe</var>. If these programs are installed elsewhere on your system, please adjust the variables accordingly.
+ </li>
 
-<li><p>Now we need to tell OperaWatir where it can find the binaries it depends
-on. This is done with environment variables. To set environment variables on
-Windows XP, right-click "My Computer", click "Properties", find the "Advanced tab"
-and click the "Environment variables" button.
-<p>On Windows 7, you can find these settings under "Control Panel", "System and
-Security", "System", "Advanced system settings" and "Environment variables".
-<p>Click the "New" button to add a new variable. Add the variable <var>OPERA_PATH</var>
-with the value <var>C:\Program Files\Opera\opera.exe</var>. If your Opera
-install is elsewhere, change the value accordingly. Also, set the variable
-<var>OPERA_LAUNCHER</var> to 
-<var>C:\jruby-1.5.2\lib\ruby\gems\1.8\gems\operawatir-0.3-java\launchers\launcher-win32-i86pc.exe</var>.
-If these programs are installed elsewhere on your system, please adjust the
-variables accordingly.
+ <li>
+  <p>If you are using Windows XP, you might need to install <a href='http://www.microsoft.com/downloads/details.aspx?displaylang=en&amp;FamilyID=9b2da534-3e03-4391-8a4d-074b9f2bc1bf'>Microsoft Visual C++ 2008 Redistributable Package (x86)</a>.</p>
+ </li>
 
-<li><p>And we're done! Read the <a href='tutorial.html'>tutorial</a> to see how
-to write and run your scripts.
-
-<p>Note: On some Windows computers, there is a problem where Opera will not
-automatically connect to the running script. If Opera opens but does't do
-anything, simply click the "Connect" button. Your script should then proceed as
-normal.
-
+ <li>
+  <p>And we're done! Read the <a href='tutorial.html'>tutorial</a> to see how to write and run your scripts.
+	<p>Note: On some Windows computers, there is a problem where Opera will not automatically connect to the running script. If Opera opens but does't do anything, simply click the "Connect" button. Your script should then proceed as normal.
+ </li>
 </ol>
 
 
 <h3>Installing OperaWatir on GNU/Linux</h3>
 
-
-
-
-
-<!--
-
-
 <ol>
-  <li>
-    <p>Before starting you will need to install OperaWatir. This requires:</p>
+ <li>
+  <p>The first thing you'll need for OperaWatir to run is, naturally, Opera.  On Ubuntu, you can install it like this:
+  <pre><code class="prompt"><span class="line">sudo apt-get install opera</span></code></pre>
+  <p>Or, to make sure you get the most recent version, you can manually  download it from here: <a href='http://www.opera.com/browser/'>http://www.opera.com/browser/</a>.  Packages are available for the most commonly used distributions.
+  <p>Once Opera is installed, some configuration is required. Navigate to <a href='opera:config'>opera:config</a> and enable "Proxy Auto Connect".
+ </li>
 
-    <aside>
-      <p>Make sure you have JRuby 1.5.1, <strong>not</strong> 1.5.0 or below. Check with <code>jruby -v</code></p>
-    </aside>
+ <li>
+  <p>Next, you'll need JRuby 1.5.1 or above. Earlier versions will not work. In Ubuntu, this is available only in the most recent versions, where you can install it like this:
+  <pre><code class="prompt"><span class="line">sudo apt-get install jruby</span></code></pre></li>
+  <p>If you're using an older version, you can use this <a  href='http://se.archive.ubuntu.com/ubuntu/pool/multiverse/j/jruby/jruby_1.5.1-1_all.deb'>deb</a>  package.
+ </li>
 
-    <ul>
-      <li>Opera (<a href="extra-tutorial.html#install-opera">install instructions</a>)</li>
-      <li>Java >= 1.6 (<a href="extra-tutorial.html#install-java-ubuntu">install instructions</a>)</li>
-      <li>JRuby >= 1.5.1 (<a href="extra-tutorial.html#install-jruby-ubuntu">install instructions</a>)</li>
-    </ul>
-  </li>
+ <li>
+  <p>With that in order, you can install OperaWatir like this:
+  <pre><code class="prompt"><span class="line">sudo jruby -S gem install operawatir</span></code></pre>
+ </li>
 
-  <li>
-    <p>Next install the OperaWatir gem with the following command</p>
-    <pre><code class="prompt"><span class="line">jruby -S gem install operawatir</span></code></pre>
-  </li>
+ <li>
+  <p>Now we need to tell OperaWatir where it can find the binaries it depends on. This is done with environment variables. Edit the <var>.bashrc</var> file in your home directory and add the following two lines:
 
-  <li>
-    <p>Check that the gem has installed correctly by running:</p>
-    <pre><code class="prompt"><span class="line">operawatir --help</span></code></pre>
-  </li>
+<pre><code><span class="line">export OPERA_PATH="/usr/bin/opera"</span>
+<span class='line'>export OPERA_LAUNCHER="/usr/lib/jruby/lib/ruby/gems/1.8/gems/operawatir-0.3-java/utils/launchers/launcher"</span></code></pre>
+	<p>If the files are installed elsewhere, adjust the variables accordingly. Restart your terminal for these changes to take effect.</p>
+	</li>
+ <li>
+  <p>And we're done! Read the <a href='tutorial.html'>tutorial</a> to see how to write and run your scripts.
+ </li>
 
-  <li>
-    <p><strong>Linux only</strong> If you have not installed JRuby using
-    <code>rvm</code> in the linked instructions you will need to add the
-    <code>operawatir</code> bin directory to your path.</p>
-    <pre><code class="prompt"><span class="line">PATH=$PATH:$(dirname `gem which operawatir`)</span>
-<span class="line">PATH=`dirname $PATH`/bin</span></code></pre>
-  </li>
-
-  <li>
-    <p>You will then need to set the environment variables <code>OPERA_PATH</code>
-    and <code>OPERA_LAUNCHER</code>. This step has separate instructions for
-    Linux and Windows users.</p>
-
-    <h4>Linux</h4>
-    <p>On Linux this can be done with the following commands:</p>
-
-    <pre><code class="prompt"><span class="line">export OPERA_PATH=`which opera`</span>
-<span class="line">export OPERA_LAUNCHER=$(dirname `jruby -S gem which operawatir`)</span>
-<span class="line">OPERA_LAUNCHER="`dirname $OPERA_LAUNCHER`/`jruby -S gem contents operawatir | grep linux_32_launcher`"</span>
-</code></pre>
-
-    <h4>Windows</h4>
-
-    <ul>
-      <li>Right-click "My Computer" and click "Properties"</li>
-      <li>Select the "Advanced tab", click the "Environment variables" button</li>
-      <li>Click the "New" button</li>
-      <li>Add <code>OPERA_PATH</code>, <code>C:\Program Files\Opera\opera.exe</code> and <code>OPERA_LAUNCHER</code>, <code>C:\jruby-1.5.2\lib\ruby\gems\1.8\gems\operawatir-0.2.83-java\launchers\win_32_launcher.exe</code>.</li>
-    </ul>
-
-  </li>
-
-  <li>
-    <p>Finally start Opera, go to <code>opera:config</code>, search for ‘auto connect’
-    and enable ‘Proxy Auto Connect’.</p>
-  </li>
-
-  <li>Close Opera and you are done!</li>
 </ol>
--->
+
 
       </div>
     </section>
