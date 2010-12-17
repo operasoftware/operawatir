@@ -84,8 +84,16 @@ class OperaWatir::Collection
   # @return [String] the string representation of this collection
   # @raise [OperaWatir::Exceptions::UnknownObjectException]
   def to_s
-    raw_elements
-    super
+    # This should return all of the attributes defined on each
+    # element. We don't have support for that, so lets just
+    # output the useful ones.
+    raw_elements.map do |el|
+      "tag:          #{el.tag_name.downcase}\n"+
+      "  id:           #{el.id}\n" +
+      "  class:        #{el.class_name}\n" +
+      "  title:        #{el.title}\n" +
+      "  text:         #{el.text}"
+    end.join("\n")
   end
 
 end
