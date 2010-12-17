@@ -244,6 +244,7 @@ footer #logo img {
   visible: hidden;
 }
 
+var,
 code {
   font-family: 'Monaco', monospace;
   font-size: 95% !important;
@@ -276,6 +277,10 @@ code.prompt span.variable { color: #8cd0d3; }
 code.prompt span.symbol { color: #efdcbc; }
 code.prompt span.keyword { color: #f0dfaf; }
 
+code.prompt var {
+  background-color: transparent;
+}
+
 #install p {
   font-size: 120%;
 }
@@ -292,6 +297,14 @@ pre code var {
   text-decoration: underline;
 }
 
+#important {
+  border: 1px solid rgb(204,15,22);
+  border-radius: 8px;
+  padding: 1em 2em;
+  background-color: rgb(250,225,226);
+  font-weight: bold;
+  color: rgb(204,15,22);
+}
 
 #version {
   background-color: white;

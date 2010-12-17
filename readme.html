@@ -77,19 +77,23 @@
 	<p>
 	  OperaWatir runs on GNU/Linux and Windows operating systems.
 	  Other UNIX-like systems, such as BSD and OS X, are not
-	  currently supported, but support is planned.  Required dependencies are
+	  currently supported, but support is planned.  Required
+	  dependencies are
 	  <em>Java</em> >= 1.6.0, <em>JRuby</em> >= 1.5.1 (ruby 1.8.7
 	  patchlevel 249), <em>RubyGems</em> >= 1.3.5, <em>RSpec</em>
-	  >= 2.0.1, and a somewhat recent desktop or nightly build of
+	  >= 2.0.0, and a somewhat recent desktop or nightly build of
 	  Opera.
 	</p>
+
 
 	<h4>Installation procedure</h4>
 
 	<p>
 	  Make sure that you have the right requirements for
 	  installing and running OperaWatir.  Please note that
-	  OperaWatir will only run on the JRuby platform.
+	  OperaWatir will only run on the JRuby platform.  For more
+	  detailed installation instructions, please see
+	  our <a href="tutorial.html">Getting Started</a> guide.
 	</p>
 
 	<p>
@@ -97,19 +101,18 @@
 	  installing on Windows):
 	</p>
 
-<pre><code class="prompt"><span class="prompt">%</span> sudo jruby -S gem update --system
-<span class="prompt">%</span> sudo jruby -S gem install operawatir</code></pre>
+	<pre><code class="prompt"><span class="line">sudo jruby -S gem install operawatir</span></code></pre>
 
 	<p>
 	  Next, make sure that JRuby's <var>bin</var> directory is a
-	  part of your environmental variable <var>PATH</var> on
+	  part of your <var>PATH</var> environmental variable on
 	  GNU/Linux.
 	</p>
 
 
 	<h3>Limitations</h3>
 
-	<p style="border: 1px solid rgb(204,15,22); border-radius: 8px; padding: 1em 2em; background-color: rgb(250,225,226); font-weight: bold; color: rgb(204,15,22);">
+	<p id="important">
 	  Before you get started playing with OperaWatir, there are a few
 	  important things you need to keep in mind.
 	</p>
@@ -130,11 +133,14 @@
 	<p>
 	  Since the launcher applications are not shipped with the
 	  latest public release of Opera, we have bundled them with
-	  the gem.  They can be found in <tt>./utils/launchers/</tt>
-	  under the gem's directory
-	  (typically <tt>/usr/lib/jruby/lib/ruby/gems/1.8/gems/operawatir-0.3-java/utils/launchers/</tt>
-	  on GNU/Linux systems and <tt>C:\JRuby-1.5.2\lib\ruby\gems\1.8\gems\operawatir-0.3-java\utils\launchers\</tt> on Windows).  The launchers provided will work on
-	  32-bit GNU/Linux and Windows operating systems.
+	  the gem.  They can be found
+	  in <code>./utils/launchers/</code> under the gem's directory
+	  (typically <code>/usr/lib/jruby/lib/ruby/gems/1.8/gems/operawatir-0.3-java/utils/launchers/</code>
+	  on GNU/Linux systems
+	  and <code>C:\JRuby-1.5.2\lib\ruby\gems\1.8\gems\operawatir-0.3-java\utils\launchers\</code>
+	  on Windows).  The launchers provided will work on 32-bit
+	  GNU/Linux and Windows operating systems.  OS X support is
+	  planned.
 	</p>
 
 
@@ -153,7 +159,10 @@
 	  Let's take a closer look at how this works.
 	</p>
 
-<pre><code>require 'operawatir/helper'
+<pre><code>require 'rubygems'
+require 'operawatir'
+
+browser = OperaWatir::Browser.new
 
 browser.goto 'http://en.wikipedia.org/'
 browser.text_field(:id => 'searchInput').set 'Opera'
@@ -173,7 +182,7 @@ browser.button(:id => 'searchButton').click</pre></code>
 	  To run the script, use the following command:
 	</p>
 
-	<pre><code class="prompt"><span class="prompt">%</span> operawatir <var>example.rb</var></code></pre>
+	<pre><code class="prompt"><span class="line">jruby <var>example.rb</var></span></code></pre>
 
 	<p>
 	  As Watir scripts are run in a full-featured browser, all
@@ -183,7 +192,10 @@ browser.button(:id => 'searchButton').click</pre></code>
 	  the Wikipedia search box, we can do this:
 	</p>
 
-<pre><code>require 'operawatir/helper'
+<pre><code>require 'rubygems'
+require 'operawatir'
+
+browser = OperaWatir::Browser.new
 
 browser.goto 'http://en.wikipedia.org/'
 browser.text_field(:id => 'searchInput').click
@@ -198,7 +210,8 @@ browser.key 'Enter'</code></pre>
 	  could even teach a script to play platform games:
 	</p>
 
-<pre><code>require 'operawatir/helper'
+<pre><code>require 'rubygems'
+require 'operawatir'
 
 browser.goto 'http://www.phoboslab.org/biolab/'
 sleep 2
@@ -218,7 +231,10 @@ browser.key_up 'Right'</code></pre>
 	  to the console.
 	</p>
 
-<pre><code>require 'operawatir/helper'
+<pre><code>require 'rubygems'
+require 'operawatir'
+
+browser = OperaWatir::Browser.new
 
 browser.goto 'http://gulesider.no/'
 browser.text_field(:name => 'search_word').set 'Opera Software'
@@ -228,12 +244,16 @@ puts browser.li(:class => 'tel').text</pre></code>
         <p>
 	  When running proper functional tests on your web application
 	  with Watir, you might want a bit more structured output.  To
-	  define assertions and get pretty test reports, ou can
-	  use <a href="http://rspec.info/">RSpec</a>.
+	  define assertions and get pretty test reports, you can
+	  use <a href="http://rspec.info/">RSpec</a>, a
+	  behaviour-driven testing framework.
 	</p>
 
 	<p>
-	  A simple test suite looks like this:
+	  When writing test suites you can use the OperaWatir::Helper
+	  class to help ease some tasks, such as constructing and
+	  tearing down the Browser object.  A simple test suite looks
+	  like this:
 	</p>
 
 <pre><code>require 'operawatir/helper'
@@ -255,6 +275,14 @@ describe 'Yellow Pages' do
     window.li(:class => 'tel').text.should == '21 42 21 00'
   end
 end</code></pre>
+
+        <p>
+	  Since this is an RSpec test you can run it using the
+	  operawatir binary, which is simply a shortcut for running
+	  tests:
+	</p>
+
+	<pre><code class="prompt"><span class="line">operawatir yellow_pages.rb</span></code></pre>
 
         <p>
 	  Each block of code corresponds to a single named test case
