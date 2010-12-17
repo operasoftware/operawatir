@@ -14,8 +14,7 @@ Jeweler::Tasks.new do |gem|
   gem.authors     = ['Deniz Turkoglu', 'Andreas Tolf Tolfsen', 'Chris Lloyd', 'Stuart Knightley']
   gem.email       = ['dturkoglu@opera.com', 'andreastt@opera.com', 'christopherl@opera.com', 'stuartk@opera.com']
   gem.homepage    = 'http://operasoftware.github.com/operawatir'
-  gem.summary     = 'OperaWatir on OperaDriver engine'
-  gem.summary	  = 'Toolkit for automating interactions with the Opera web browser.'
+  gem.summary     = 'Toolkit for automating interactions with the Opera web browser.'
   gem.description = <<-EOF
     OperaWatir is a part of the Watir (pronounced water) family of
     free software Ruby libraries for automating web
