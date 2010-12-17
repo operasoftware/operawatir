@@ -18,6 +18,16 @@ OperaDriver uses the following third-party Java libraries:
 
 More information about the New BSD (AKA Modified BSD or BSD-3) and Apache 2.0 licenses can be found in the appropriate text files in ``lib/operadriver``.
 
+OperaWatir uses the following libraries:
+
+- [rspec](https://github.com/rspec/rspec) (MIT License)
+- [jeweler](https://github.com/technicalpickles/jeweler) (MIT License)
+- [rake](https://github.com/jimweirich/rake) (MIT License)
+- [yard](https://github.com/lsegal/yard) (MIT License)
+- [mongrel](http://rubyforge.org/projects/mongrel) (Ruby License)
+- [sinatra](http://www.sinatrarb.com/) (MIT License)
+- [rr](http://rubyforge.org/projects/double-ruby) (MIT License)
+
 ## Install
 
 ### Requirements
