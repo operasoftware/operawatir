@@ -11,7 +11,6 @@
     </script>
   </head>
   <body>
-
     <div class="ribbon">
       <a href="http://github.com/operasoftware/operawatir" rel="me">Fork
         me on Github!</a>
@@ -36,28 +35,33 @@
     <section id="content">
       <div class="wrapper">
 
-<h2>Getting Started</h2>
+	<h2>Getting Started</h2>
 
-<p>
-  The Watir API allows you to write scripts that interact with
-  any web page. <strong>It makes testing web pages easy</strong>. Your scripts
-  can automatically go through all the steps your users normally would and alert
-  you of any problems quickly. To be able to run the scripts described in this
-	tutorial, you must first <a href='installation.html'>install</a> OperaWatir
-	and its dependencies.
+	<p>
+	  The Watir API allows you to write scripts that interact with
+	  any web page.  <strong>It makes testing web pages
+	  easy</strong>.  Your scripts can automatically go through
+	  all the steps your users normally would and alert you of any
+	  problems quickly.  To be able to run the scripts described
+	  in this tutorial, you must
+	  first <a href="installation.html">install OperaWatir and its
+	  dependencies</a>.
+	</p>
 
-</p>
+	<p>
+	  In this tutorial we are going to control Google Maps. We
+	  will find directions from the Opera headquarters to the Oslo
+	  Opera House, and then we will take a closer look at our
+	  destination.
+	</p>
 
-<p>
-  In this tutorial we are going to control Google Maps.	We will find
-  directions from the Opera headquarters to the Oslo Opera House, and then we
-  will take a closer look at our destination.
-</p>
-
-<p>In every script you will first need to require OperaWatir, and then start
-Opera. Pretty soon after that you will want to visit a URL. This is simply
-achieved with the <code>browser.goto</code> method. Finally we need to quit
-the browser.</p>
+	<p>
+	  In every script you will first need to require OperaWatir,
+	  and then start Opera.  Pretty soon after that you will want
+	  to visit a URL.  This is simply achieved with
+	  the <code>browser.goto</code> method. Finally we need to
+	  quit the browser.
+	</p>
 
 <pre><code>require 'rubygems'
 require 'operawatir'
@@ -68,46 +72,73 @@ browser.goto 'http://maps.google.com/'
 browser.quit
 </code></pre>
 
-<p>Save this code into a file called <strong><code>tutorial.rb</code></strong>, and then you run
-it using this command:</p>
+	<p>
+	  Save this code into a file called <code>tutorial.rb</code>,
+	  and then you run it using this command:
+	</p>
 
-<pre><code class="prompt"><span class="line">jruby tutorial.rb</span></code></pre>
+	<pre><code class="prompt"><span class="line">jruby tutorial.rb</span></code></pre>
 
-<p>Opera will start, wait a moment, and then go and visit Google Maps, and quit.
-Now that we can visit any page we want, it is time to interact with them!</p>
+	<p>
+	  Opera will start, wait a moment, and then go and visit
+	  Google Maps, and quit.  Now that we can visit any page we
+	  want, it is time to interact with them!
+	</p>
 
-<h3>Finding elements</h3>
 
-<aside>
- <p id="congratulations">You can find the ID of an element in Opera by right
-  clicking it, selecting ‘Inspect Element’, and looking for the
-  <code>id="…"</code> attribute in the window that appears. Try finding my ID!</p>
-</aside>
+	<h3>Finding elements</h3>
 
-<p>To interact with the page you first need to find the element you
-want to use.  You can then perform a variety of actions of which the
-most common are clicking and typing in text. Take a look at
-the <a href="doc/">API documentation</a> for more.</p>
+	<aside>
+	  <p id="congratulations">
+	    You can find the ID of an element in Opera by right
+	    clicking it, selecting ‘Inspect Element’, and looking for
+	    the
+	    <code>id="…"</code> attribute in the window that
+	    appears. Try finding my ID!
+	  </p>
+	</aside>
 
-<p>In this example we are going to type in the Google Maps search field. There
-are two things you need to find an element with Watir: the type of
-element, and an identifying feature. The easiest way to uniquely identify an
-element is by using the ID, for the search field this is “<code>q_d</code>”.
-This is also a text box and so we use the <code>text_field</code> method.</p>
+	<p>
+	  To interact with the page you first need to find the element
+	  you want to use.  You can then perform a variety of actions
+	  of which the most common are clicking and typing in
+	  text. Take a look at the <a href="doc/">API
+	  documentation</a> for more.
+	</p>
 
-<pre><code>search = browser.text_field(:id, 'q_d')</code></pre>
+	<p>
+	  In this example we are going to type in the Google Maps
+	  search field. There are two things you need to find an
+	  element with Watir: the type of element, and an identifying
+	  feature. The easiest way to uniquely identify an element is
+	  by using the ID, for the search field this is
+	  “<code>q_d</code>”.  This is also a text box and so we use
+	  the <code>text_field</code> method.
+	</p>
 
-<p>Check out the <a href="watir1api.html">Watir 1 API</a> to see the other
-elements you can find.</p>
+	<pre><code>search = browser.text_field(:id, 'q_d')</code></pre>
 
-<p>Now that we have the search box we want to type something in it.</p>
+	<p>
+	  Check out the <a href="watir1api.html">Watir 1 API</a> to
+	  see the other elements you can find.
+	</p>
 
-<h3>The keyboard</h3>
+	<p>
+	  Now that we have the search box we want to type something in
+	  it.
+	</p>
 
-<p>We can type text by using the <code>set</code> method, and press ‘special’
-keys by using the <code>key</code> method. We will use these methods to search
-for the directions from Opera HQ to the Oslo Opera House, and submit the form by
-pressing the enter key. Including our progress so far this gives us the following code:</p>
+
+	<h3>The keyboard</h3>
+
+	<p>
+	  We can type text by using the <code>set</code> method, and
+	  press ‘special’ keys by using the <code>key</code> method.
+	  We will use these methods to search for the directions from
+	  Opera HQ to the Oslo Opera House, and submit the form by
+	  pressing the enter key.  Including our progress so far this
+	  gives us the following code:
+	</p>
 
 <pre><code>require 'rubygems'
 require 'operawatir'
@@ -127,56 +158,82 @@ sleep 3
 
 browser.quit</code></pre>
 
-<p>Try saving this code and running the script using the command in the above
-section. After loading Google Maps, Opera will wait a bit, and then start typing,
-and press enter. The <code>sleep 3</code> will keep Opera open long enough for
-you to see that our search was ambiguous, and we need to click the first result.</p>
+	<p>
+	  Try saving this code and running the script using the
+	  command in the above section.  After loading Google Maps,
+	  Opera will wait a bit, and then start typing, and press
+	  enter.  The <code>sleep 3</code> will keep Opera open long
+	  enough for you to see that our search was ambiguous, and we
+	  need to click the first result.
+	</p>
 
-<h3>The mouse</h3>
 
-<p>Clicking links is very simple and uses some of the techniques we have already
-learned. First we need to find the link to click, and then we can call the
-<code>click</code> method.</p>
+	<h3>The mouse</h3>
 
-<p>In our search the first suggested result is correct, which always has the ID
-of <code>ddw_dll_1_0</code>. We use the <code>link</code> method to search for
-only links:</p>
+	<p>
+	  Clicking links is very simple and uses some of the
+	  techniques we have already learned.  First we need to find
+	  the link to click, and then we can call the
+	  <code>click</code> method.
+	</p>
 
-<pre><code>browser.link(:id, 'ddw_dll_1_0').click</code></pre>
+	<p>
+	  In our search the first suggested result is correct, which
+	  always has the ID of <code>ddw_dll_1_0</code>. We use
+	  the <code>link</code> method to search for only links:
+	</p>
 
-<p>Put this after the <code>sleep 3</code> above.</p>
+	<pre><code>browser.link(:id, 'ddw_dll_1_0').click</code></pre>
 
-<h3>Difficult elements</h3>
+	<p>Put this after the <code>sleep 3</code> above.</p>
 
-<p>Sometimes the element you want does not have an ID. In these cases we need to
-use other tools. If the element has a unique <code>title</code> or
-<code>name</code> you can use these to find elements. Or, if you know it will
-always be in the same position you search by its index.</p>
+
+	<h3>Difficult elements</h3>
+
+	<p>
+	  Sometimes the element you want does not have an ID. In these
+	  cases we need to use other tools.  If the element has a
+	  unique <code>title</code> or
+	  <code>name</code> you can use these to find elements.  Or,
+	  if you know it will always be in the same position you
+	  search by its index.
+	</p>
 
 <pre><code># Examples of alternative selectors
 labs_image = browser.image(:title, 'Google Maps Labs')
 search_button = browser.button(:name, 'btnG')
 web_link = browser.link(:index, 2) # second link on the page</code></pre>
 
-<p>If you still cannot locate the element using these you can use
-<strong>XPath</strong>. XPath can be very complicated, but we will be using
-only the simple selector <code>//div[@log='pan_down']</code>.
-This selects all the <code>&lt;div&gt;</code> elements whose <code>log</code> attribute equals
-'<code>pan_down</code>'. In this case there is only one: the pan down button
-located at the top left of the map. We will use a similar selector to get
-the Zoom In button.</p>
+	<p>
+	  If you still cannot locate the element using these you can use
+	  <strong>XPath</strong>.  XPath can be very complicated, but
+	  we will be using only the simple
+	  selector <code>//div[@log='pan_down']</code>.  This selects
+	  all the <code>&lt;div&gt;</code> elements
+	  whose <code>log</code> attribute equals
+	  '<code>pan_down</code>'.  In this case there is only one:
+	  the pan down button located at the top left of the map.  We
+	  will use a similar selector to get the Zoom In button.
+	</p>
 
 <pre><code>pan_down = browser.element_by_xpath("//div[@log='pan_down']")
 zoom_in = browser.element_by_xpath("//div[@title='Zoom In']")</code></pre>
 
-<p>To have a look at our destination we are going to pan down once, and then click
-the Zoom In button twice. See if you can work out the code before looking below.</p>
+	<p>
+	  To have a look at our destination we are going to pan down
+	  once, and then click the Zoom In button twice.  See if you
+	  can work out the code before looking below.
+	</p>
 
-<h3>Final code</h3>
 
-<p>Here is the complete code. Because Google Maps is an AJAX application we
-have added <code>sleep</code>s to make sure things have loaded and been added
-to the DOM before we try and find them.</p>
+	<h3>Final code</h3>
+
+	<p>
+	  Here is the complete code.  Because Google Maps is an AJAX
+	  application we have added <code>sleep</code>s to make sure
+	  things have loaded and been added to the DOM before we try
+	  and find them.
+	</p>
 
 <pre><code>require 'rubygems'
 require 'operawatir'
@@ -213,22 +270,38 @@ sleep 10
 # End
 browser.quit</code></pre>
 
-<h3>Conclusion</h3>
 
-<aside><p>If you want to try something yourself, see if you can close the left panel (hint:
-it is an image with an ID of <code>panelarrow2</code>).</p></aside>
+        <h3>Conclusion</h3>
 
-<p>Hopefully this has been an enjoyable introduction to OperaWatir, and has shown
-you how easy it is to automatically control the browser. And you are not limited
-to what has been demonstrated here, have a look at the
-<a href="documentation.html">documentation</a> to see everything you can do.</p>
+	<aside>
+	  <p>
+	    If you want to try something yourself, see if you can
+	    close the left panel (hint: it is an image with an ID
+	    of <code>panelarrow2</code>).
+	  </p>
+	</aside>
 
-<p>Happy testing and automating!</p>
+	<p>
+	  Hopefully this has been an enjoyable introduction to
+	  OperaWatir, and has shown you how easy it is to
+	  automatically control the browser.  And you are not limited
+	  to what has been demonstrated here, have a look at the
+	  <a href="documentation.html">documentation</a> to see
+	  everything you can do.
+	</p>
 
-<h3>P.S.</h3>
+	<p>
+	  Happy testing and automating!
+	</p>
 
-<p>If you want to play with OperaWatir interactively, you can
-use <code>jirb</code> (irb equivalent). Just do the following:</p>
+
+	<h3>P.S.</h3>
+
+	<p>
+	  If you want to play with OperaWatir interactively, you can
+	  use <code>jirb</code> (irb equivalent). Just do the
+	  following:
+	</p>
 
 <pre><code class="prompt"><span class="line">jirb</span>
 irb(main):001:0&gt; require 'rubygems'
@@ -260,6 +333,5 @@ irb(main):005:0&gt; browser.quit
         </p>
       </div>
     </footer>
-
   </body>
 </html>
