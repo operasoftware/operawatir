@@ -40,7 +40,7 @@ EOF
   gem.add_development_dependency 'rr'
 
   gem.files.exclude '.gitignore'
-  gem.files.exclude 'bin/desktop'/
+  gem.files.exclude 'bin/desktopwatir'
   gem.files.exclude 'lib/operawatir/desktop*.rb'
   gem.files.exclude 'lib/operawatir/quickwidgets'
 end
