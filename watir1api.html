@@ -1,0 +1,135 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Readme | OperaWatir</title>
+    <link href="look/generic.css" rel="stylesheet" />
+    <link href="look/github.css" rel="stylesheet" />
+    <script src="scripts/highlight.pack.js"></script>
+    <script>
+      hljs.initHighlightingOnLoad();
+    </script>
+  </head>
+  <body>
+
+    <div class="ribbon">
+      <a href="http://github.com/operasoftware/operawatir" rel="me">Fork
+        me on Github!</a>
+    </div>
+
+    <header class="highlight-bright">
+      <div class="wrapper">
+        <h1><a href="index.html">OperaWatir</a></h1>
+
+        <nav>
+          <ul>
+            <li><a href="index.html">Index</a></li>
+            <li><a href="tutorial.html">Tutorial</a></li>
+            <li class="selected"><a href="documentation.html">Documentation</a></li>
+            <li><a href="http://github.com/operasoftware/operawatir">Source</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <section id="content">
+      <div class="wrapper">
+<h2>Watir 1 API reference</h2>
+
+<h3>Regular methods</h3>
+
+<p>These methods all select the elements they are named after and, when
+provided with a single argument, search by ID.</p>
+
+<pre><code>browser.div # is the first &lt;div&gt; on the page
+browser.div('content') # matches the element &lt;div id="content"&gt;
+browser.div(:id, 'content') # matches the element &lt;div id="content"&gt;
+browser.div(:class, 'fancy') # matches the element &lt;div class="fancy"&gt;
+browser.divs # matches all the  &lt;div&gt; elements on the page</code></pre>
+
+<ul class="code inline">
+  <li>browser.area, browser.areas</li>
+  <li>browser.dd, browser.dds</li>
+  <li>browser.del, browser.dels</li>
+  <li>browser.div, browser.divs</li>
+  <li>browser.dl, browser.dls</li>
+  <li>browser.dt, browser.dts</li>
+  <li>browser.dt, browser.dts</li>
+  <li>browser.em, browser.ems</li>
+  <li>browser.form, browser.forms</li>
+  <li>browser.h1, browser.h1s</li>
+  <li>browser.h2, browser.h2s</li>
+  <li>browser.h3, browser.h3s</li>
+  <li>browser.h4, browser.h4s</li>
+  <li>browser.h5, browser.h5s</li>
+  <li>browser.h6, browser.h6s</li>
+  <li>browser.ins, browser.inses</li>
+  <li>browser.li, browser.lis</li>
+  <li>browser.map, browser.maps</li>
+  <li>browser.meta, browser.metas</li>
+  <li>browser.ol, browser.ols</li>
+  <li>browser.p, browser.ps</li>
+  <li>browser.pre, browser.pres</li>
+  <li>browser.span, browser.spans</li>
+  <li>browser.strong, browser.strongs</li>
+  <li>browser.table, browser.tables</li>
+  <li>browser.ul, browser.uls</li>
+</ul>
+
+<h3>Named methods</h3>
+
+<p>These elements behave as above, but are named differently to the HTML
+elements.</p>
+
+<table border="0" cellspacing="0" cellpadding="5">
+  <tr><th>Method</th> <th>HTML Element</th></tr>
+  <tr><td><code>browser.select_list, browser.select_lists</code></td><td><code>&lt;select&gt;</code></td></tr>
+  <tr><td><code>browser.body, browser.bodies</code></td><td><code>&lt;tbody&gt;</code></td></tr>
+  <tr><td><code>browser.cell, browser.cells</code></td><td><code>&lt;td&gt;</code></td></tr>
+  <tr><td><code>browser.table_header, browser.table_headers</code></td><td><code>&lt;thead&gt;</code></td></tr>
+  <tr><td><code>browser.table_footer, browser.table_footers</code></td><td><code>&lt;tfoot&gt;</code></td></tr>
+  <tr><td><code>browser.table_row, browser.table_rows</code></td><td><code>&lt;tr&gt;</code></td></tr>
+</table>
+
+<h3>Special methods</h3>
+
+<p>These methods have non-default search attributes, and match many element
+types, or specific inputs.</p>
+
+<pre><code class="ruby">browser.button('Go') # matches &lt;button value="Go"&gt; &lt;input type="submit" value="Go" /&gt; and more…
+browser.link('index.html') # matches &lt;a href="index.html"&gt;…&lt;/a&gt;</code></pre>
+
+<table class="code" border="0" cellspacing="0" cellpadding="0">
+  <tr><th>Method</th> <th>Default attribute</th> <th>Elements</th></tr>
+<tr><td><code>browser.button, browser.buttons</code></td> <td><code>value</code></td> <td><code>&lt;button&gt; &lt;input type="submit"&gt; &lt;input type="button"&gt; &lt;input type="image"&gt; &lt;input type="reset"&gt; </code></td></tr>
+<tr><td><code>browser.checkbox, browser.checkboxes</code></td> <td><code>name</code></td> <td><code>&lt;input type="checkbox"&gt;</code></td></tr>
+<tr><td><code>browser.file_field, browser.file_fields</code></td> <td><code>name</code></td> <td><code>&lt;input type="file"&gt;</code></td></tr>
+<tr><td><code>browser.hidden, browser.hiddens</code></td> <td><code>name</code></td> <td><code>&lt;input type="hidden"&gt;</code></td></tr>
+<tr><td><code>browser.image, browser.images</code></td> <td><code>src</code></td> <td><code>&lt;img&gt;</code></td></tr>
+<tr><td><code>browser.link, browser.links</code></td> <td><code>href</code></td> <td><code>&lt;a&gt;</code></td></tr>
+<tr><td><code>browser.radio, browser.radios</code></td> <td><code>name</code></td> <td><code>&lt;input type="radio"&gt;</code></td></tr>
+<tr><td><code>browser.text_field, browser.text_fields</code></td> <td><code>id</code></td> <td><code>&lt;input&gt; &lt;input type="text"&gt; &lt;input type="password"&gt; &lt;textarea&gt; </code></td></tr>
+
+</table>
+
+<p></p>
+
+
+
+      </div>
+    </section>
+
+    <footer>
+      <div class="wrapper">
+        <p id="logo">
+          <a href="http://opera.com/"><img src="graphics/opera-footer.gif" alt="" /></a>
+        </p>
+
+        <p>
+          Copyright © 2010 <a href="http://opera.com/">Opera Software ASA</a>.
+        </p>
+      </div>
+    </footer>
+
+  </body>
+</html>
