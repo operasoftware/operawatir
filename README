@@ -1,148 +1,139 @@
-= OperaWatir
+= Readme
 
+[OperaWatir](http://operawatir.org/) is a part of the [Watir](http://watir.com/) (pronounced _water_) family of free software Ruby libraries for automating web browsers.  OperaWatir provides a querying engine and Ruby bindings for a backend Java library, OperaDriver, for driving the [Opera web browser](http://opera.com/).  It aims for full compliance with the [watirspec](https://github.com/jarib/watirspec) specification.
 
-== Description
+License:: [New BSD](https://github.com/operasoftware/operawatir/blob/master/LICENSE)
+Project Home:: http://operawatir.org/
+Source Code:: https://github.com/operasoftware/operawatir
+Mailing List:: https://list.opera.com/mailman/listinfo/operawatir-users
+Issues:: https://github.com/operasoftware/operawatir/issues
+Gem:: http://rubygems.org/gems/operawatir
 
-OperaWatir is our implementation of the Watir v1.x API, originally
-developed for Internet Explorer by an independent third-party.  This
-documentation will describe how to get OperaWatir running on your
-machine and how to write and run tests with it.
+== Install
 
-Watir (pronounced water) is an acronym for “Web Application Testing in
-Ruby”, and is comprised of a toolkit used to automate interactions with
-web browsers.  Watir was originally conceived to to test web
-applications, but Opera Software have since expanded it and made it
-useful also for doing automated testing of the browser itself.  Using
-OperaWatir will allow you to drive the Opera web browser as well as
-extracting useful information for testing that the browser renderer
-behaves properly.
+=== Requirements
 
+OperaWatir runs on GNU/Linux and Windows operating systems.  Other UNIX-like systems, such as BSD and OS X, are not currently supported, but support is planned.  Required dependencies are _Java_ >= 1.6.0, _JRuby_ >= 1.5.1 (ruby 1.8.7 patchlevel 249), _RubyGems_ >= 1.3.5, _RSpec_ >= 2.0.0, and a somewhat recent desktop or nightly build of Opera.
 
-== Installation
+=== Installation procedure
 
-This page describes installing and upgrading OperaWatir and setting up
-an automated testing system on your machine.  OperaWatir runs on
-GNU/Linux and Windows operating systems.  Other UNIX-like systems, such
-as BSD and OS X, have not been tested but should work.  We recommend
-using Java >= 1.6.0, JRuby >= 1.4.0 (ruby 1.8.7 patchlevel 174),
-RubyGems >= 1.3.5, RSpec >= 1.3.0, and a somewhat recent gogi core
-build of Opera.
+Make sure that you have the right requirements for installing and running OperaWatir.  Please note that OperaWatir will only run on the JRuby platform. For more detailed installation instructions, please see our [Getting Started](tutorial.html) guide.
 
-=== Fresh Installation
+To install (leave out the “sudo” command if you're installing on Windows):
 
-==== Debian
-First, you will need to install Java on your system. On Debian you must
-either enable the non-free repositories or manually download the Sun
-Java package.  To enable your non-free repositories, you need to add
-“non-free” to your default repository source in /etc/sources.list.  lenny
-is the stable version of Debian, but you can replace this with squeeze
-if you are running Debian squeeze/testing:
+  % sudo jruby -S gem install operawatir
 
-  deb http://ftp.no.debian.org/debian/ lenny main non-free
+Next, make sure that JRuby's ``bin`` directory is a part of your ``PATH`` environmental variable on GNU/Linux.
 
-Make sure you update your cached package lists if you enabled the
-non-free repositories:
+== Limitations
 
-  % sudo aptitude update
+__Before you get started playing with OperaWatir, there are a few important things you need to keep in mind.__
 
-Sun Java is now easily installable:
+This is a __pre-release__ of OperaWatir (0.3), and should not be considered stable or suitable for use in production.  It should be treated as a proof of concept. 
 
-  % sudo aptitude install sun-java6-jre
+It is not possible to run OperaWatir without specifying the ``OPERA_PATH`` (full path to Opera binary) and ``OPERA_LAUNCHER`` (full path to Opera launcher binary) environmental variables. 
 
-If you download the Java package manually you can install it by running
-the following command:
+Since the launcher applications are not shipped with the latest public release of Opera, we have bundled them with the gem.  They can be found in ``./utils/launchers/`` under the gem's directory (typically ``/usr/lib/jruby/lib/ruby/gems/1.8/gems/operawatir-0.3-java/utils/launchers/`` on GNU/Linux systems and ``C:\JRuby-1.5.2\lib\ruby\gems\1.8\gems\operawatir-0.3-java\utils\launchers\`` on Windows).  The launchers provided will work on 32-bit GNU/Linux and Windows operating systems.  OS X support is planned.
 
-  % sudo dpkg -i sun-java6-jre_6.20-dlj-4_all.deb
+== Examples
 
-JRuby is by Debian also considered a non-fre package, but will be
-available to the package system if you have non-free repositories
-enabled.  If you are using Debian squeeze/testing and have non-free
-repositories enabled, it can be installed like this:
+The Watir API allows you to write scripts that interact with any web page.  Its primary purpose is to ease test automation for web applications.  Your scripts can, for example, before you deploy automatically go through all the steps your users normally would and alert you of any regressions. 
 
-  % sudo aptitude install jruby
+Let's take a closer look at how this works. 
 
-Debian lenny/stable users, or users who prefer to not enable non-free
-repositories, must download the JRuby 1.4 package manually.  JRuby 1.4 is
-not yet available in Debian's stable non-free repository, but the
-manually downloaded package can be installed like this:
+  require 'rubygems'
+  require 'operawatir'
+  
+  browser = OperaWatir::Browser.new
+  
+  browser.goto 'http://en.wikipedia.org/'
+  browser.text_field(:id => 'searchInput').set 'Opera'
+  browser.button(:id => 'searchButton').click
 
-  % sudo dpkg -i jruby_1.4.0-1_all.deb
+The script above will tell the browser to load the front page of Wikipedia, write “Opera” in the search field and click the search button.  If all goes as intended, the browser will end up at a relevant article. 
 
-When you have JRuby installed you must fetch RSpec:
+To run the script, use the following command:
 
-  % sudo jruby -S gem install rspec
+  % jruby example.rb
 
-Finally, download the OperaWatir gem and install it, replacing the
-wildcard below with the correct version number:
+As Watir scripts are run in a full-featured browser, all keypresses and clicks will be interpreted as if they were real, and invoke attached JavaScript event listeners.  If we want to test the JavaScript-powered suggestion feature on the Wikipedia search box, we can do this: 
 
-  % sudo jruby -S gem install operawatir-0.0.2.*.gem
+  require 'rubygems'
+  require 'operawatir'
+  
+  browser = OperaWatir::Browser.new
+  
+  browser.goto 'http://en.wikipedia.org/'
+  browser.text_field(:id => 'searchInput').click
+  browser.type 'Hello world'
+  browser.key 'Down'
+  browser.key 'Enter'
 
+The first suggested link will be selected by pressing arrow down (``'Down'``) and navigated to (``'Enter'``).  Using the same key events, you could even teach a script to play platform games: 
 
-==== Ubuntu
-First, install Sun Java on your system by using the following command:
+  require 'rubygems'
+  require 'operawatir'
+  
+  browser.goto 'http://www.phoboslab.org/biolab/'
+  sleep 2
+  browser.key 'X'
+  sleep 1
+  browser.key_down 'Right'
+  5.times { browser.key 'X' }
+  2.times { browser.key 'C' }
+  browser.key_up 'Right'
 
-  % sudo aptitude install sun-java6-jre
+Sending commands to the browser is great, but sometimes we want to get something back too.  The following lines of code will have the browser automatically look up the phone number of Opera Software in the [yellow pages](http://gulesider.no/) and write it to the console.
 
-When you have JRuby installed you must fetch RSpec:
+  require 'rubygems'
+  require 'operawatir'
+  
+  browser = OperaWatir::Browser.new
+  
+  browser.goto 'http://gulesider.no/'
+  browser.text_field(:name => 'search_word').set 'Opera Software'
+  browser.button(:name => 'btn_cs').click
+  puts browser.li(:class => 'tel').text
 
-  % sudo jruby -S gem install rspec
+When running proper functional tests on your web application with Watir, you might want a bit more structured output.  To define assertions and get pretty test reports, you can use [RSpec](http://rspec.info/), a behaviour-driven testing framework. 
 
-Finally, download the OperaWatir gem and install it, replacing the
-wildcard below with the correct version number:
+When writing test suites you can use the OperaWatir::Helper class to help ease some tasks, such as constructing and tearing down the Browser object.  A simple test suite looks like this:
 
-  % sudo jruby -S gem install operawatir-0.0.2.*.gem
+  describe 'Yellow Pages' do
+    before :each do
+      browser.goto 'http://gulesider.no/'
+    end
+  
+    it 'finds the phone number to Opera Software' do
+      browser.text_field(:name => 'search_word').set 'Opera Software'
+      browser.button(:name => 'btn_cs').click
+      browser.li(:class => 'tel').text.should == '24 16 40 00'
+    end
+  
+    it 'finds the phone number to the Norwegian Opera and Ballet' do
+      browser.text_field(:name => 'search_word').set 'Den Norske Opera'
+      browser.button(:name => 'btn_cs').click
+      browser.li(:class => 'tel').text.should == '21 42 21 00'
+    end
+  end
 
+Since this is an RSpec test you can run it using the operawatir binary, which is simply a shortcut for running tests: 
 
-==== Windows
-First you must install Sun Java on your machine.  It is available from
-Oracle's website:
+  % operawatir yellow_pages.rb
 
-  http://java.com/en/download/
+Each block of code corresponds to a single named test case returning PASS or FAIL.  Whether you got back the expected and correct return value is evaluated with ``.should``.  If all tests pass, you will see the following output: 
 
-Then fetch and install JRuby:
+  ..
+  
+  Finished in 2.04 seconds
+  2 examples, 0 failures
 
-  http://jruby.org/download
+If anything fails, more information about each failure will be provided.
 
-When you have JRuby installed you must fetch RSpec:
+== Merry Christmas!
 
-  jruby -S gem install rspec
+Despite its shortcomings, we hope you will enjoy playing around with the Watir libraries for using OperaDriver driving Opera. We decided that we would rather see it go out to the public before Christmas than waiting for another month or two until it is pristine and perfect. 
 
-Finally, download the OperaWatir gem and install it, replacing the
-wildcard below with the correct version number.  Please note that you
-must be in the same directory as to where you downloaded the gem before
-issuing this command:
+One of the things we are most excited about is the new Watir 2 API that we have made a prototype implementation of, which is based on [Jari Bakken's ideas for a new API](https://github.com/jarib/watir-webdriver/wiki/Comparison-with-Watir-1.X). On top of this, we have written a Watir 1 compatibility layer which is switched on by default. We are looking forward to the design discussions that this will bring. Oh, and by the way, will you be able to find the magic switch for Watir 2? (-; 
 
-  jruby -S gem install operawatir-0.0.2.*.gem
-
-
-=== Upgrading
-
-It's important to note that if you have an old version installed on your
-system, you will most likely need to remove that to make a newer version
-work.  To see the gems currently installed on your system:
-
-  % jruby -S gem list
-
-You can remove your old version of OperaWatir with this command
-(preceded by "sudo" if you're on an UNIX-like system):
-
-  % jruby -S gem uninstall OperaWatir
-
-If everything else fails you can try include the --install-dir parameter
-to your gem's top directory.  That will remove the specified gem in the
-specified install directory.
-
-If multiple versions of OperaWatir are installed those could also be
-removed by running (also preceded by "sudo" if on UNIX):
-
-  % jruby -S gem cleanup OperaWatir
-
-When OperaWatir has been removed from your system you can proceed with
-installing the new version, following the installation instructions
-above.
-
-
-== License
-
-TODO.
-
+We hope you'll enjoy this little Christmas gift! Furthermore, we wish you a Merry Christmas and a Happy New Year from us here at Opera Software in Oslo!
