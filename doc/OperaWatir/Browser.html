@@ -456,6 +456,30 @@ Get the name of the browser currently being run.
         <li class="public ">
   <span class="summary_signature">
     
+      <a href="#opera_action-instance_method" title="#opera_action (instance method)">- (String) <strong>opera_action</strong>(name, *args) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Sends an Opera action to the browser.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
       <a href="#opera_action_list-instance_method" title="#opera_action_list (instance method)">- (String) <strong>opera_action_list</strong> </a>
     
 
@@ -917,7 +941,7 @@ Will fetch the build number for the attached browser instance.
       
         &mdash;
         <div class='inline'><p>
-build number of attached browser instance.
+build number of attached browser instance
 </p>
 </div>
       
@@ -1019,7 +1043,7 @@ Query to see if the browser instance is still connected.
       
         &mdash;
         <div class='inline'><p>
-whether driver is still connected to browser instance.
+whether driver is still connected to browser instance
 </p>
 </div>
       
@@ -1078,7 +1102,7 @@ Is attached browser instance of type internal build or public desktop?
       
         &mdash;
         <div class='inline'><p>
-true if browser attached is of type desktop, false otherwise.
+true if browser attached is of type desktop, false otherwise
 </p>
 </div>
       
@@ -1138,7 +1162,7 @@ as checking whether the object is connected to a browser.
       
         &mdash;
         <div class='inline'><p>
-whether Browser object exists.
+whether Browser object exists
 </p>
 </div>
       
@@ -1200,7 +1224,7 @@ Send key events to the browser instance. I.e. “Down” (arrow down),
       
         &mdash;
         <div class='inline'><p>
-to be pressed once.
+to be pressed once
 </p>
 </div>
       
@@ -1262,7 +1286,7 @@ Enables you to hold down a key, i.e. “Ctrl”, “Alt”, “Shift”,
       
         &mdash;
         <div class='inline'><p>
-to be pressed down.
+to be pressed down
 </p>
 </div>
       
@@ -1323,7 +1347,7 @@ Releases a held down key.
       
         &mdash;
         <div class='inline'><p>
-to be lifted.
+to be lifted
 </p>
 </div>
       
@@ -1382,7 +1406,7 @@ Get the name of the browser currently being run.
       
         &mdash;
         <div class='inline'><p>
-name of browser currently used.
+name of browser currently used
 </p>
 </div>
       
@@ -1405,6 +1429,86 @@ name of browser currently used.
 
 <span class='def def kw'>def</span> <span class='name identifier id'>name</span>
   <span class='string val'>'Opera'</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="opera_action-instance_method">
+  
+    - (<tt>String</tt>) <strong>opera_action</strong>(name, *args) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Sends an Opera action to the browser.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <span class='name'>name</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+of the action
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+optional return from the performed action
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+155
+156
+157</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/browser.rb', line 155</span>
+
+<span class='def def kw'>def</span> <span class='opera_action identifier id'>opera_action</span><span class='lparen token'>(</span><span class='name identifier id'>name</span><span class='comma token'>,</span> <span class='mult op'>*</span><span class='args identifier id'>args</span><span class='rparen token'>)</span>
+  <span class='@driver ivar id'>@driver</span><span class='dot token'>.</span><span class='operaAction identifier id'>operaAction</span><span class='lparen token'>(</span><span class='name identifier id'>name</span><span class='comma token'>,</span> <span class='param identifier id'>param</span><span class='dot token'>.</span><span class='to_java identifier id'>to_java</span><span class='lparen token'>(</span><span class='symbol val'>:string</span><span class='rparen token'>)</span><span class='rparen token'>)</span>
 <span class='end end kw'>end</span>
 </pre>
     </td>
@@ -1444,7 +1548,7 @@ vary greatly from those available to desktop-types.
       
         &mdash;
         <div class='inline'><p>
-list of available Opera actions.
+list of available Opera actions
 </p>
 </div>
       
@@ -1458,12 +1562,12 @@ list of available Opera actions.
       <pre class="lines">
 
 
-158
-159
-160</pre>
+166
+167
+168</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/operawatir/browser.rb', line 158</span>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/browser.rb', line 166</span>
 
 <span class='def def kw'>def</span> <span class='opera_action_list identifier id'>opera_action_list</span>
   <span class='@driver ivar id'>@driver</span><span class='dot token'>.</span><span class='getOperaActionList identifier id'>getOperaActionList</span>
@@ -1503,7 +1607,7 @@ Get the full path to the attached browser binary.
       
         &mdash;
         <div class='inline'><p>
-path to the attached browser&#8217;s binary.
+path to the attached browser&#8217;s binary
 </p>
 </div>
       
@@ -1563,7 +1667,7 @@ work if instance was started through OperaWatir.
       
         &mdash;
         <div class='inline'><p>
-the process ID of the browser instance.
+the process ID of the browser instance
 </p>
 </div>
       
@@ -1623,7 +1727,7 @@ platform the OperaWatir server might be running on.
       
         &mdash;
         <div class='inline'><p>
-operating system flavour.
+operating system flavour
 </p>
 </div>
       
@@ -1725,7 +1829,7 @@ the page depending on where the focus is.
       
         &mdash;
         <div class='inline'><p>
-to be typed.
+to be typed
 </p>
 </div>
       
@@ -1784,7 +1888,7 @@ Fetches the user agent (UA) string the browser currently uses.
       
         &mdash;
         <div class='inline'><p>
-user agent string.
+user agent string
 </p>
 </div>
       
@@ -1878,7 +1982,7 @@ instead.
       
         &mdash;
         <div class='inline'><p>
-driver version.
+driver version
 </p>
 </div>
       
@@ -1913,7 +2017,7 @@ driver version.
 </div>
     
     <div id="footer">
-  Generated on Fri Dec 17 19:59:02 2010 by 
+  Generated on Fri Dec 17 20:45:30 2010 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.3 (ruby-1.8.7).
 </div>
