@@ -166,7 +166,7 @@ private
       s.setRunOperaLauncherFromOperaDriver true
       s.setOperaLauncherBinary self.settings[:launcher]
       s.setOperaBinaryLocation self.settings[:path]
-      s.setOperaBinaryArguments self.settings[:args] + '-nosession opera:debug'
+      s.setOperaBinaryArguments self.settings[:args] + (Config::CONFIG['host_os'] =~ /mswin|mingw|bccwin|wince|emc/ ? '' : ' -nosession') + ' opera:debug'
     }
   end
 
