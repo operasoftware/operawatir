@@ -2,12 +2,22 @@
 
 [OperaWatir](http://operawatir.org/) is a part of the [Watir](http://watir.com/) (pronounced _water_) family of free software Ruby libraries for automating web browsers.  OperaWatir provides a querying engine and Ruby bindings for a backend Java library, OperaDriver, for driving the [Opera web browser](http://opera.com/).  It aims for full compliance with the [watirspec](https://github.com/jarib/watirspec) specification.
 
-License:: [New BSD](https://github.com/operasoftware/operawatir/blob/master/LICENSE)
+License:: [New BSD] (https://github.com/operasoftware/operawatir/blob/master/LICENSE)
 Project Home:: http://operawatir.org/
 Source Code:: https://github.com/operasoftware/operawatir
 Mailing List:: https://list.opera.com/mailman/listinfo/operawatir-users
 Issues:: https://github.com/operasoftware/operawatir/issues
 Gem:: http://rubygems.org/gems/operawatir
+
+== Third-Party Libraries
+
+OperaDriver uses the following third-party Java libraries:
+
+- winp (http://winp.dev.java.net) [MIT License]
+- Google protobuf (http://code.google.com/p/protobuf/) [New BSD License]
+- Apache Commons JXPath (http://commons.apache.org/jxpath/) [Apache 2.0 License]
+
+More information about the MIT, New BSD (AKA Modified BSD or BSD-3) and Apache 2.0 licenses can be found in the appropriate text files in lib/operadriver
 
 == Install
 
