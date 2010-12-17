@@ -1,0 +1,90 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Getting Started | OperaWatir</title>
+    <link href="look/generic.css" rel="stylesheet" />
+    <link href="look/github.css" rel="stylesheet" />
+    <script src="scripts/highlight.pack.js"></script>
+    <script>
+      hljs.initHighlightingOnLoad();
+    </script>
+  </head>
+  <body>
+
+    <div class="ribbon">
+      <a href="http://github.com/operasoftware/operawatir" rel="me">Fork
+        me on Github!</a>
+    </div>
+
+    <header class="highlight-bright">
+      <div class="wrapper">
+        <h1><a href="index.html">OperaWatir</a></h1>
+
+        <nav>
+          <ul>
+            <li><a href="index.html">Index</a></li>
+            <li class="selected"><a href="tutorial.html">Tutorial</a></li>
+            <li><a href="documentation.html">Documentation</a></li>
+            <li><a href="http://github.com/operasoftware/operawatir">Source</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <section id="content">
+      <div class="wrapper">
+<h2>Extra installation instructions</h2>
+
+<h3 id="install-opera">Install Opera</h3>
+<ul>
+  <li>Visit the <a href="http://opera.com/">Opera Website</a></li>
+  <li>Click Download.</li>
+  <li>Click the Download button at the bottom of the page</li>
+  <li><strong>Ubuntu</strong> Click Open with Ubuntu Software Center, then click install</li>
+  <li><strong>Windows</strong> Click Open File...</li>
+</ul>
+
+<h3 id="install-java-ubuntu">Install Java on Ubuntu</h3>
+<ul>
+  <li>Go to System &gt; Administration &gt; Synaptic Package Manager</li>
+  <li>Go to the menu Settings &gt; Repositories</li>
+  <li>Click on the “Other Software” tab</li>
+  <li>Check the “Canonical Partners” box</li>
+  <li>Click the Close button</li>
+  <li>In the top left click the Reload button</li>
+  <li>Search for sun-java</li>
+  <li>Click the checkbox then Mark for Installation</li>
+  <li>Click Apply, and you're done!</li>
+</ul>
+
+<h3 id="install-jruby-ubuntu">Install JRuby ≥ 1.5.1 on Ubuntu</h3>
+  <p>These instructions need <code>git</code> and <code>curl</code> installed
+      and use the Ruby environment manager (rvm).</p>
+<ul>
+  <li>Open the terminal (Applications > Accessories > Terminal)</li>
+  <li>Enter the following commands: <code class="prompt">bash < <( curl http://rvm.beginrescueend.com/releases/rvm-install-head )</code></li>
+  <li><code class="prompt">echo '[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"' >> ~/.bashrc</code></li>
+  <li><code class="prompt">source ~/.bashrc</code></li>
+  <li><code class="prompt">rvm install jruby</code></li>
+  <li><code class="prompt">rvm use jruby</code> You will need to enter
+    this line every time you want to use Ruby.</li>
+</ul>
+
+      </div>
+    </section>
+
+    <footer>
+      <div class="wrapper">
+        <p id="logo">
+          <a href="http://opera.com/"><img src="graphics/opera-footer.gif" alt="" /></a>
+        </p>
+
+        <p>
+          Copyright © 2010 <a href="http://opera.com/">Opera Software ASA</a>.
+        </p>
+      </div>
+    </footer>
+
+  </body>
+</html>

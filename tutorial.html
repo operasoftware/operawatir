@@ -61,9 +61,9 @@
     </aside>
 
     <ul>
-      <li>Opera</li>
-      <li>Java >= 1.6</li>
-      <li>JRuby >= 1.5.1</li>
+      <li>Opera (<a href="extra-tutorial.html#install-opera">install instructions</a>)</li>
+      <li>Java >= 1.6 (<a href="extra-tutorial.html#install-java-ubuntu">install instructions</a>)</li>
+      <li>JRuby >= 1.5.1 (<a href="extra-tutorial.html#install-jruby-ubuntu">install instructions</a>)</li>
     </ul>
   </li>
 
@@ -78,7 +78,9 @@
   </li>
 
   <li>
-    <p><strong>Linux only</strong> Add the operawatir bin directory to your path.</p>
+    <p><strong>Linux only</strong> If you have not installed JRuby using
+    <code>rvm</code> in the linked instructions you will need to add the
+    <code>operawatir</code> bin directory to your path.</p>
     <pre><code class="prompt"><span class="line">PATH=$PATH:$(dirname `gem which operawatir`)</span>
 <span class="line">PATH=`dirname $PATH`/bin</span></code></pre>
   </li>
@@ -91,9 +93,9 @@
     <h4>Linux</h4>
     <p>On Linux this can be done with the following commands:</p>
 
-    <pre><code class="prompt"><span class="line">OPERA_PATH=`which opera`</span>
-<span class="line">OPERA_LAUNCHER=dirname $(dirname `gem which operawatir`)</span>
-<span class="line">OPERA_LAUNCHER="$OPERA_LAUNCHER/`gem contents operawatir | grep linux_32_launcher`"</span>
+    <pre><code class="prompt"><span class="line">export OPERA_PATH=`which opera`</span>
+<span class="line">export OPERA_LAUNCHER=$(dirname `jruby -S gem which operawatir`)</span>
+<span class="line">OPERA_LAUNCHER="`dirname $OPERA_LAUNCHER`/`jruby -S gem contents operawatir | grep linux_32_launcher`"</span>
 </code></pre>
 
     <h4>Windows</h4>
@@ -112,7 +114,7 @@
     and enable ‘Proxy Auto Connect’.</p>
   </li>
 
-  <li>And you are done!</li>
+  <li>Close Opera and you are done!</li>
 </ol>
 
 <p>If you have trouble you can contact us on our
@@ -125,7 +127,8 @@ Opera. Pretty soon after that you will want to visit a URL. This is simply
 achieved by setting the <code>url</code> property on the <code>browser</code> object.
 Finally we need to quit the browser.</p>
 
-<pre><code>require 'operawatir'
+<pre><code>require 'rubygems'
+require 'operawatir'
 
 browser = OperaWatir::Browser.new
 browser.goto 'http://maps.google.com/'
@@ -174,7 +177,8 @@ keys by using the <code>key</code> method. We will use these methods to search
 for the directions from Opera HQ to the Oslo Opera House, and submit the form by
 pressing the enter key. Including our progress so far this gives us the following code:</p>
 
-<pre><code>require 'operawatir'
+<pre><code>require 'rubygems'
+require 'operawatir'
 
 browser = OperaWatir::Browser.new
 browser.goto 'http://maps.google.com/'
@@ -203,8 +207,8 @@ learned. First we need to find the link to click, and then we can call the
 <code>click</code> method.</p>
 
 <p>In our search the first suggested result is correct, which always has the ID
-of <code>ddw_dll_1_0</code>. Using the <code>link</code> method to search for
-only links, results in:</p>
+of <code>ddw_dll_1_0</code>. We use the <code>link</code> method to search for
+only links:</p>
 
 <pre><code>browser.link(:id, 'ddw_dll_1_0').click</code></pre>
 
@@ -242,7 +246,8 @@ the Zoom In button twice. See if you can work out the code before looking below.
 have added <code>sleep</code>s to make sure things have loaded and been added
 to the DOM before we try and find them.</p>
 
-<pre><code>require 'operawatir'
+<pre><code>require 'rubygems'
+require 'operawatir'
 
 browser = OperaWatir::Browser.new
 browser.goto 'http://maps.google.com/'
