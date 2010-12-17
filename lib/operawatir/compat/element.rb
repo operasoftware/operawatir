@@ -39,7 +39,7 @@ class OperaWatir::Element
   #
   # @return [String] value of the element
   def value
-    if tag_name == 'INPUT'
+    if tag_name == 'INPUT' or attr?(:value)
       attr(:value)
     else
       text
