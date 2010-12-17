@@ -264,15 +264,15 @@ describe 'Yellow Pages' do
   end
 
   it 'finds the phone number to Opera Software' do
-    window.text_field(:name => 'search_word').set 'Opera Software'
-    window.button(:name => 'btn_cs').click
-    window.li(:class => 'tel').text.should == '24 16 40 00'
+    browser.text_field(:name => 'search_word').set 'Opera Software'
+    browser.button(:name => 'btn_cs').click
+    browser.li(:class => 'tel').text.should == '24 16 40 00'
   end
 
   it 'finds the phone number to the Norwegian Opera and Ballet' do
-    window.text_field(:name => 'search_word').set 'Den Norske Opera'
-    window.button(:name => 'btn_cs').click
-    window.li(:class => 'tel').text.should == '21 42 21 00'
+    browser.text_field(:name => 'search_word').set 'Den Norske Opera'
+    browser.button(:name => 'btn_cs').click
+    browser.li(:class => 'tel').text.should == '21 42 21 00'
   end
 end</code></pre>
 
@@ -307,10 +307,10 @@ Finished in 2.04 seconds
 
 	<p>
 	  Despite its shortcomings, we hope you will enjoy playing
-	  around with the Watir libraries for driving Opera.  We
-	  decided that we would rather see it go out to the public
-	  before Christmas than waiting for another month or two
-	  until it is pristine and perfect.
+	  around with the Watir libraries for using OperaDriver
+	  driving Opera.  We decided that we would rather see it go
+	  out to the public before Christmas than waiting for another
+	  month or two until it is pristine and perfect.
 	</p>
 
 	<p>
