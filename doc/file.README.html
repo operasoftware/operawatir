@@ -41,185 +41,167 @@
     
     <iframe id="search_frame"></iframe>
     
-    <div id="content"><div id='filecontents'><h1>OperaWatir</h1>
-<h2>Description</h2>
-<p>
-OperaWatir is our implementation of the Watir v1.x API, originally
-developed for Internet Explorer by an independent third-party. This
-documentation will describe how to get OperaWatir running on your machine
-and how to write and run tests with it.
-</p>
-<p>
-Watir (pronounced water) is an acronym for “Web Application Testing in
-Ruby”, and is comprised of a toolkit used to automate interactions with
-web browsers. Watir was originally conceived to to test web applications,
-but Opera Software have since expanded it and made it useful also for doing
-automated testing of the browser itself. Using OperaWatir will allow you to
-drive the Opera web browser as well as extracting useful information for
-testing that the browser renderer behaves properly.
-</p>
-<h2>Installation</h2>
-<p>
-This page describes installing and upgrading OperaWatir and setting up an
-automated testing system on your machine. OperaWatir runs on GNU/Linux and
-Windows operating systems. Other UNIX-like systems, such as BSD and OS X,
-have not been tested but should work. We recommend using Java &gt;= 1.6.0,
-JRuby &gt;= 1.4.0 (ruby 1.8.7 patchlevel 174), RubyGems &gt;= 1.3.5, RSpec
-&gt;= 1.3.0, and a somewhat recent gogi core build of Opera.
-</p>
-<h3>Fresh Installation</h3>
-<h4>Debian</h4>
-<p>
-First, you will need to install Java on your system. On Debian you must
-either enable the non-free repositories or manually download the Sun Java
-package. To enable your non-free repositories, you need to add
-“non-free” to your default repository source in /etc/sources.list.
-lenny is the stable version of Debian, but you can replace this with
-squeeze if you are running Debian squeeze/testing:
-</p>
-<pre class="code">
-  <span class='deb identifier id'>deb</span> <span class='http identifier id'>http</span><span class='symbol val'>:/</span><span class='regexp val'>/ftp.no.debian.org/</span><span class='debian identifier id'>debian</span><span class='div op'>/</span> <span class='lenny identifier id'>lenny</span> <span class='main identifier id'>main</span> <span class='non identifier id'>non</span><span class='minus op'>-</span><span class='free identifier id'>free</span>
+    <div id="content"><div id='filecontents'><h1>Readme</h1>
+
+<p><a href="http://operawatir.org/">OperaWatir</a> is a part of the <a href="http://watir.com/">Watir</a> (pronounced <em>water</em>) family of free software Ruby libraries for automating web browsers.  OperaWatir provides a querying engine and Ruby bindings for a backend Java library, OperaDriver, for driving the <a href="http://opera.com/">Opera web browser</a>.  It aims for full compliance with the <a href="https://github.com/jarib/watirspec">watirspec</a> specification.</p>
+
+<p>License:: <a href="https://github.com/operasoftware/operawatir/blob/master/LICENSE">New BSD</a>
+Project Home:: <a href="http://operawatir.org/">http://operawatir.org/</a>
+Source Code:: <a href="https://github.com/operasoftware/operawatir">https://github.com/operasoftware/operawatir</a>
+Mailing List:: <a href="https://list.opera.com/mailman/listinfo/operawatir-users">https://list.opera.com/mailman/listinfo/operawatir-users</a>
+Issues:: <a href="https://github.com/operasoftware/operawatir/issues">https://github.com/operasoftware/operawatir/issues</a>
+Gem:: <a href="http://rubygems.org/gems/operawatir">https://rubygems.org/operawatir</a></p>
+
+<h2>Third-Party Libraries</h2>
+
+<p>OperaDriver uses the following third-party Java libraries:</p>
+
+<ul>
+<li><a href="http://code.google.com/p/protobuf/">Google protobuf</a> (New BSD License)</li>
+<li><a href="http://commons.apache.org/jxpath/">Apache Commons JXPath</a> (Apache 2.0 License)</li>
+</ul>
+
+<p>More information about the New BSD (AKA Modified BSD or BSD-3) and Apache 2.0 licenses can be found in the appropriate text files in <code>lib/operadriver</code>.</p>
+
+<h2>Install</h2>
+
+<h3>Requirements</h3>
+
+<p>OperaWatir runs on GNU/Linux and Windows operating systems.  Other UNIX-like systems, such as BSD and OS X, are not currently supported, but support is planned.  Required dependencies are <em>Java</em> >= 1.6.0, <em>JRuby</em> >= 1.5.1 (ruby 1.8.7 patchlevel 249), <em>RubyGems</em> >= 1.3.5, <em>RSpec</em> >= 2.0.0, and a somewhat recent desktop or nightly build of Opera.</p>
+
+<h3>Installation procedure</h3>
+
+<p>Make sure that you have the right requirements for installing and running OperaWatir.  Please note that OperaWatir will only run on the JRuby platform. For more detailed installation instructions, please see our <a href="tutorial.html">Getting Started</a> guide.</p>
+
+<p>To install (leave out the “sudo” command if you're installing on Windows):</p>
+
+<p>% sudo jruby -S gem install operawatir</p>
+
+<p>Next, make sure that JRuby's <code>bin</code> directory is a part of your <code>PATH</code> environmental variable on GNU/Linux.</p>
+
+<h2>Limitations</h2>
+
+<p><strong>Before you get started playing with OperaWatir, there are a few important things you need to keep in mind.</strong></p>
+
+<p>This is a <strong>pre-release</strong> of OperaWatir (0.3), and should not be considered stable or suitable for use in production.  It should be treated as a proof of concept. </p>
+
+<p>It is not possible to run OperaWatir without specifying the <code>OPERA_PATH</code> (full path to Opera binary) and <code>OPERA_LAUNCHER</code> (full path to Opera launcher binary) environmental variables. </p>
+
+<p>Since the launcher applications are not shipped with the latest public release of Opera, we have bundled them with the gem.  They can be found in <code>./utils/launchers/</code> under the gem's directory (typically <code>/usr/lib/jruby/lib/ruby/gems/1.8/gems/operawatir-0.3-java/utils/launchers/</code> on GNU/Linux systems and <code>C:\JRuby-1.5.2\lib\ruby\gems\1.8\gems\operawatir-0.3-java\utils\launchers\</code> on Windows).  The launchers provided will work on 32-bit GNU/Linux and Windows operating systems.  OS X support is planned.</p>
+
+<h2>Examples</h2>
+
+<p>The Watir API allows you to write scripts that interact with any web page.  Its primary purpose is to ease test automation for web applications.  Your scripts can, for example, before you deploy automatically go through all the steps your users normally would and alert you of any regressions. </p>
+
+<p>Let's take a closer look at how this works. </p>
+
+<pre class="code"><span class='require identifier id'>require</span> <span class='string val'>'rubygems'</span>
+<span class='require identifier id'>require</span> <span class='string val'>'operawatir'</span>
+
+<span class='browser identifier id'>browser</span> <span class='assign token'>=</span> <span class='OperaWatir constant id'>OperaWatir</span><span class='colon2 op'>::</span><span class='Browser constant id'>Browser</span><span class='dot token'>.</span><span class='new identifier id'>new</span>
+
+<span class='browser identifier id'>browser</span><span class='dot token'>.</span><span class='goto identifier id'>goto</span> <span class='string val'>'http://en.wikipedia.org/'</span>
+<span class='browser identifier id'>browser</span><span class='dot token'>.</span><span class='text_field identifier id'>text_field</span><span class='lparen token'>(</span><span class='symbol val'>:id</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>'searchInput'</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='set identifier id'>set</span> <span class='string val'>'Opera'</span>
+<span class='browser identifier id'>browser</span><span class='dot token'>.</span><span class='button identifier id'>button</span><span class='lparen token'>(</span><span class='symbol val'>:id</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>'searchButton'</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='click identifier id'>click</span>
 </pre>
-<p>
-Make sure you update your cached package lists if you enabled the non-free
-repositories:
-</p>
-<pre class="code">
-  <span class='string val'>% sudo </span><span class='aptitude identifier id'>aptitude</span> <span class='update identifier id'>update</span>
+
+<p>The script above will tell the browser to load the front page of Wikipedia, write “Opera” in the search field and click the search button.  If all goes as intended, the browser will end up at a relevant article. </p>
+
+<p>To run the script, use the following command:</p>
+
+<pre class="code"><span class='string val'>% jruby </span><span class='example identifier id'>example</span><span class='dot token'>.</span><span class='rb identifier id'>rb</span>
 </pre>
-<p>
-Sun Java is now easily installable:
-</p>
-<pre class="code">
-  <span class='string val'>% sudo </span><span class='aptitude identifier id'>aptitude</span> <span class='install identifier id'>install</span> <span class='sun identifier id'>sun</span><span class='minus op'>-</span><span class='java6 identifier id'>java6</span><span class='minus op'>-</span><span class='jre identifier id'>jre</span>
+
+<p>As Watir scripts are run in a full-featured browser, all keypresses and clicks will be interpreted as if they were real, and invoke attached JavaScript event listeners.  If we want to test the JavaScript-powered suggestion feature on the Wikipedia search box, we can do this: </p>
+
+<pre class="code"><span class='require identifier id'>require</span> <span class='string val'>'rubygems'</span>
+<span class='require identifier id'>require</span> <span class='string val'>'operawatir'</span>
+
+<span class='browser identifier id'>browser</span> <span class='assign token'>=</span> <span class='OperaWatir constant id'>OperaWatir</span><span class='colon2 op'>::</span><span class='Browser constant id'>Browser</span><span class='dot token'>.</span><span class='new identifier id'>new</span>
+
+<span class='browser identifier id'>browser</span><span class='dot token'>.</span><span class='goto identifier id'>goto</span> <span class='string val'>'http://en.wikipedia.org/'</span>
+<span class='browser identifier id'>browser</span><span class='dot token'>.</span><span class='text_field identifier id'>text_field</span><span class='lparen token'>(</span><span class='symbol val'>:id</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>'searchInput'</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='click identifier id'>click</span>
+<span class='browser identifier id'>browser</span><span class='dot token'>.</span><span class='type identifier id'>type</span> <span class='string val'>'Hello world'</span>
+<span class='browser identifier id'>browser</span><span class='dot token'>.</span><span class='key identifier id'>key</span> <span class='string val'>'Down'</span>
+<span class='browser identifier id'>browser</span><span class='dot token'>.</span><span class='key identifier id'>key</span> <span class='string val'>'Enter'</span>
 </pre>
-<p>
-If you download the Java package manually you can install it by running the
-following command:
-</p>
-<pre class="code">
-  <span class='string val'>% sudo </span><span class='dpkg identifier id'>dpkg</span> <span class='minus op'>-</span><span class='i identifier id'>i</span> <span class='sun identifier id'>sun</span><span class='minus op'>-</span><span class='java6 identifier id'>java6</span><span class='minus op'>-</span><span class='jre_6 identifier id'>jre_6</span><span class='integer val'>.20</span><span class='minus op'>-</span><span class='dlj identifier id'>dlj</span><span class='minus op'>-</span><span class='integer val'>4_</span><span class='all identifier id'>all</span><span class='dot token'>.</span><span class='deb identifier id'>deb</span>
+
+<p>The first suggested link will be selected by pressing arrow down (<code>'Down'</code>) and navigated to (<code>'Enter'</code>).  Using the same key events, you could even teach a script to play platform games: </p>
+
+<pre class="code"><span class='require identifier id'>require</span> <span class='string val'>'rubygems'</span>
+<span class='require identifier id'>require</span> <span class='string val'>'operawatir'</span>
+
+<span class='browser identifier id'>browser</span><span class='dot token'>.</span><span class='goto identifier id'>goto</span> <span class='string val'>'http://www.phoboslab.org/biolab/'</span>
+<span class='sleep identifier id'>sleep</span> <span class='integer val'>2</span>
+<span class='browser identifier id'>browser</span><span class='dot token'>.</span><span class='key identifier id'>key</span> <span class='string val'>'X'</span>
+<span class='sleep identifier id'>sleep</span> <span class='integer val'>1</span>
+<span class='browser identifier id'>browser</span><span class='dot token'>.</span><span class='key_down identifier id'>key_down</span> <span class='string val'>'Right'</span>
+<span class='float val'>5</span><span class='dot token'>.</span><span class='times identifier id'>times</span> <span class='lbrace token'>{</span> <span class='browser identifier id'>browser</span><span class='dot token'>.</span><span class='key identifier id'>key</span> <span class='string val'>'X'</span> <span class='rbrace token'>}</span>
+<span class='float val'>2</span><span class='dot token'>.</span><span class='times identifier id'>times</span> <span class='lbrace token'>{</span> <span class='browser identifier id'>browser</span><span class='dot token'>.</span><span class='key identifier id'>key</span> <span class='string val'>'C'</span> <span class='rbrace token'>}</span>
+<span class='browser identifier id'>browser</span><span class='dot token'>.</span><span class='key_up identifier id'>key_up</span> <span class='string val'>'Right'</span>
 </pre>
-<p>
-JRuby is by Debian also considered a non-fre package, but will be available
-to the package system if you have non-free repositories enabled. If you are
-using Debian squeeze/testing and have non-free repositories enabled, it can
-be installed like this:
-</p>
-<pre class="code">
-  <span class='string val'>% sudo </span><span class='aptitude identifier id'>aptitude</span> <span class='install identifier id'>install</span> <span class='jruby identifier id'>jruby</span>
+
+<p>Sending commands to the browser is great, but sometimes we want to get something back too.  The following lines of code will have the browser automatically look up the phone number of Opera Software in the <a href="http://gulesider.no/">yellow pages</a> and write it to the console.</p>
+
+<pre class="code"><span class='require identifier id'>require</span> <span class='string val'>'rubygems'</span>
+<span class='require identifier id'>require</span> <span class='string val'>'operawatir'</span>
+
+<span class='browser identifier id'>browser</span> <span class='assign token'>=</span> <span class='OperaWatir constant id'>OperaWatir</span><span class='colon2 op'>::</span><span class='Browser constant id'>Browser</span><span class='dot token'>.</span><span class='new identifier id'>new</span>
+
+<span class='browser identifier id'>browser</span><span class='dot token'>.</span><span class='goto identifier id'>goto</span> <span class='string val'>'http://gulesider.no/'</span>
+<span class='browser identifier id'>browser</span><span class='dot token'>.</span><span class='text_field identifier id'>text_field</span><span class='lparen token'>(</span><span class='symbol val'>:name</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>'search_word'</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='set identifier id'>set</span> <span class='string val'>'Opera Software'</span>
+<span class='browser identifier id'>browser</span><span class='dot token'>.</span><span class='button identifier id'>button</span><span class='lparen token'>(</span><span class='symbol val'>:name</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>'btn_cs'</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='click identifier id'>click</span>
+<span class='puts identifier id'>puts</span> <span class='browser identifier id'>browser</span><span class='dot token'>.</span><span class='li identifier id'>li</span><span class='lparen token'>(</span><span class='symbol val'>:class</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>'tel'</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='text identifier id'>text</span>
 </pre>
-<p>
-Debian lenny/stable users, or users who prefer to not enable non-free
-repositories, must download the JRuby 1.4 package manually. JRuby 1.4 is
-not yet available in Debian&#8217;s stable non-free repository, but the
-manually downloaded package can be installed like this:
-</p>
-<pre class="code">
-  <span class='string val'>% sudo </span><span class='dpkg identifier id'>dpkg</span> <span class='minus op'>-</span><span class='i identifier id'>i</span> <span class='jruby_1 identifier id'>jruby_1</span><span class='float val'>.4.0</span><span class='minus op'>-</span><span class='integer val'>1_</span><span class='all identifier id'>all</span><span class='dot token'>.</span><span class='deb identifier id'>deb</span>
+
+<p>When running proper functional tests on your web application with Watir, you might want a bit more structured output.  To define assertions and get pretty test reports, you can use <a href="http://rspec.info/">RSpec</a>, a behaviour-driven testing framework. </p>
+
+<p>When writing test suites you can use the OperaWatir::Helper class to help ease some tasks, such as constructing and tearing down the Browser object.  A simple test suite looks like this:</p>
+
+<pre class="code"><span class='describe identifier id'>describe</span> <span class='string val'>'Yellow Pages'</span> <span class='do do kw'>do</span>
+  <span class='before identifier id'>before</span> <span class='symbol val'>:each</span> <span class='do do kw'>do</span>
+    <span class='browser identifier id'>browser</span><span class='dot token'>.</span><span class='goto identifier id'>goto</span> <span class='string val'>'http://gulesider.no/'</span>
+  <span class='end end kw'>end</span>
+
+  <span class='it identifier id'>it</span> <span class='string val'>'finds the phone number to Opera Software'</span> <span class='do do kw'>do</span>
+    <span class='browser identifier id'>browser</span><span class='dot token'>.</span><span class='text_field identifier id'>text_field</span><span class='lparen token'>(</span><span class='symbol val'>:name</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>'search_word'</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='set identifier id'>set</span> <span class='string val'>'Opera Software'</span>
+    <span class='browser identifier id'>browser</span><span class='dot token'>.</span><span class='button identifier id'>button</span><span class='lparen token'>(</span><span class='symbol val'>:name</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>'btn_cs'</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='click identifier id'>click</span>
+    <span class='browser identifier id'>browser</span><span class='dot token'>.</span><span class='li identifier id'>li</span><span class='lparen token'>(</span><span class='symbol val'>:class</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>'tel'</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='text identifier id'>text</span><span class='dot token'>.</span><span class='should identifier id'>should</span> <span class='eq op'>==</span> <span class='string val'>'24 16 40 00'</span>
+  <span class='end end kw'>end</span>
+
+  <span class='it identifier id'>it</span> <span class='string val'>'finds the phone number to the Norwegian Opera and Ballet'</span> <span class='do do kw'>do</span>
+    <span class='browser identifier id'>browser</span><span class='dot token'>.</span><span class='text_field identifier id'>text_field</span><span class='lparen token'>(</span><span class='symbol val'>:name</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>'search_word'</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='set identifier id'>set</span> <span class='string val'>'Den Norske Opera'</span>
+    <span class='browser identifier id'>browser</span><span class='dot token'>.</span><span class='button identifier id'>button</span><span class='lparen token'>(</span><span class='symbol val'>:name</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>'btn_cs'</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='click identifier id'>click</span>
+    <span class='browser identifier id'>browser</span><span class='dot token'>.</span><span class='li identifier id'>li</span><span class='lparen token'>(</span><span class='symbol val'>:class</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>'tel'</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='text identifier id'>text</span><span class='dot token'>.</span><span class='should identifier id'>should</span> <span class='eq op'>==</span> <span class='string val'>'21 42 21 00'</span>
+  <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
 </pre>
-<p>
-When you have JRuby installed you must fetch RSpec:
-</p>
-<pre class="code">
-  <span class='string val'>% sudo </span><span class='jruby identifier id'>jruby</span> <span class='minus op'>-</span><span class='S constant id'>S</span> <span class='gem identifier id'>gem</span> <span class='install identifier id'>install</span> <span class='rspec identifier id'>rspec</span>
+
+<p>Since this is an RSpec test you can run it using the operawatir binary, which is simply a shortcut for running tests: </p>
+
+<pre class="code"><span class='string val'>% operawatir </span><span class='yellow_pages identifier id'>yellow_pages</span><span class='dot token'>.</span><span class='rb identifier id'>rb</span>
 </pre>
-<p>
-Finally, download the OperaWatir gem and install it, replacing the wildcard
-below with the correct version number:
-</p>
-<pre class="code">
-  <span class='string val'>% sudo </span><span class='jruby identifier id'>jruby</span> <span class='minus op'>-</span><span class='S constant id'>S</span> <span class='gem identifier id'>gem</span> <span class='install identifier id'>install</span> <span class='operawatir identifier id'>operawatir</span><span class='minus op'>-</span><span class='integer val'>0</span><span class='float val'>.0.2</span><span class='dot token'>.</span><span class='mult op'>*</span><span class='dot token'>.</span><span class='gem identifier id'>gem</span>
+
+<p>Each block of code corresponds to a single named test case returning PASS or FAIL.  Whether you got back the expected and correct return value is evaluated with <code>.should</code>.  If all tests pass, you will see the following output: </p>
+
+<pre class="code"><span class='dot2 op'>..</span>
+
+<span class='Finished constant id'>Finished</span> <span class='in in kw'>in</span> <span class='float val'>2.04</span> <span class='seconds identifier id'>seconds</span>
+<span class='integer val'>2</span> <span class='examples identifier id'>examples</span><span class='comma token'>,</span> <span class='integer val'>0</span> <span class='failures identifier id'>failures</span>
 </pre>
-<h4>Ubuntu</h4>
-<p>
-First, install Sun Java on your system by using the following command:
-</p>
-<pre class="code">
-  <span class='string val'>% sudo </span><span class='aptitude identifier id'>aptitude</span> <span class='install identifier id'>install</span> <span class='sun identifier id'>sun</span><span class='minus op'>-</span><span class='java6 identifier id'>java6</span><span class='minus op'>-</span><span class='jre identifier id'>jre</span>
-</pre>
-<p>
-When you have JRuby installed you must fetch RSpec:
-</p>
-<pre class="code">
-  <span class='string val'>% sudo </span><span class='jruby identifier id'>jruby</span> <span class='minus op'>-</span><span class='S constant id'>S</span> <span class='gem identifier id'>gem</span> <span class='install identifier id'>install</span> <span class='rspec identifier id'>rspec</span>
-</pre>
-<p>
-Finally, download the OperaWatir gem and install it, replacing the wildcard
-below with the correct version number:
-</p>
-<pre class="code">
-  <span class='string val'>% sudo </span><span class='jruby identifier id'>jruby</span> <span class='minus op'>-</span><span class='S constant id'>S</span> <span class='gem identifier id'>gem</span> <span class='install identifier id'>install</span> <span class='operawatir identifier id'>operawatir</span><span class='minus op'>-</span><span class='integer val'>0</span><span class='float val'>.0.2</span><span class='dot token'>.</span><span class='mult op'>*</span><span class='dot token'>.</span><span class='gem identifier id'>gem</span>
-</pre>
-<h4>Windows</h4>
-<p>
-First you must install Sun Java on your machine. It is available from
-Oracle&#8217;s website:
-</p>
-<pre class="code">
-  <span class='http identifier id'>http</span><span class='symbol val'>:/</span><span class='regexp val'>/java.com/e</span><span class='n identifier id'>n</span><span class='div op'>/</span><span class='download identifier id'>download</span><span class='div op'>/</span>
-</pre>
-<p>
-Then fetch and install JRuby:
-</p>
-<pre class="code">
-  <span class='http identifier id'>http</span><span class='symbol val'>:/</span><span class='regexp val'>/jruby.org/</span><span class='download identifier id'>download</span>
-</pre>
-<p>
-When you have JRuby installed you must fetch RSpec:
-</p>
-<pre class="code">
-  <span class='jruby identifier id'>jruby</span> <span class='minus op'>-</span><span class='S constant id'>S</span> <span class='gem identifier id'>gem</span> <span class='install identifier id'>install</span> <span class='rspec identifier id'>rspec</span>
-</pre>
-<p>
-Finally, download the OperaWatir gem and install it, replacing the wildcard
-below with the correct version number. Please note that you must be in the
-same directory as to where you downloaded the gem before issuing this
-command:
-</p>
-<pre class="code">
-  <span class='jruby identifier id'>jruby</span> <span class='minus op'>-</span><span class='S constant id'>S</span> <span class='gem identifier id'>gem</span> <span class='install identifier id'>install</span> <span class='operawatir identifier id'>operawatir</span><span class='minus op'>-</span><span class='integer val'>0</span><span class='float val'>.0.2</span><span class='dot token'>.</span><span class='mult op'>*</span><span class='dot token'>.</span><span class='gem identifier id'>gem</span>
-</pre>
-<h3>Upgrading</h3>
-<p>
-It&#8217;s important to note that if you have an old version installed on
-your system, you will most likely need to remove that to make a newer
-version work. To see the gems currently installed on your system:
-</p>
-<pre class="code">
-  <span class='string val'>% jruby </span><span class='minus op'>-</span><span class='S constant id'>S</span> <span class='gem identifier id'>gem</span> <span class='list identifier id'>list</span>
-</pre>
-<p>
-You can remove your old version of OperaWatir with this command (preceded
-by &quot;sudo&quot; if you&#8217;re on an UNIX-like system):
-</p>
-<pre class="code">
-  <span class='string val'>% jruby </span><span class='minus op'>-</span><span class='S constant id'>S</span> <span class='gem identifier id'>gem</span> <span class='uninstall identifier id'>uninstall</span> <span class='OperaWatir constant id'>OperaWatir</span>
-</pre>
-<p>
-If everything else fails you can try include the --install-dir
-parameter to your gem&#8217;s top directory. That will remove the specified
-gem in the specified install directory.
-</p>
-<p>
-If multiple versions of OperaWatir are installed those could also be
-removed by running (also preceded by &quot;sudo&quot; if on UNIX):
-</p>
-<pre class="code">
-  <span class='string val'>% jruby </span><span class='minus op'>-</span><span class='S constant id'>S</span> <span class='gem identifier id'>gem</span> <span class='cleanup identifier id'>cleanup</span> <span class='OperaWatir constant id'>OperaWatir</span>
-</pre>
-<p>
-When OperaWatir has been removed from your system you can proceed with
-installing the new version, following the installation instructions above.
-</p>
-<h2>License</h2>
-<p>
-TODO.
-</p>
-</div></div>
+
+<p>If anything fails, more information about each failure will be provided.</p>
+
+<h2>Merry Christmas!</h2>
+
+<p>Despite its shortcomings, we hope you will enjoy playing around with the Watir libraries for using OperaDriver driving Opera. We decided that we would rather see it go out to the public before Christmas than waiting for another month or two until it is pristine and perfect. </p>
+
+<p>One of the things we are most excited about is the new Watir 2 API that we have made a prototype implementation of, which is based on <a href="https://github.com/jarib/watir-webdriver/wiki/Comparison-with-Watir-1.X">Jari Bakken's ideas for a new API</a>. On top of this, we have written a Watir 1 compatibility layer which is switched on by default. We are looking forward to the design discussions that this will bring. Oh, and by the way, will you be able to find the magic switch for Watir 2? (-; </p>
+
+<p>We hope you'll enjoy this little Christmas gift! Furthermore, we wish you a Merry Christmas and a Happy New Year from us here at Opera Software in Oslo!</p></div></div>
     
     <div id="footer">
-  Generated on Thu Dec 16 19:22:41 2010 by 
+  Generated on Fri Dec 17 19:35:23 2010 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.3 (ruby-1.8.7).
 </div>

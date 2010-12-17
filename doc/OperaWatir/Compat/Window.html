@@ -78,7 +78,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#contains_text-instance_method" title="#contains_text (instance method)">- (Object) <strong>contains_text</strong>(str) </a>
+      <a href="#contains_text-instance_method" title="#contains_text (instance method)">- (Boolean) <strong>contains_text</strong>(str) </a>
     
 
     
@@ -91,7 +91,10 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>
+Checks whether the body has the given text in it.
+</p>
+</div></span>
   
 </li>
 
@@ -99,7 +102,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#elements_by_xpath-instance_method" title="#elements_by_xpath (instance method)">- (Object) <strong>elements_by_xpath</strong>(value) </a>
+      <a href="#elements_by_xpath-instance_method" title="#elements_by_xpath (instance method)">- (OperaWatir::Collection) <strong>elements_by_xpath</strong>(value) </a>
     
 
     
@@ -115,7 +118,7 @@
 
   
     <span class="summary_desc"><div class='inline'><p>
-alias_method :element_by_xpath, :find_by_xpath.
+Find elements that match the given XPath.
 </p>
 </div></span>
   
@@ -134,22 +137,73 @@ alias_method :element_by_xpath, :find_by_xpath.
       <div class="method_details first">
   <p class="signature first" id="contains_text-instance_method">
   
-    - (<tt><span class='object_link'><a href="../../Object.html" title="Object (class)">Object</a></span></tt>) <strong>contains_text</strong>(str) 
+    - (<tt>Boolean</tt>) <strong>contains_text</strong>(str) 
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Checks whether the body has the given text in it.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <span class='name'>str</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+Text to search for.
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+true if the body contains the given text, false otherwise
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-5
-6
-7</pre>
+10
+11
+12</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/operawatir/compat/window.rb', line 5</span>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/compat/window.rb', line 10</span>
 
 <span class='def def kw'>def</span> <span class='contains_text identifier id'>contains_text</span><span class='lparen token'>(</span><span class='str identifier id'>str</span><span class='rparen token'>)</span>
   <span class='text identifier id'>text</span><span class='dot token'>.</span><span class='index identifier id'>index</span><span class='lparen token'>(</span><span class='str identifier id'>str</span><span class='rparen token'>)</span>
@@ -163,7 +217,7 @@ alias_method :element_by_xpath, :find_by_xpath.
       <div class="method_details ">
   <p class="signature " id="elements_by_xpath-instance_method">
   
-    - (<tt><span class='object_link'><a href="../../Object.html" title="Object (class)">Object</a></span></tt>) <strong>elements_by_xpath</strong>(value) 
+    - (<tt><span class='object_link'><a href="../Collection.html" title="OperaWatir::Collection (class)">OperaWatir::Collection</a></span></tt>) <strong>elements_by_xpath</strong>(value) 
   
 
   
@@ -174,26 +228,66 @@ alias_method :element_by_xpath, :find_by_xpath.
 </p><div class="docstring">
   <div class="discussion">
     <p>
-alias_method :element_by_xpath, :find_by_xpath
+Find elements that match the given XPath.
 </p>
 
 
   </div>
 </div>
 <div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
   
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <span class='name'>value</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+The XPath expression to search for.
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Collection.html" title="OperaWatir::Collection (class)">OperaWatir::Collection</a></span></tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+A collection of matching elements.
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
 </div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-11
-12
-13</pre>
+19
+20
+21</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/operawatir/compat/window.rb', line 11</span>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/compat/window.rb', line 19</span>
 
 <span class='def def kw'>def</span> <span class='elements_by_xpath identifier id'>elements_by_xpath</span><span class='lparen token'>(</span><span class='value identifier id'>value</span><span class='rparen token'>)</span>
   <span class='find_by_xpath identifier id'>find_by_xpath</span><span class='lparen token'>(</span><span class='value identifier id'>value</span><span class='rparen token'>)</span>
@@ -209,7 +303,7 @@ alias_method :element_by_xpath, :find_by_xpath
 </div>
     
     <div id="footer">
-  Generated on Thu Dec 16 19:22:45 2010 by 
+  Generated on Fri Dec 17 19:35:28 2010 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.3 (ruby-1.8.7).
 </div>

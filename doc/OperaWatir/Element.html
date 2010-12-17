@@ -192,7 +192,9 @@ Returns the value of attribute id.
 
   
     <span class="summary_desc"><div class='inline'><p>
-Returns the value of attribute type.
+For `&lt;select&gt;` elements returns either &#8216;select-one&#8217; for
+`&lt;select&gt;`s where only a single `&lt;option&gt;` can be selected, or
+&#8216;select-multiple&#8217; otherwise.
 </p>
 </div></span>
   
@@ -234,7 +236,7 @@ Returns the value of attribute type.
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#attr-instance_method" title="#attr (instance method)">- (Object) <strong>attr</strong>(name) </a>
+      <a href="#attr-instance_method" title="#attr (instance method)">- (String) <strong>attr</strong>(name) </a>
     
 
     
@@ -248,7 +250,7 @@ Returns the value of attribute type.
 
   
     <span class="summary_desc"><div class='inline'><p>
-Attributes.
+Gets the attribute called name.
 </p>
 </div></span>
   
@@ -271,7 +273,10 @@ Attributes.
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>
+Check the existence of the attribute on the element.
+</p>
+</div></span>
   
 </li>
 
@@ -334,7 +339,10 @@ Attributes.
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>
+Clears a text input or textarea of any text.
+</p>
+</div></span>
   
 </li>
 
@@ -355,7 +363,10 @@ Attributes.
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>
+Clicks on the top left of the element, or the given x, y offset.
+</p>
+</div></span>
   
 </li>
 
@@ -526,7 +537,10 @@ Events.
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>
+Focuses the element.
+</p>
+</div></span>
   
 </li>
 
@@ -716,7 +730,7 @@ UI.
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#selected%3F-instance_method" title="#selected? (instance method)">- (Boolean) <strong>selected?</strong>(option = nil) </a>
+      <a href="#selected%3F-instance_method" title="#selected? (instance method)">- (Boolean) <strong>selected?</strong>(value = nil) </a>
     
 
     
@@ -729,7 +743,11 @@ UI.
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>
+On checkboxes, radio buttons, and option elements returns whether the
+element is checked/selected.
+</p>
+</div></span>
   
 </li>
 
@@ -737,7 +755,7 @@ UI.
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#selected_options-instance_method" title="#selected_options (instance method)">- (Object) <strong>selected_options</strong> </a>
+      <a href="#selected_options-instance_method" title="#selected_options (instance method)">- (OperaWatir::Collection) <strong>selected_options</strong> </a>
     
 
     
@@ -750,7 +768,10 @@ UI.
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>
+Gets the selected `&lt;option&gt;` elements in a `&lt;select&gt;` element.
+</p>
+</div></span>
   
 </li>
 
@@ -771,7 +792,10 @@ UI.
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>
+Submits a form, or the form the elment is contained in.
+</p>
+</div></span>
   
 </li>
 
@@ -779,11 +803,11 @@ UI.
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#text-instance_method" title="#text (instance method)">- (Object) <strong>text</strong> </a>
+      <a href="#text-instance_method" title="#text (instance method)">- (String) <strong>text</strong> </a>
     
 
     
-      (also: #caption)
+      (also: #to_s, #caption)
     
   </span>
   
@@ -794,7 +818,10 @@ UI.
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>
+Gets the text content of the element.
+</p>
+</div></span>
   
 </li>
 
@@ -890,7 +917,7 @@ UI.
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#url-instance_method" title="#url (instance method)">- (Object) <strong>url</strong> </a>
+      <a href="#url-instance_method" title="#url (instance method)">- (String) <strong>url</strong> </a>
     
 
     
@@ -903,7 +930,11 @@ UI.
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>
+Gets the href of an `&lt;a&gt;` element, or the url attribute of any other
+element.
+</p>
+</div></span>
   
 </li>
 
@@ -911,7 +942,7 @@ UI.
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#value-instance_method" title="#value (instance method)">- (Object) <strong>value</strong> </a>
+      <a href="#value-instance_method" title="#value (instance method)">- (String) <strong>value</strong> </a>
     
 
     
@@ -924,7 +955,11 @@ UI.
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>
+On elements of type `&lt;input&gt;` this gets the value of the value
+attribute, on every other element type it returns the text content.
+</p>
+</div></span>
   
 </li>
 
@@ -948,7 +983,8 @@ UI.
 
   
     <span class="summary_desc"><div class='inline'><p>
-In the compatibility layer as the preferred way of doing this is.
+Checks whether the text content of the element contains the given string In
+the compatibility layer as the preferred way of doing this is.
 </p>
 </div></span>
   
@@ -1143,12 +1179,12 @@ Returns the value of attribute colspan
       <pre class="lines">
 
 
-95
-96
-97</pre>
+155
+156
+157</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/operawatir/compat/element.rb', line 95</span>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/compat/element.rb', line 155</span>
 
 <span class='def def kw'>def</span> <span class='colspan identifier id'>colspan</span>
   <span class='attr identifier id'>attr</span><span class='lparen token'>(</span><span class='symbol val'>:colspan</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='to_i identifier id'>to_i</span>
@@ -1215,7 +1251,10 @@ Returns the value of attribute id
 </p><div class="docstring">
   <div class="discussion">
     <p>
-Returns the value of attribute type
+For `&lt;select&gt;` elements returns either &#8216;select-one&#8217; for
+`&lt;select&gt;`s where only a single `&lt;option&gt;` can be selected, or
+&#8216;select-multiple&#8217; otherwise. For non-`&lt;select&gt;` elements
+returns the `type` attribute.
 </p>
 
 
@@ -1229,16 +1268,16 @@ Returns the value of attribute type
       <pre class="lines">
 
 
-50
-51
-52
-53
-54
-55
-56</pre>
+144
+145
+146
+147
+148
+149
+150</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/operawatir/element.rb', line 50</span>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/compat/element.rb', line 144</span>
 
 <span class='def def kw'>def</span> <span class='type identifier id'>type</span>
   <span class='if if kw'>if</span> <span class='tag_name identifier id'>tag_name</span> <span class='eq op'>==</span> <span class='string val'>'SELECT'</span>
@@ -1292,21 +1331,61 @@ Returns the value of attribute type
       <div class="method_details ">
   <p class="signature " id="attr-instance_method">
   
-    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>attr</strong>(name) 
+    - (<tt>String</tt>) <strong>attr</strong>(name) 
   
 
   
 </p><div class="docstring">
   <div class="discussion">
     <p>
-Attributes
+Gets the attribute called name.
 </p>
 
 
   </div>
 </div>
 <div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
   
+    <li>
+      
+        <span class='type'>(<tt>String</tt>, <tt>Symbol</tt>)</span>
+      
+      
+        <span class='name'>name</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+The name of the attribute to get
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+The value of the attribute
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
 </div><table class="source_code">
   <tr>
     <td>
@@ -1338,7 +1417,10 @@ Attributes
   
 </p><div class="docstring">
   <div class="discussion">
-    
+    <p>
+Check the existence of the attribute on the element.
+</p>
+
 
   </div>
 </div>
@@ -1353,6 +1435,12 @@ Attributes
       
       
       
+        &mdash;
+        <div class='inline'><p>
+true if the attribute exists on the element, false otherwise
+</p>
+</div>
+      
     </li>
   
 </ul>
@@ -1363,12 +1451,12 @@ Attributes
       <pre class="lines">
 
 
-7
-8
-9</pre>
+15
+16
+17</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/operawatir/compat/element.rb', line 7</span>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/compat/element.rb', line 15</span>
 
 <span class='def def kw'>def</span> <span class='attr? fid id'>attr?</span><span class='lparen token'>(</span><span class='name identifier id'>name</span><span class='rparen token'>)</span>
   <span class='notop op'>!</span><span class='node identifier id'>node</span><span class='dot token'>.</span><span class='getAttribute identifier id'>getAttribute</span><span class='lparen token'>(</span><span class='name identifier id'>name</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='nil? fid id'>nil?</span>
@@ -1392,15 +1480,15 @@ Attributes
       <pre class="lines">
 
 
-78
-79
-80
 81
 82
-83</pre>
+83
+84
+85
+86</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/operawatir/element.rb', line 78</span>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/element.rb', line 81</span>
 
 <span class='def def kw'>def</span> <span class='check! fid id'>check!</span>
   <span class='result identifier id'>result</span> <span class='assign token'>=</span> <span class='node identifier id'>node</span><span class='dot token'>.</span><span class='toggle identifier id'>toggle</span>
@@ -1450,19 +1538,30 @@ Attributes
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Clears a text input or textarea of any text.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-57
-58
-59
-60</pre>
+90
+91
+92
+93</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/operawatir/compat/element.rb', line 57</span>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/compat/element.rb', line 90</span>
 
 <span class='def def kw'>def</span> <span class='clear identifier id'>clear</span>
   <span class='assert_enabled! fid id'>assert_enabled!</span>
@@ -1481,19 +1580,72 @@ Attributes
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Clicks on the top left of the element, or the given x, y offset.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>optional</tt>, <tt>Fixnum</tt>)</span>
+      
+      
+        <span class='name'>x</span>
+      
+      
+        <em class="default">(defaults to: <tt>0</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>
+The offset from the left of the element
+</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'>(<tt>optional</tt>, <tt>Fixnum</tt>)</span>
+      
+      
+        <span class='name'>y</span>
+      
+      
+        <em class="default">(defaults to: <tt>0</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>
+The offset from the top of the element
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-41
-42
-43
-44</pre>
+71
+72
+73
+74</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/operawatir/compat/element.rb', line 41</span>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/compat/element.rb', line 71</span>
 
 <span class='def def kw'>def</span> <span class='click identifier id'>click</span><span class='lparen token'>(</span><span class='x identifier id'>x</span><span class='assign token'>=</span><span class='integer val'>0</span><span class='comma token'>,</span> <span class='y identifier id'>y</span><span class='assign token'>=</span><span class='integer val'>0</span><span class='rparen token'>)</span>
   <span class='assert_enabled! fid id'>assert_enabled!</span>
@@ -1529,12 +1681,12 @@ Events
       <pre class="lines">
 
 
-95
-96
-97</pre>
+98
+99
+100</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/operawatir/element.rb', line 95</span>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/element.rb', line 98</span>
 
 <span class='def def kw'>def</span> <span class='click! fid id'>click!</span><span class='lparen token'>(</span><span class='x identifier id'>x</span><span class='assign token'>=</span><span class='integer val'>0</span><span class='comma token'>,</span> <span class='y identifier id'>y</span><span class='assign token'>=</span><span class='integer val'>0</span><span class='rparen token'>)</span>
   <span class='node identifier id'>node</span><span class='dot token'>.</span><span class='click identifier id'>click</span><span class='lparen token'>(</span><span class='x identifier id'>x</span><span class='dot token'>.</span><span class='to_i identifier id'>to_i</span><span class='comma token'>,</span> <span class='y identifier id'>y</span><span class='dot token'>.</span><span class='to_i identifier id'>to_i</span><span class='rparen token'>)</span>
@@ -1558,12 +1710,12 @@ Events
       <pre class="lines">
 
 
-99
-100
-101</pre>
+102
+103
+104</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/operawatir/element.rb', line 99</span>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/element.rb', line 102</span>
 
 <span class='def def kw'>def</span> <span class='click_async identifier id'>click_async</span>
   <span class='node identifier id'>node</span><span class='dot token'>.</span><span class='click identifier id'>click</span> <span class='integer val'>1</span>
@@ -1608,12 +1760,12 @@ Events
       <pre class="lines">
 
 
-74
-75
-76</pre>
+77
+78
+79</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/operawatir/element.rb', line 74</span>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/element.rb', line 77</span>
 
 <span class='def def kw'>def</span> <span class='disabled? fid id'>disabled?</span>
   <span class='notop op'>!</span><span class='enabled? fid id'>enabled?</span>
@@ -1637,12 +1789,12 @@ Events
       <pre class="lines">
 
 
-103
-104
-105</pre>
+106
+107
+108</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/operawatir/element.rb', line 103</span>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/element.rb', line 106</span>
 
 <span class='def def kw'>def</span> <span class='double_click identifier id'>double_click</span>
   <span class='node identifier id'>node</span><span class='dot token'>.</span><span class='click identifier id'>click</span> <span class='integer val'>2</span>
@@ -1666,12 +1818,12 @@ Events
       <pre class="lines">
 
 
-123
-124
-125</pre>
+126
+127
+128</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/operawatir/element.rb', line 123</span>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/element.rb', line 126</span>
 
 <span class='def def kw'>def</span> <span class='drag_and_drop_by identifier id'>drag_and_drop_by</span><span class='lparen token'>(</span><span class='x identifier id'>x</span><span class='comma token'>,</span> <span class='y identifier id'>y</span><span class='rparen token'>)</span>
   <span class='node identifier id'>node</span><span class='dot token'>.</span><span class='dragAndDropBy identifier id'>dragAndDropBy</span><span class='lparen token'>(</span><span class='x identifier id'>x</span><span class='dot token'>.</span><span class='to_i identifier id'>to_i</span><span class='comma token'>,</span> <span class='y identifier id'>y</span><span class='dot token'>.</span><span class='to_i identifier id'>to_i</span><span class='rparen token'>)</span>
@@ -1695,12 +1847,12 @@ Events
       <pre class="lines">
 
 
-119
-120
-121</pre>
+122
+123
+124</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/operawatir/element.rb', line 119</span>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/element.rb', line 122</span>
 
 <span class='def def kw'>def</span> <span class='drag_and_drop_on identifier id'>drag_and_drop_on</span><span class='lparen token'>(</span><span class='other identifier id'>other</span><span class='rparen token'>)</span>
   <span class='node identifier id'>node</span><span class='dot token'>.</span><span class='dragAndDropOn identifier id'>dragAndDropOn</span> <span class='other identifier id'>other</span><span class='dot token'>.</span><span class='node identifier id'>node</span>
@@ -1768,18 +1920,29 @@ Events
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Focuses the element
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-46
-47
-48</pre>
+77
+78
+79</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/operawatir/compat/element.rb', line 46</span>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/compat/element.rb', line 77</span>
 
 <span class='def def kw'>def</span> <span class='focus identifier id'>focus</span>
   <span class='trigger! fid id'>trigger!</span> <span class='symbol val'>:focus</span>
@@ -1896,13 +2059,13 @@ TODO Need support for this in Webdriver
       <pre class="lines">
 
 
-183
-184
-185
-186</pre>
+186
+187
+188
+189</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/operawatir/element.rb', line 183</span>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/element.rb', line 186</span>
 
 <span class='def def kw'>def</span> <span class='location identifier id'>location</span>
   <span class='loc identifier id'>loc</span> <span class='assign token'>=</span> <span class='node identifier id'>node</span><span class='dot token'>.</span><span class='getLocation identifier id'>getLocation</span>
@@ -1927,12 +2090,12 @@ TODO Need support for this in Webdriver
       <pre class="lines">
 
 
-111
-112
-113</pre>
+114
+115
+116</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/operawatir/element.rb', line 111</span>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/element.rb', line 114</span>
 
 <span class='def def kw'>def</span> <span class='quadruple_click identifier id'>quadruple_click</span>
   <span class='node identifier id'>node</span><span class='dot token'>.</span><span class='click identifier id'>click</span> <span class='integer val'>4</span>
@@ -1956,12 +2119,12 @@ TODO Need support for this in Webdriver
       <pre class="lines">
 
 
-115
-116
-117</pre>
+118
+119
+120</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/operawatir/element.rb', line 115</span>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/element.rb', line 118</span>
 
 <span class='def def kw'>def</span> <span class='right_click identifier id'>right_click</span>
   <span class='node identifier id'>node</span><span class='dot token'>.</span><span class='rightClick identifier id'>rightClick</span>
@@ -1996,12 +2159,12 @@ UI
       <pre class="lines">
 
 
-177
-178
-179</pre>
+180
+181
+182</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/operawatir/element.rb', line 177</span>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/element.rb', line 180</span>
 
 <span class='def def kw'>def</span> <span class='screenshot identifier id'>screenshot</span><span class='lparen token'>(</span><span class='file_name identifier id'>file_name</span><span class='comma token'>,</span> <span class='time_out identifier id'>time_out</span><span class='rparen token'>)</span>
   <span class='node identifier id'>node</span><span class='dot token'>.</span><span class='saveScreenshot identifier id'>saveScreenshot</span><span class='lparen token'>(</span><span class='file_name identifier id'>file_name</span><span class='comma token'>,</span> <span class='time_out identifier id'>time_out</span><span class='rparen token'>)</span>
@@ -2015,18 +2178,46 @@ UI
       <div class="method_details ">
   <p class="signature " id="selected?-instance_method">
   
-    - (<tt>Boolean</tt>) <strong>selected?</strong>(option = nil) 
+    - (<tt>Boolean</tt>) <strong>selected?</strong>(value = nil) 
   
 
   
 </p><div class="docstring">
   <div class="discussion">
-    
+    <p>
+On checkboxes, radio buttons, and option elements returns whether the
+element is checked/selected. On a select element, when passed an value it
+checks whether the selected option contains the given text.
+</p>
+
 
   </div>
 </div>
 <div class="tags">
-  <h3>Returns:</h3>
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>optional</tt>, <tt>String</tt>)</span>
+      
+      
+        <span class='name'>value</span>
+      
+      
+        <em class="default">(defaults to: <tt>nil</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>
+Text the selected option should contain
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
 <ul class="return">
   
     <li>
@@ -2035,6 +2226,13 @@ UI
       
       
       
+      
+        &mdash;
+        <div class='inline'><p>
+true if the element is selected/selected option contains value, false
+otherwise
+</p>
+</div>
       
     </li>
   
@@ -2046,20 +2244,20 @@ UI
       <pre class="lines">
 
 
-79
-80
-81
-82
-83
-84
-85</pre>
+132
+133
+134
+135
+136
+137
+138</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/operawatir/compat/element.rb', line 79</span>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/compat/element.rb', line 132</span>
 
-<span class='def def kw'>def</span> <span class='selected? fid id'>selected?</span><span class='lparen token'>(</span><span class='option identifier id'>option</span><span class='assign token'>=</span><span class='nil nil kw'>nil</span><span class='rparen token'>)</span>
+<span class='def def kw'>def</span> <span class='selected? fid id'>selected?</span><span class='lparen token'>(</span><span class='value identifier id'>value</span><span class='assign token'>=</span><span class='nil nil kw'>nil</span><span class='rparen token'>)</span>
   <span class='if if kw'>if</span> <span class='option identifier id'>option</span><span class='dot token'>.</span><span class='nil? fid id'>nil?</span>
-    <span class='selected_options identifier id'>selected_options</span><span class='dot token'>.</span><span class='text identifier id'>text</span><span class='dot token'>.</span><span class='include? fid id'>include?</span><span class='lparen token'>(</span><span class='option identifier id'>option</span><span class='rparen token'>)</span>
+    <span class='selected_options identifier id'>selected_options</span><span class='dot token'>.</span><span class='text identifier id'>text</span><span class='dot token'>.</span><span class='include? fid id'>include?</span><span class='lparen token'>(</span><span class='value identifier id'>value</span><span class='rparen token'>)</span>
   <span class='else else kw'>else</span>
     <span class='node identifier id'>node</span><span class='dot token'>.</span><span class='isSelected identifier id'>isSelected</span>
   <span class='end end kw'>end</span>
@@ -2073,22 +2271,52 @@ UI
       <div class="method_details ">
   <p class="signature " id="selected_options-instance_method">
   
-    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>selected_options</strong> 
+    - (<tt><span class='object_link'><a href="Collection.html" title="OperaWatir::Collection (class)">OperaWatir::Collection</a></span></tt>) <strong>selected_options</strong> 
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Gets the selected `&lt;option&gt;` elements in a `&lt;select&gt;` element.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Collection.html" title="OperaWatir::Collection (class)">OperaWatir::Collection</a></span></tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+a collection of the selected `&lt;option&gt;`s
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-75
-76
-77</pre>
+119
+120
+121</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/operawatir/compat/element.rb', line 75</span>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/compat/element.rb', line 119</span>
 
 <span class='def def kw'>def</span> <span class='selected_options identifier id'>selected_options</span>
   <span class='options identifier id'>options</span><span class='lparen token'>(</span><span class='symbol val'>:selected?</span><span class='comma token'>,</span> <span class='true true kw'>true</span><span class='rparen token'>)</span>
@@ -2106,19 +2334,30 @@ UI
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Submits a form, or the form the elment is contained in.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-52
-53
-54
-55</pre>
+84
+85
+86
+87</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/operawatir/compat/element.rb', line 52</span>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/compat/element.rb', line 84</span>
 
 <span class='def def kw'>def</span> <span class='submit identifier id'>submit</span>
   <span class='assert_exists identifier id'>assert_exists</span>
@@ -2133,26 +2372,56 @@ UI
       <div class="method_details ">
   <p class="signature " id="text-instance_method">
   
-    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>text</strong> 
+    - (<tt>String</tt>) <strong>text</strong> 
   
 
   
     <span class="aliases">Also known as:
-    <span class="names"><span id='caption-instance_method'>caption</span></span>
+    <span class="names"><span id='to_s-instance_method'>to_s</span>, <span id='caption-instance_method'>caption</span></span>
     </span>
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Gets the text content of the element.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+the text content
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-19
-20
-21</pre>
+30
+31
+32</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/operawatir/compat/element.rb', line 19</span>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/compat/element.rb', line 30</span>
 
 <span class='def def kw'>def</span> <span class='text identifier id'>text</span>
   <span class='node identifier id'>node</span><span class='dot token'>.</span><span class='getText identifier id'>getText</span><span class='dot token'>.</span><span class='strip identifier id'>strip</span>
@@ -2180,14 +2449,14 @@ UI
       <pre class="lines">
 
 
-129
-130
-131
 132
-133</pre>
+133
+134
+135
+136</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/operawatir/element.rb', line 129</span>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/element.rb', line 132</span>
 
 <span class='def def kw'>def</span> <span class='text= identifier id'>text=</span><span class='lparen token'>(</span><span class='string identifier id'>string</span><span class='rparen token'>)</span>
   <span class='comment val'># Focus before typing</span>
@@ -2217,9 +2486,6 @@ UI
       <pre class="lines">
 
 
-137
-138
-139
 140
 141
 142
@@ -2249,10 +2515,13 @@ UI
 166
 167
 168
-169</pre>
+169
+170
+171
+172</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/operawatir/element.rb', line 137</span>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/element.rb', line 140</span>
 
 <span class='def def kw'>def</span> <span class='trigger! fid id'>trigger!</span><span class='lparen token'>(</span><span class='event identifier id'>event</span><span class='comma token'>,</span> <span class='x identifier id'>x</span> <span class='assign token'>=</span> <span class='integer val'>0</span><span class='comma token'>,</span> <span class='y identifier id'>y</span> <span class='assign token'>=</span> <span class='integer val'>0</span><span class='rparen token'>)</span>
   <span class='loc identifier id'>loc</span> <span class='assign token'>=</span> <span class='location identifier id'>location</span>
@@ -2266,7 +2535,7 @@ UI
   <span class='event identifier id'>event</span> <span class='assign token'>=</span> <span class='$1 nth_ref id'>$1</span> <span class='if if_mod kw'>if</span> <span class='$1 nth_ref id'>$1</span>
   <span class='event identifier id'>event</span> <span class='assign token'>=</span> <span class='event identifier id'>event</span><span class='dot token'>.</span><span class='downcase identifier id'>downcase</span><span class='dot token'>.</span><span class='to_sym identifier id'>to_sym</span>
 
-  <span class='comment val'># TODO: Should this be moved to OperaDriver instead?</span>
+  <span class='comment val'># TODO Should this be moved to OperaDriver instead?</span>
   <span class='case case kw'>case</span> <span class='event identifier id'>event</span>
   <span class='when when kw'>when</span> <span class='symbol val'>:abort</span><span class='comma token'>,</span> <span class='symbol val'>:blur</span><span class='comma token'>,</span> <span class='symbol val'>:change</span><span class='comma token'>,</span> <span class='symbol val'>:error</span><span class='comma token'>,</span> <span class='symbol val'>:focus</span><span class='comma token'>,</span> <span class='symbol val'>:load</span><span class='comma token'>,</span> <span class='symbol val'>:reset</span><span class='comma token'>,</span>
     <span class='symbol val'>:resize</span><span class='comma token'>,</span> <span class='symbol val'>:scroll</span><span class='comma token'>,</span> <span class='symbol val'>:submit</span><span class='comma token'>,</span> <span class='symbol val'>:unload</span>
@@ -2306,12 +2575,12 @@ UI
       <pre class="lines">
 
 
-107
-108
-109</pre>
+110
+111
+112</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/operawatir/element.rb', line 107</span>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/element.rb', line 110</span>
 
 <span class='def def kw'>def</span> <span class='triple_click identifier id'>triple_click</span>
   <span class='node identifier id'>node</span><span class='dot token'>.</span><span class='click identifier id'>click</span> <span class='integer val'>3</span>
@@ -2335,15 +2604,15 @@ UI
       <pre class="lines">
 
 
-85
-86
-87
 88
 89
-90</pre>
+90
+91
+92
+93</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/operawatir/element.rb', line 85</span>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/element.rb', line 88</span>
 
 <span class='def def kw'>def</span> <span class='uncheck! fid id'>uncheck!</span>
   <span class='result identifier id'>result</span> <span class='assign token'>=</span> <span class='node identifier id'>node</span><span class='dot token'>.</span><span class='toggle identifier id'>toggle</span>
@@ -2360,22 +2629,53 @@ UI
       <div class="method_details ">
   <p class="signature " id="url-instance_method">
   
-    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>url</strong> 
+    - (<tt>String</tt>) <strong>url</strong> 
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Gets the href of an `&lt;a&gt;` element, or the url attribute of any other
+element.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+an href or the url attribute
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-71
-72
-73</pre>
+111
+112
+113</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/operawatir/compat/element.rb', line 71</span>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/compat/element.rb', line 111</span>
 
 <span class='def def kw'>def</span> <span class='url identifier id'>url</span>
   <span class='attr identifier id'>attr</span><span class='lparen token'>(</span><span class='tag_name identifier id'>tag_name</span> <span class='eq op'>==</span> <span class='string val'>'A'</span> <span class='question op'>?</span> <span class='symbol val'>:href</span> <span class='colon op'>:</span> <span class='symbol val'>:url</span><span class='rparen token'>)</span>
@@ -2389,29 +2689,60 @@ UI
       <div class="method_details ">
   <p class="signature " id="value-instance_method">
   
-    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>value</strong> 
+    - (<tt>String</tt>) <strong>value</strong> 
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+On elements of type `&lt;input&gt;` this gets the value of the value
+attribute, on every other element type it returns the text content.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+value of the element
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-23
-24
-25
-26
-27
-28
-29</pre>
+41
+42
+43
+44
+45
+46
+47</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/operawatir/compat/element.rb', line 23</span>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/compat/element.rb', line 41</span>
 
 <span class='def def kw'>def</span> <span class='value identifier id'>value</span>
-  <span class='if if kw'>if</span> <span class='tag_name identifier id'>tag_name</span> <span class='eq op'>==</span> <span class='string val'>'INPUT'</span>
+  <span class='if if kw'>if</span> <span class='tag_name identifier id'>tag_name</span> <span class='eq op'>==</span> <span class='string val'>'INPUT'</span> <span class='or or kw'>or</span> <span class='attr? fid id'>attr?</span><span class='lparen token'>(</span><span class='symbol val'>:value</span><span class='rparen token'>)</span>
     <span class='attr identifier id'>attr</span><span class='lparen token'>(</span><span class='symbol val'>:value</span><span class='rparen token'>)</span>
   <span class='else else kw'>else</span>
     <span class='text identifier id'>text</span>
@@ -2437,7 +2768,8 @@ UI
 </p><div class="docstring">
   <div class="discussion">
     <p>
-In the compatibility layer as the preferred way of doing this is
+Checks whether the text content of the element contains the given string In
+the compatibility layer as the preferred way of doing this is.
 </p>
 <pre class="code">
   <span class='elm identifier id'>elm</span><span class='dot token'>.</span><span class='text identifier id'>text</span><span class='dot token'>.</span><span class='should identifier id'>should</span> <span class='include identifier id'>include</span><span class='lparen token'>(</span><span class='string val'>'My string'</span><span class='rparen token'>)</span>
@@ -2447,19 +2779,57 @@ In the compatibility layer as the preferred way of doing this is
   </div>
 </div>
 <div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
   
+    <li>
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <span class='name'>String</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+to search for
+</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <span class='name'>true</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+if the element&#8217;s text contains str, false otherwise
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
 </div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-33
-34
-35</pre>
+58
+59
+60</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/operawatir/compat/element.rb', line 33</span>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/compat/element.rb', line 58</span>
 
 <span class='def def kw'>def</span> <span class='verify_contains identifier id'>verify_contains</span><span class='lparen token'>(</span><span class='str identifier id'>str</span><span class='rparen token'>)</span>
   <span class='text identifier id'>text</span><span class='dot token'>.</span><span class='include? fid id'>include?</span><span class='lparen token'>(</span><span class='str identifier id'>str</span><span class='rparen token'>)</span>
@@ -2504,12 +2874,12 @@ In the compatibility layer as the preferred way of doing this is
       <pre class="lines">
 
 
-171
-172
-173</pre>
+174
+175
+176</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/operawatir/element.rb', line 171</span>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/element.rb', line 174</span>
 
 <span class='def def kw'>def</span> <span class='visible? fid id'>visible?</span>
   <span class='node identifier id'>node</span><span class='dot token'>.</span><span class='isVisible identifier id'>isVisible</span><span class='lparen token'>(</span><span class='rparen token'>)</span>
@@ -2525,7 +2895,7 @@ In the compatibility layer as the preferred way of doing this is
 </div>
     
     <div id="footer">
-  Generated on Thu Dec 16 19:22:44 2010 by 
+  Generated on Fri Dec 17 19:35:26 2010 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.3 (ruby-1.8.7).
 </div>

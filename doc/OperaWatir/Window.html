@@ -675,21 +675,17 @@ A new instance of Window
       <pre class="lines">
 
 
-113
 114
 115
 116
 117
 118
-119
-120</pre>
+119</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/operawatir/window.rb', line 113</span>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/window.rb', line 114</span>
 
 <span class='def def kw'>def</span> <span class='method_missing identifier id'>method_missing</span><span class='lparen token'>(</span><span class='tag identifier id'>tag</span><span class='comma token'>,</span> <span class='mult op'>*</span><span class='args identifier id'>args</span><span class='rparen token'>)</span>
-<span class='comment val'>#    puts &quot;method missing: #{tag} and #{args.inspect}&quot;</span>
-
   <span class='OperaWatir constant id'>OperaWatir</span><span class='colon2 op'>::</span><span class='Collection constant id'>Collection</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='self self kw'>self</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='tap identifier id'>tap</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='c identifier id'>c</span><span class='bitor op'>|</span>
     <span class='c identifier id'>c</span><span class='dot token'>.</span><span class='selector identifier id'>selector</span><span class='dot token'>.</span><span class='tag_name identifier id'>tag_name</span> <span class='tag identifier id'>tag</span>
     <span class='c identifier id'>c</span><span class='dot token'>.</span><span class='add_selector_from_arguments identifier id'>add_selector_from_arguments</span> <span class='args identifier id'>args</span>
@@ -876,12 +872,12 @@ FIXME No window management support
       <pre class="lines">
 
 
-109
 110
-111</pre>
+111
+112</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/operawatir/window.rb', line 109</span>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/window.rb', line 110</span>
 
 <span class='def def kw'>def</span> <span class='elements identifier id'>elements</span>
   <span class='find_by_tag identifier id'>find_by_tag</span><span class='lparen token'>(</span><span class='string val'>'*'</span><span class='rparen token'>)</span>
@@ -1415,7 +1411,7 @@ Opera-specific
 </div>
     
     <div id="footer">
-  Generated on Thu Dec 16 19:22:42 2010 by 
+  Generated on Fri Dec 17 19:35:24 2010 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.3 (ruby-1.8.7).
 </div>
