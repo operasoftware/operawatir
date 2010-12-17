@@ -28,7 +28,7 @@ EOF
 
   gem.platform         = 'jruby'
   gem.has_rdoc         = true
-  gem.extra_rdoc_files = ['README']
+  gem.extra_rdoc_files = ['README.md']
 
   gem.add_dependency 'rspec', '>= 2'
 
@@ -40,6 +40,9 @@ EOF
   gem.add_development_dependency 'rr'
 
   gem.files.exclude '.gitignore'
+  gem.files.exclude 'bin/desktop'/
+  gem.files.exclude 'lib/operawatir/desktop*.rb'
+  gem.files.exclude 'lib/operawatir/quickwidgets'
 end
 
 CLEAN.add 'pkg'
