@@ -128,7 +128,7 @@ Finally we need to quit the browser.</p>
 <pre><code>require 'operawatir'
 
 browser = OperaWatir::Browser.new
-browser.goto 'http://maps.google.com'
+browser.goto 'http://maps.google.com/'
 
 browser.quit
 </code></pre>
@@ -177,7 +177,7 @@ pressing the enter key. Including our progress so far this gives us the followin
 <pre><code>require 'operawatir'
 
 browser = OperaWatir::Browser.new
-browser.goto 'http://maps.google.com'
+browser.goto 'http://maps.google.com/'
 
 # Find the search box
 search = browser.text_field(:id, 'q_d')
@@ -303,7 +303,7 @@ irb(main):003:0&gt; browser = OperaWatir::Browser.new
 =&gt; #&lt;OperaWatir::Browser:0x1496e57 @active_window=#&lt;OperaWatir::Window:0x1eb1db2 @browser=#&lt;OperaWatir::Browser:0x1496e57 ...&gt;&gt;, @driver=#&lt;Java::ComOperaCoreSystems::OperaDriver:0xeabd2f&gt;&gt;
 irb(main):004:0&gt; browser.goto 'http://sau.no/'
 =&gt; nil
-=&gt; browser.quit
+irb(main):005:0&gt; browser.quit
 =&gt; nil
 </code></pre>
 
