@@ -3,4 +3,3 @@
 --exclude bin/desktopwatir
 --exclude lib/operawatir/desktop*
 --exclude lib/operawatir/quickwidget*
-
