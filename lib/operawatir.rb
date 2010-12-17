@@ -4,8 +4,7 @@ require 'java'
 include Java
 
 %w(commons-jxpath-1.3.jar protobuf-java-2.3.0.jar selenium-common.jar
-   winp-1.14.jar webdriver-opera.jar).
-   each { |jar| require "operadriver/#{jar}" }
+   webdriver-opera.jar).each { |jar| require "operadriver/#{jar}" }
 
 include_class org.openqa.selenium.WebDriver
 include_class org.openqa.selenium.RenderedWebElement
