@@ -5,8 +5,8 @@ class OperaWatir::Browser
 
   def self.settings=(settings={})
     @opera_driver_settings = nil # Bust cache
-    @settings = settings.merge! :launcher => ENV['OPERA_LAUNCHER'] || '',
-                                :path     => ENV['OPERA_PATH'] || '',
+    @settings = settings.merge! :launcher => OperaWatir::Platform.launcher,
+                                :path     => OperaWatir::Platform.opera,
                                 :args     => ENV['OPERA_ARGS'] || ''
   end
 
@@ -174,7 +174,7 @@ private
       s.setRunOperaLauncherFromOperaDriver true
       s.setOperaLauncherBinary self.settings[:launcher]
       s.setOperaBinaryLocation self.settings[:path]
-      s.setOperaBinaryArguments self.settings[:args] + (Config::CONFIG['host_os'] =~ /mswin|mingw|bccwin|wince|emc/ ? '' : ' -nosession') + ' opera:debug'
+      s.setOperaBinaryArguments self.settings[:args] + (OperaWatir::Platform.os == :windows ? '' : ' -nosession') + ' opera:debug'
     }
   end
 

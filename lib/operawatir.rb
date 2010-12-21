@@ -28,6 +28,7 @@ module OperaWatir
 end
 
 require 'operawatir/version'
+require 'operawatir/platform'
 
 require 'operawatir/exceptions'
 require 'operawatir/selector'
