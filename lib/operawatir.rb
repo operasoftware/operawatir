@@ -19,18 +19,11 @@ $KCODE = 'u'  # UTF-8 support
 # TODO This should be replaced when we decide upon a better way of
 # enabling the Watir 2 API.
 module OperaWatir
-  @shiny = false
+  @use_version = 1
 
   # Activates the Watir 2 API.
-  def self.newandshinyplease!
-    @shiny = true
-  end
-
-  # Queries whether the Watir 2 API is enabled.
-  #
-  # @return [Boolean] whether or not Watir 2 API is enabled.
-  def self.newandshinyplease?
-    @shiny
+  def self.use_version(number=@use_version)
+    @use_version = number
   end
 end
 
