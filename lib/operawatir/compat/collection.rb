@@ -79,6 +79,14 @@ class OperaWatir::Collection
     define_method(name) {method_missing(name)}
   end
 
+  def enabled?
+    raw_elements.first.enabled?
+  end
+
+  def set?
+    raw_elements.first.set?
+  end
+
   # Fetches the string representation of this collection.
   #
   # @return [String] the string representation of this collection
