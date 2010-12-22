@@ -137,6 +137,8 @@ class OperaWatir::Element
     end
   end
 
+  alias_method :set?, :checked?
+
   # For `<select>` elements returns either 'select-one' for
   # `<select>`s where only a single `<option>` can be selected, or
   # 'select-multiple' otherwise.  For non-`<select>` elements returns
