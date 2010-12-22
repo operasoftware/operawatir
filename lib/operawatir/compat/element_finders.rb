@@ -37,6 +37,8 @@ module OperaWatir::Compat::ElementFinders
   def_element :checkbox, :checkboxes, :how => :name do |selector|
     selector.tag(:input).attribute :type => 'checkbox'
   end
+  # Override checkbox method to allow (:name, <name>, <value>) selectors
+  # see line 113
 
   def_element :dd, :dds
 
@@ -103,6 +105,23 @@ module OperaWatir::Compat::ElementFinders
 
   def_element :radio, :radios, :how => :name do |selector|
     selector.tag(:input).attribute :type => 'radio'
+  end
+
+  # Override checbox and radio methods to allow (:name, <name>, <value>)
+  # selectors
+  [:checkbox, :radio].each do |tag|
+    define_method tag do |*args|
+      c = OperaWatir::Collection.new(self)
+      c.selector.tag(:input).attribute(:type => tag.to_s)
+
+      if args.length == 3 and args[0] == :name
+        c.selector.attribute(:name => args[1]).attribute(:value => args[2])
+      else
+        c.add_selector_from_arguments args, :name
+      end
+
+      return c
+    end
   end
 
   def_element :select_list, :select_lists do |selector|
