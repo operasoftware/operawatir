@@ -100,6 +100,7 @@ class OperaWatir::Element
     if value
       self.text = value
     else
+      assert_enabled
       check!
     end
   end
