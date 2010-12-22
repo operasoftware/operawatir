@@ -79,15 +79,13 @@ class OperaWatir::Element
   end
 
   def check!
-    result = node.toggle
-    if(result != true)
+    if not selected?
       node.toggle
     end
   end
 
   def uncheck!
-    result = node.toggle
-    if(result != false)
+    if selected?
       node.toggle
     end
   end
