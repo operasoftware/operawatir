@@ -79,14 +79,6 @@ class OperaWatir::Collection
     define_method(name) {method_missing(name)}
   end
 
-  def enabled?
-    raw_elements.first.enabled?
-  end
-
-  def set?
-    raw_elements.first.set?
-  end
-
   # Fetches the string representation of this collection.
   #
   # @return [String] the string representation of this collection
@@ -102,6 +94,12 @@ class OperaWatir::Collection
       "  title:        #{el.title}\n" +
       "  text:         #{el.text}"
     end.join("\n")
+  end
+
+private
+
+  def map_or_return(&blk)
+    blk.call(raw_elements.first)
   end
 
 end
