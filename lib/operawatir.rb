@@ -9,10 +9,15 @@ include Java
 include_class org.openqa.selenium.WebDriver
 include_class org.openqa.selenium.RenderedWebElement
 include_class org.openqa.selenium.NoSuchElementException
-include_class com.opera.core.systems.OperaDesktopDriver
 include_class com.opera.core.systems.OperaDriver
 include_class com.opera.core.systems.OperaWebElement
 include_class com.opera.core.systems.settings.OperaDriverSettings
+
+# Desktop stuff
+include_class com.opera.core.systems.OperaDesktopDriver
+include_class com.opera.core.systems.scope.protos.DesktopWmProtos
+include_class com.opera.core.systems.scope.protos.SystemInputProtos
+include_class com.opera.core.systems.QuickWidget
 
 $KCODE = 'u'  # UTF-8 support
 
@@ -50,3 +55,11 @@ require 'operawatir/window'
 require 'operawatir/browser'
 
 require 'operawatir/compat'
+
+# Desktop stuff
+require 'operawatir/desktop_enums'
+require 'operawatir/desktop_common'
+require 'operawatir/desktop_container'
+require 'operawatir/desktop_browser'
+require 'operawatir/quickwidgets'
+require 'operawatir/desktop_exceptions'

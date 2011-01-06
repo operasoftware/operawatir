@@ -79,7 +79,7 @@ module OperaWatir::Waiter
           OperaWatir::Waiter.browser.quit
         else
           # Just shutsdown the driver
-          OperaWatir::Waiter.browser.quit_driver
+#          OperaWatir::Waiter.browser.quit_driver
         end
       end
       config.before(:all) do

@@ -8,12 +8,11 @@ module OperaWatir
       "Open url in new window"]
     
     # @private
-    def initialize (executable_location = nil, *arguments)
-      if executable_location.nil? or executable_location.length == 0
-        @driver = OperaDesktopDriver.new
-      else
-        @driver = OperaDesktopDriver.new(executable_location, arguments.to_java(:String))
-      end
+    def initialize
+      OperaWatir.compatibility! unless OperaWatir.use_version >= 2
+  
+      self.driver = OperaDesktopDriver.new(self.class.opera_driver_settings)
+      self.active_window = nil;
     end
 
     # @private
@@ -29,7 +28,7 @@ module OperaWatir
     # Quits the driver without exiting Opera
     #
     def quit_driver()
-      @driver.shutdown
+      driver.shutdown
     end
       
     ######################################################################
@@ -226,7 +225,7 @@ module OperaWatir
     # @return [Array] Array of widgets retrieved from the window
     #
     def widgets(win_name)
-      @driver.getQuickWidgetList(win_name).map do |java_widget|
+      driver.getQuickWidgetList(win_name).map do |java_widget|
         case java_widget.getType
           when QuickWidget::WIDGET_ENUM_MAP[:button]
             QuickButton.new(self,java_widget)
@@ -260,7 +259,7 @@ module OperaWatir
     # @return [Array] Array of windows
     #
     def windows
-      @driver.getWindowList.map do |java_window|
+      driver.getWindowList.map do |java_window|
         QuickWindow.new(self,java_window)
       end.to_a
     end
@@ -305,7 +304,7 @@ module OperaWatir
     # @return [String] Name of the window
     #
     def get_window_name(win_id)
-      @driver.getWindowName(win_id)
+      driver.getWindowName(win_id)
     end
      
     ######################################################################
@@ -353,7 +352,7 @@ module OperaWatir
     # @return [String] Full path to the opera executable 
     #
     def get_opera_path
-      @driver.getOperaPath()
+      driver.getOperaPath()
     end
 
     ######################################################################
@@ -362,7 +361,7 @@ module OperaWatir
     # @return [String] Full path to the large preferences folder
     #
     def get_large_preferences_path
-      @driver.getLargePreferencesPath()
+      driver.getLargePreferencesPath()
     end
   
     ######################################################################
@@ -371,7 +370,7 @@ module OperaWatir
     # @return [String] Full path to the small preferences folder
     #
     def get_small_preferences_path
-      @driver.getSmallPreferencesPath()
+      driver.getSmallPreferencesPath()
     end
   
     ######################################################################
@@ -380,7 +379,7 @@ module OperaWatir
     # @return [String] Full path to the cache preferences folder
     #
     def get_cache_preferences_path
-      @driver.getCachePreferencesPath()
+      driver.getCachePreferencesPath()
     end
 
     ######################################################################
@@ -392,6 +391,11 @@ module OperaWatir
       Config::CONFIG['target_os'] == "darwin"
     end
     
+    ######################################################################
+    # Returns true if the test is running on Linux 
+    #
+    # @return [Boolean] true we the operating system is Linux, otherwise false 
+    #
     def linux?
        Config::CONFIG['target_os'] == "linux"
      end
