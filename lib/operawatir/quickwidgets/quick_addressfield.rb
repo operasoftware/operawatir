@@ -19,5 +19,13 @@ module OperaWatir
       enter_text_and_hit_enter(url)
     end
     
+    def visible_text
+      element.getVisibleText()
+    end
+    
+    def highlighted_text
+      element.getAdditionalText()     
+    end
+    
   end
 end
