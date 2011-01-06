@@ -6,8 +6,44 @@ module OperaWatir
     def correct_type?
       @element.getType == WIDGET_ENUM_MAP[:tabbutton]
     end
-
     
+    ######################################################################
+    # Drag and drop this tab on tab tab_target
+    #
+    # @param [QuickTab] tab button to drop this tab on
+    #
+    #
+    # @raise [DesktopExceptions::UnknownObjectException] if the target is not a tab
+    #
+    def move_with_drag(tab_target)
+      raise(Exceptions::UnknownObjectException) unless tab_target.type == :tabbutton
+      drag_and_drop_on(tab_target, :center)
+      
+      sleep(0.1)
+    end
+    
+    ######################################################################
+    # Drag and drop this tab on another tab to add it to its tab group
+    #
+    # @param [QuickTab] tab (group) button to drop this tab on
+    #
+    # @raise [DesktopExceptions::UnknownObjectException] if the target is not a tab
+    #
+    # @return [int] the number of tabs in this tab group, or 1 if this is not a tab group button,
+    #               in which case it represents only 1 tab, itself
+    def group_with_drag(tab_target)
+      raise(Exceptions::UnknownObjectException) unless tab_target.type == :tabbutton
+      
+      # Drop on the edge of a tab to make the grouping work
+      drag_and_drop_on(tab_target, :edge)
+      
+      sleep(0.1)
+      
+      #Get the  number of tabs in the group
+      element(true).value
+    end
+    
+        
     ######################################################################
     # Clicks the tab button, and waits for the tab to be shown / switches to the page
     #
@@ -25,6 +61,6 @@ module OperaWatir
       click 
       wait_for_window_activated("Document Window")
     end
-    
+
   end
 end

@@ -54,8 +54,8 @@ module OperaWatir
     # Presses a key including modifiers
     #
     # @example
-    #   $browser.quick_toolbar(:name, "Document Toolbar").quick_addressfield(:name, "tba_address_field").key_press("a", :ctrl)
-    #   $browser.quick_toolbar(:name, "Document Toolbar").quick_addressfield(:name, "tba_address_field").key_press("c", :ctrl)
+    #   browser.quick_toolbar(:name, "Document Toolbar").quick_addressfield(:name, "tba_address_field").key_press("a", :ctrl)
+    #   browser.quick_toolbar(:name, "Document Toolbar").quick_addressfield(:name, "tba_address_field").key_press("c", :ctrl)
     #
     # @param [String]  key         key to press (e.g. "a" or "backspace")
     # @param [Symbol]  modifiers   optional modifier(s) to hold down while pressing the key (e.g. :shift, :ctrl, :alt, :meta)

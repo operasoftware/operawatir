@@ -33,5 +33,10 @@ module OperaWatir
       acc
     end
 
-  end
+    DROPPOSITION_ENUM_MAP = QuickWidget::DropPosition.constants.inject({}) do |acc, const|
+      #puts const.inspect
+      acc[const.to_s.downcase.to_sym] = QuickWidget::DropPosition.const_get(const)
+      acc
+    end 
+end
 end

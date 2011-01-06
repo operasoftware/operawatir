@@ -29,7 +29,7 @@ module OperaWatir
       # For now there is no difference to focusing
       focus_with_click
     end
-    
+
     ######################################################################
     # Expands a tree item when it is double clicked
     #
@@ -42,7 +42,43 @@ module OperaWatir
       # No event yet so just cheat and sleep
       sleep(0.1);
     end
+    
+    alias_method :collapse_with_double_click, :expand_with_double_click
+    
+    ######################################################################
+    # Presses a key including modifiers
+    #
+    # @example
+    #   browser.quick_treeview(:name, "Bookmarks View").quick_treeitem(:text, "Ask.com").key_press("Down")
+    #   browser.quick_treeview(:name, "Bookmarks View").quick_treeitem(:text, "Ask.com").key_press("Del")
+    #
+    # @param [String]  key         key to press (e.g. "a" or "backspace")
+    # @param [Symbol]  modifiers   optional modifier(s) to hold down while pressing the key (e.g. :shift, :ctrl, :alt, :meta)
+    #
+    # @return [String] Text in the field after the keypress
+    #
+    # @note The edit field must have focus for this method to work
+    # @note WARNING: This method will not wait for page load or window
+    #       shown events. If you need to wait for these events do not
+    #       use this method
+    #
+    def key_press(key, *opts)
+      key_press_direct(key, *opts)
+      sleep(0.1)
+    end
         
+    ######################################################################
+    # Checks if the treeitem is selected
+    #
+    # @return [Boolean] true if the item is selected
+    #
+    # @raise [Exceptions::UnknownObjectException] if the widget could not be found
+    #           using the specified method
+    def selected?
+      element.isSelected
+    end
+     
+    
     ######################################################################
     # Switch to the tree view tab by clicking on it (e.g. on the 
     # Advanced page of the preferences dialog) 

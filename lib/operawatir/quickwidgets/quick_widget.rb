@@ -20,6 +20,12 @@ module OperaWatir
       end
     end
     
+    def open_window_with_hover(win_name = "")
+      wait_start
+      element.hover
+      wait_for_window_shown(win_name)
+    end
+    
     ######################################################################
     # Checks whether a widget exists or not
     #
@@ -163,7 +169,7 @@ module OperaWatir
       return col if type == :tabbutton
       false
     end
-   
+    
     ######################################################################
     # Prints out all of the internal information about the widget. Used
     # to discover the names of widgets and windows to use in the tests
@@ -190,7 +196,8 @@ module OperaWatir
       @container.driver
     end
     
-    #Get parent widget name
+    # parent is container
+    # Get parent widget name
     def parent_name
       element.getParentName()
     end
@@ -201,18 +208,44 @@ module OperaWatir
       # No event yet so just cheat and sleep
       sleep(0.1);
     end
+    
+    #@private
+    def value
+      return element.getValue
+    end
 
+protected
+    #@private
+    # Return the element
+    def element(refresh = false)
+      if (@elm == nil || refresh == true)
+        @elm = find
+      end
+      
+      raise(Exceptions::UnknownObjectException, "Element #{@selector} not found using #{@method}") unless @elm 
+      @elm
+    end
+    
+    
 private
+    
+   def drag_and_drop_on(other, drop_pos)
+     element.dragAndDropOn(other.element, DROPPOSITION_ENUM_MAP[drop_pos])
+   end
+
     # Gets the widget name (used as parent name when creating child widget)
     def parent_widget
       if @selector == nil && @elm != nil
          set_selector
       end
+      
+      #FIXME: Shouldn't this always be name if present, then text if present, else pos?
       case @method
       when :name
         name
       when :text
-        text
+        #text
+        name.length > 0 ? name : text
       when :pos
         # Pos items will have the name as the parent or
         # the text if there is no name
@@ -239,9 +272,16 @@ private
     
     # Click widget
     def click(button = :left, times = 1, *opts)
-      raise Exceptions::ObjectDisabledException, "Element #{@selector} is disabled" unless enabled?
+      raise Exceptions::WidgetDisabledException, "Element #{@selector} is disabled" unless enabled?
+      
+      #Some buttons etc. aren't visible until hovering them
+      if (visible? == false and type != :dialogtab)
+        element.hover
+        element(true)
+      end
+      
       # Dialog tabs are always visible even if the page they are connected to isn't
-      if visible? == true or type == :dialogtab
+      if visible? == true or type == :dialogtab 
         #DesktopEnums::KEYMODIFIER_ENUM_MAP.each { |k, v| puts "#{k},#{v}"}
         button = DesktopEnums::MOUSEBUTTON_ENUM_MAP[button]
         list = Java::JavaUtil::ArrayList.new
@@ -262,15 +302,6 @@ private
       click(:left, 2) 
     end
 
-    # Return the element
-    def element(refresh = false)
-      if (@elm == nil || refresh == true)
-        @elm = find
-      end
-      
-      raise(Exceptions::UnknownObjectException, "Element #{@selector} not found using #{@method}") unless @elm 
-      @elm
-    end
     
     def set_selector
       if @elm.name.length > 0
@@ -282,9 +313,12 @@ private
       elsif @elm.type == :treeitem
         @method = :pos
         @selector = [@elm.row, @elm.col]
+=begin          
+      # tabbuttons now specified by generated name
       elsif @elm.type == :tabbutton
         @method = :pos
         @selector = @elm.col
+=end        
       end
       @location = element.getParentName()
       @window_id = -1

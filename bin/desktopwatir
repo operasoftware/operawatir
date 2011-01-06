@@ -8,6 +8,9 @@ require 'rbconfig'
 require 'rspec'
 require 'operawatir'
 
+# Encoding fix
+$KCODE = "UTF8"
+
 class Options
 
   def self.parse(args)
