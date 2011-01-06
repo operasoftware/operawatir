@@ -16,7 +16,7 @@ module OperaWatir::Helper
   end
   
   def browser
-    @browser ||= OperaWatir::Browser.new
+    @browser ||= OperaWatir::DesktopBrowser.new
   end
   
   def configure_rspec!
@@ -29,7 +29,14 @@ module OperaWatir::Helper
             
       config.include SpecHelpers
       
-      config.after(:suite) { browser.quit! if browser }
+      config.after(:suite) { 
+        if browser
+          # Just shutsdown the driver
+          browser.quit_driver
+        end
+
+        #browser.quit! if browser 
+      }
     end
   end
 
