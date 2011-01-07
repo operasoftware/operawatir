@@ -10,7 +10,8 @@ require 'operawatir/desktop_helper'
   :ng            => false,
   :color_enabled => Config::CONFIG['host_os'] =~ /mswin|mingw|bccwin|wince|emx/ ? false : true,
   :check_syntax  => false,
-  :formatter     => 'progress'
+  :formatter     => 'progress',
+  :no_quit		 => false
 }
 
 # TODO
@@ -20,7 +21,7 @@ begin
   OptionParser.new do |opts|
     opts.banner = <<EOS
 Usage: desktopwatir [-l|--launcher=BINARY] [-e|--executable=BINARY] [-a|--args=ARGUMENTS]
-       [--no-color] [-f|--format=FORMAT] [-o|--out=FILE] [-h|--help] [-v|--version] FILES
+       [--no-color] [--no-quit] [-f|--format=FORMAT] [-o|--out=FILE] [-h|--help] [-v|--version] FILES
 EOS
 
     opts.separator ""
@@ -43,6 +44,10 @@ EOS
 
     opts.on('--no-color', 'Disable colorized output') do |c|
       @options[:color_enabled] = false
+    end
+
+    opts.on('--no-quit', 'Disable quitting of Opera at the end of a testrun') do |c|
+      @options[:no_quit] = true
     end
 
     #opts.on('-c', '--check-syntax', 'Check syntax only') do |c|
