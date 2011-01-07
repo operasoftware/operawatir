@@ -12,7 +12,8 @@ module OperaWatir
       OperaWatir.compatibility! unless OperaWatir.use_version >= 2
   
       self.driver = OperaDesktopDriver.new(nil)#self.class.opera_driver_settings)
-      self.active_window = nil;
+      self.active_window = OperaWatir::Window.new(self)
+      #self.active_window = nil;
     end
 
     # @private
@@ -20,7 +21,7 @@ module OperaWatir
     # dialogs to autoclose in Dialog.cpp when then OnUrlChanged is fired 
     # after a dialog is opened
     def goto(url = "")
-      super
+      super #active_window.url = url
       sleep(1)
     end
 
