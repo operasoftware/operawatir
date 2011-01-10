@@ -10,10 +10,9 @@ module OperaWatir
     # @private
     def initialize
       OperaWatir.compatibility! unless OperaWatir.use_version >= 2
-  
-      self.driver = OperaDesktopDriver.new(nil)#self.class.opera_driver_settings)
+
+      self.driver = OperaDesktopDriver.new(self.class.opera_driver_settings)
       self.active_window = OperaWatir::Window.new(self)
-      #self.active_window = nil;
     end
 
     # @private
@@ -23,6 +22,13 @@ module OperaWatir
     def goto(url = "")
       super #active_window.url = url
       sleep(1)
+    end
+
+    ######################################################################
+    # Quits the driver without exiting Opera
+    #
+    def quit_opera()
+      driver.quit_opera
     end
 
     ######################################################################
