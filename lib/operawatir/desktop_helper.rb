@@ -12,7 +12,8 @@ module OperaWatir::Helper
   extend self
   
   def settings
-    OperaWatir::Browser.settings
+    #OperaWatir::Browser.settings
+    OperaWatir::DesktopBrowser.settings
   end
   
   def browser
@@ -34,18 +35,12 @@ module OperaWatir::Helper
         puts "config after suite"
         if @browser
           # Check if we shutdown Opera or just the driver
-          
-          
           # Quit Opera unless we have forced it to stay up
-        #  if OperaWatir::DesktopBrowser.settings[:no_quit] == false
-           # browser.quit_opera
-         # end
-          puts "about to quit"
-          # Shutdown the driver
-          @browser.quit_driver
+          if settings[:no_quit] == false
+            # Shutdown the driver
+            @browser.quit_driver
+          end
         end
-
-        #browser.quit! if browser 
       }
     end
   end
