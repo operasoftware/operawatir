@@ -502,6 +502,16 @@ module OperaWatir
 =end    
   
 private
+
+   def self.opera_driver_settings
+     @opera_driver_settings ||= OperaDriverSettings.new.tap {|s|
+       s.setRunOperaLauncherFromOperaDriver true
+       s.setOperaLauncherBinary self.settings[:launcher]
+       s.setOperaBinaryLocation self.settings[:path]
+       s.setOperaBinaryArguments self.settings[:args] + ' -watirtest'
+     }
+   end
+   
     # Gets the parent widget name of which there is none here
     def parent_widget
       nil
