@@ -10,7 +10,7 @@ require 'operawatir/helper'
   :ng            => false,
   :color_enabled => Config::CONFIG['host_os'] =~ /mswin|mingw|bccwin|wince|emx/ ? false : true,
   :check_syntax  => false,
-  :formatter     => 'progress'
+  :format        => 'progress'
 }
 
 # TODO
@@ -53,7 +53,7 @@ EOS
     #        'own JVM') do |ng|
     #  @options[:ng] = ng
     #end
-  
+
     opts.on('-f', '--format=FORMAT',
             'Specify RSpec output formatter (documentation, html, ',
             'progress (default), textmate)') do |formatter|
