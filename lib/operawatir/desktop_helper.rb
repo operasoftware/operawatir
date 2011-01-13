@@ -12,12 +12,10 @@ module OperaWatir::Helper
   extend self
   
   def settings
-    #OperaWatir::Browser.settings
     OperaWatir::DesktopBrowser.settings
   end
   
   def browser
-    puts "Get browser object"
     @browser ||= OperaWatir::DesktopBrowser.new
   end
   
