@@ -509,6 +509,7 @@ private
        s.setOperaLauncherBinary self.settings[:launcher]
        s.setOperaBinaryLocation self.settings[:path]
        s.setOperaBinaryArguments self.settings[:args] + ' -watirtest'
+       s.setNoQuit self.settings[:no_quit]
      }
    end
    
