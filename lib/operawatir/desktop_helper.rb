@@ -29,6 +29,11 @@ module OperaWatir::Helper
             
       config.include SpecHelpers
       
+      config.before(:all) {
+        #This will quit opera, copy prefs and restart
+        browser.reset_prefs
+      }
+      
       config.after(:suite) { 
         puts "config after suite"
         if @browser
