@@ -4,10 +4,10 @@ class OperaWatir::Browser
   attr_accessor :driver, :active_window
 
   def self.settings=(settings={})
-    @opera_driver_settings = nil # Bust cache
+    @opera_driver_settings = nil  # Bust cache
     @settings = settings.merge! :launcher => OperaWatir::Platform.launcher,
                                 :path     => OperaWatir::Platform.opera,
-                                :args     => ENV['OPERA_ARGS'] || ''
+                                :args     => OperaWatir::Platform.args
   end
 
   def self.settings
@@ -15,7 +15,7 @@ class OperaWatir::Browser
   end
 
   def initialize
-    OperaWatir.compatibility! unless OperaWatir.use_version >= 2
+    OperaWatir.compatibility! unless OperaWatir.api >= 2
 
     self.driver = OperaDriver.new(self.class.opera_driver_settings)
     self.active_window = OperaWatir::Window.new(self)
@@ -211,7 +211,7 @@ private
       s.setRunOperaLauncherFromOperaDriver true
       s.setOperaLauncherBinary self.settings[:launcher]
       s.setOperaBinaryLocation self.settings[:path]
-      s.setOperaBinaryArguments self.settings[:args] + (OperaWatir::Platform.os == :windows ? '' : ' -nosession') + ' opera:debug'
+      s.setOperaBinaryArguments self.settings[:args] + ' -nostartdialogs opera:debug'
     }
   end
 
