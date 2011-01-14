@@ -10,7 +10,7 @@ require 'operawatir/desktop_helper'
   :ng            => false,
   :color_enabled => Config::CONFIG['host_os'] =~ /mswin|mingw|bccwin|wince|emx/ ? false : true,
   :check_syntax  => false,
-  :formatter     => 'progress',  # This current causes Mac with RSpec greater than 2.1 to fail! Stick to RSpec 2.1 or comment out this line 
+  :format	     => 'progress', 
   :no_quit		 => false
 }
 
