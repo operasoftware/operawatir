@@ -20,6 +20,11 @@ module OperaWatir
       end
     end
     
+    #######################################################################
+    # 
+    # Hover widget and wait for window to be shown
+    #
+    #
     def open_window_with_hover(win_name = "")
       wait_start
       element.hover
@@ -163,7 +168,10 @@ module OperaWatir
       end
     end
 
+    ########################################################################
+    #
     # @return position for elements that have a position, else false
+    #
     def position
       return [row, col] if type == :treeitem
       return col if type == :tabbutton
@@ -202,7 +210,9 @@ module OperaWatir
       element.getParentName()
     end
     
+    #################################################################
     # Focus a widget with a click
+    #
     def focus_with_click
       click
       # No event yet so just cheat and sleep

@@ -25,7 +25,7 @@ module OperaWatir
     end
 
     ######################################################################
-    # Quits the Opera
+    # Quits Opera
     #
     def quit_opera()
       driver.quit_opera

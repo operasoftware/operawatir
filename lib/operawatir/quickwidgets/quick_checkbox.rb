@@ -49,10 +49,11 @@ module OperaWatir
     #            is not visible
     #
     def open_dialog_with_click(win_name)
-      wait_start
-      click
-      wait_for_window_shown(win_name)
+      super
+      #wait_start
+      #click
+      #wait_for_window_shown(win_name)
     end
-    
+
   end
 end

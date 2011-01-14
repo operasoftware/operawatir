@@ -16,7 +16,7 @@ module OperaWatir
     end
 
     ######################################################################
-    # Checks whether a widget exists or not
+    # Checks whether a window exists or not
     #
     # @return [Boolean] true if the widget exists otherwise false
     #
@@ -28,7 +28,7 @@ module OperaWatir
     alias_method :exists?, :exist?
     
     ######################################################################
-    # Gets the type of a widget
+    # Gets the type of a window
     #
     # @return [Symbol] type of the window (e.g. :dropdown, :button)
     #
@@ -38,7 +38,7 @@ module OperaWatir
     end
     
     ######################################################################
-    # Get the name of the widget (as it appears in dialog.ini or code)
+    # Get the name of the window
     #
     # @return [String] name of the widget
     #

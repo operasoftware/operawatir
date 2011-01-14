@@ -19,10 +19,16 @@ module OperaWatir
       enter_text_and_hit_enter(url)
     end
     
+    #
+    # Get the Visible text in the address field
+    #
     def visible_text
       element.getVisibleText()
     end
     
+    #
+    # Gets the highlighted text in the address field
+    #
     def highlighted_text
       element.getAdditionalText()     
     end
