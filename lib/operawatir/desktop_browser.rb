@@ -25,7 +25,7 @@ module OperaWatir
     end
 
     ######################################################################
-    # Quits the driver without exiting Opera
+    # Quits the Opera
     #
     def quit_opera()
       driver.quit_opera
@@ -494,13 +494,17 @@ module OperaWatir
       end
     end
     
+    ############################################################################
+    #
+    # Reset prefs
+    #
+    # Quits Opera and copies prefs from src to dest, then restarts Opera with the
+    # new Prefs
+    #
+    def reset_prefs(new_prefs)
+      @driver.resetOperaPrefs(new_prefs)
+    end
     
-=begin  
-  TODO:  
-  def delete_cookies
-  def reset_main_window
-=end    
-  
 private
 
    def self.opera_driver_settings
