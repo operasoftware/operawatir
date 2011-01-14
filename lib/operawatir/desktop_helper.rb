@@ -31,18 +31,27 @@ module OperaWatir::Helper
       
       config.before(:all) {
         #This will quit opera, copy prefs and restart
-        browser.reset_prefs
+       # browser.reset_prefs
+          # Create the browser object here
+          browser
+          
+          # Preference stuff
+          puts "Do Preference stuff"
       }
-      
+
       config.after(:suite) { 
         puts "config after suite"
         if @browser
-          # Check if we shutdown Opera or just the driver
-          # Quit Opera unless we have forced it to stay up
+
           if settings[:no_quit] == false
-            # Shutdown the driver
-            @browser.quit_driver
+            # Shutdown Opera
+            puts "Quit Opera!"
+            @browser.quit_opera
           end
+
+          # Shutdown the driver
+          puts "Quit OperaWatir!"
+          @browser.quit_driver
         end
       }
     end
