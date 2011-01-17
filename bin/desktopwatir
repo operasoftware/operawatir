@@ -22,7 +22,7 @@ begin
   OptionParser.new do |opts|
     opts.banner = <<EOS
 Usage: desktopwatir [-l|--launcher=BINARY] [-e|--executable=BINARY] [-a|--args=ARGUMENTS]
-       [--no-color] [--no-quit] [--no-restart] [-f|--format=FORMAT] [-o|--out=FILE] [-h|--help] [-v|--version] FILES
+       [--no-color] [-q|--no-quit] [-r|--no-restart] [-f|--format=FORMAT] [-o|--out=FILE] [-h|--help] [-v|--version] FILES
 EOS
 
     opts.separator ""
@@ -47,11 +47,11 @@ EOS
       @options[:color_enabled] = false
     end
 
-    opts.on('--no-quit', 'Disable quitting of Opera at the end of a testrun') do |c|
+    opts.on('-q', '--no-quit', 'Disable quitting of Opera at the end of a testrun') do |c|
       @options[:no_quit] = true
     end
 
-   opts.on('--no-restart', 'Disables automatic relaunching of Opera') do |c|
+   opts.on('-r', '--no-restart', 'Disables automatic relaunching of Opera') do |c|
       @options[:no_restart] = true
     end
 
