@@ -512,8 +512,9 @@ private
        s.setRunOperaLauncherFromOperaDriver true
        s.setOperaLauncherBinary self.settings[:launcher]
        s.setOperaBinaryLocation self.settings[:path]
-       s.setOperaBinaryArguments self.settings[:args] + ' -watirtest'
+       s.setOperaBinaryArguments self.settings[:args] + ' -watirtest'# + ' -pd her'
        s.setNoQuit self.settings[:no_quit]
+       s.setNoRestart self.settings[:no_restart]
      }
    end
    

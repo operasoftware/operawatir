@@ -33,11 +33,14 @@ module OperaWatir::Helper
       config.include SpecHelpers
       
       config.before(:all) {
+        if OperaWatir::Helper::settings[:no_restart] == false
           path = File.join(Dir.getwd, @@files.shift)
           filepath = path.chomp(".rb")
           browser.reset_prefs(filepath)
-          # If you remove browser.reset_prefs, add back browser in next line
-          # browser
+        else
+          #Must create browser object here
+          browser
+        end
       }
 
       config.after(:suite) { 
@@ -48,6 +51,7 @@ module OperaWatir::Helper
             # Shutdown Opera
             puts "Quit Opera!"
             @browser.quit_opera
+            @browser.delete_profile
           end
 
           # Shutdown the driver
