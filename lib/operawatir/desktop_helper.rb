@@ -25,18 +25,19 @@ module OperaWatir::Helper
       # Set every RSpec option
       settings.each do |key, value|
         config.send("#{key}=", value) if config.respond_to?("#{key}=")
+        if key.to_s.eql?("files_to_run")
+          @@files = value
+        end
       end
             
       config.include SpecHelpers
       
       config.before(:all) {
-        #This will quit opera, copy prefs and restart
-       # browser.reset_prefs
-          # Create the browser object here
-          browser
-          
-          # Preference stuff
-          puts "Do Preference stuff"
+          path = File.join(Dir.getwd, @@files.shift)
+          filepath = path.chomp(".rb")
+          browser.reset_prefs(filepath)
+          # If you remove browser.reset_prefs, add back browser in next line
+          # browser
       }
 
       config.after(:suite) { 
