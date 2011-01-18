@@ -38,24 +38,24 @@ module OperaWatir::Helper
           filepath = path.chomp(".rb")
           browser.reset_prefs(filepath)
         else
-          #Must create browser object here
+          # Must create browser object here so that none of the
+          # test is run before Opera has been launched
           browser
         end
       }
 
       config.after(:suite) { 
-        puts "config after suite"
+        # Use the @browser directly because we don't want
+        # to launch Opera here if it's not running
         if @browser
 
           if settings[:no_quit] == false
             # Shutdown Opera
-            puts "Quit Opera!"
             @browser.quit_opera
             @browser.delete_profile
           end
 
           # Shutdown the driver
-          puts "Quit OperaWatir!"
           @browser.quit_driver
         end
       }
