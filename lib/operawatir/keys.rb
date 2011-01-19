@@ -49,7 +49,7 @@ class OperaWatir::Keys
   # arguments are performed in sequence.
   #
   # Symbols are parsed as modification keys (such as :control, :shift,
-  # :backspace, &c.), arrays are interpreted as key combinations
+  # :backspace, &c.), arraysd are interpreted as key combinations
   # (e.g. [:control, 'a'] will perform the combination C-a), and
   # strings will be typed as regular words.
   #
@@ -74,8 +74,7 @@ class OperaWatir::Keys
     args.each do |arg|
       case arg
       when Array
-        down arg[0]
-        arg[1].each { |key| send key }
+        arg.each { |key| key.kind_of?(Symbol) ? down(key) : send(key) }
         release
       else
         #arg.kind_of?(Symbol) ? driver.key(arg) : driver.type(arg)
