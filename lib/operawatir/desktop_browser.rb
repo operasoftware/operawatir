@@ -274,7 +274,7 @@ module OperaWatir
     # @return [Array] Array of windows
     #
     def quick_windows
-      driver.getWindowList.map do |java_window|
+      driver.getQuickWindowList.map do |java_window|
         QuickWindow.new(self,java_window)
       end.to_a
     end
@@ -319,7 +319,7 @@ module OperaWatir
     # @return [String] Name of the window
     #
     def get_window_name(win_id)
-      driver.getWindowName(win_id)
+      driver.getQuickWindowName(win_id)
     end
      
     ######################################################################
@@ -488,13 +488,13 @@ module OperaWatir
     # Close all open dialogs
     #
     def close_all_dialogs
-      win_id = driver.getActiveWindowID()
+      win_id = driver.getActiveQuickWindowID()
       until quick_window(:id, win_id).type != :dialog do
-        win = quick_window(:id, driver.getActiveWindowID())
+        win = quick_window(:id, driver.getActiveQuickWindowID())
         if win.type == :dialog
           close_dialog(win.name)
-          if (driver.getActiveWindowID() != win_id)
-            win_id = driver.getActiveWindowID()
+          if (driver.getActiveQuickWindowID() != win_id)
+            win_id = driver.getActiveQuickWindowID()
           else
             break
           end

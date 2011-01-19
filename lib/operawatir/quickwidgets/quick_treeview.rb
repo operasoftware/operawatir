@@ -9,7 +9,7 @@ module OperaWatir
 
     #Should rather use what's already in browser
     def treeitems
-      treeitems = driver.getQuickWidgetList(driver.getWindowName(window_id)).map do |java_widget|
+      treeitems = driver.getQuickWidgetList(driver.getQuickWindowName(window_id)).map do |java_widget|
         case java_widget.getType
           when QuickWidget::WIDGET_ENUM_MAP[:treeitem]
             QuickTreeItem.new(self,java_widget)
