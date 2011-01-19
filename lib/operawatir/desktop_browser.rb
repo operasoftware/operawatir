@@ -265,7 +265,7 @@ module OperaWatir
     #
     # @return [Array] Array of windows
     #
-    def windows
+    def quick_windows
       driver.getWindowList.map do |java_window|
         QuickWindow.new(self,java_window)
       end.to_a
