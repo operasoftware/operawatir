@@ -27,14 +27,22 @@ module OperaWatir
     ######################################################################
     # Quits Opera
     #
-    def quit_opera()
+    def quit_opera
       driver.quit_opera
+    end
+    
+    ######################################################################
+    # Restarts Opera
+    #
+    def restart
+      driver.quit_opera
+      driver.start_opera
     end
 
     ######################################################################
     # Quits the driver without exiting Opera
     #
-    def quit_driver()
+    def quit_driver
       driver.shutdown
     end
       
