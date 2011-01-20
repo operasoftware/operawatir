@@ -60,7 +60,7 @@ class OperaWatir::Keys
   # Available modification keys:  control, shift, access …
   # TODO
   #
-  # @param [Symbol, Array, String] *args Arbitrary list of symbols,
+  # @param [Symbol, Array, String] *list Arbitrary list of symbols,
   #   arrays or strings which will form a sequence of keys to be
   #   pressed.
   #
@@ -70,15 +70,23 @@ class OperaWatir::Keys
   #   browser.keys.send :control
   #   browser.keys.send [:control, 'a']
   #   browser.keys.send [:control, 'a'], :backspace
-  def send(*args)  # TODO rename?
-    args.each do |arg|
-      case arg
+  def send(*list)  # TODO rename?
+    list.each do |item|
+      case item
       when Array
-        arg.each { |key| key.kind_of?(Symbol) ? down(key) : send(key) }
-        release
+        item.each_with_index do |key, index|
+          case key
+          when :access
+            access_key item[index + 1]
+          when Symbol
+            down key
+            release
+          else
+            send key
+          end
+        end
       else
-        #arg.kind_of?(Symbol) ? driver.key(arg) : driver.type(arg)
-        driver.type arg
+        type item
       end
     end
   end
@@ -89,7 +97,13 @@ private
     browser.driver    
   end
 
+  def type(text)
+    driver.type text
+  end
+
   def access_key(key)
+    puts "Access key: #{key}"
+
     driver.operaAction 'Enter access key mode'
     send key
     driver.operaAction 'Leave access key mode'
