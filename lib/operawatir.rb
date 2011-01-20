@@ -17,6 +17,7 @@ include_class com.opera.core.systems.scope.protos.DesktopWmProtos
 include_class com.opera.core.systems.scope.protos.SystemInputProtos
 include_class com.opera.core.systems.QuickWidget
 
+require "oeprawatir/platform"
 require "operawatir/exceptions"
 require "operawatir/elements"
 require "operawatir/collections"
