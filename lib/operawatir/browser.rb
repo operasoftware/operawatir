@@ -4,7 +4,7 @@ module OperaWatir
     include Elements
     include Collections
 
-    attr_reader :driver
+    attr_accessor :driver
 
     def self.settings=(settings={})
       @opera_driver_settings = nil  # Bust cache
