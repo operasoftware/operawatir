@@ -6,13 +6,19 @@ module OperaWatir
 
     attr_reader :driver
 
-    def initialize (executable_location = nil, *arguments)
-      if executable_location.nil?
-        @driver = OperaDriver.new
-        @frame = '_top'
-      else
-        @driver = OperaDriver.new(executable_location, arguments.to_java(:string))
-      end
+    def self.settings=(settings={})
+      @opera_driver_settings = nil  # Bust cache
+      @settings = settings.merge! :launcher => OperaWatir::Platform.launcher,
+                                  :path     => OperaWatir::Platform.opera,
+                                  :args     => OperaWatir::Platform.args
+    end
+
+    def self.settings
+      @settings || self.settings = {}
+    end
+
+    def initialize
+      self.driver = OperaDriver.new(self.class.opera_driver_settings)
     end
 
     # Loads the given URL in the browser.  Waits for the page to get loaded.
@@ -236,6 +242,18 @@ module OperaWatir
     def version
       @driver.getOperaDriverVersion
     end
+
+  private
+
+    def self.opera_driver_settings
+      @opera_driver_settings ||= OperaDriverSettings.new.tap {|s|
+        s.setRunOperaLauncherFromOperaDriver true
+        s.setOperaLauncherBinary self.settings[:launcher]
+        s.setOperaBinaryLocation self.settings[:path]
+        s.setOperaBinaryArguments self.settings[:args]
+      }
+    end
+
   end
 end
 
