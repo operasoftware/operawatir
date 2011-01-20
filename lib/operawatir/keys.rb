@@ -90,9 +90,9 @@ private
   end
 
   def access_key(key)
-    browser.opera_action 'Enter access key mode'
+    driver.operaAction 'Enter access key mode'
     send key
-    browser.opera_action 'Leave access key mode'
+    driver.operaAction 'Leave access key mode'
   end
 
 end
