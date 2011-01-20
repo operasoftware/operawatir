@@ -16,8 +16,9 @@ include_class com.opera.core.systems.OperaWebElement
 include_class com.opera.core.systems.scope.protos.DesktopWmProtos
 include_class com.opera.core.systems.scope.protos.SystemInputProtos
 include_class com.opera.core.systems.QuickWidget
+include_class com.opera.core.systems.settings.OperaDriverSettings
 
-require "oeprawatir/platform"
+require "operawatir/platform"
 require "operawatir/exceptions"
 require "operawatir/elements"
 require "operawatir/collections"
