@@ -12,12 +12,12 @@ module OperaWatir
 
       # Creates a new browser instance with browser arguments, and
       # starts inspectr if required.
-      def new_browser
-        args = OperaWatir::Helper.browser_args
-        new_browser = args ? OperaWatir::Browser.new(*args) : OperaWatir::Browser.new
-        start_inspectr(new_browser.pid) if OperaWatir::Helper.inspectr
-        return new_browser
-      end
+#      def new_browser
+#        args = OperaWatir::Helper.browser_args
+#        new_browser = args ? OperaWatir::Browser.new(*args) : OperaWatir::Browser.new
+#        start_inspectr(new_browser.pid) if OperaWatir::Helper.inspectr
+#        return new_browser
+#      end
 
       # OperaHelper wrapper to start OperaWatir.
       def execute
@@ -28,6 +28,7 @@ module OperaWatir
 
       # Configures the RSpec suite we are about to run.
       def configure
+
         #Spec::Runner.configure do |config|
         RSpec.configure do |config|
           config.include(PathHelper)
@@ -37,14 +38,14 @@ module OperaWatir
             # TODO: Why does :suite fail here?  Getting nil:NilClass if
             # using before/after :suite.
             config.before(:all) do
-              @browser = OperaWatir::Helper.new_browser
+              @browser = OperaWatir::Browser.new
             end
 
             config.after(:all) do
               @browser.quit if @browser
             end
           else
-            $browser = OperaWatir::Helper.new_browser
+            $browser = OperaWatir::Browser.new
             at_exit { $browser.quit }
           end
         end
