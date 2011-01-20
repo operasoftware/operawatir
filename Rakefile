@@ -21,7 +21,7 @@ Jeweler::Tasks.new do |gem|
   gem.has_rdoc         = true
   gem.extra_rdoc_files = ['README']
 
-  gem.add_dependency 'rspec', '>= 2'
+  gem.add_dependency 'rspec', '= 2.0.1'
 
   gem.add_development_dependency 'rake'
   gem.add_development_dependency 'yard'
