@@ -80,11 +80,13 @@ class OperaWatir::Keys
             access_key item[index + 1]
           when Symbol
             down key
-            release
           else
-            send key
+            key key
+            release
           end
         end
+      when Symbol
+        key item
       else
         type item
       end
@@ -95,6 +97,10 @@ private
 
   def driver
     browser.driver    
+  end
+
+  def key(key)
+    driver.key key
   end
 
   def type(text)

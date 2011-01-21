@@ -111,6 +111,8 @@ private
   end
 
   OperaWatir::Selector::BASE_TYPES.each do |type|
+    puts type
+
     define_method("find_elements_by_#{type}") do |value|
       _elms.inject([]) do |result, element|
         result | element.send("find_elements_by_#{type}", value.to_s)

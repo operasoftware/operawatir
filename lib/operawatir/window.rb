@@ -166,6 +166,15 @@ private
     end
   end
 
+  # Locate elements by attribute @name.
+  #
+  # @return [Array] an array of found elements
+  def find_elements_by_name(value)
+    driver.findElementsByName(value).to_a.map do |node|
+      OperaWatir::Element.new(node)
+    end
+  end
+
   # @private
   def driver
     browser.driver

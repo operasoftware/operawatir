@@ -1,5 +1,5 @@
 class OperaWatir::Selector
-  BASE_TYPES       = [:id, :class_name, :tag_name, :css, :xpath]
+  BASE_TYPES       = [:id, :class_name, :tag_name, :css, :xpath, :name]
   COLLECTION_TYPES = [:index, :attribute]
   META_TYPES       = [:join, :antijoin]
 
