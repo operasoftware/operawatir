@@ -27,7 +27,6 @@ module OperaWatir::Helper
         config.send("#{key}=", value) if config.respond_to?("#{key}=")
         if key.to_s.eql?("files_to_run")
           @@files = value
-          @@files.each { |f| puts "Filepath = #{File.expand_path(f)}" }
         end
       end
             
@@ -65,7 +64,6 @@ module OperaWatir::Helper
 
   def run!(settings={})
     OperaWatir::DesktopBrowser.settings = settings
-    settings[:files_to_run].each { |f| puts "file: #{f}" }
     configure_rspec!
     RSpec::Core::Runner.autorun
   end
