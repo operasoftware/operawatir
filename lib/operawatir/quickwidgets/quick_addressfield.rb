@@ -20,7 +20,7 @@ module OperaWatir
     end
     
     #
-    # Get the Visible text in the address field
+    # Gets the visible text in the address field
     #
     def visible_text
       element.getVisibleText()

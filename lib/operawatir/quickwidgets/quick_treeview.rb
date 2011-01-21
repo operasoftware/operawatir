@@ -8,6 +8,7 @@ module OperaWatir
     end
 
     #Should rather use what's already in browser
+    # @private
     def treeitems
       treeitems = driver.getQuickWidgetList(driver.getQuickWindowName(window_id)).map do |java_widget|
         case java_widget.getType

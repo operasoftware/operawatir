@@ -38,7 +38,7 @@ module OperaWatir
     end
     
     ######################################################################
-    # Get the name of the window
+    # Gets the name of the window
     #
     # @return [String] name of the widget
     #
@@ -49,7 +49,7 @@ module OperaWatir
     end
     
     ######################################################################
-    # Get the title of the window
+    # Gets the title of the window
     #
     # @return [String] title of window
     #
@@ -61,7 +61,7 @@ module OperaWatir
         
     
     ######################################################################
-    # Get a string representation of the window
+    # Gets a string representation of the window
     #
     # @return [String] representation of the widget
     #
@@ -84,7 +84,7 @@ module OperaWatir
     alias_method :visible?, :on_screen?
 
     ######################################################################
-    # Get the window id
+    # Gets this windows window id
     #
     # @return [int] the windows window_id
     #

@@ -8,7 +8,7 @@ module OperaWatir
     end
 
     ######################################################################
-    # Set focus to the edit field by clicking on it
+    # Sets focus to the edit field by clicking on it
     #
     # @raise [DesktopExceptions::WidgetNotVisibleException] if the editfield 
     #            is not visible

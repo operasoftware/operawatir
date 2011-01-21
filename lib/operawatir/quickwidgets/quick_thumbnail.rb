@@ -8,7 +8,7 @@ module OperaWatir
     end
     
     ######################################################################
-    # Drag and drop this speeddial
+    # Drag and drop this speeddial onto the speed dial tab_target
     #
     # @param [QuickThumbnail] Thumbnail to drop this thumbnail on
     #

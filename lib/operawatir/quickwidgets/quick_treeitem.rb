@@ -80,7 +80,7 @@ module OperaWatir
      
     
     ######################################################################
-    # Switch to the tree view tab by clicking on it (e.g. on the 
+    # Switches to the tree view tab by clicking on it (e.g. on the 
     # Advanced page of the preferences dialog) 
     #
     # @raise [DesktopExceptions::WidgetNotVisibleException] if the treeitem

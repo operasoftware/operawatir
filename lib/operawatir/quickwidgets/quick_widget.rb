@@ -22,7 +22,7 @@ module OperaWatir
     
     #######################################################################
     # 
-    # Hover widget and wait for window to be shown
+    # Hovers widget and waits for window to be shown
     #
     #
     def open_window_with_hover(win_name = "")
@@ -68,7 +68,7 @@ module OperaWatir
     end
 
     ######################################################################
-    # Get the text of the widget
+    # Gets the text of the widget
     #
     # @note This method should not be used to check the text in a widget if
     #       the text is in the Opera language file. Use verify_text or
@@ -96,7 +96,7 @@ module OperaWatir
     end
     
     ######################################################################
-    # Get the name of the widget (as it appears in dialog.ini or code)
+    # Gets the name of the widget (as it appears in dialog.ini or code)
     #
     # @return [String] name of the widget
     #
@@ -108,7 +108,7 @@ module OperaWatir
     end
     
     ######################################################################
-    # Get a string representation of the widget
+    # Gets a string representation of the widget
     #
     # @return [String] representation of the widget
     #
@@ -204,8 +204,7 @@ module OperaWatir
       @container.driver
     end
     
-    # parent is container
-    # Get parent widget name
+    # Gets parent widget name
     def parent_name
       element.getParentName()
     end
