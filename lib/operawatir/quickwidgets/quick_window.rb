@@ -91,7 +91,7 @@ module OperaWatir
     # @raise [Exceptions::UnknownObjectException] if the widget could not be found
     #           using the specified method
     def window_id
-      element.getQuickWindowID
+      element.getWindowID
     end
     
     alias_method :id, :window_id
