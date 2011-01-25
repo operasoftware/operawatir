@@ -40,6 +40,7 @@ EOF
   gem.add_development_dependency 'rr'
 
   gem.files.exclude '.gitignore'
+  gem.files.exclude '.gitmodules'
 end
 
 CLEAN.add 'pkg'
