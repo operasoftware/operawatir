@@ -34,5 +34,8 @@ module OperaWatir::Exceptions
   
   # Raised when trying to access a table cell that doesn't exist.
   class UnknownCellException < OperaWatirException; end
+
+  # Raised when pressing a modifier key that doesn't exist.
+  class InvalidKeyException < OperaWatirException; end
   
 end
