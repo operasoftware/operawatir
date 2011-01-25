@@ -133,17 +133,8 @@ class OperaWatir::Element
 
   alias_method :set, :text=
 
-  def send_keys(*args)
-    args.each do |arg|
-      case arg
-      when Array
-        node.keyDown arg[0]
-        node.key arg[1]
-        node.releaseKeys
-      else
-        @driver.key arg
-      end
-    end
+  def send_keys(*list)
+    raise Exceptions::NotImplementedException
   end
 
   def trigger!(event, x = 0, y = 0)
