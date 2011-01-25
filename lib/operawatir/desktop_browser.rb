@@ -282,7 +282,7 @@ module OperaWatir
     #@private
     # Retrieve all tabs
     def open_pages
-      windows.select { |win| win.name == "Document Window" }
+      quick_windows.select { |win| win.name == "Document Window" }
     end
     
     #@private
