@@ -108,8 +108,6 @@ private
   end
 
   def access_key(key)
-    puts "Access key: #{key}"
-
     driver.operaAction 'Enter access key mode'
     send key
     driver.operaAction 'Leave access key mode'
