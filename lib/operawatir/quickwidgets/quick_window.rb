@@ -6,7 +6,7 @@ module OperaWatir
     # @private
     def initialize(container, method, selector=nil)
       @container = container
-                            
+      
       if method.is_a? Java::ComOperaCoreSystems::QuickWindow
         @elm = method
       else
@@ -137,9 +137,16 @@ private
     
     # Finds the element on the page.  
     def find
+      #puts "<find> Find Window by " + @method.to_s + ", selector = " + @selector.to_s
       case @method
       when :name
-        @element = driver.findWindowByName(@selector)
+        # Use active window when specifying by name "Document Window"
+        # and not the first if there are more than one 
+        if (@selector == "Document Window")
+          @element = driver.findWindowById(driver.getActiveQuickWindowID())
+        else
+          @element = driver.findWindowByName(@selector)
+        end
       when :id
         @element = driver.findWindowById(@selector)
       end
