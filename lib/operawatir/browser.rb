@@ -204,6 +204,35 @@ class OperaWatir::Browser
     @driver.getOperaActionList
   end
 
+
+  # Selects all content in the currently focused element. Equivalent
+  # to pressing Ctrl-A in a desktop browser. To select content in
+  # a <textarea> or an <input> field, remember to click it first.
+  def select_all
+    @driver.operaAction('Select all')
+  end
+
+  # Copies the currently selected content to the clipboard.
+  # Equivalent to pressing Ctrl-C in a desktop browser.
+  def copy
+    @driver.operaAction('Copy')
+  end
+
+  # Cuts the currently selected content to the clipboard.
+  # Equivalent to pressing Ctrl-X in a desktop browser.
+  def cut!
+    @driver.operaAction('Cut')
+  end
+
+  # Pastes content from the clipboard into the currently focused
+  # element. Equivalent to pressing Ctrl-V in a desktop browser.
+  # To paste content into a <textarea> or an <input> field,
+  # remember to click it first.
+  def paste
+    @driver.operaAction('Paste')
+  end
+
+
 private
 
   def self.opera_driver_settings
