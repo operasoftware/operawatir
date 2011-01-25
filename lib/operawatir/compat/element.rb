@@ -27,12 +27,11 @@ class OperaWatir::Element
   # Gets the text content of the element.
   #
   # @return [String] the text content
-#  def text
-#    node.getText.strip
-#    text
-#  end
+  def text
+    node.getText.strip
+  end
 
- # alias_method :to_s, :text
+  alias_method :to_s, :text
 
   # On elements of type `<input>` this gets the value of the value
   # attribute, on every other element type it returns the text
