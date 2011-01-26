@@ -2,7 +2,7 @@
 require 'rake/clean'
 require 'jeweler'
 require 'rspec/core/rake_task'
-require 'yard/rake/yardoc_task'
+require 'yard'
 
 require './lib/operawatir/version'
 
@@ -31,7 +31,7 @@ EOF
   gem.has_rdoc              = true
   gem.extra_rdoc_files      = ['README.md']
 
-  gem.add_dependency 'rspec', '>= 2'
+  gem.add_dependency 'rspec', '>= 2.4'
 
   gem.add_development_dependency 'jeweler'
   gem.add_development_dependency 'rake'
