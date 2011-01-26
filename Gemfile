@@ -11,4 +11,3 @@ group :development do
   gem "mongrel", ">= 1.1.5"
   gem "rr", ">= 1.0.2"
 end
-
