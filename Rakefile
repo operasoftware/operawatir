@@ -2,7 +2,7 @@
 require 'rake/clean'
 require 'jeweler'
 require 'rspec/core/rake_task'
-require 'yard/rake/yardoc_task'
+require 'yard'
 
 require './lib/operawatir/version'
 
@@ -26,11 +26,12 @@ EOF
 
   gem.rubyforge_project = gem.name
 
-  gem.platform         = 'jruby'
-  gem.has_rdoc         = true
-  gem.extra_rdoc_files = ['README.md']
+  gem.platform              = 'jruby'
+  gem.required_ruby_version = '>= 1.8.7'
+  gem.has_rdoc              = true
+  gem.extra_rdoc_files      = ['README.md']
 
-  gem.add_dependency 'rspec', '>= 2'
+  gem.add_dependency 'rspec', '>= 2.4'
 
   gem.add_development_dependency 'jeweler'
   gem.add_development_dependency 'rake'
@@ -40,9 +41,7 @@ EOF
   gem.add_development_dependency 'rr'
 
   gem.files.exclude '.gitignore'
-  gem.files.exclude 'bin/desktopwatir'
-  gem.files.exclude 'lib/operawatir/desktop*.rb'
-  gem.files.exclude 'lib/operawatir/quickwidgets'
+  gem.files.exclude '.gitmodules'
 end
 
 CLEAN.add 'pkg'

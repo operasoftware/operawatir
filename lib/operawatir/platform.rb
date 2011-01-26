@@ -11,6 +11,8 @@ class OperaWatir::Platform
     when :linux
       postfix = bitsize == 64 ? 'x86_64' : 'i686'
       "utils/launchers/launcher-linux-#{postfix}"
+    when :macosx
+      'utils/launchers/launcher-mac'
     end
 
     if path

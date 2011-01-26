@@ -62,6 +62,11 @@ class OperaWatir::Browser
     driver.closeAll
   end
 
+  # Accesses the keys API in OperaWatir::Keys.
+  def keys
+    OperaWatir::Keys.new(self)
+  end
+
   # Set preference pref in prefs section prefs_section to value
   # specified.
   #
@@ -151,38 +156,7 @@ class OperaWatir::Browser
   # @return [Boolean] true if browser attached is of type desktop,
   #   false otherwise
   def desktop?
-    false
-  end
-
-  # Send key events to the browser instance.  I.e. “Down” (arrow
-  # down), “Space” (space key), “Home”, &c.
-  #
-  # @param [String] key to be pressed once
-  def key(key)
-    @driver.key(key)
-  end
-
-  # Enables you to hold down a key, i.e. “Ctrl”, “Alt”, “Shift”, &c.
-  # Remember to release the keys afterwards with the key_up method.
-  #
-  # @param [String] key to be pressed down
-  def key_down(key)
-    @driver.keyDown(key)
-  end
-
-  # Releases a held down key.
-  #
-  # @param [String] key to be lifted
-  def key_up(key)
-    @driver.keyUp(key)
-  end
-
-  # Types given text directly in to the browser.  The text will be
-  # inputted to the page depending on where the focus is.
-  #
-  # @param [String] text to be typed
-  def type(text)
-    @driver.type(text)
+    false  # FIXME
   end
 
   # Sends an Opera action to the browser.
@@ -240,7 +214,7 @@ private
       s.setRunOperaLauncherFromOperaDriver true
       s.setOperaLauncherBinary self.settings[:launcher]
       s.setOperaBinaryLocation self.settings[:path]
-      s.setOperaBinaryArguments self.settings[:args] + ' -nostartdialogs opera:debug'
+      s.setOperaBinaryArguments self.settings[:args] #+ ' -nostartdialogs opera:debug'
     }
   end
 

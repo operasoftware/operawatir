@@ -133,6 +133,10 @@ class OperaWatir::Element
 
   alias_method :set, :text=
 
+  def send_keys(*list)
+    raise Exceptions::NotImplementedException
+  end
+
   def trigger!(event, x = 0, y = 0)
     loc = location
     x += loc[:x]
