@@ -515,7 +515,8 @@ module OperaWatir
     
     ##############################################################################
     #
-    # Delete Profile
+    # Deletes profile for the connected Opera instance.
+    # Should only be called after quitting (and before starting) Opera.
     #
     #
     def delete_profile
