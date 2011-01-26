@@ -5,12 +5,12 @@
 
 Gem::Specification.new do |s|
   s.name = %q{operawatir}
-  s.version = "0.3"
+  s.version = "0.3.1"
   s.platform = %q{jruby}
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Deniz Turkoglu", "Andreas Tolf Tolfsen", "Chris Lloyd", "Stuart Knightley"]
-  s.date = %q{2011-01-20}
+  s.date = %q{2011-01-26}
   s.description = %q{    OperaWatir is a part of the Watir (pronounced water) family of
     free software Ruby libraries for automating web
     browsers.  OperaWatir provides a querying engine and Ruby bindings
@@ -24,7 +24,6 @@ Gem::Specification.new do |s|
     "README.md"
   ]
   s.files = [
-    ".gitmodules",
     ".yardopts",
     "AUTHORS",
     "Gemfile",
@@ -32,6 +31,7 @@ Gem::Specification.new do |s|
     "README.md",
     "Rakefile",
     "VERSION",
+    "bin/desktopwatir",
     "bin/operawatir",
     "lib/operadriver/APACHE_2.0_LICENSE.txt",
     "lib/operadriver/NEW_BSD_LICENSE.txt",
@@ -49,13 +49,38 @@ Gem::Specification.new do |s|
     "lib/operawatir/compat/element.rb",
     "lib/operawatir/compat/element_finders.rb",
     "lib/operawatir/compat/window.rb",
+    "lib/operawatir/desktop-waiter.rb",
+    "lib/operawatir/desktop_browser.rb",
+    "lib/operawatir/desktop_common.rb",
+    "lib/operawatir/desktop_container.rb",
+    "lib/operawatir/desktop_enums.rb",
+    "lib/operawatir/desktop_exceptions.rb",
     "lib/operawatir/element.rb",
     "lib/operawatir/exceptions.rb",
     "lib/operawatir/helper.rb",
+    "lib/operawatir/keys.rb",
     "lib/operawatir/platform.rb",
+    "lib/operawatir/quickwidgets.rb",
+    "lib/operawatir/quickwidgets/quick_addressfield.rb",
+    "lib/operawatir/quickwidgets/quick_button.rb",
+    "lib/operawatir/quickwidgets/quick_checkbox.rb",
+    "lib/operawatir/quickwidgets/quick_dialogtab.rb",
+    "lib/operawatir/quickwidgets/quick_dropdown.rb",
+    "lib/operawatir/quickwidgets/quick_editfield.rb",
+    "lib/operawatir/quickwidgets/quick_label.rb",
+    "lib/operawatir/quickwidgets/quick_radiobutton.rb",
+    "lib/operawatir/quickwidgets/quick_searchfield.rb",
+    "lib/operawatir/quickwidgets/quick_tab.rb",
+    "lib/operawatir/quickwidgets/quick_thumbnail.rb",
+    "lib/operawatir/quickwidgets/quick_toolbar.rb",
+    "lib/operawatir/quickwidgets/quick_treeitem.rb",
+    "lib/operawatir/quickwidgets/quick_treeview.rb",
+    "lib/operawatir/quickwidgets/quick_widget.rb",
+    "lib/operawatir/quickwidgets/quick_window.rb",
     "lib/operawatir/selector.rb",
     "lib/operawatir/version.rb",
     "lib/operawatir/window.rb",
+    "operawatir.gemspec",
     "spec/fire_event/fire_event.rb",
     "spec/fire_event/interactive/onBlur.html",
     "spec/fire_event/interactive/onChange.html",
@@ -193,12 +218,14 @@ Gem::Specification.new do |s|
     "utils/Rakefile",
     "utils/launchers/launcher-linux-i686",
     "utils/launchers/launcher-linux-x86_64",
+    "utils/launchers/launcher-mac",
     "utils/launchers/launcher-win32-i86pc.exe"
   ]
   s.homepage = %q{http://operasoftware.github.com/operawatir}
   s.require_paths = ["lib"]
+  s.required_ruby_version = Gem::Requirement.new(">= 1.8.7")
   s.rubyforge_project = %q{operawatir}
-  s.rubygems_version = %q{1.3.7}
+  s.rubygems_version = %q{1.3.6}
   s.summary = %q{Toolkit for automating interactions with the Opera web browser.}
   s.test_files = [
     "spec/fire_event/fire_event.rb",
@@ -301,7 +328,7 @@ Gem::Specification.new do |s|
     current_version = Gem::Specification::CURRENT_SPECIFICATION_VERSION
     s.specification_version = 3
 
-    if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
+    if Gem::Version.new(Gem::RubyGemsVersion) >= Gem::Version.new('1.2.0') then
       s.add_development_dependency(%q<bundler>, ["~> 1.0.0"])
       s.add_development_dependency(%q<jeweler>, ["~> 1.5.1"])
       s.add_development_dependency(%q<rcov>, [">= 0"])

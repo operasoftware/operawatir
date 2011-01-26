@@ -26,9 +26,10 @@ EOF
 
   gem.rubyforge_project = gem.name
 
-  gem.platform         = 'jruby'
-  gem.has_rdoc         = true
-  gem.extra_rdoc_files = ['README.md']
+  gem.platform              = 'jruby'
+  gem.required_ruby_version = '>= 1.8.7'
+  gem.has_rdoc              = true
+  gem.extra_rdoc_files      = ['README.md']
 
   gem.add_dependency 'rspec', '>= 2'
 
