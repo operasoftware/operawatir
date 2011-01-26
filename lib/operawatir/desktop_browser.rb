@@ -318,7 +318,7 @@ module OperaWatir
     #
     # @return [String] Name of the window
     #
-    def get_window_name(win_id)
+    def window_name(win_id)
       driver.getQuickWindowName(win_id)
     end
      
