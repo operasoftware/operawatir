@@ -98,19 +98,29 @@ module OperaWatir
         
     ######################################################################
     # Prints out all of the internal information about the window. Used
-    # to discover the names of widgets and windows to use in the tests
+    # to discover the names of widgets and windows to use in the tests.
     #
     # @raise [Exceptions::UnknownObjectException] if the widget could not be found
     #           using the specified method
+    #@private
     def print_window_info
-      puts "    Name: " + name
-      puts "   Title: " + title
-      puts "      ID: " + id.to_s
-      puts "    Type: " + type.to_s
-      puts "OnScreen: " + on_screen?.to_s
-      puts "     Pos: x=" + element.getRect().x.to_s + ", y=" + element.getRect().y.to_s
-      puts "    Size: width=" + element.getRect().width.to_s + ", height=" + element.getRect().height.to_s
-      puts ""
+      puts window_info_string
+    end
+
+    ######################################################################
+    # Returns a string of the internal information about the window. Used
+    # to discover the names of widgets and windows to use in the tests.
+    #
+    # @raise [Exceptions::UnknownObjectException] if the widget could not be found
+    #           using the specified method
+    def window_info_string
+      "    Name: " + name +
+      "\n   Title: " + title +
+      "\n      ID: " + id.to_s +
+      "\n    Type: " + type.to_s +
+      "\nOnScreen: " + on_screen?.to_s +
+      "\n     Pos: x=" + element.getRect().x.to_s + ", y=" + element.getRect().y.to_s +
+      "\n    Size: width=" + element.getRect().width.to_s + ", height=" + element.getRect().height.to_s + "\n"
     end
 
     # @private    

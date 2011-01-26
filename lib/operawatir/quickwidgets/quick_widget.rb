@@ -16,7 +16,6 @@ module OperaWatir
         @selector  = selector
         @location  = location
         @window_id  = window_id
-        #puts "Constructed widget #{@selector} inside #{@location} in window with id #{@window_id}"
       end
     end
     
@@ -162,10 +161,23 @@ module OperaWatir
     # @raise [Exceptions::UnknownObjectException] if the widget cannot be found
     #               using the specified method
     #
+    #@private
     def print_row
+      puts row_info_string
+    end
+
+    ######################################################################
+    # Prints out all of the row/col information in single lines. Used to
+    # check items from lists
+    #
+    # @raise [Exceptions::UnknownObjectException] if the widget cannot be found
+    #               using the specified method
+    #@private
+    def row_info_string
       if element.getColumn() == 0
-        puts "Parent: " + element.getParentName() + ", Item: " + element.getRow().to_s + ", Text: " + text
+        "Parent: " + element.getParentName() + ", Item: " + element.getRow().to_s + ", Text: " + text
       end
+      ""
     end
 
     ########################################################################
@@ -184,19 +196,29 @@ module OperaWatir
     #
     # @raise [Exceptions::UnknownObjectException] if the widget cannot be found
     #           using the specified method 
-    #
+    #@private
     def print_widget_info
-      puts "   Name: " + name
-      puts "   Text: " + text
-      puts "   Type: " + type.to_s
-      puts " Parent: " + element.getParentName()
-      puts "Visible: " + visible?.to_s
-      puts "Enabled: " + enabled?.to_s
-      puts "    Pos: x=" + element.getRect().x.to_s + ", y=" + element.getRect().y.to_s
-      puts "   Size: width=" + element.getRect().width.to_s + ", height=" + element.getRect().height.to_s
-      puts "    Ref: row=" + element.getRow().to_s + ", col=" + element.getColumn().to_s
-      puts "selected: " + element.isSelected().to_s
-      puts ""
+      puts widget_info_string
+    end
+
+    ######################################################################
+    # Returns a string of all of the internal information about the widget. Used
+    # to discover the names of widgets and windows to use in the tests
+    #
+    # @raise [Exceptions::UnknownObjectException] if the widget cannot be found
+    #           using the specified method 
+    #
+    def widget_info_string
+      "   Name: " + name + 
+      "\n   Text: " + text +
+      "\n   Type: " + type.to_s +
+      "\n Parent: " + element.getParentName() +
+      "\nVisible: " + visible?.to_s +
+      "\nEnabled: " + enabled?.to_s +
+      "\n    Pos: x=" + element.getRect().x.to_s + ", y=" + element.getRect().y.to_s +
+      "\n   Size: width=" + element.getRect().width.to_s + ", height=" + element.getRect().height.to_s +
+      "\n    Ref: row=" + element.getRow().to_s + ", col=" + element.getColumn().to_s +
+      "\nselected: " + element.isSelected().to_s + "\n"
     end
           
     # @private
@@ -291,7 +313,6 @@ private
       
       # Dialog tabs are always visible even if the page they are connected to isn't
       if visible? == true or type == :dialogtab 
-        #DesktopEnums::KEYMODIFIER_ENUM_MAP.each { |k, v| puts "#{k},#{v}"}
         button = DesktopEnums::MOUSEBUTTON_ENUM_MAP[button]
         list = Java::JavaUtil::ArrayList.new
         opts.each { |mod| list << DesktopEnums::KEYMODIFIER_ENUM_MAP[mod] }
