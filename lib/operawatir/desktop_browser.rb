@@ -366,7 +366,7 @@ module OperaWatir
     #
     # @return [String] Full path to the opera executable 
     #
-    def get_opera_path
+    def path
       driver.getOperaPath()
     end
 
@@ -375,7 +375,7 @@ module OperaWatir
     #
     # @return [String] Full path to the large preferences folder
     #
-    def get_large_preferences_path
+    def large_preferences_path
       driver.getLargePreferencesPath()
     end
   
@@ -384,7 +384,7 @@ module OperaWatir
     #
     # @return [String] Full path to the small preferences folder
     #
-    def get_small_preferences_path
+    def small_preferences_path
       driver.getSmallPreferencesPath()
     end
   
@@ -393,7 +393,7 @@ module OperaWatir
     #
     # @return [String] Full path to the cache preferences folder
     #
-    def get_cache_preferences_path
+    def cache_preferences_path
       driver.getCachePreferencesPath()
     end
 

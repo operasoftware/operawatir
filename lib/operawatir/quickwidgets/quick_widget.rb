@@ -116,7 +116,7 @@ module OperaWatir
     #               using the specified method
     #
     def to_s
-      "#{type.to_s.capitalize} #{name}, visible=#{visible?}, enabled=#{enabled?}, text=#{text}, parentName=#{parent_name}, position=#{row},#{col}"
+      "#{type.to_s.capitalize} #{name}, text=#{text}, parentName=#{parent_name}, visible=#{visible?}, enabled=#{enabled?}, position=#{row},#{col}"
     end
 
     ######################################################################
