@@ -67,6 +67,11 @@ class OperaWatir::Browser
     OperaWatir::Keys.new(self)
   end
 
+  # Accesses the Spatial Navigation API in OperaWatir::Spatnav.
+  def spatnav
+    OperaWatir::Spatnav.new(self)
+  end
+
   # Set preference pref in prefs section prefs_section to value
   # specified.
   #
