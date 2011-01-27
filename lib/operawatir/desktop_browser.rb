@@ -268,6 +268,8 @@ module OperaWatir
       end.to_a
     end
    
+    alias_method :quick_widgets, :widgets
+    
     ####################################################
     # Retrieves an array of all windows 
     #
