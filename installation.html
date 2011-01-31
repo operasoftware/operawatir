@@ -26,7 +26,7 @@
             <li class="selected"><a href="installation.html">Installation</a></li>
             <li><a href="tutorial.html">Tutorial</a></li>
             <li><a href="documentation.html">Documentation</a></li>
-            <li><a href="http://github.com/operasoftware/operawatir">Source</a></li>
+            <li><a href="https://github.com/operasoftware/operawatir">Source</a></li>
           </ul>
         </nav>
       </div>
@@ -37,10 +37,9 @@
 	<h2>Installing OperaWatir</h2>
 
 	<p>
-	  Below are installation instructions
-	  for <a href="installation.html#windows">Windows</a> and
-	  <a href="installation.html#gnulinux">GNU/Linux</a>.  Mac is
-	  not yet supported.
+	  Below are installation instructions for <a
+	  href="installation.html#windows">Windows</a> and <a
+	  href="installation.html#gnulinux">GNU/Linux and Mac</a>.
 	</p>
 
 
@@ -50,19 +49,8 @@
 	  <li>
 	    <p>
 	      The first thing you'll need for OperaWatir to run is,
-	      naturally, Opera. You can download it from
-	      here: <a href="http://www.opera.com/browser/">http://www.opera.com/browser/</a>.
-	    </p>
-	  </li>
-
-	  <li>
-	    <p>
-	      Once Opera is installed, some configuration is
-	      needed.  Navigate
-	      to <a href="opera:config">opera:config</a>. Enable
-	      “Proxy Auto Connect”.  Set “Home URL”
-	      to <var>opera:debug</var> and “Startup Type”
-	      to <var>2</var>.
+	      naturally, Opera. You can download it from here: <a
+	      href="http://www.opera.com/browser/">http://www.opera.com/browser/</a>.
 	    </p>
 	  </li>
 
@@ -86,35 +74,6 @@
 
 	  <li>
 	    <p>
-	      Now we need to tell OperaWatir where it can find the
-	      binaries it depends on. This is done with environment
-	      variables.  To set environment variables on Windows XP,
-	      right-click “My Computer”, click “Properties”, find the
-	      “Advanced tab” and click the “Environment variables”
-	      button.
-	    </p>
-
-	    <p>
-	      On Windows 7, you can find these settings under “Control
-	      Panel” → “System and Security” → “System” → “Advanced
-	      system settings" → “Environment variables”.
-	    </p>
-
-	    <p>
-	      Click the "New" button to add a new variable. Add the
-	      variable <var>OPERA_PATH</var> with the
-	      value <var>C:\Program Files\Opera\opera.exe</var>. If
-	      your Opera install is elsewhere, change the value
-	      accordingly.  Also, set the
-	      variable <var>OPERA_LAUNCHER</var>
-	      to <var>C:\jruby-1.5.2\lib\ruby\gems\1.8\gems\operawatir-0.3-java\launchers\launcher-win32-i86pc.exe</var>.
-	      If these programs are installed elsewhere on your
-	      system, please adjust the variables accordingly.
-	    </p>
-	  </li>
-
-	  <li>
-	    <p>
 	      If you are using Windows XP, you might need to
 	      install <a href="http://www.microsoft.com/downloads/details.aspx?displaylang=en&amp;FamilyID=9b2da534-3e03-4391-8a4d-074b9f2bc1bf">Microsoft
 	      Visual C++ 2008 Redistributable Package (x86)</a>.
@@ -123,23 +82,23 @@
 
 	  <li>
 	    <p>
-	      And we are done! have a look at the
-        <a href="tutorial.html">tutorial</a> for an introductory guide to
-        OperaWatir.
-      </p>
+	      And we are done! have a look at the <a
+	      href="tutorial.html">tutorial</a> for an introductory
+	      guide to OperaWatir.
+	    </p>
 
 	    <p>
-	      Note: On some Windows computers, there is a problem
+	      (Note: On some Windows computers, there is a problem
 	      where Opera will not automatically connect to the
 	      running script.  If Opera opens but does not do anything,
 	      simply click the “Connect” button.  Your script should
-	      then proceed as normal.
+	      then proceed as normal.)
 	    </p>
 	  </li>
 	</ol>
 
 
-	<h3 id="gnulinux">Installing OperaWatir on GNU/Linux</h3>
+	<h3 id="gnulinux">Installing OperaWatir on GNU/Linux or Mac OS X</h3>
 
 	<ol>
 	  <li>
@@ -153,8 +112,8 @@
 
 	    <p>
 	      Or, to make sure you get the most recent version, you
-	      can manually download it from
-	      here: <a href="http://www.opera.com/browser/">http://www.opera.com/browser/</a>.
+	      can manually download it from here: <a
+	      href="http://www.opera.com/browser/">http://www.opera.com/browser/</a>.
 	      Packages are available for the most commonly used
 	      distributions.
 	    </p>
@@ -162,25 +121,17 @@
 
 	  <li>
 	    <p>
-	      Once Opera is installed, some configuration is
-	      required.  Navigate
-	      to <a href="opera:config">opera:config</a> and enable
-	      “Proxy Auto Connect”.
-	    </p>
-	  </li>
-
-	  <li>
-	    <p>
-	      Next, you will need JRuby 1.5.1 or above.  Earlier versions
-	      will not work.  In Ubuntu, this is available from Natty Narwhal (11.04)
-	      and up with the following command:
+	      Next, you will need JRuby 1.5.1 or above.  Earlier
+	      versions will not work.  In Ubuntu, this is available
+	      from Natty Narwhal (11.04) and up with the following
+	      command:
 	    </p>
 
 	    <pre><code class="prompt"><span class="line">sudo apt-get install jruby</span></code></pre>
 
 	    <p>
-	      If you are using an older version, you can use
-	      this <a href="http://se.archive.ubuntu.com/ubuntu/pool/multiverse/j/jruby/jruby_1.5.1-1_all.deb">deb</a>
+	      If you are using an older version, you can use this <a
+	      href="http://se.archive.ubuntu.com/ubuntu/pool/multiverse/j/jruby/jruby_1.5.1-1_all.deb">deb</a>
 	      package.
 	    </p>
 	  </li>
@@ -196,29 +147,10 @@
 
 	  <li>
 	    <p>
-	      Now we need to tell OperaWatir where it can find the
-	      binaries it depends on.  This is done with environment
-	      variables.  Edit the <var>~/.bashrc</var> file in your
-	      home directory and add the following two lines or type
-	      them in to your terminal (only for current session):
+	      And we are done! have a look at the <a
+	      href="tutorial.html">tutorial</a> for an introductory
+	      guide to OperaWatir.
 	    </p>
-
-<pre><code><span class="line">export OPERA_PATH="/usr/bin/opera"</span>
-<span class='line'>export OPERA_LAUNCHER="/usr/lib/jruby/lib/ruby/gems/1.8/gems/operawatir-0.3-java/utils/launchers/launcher-linux-i686"</span></code></pre>
-
-	    <p>
-	      If the files are installed elsewhere, adjust the
-	      variables accordingly.  Restart your terminal for these
-	      changes to take effect.
-	    </p>
-	  </li>
-
-	  <li>
-	    <p>
-	      And we are done! have a look at the
-        <a href="tutorial.html">tutorial</a> for an introductory guide to
-        OperaWatir.
-      </p>
 	  </li>
 	</ol>
       </div>
@@ -231,7 +163,8 @@
         </p>
 
         <p>
-          Copyright © 2010 <a href="http://opera.com/">Opera Software ASA</a>.
+          Copyright © 2010-2011 <a href="http://opera.com/">Opera
+          Software ASA</a>.
         </p>
       </div>
     </footer>
