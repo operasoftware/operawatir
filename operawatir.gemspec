@@ -5,12 +5,12 @@
 
 Gem::Specification.new do |s|
   s.name = %q{operawatir}
-  s.version = "0.3.1"
+  s.version = "0.3.2"
   s.platform = %q{jruby}
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Deniz Turkoglu", "Andreas Tolf Tolfsen", "Chris Lloyd", "Stuart Knightley"]
-  s.date = %q{2011-01-27}
+  s.date = %q{2011-01-31}
   s.description = %q{    OperaWatir is a part of the Watir (pronounced water) family of
     free software Ruby libraries for automating web
     browsers.  OperaWatir provides a querying engine and Ruby bindings
@@ -311,14 +311,11 @@ Gem::Specification.new do |s|
     "spec/legacy_watirspec/watir_compatibility_spec.rb",
     "spec/legacy_watirspec/watirspec_helper.rb",
     "spec/new_watirspec/browser_spec.rb",
+    "spec/new_watirspec/clipboard_spec.rb",
     "spec/new_watirspec/collection_spec.rb",
     "spec/new_watirspec/element_spec.rb",
     "spec/new_watirspec/guards.rb",
-    "spec/new_watirspec/lib/guards.rb",
-    "spec/new_watirspec/lib/implementation.rb",
-    "spec/new_watirspec/lib/runner.rb",
-    "spec/new_watirspec/lib/server.rb",
-    "spec/new_watirspec/lib/watirspec.rb",
+    "spec/new_watirspec/keys_spec.rb",
     "spec/new_watirspec/server.rb",
     "spec/new_watirspec/watirspec_helper.rb",
     "spec/new_watirspec/window_spec.rb"
