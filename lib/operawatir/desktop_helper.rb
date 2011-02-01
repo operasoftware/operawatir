@@ -34,9 +34,11 @@ module OperaWatir::Helper
       
       config.before(:all) {
         if OperaWatir::Helper::settings[:no_restart] == false
-          path = File.join(Dir.getwd, @@files.shift)
-          filepath = path.chomp(".rb")
-          browser.reset_prefs(filepath)
+          unless @@files.empty?
+            path = File.join(Dir.getwd, @@files.shift)
+            filepath = path.chomp(".rb")
+            browser.reset_prefs(filepath)
+          end
         else
           # Must create browser object here so that none of the
           # test is run before Opera has been launched
