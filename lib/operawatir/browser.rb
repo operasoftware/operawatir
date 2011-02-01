@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 class OperaWatir::Browser
 
-  attr_accessor :driver, :active_window
+  attr_accessor :driver, :active_window, :preferences, :keys
 
   def self.settings=(settings={})
     @opera_driver_settings = nil  # Bust cache
@@ -17,8 +17,10 @@ class OperaWatir::Browser
   def initialize
     OperaWatir.compatibility! unless OperaWatir.api >= 2
 
-    self.driver = OperaDriver.new(self.class.opera_driver_settings)
+    self.driver        = OperaDriver.new(self.class.opera_driver_settings)
     self.active_window = OperaWatir::Window.new(self)
+    self.preferences   = OperaWatir::Preferences.new(self)
+    self.keys          = OperaWatir::Keys.new(self)
   end
 
   # Get the name of the browser currently being run.
@@ -60,11 +62,6 @@ class OperaWatir::Browser
   # TODO This should be on Windows
   def close_all
     driver.closeAll
-  end
-
-  # Accesses the keys API in OperaWatir::Keys.
-  def keys
-    OperaWatir::Keys.new(self)
   end
 
   # Set preference pref in prefs section prefs_section to value
