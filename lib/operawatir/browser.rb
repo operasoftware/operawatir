@@ -194,13 +194,25 @@ class OperaWatir::Browser
   # Copies the currently selected content to the clipboard.
   # Equivalent to pressing Ctrl-C in a desktop browser.
   def copy
-    @driver.operaAction('Copy')
+
+    # FIXME: #copy, #cut! and #paste really shouldn't use platform-
+    # dependent keypresses like this. But until DSK-327491 is fixed,
+    # this will have to do.
+    if OperaWatir::Platform.os == :macosx
+      keys.send [:command, 'c']
+    else
+      keys.send [:control, 'c']
+    end
   end
 
   # Cuts the currently selected content to the clipboard.
   # Equivalent to pressing Ctrl-X in a desktop browser.
   def cut!
-    @driver.operaAction('Cut')
+    if OperaWatir::Platform.os == :macosx
+      keys.send [:command, 'x']
+    else
+      keys.send [:control, 'x']
+    end
   end
 
   # Pastes content from the clipboard into the currently focused
@@ -208,7 +220,11 @@ class OperaWatir::Browser
   # To paste content into a <textarea> or an <input> field,
   # remember to click it first.
   def paste
-    @driver.operaAction('Paste')
+    if OperaWatir::Platform.os == :macosx
+      keys.send [:command, 'v']
+    else
+      keys.send [:control, 'v']
+    end
   end
 
 
