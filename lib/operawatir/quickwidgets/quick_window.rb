@@ -81,8 +81,6 @@ module OperaWatir
       element.isOnScreen
     end
     
-    alias_method :visible?, :on_screen?
-
     ######################################################################
     # Gets this windows window id
     #
