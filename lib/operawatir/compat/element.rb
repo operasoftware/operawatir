@@ -103,7 +103,7 @@ class OperaWatir::Element
       self.text = value
     else
       assert_enabled
-      click!
+      click_async
     end
   end
 
