@@ -8,7 +8,7 @@ require 'operawatir'
 require 'rspec'
 require 'rbconfig'
 
-module OperaWatir::Helper
+module OperaWatir::DesktopHelper
   extend self
   
   def settings
@@ -33,7 +33,7 @@ module OperaWatir::Helper
       config.include SpecHelpers
       
       config.before(:all) {
-        if OperaWatir::Helper::settings[:no_restart] == false
+        if OperaWatir::DesktopHelper::settings[:no_restart] == false
           unless @@files.empty?
             path = File.join(Dir.getwd, @@files.shift)
             filepath = path.chomp(".rb")
@@ -74,7 +74,7 @@ private
 
   module SpecHelpers
     def browser
-      OperaWatir::Helper.browser
+      OperaWatir::DesktopHelper.browser
     end
 
     def window
