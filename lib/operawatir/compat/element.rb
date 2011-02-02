@@ -159,6 +159,12 @@ class OperaWatir::Element
     attr(:colspan).to_i
   end
 
+
+  # Opera-specific
+  def compare_hash(other)
+    visual_hash == other.visual_hash
+  end
+
 private
 
   def assert_enabled!
