@@ -73,7 +73,7 @@ class OperaWatir::Element
     node.click(x.to_i, y.to_i)
   end
 
-  alias_method :click_no_wait, :click_async
+  alias_method :click_no_wait, :click_async!
 
   # Focuses the element
   def focus

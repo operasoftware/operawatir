@@ -95,23 +95,23 @@ class OperaWatir::Element
     node.click(x.to_i, y.to_i)
   end
 
-  def click_async
+  def click_async!
     node.click 1
   end
 
-  def double_click
+  def double_click!
     node.click 2
   end
 
-  def triple_click
+  def triple_click!
     node.click 3
   end
 
-  def quadruple_click
+  def quadruple_click!
     node.click 4
   end
 
-  def right_click
+  def right_click!
     node.rightClick
   end
 
@@ -127,7 +127,7 @@ class OperaWatir::Element
 
   def text=(string)
     # Focus before typing
-    node.click
+    click_async!
     node.sendKeys(string.split('').to_java(:string))
   end
 
