@@ -8,7 +8,7 @@ module OperaWatir
     end
     
     ######################################################################
-    # Switch to the dialog tab by clicking on it 
+    # Switches to the dialog tab by clicking on it 
     #
     # @raise [DesktopExceptions::WidgetNotVisibleException] if the dialogtab 
     #            is not visible

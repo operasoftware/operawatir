@@ -1,109 +1,102 @@
 #!/usr/bin/env jruby
-
 require 'rubygems'
-
 require 'optparse'
-require 'ostruct'
-require 'rbconfig'
 require 'rspec'
+require 'rbconfig'
 require 'operawatir'
+require 'operawatir/desktop_helper'
 
-# Encoding fix
-$KCODE = "UTF8"
+@options = {
+  :ng            => false,
+  :color_enabled => Config::CONFIG['host_os'] =~ /mswin|mingw|bccwin|wince|emx/ ? false : true,
+  :check_syntax  => false,
+  :format	     => 'progress', 
+  :no_quit		 => false,
+  :no_restart   => false
+}
 
-class Options
+# TODO
+#   Should steal https://github.com/rspec/rspec-core/blob/master/lib/rspec/core/option_parser.rb
 
-  def self.parse(args)
-    options = OpenStruct.new
+begin
+  OptionParser.new do |opts|
+    opts.banner = <<EOS
+Usage: desktopwatir [-l|--launcher=BINARY] [-e|--executable=BINARY] [-a|--args=ARGUMENTS]
+       [--no-color] [-q|--no-quit] [-r|--no-restart] [-f|--format=FORMAT] [-o|--out=FILE] [-h|--help] [-v|--version] FILES
+EOS
 
-    options.ng           = false
-    options.inspectr     = ENV['OPERA_INSPECTR'] || ''
-    options.color        = Config::CONFIG['host_os'] =~ /mswin|msys|mingw32/ ? false : true
-    options.check_syntax = false
-    options.format       = 'progress'
-    options.executable   = ENV['OPERA_PATH'] || ''
-    options.options      = ENV['OPERA_ARGS'] || ''
+    opts.separator ""
+    opts.separator "Specific options:"
 
-    opts = OptionParser.new do |opts|
-      opts.banner = "Usage: operawatir [--ng] [-i|--inspectr] [--color] [-c|--check-syntax]\n" +
-        "       [-f|--format=FORMAT[:OUT_FILE]] [-e|--executable=BINARY] [-o|--options=OPTIONS]\n" +
-        "       [-h|--help] [-v|--version] FILES"
-
-      opts.separator ""
-      opts.separator "Specific options:"
-
-      opts.on('--ng', 'Connect to Nailgun server instead of starting our ',
-              'own JVM') do |ng|
-        options.ng = ng
-      end
-
-      opts.on('-i', '--inspectr', 'Attach inspectr to browser instance') do |i|
-        options.inspectr = i
-      end
-
-      opts.on('--color', 'Enable colorized output (default: enabled)') do |c|
-        options.color = c
-      end
-
-      opts.on('-c', '--check-syntax', 'Check syntax only') do |c|
-        options.check_syntax = c
-      end
-
-      opts.on('-f', '--format=FORMAT[:OUT_FILE]',
-              [:OperaHelperFormatter, :SpartanFormatter, :progress,
-              :documentation],
-              'Specify RSpec output format (OperaHelperFormatter,',
-              'SpartanFormatter, Specdoc) and optionally an output',
-              'file') do |t|
-        options.format = t
-      end
-
-      opts.on('-e', '--executable=EXECUTABLE', 'Browser to run the test with.  ',
-              'Will override environmental variable OPERA_PATH') do |e|
-        options.executable = e
-      end
-
-      opts.on('-o', '--options=OPTIONS', 'Options passed to the optional executable.  ',
-              'Will override environmental variable OPERA_ARGS') do |o|
-        options.options = o
-      end
-
-      opts.separator ''
-      opts.separator 'Common options:'
-
-      opts.on_tail('-h', '--help', 'Show this message') do
-        abort opts
-      end
-
-      opts.on_tail('-v', '--version', 'Show version') do
-        abort "OperaWatir version #{OperaWatir.version}"
-      end
+    opts.on('-l', '--launcher=BINARY', 'Path to launcher binary, will use environmental ',
+            'variable OPERA_LAUNCHER if not specified') do |c|
+      @options[:launcher] = c
     end
 
-    opts.parse!(args)
-    options
-  end
+    opts.on('-e', '--executable=BINARY', 'Browser to run the test with, will use environmental ',
+            'variable OPERA_PATH if not specified') do |e|
+      @options[:path] = e
+    end
 
+    opts.on('-a', '--args=ARGUMENTS', 'Arguments passed to the executable.  ',
+            'Will override environmental variable OPERA_ARGS') do |a|
+      @options[:args] = a
+    end
+
+    opts.on('--no-color', 'Disable colorized output') do |c|
+      @options[:color_enabled] = false
+    end
+
+    opts.on('-q', '--no-quit', 'Disable quitting of Opera at the end of a testrun') do |c|
+      @options[:no_quit] = true
+    end
+
+   opts.on('-r', '--no-restart', 'Disables automatic relaunching of Opera') do |c|
+      @options[:no_restart] = true
+    end
+
+    #opts.on('-c', '--check-syntax', 'Check syntax only') do |c|
+    #  @options[:check_syntax] = true
+    #end
+
+    #opts.on('--ng', 'Connect to Nailgun server instead of starting out ',
+    #        'own JVM') do |ng|
+    #  @options[:ng] = ng
+    #end
+  
+    opts.on('-f', '--format=FORMAT',
+            'Specify RSpec output formatter (documentation, html, ',
+            'progress (default), textmate)') do |formatter|
+      @options[:formatter] = formatter
+    end
+
+    opts.on('-o', '--out=FILE', 'Send output to a file instead of STDOUT') do |o|
+      @options[:output_stream] = File.open(o, 'w') or
+        abort "desktopwatir: Unable to write to file `#{o}'"
+    end
+
+    opts.separator ''
+    opts.separator 'Common options:'
+
+    opts.on_tail('-h', '--help', 'Show this message') do
+      abort opts
+    end
+
+    opts.on_tail('-v', '--version', 'Show version') do
+      abort "OperaWatir version #{OperaWatir.version}"
+    end
+  end.parse!(ARGV)
+rescue OptionParser::InvalidOption => e
+  abort "desktopwatir: Unknown option `#{e.to_s.sub(/invalid option:\s+/, '')}'"
 end
 
-options = Options.parse(ARGV)
-
-abort 'operawatir: You need to specify at least one test file to run' if ARGV.empty?
-abort 'operawatir: --ng and --check-syntax is disabled for now' if options.ng or options.check_syntax
-
-RSpec.configure do |c|
-  c.color_enabled = options.color
-  c.formatter     = options.format
-  c.files_to_run  = ARGV
-  c.formatter 	  = "documentation"
+if ARGV.empty?
+  abort 'desktopwatir: You need to specify at least one test file to run'
+else
+  @options[:files_to_run] = ARGV
+  @options[:files_to_run].map! { | f | Dir.glob(f) }.flatten!
 end
 
-require 'operawatir/desktop-waiter'
+#abort 'desktopwatir: --ng and --check-syntax are disabled for now' if @options[:ng] || @options[:check_syntax]
 
-OperaWatir::Waiter.configure do |c|
-  c.path = options.executable
-  c.args = options.options
-  c.inspectr = options.inspectr
-end
-
-OperaWatir::Waiter.run!
+OperaWatir::DesktopHelper.run! @options

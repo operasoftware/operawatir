@@ -8,7 +8,7 @@ module OperaWatir
     end
 
     ######################################################################
-    # Set focus to the edit field by clicking on it
+    # Sets focus to the edit field by clicking on it
     #
     # @raise [DesktopExceptions::WidgetNotVisibleException] if the editfield 
     #            is not visible
@@ -24,17 +24,22 @@ module OperaWatir
     #       selected can be typed, and the edit field must have focus.
     #
     # @param [String] text text string to type in
+    # @param wait - seconds to wait after typing
     # 
     # @return [String] contents of the edit field after typing has completed
     #
-    def type_text(text)
+    def type_text(text, wait = 0)
       text.each_char { | t | key_press_direct t }
       
       # No event yet so just cheat and sleep
-      sleep(0.2);
+      sleep(0.2)
 
       # Return what is in the field to check
-      element(true).getText
+      text = element(true).getText
+      
+      sleep(wait) if wait != 0
+      
+      text
     end
 
     ######################################################################

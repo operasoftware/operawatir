@@ -6,8 +6,8 @@ class OperaWatir::Platform
 
     path = case os
     when :windows
-      raise Exceptions::NotImplementedException, 'only 32-bit windows supported' if bitsize == 64
-      'utils/launchers/launcher-win32-i86pc.exe'
+	  # 32 bit launcher works on both 32 and 64 bit versions of Windows
+      "utils/launchers/launcher-win32-i86pc.exe"
     when :linux
       postfix = bitsize == 64 ? 'x86_64' : 'i686'
       "utils/launchers/launcher-linux-#{postfix}"
