@@ -512,7 +512,7 @@ module OperaWatir
     # new Prefs
     #
     def reset_prefs(new_prefs)
-      @driver.resetOperaPrefs(new_prefs)
+      driver.resetOperaPrefs(new_prefs)
     end
     
     ##############################################################################
@@ -522,7 +522,7 @@ module OperaWatir
     #
     #
     def delete_profile
-      @driver.deleteOperaPrefs
+      driver.deleteOperaPrefs
     end
     
 private
