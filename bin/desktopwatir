@@ -99,8 +99,4 @@ end
 
 #abort 'desktopwatir: --ng and --check-syntax are disabled for now' if @options[:ng] || @options[:check_syntax]
 
-# TODO Be smarter about figuring out the Opera/Launcher path
-#warn 'desktopwatir: Launch path is not specified.' if !ENV['OPERA_LAUNCHER'] && !@options[:launcher]
-#warn 'desktopwatir: Browser path is not specified.' if !ENV['OPERA_PATH'] && !@options[:path]
-
-OperaWatir::Helper.run! @options
+OperaWatir::DesktopHelper.run! @options
