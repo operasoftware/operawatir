@@ -9,7 +9,7 @@ module OperaWatir
     
     # @private
     def initialize
-      OperaWatir.compatibility! unless OperaWatir.use_version >= 2
+      OperaWatir.compatibility! unless OperaWatir.api >= 2
 
       self.driver = OperaDesktopDriver.new(self.class.opera_driver_settings)
       self.active_window = OperaWatir::Window.new(self)
@@ -532,7 +532,7 @@ private
        s.setRunOperaLauncherFromOperaDriver true
        s.setOperaLauncherBinary self.settings[:launcher]
        s.setOperaBinaryLocation self.settings[:path]
-       s.setOperaBinaryArguments self.settings[:args] + ' -watirtest'# + ' -pd her'
+       s.setOperaBinaryArguments self.settings[:args] + ' -watirtest'
        s.setNoQuit self.settings[:no_quit]
        s.setNoRestart self.settings[:no_restart]
      }
