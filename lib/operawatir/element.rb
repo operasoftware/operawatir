@@ -225,4 +225,10 @@ private
     end
   end
 
+  def find_elements_by_name(value)
+    node.findElementsByName(value).to_a.map do |n|
+      OperaWatir::Element.new(n)
+    end
+  end
+
 end

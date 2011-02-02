@@ -5,12 +5,12 @@
 
 Gem::Specification.new do |s|
   s.name = %q{operawatir}
-  s.version = "0.3.1"
+  s.version = "0.3.3"
   s.platform = %q{jruby}
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Deniz Turkoglu", "Andreas Tolf Tolfsen", "Chris Lloyd", "Stuart Knightley"]
-  s.date = %q{2011-02-01}
+  s.date = %q{2011-02-02}
   s.description = %q{    OperaWatir is a part of the Watir (pronounced water) family of
     free software Ruby libraries for automating web
     browsers.  OperaWatir provides a querying engine and Ruby bindings
@@ -217,6 +217,8 @@ Gem::Specification.new do |s|
     "spec/legacy_watirspec/watir_compatibility_spec.rb",
     "spec/legacy_watirspec/watirspec_helper.rb",
     "utils/Rakefile",
+    "utils/formatters/operahelper_formatter.rb",
+    "utils/formatters/spartan_formatter.rb",
     "utils/launchers/launcher-linux-i686",
     "utils/launchers/launcher-linux-x86_64",
     "utils/launchers/launcher-mac",
@@ -322,6 +324,7 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<jeweler>, ["~> 1.5.1"])
       s.add_development_dependency(%q<rcov>, [">= 0"])
       s.add_development_dependency(%q<yard>, [">= 0.6.3"])
+      s.add_development_dependency(%q<bluecloth>, ["= 1.0.1"])
       s.add_development_dependency(%q<rspec>, [">= 2.4"])
       s.add_development_dependency(%q<sinatra>, [">= 1.0.0"])
       s.add_development_dependency(%q<mongrel>, [">= 1.1.5"])
@@ -339,6 +342,7 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<jeweler>, ["~> 1.5.1"])
       s.add_dependency(%q<rcov>, [">= 0"])
       s.add_dependency(%q<yard>, [">= 0.6.3"])
+      s.add_dependency(%q<bluecloth>, ["= 1.0.1"])
       s.add_dependency(%q<rspec>, [">= 2.4"])
       s.add_dependency(%q<sinatra>, [">= 1.0.0"])
       s.add_dependency(%q<mongrel>, [">= 1.1.5"])
@@ -357,6 +361,7 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<jeweler>, ["~> 1.5.1"])
     s.add_dependency(%q<rcov>, [">= 0"])
     s.add_dependency(%q<yard>, [">= 0.6.3"])
+    s.add_dependency(%q<bluecloth>, ["= 1.0.1"])
     s.add_dependency(%q<rspec>, [">= 2.4"])
     s.add_dependency(%q<sinatra>, [">= 1.0.0"])
     s.add_dependency(%q<mongrel>, [">= 1.1.5"])
