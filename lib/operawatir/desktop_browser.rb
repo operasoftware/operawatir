@@ -28,15 +28,15 @@ module OperaWatir
     # Quits Opera
     #
     def quit_opera
-      driver.quit_opera
+      driver.quitOpera
     end
     
     ######################################################################
     # Restarts Opera
     #
     def restart
-      driver.quit_opera
-      driver.start_opera
+      driver.quitOpera
+      driver.startOpera
     end
 
     ######################################################################
