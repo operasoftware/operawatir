@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 class OperaWatir::Browser
 
-  attr_accessor :driver, :active_window, :preferences, :keys
+  attr_accessor :driver, :active_window, :preferences, :keys, :spatnav
 
   def self.settings=(settings={})
     @opera_driver_settings = nil  # Bust cache
