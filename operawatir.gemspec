@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Deniz Turkoglu", "Andreas Tolf Tolfsen", "Chris Lloyd", "Stuart Knightley"]
-  s.date = %q{2011-02-02}
+  s.date = %q{2011-02-03}
   s.description = %q{    OperaWatir is a part of the Watir (pronounced water) family of
     free software Ruby libraries for automating web
     browsers.  OperaWatir provides a querying engine and Ruby bindings
@@ -24,6 +24,7 @@ Gem::Specification.new do |s|
     "README.md"
   ]
   s.files = [
+    ".gitmodules",
     ".yardopts",
     "AUTHORS",
     "Gemfile",
@@ -35,6 +36,7 @@ Gem::Specification.new do |s|
     "bin/operawatir",
     "lib/operadriver/APACHE_2.0_LICENSE.txt",
     "lib/operadriver/NEW_BSD_LICENSE.txt",
+    "lib/operadriver/commons-io-2.0.1.jar",
     "lib/operadriver/commons-jxpath-1.3.jar",
     "lib/operadriver/protobuf-java-2.3.0.jar",
     "lib/operadriver/selenium-common.jar",
@@ -55,11 +57,13 @@ Gem::Specification.new do |s|
     "lib/operawatir/desktop_container.rb",
     "lib/operawatir/desktop_enums.rb",
     "lib/operawatir/desktop_exceptions.rb",
+    "lib/operawatir/desktop_helper.rb",
     "lib/operawatir/element.rb",
     "lib/operawatir/exceptions.rb",
     "lib/operawatir/helper.rb",
     "lib/operawatir/keys.rb",
     "lib/operawatir/platform.rb",
+    "lib/operawatir/preferences.rb",
     "lib/operawatir/quickwidgets.rb",
     "lib/operawatir/quickwidgets/quick_addressfield.rb",
     "lib/operawatir/quickwidgets/quick_button.rb",
@@ -312,7 +316,18 @@ Gem::Specification.new do |s|
     "spec/legacy_watirspec/ul_spec.rb",
     "spec/legacy_watirspec/uls_spec.rb",
     "spec/legacy_watirspec/watir_compatibility_spec.rb",
-    "spec/legacy_watirspec/watirspec_helper.rb"
+    "spec/legacy_watirspec/watirspec_helper.rb",
+    "spec/new_watirspec/browser_spec.rb",
+    "spec/new_watirspec/clipboard_spec.rb",
+    "spec/new_watirspec/collection_spec.rb",
+    "spec/new_watirspec/element_spec.rb",
+    "spec/new_watirspec/guards.rb",
+    "spec/new_watirspec/keys_spec.rb",
+    "spec/new_watirspec/preferences_spec.rb",
+    "spec/new_watirspec/server.rb",
+    "spec/new_watirspec/spatnav_spec.rb",
+    "spec/new_watirspec/watirspec_helper.rb",
+    "spec/new_watirspec/window_spec.rb"
   ]
 
   if s.respond_to? :specification_version then
@@ -331,6 +346,8 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<rr>, [">= 1.0.2"])
       s.add_development_dependency(%q<clipboard>, [">= 0.9.5"])
       s.add_runtime_dependency(%q<rspec>, [">= 2.4"])
+      s.add_runtime_dependency(%q<inifile>, [">= 0.3"])
+      s.add_runtime_dependency(%q<active_support>, [">= 3.0.1"])
       s.add_development_dependency(%q<jeweler>, [">= 0"])
       s.add_development_dependency(%q<rake>, [">= 0"])
       s.add_development_dependency(%q<yard>, [">= 0"])
@@ -349,6 +366,8 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<rr>, [">= 1.0.2"])
       s.add_dependency(%q<clipboard>, [">= 0.9.5"])
       s.add_dependency(%q<rspec>, [">= 2.4"])
+      s.add_dependency(%q<inifile>, [">= 0.3"])
+      s.add_dependency(%q<active_support>, [">= 3.0.1"])
       s.add_dependency(%q<jeweler>, [">= 0"])
       s.add_dependency(%q<rake>, [">= 0"])
       s.add_dependency(%q<yard>, [">= 0"])
@@ -368,6 +387,8 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<rr>, [">= 1.0.2"])
     s.add_dependency(%q<clipboard>, [">= 0.9.5"])
     s.add_dependency(%q<rspec>, [">= 2.4"])
+    s.add_dependency(%q<inifile>, [">= 0.3"])
+    s.add_dependency(%q<active_support>, [">= 3.0.1"])
     s.add_dependency(%q<jeweler>, [">= 0"])
     s.add_dependency(%q<rake>, [">= 0"])
     s.add_dependency(%q<yard>, [">= 0"])
