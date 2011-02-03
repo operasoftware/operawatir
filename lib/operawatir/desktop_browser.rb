@@ -43,7 +43,7 @@ module OperaWatir
     # Quits the driver without exiting Opera
     #
     def quit_driver
-      driver.shutdown
+      driver.quitDriver
     end
       
     ######################################################################
