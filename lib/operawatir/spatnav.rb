@@ -23,7 +23,7 @@ class OperaWatir::Spatnav
     driver.operaAction('Navigate right')
   end
 
-  def activate!
+  def activate
     driver.operaAction('Activate element')
   end
 
@@ -31,4 +31,5 @@ private
   def driver
     browser.driver
   end
+
 end
