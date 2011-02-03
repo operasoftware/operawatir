@@ -8,12 +8,11 @@ module OperaWatir
       "Open url in new window"]
     
     # @private
-    def initialize (executable_location = nil, *arguments)
-      if executable_location.nil? or executable_location.length == 0
-        @driver = OperaDesktopDriver.new
-      else
-        @driver = OperaDesktopDriver.new(executable_location, arguments.to_java(:String))
-      end
+    def initialize
+      OperaWatir.compatibility! unless OperaWatir.api >= 2
+
+      self.driver = OperaDesktopDriver.new(self.class.opera_driver_settings)
+      self.active_window = OperaWatir::Window.new(self)
     end
 
     # @private
@@ -21,15 +20,30 @@ module OperaWatir
     # dialogs to autoclose in Dialog.cpp when then OnUrlChanged is fired 
     # after a dialog is opened
     def goto(url = "")
-      super
+      super #active_window.url = url
       sleep(1)
+    end
+
+    ######################################################################
+    # Quits Opera
+    #
+    def quit_opera
+      driver.quitOpera
+    end
+    
+    ######################################################################
+    # Restarts Opera
+    #
+    def restart
+      driver.quitOpera
+      driver.startOpera
     end
 
     ######################################################################
     # Quits the driver without exiting Opera
     #
-    def quit_driver()
-      @driver.shutdown
+    def quit_driver
+      driver.quitDriver
     end
       
     ######################################################################
@@ -226,7 +240,7 @@ module OperaWatir
     # @return [Array] Array of widgets retrieved from the window
     #
     def widgets(win_name)
-      @driver.getQuickWidgetList(win_name).map do |java_widget|
+      driver.getQuickWidgetList(win_name).map do |java_widget|
         case java_widget.getType
           when QuickWidget::WIDGET_ENUM_MAP[:button]
             QuickButton.new(self,java_widget)
@@ -254,13 +268,15 @@ module OperaWatir
       end.to_a
     end
    
+    alias_method :quick_widgets, :widgets
+    
     ####################################################
     # Retrieves an array of all windows 
     #
     # @return [Array] Array of windows
     #
-    def windows
-      @driver.getWindowList.map do |java_window|
+    def quick_windows
+      driver.getQuickWindowList.map do |java_window|
         QuickWindow.new(self,java_window)
       end.to_a
     end
@@ -268,7 +284,7 @@ module OperaWatir
     #@private
     # Retrieve all tabs
     def open_pages
-      windows.select { |win| win.name == "Document Window" }
+      quick_windows.select { |win| win.name == "Document Window" }
     end
     
     #@private
@@ -304,8 +320,8 @@ module OperaWatir
     #
     # @return [String] Name of the window
     #
-    def get_window_name(win_id)
-      @driver.getWindowName(win_id)
+    def window_name(win_id)
+      driver.getQuickWindowName(win_id)
     end
      
     ######################################################################
@@ -352,8 +368,8 @@ module OperaWatir
     #
     # @return [String] Full path to the opera executable 
     #
-    def get_opera_path
-      @driver.getOperaPath()
+    def path
+      driver.getOperaPath()
     end
 
     ######################################################################
@@ -361,8 +377,8 @@ module OperaWatir
     #
     # @return [String] Full path to the large preferences folder
     #
-    def get_large_preferences_path
-      @driver.getLargePreferencesPath()
+    def large_preferences_path
+      driver.getLargePreferencesPath()
     end
   
     ######################################################################
@@ -370,8 +386,8 @@ module OperaWatir
     #
     # @return [String] Full path to the small preferences folder
     #
-    def get_small_preferences_path
-      @driver.getSmallPreferencesPath()
+    def small_preferences_path
+      driver.getSmallPreferencesPath()
     end
   
     ######################################################################
@@ -379,8 +395,8 @@ module OperaWatir
     #
     # @return [String] Full path to the cache preferences folder
     #
-    def get_cache_preferences_path
-      @driver.getCachePreferencesPath()
+    def cache_preferences_path
+      driver.getCachePreferencesPath()
     end
 
     ######################################################################
@@ -392,6 +408,11 @@ module OperaWatir
       Config::CONFIG['target_os'] == "darwin"
     end
     
+    ######################################################################
+    # Returns true if the test is running on Linux 
+    #
+    # @return [Boolean] true we the operating system is Linux, otherwise false 
+    #
     def linux?
        Config::CONFIG['target_os'] == "linux"
      end
@@ -469,13 +490,13 @@ module OperaWatir
     # Close all open dialogs
     #
     def close_all_dialogs
-      win_id = driver.getActiveWindowID()
+      win_id = driver.getActiveQuickWindowID()
       until quick_window(:id, win_id).type != :dialog do
-        win = quick_window(:id, driver.getActiveWindowID())
+        win = quick_window(:id, driver.getActiveQuickWindowID())
         if win.type == :dialog
           close_dialog(win.name)
-          if (driver.getActiveWindowID() != win_id)
-            win_id = driver.getActiveWindowID()
+          if (driver.getActiveQuickWindowID() != win_id)
+            win_id = driver.getActiveQuickWindowID()
           else
             break
           end
@@ -483,14 +504,40 @@ module OperaWatir
       end
     end
     
+    ############################################################################
+    #
+    # Reset prefs
+    #
+    # Quits Opera and copies prefs from src to dest, then restarts Opera with the
+    # new Prefs
+    #
+    def reset_prefs(new_prefs)
+      driver.resetOperaPrefs(new_prefs)
+    end
     
-=begin  
-  TODO:  
-  def delete_cookies
-  def reset_main_window
-=end    
-  
+    ##############################################################################
+    #
+    # Deletes profile for the connected Opera instance.
+    # Should only be called after quitting (and before starting) Opera.
+    #
+    #
+    def delete_profile
+      driver.deleteOperaPrefs
+    end
+    
 private
+
+   def self.opera_driver_settings
+     @opera_driver_settings ||= OperaDriverSettings.new.tap {|s|
+       s.setRunOperaLauncherFromOperaDriver true
+       s.setOperaLauncherBinary self.settings[:launcher]
+       s.setOperaBinaryLocation self.settings[:path]
+       s.setOperaBinaryArguments self.settings[:args] + ' -watirtest'
+       s.setNoQuit self.settings[:no_quit]
+       s.setNoRestart self.settings[:no_restart]
+     }
+   end
+   
     # Gets the parent widget name of which there is none here
     def parent_widget
       nil

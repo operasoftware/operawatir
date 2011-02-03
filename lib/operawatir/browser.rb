@@ -21,6 +21,7 @@ class OperaWatir::Browser
     self.active_window = OperaWatir::Window.new(self)
     self.preferences   = OperaWatir::Preferences.new(self)
     self.keys          = OperaWatir::Keys.new(self)
+    self.spatnav       = OperaWatir::Spatnav.new(self)
   end
 
   # Get the name of the browser currently being run.
@@ -161,7 +162,7 @@ class OperaWatir::Browser
   # @param [String] name of the action
   # @return [String] optional return from the performed action
   def opera_action(name, *args)
-    @driver.operaAction(name, param.to_java(:string))
+    driver.operaAction(name, param.to_java(:string))
   end
 
   # Full list of available Opera actions in the Opera build you're
@@ -172,7 +173,50 @@ class OperaWatir::Browser
   #
   # @return [String] list of available Opera actions
   def opera_action_list
-    @driver.getOperaActionList
+    driver.getOperaActionList
+  end
+
+  # Selects all content in the currently focused element. Equivalent
+  # to pressing Ctrl-A in a desktop browser. To select content in
+  # a <textarea> or an <input> field, remember to click it first.
+  def select_all
+    driver.operaAction('Select all')
+  end
+
+  # Copies the currently selected content to the clipboard.
+  # Equivalent to pressing Ctrl-C in a desktop browser.
+  def copy
+
+    # FIXME: #copy, #cut and #paste really shouldn't use platform-
+    # dependent keypresses like this.  But until DSK-327491 is fixed,
+    # this will have to do.
+    if OperaWatir::Platform.os == :macosx
+      keys.send [:command, 'c']
+    else
+      keys.send [:control, 'c']
+    end
+  end
+
+  # Cuts the currently selected content to the clipboard.  Equivalent
+  # to pressing C-x in a desktop browser.
+  def cut
+    if OperaWatir::Platform.os == :macosx
+      keys.send [:command, 'x']
+    else
+      keys.send [:control, 'x']
+    end
+  end
+
+  # Pastes content from the clipboard into the currently focused
+  # element.  Equivalent to pressing C-v in a desktop browser.  To
+  # paste content into textarea or input fields, remember to click it
+  # first.
+  def paste
+    if OperaWatir::Platform.os == :macosx
+      keys.send [:command, 'v']
+    else
+      keys.send [:control, 'v']
+    end
   end
 
 private
@@ -182,7 +226,7 @@ private
       s.setRunOperaLauncherFromOperaDriver true
       s.setOperaLauncherBinary self.settings[:launcher]
       s.setOperaBinaryLocation self.settings[:path]
-      s.setOperaBinaryArguments self.settings[:args] + ' -watirtest'
+      s.setOperaBinaryArguments self.settings[:args] + ' opera:debug' #+ ' -watirtest'
     }
   end
 

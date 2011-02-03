@@ -91,7 +91,7 @@ class OperaWatir::Element
 
   # Events
 
-  def click!(x=0, y=0)
+  def click(x=0, y=0)
     node.click(x.to_i, y.to_i)
   end
 
@@ -127,7 +127,7 @@ class OperaWatir::Element
 
   def text=(string)
     # Focus before typing
-    node.click
+    click_async
     node.sendKeys(string.split('').to_java(:string))
   end
 
@@ -137,7 +137,7 @@ class OperaWatir::Element
     raise Exceptions::NotImplementedException
   end
 
-  def trigger!(event, x = 0, y = 0)
+  def fire_event(event, x = 0, y = 0)
     loc = location
     x += loc[:x]
     y += loc[:y]
@@ -221,6 +221,12 @@ private
 
   def find_elements_by_xpath(value)
     node.findElementsByXPath(value).to_a.map do |n|
+      OperaWatir::Element.new(n)
+    end
+  end
+
+  def find_elements_by_name(value)
+    node.findElementsByName(value).to_a.map do |n|
       OperaWatir::Element.new(n)
     end
   end

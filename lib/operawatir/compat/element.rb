@@ -73,12 +73,12 @@ class OperaWatir::Element
     node.click(x.to_i, y.to_i)
   end
 
+  alias_method :click_no_wait, :click_async
+
   # Focuses the element
   def focus
-    trigger! :focus
+    fire_event :focus
   end
-
-  alias_method :fire_event, :trigger!
 
   # Submits a form, or the form the elment is contained in.
   def submit
@@ -101,7 +101,7 @@ class OperaWatir::Element
       self.text = value
     else
       assert_enabled
-      click!
+      click_async
     end
   end
 
@@ -157,6 +157,12 @@ class OperaWatir::Element
   # @return [Fixnum] the colspan
   def colspan
     attr(:colspan).to_i
+  end
+
+
+  # Opera-specific
+  def compare_hash(other)
+    visual_hash == other.visual_hash
   end
 
 private

@@ -5,12 +5,12 @@
 
 Gem::Specification.new do |s|
   s.name = %q{operawatir}
-  s.version = "0.3.1"
+  s.version = "0.3.3"
   s.platform = %q{jruby}
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Deniz Turkoglu", "Andreas Tolf Tolfsen", "Chris Lloyd", "Stuart Knightley"]
-  s.date = %q{2011-01-27}
+  s.date = %q{2011-02-02}
   s.description = %q{    OperaWatir is a part of the Watir (pronounced water) family of
     free software Ruby libraries for automating web
     browsers.  OperaWatir provides a querying engine and Ruby bindings
@@ -78,6 +78,7 @@ Gem::Specification.new do |s|
     "lib/operawatir/quickwidgets/quick_widget.rb",
     "lib/operawatir/quickwidgets/quick_window.rb",
     "lib/operawatir/selector.rb",
+    "lib/operawatir/spatnav.rb",
     "lib/operawatir/version.rb",
     "lib/operawatir/window.rb",
     "operawatir.gemspec",
@@ -216,6 +217,8 @@ Gem::Specification.new do |s|
     "spec/legacy_watirspec/watir_compatibility_spec.rb",
     "spec/legacy_watirspec/watirspec_helper.rb",
     "utils/Rakefile",
+    "utils/formatters/operahelper_formatter.rb",
+    "utils/formatters/spartan_formatter.rb",
     "utils/launchers/launcher-linux-i686",
     "utils/launchers/launcher-linux-x86_64",
     "utils/launchers/launcher-mac",
@@ -309,19 +312,7 @@ Gem::Specification.new do |s|
     "spec/legacy_watirspec/ul_spec.rb",
     "spec/legacy_watirspec/uls_spec.rb",
     "spec/legacy_watirspec/watir_compatibility_spec.rb",
-    "spec/legacy_watirspec/watirspec_helper.rb",
-    "spec/new_watirspec/browser_spec.rb",
-    "spec/new_watirspec/collection_spec.rb",
-    "spec/new_watirspec/element_spec.rb",
-    "spec/new_watirspec/guards.rb",
-    "spec/new_watirspec/lib/guards.rb",
-    "spec/new_watirspec/lib/implementation.rb",
-    "spec/new_watirspec/lib/runner.rb",
-    "spec/new_watirspec/lib/server.rb",
-    "spec/new_watirspec/lib/watirspec.rb",
-    "spec/new_watirspec/server.rb",
-    "spec/new_watirspec/watirspec_helper.rb",
-    "spec/new_watirspec/window_spec.rb"
+    "spec/legacy_watirspec/watirspec_helper.rb"
   ]
 
   if s.respond_to? :specification_version then
@@ -338,6 +329,7 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<sinatra>, [">= 1.0.0"])
       s.add_development_dependency(%q<mongrel>, [">= 1.1.5"])
       s.add_development_dependency(%q<rr>, [">= 1.0.2"])
+      s.add_development_dependency(%q<clipboard>, [">= 0.9.5"])
       s.add_runtime_dependency(%q<rspec>, [">= 2.4"])
       s.add_development_dependency(%q<jeweler>, [">= 0"])
       s.add_development_dependency(%q<rake>, [">= 0"])
@@ -355,6 +347,7 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<sinatra>, [">= 1.0.0"])
       s.add_dependency(%q<mongrel>, [">= 1.1.5"])
       s.add_dependency(%q<rr>, [">= 1.0.2"])
+      s.add_dependency(%q<clipboard>, [">= 0.9.5"])
       s.add_dependency(%q<rspec>, [">= 2.4"])
       s.add_dependency(%q<jeweler>, [">= 0"])
       s.add_dependency(%q<rake>, [">= 0"])
@@ -373,6 +366,7 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<sinatra>, [">= 1.0.0"])
     s.add_dependency(%q<mongrel>, [">= 1.1.5"])
     s.add_dependency(%q<rr>, [">= 1.0.2"])
+    s.add_dependency(%q<clipboard>, [">= 0.9.5"])
     s.add_dependency(%q<rspec>, [">= 2.4"])
     s.add_dependency(%q<jeweler>, [">= 0"])
     s.add_dependency(%q<rake>, [">= 0"])

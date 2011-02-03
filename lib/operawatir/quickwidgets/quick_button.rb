@@ -117,7 +117,13 @@ module OperaWatir
     end
           
     alias_method :close_panel_with_click, :close_toolbar_with_click
-    
+ 
+    ######################################################################
+    # Clicks button to expand or collapse the toolbar
+    #
+    # @raise [DesktopExceptions::WidgetNotVisibleException] if the button
+    #            is not visible
+    #
     def expand_with_click
       click
       sleep(0.1)

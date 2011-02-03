@@ -4,15 +4,20 @@ require 'java'
 include Java
 
 %w(commons-jxpath-1.3.jar protobuf-java-2.3.0.jar selenium-common.jar
-   webdriver-opera.jar).each { |jar| require "operadriver/#{jar}" }
+   webdriver-opera.jar commons-io-2.0.1.jar).each { |jar| require "operadriver/#{jar}" }
 
 include_class org.openqa.selenium.WebDriver
 include_class org.openqa.selenium.RenderedWebElement
 include_class org.openqa.selenium.NoSuchElementException
-include_class com.opera.core.systems.OperaDesktopDriver
 include_class com.opera.core.systems.OperaDriver
 include_class com.opera.core.systems.OperaWebElement
 include_class com.opera.core.systems.settings.OperaDriverSettings
+
+# Desktop stuff
+include_class com.opera.core.systems.OperaDesktopDriver
+include_class com.opera.core.systems.scope.protos.DesktopWmProtos
+include_class com.opera.core.systems.scope.protos.SystemInputProtos
+include_class com.opera.core.systems.QuickWidget
 
 $KCODE = 'u'  # UTF-8 support
 
@@ -42,6 +47,7 @@ require 'operawatir/version'
 require 'operawatir/platform'
 require 'operawatir/keys'
 require 'operawatir/preferences'
+require 'operawatir/spatnav'
 
 require 'operawatir/exceptions'
 require 'operawatir/selector'
@@ -51,3 +57,11 @@ require 'operawatir/window'
 require 'operawatir/browser'
 
 require 'operawatir/compat'
+
+# Desktop stuff
+require 'operawatir/desktop_enums'
+require 'operawatir/desktop_common'
+require 'operawatir/desktop_container'
+require 'operawatir/desktop_browser'
+require 'operawatir/quickwidgets'
+require 'operawatir/desktop_exceptions'

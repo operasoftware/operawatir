@@ -6,7 +6,7 @@ module OperaWatir
     # @private
     def initialize(container, method, selector=nil)
       @container = container
-                            
+      
       if method.is_a? Java::ComOperaCoreSystems::QuickWindow
         @elm = method
       else
@@ -16,7 +16,7 @@ module OperaWatir
     end
 
     ######################################################################
-    # Checks whether a widget exists or not
+    # Checks whether a window exists or not
     #
     # @return [Boolean] true if the widget exists otherwise false
     #
@@ -28,7 +28,7 @@ module OperaWatir
     alias_method :exists?, :exist?
     
     ######################################################################
-    # Gets the type of a widget
+    # Gets the type of a window
     #
     # @return [Symbol] type of the window (e.g. :dropdown, :button)
     #
@@ -38,7 +38,7 @@ module OperaWatir
     end
     
     ######################################################################
-    # Get the name of the widget (as it appears in dialog.ini or code)
+    # Gets the name of the window
     #
     # @return [String] name of the widget
     #
@@ -49,7 +49,7 @@ module OperaWatir
     end
     
     ######################################################################
-    # Get the title of the window
+    # Gets the title of the window
     #
     # @return [String] title of window
     #
@@ -61,7 +61,7 @@ module OperaWatir
         
     
     ######################################################################
-    # Get a string representation of the window
+    # Gets a string representation of the window
     #
     # @return [String] representation of the widget
     #
@@ -81,10 +81,8 @@ module OperaWatir
       element.isOnScreen
     end
     
-    alias_method :visible?, :on_screen?
-
     ######################################################################
-    # Get the window id
+    # Gets this windows window id
     #
     # @return [int] the windows window_id
     #
@@ -98,19 +96,29 @@ module OperaWatir
         
     ######################################################################
     # Prints out all of the internal information about the window. Used
-    # to discover the names of widgets and windows to use in the tests
+    # to discover the names of widgets and windows to use in the tests.
     #
     # @raise [Exceptions::UnknownObjectException] if the widget could not be found
     #           using the specified method
+    #@private
     def print_window_info
-      puts "    Name: " + name
-      puts "   Title: " + title
-      puts "      ID: " + id.to_s
-      puts "    Type: " + type.to_s
-      puts "OnScreen: " + on_screen?.to_s
-      puts "     Pos: x=" + element.getRect().x.to_s + ", y=" + element.getRect().y.to_s
-      puts "    Size: width=" + element.getRect().width.to_s + ", height=" + element.getRect().height.to_s
-      puts ""
+      puts window_info_string
+    end
+
+    ######################################################################
+    # Returns a string of the internal information about the window. Used
+    # to discover the names of widgets and windows to use in the tests.
+    #
+    # @raise [Exceptions::UnknownObjectException] if the widget could not be found
+    #           using the specified method
+    def window_info_string
+      "    Name: " + name +
+      "\n   Title: " + title +
+      "\n      ID: " + id.to_s +
+      "\n    Type: " + type.to_s +
+      "\nOnScreen: " + on_screen?.to_s +
+      "\n     Pos: x=" + element.getRect().x.to_s + ", y=" + element.getRect().y.to_s +
+      "\n    Size: width=" + element.getRect().width.to_s + ", height=" + element.getRect().height.to_s + "\n"
     end
 
     # @private    
@@ -137,9 +145,16 @@ private
     
     # Finds the element on the page.  
     def find
+      #puts "<find> Find Window by " + @method.to_s + ", selector = " + @selector.to_s
       case @method
       when :name
-        @element = driver.findWindowByName(@selector)
+        # Use active window when specifying by name "Document Window"
+        # and not the first if there are more than one 
+        if (@selector == "Document Window")
+          @element = driver.findWindowById(driver.getActiveQuickWindowID())
+        else
+          @element = driver.findWindowByName(@selector)
+        end
       when :id
         @element = driver.findWindowById(@selector)
       end

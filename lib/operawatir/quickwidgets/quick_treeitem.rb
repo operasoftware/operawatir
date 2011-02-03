@@ -80,7 +80,7 @@ module OperaWatir
      
     
     ######################################################################
-    # Switch to the tree view tab by clicking on it (e.g. on the 
+    # Switches to the tree view tab by clicking on it (e.g. on the 
     # Advanced page of the preferences dialog) 
     #
     # @raise [DesktopExceptions::WidgetNotVisibleException] if the treeitem
@@ -119,7 +119,7 @@ private
     def scroll_item_into_view
       
       # Make sure we have a window id
-      win_id = window_id >= 0 ? window_id : driver.getActiveWindowID()
+      win_id = window_id >= 0 ? window_id : driver.getActiveQuickWindowID()
       
       # Filter only treeitems in parent_treeview
       treeitems = driver.getQuickWidgetList(win_id).select do |wdg|
