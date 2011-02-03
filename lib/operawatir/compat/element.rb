@@ -77,10 +77,8 @@ class OperaWatir::Element
 
   # Focuses the element
   def focus
-    trigger! :focus
+    fire_event :focus
   end
-
-  alias_method :fire_event, :trigger!
 
   # Submits a form, or the form the elment is contained in.
   def submit

@@ -137,7 +137,7 @@ class OperaWatir::Element
     raise Exceptions::NotImplementedException
   end
 
-  def trigger!(event, x = 0, y = 0)
+  def fire_event(event, x = 0, y = 0)
     loc = location
     x += loc[:x]
     y += loc[:y]
