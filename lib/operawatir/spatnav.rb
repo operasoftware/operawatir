@@ -7,6 +7,9 @@ class OperaWatir::Spatnav
     self.browser = browser
   end
 
+  # FIXME: These should be implemented as proper methods in
+  # OperaDriver.
+
   def up
     driver.operaAction('Navigate up')
   end
