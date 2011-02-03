@@ -66,6 +66,11 @@ class OperaWatir::Browser
     OperaWatir::Keys.new(self)
   end
 
+  # Accesses the Spatial Navigation API in OperaWatir::Spatnav.
+  def spatnav
+    OperaWatir::Spatnav.new(self)
+  end
+
   # Set preference pref in prefs section prefs_section to value
   # specified.
   #
@@ -176,6 +181,51 @@ class OperaWatir::Browser
   def opera_action_list
     @driver.getOperaActionList
   end
+
+
+  # Selects all content in the currently focused element. Equivalent
+  # to pressing Ctrl-A in a desktop browser. To select content in
+  # a <textarea> or an <input> field, remember to click it first.
+  def select_all
+    @driver.operaAction('Select all')
+  end
+
+  # Copies the currently selected content to the clipboard.
+  # Equivalent to pressing Ctrl-C in a desktop browser.
+  def copy
+
+    # FIXME: #copy, #cut! and #paste really shouldn't use platform-
+    # dependent keypresses like this. But until DSK-327491 is fixed,
+    # this will have to do.
+    if OperaWatir::Platform.os == :macosx
+      keys.send [:command, 'c']
+    else
+      keys.send [:control, 'c']
+    end
+  end
+
+  # Cuts the currently selected content to the clipboard.
+  # Equivalent to pressing Ctrl-X in a desktop browser.
+  def cut!
+    if OperaWatir::Platform.os == :macosx
+      keys.send [:command, 'x']
+    else
+      keys.send [:control, 'x']
+    end
+  end
+
+  # Pastes content from the clipboard into the currently focused
+  # element. Equivalent to pressing Ctrl-V in a desktop browser.
+  # To paste content into a <textarea> or an <input> field,
+  # remember to click it first.
+  def paste
+    if OperaWatir::Platform.os == :macosx
+      keys.send [:command, 'v']
+    else
+      keys.send [:control, 'v']
+    end
+  end
+
 
 private
 

@@ -10,4 +10,5 @@ group :development do
   gem "sinatra", ">= 1.0.0"
   gem "mongrel", ">= 1.1.5"
   gem "rr", ">= 1.0.2"
+  gem "clipboard", ">= 0.9.5"
 end

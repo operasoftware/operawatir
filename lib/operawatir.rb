@@ -46,6 +46,7 @@ end
 require 'operawatir/version'
 require 'operawatir/platform'
 require 'operawatir/keys'
+require 'operawatir/spatnav'
 
 require 'operawatir/exceptions'
 require 'operawatir/selector'
