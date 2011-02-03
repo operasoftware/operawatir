@@ -33,14 +33,16 @@ EOF
 
   gem.add_dependency 'rspec', '>= 2.4'
   gem.add_dependency 'inifile', '>= 0.3'
-  gem.add_dependency 'active_support', '>= 3.0.1'
+  gem.add_dependency 'activesupport', '>= 3.0.1'
 
   gem.add_development_dependency 'jeweler'
   gem.add_development_dependency 'rake'
+  gem.add_development_dependency 'bluecloth', '= 1.0.1'
   gem.add_development_dependency 'yard'
   gem.add_development_dependency 'mongrel', '>= 1.1.5'
   gem.add_development_dependency 'sinatra', '>= 1.1'
   gem.add_development_dependency 'rr'
+  gem.add_development_dependency 'clipboard'
 
   gem.files.exclude '.gitignore'
 end
