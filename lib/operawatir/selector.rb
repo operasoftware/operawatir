@@ -43,7 +43,7 @@ class OperaWatir::Selector
   end
 
   META_TYPES.each do |name|
-    define_method name do |blk|
+    define_method name do |&blk|
       list = BlockBuilder.new(self)
       blk.call(list)
       self.sexp = list.items.inject([name]) do |items, item|
