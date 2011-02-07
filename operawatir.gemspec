@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Deniz Turkoglu", "Andreas Tolf Tolfsen", "Chris Lloyd", "Stuart Knightley"]
-  s.date = %q{2011-02-03}
+  s.date = %q{2011-02-07}
   s.description = %q{    OperaWatir is a part of the Watir (pronounced water) family of
     free software Ruby libraries for automating web
     browsers.  OperaWatir provides a querying engine and Ruby bindings
@@ -47,7 +47,6 @@ Gem::Specification.new do |s|
     "lib/operawatir/compat.rb",
     "lib/operawatir/compat/browser.rb",
     "lib/operawatir/compat/collection.rb",
-    "lib/operawatir/compat/deprecation.rb",
     "lib/operawatir/compat/element.rb",
     "lib/operawatir/compat/element_finders.rb",
     "lib/operawatir/compat/window.rb",
@@ -222,11 +221,7 @@ Gem::Specification.new do |s|
     "spec/legacy_watirspec/watirspec_helper.rb",
     "utils/Rakefile",
     "utils/formatters/operahelper_formatter.rb",
-    "utils/formatters/spartan_formatter.rb",
-    "utils/launchers/launcher-linux-i686",
-    "utils/launchers/launcher-linux-x86_64",
-    "utils/launchers/launcher-mac",
-    "utils/launchers/launcher-win32-i86pc.exe"
+    "utils/formatters/spartan_formatter.rb"
   ]
   s.homepage = %q{http://operasoftware.github.com/operawatir}
   s.require_paths = ["lib"]
@@ -324,6 +319,7 @@ Gem::Specification.new do |s|
     "spec/new_watirspec/guards.rb",
     "spec/new_watirspec/keys_spec.rb",
     "spec/new_watirspec/preferences_spec.rb",
+    "spec/new_watirspec/screenshot_spec.rb",
     "spec/new_watirspec/server.rb",
     "spec/new_watirspec/spatnav_spec.rb",
     "spec/new_watirspec/watirspec_helper.rb",
@@ -337,18 +333,17 @@ Gem::Specification.new do |s|
     if Gem::Version.new(Gem::RubyGemsVersion) >= Gem::Version.new('1.2.0') then
       s.add_development_dependency(%q<bundler>, ["~> 1.0.0"])
       s.add_development_dependency(%q<jeweler>, [">= 0"])
-      s.add_development_dependency(%q<rcov>, [">= 0"])
-      s.add_development_dependency(%q<yard>, [">= 0"])
       s.add_development_dependency(%q<bluecloth>, ["= 1.0.1"])
-      s.add_development_dependency(%q<rspec>, [">= 2.4"])
-      s.add_development_dependency(%q<sinatra>, [">= 1.1"])
+      s.add_development_dependency(%q<yard>, [">= 0"])
       s.add_development_dependency(%q<mongrel>, [">= 1.1.5"])
+      s.add_development_dependency(%q<sinatra>, [">= 1.1"])
       s.add_development_dependency(%q<rr>, [">= 0"])
       s.add_development_dependency(%q<clipboard>, [">= 0"])
       s.add_runtime_dependency(%q<rspec>, [">= 2.4"])
       s.add_runtime_dependency(%q<inifile>, [">= 0.3"])
       s.add_runtime_dependency(%q<i18n>, [">= 0"])
       s.add_runtime_dependency(%q<activesupport>, [">= 3.0.1"])
+      s.add_runtime_dependency(%q<deprecated>, [">= 0"])
       s.add_development_dependency(%q<jeweler>, [">= 0"])
       s.add_development_dependency(%q<rake>, [">= 0"])
       s.add_development_dependency(%q<bluecloth>, ["= 1.0.1"])
@@ -360,18 +355,17 @@ Gem::Specification.new do |s|
     else
       s.add_dependency(%q<bundler>, ["~> 1.0.0"])
       s.add_dependency(%q<jeweler>, [">= 0"])
-      s.add_dependency(%q<rcov>, [">= 0"])
-      s.add_dependency(%q<yard>, [">= 0"])
       s.add_dependency(%q<bluecloth>, ["= 1.0.1"])
-      s.add_dependency(%q<rspec>, [">= 2.4"])
-      s.add_dependency(%q<sinatra>, [">= 1.1"])
+      s.add_dependency(%q<yard>, [">= 0"])
       s.add_dependency(%q<mongrel>, [">= 1.1.5"])
+      s.add_dependency(%q<sinatra>, [">= 1.1"])
       s.add_dependency(%q<rr>, [">= 0"])
       s.add_dependency(%q<clipboard>, [">= 0"])
       s.add_dependency(%q<rspec>, [">= 2.4"])
       s.add_dependency(%q<inifile>, [">= 0.3"])
       s.add_dependency(%q<i18n>, [">= 0"])
       s.add_dependency(%q<activesupport>, [">= 3.0.1"])
+      s.add_dependency(%q<deprecated>, [">= 0"])
       s.add_dependency(%q<jeweler>, [">= 0"])
       s.add_dependency(%q<rake>, [">= 0"])
       s.add_dependency(%q<bluecloth>, ["= 1.0.1"])
@@ -384,18 +378,17 @@ Gem::Specification.new do |s|
   else
     s.add_dependency(%q<bundler>, ["~> 1.0.0"])
     s.add_dependency(%q<jeweler>, [">= 0"])
-    s.add_dependency(%q<rcov>, [">= 0"])
-    s.add_dependency(%q<yard>, [">= 0"])
     s.add_dependency(%q<bluecloth>, ["= 1.0.1"])
-    s.add_dependency(%q<rspec>, [">= 2.4"])
-    s.add_dependency(%q<sinatra>, [">= 1.1"])
+    s.add_dependency(%q<yard>, [">= 0"])
     s.add_dependency(%q<mongrel>, [">= 1.1.5"])
+    s.add_dependency(%q<sinatra>, [">= 1.1"])
     s.add_dependency(%q<rr>, [">= 0"])
     s.add_dependency(%q<clipboard>, [">= 0"])
     s.add_dependency(%q<rspec>, [">= 2.4"])
     s.add_dependency(%q<inifile>, [">= 0.3"])
     s.add_dependency(%q<i18n>, [">= 0"])
     s.add_dependency(%q<activesupport>, [">= 3.0.1"])
+    s.add_dependency(%q<deprecated>, [">= 0"])
     s.add_dependency(%q<jeweler>, [">= 0"])
     s.add_dependency(%q<rake>, [">= 0"])
     s.add_dependency(%q<bluecloth>, ["= 1.0.1"])
