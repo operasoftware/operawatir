@@ -50,6 +50,7 @@ require 'operawatir/preferences'
 require 'operawatir/spatnav'
 
 require 'operawatir/exceptions'
+require 'operawatir/deprecation'
 require 'operawatir/selector'
 require 'operawatir/element'
 require 'operawatir/collection'
