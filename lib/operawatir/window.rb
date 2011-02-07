@@ -68,22 +68,22 @@ class OperaWatir::Window
   # Keyboard
 
   def key(key)
-    deprecation 'Window#key is deprecated as of v0.4'
+    deprecation 'Window#key is deprecated as of v0.4; use browser.keys.send instead'
     driver.key(key)
   end
 
   def key_down(key)
-    deprecation 'Window#key_down is deprecated as of v0.4'
+    deprecation 'Window#key_down is deprecated as of v0.4; use browser.keys.down instead'
     driver.keyDown(key)
   end
 
   def key_up(key)
-    deprecation 'Window#key_up is deprecated as of v0.4'
+    deprecation 'Window#key_up is deprecated as of v0.4; use browser.keys.up or browser.keys.release instead'
     driver.keyUp(key)
   end
 
   def type(text)
-    deprecation 'Window#type is deprecated as of v0.4'
+    deprecation 'Window#type is deprecated as of v0.4; use browser.keys.send instead'
     driver.type(text)
   end
 
