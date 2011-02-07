@@ -1,19 +1,24 @@
 # -*- coding: utf-8 -*-
 class OperaWatir::Browser
+  include OperaWatir::Deprecation
 
   attr_accessor :driver, :active_window, :preferences, :keys, :spatnav
 
   def self.settings=(settings={})
     @opera_driver_settings = nil  # Bust cache
-    @settings = settings.merge! :launcher => OperaWatir::Platform.launcher,
-                                :path     => OperaWatir::Platform.opera,
-                                :args     => OperaWatir::Platform.args
+    @settings = settings
   end
 
   def self.settings
     @settings || self.settings = {}
   end
 
+  # Constructs a new OperaDriver::Browser object.
+  #
+  # @example
+  #   browser = OperaWatir::Browser.new
+  #
+  # @return [Object] OperaWatir::Browser class.
   def initialize
     OperaWatir.compatibility! unless OperaWatir.api >= 2
 
@@ -26,7 +31,7 @@ class OperaWatir::Browser
 
   # Get the name of the browser currently being run.
   #
-  # @return [String] name of browser currently used
+  # @return [String] Name of browser currently used.
   def name
     'Opera'
   end
@@ -40,21 +45,21 @@ class OperaWatir::Browser
   # not the same as checking whether the object is connected to a
   # browser.
   #
-  # @return [Boolean] whether Browser object exists
+  # @return [Boolean] Whether Browser object exists.
   def exists?
     true
   end
 
   # Query to see if the browser instance is still connected.
   #
-  # @return [Boolean] whether driver is still connected to browser
-  #   instance
+  # @return [Boolean] Whether driver is still connected to browser
+  #   instance.
   def connected?
     driver.isConnected
   end
 
   # Instruct the browser instance to quit and shut down.
-  def quit!
+  def quit
     driver.shutdown
   end
 
@@ -69,7 +74,7 @@ class OperaWatir::Browser
   # the version number for OperaWatir, which can be retrieved using
   # +OperaWatir.version+ instead.
   #
-  # @return [String] driver version
+  # @return [String] Driver version.
   def version
     driver.getOperaDriverVersion
   end
@@ -77,7 +82,7 @@ class OperaWatir::Browser
   # Get process identifier for spawned Opera browser instance.  This
   # will only work if instance was started through OperaWatir.
   #
-  # @return [Integer] the process ID of the browser instance
+  # @return [Integer] The process ID of the browser instance.
   def pid
     driver.getPid
   end
@@ -85,28 +90,22 @@ class OperaWatir::Browser
   # Get the target device's platform.  This is not equivalent of the
   # platform the OperaWatir server might be running on.
   #
-  # @return [String] operating system flavour
+  # @return [String] Operating system flavour of the device we're
+  #   testing on.
   def platform
     driver.getPlatform
   end
 
-  # Will fetch the build number for the attached browser instance.
-  #
-  # @return [Integer] build number of attached browser instance
-  def build
-    driver.getBuild
-  end
-
   # Get the full path to the attached browser binary.
   #
-  # @return [String] path to the attached browser's binary
+  # @return [String] Path to the attached browser's binary.
   def path
     driver.getPath
   end
 
   # Fetches the user agent (UA) string the browser currently uses.
   #
-  # @return [String] user agent string
+  # @return [String] User agent string.
   def ua_string
     driver.getUaString
   end
@@ -114,16 +113,16 @@ class OperaWatir::Browser
   # Is attached browser instance of type internal build or public
   # desktop?
   #
-  # @return [Boolean] true if browser attached is of type desktop,
-  #   false otherwise
+  # @return [Boolean] True if browser attached is of type desktop,
+  #   false otherwise.
   def desktop?
     false  # FIXME
   end
 
   # Sends an Opera action to the browser.
   #
-  # @param [String] name of the action
-  # @return [String] optional return from the performed action
+  # @param  [String] Name of the action.
+  # @return [String] Optional return from the performed action.
   def opera_action(name, *args)
     driver.operaAction(name, param.to_java(:string))
   end
@@ -134,9 +133,10 @@ class OperaWatir::Browser
   # available to devices-type builds will vary greatly from those
   # available to desktop-types.
   #
-  # @return [String] list of available Opera actions
+  # @return [String] List of available Opera actions.
   def opera_action_list
-    driver.getOperaActionList
+    deprecation! 'Browser#opera_action_list is deprecated'
+    #driver.getOperaActionList.to_s
   end
 
   # Selects all content in the currently focused element. Equivalent
@@ -187,9 +187,9 @@ private
   def self.opera_driver_settings
     @opera_driver_settings ||= OperaDriverSettings.new.tap {|s|
       s.setRunOperaLauncherFromOperaDriver true
-      s.setOperaLauncherBinary self.settings[:launcher]
-      s.setOperaBinaryLocation self.settings[:path]
-      s.setOperaBinaryArguments self.settings[:args] + ' opera:debug' #+ ' -watirtest'
+      s.setOperaLauncherBinary self.settings[:launcher] if self.settings[:launcher]
+      s.setOperaBinaryLocation self.settings[:path] if self.settings[:path]
+      s.setOperaBinaryArguments self.settings[:args].to_s + ' opera:debug' #+ ' -watirtest'
     }
   end
 
