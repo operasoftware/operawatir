@@ -8,7 +8,7 @@ require 'operawatir/helper'
 
 @options = {
   :ng            => false,
-  :color_enabled => Config::CONFIG['host_os'] =~ /mswin|mingw|bccwin|wince|emx/ ? false : true,
+  :color_enabled => OperaWatir::Platform.os == :windows ? false : true,
   :check_syntax  => false,
   :format        => 'progress'
 }
@@ -19,7 +19,7 @@ require 'operawatir/helper'
 begin
   OptionParser.new do |opts|
     opts.banner = <<EOS
-Usage: operawatir [-l|--launcher=BINARY] [-e|--executable=BINARY] [-a|--args=ARGUMENTS]
+Usage: operawatir [-l|--launcher=BINARY] [-b|--binary=BINARY] [-a|--args=ARGUMENTS]
        [--no-color] [-f|--format=FORMAT] [-o|--out=FILE] [-h|--help] [-v|--version] FILES
 EOS
 
@@ -31,7 +31,7 @@ EOS
       @options[:launcher] = c
     end
 
-    opts.on('-e', '--executable=BINARY', 'Browser to run the test with, will use environmental ',
+    opts.on('-b', '--binary=BINARY', 'Browser to run the test with, will use environmental ',
             'variable OPERA_PATH if not specified') do |e|
       @options[:path] = e
     end
@@ -44,15 +44,6 @@ EOS
     opts.on('--no-color', 'Disable colorized output') do |c|
       @options[:color_enabled] = false
     end
-
-    #opts.on('-c', '--check-syntax', 'Check syntax only') do |c|
-    #  @options[:check_syntax] = true
-    #end
-
-    #opts.on('--ng', 'Connect to Nailgun server instead of starting out ',
-    #        'own JVM') do |ng|
-    #  @options[:ng] = ng
-    #end
 
     opts.on('-f', '--format=FORMAT',
             'Specify RSpec output formatter (documentation, html, ',
@@ -85,11 +76,5 @@ if ARGV.empty?
 else
   @options[:files_to_run] = ARGV
 end
-
-#abort 'operawatir: --ng and --check-syntax are disabled for now' if @options[:ng] || @options[:check_syntax]
-
-# TODO Be smarter about figuring out the Opera/Launcher path
-warn 'operawatir: Launch path is not specified.' if !ENV['OPERA_LAUNCHER'] && !@options[:launcher]
-warn 'operawatir: Browser path is not specified.' if !ENV['OPERA_PATH'] && !@options[:path]
 
 OperaWatir::Helper.run! @options
