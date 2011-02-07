@@ -68,21 +68,24 @@ class OperaWatir::Window
   # Keyboard
 
   def key(key)
+    deprecation 'Window#key is deprecated as of v0.4'
     driver.key(key)
   end
 
   def key_down(key)
+    deprecation 'Window#key_down is deprecated as of v0.4'
     driver.keyDown(key)
   end
 
   def key_up(key)
+    deprecation 'Window#key_up is deprecated as of v0.4'
     driver.keyUp(key)
   end
 
   def type(text)
+    deprecation 'Window#type is deprecated as of v0.4'
     driver.type(text)
   end
-
 
   # Opera-specific
 
@@ -91,7 +94,7 @@ class OperaWatir::Window
   end
 
   def visual_hash(time_out=50)
-    document.visual_hash timeout
+    document.visual_hash time_out
   end
 
   # Raw finders
