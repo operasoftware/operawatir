@@ -24,7 +24,7 @@ $KCODE = 'u'  # UTF-8 support
 # TODO This should be replaced when we decide upon a better way of
 # enabling the Watir 2 API.
 module OperaWatir
-  @current_api = 1
+  @current_api = 2
 
   # Set the API version you wish to use.  Please note that setting
   # this after OperaWatir::Browser has been initialized will have no

@@ -20,7 +20,7 @@ class OperaWatir::Browser
   #
   # @return [Object] OperaWatir::Browser class.
   def initialize
-    OperaWatir.compatibility! unless OperaWatir.api >= 2
+    OperaWatir.compatibility! unless OperaWatir.api >= 3
 
     self.driver        = OperaDriver.new(self.class.opera_driver_settings)
     self.active_window = OperaWatir::Window.new(self)
