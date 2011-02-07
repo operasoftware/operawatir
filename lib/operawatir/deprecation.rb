@@ -9,7 +9,7 @@ class OperaWatir::Exceptions::DeprecationException < OperaWatir::Exceptions::Ope
   
   def message
     message = "DEPRECATION: #{@desc}".red
-    message << "\n#{@fix.green}" unless @fix.empty?
+    message << "\n  #{@fix.green}" unless @fix.empty?
     message
   end
 
