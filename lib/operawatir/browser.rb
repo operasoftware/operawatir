@@ -38,10 +38,14 @@ class OperaWatir::Browser
     'Opera'
   end
 
+  # Navigate to a new URL and return a Window object.
+  #
+  # @params [String] url The URL you wish to go to.
+  #
+  # @return [Object] A Window object.
   def url=(url)
     active_window.url = url
   end
-  alias_method :url, :url=
 
   # Tells you whether the browser object exists.  Note that this is
   # not the same as checking whether the object is connected to a
