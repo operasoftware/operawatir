@@ -142,15 +142,17 @@ class OperaWatir::Browser
   end
   deprecated :opera_action_list
 
-  # Selects all content in the currently focused element. Equivalent
-  # to pressing Ctrl-A in a desktop browser. To select content in
-  # a <textarea> or an <input> field, remember to click it first.
+  # Selects all content in the currently focused element.  Equivalent
+  # to pressing C-a in a desktop browser.  To select content in a
+  # <textarea> or an <input> field, remember to click it first.
   def select_all
+
+    # FIXME
     driver.operaAction('Select all')
   end
 
   # Copies the currently selected content to the clipboard.
-  # Equivalent to pressing Ctrl-C in a desktop browser.
+  # Equivalent to pressing C-c in a desktop browser.
   def copy
 
     # FIXME: #copy, #cut and #paste really shouldn't use platform-
@@ -166,6 +168,8 @@ class OperaWatir::Browser
   # Cuts the currently selected content to the clipboard.  Equivalent
   # to pressing C-x in a desktop browser.
   def cut
+
+    # FIXME
     if OperaWatir::Platform.os == :macosx
       keys.send [:command, 'x']
     else
@@ -178,6 +182,8 @@ class OperaWatir::Browser
   # paste content into textarea or input fields, remember to click it
   # first.
   def paste
+
+    # FIXME
     if OperaWatir::Platform.os == :macosx
       keys.send [:command, 'v']
     else
