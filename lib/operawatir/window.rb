@@ -2,6 +2,16 @@ class OperaWatir::Window
 
   attr_accessor :browser
 
+  # Creates a new window in the browser.  Note that Opera does not
+  # differentiate between windows and tabs.  To directly create a
+  # _Window_ object, pass in the _Browser_.
+  #
+  # @example
+  #   window = browser.url = 'http://example.org/'
+  #   => OperaWatir::Window
+  #
+  # @param  [Object] browser The _Browser_ object.
+  # @return [Object]         A new _Window_ object.
   def initialize(browser)
     self.browser = browser
   end
@@ -9,55 +19,82 @@ class OperaWatir::Window
 
   # Navigation
 
+  # Navigates back one step in the browser's history.
   def back
     driver.navigate.back
   end
 
+  # Navigates forward one step in the browser's history.
   def forward
     driver.navigate.forward
   end
 
+  # Stops the currently loading page.
   def stop
     driver.stop
   end
 
-  # FIXME No window management support
+  # Closes the currently open window.
   def close
-    driver.close
+    driver.close  # FIXME?
   end
 
+  # Refreshes the currently loaded page.
   def refresh
     driver.navigate.refresh
   end
 
+  # Gets the title of the document.
+  #
+  # @return [String] The title of the current document.
   def title
     driver.getTitle
   end
 
+  # Gets the URL of the document.
+  #
+  # @return [String] The URL of the current document.
   def url
     driver.getCurrentUrl
   end
 
+  # Navigates to a new URL.
+  #
+  # @param [String] url The new URL to navigate to.
   def url=(url)
     driver.get(url)
   end
   alias_method :goto, :url=  # deprecate?
 
+  # Retrieves the text without the DOM or source code from the
+  # currently loaded document.
+  #
+  # @return [String] The text of the document.
   def text
     driver.getText
   end
 
+  # Retrieves the HTML/source code of the currently loaded document.
+  #
+  # @return [String] The page source code.
   def html
     driver.getPageSource
   end
 
-  # TODO: Expose window querying from driver
+  # Checks if the window is still open.  True if the window is still
+  # present, false otherwise.
+  #
+  # @return [Boolean] Whether the window is open or not.
   def exists?
+    # TODO: Expose window querying from driver
     url != ''
   end
 
+  # TODO
+=begin
   def document
   end
+=end
 
   def eval_js(js)
     object = driver.executeScript(js, [].to_java(:string))
