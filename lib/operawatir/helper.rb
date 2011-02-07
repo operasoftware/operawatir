@@ -29,7 +29,7 @@ module OperaWatir::Helper
             
       config.include SpecHelpers
       
-      config.after(:suite) { browser.quit! if browser }
+      config.after(:suite) { browser.quit if browser }
     end
   end
 
