@@ -1,6 +1,8 @@
+require 'deprecated'
+
 # -*- coding: utf-8 -*-
 class OperaWatir::Browser
-  include OperaWatir::Deprecation
+  include Deprecated
 
   attr_accessor :driver, :active_window, :preferences, :keys, :spatnav
 
@@ -126,9 +128,9 @@ class OperaWatir::Browser
   # @param  [String] Name of the action.
   # @return [String] Optional return from the performed action.
   def opera_action(name, *args)
-    deprecation 'Browser#opera_action is deprecated as of v0.4'
     driver.operaAction(name, param.to_java(:string))
   end
+  deprecated :opera_action
 
   # Full list of available Opera actions in the Opera build you're
   # using.  Note that this list varies from configuration to
@@ -138,9 +140,9 @@ class OperaWatir::Browser
   #
   # @return [String] List of available Opera actions.
   def opera_action_list
-    deprecation 'Browser#opera_action_list is deprecated as of v0.4'
     driver.getOperaActionList.to_s
   end
+  deprecated :opera_action_list
 
   # Selects all content in the currently focused element. Equivalent
   # to pressing Ctrl-A in a desktop browser. To select content in
