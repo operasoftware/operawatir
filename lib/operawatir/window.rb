@@ -1,4 +1,5 @@
 class OperaWatir::Window
+  include Deprecated
 
   attr_accessor :browser
 
@@ -96,10 +97,12 @@ class OperaWatir::Window
   end
 =end
 
-  def eval_js(js)
+  def execute_script(js)
     object = driver.executeScript(js, [].to_java(:string))
   end
-  alias_method :execute_script, :eval_js
+  alias_method :eval_js, :execute_script
+
+  deprecated :eval_js, "window.execute_script"
 
 
   # Keyboard
@@ -108,17 +111,25 @@ class OperaWatir::Window
     driver.key(key)
   end
 
+  deprecated :key, "browser.keys.send"
+
   def key_down(key)
     driver.keyDown(key)
   end
+
+  deprecated :key, "browser.keys.down"
 
   def key_up(key)
     driver.keyUp(key)
   end
 
+  deprecated :key, "browser.keys.up or browser.keys.release"
+
   def type(text)
     driver.type(text)
   end
+
+  deprecated :key, "browser.keys.send"
 
 
   # Opera-specific
@@ -128,7 +139,7 @@ class OperaWatir::Window
   end
 
   def visual_hash(time_out=50)
-    document.visual_hash timeout
+    document.visual_hash time_out
   end
 
   # Raw finders
