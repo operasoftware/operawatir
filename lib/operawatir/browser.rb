@@ -40,8 +40,7 @@ class OperaWatir::Browser
 
   # Navigate to a new URL and return a Window object.
   #
-  # @params [String] url The URL you wish to go to.
-  #
+  # @param  [String] url The URL you wish to go to.
   # @return [Object] A Window object.
   def url=(url)
     active_window.url = url
