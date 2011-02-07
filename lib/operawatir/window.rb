@@ -1,4 +1,5 @@
 class OperaWatir::Window
+  include Deprecated
 
   attr_accessor :browser
 
@@ -59,33 +60,40 @@ class OperaWatir::Window
   def document
   end
 
-  def eval_js(js)
+  def execute_script(js)
     object = driver.executeScript(js, [].to_java(:string))
   end
-  alias_method :execute_script, :eval_js
+  alias_method :eval_js, :execute_script
+
+  deprecated :eval_js, "window.execute_script"
 
 
   # Keyboard
 
   def key(key)
-    deprecation 'Window#key is deprecated as of v0.4; use browser.keys.send instead'
     driver.key(key)
   end
 
+  deprecated :key, "browser.keys.send"
+
   def key_down(key)
-    deprecation 'Window#key_down is deprecated as of v0.4; use browser.keys.down instead'
     driver.keyDown(key)
   end
 
+  deprecated :key, "browser.keys.down"
+
   def key_up(key)
-    deprecation 'Window#key_up is deprecated as of v0.4; use browser.keys.up or browser.keys.release instead'
     driver.keyUp(key)
   end
 
+  deprecated :key, "browser.keys.up or browser.keys.release"
+
   def type(text)
-    deprecation 'Window#type is deprecated as of v0.4; use browser.keys.send instead'
     driver.type(text)
   end
+
+  deprecated :key, "browser.keys.send"
+
 
   # Opera-specific
 
