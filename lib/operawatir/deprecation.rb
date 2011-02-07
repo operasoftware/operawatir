@@ -1,5 +1,3 @@
-require 'colorize'
-
 class OperaWatir::Exceptions::DeprecationException < OperaWatir::Exceptions::OperaWatirException
   
   def initialize(desc, fix, trace)
@@ -8,8 +6,8 @@ class OperaWatir::Exceptions::DeprecationException < OperaWatir::Exceptions::Ope
   end
   
   def message
-    message = "DEPRECATION: #{@desc}".red
-    message << "\n  #{@fix.green}" unless @fix.empty?
+    message = "DEPRECATION: #{@desc}"
+    message << "\n  #{@fix}" unless @fix.empty?
     message
   end
 
