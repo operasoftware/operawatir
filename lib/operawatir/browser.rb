@@ -1,5 +1,3 @@
-require 'deprecated'
-
 # -*- coding: utf-8 -*-
 class OperaWatir::Browser
   include Deprecated
