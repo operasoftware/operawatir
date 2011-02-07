@@ -124,6 +124,7 @@ class OperaWatir::Browser
   # @param  [String] Name of the action.
   # @return [String] Optional return from the performed action.
   def opera_action(name, *args)
+    deprecation 'Browser#opera_action is deprecated as of v0.4', 'Use a standard API call instead'
     driver.operaAction(name, param.to_java(:string))
   end
 
@@ -135,8 +136,8 @@ class OperaWatir::Browser
   #
   # @return [String] List of available Opera actions.
   def opera_action_list
-    deprecation! 'Browser#opera_action_list is deprecated'
-    #driver.getOperaActionList.to_s
+    deprecation 'Browser#opera_action_list is deprecated as of v0.4', 'Use a standard API call instead'
+    driver.getOperaActionList.to_s
   end
 
   # Selects all content in the currently focused element. Equivalent
