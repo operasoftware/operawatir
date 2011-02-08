@@ -139,7 +139,7 @@ class OperaWatir::Element
 
   def text=(string)
     # Focus before typing
-    click_async
+    clear unless value.empty?
     node.sendKeys(string.split('').to_java(:string))
   end
 
