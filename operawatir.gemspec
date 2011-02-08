@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Deniz Turkoglu", "Andreas Tolf Tolfsen", "Chris Lloyd", "Stuart Knightley"]
-  s.date = %q{2011-02-07}
+  s.date = %q{2011-02-08}
   s.description = %q{    OperaWatir is a part of the Watir (pronounced water) family of
     free software Ruby libraries for automating web
     browsers.  OperaWatir provides a querying engine and Ruby bindings
@@ -339,7 +339,7 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<sinatra>, [">= 1.1"])
       s.add_development_dependency(%q<rr>, [">= 0"])
       s.add_development_dependency(%q<clipboard>, [">= 0"])
-      s.add_runtime_dependency(%q<rspec>, [">= 2.4"])
+      s.add_runtime_dependency(%q<rspec>, ["= 2.4"])
       s.add_runtime_dependency(%q<inifile>, [">= 0.3"])
       s.add_runtime_dependency(%q<i18n>, [">= 0"])
       s.add_runtime_dependency(%q<activesupport>, [">= 3.0.1"])
@@ -361,7 +361,7 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<sinatra>, [">= 1.1"])
       s.add_dependency(%q<rr>, [">= 0"])
       s.add_dependency(%q<clipboard>, [">= 0"])
-      s.add_dependency(%q<rspec>, [">= 2.4"])
+      s.add_dependency(%q<rspec>, ["= 2.4"])
       s.add_dependency(%q<inifile>, [">= 0.3"])
       s.add_dependency(%q<i18n>, [">= 0"])
       s.add_dependency(%q<activesupport>, [">= 3.0.1"])
@@ -384,7 +384,7 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<sinatra>, [">= 1.1"])
     s.add_dependency(%q<rr>, [">= 0"])
     s.add_dependency(%q<clipboard>, [">= 0"])
-    s.add_dependency(%q<rspec>, [">= 2.4"])
+    s.add_dependency(%q<rspec>, ["= 2.4"])
     s.add_dependency(%q<inifile>, [">= 0.3"])
     s.add_dependency(%q<i18n>, [">= 0"])
     s.add_dependency(%q<activesupport>, [">= 3.0.1"])
