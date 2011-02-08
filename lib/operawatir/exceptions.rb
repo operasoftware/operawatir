@@ -37,5 +37,8 @@ module OperaWatir::Exceptions
 
   # Raised when pressing a modifier key that doesn't exist.
   class InvalidKeyException < OperaWatirException; end
+
+  # Raised when an exception occurs in Preferences.
+  class PreferencesException < OperaWatirException; end
   
 end
