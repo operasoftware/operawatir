@@ -23,7 +23,7 @@ include_class com.opera.core.systems.QuickWidget
 $KCODE = 'u'  # UTF-8 support
 
 # TODO This should be replaced when we decide upon a better way of
-# enabling the Watir 2 API.
+# enabling the Watir 3 API.
 module OperaWatir
   @current_api = 2
 
