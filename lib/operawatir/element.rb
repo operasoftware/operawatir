@@ -68,9 +68,21 @@ class OperaWatir::Element
 
   alias_method :to_s, :text
 
-  def_delegator :node, :getValue, :value
   def_delegator :node, :getElementName, :tag_name
   def_delegator :node, :clear, :clear
+
+  # On elements of type `input`, `textarea` or `select` it will fetch
+  # the texteditable `value` attribute, on every other element type it
+  # returns the DOM attribute `value`.
+  #
+  # @return [String] Value of the element.
+  def value
+    if tag_name =~ /input|textarea|select/i
+      node.getValue
+    else
+      attr :value
+    end
+  end
 
   def disabled?
     !enabled?
@@ -132,6 +144,7 @@ class OperaWatir::Element
   end
 
   alias_method :set, :text=
+  alias_method :value=, :text=
 
   def send_keys(*list)
     raise Exceptions::NotImplementedException

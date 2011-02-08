@@ -33,19 +33,6 @@ class OperaWatir::Element
 
   alias_method :to_s, :text
 
-  # On elements of type `<input>` this gets the value of the value
-  # attribute, on every other element type it returns the text
-  # content.
-  #
-  # @return [String] value of the element
-  def value
-    if tag_name == 'INPUT' or attr?(:value)
-      attr(:value)
-    else
-      text
-    end
-  end
-
   # Checks whether the text content of the element contains the given
   # string In the compatibility layer as the preferred way of doing
   # this is.
