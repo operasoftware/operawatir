@@ -39,7 +39,7 @@ EOF
 
   gem.add_development_dependency 'jeweler'
   gem.add_development_dependency 'rake'
-  gem.add_development_dependency 'bluecloth', '= 1.0.1'
+  gem.add_development_dependency 'BlueCloth', '= 1.0.1'
   gem.add_development_dependency 'yard'
   gem.add_development_dependency 'mongrel', '>= 1.1.5'
   gem.add_development_dependency 'sinatra', '>= 1.1'
