@@ -81,7 +81,7 @@ class OperaWatir::Browser
   #
   # @return [String] Driver version.
   def version
-    driver.getOperaDriverVersion
+    driver.getVersion
   end
 
   # Get process identifier for spawned Opera browser instance.  This
