@@ -97,11 +97,14 @@ class OperaWatir::Window
   end
 =end
 
+  # Executes the given JavaScript on the current window.
+  #
+  # @param  [String] js The script to be executed.
+  # @return [String]    Optionally returns the JS result.
   def execute_script(js)
     object = driver.executeScript(js, [].to_java(:string))
   end
   alias_method :eval_js, :execute_script
-
   deprecated :eval_js, "window.execute_script"
 
 
@@ -110,30 +113,40 @@ class OperaWatir::Window
   def key(key)
     driver.key(key)
   end
-
   deprecated :key, "browser.keys.send"
 
   def key_down(key)
     driver.keyDown(key)
   end
-
   deprecated :key, "browser.keys.down"
 
   def key_up(key)
     driver.keyUp(key)
   end
-
   deprecated :key, "browser.keys.up or browser.keys.release"
 
   def type(text)
     driver.type(text)
   end
-
   deprecated :key, "browser.keys.send"
 
 
   # Opera-specific
 
+  # Saves a screenshot of the window to the filesystem of the server.
+  #
+  # @param [String]  file_name The absolute path to the location where 
+  #   you want the screenshot saved.
+  # @param [Hash]    hashes    A list of hashes to compare.  If the hashes
+  #   match the hashes of what you are trying to take a screenshot of,
+  #   this method will return a boolean value instead of an actual
+  #   screenshot.
+  # @param [Integer] time_out  Specifies how long we should wait before
+  #   timing out.
+  #
+  # @return [Object]  A ScreenShotReply object.
+  # @return [Boolean] True/false depending on whether you have given a
+  #   hash as an argument.
   def screenshot(file_name, hashes=[], time_out=2)
     driver.saveScreenshot(file_name, time_out, hashes.to_java(:string))
   end
@@ -155,6 +168,9 @@ class OperaWatir::Window
   alias_method :find_by_class, :find_by_class_name
   alias_method :find_by_tag, :find_by_tag_name
 
+  # Finds all elements in document.
+  #
+  # @return [Collection] A collection of elements.
   def elements
     find_by_tag('*')
   end
@@ -171,7 +187,7 @@ private
 
   # Locate elements by id.
   #
-  # @return [Array] an array of found elements
+  # @return [Array] An array of found elements.
   def find_elements_by_id(value)
     driver.findElementsById(value).to_a.map do |node|
       OperaWatir::Element.new(node)
@@ -180,7 +196,7 @@ private
 
   # Locate elements by class.
   #
-  # @return [Array] an array of found elements
+  # @return [Array] An array of found elements.
   def find_elements_by_class_name(value)
     driver.findElementsByClassName(value).to_a.map do |node|
       OperaWatir::Element.new(node)
@@ -189,7 +205,7 @@ private
 
   # Locate elements by tag name.
   #
-  # @return [Array] an array of found elements
+  # @return [Array] An array of found elements.
   def find_elements_by_tag_name(value)
     driver.findElementsByTagName(value).to_a.map do |node|
       OperaWatir::Element.new(node)
@@ -198,7 +214,7 @@ private
 
   # Locate elements by CSS selector.
   #
-  # @return [Array] an array of found elements
+  # @return [Array] An array of found elements.
   def find_elements_by_css(value)
     driver.findElementsByCssSelector(value).to_a.map do |node|
       OperaWatir::Element.new(node)
@@ -207,7 +223,7 @@ private
 
   # Locate elements by XPath expression.
   #
-  # @return [Array] an array of found elements
+  # @return [Array] An array of found elements.
   def find_elements_by_xpath(value)
     driver.findElementsByXPath(value).to_a.map do |node|
       OperaWatir::Element.new(node)
@@ -216,7 +232,7 @@ private
 
   # Locate elements by attribute @name.
   #
-  # @return [Array] an array of found elements
+  # @return [Array] An array of found elements.
   def find_elements_by_name(value)
     driver.findElementsByName(value).to_a.map do |node|
       OperaWatir::Element.new(node)
