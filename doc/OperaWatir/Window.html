@@ -53,10 +53,10 @@
   
     <dt class="r1">Inherits:</dt>
     <dd class="r1">
-      <span class="inheritName"><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></span>
+      <span class="inheritName">Object</span>
       
         <ul class="fullTree">
-          <li><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></li>
+          <li>Object</li>
           
             <li class="next">OperaWatir::Window</li>
           
@@ -70,17 +70,22 @@
     
   
     
+      <dt class="r2">Includes:</dt>
+      <dd class="r2">Deprecated</dd>
+      
+    
   
   
   
-    <dt class="r2 last">Defined in:</dt>
-    <dd class="r2 last">lib/operawatir/window.rb</dd>
+    <dt class="r1 last">Defined in:</dt>
+    <dd class="r1 last">lib/operawatir/window.rb</dd>
   
 </dl>
 <div class="clear"></div>
 
 
 
+  
   <h2>Instance Attribute Summary <small>(<a href="#" class="summary_toggle">collapse</a>)</small></h2>
   <ul class="summary">
     
@@ -139,7 +144,7 @@ Returns the value of attribute browser.
 
   
     <span class="summary_desc"><div class='inline'><p>
-Navigation.
+Navigates back one step in the browser&#8217;s history.
 </p>
 </div></span>
   
@@ -163,7 +168,7 @@ Navigation.
 
   
     <span class="summary_desc"><div class='inline'><p>
-FIXME No window management support.
+Closes the currently open window.
 </p>
 </div></span>
   
@@ -173,7 +178,7 @@ FIXME No window management support.
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#document-instance_method" title="#document (instance method)">- (Object) <strong>document</strong> </a>
+      <a href="#elements-instance_method" title="#elements (instance method)">- (Collection) <strong>elements</strong> </a>
     
 
     
@@ -186,7 +191,10 @@ FIXME No window management support.
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>
+Finds all elements in document.
+</p>
+</div></span>
   
 </li>
 
@@ -194,9 +202,11 @@ FIXME No window management support.
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#elements-instance_method" title="#elements (instance method)">- (Object) <strong>elements</strong> </a>
+      <a href="#execute_script-instance_method" title="#execute_script (instance method)">- (String) <strong>execute_script</strong>(js) </a>
     
 
+    
+      (also: #eval_js)
     
   </span>
   
@@ -207,30 +217,10 @@ FIXME No window management support.
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
-  
-</li>
-
-      
-        <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#eval_js-instance_method" title="#eval_js (instance method)">- (Object) <strong>eval_js</strong>(js) </a>
-    
-
-    
-      (also: #execute_script)
-    
-  </span>
-  
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>
+TODO.
+</p>
+</div></span>
   
 </li>
 
@@ -252,7 +242,7 @@ FIXME No window management support.
 
   
     <span class="summary_desc"><div class='inline'><p>
-TODO: Expose window querying from driver.
+Checks if the window is still open.
 </p>
 </div></span>
   
@@ -275,7 +265,10 @@ TODO: Expose window querying from driver.
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>
+Navigates forward one step in the browser&#8217;s history.
+</p>
+</div></span>
   
 </li>
 
@@ -283,7 +276,7 @@ TODO: Expose window querying from driver.
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#html-instance_method" title="#html (instance method)">- (Object) <strong>html</strong> </a>
+      <a href="#html-instance_method" title="#html (instance method)">- (String) <strong>html</strong> </a>
     
 
     
@@ -296,7 +289,10 @@ TODO: Expose window querying from driver.
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>
+Retrieves the HTML/source code of the currently loaded document.
+</p>
+</div></span>
   
 </li>
 
@@ -304,7 +300,7 @@ TODO: Expose window querying from driver.
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#initialize-instance_method" title="#initialize (instance method)">- (Window) <strong>initialize</strong>(browser) </a>
+      <a href="#initialize-instance_method" title="#initialize (instance method)">- (Object) <strong>initialize</strong>(browser) </a>
     
 
     
@@ -320,7 +316,7 @@ TODO: Expose window querying from driver.
 
   
     <span class="summary_desc"><div class='inline'><p>
-A new instance of Window.
+Creates a new window in the browser.
 </p>
 </div></span>
   
@@ -430,7 +426,10 @@ Keyboard.
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>
+Refreshes the currently loaded page.
+</p>
+</div></span>
   
 </li>
 
@@ -438,7 +437,7 @@ Keyboard.
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#screenshot-instance_method" title="#screenshot (instance method)">- (Object) <strong>screenshot</strong>(file_name, hashes = [], time_out = 2) </a>
+      <a href="#screenshot-instance_method" title="#screenshot (instance method)">- (Object, Boolean) <strong>screenshot</strong>(file_name, hashes = [], time_out = 2) </a>
     
 
     
@@ -452,7 +451,7 @@ Keyboard.
 
   
     <span class="summary_desc"><div class='inline'><p>
-Opera-specific.
+Saves a screenshot of the window to the filesystem of the server.
 </p>
 </div></span>
   
@@ -475,7 +474,10 @@ Opera-specific.
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>
+Stops the currently loading page.
+</p>
+</div></span>
   
 </li>
 
@@ -483,7 +485,7 @@ Opera-specific.
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#text-instance_method" title="#text (instance method)">- (Object) <strong>text</strong> </a>
+      <a href="#text-instance_method" title="#text (instance method)">- (String) <strong>text</strong> </a>
     
 
     
@@ -496,7 +498,11 @@ Opera-specific.
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>
+Retrieves the text without the DOM or source code from the currently loaded
+document.
+</p>
+</div></span>
   
 </li>
 
@@ -504,7 +510,7 @@ Opera-specific.
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#title-instance_method" title="#title (instance method)">- (Object) <strong>title</strong> </a>
+      <a href="#title-instance_method" title="#title (instance method)">- (String) <strong>title</strong> </a>
     
 
     
@@ -517,7 +523,10 @@ Opera-specific.
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>
+Gets the title of the document.
+</p>
+</div></span>
   
 </li>
 
@@ -546,7 +555,7 @@ Opera-specific.
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#url-instance_method" title="#url (instance method)">- (Object) <strong>url</strong> </a>
+      <a href="#url-instance_method" title="#url (instance method)">- (String) <strong>url</strong> </a>
     
 
     
@@ -559,7 +568,10 @@ Opera-specific.
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>
+Gets the URL of the document.
+</p>
+</div></span>
   
 </li>
 
@@ -582,7 +594,10 @@ Opera-specific.
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>
+Navigates to a new URL.
+</p>
+</div></span>
   
 </li>
 
@@ -611,20 +626,23 @@ Opera-specific.
     </ul>
   
 
-<div id="constructor_details" class="method_details_list">
+
+  <div id="constructor_details" class="method_details_list">
   <h2>Constructor Details</h2>
   
     <div class="method_details first">
   <p class="signature first" id="initialize-instance_method">
   
-    - (<tt><span class='object_link'><a href="" title="OperaWatir::Window (class)">Window</a></span></tt>) <strong>initialize</strong>(browser) 
+    - (<tt>Object</tt>) <strong>initialize</strong>(browser) 
   
 
   
 </p><div class="docstring">
   <div class="discussion">
     <p>
-A new instance of Window
+Creates a new window in the browser. Note that Opera does not differentiate
+between windows and tabs. To directly create a <em>Window</em> object, pass
+in the <em>Browser</em>.
 </p>
 
 
@@ -632,18 +650,49 @@ A new instance of Window
 </div>
 <div class="tags">
   
+  <div class="examples">
+    <h3>Examples:</h3>
+    
+      <h4><div class='inline'></div></h4>
+      <pre class="example code"><span class='window identifier id'>window</span> <span class='assign token'>=</span> <span class='browser identifier id'>browser</span><span class='dot token'>.</span><span class='url identifier id'>url</span> <span class='assign token'>=</span> <span class='string val'>'http://example.org/'</span>
+<span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='OperaWatir constant id'>OperaWatir</span><span class='colon2 op'>::</span><span class='Window constant id'>Window</span>
+</pre>
+    
+  </div>
+<h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>Object</tt>)</span>
+      
+      
+        <span class='name'>browser</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+The <em>Browser</em> object.
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
 </div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-5
-6
-7</pre>
+16
+17
+18</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/operawatir/window.rb', line 5</span>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/window.rb', line 16</span>
 
 <span class='def def kw'>def</span> <span class='initialize identifier id'>initialize</span><span class='lparen token'>(</span><span class='browser identifier id'>browser</span><span class='rparen token'>)</span>
   <span class='self self kw'>self</span><span class='dot token'>.</span><span class='browser identifier id'>browser</span> <span class='assign token'>=</span> <span class='browser identifier id'>browser</span>
@@ -665,7 +714,7 @@ A new instance of Window
     <div class="method_details first">
   <p class="signature first" id="method_missing-instance_method">
   
-    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>method_missing</strong>(tag, *args) 
+    - (<tt>Object</tt>) <strong>method_missing</strong>(tag, *args) 
   
 
   
@@ -675,15 +724,15 @@ A new instance of Window
       <pre class="lines">
 
 
-114
-115
-116
-117
-118
-119</pre>
+178
+179
+180
+181
+182
+183</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/operawatir/window.rb', line 114</span>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/window.rb', line 178</span>
 
 <span class='def def kw'>def</span> <span class='method_missing identifier id'>method_missing</span><span class='lparen token'>(</span><span class='tag identifier id'>tag</span><span class='comma token'>,</span> <span class='mult op'>*</span><span class='args identifier id'>args</span><span class='rparen token'>)</span>
   <span class='OperaWatir constant id'>OperaWatir</span><span class='colon2 op'>::</span><span class='Collection constant id'>Collection</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='self self kw'>self</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='tap identifier id'>tap</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='c identifier id'>c</span><span class='bitor op'>|</span>
@@ -708,7 +757,7 @@ A new instance of Window
       <div class="method_details first">
   <p class="signature first" id="browser-instance_method">
   
-    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>browser</strong> 
+    - (<tt>Object</tt>) <strong>browser</strong> 
   
 
   
@@ -729,12 +778,12 @@ Returns the value of attribute browser
       <pre class="lines">
 
 
-3
 4
-5</pre>
+5
+6</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/operawatir/window.rb', line 3</span>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/window.rb', line 4</span>
 
 <span class='def def kw'>def</span> <span class='browser identifier id'>browser</span>
   <span class='@browser ivar id'>@browser</span>
@@ -755,14 +804,14 @@ Returns the value of attribute browser
       <div class="method_details first">
   <p class="signature first" id="back-instance_method">
   
-    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>back</strong> 
+    - (<tt>Object</tt>) <strong>back</strong> 
   
 
   
 </p><div class="docstring">
   <div class="discussion">
     <p>
-Navigation
+Navigates back one step in the browser&#8217;s history.
 </p>
 
 
@@ -776,12 +825,12 @@ Navigation
       <pre class="lines">
 
 
-12
-13
-14</pre>
+24
+25
+26</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/operawatir/window.rb', line 12</span>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/window.rb', line 24</span>
 
 <span class='def def kw'>def</span> <span class='back identifier id'>back</span>
   <span class='driver identifier id'>driver</span><span class='dot token'>.</span><span class='navigate identifier id'>navigate</span><span class='dot token'>.</span><span class='back identifier id'>back</span>
@@ -795,14 +844,14 @@ Navigation
       <div class="method_details ">
   <p class="signature " id="close-instance_method">
   
-    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>close</strong> 
+    - (<tt>Object</tt>) <strong>close</strong> 
   
 
   
 </p><div class="docstring">
   <div class="discussion">
     <p>
-FIXME No window management support
+Closes the currently open window.
 </p>
 
 
@@ -816,42 +865,15 @@ FIXME No window management support
       <pre class="lines">
 
 
-25
-26
-27</pre>
+39
+40
+41</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/operawatir/window.rb', line 25</span>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/window.rb', line 39</span>
 
 <span class='def def kw'>def</span> <span class='close identifier id'>close</span>
-  <span class='driver identifier id'>driver</span><span class='dot token'>.</span><span class='close identifier id'>close</span>
-<span class='end end kw'>end</span>
-</pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-      <div class="method_details ">
-  <p class="signature " id="document-instance_method">
-  
-    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>document</strong> 
-  
-
-  
-</p><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-59
-60</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'lib/operawatir/window.rb', line 59</span>
-
-<span class='def def kw'>def</span> <span class='document identifier id'>document</span>
+  <span class='driver identifier id'>driver</span><span class='dot token'>.</span><span class='close identifier id'>close</span>  <span class='comment val'># FIXME?</span>
 <span class='end end kw'>end</span>
 </pre>
     </td>
@@ -862,22 +884,52 @@ FIXME No window management support
       <div class="method_details ">
   <p class="signature " id="elements-instance_method">
   
-    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>elements</strong> 
+    - (<tt><span class='object_link'><a href="Collection.html" title="OperaWatir::Collection (class)">Collection</a></span></tt>) <strong>elements</strong> 
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Finds all elements in document.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Collection.html" title="OperaWatir::Collection (class)">Collection</a></span></tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+A collection of elements.
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-110
-111
-112</pre>
+174
+175
+176</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/operawatir/window.rb', line 110</span>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/window.rb', line 174</span>
 
 <span class='def def kw'>def</span> <span class='elements identifier id'>elements</span>
   <span class='find_by_tag identifier id'>find_by_tag</span><span class='lparen token'>(</span><span class='string val'>'*'</span><span class='rparen token'>)</span>
@@ -889,30 +941,88 @@ FIXME No window management support
 </div>
     
       <div class="method_details ">
-  <p class="signature " id="eval_js-instance_method">
+  <p class="signature " id="execute_script-instance_method">
   
-    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>eval_js</strong>(js) 
+    - (<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>) <strong>execute_script</strong>(js) 
   
 
   
     <span class="aliases">Also known as:
-    <span class="names"><span id='execute_script-instance_method'>execute_script</span></span>
+    <span class="names"><span id='eval_js-instance_method'>eval_js</span></span>
     </span>
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+TODO
+</p>
+<pre class="code">
+  <span class='def def kw'>def</span> <span class='document identifier id'>document</span>
+  <span class='end end kw'>end</span>
+</pre>
+<p>
+Executes the given JavaScript on the current window.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+        <span class='name'>js</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+The script to be executed.
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+Optionally returns the JS result.
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-62
-63
-64</pre>
+104
+105
+106</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/operawatir/window.rb', line 62</span>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/window.rb', line 104</span>
 
-<span class='def def kw'>def</span> <span class='eval_js identifier id'>eval_js</span><span class='lparen token'>(</span><span class='js identifier id'>js</span><span class='rparen token'>)</span>
+<span class='def def kw'>def</span> <span class='execute_script identifier id'>execute_script</span><span class='lparen token'>(</span><span class='js identifier id'>js</span><span class='rparen token'>)</span>
   <span class='object identifier id'>object</span> <span class='assign token'>=</span> <span class='driver identifier id'>driver</span><span class='dot token'>.</span><span class='executeScript identifier id'>executeScript</span><span class='lparen token'>(</span><span class='js identifier id'>js</span><span class='comma token'>,</span> <span class='lbrack token'>[</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='to_java identifier id'>to_java</span><span class='lparen token'>(</span><span class='symbol val'>:string</span><span class='rparen token'>)</span><span class='rparen token'>)</span>
 <span class='end end kw'>end</span>
 </pre>
@@ -931,7 +1041,8 @@ FIXME No window management support
 </p><div class="docstring">
   <div class="discussion">
     <p>
-TODO: Expose window querying from driver
+Checks if the window is still open. True if the window is still present,
+false otherwise.
 </p>
 
 
@@ -948,6 +1059,12 @@ TODO: Expose window querying from driver
       
       
       
+        &mdash;
+        <div class='inline'><p>
+Whether the window is open or not.
+</p>
+</div>
+      
     </li>
   
 </ul>
@@ -958,14 +1075,16 @@ TODO: Expose window querying from driver
       <pre class="lines">
 
 
-55
-56
-57</pre>
+89
+90
+91
+92</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/operawatir/window.rb', line 55</span>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/window.rb', line 89</span>
 
 <span class='def def kw'>def</span> <span class='exists? fid id'>exists?</span>
+  <span class='comment val'># TODO: Expose window querying from driver</span>
   <span class='url identifier id'>url</span> <span class='neq op'>!=</span> <span class='string val'>''</span>
 <span class='end end kw'>end</span>
 </pre>
@@ -977,22 +1096,33 @@ TODO: Expose window querying from driver
       <div class="method_details ">
   <p class="signature " id="forward-instance_method">
   
-    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>forward</strong> 
+    - (<tt>Object</tt>) <strong>forward</strong> 
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Navigates forward one step in the browser&#8217;s history.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-16
-17
-18</pre>
+29
+30
+31</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/operawatir/window.rb', line 16</span>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/window.rb', line 29</span>
 
 <span class='def def kw'>def</span> <span class='forward identifier id'>forward</span>
   <span class='driver identifier id'>driver</span><span class='dot token'>.</span><span class='navigate identifier id'>navigate</span><span class='dot token'>.</span><span class='forward identifier id'>forward</span>
@@ -1006,22 +1136,52 @@ TODO: Expose window querying from driver
       <div class="method_details ">
   <p class="signature " id="html-instance_method">
   
-    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>html</strong> 
+    - (<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>) <strong>html</strong> 
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Retrieves the HTML/source code of the currently loaded document.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+The page source code.
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-50
-51
-52</pre>
+81
+82
+83</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/operawatir/window.rb', line 50</span>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/window.rb', line 81</span>
 
 <span class='def def kw'>def</span> <span class='html identifier id'>html</span>
   <span class='driver identifier id'>driver</span><span class='dot token'>.</span><span class='getPageSource identifier id'>getPageSource</span>
@@ -1035,7 +1195,7 @@ TODO: Expose window querying from driver
       <div class="method_details ">
   <p class="signature " id="key-instance_method">
   
-    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>key</strong>(key) 
+    - (<tt>Object</tt>) <strong>key</strong>(key) 
   
 
   
@@ -1056,12 +1216,12 @@ Keyboard
       <pre class="lines">
 
 
-70
-71
-72</pre>
+113
+114
+115</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/operawatir/window.rb', line 70</span>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/window.rb', line 113</span>
 
 <span class='def def kw'>def</span> <span class='key identifier id'>key</span><span class='lparen token'>(</span><span class='key identifier id'>key</span><span class='rparen token'>)</span>
   <span class='driver identifier id'>driver</span><span class='dot token'>.</span><span class='key identifier id'>key</span><span class='lparen token'>(</span><span class='key identifier id'>key</span><span class='rparen token'>)</span>
@@ -1075,7 +1235,7 @@ Keyboard
       <div class="method_details ">
   <p class="signature " id="key_down-instance_method">
   
-    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>key_down</strong>(key) 
+    - (<tt>Object</tt>) <strong>key_down</strong>(key) 
   
 
   
@@ -1085,12 +1245,12 @@ Keyboard
       <pre class="lines">
 
 
-74
-75
-76</pre>
+118
+119
+120</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/operawatir/window.rb', line 74</span>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/window.rb', line 118</span>
 
 <span class='def def kw'>def</span> <span class='key_down identifier id'>key_down</span><span class='lparen token'>(</span><span class='key identifier id'>key</span><span class='rparen token'>)</span>
   <span class='driver identifier id'>driver</span><span class='dot token'>.</span><span class='keyDown identifier id'>keyDown</span><span class='lparen token'>(</span><span class='key identifier id'>key</span><span class='rparen token'>)</span>
@@ -1104,7 +1264,7 @@ Keyboard
       <div class="method_details ">
   <p class="signature " id="key_up-instance_method">
   
-    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>key_up</strong>(key) 
+    - (<tt>Object</tt>) <strong>key_up</strong>(key) 
   
 
   
@@ -1114,12 +1274,12 @@ Keyboard
       <pre class="lines">
 
 
-78
-79
-80</pre>
+123
+124
+125</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/operawatir/window.rb', line 78</span>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/window.rb', line 123</span>
 
 <span class='def def kw'>def</span> <span class='key_up identifier id'>key_up</span><span class='lparen token'>(</span><span class='key identifier id'>key</span><span class='rparen token'>)</span>
   <span class='driver identifier id'>driver</span><span class='dot token'>.</span><span class='keyUp identifier id'>keyUp</span><span class='lparen token'>(</span><span class='key identifier id'>key</span><span class='rparen token'>)</span>
@@ -1133,43 +1293,14 @@ Keyboard
       <div class="method_details ">
   <p class="signature " id="refresh-instance_method">
   
-    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>refresh</strong> 
-  
-
-  
-</p><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-29
-30
-31</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'lib/operawatir/window.rb', line 29</span>
-
-<span class='def def kw'>def</span> <span class='refresh identifier id'>refresh</span>
-  <span class='driver identifier id'>driver</span><span class='dot token'>.</span><span class='navigate identifier id'>navigate</span><span class='dot token'>.</span><span class='refresh identifier id'>refresh</span>
-<span class='end end kw'>end</span>
-</pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-      <div class="method_details ">
-  <p class="signature " id="screenshot-instance_method">
-  
-    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>screenshot</strong>(file_name, hashes = [], time_out = 2) 
+    - (<tt>Object</tt>) <strong>refresh</strong> 
   
 
   
 </p><div class="docstring">
   <div class="discussion">
     <p>
-Opera-specific
+Refreshes the currently loaded page.
 </p>
 
 
@@ -1183,12 +1314,147 @@ Opera-specific
       <pre class="lines">
 
 
-89
-90
-91</pre>
+44
+45
+46</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/operawatir/window.rb', line 89</span>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/window.rb', line 44</span>
+
+<span class='def def kw'>def</span> <span class='refresh identifier id'>refresh</span>
+  <span class='driver identifier id'>driver</span><span class='dot token'>.</span><span class='navigate identifier id'>navigate</span><span class='dot token'>.</span><span class='refresh identifier id'>refresh</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="screenshot-instance_method">
+  
+    - (<tt>Object</tt>, <tt>Boolean</tt>) <strong>screenshot</strong>(file_name, hashes = [], time_out = 2) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Saves a screenshot of the window to the filesystem of the server.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+        <span class='name'>file_name</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+The absolute path to the location where you want the screenshot saved.
+</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+        <span class='name'>hashes</span>
+      
+      
+        <em class="default">(defaults to: <tt>[]</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>
+A list of hashes to compare. If the hashes match the hashes of what you are
+trying to take a screenshot of, this method will return a boolean value
+instead of an actual screenshot.
+</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+        <span class='name'>time_out</span>
+      
+      
+        <em class="default">(defaults to: <tt>2</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>
+Specifies how long we should wait before timing out.
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>Object</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+A ScreenShotReply object.
+</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+True/false depending on whether you have given a hash as an argument.
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+150
+151
+152</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/window.rb', line 150</span>
 
 <span class='def def kw'>def</span> <span class='screenshot identifier id'>screenshot</span><span class='lparen token'>(</span><span class='file_name identifier id'>file_name</span><span class='comma token'>,</span> <span class='hashes identifier id'>hashes</span><span class='assign token'>=</span><span class='lbrack token'>[</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='time_out identifier id'>time_out</span><span class='assign token'>=</span><span class='integer val'>2</span><span class='rparen token'>)</span>
   <span class='driver identifier id'>driver</span><span class='dot token'>.</span><span class='saveScreenshot identifier id'>saveScreenshot</span><span class='lparen token'>(</span><span class='file_name identifier id'>file_name</span><span class='comma token'>,</span> <span class='time_out identifier id'>time_out</span><span class='comma token'>,</span> <span class='hashes identifier id'>hashes</span><span class='dot token'>.</span><span class='to_java identifier id'>to_java</span><span class='lparen token'>(</span><span class='symbol val'>:string</span><span class='rparen token'>)</span><span class='rparen token'>)</span>
@@ -1202,22 +1468,33 @@ Opera-specific
       <div class="method_details ">
   <p class="signature " id="stop-instance_method">
   
-    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>stop</strong> 
+    - (<tt>Object</tt>) <strong>stop</strong> 
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Stops the currently loading page.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-20
-21
-22</pre>
+34
+35
+36</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/operawatir/window.rb', line 20</span>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/window.rb', line 34</span>
 
 <span class='def def kw'>def</span> <span class='stop identifier id'>stop</span>
   <span class='driver identifier id'>driver</span><span class='dot token'>.</span><span class='stop identifier id'>stop</span>
@@ -1231,22 +1508,53 @@ Opera-specific
       <div class="method_details ">
   <p class="signature " id="text-instance_method">
   
-    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>text</strong> 
+    - (<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>) <strong>text</strong> 
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Retrieves the text without the DOM or source code from the currently loaded
+document.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+The text of the document.
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-46
-47
-48</pre>
+74
+75
+76</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/operawatir/window.rb', line 46</span>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/window.rb', line 74</span>
 
 <span class='def def kw'>def</span> <span class='text identifier id'>text</span>
   <span class='driver identifier id'>driver</span><span class='dot token'>.</span><span class='getText identifier id'>getText</span>
@@ -1260,22 +1568,52 @@ Opera-specific
       <div class="method_details ">
   <p class="signature " id="title-instance_method">
   
-    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>title</strong> 
+    - (<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>) <strong>title</strong> 
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Gets the title of the document.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+The title of the current document.
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-33
-34
-35</pre>
+51
+52
+53</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/operawatir/window.rb', line 33</span>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/window.rb', line 51</span>
 
 <span class='def def kw'>def</span> <span class='title identifier id'>title</span>
   <span class='driver identifier id'>driver</span><span class='dot token'>.</span><span class='getTitle identifier id'>getTitle</span>
@@ -1289,7 +1627,7 @@ Opera-specific
       <div class="method_details ">
   <p class="signature " id="type-instance_method">
   
-    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>type</strong>(text) 
+    - (<tt>Object</tt>) <strong>type</strong>(text) 
   
 
   
@@ -1299,12 +1637,12 @@ Opera-specific
       <pre class="lines">
 
 
-82
-83
-84</pre>
+128
+129
+130</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/operawatir/window.rb', line 82</span>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/window.rb', line 128</span>
 
 <span class='def def kw'>def</span> <span class='type identifier id'>type</span><span class='lparen token'>(</span><span class='text identifier id'>text</span><span class='rparen token'>)</span>
   <span class='driver identifier id'>driver</span><span class='dot token'>.</span><span class='type identifier id'>type</span><span class='lparen token'>(</span><span class='text identifier id'>text</span><span class='rparen token'>)</span>
@@ -1318,22 +1656,52 @@ Opera-specific
       <div class="method_details ">
   <p class="signature " id="url-instance_method">
   
-    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>url</strong> 
+    - (<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>) <strong>url</strong> 
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Gets the URL of the document.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+The URL of the current document.
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-37
-38
-39</pre>
+58
+59
+60</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/operawatir/window.rb', line 37</span>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/window.rb', line 58</span>
 
 <span class='def def kw'>def</span> <span class='url identifier id'>url</span>
   <span class='driver identifier id'>driver</span><span class='dot token'>.</span><span class='getCurrentUrl identifier id'>getCurrentUrl</span>
@@ -1347,7 +1715,7 @@ Opera-specific
       <div class="method_details ">
   <p class="signature " id="url=-instance_method">
   
-    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>url=</strong>(url) 
+    - (<tt>Object</tt>) <strong>url=</strong>(url) 
   
 
   
@@ -1355,18 +1723,50 @@ Opera-specific
     <span class="names"><span id='goto-instance_method'>goto</span></span>
     </span>
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Navigates to a new URL.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+        <span class='name'>url</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+The new URL to navigate to.
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-41
-42
-43</pre>
+65
+66
+67</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/operawatir/window.rb', line 41</span>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/window.rb', line 65</span>
 
 <span class='def def kw'>def</span> <span class='url= identifier id'>url=</span><span class='lparen token'>(</span><span class='url identifier id'>url</span><span class='rparen token'>)</span>
   <span class='driver identifier id'>driver</span><span class='dot token'>.</span><span class='get identifier id'>get</span><span class='lparen token'>(</span><span class='url identifier id'>url</span><span class='rparen token'>)</span>
@@ -1380,7 +1780,7 @@ Opera-specific
       <div class="method_details ">
   <p class="signature " id="visual_hash-instance_method">
   
-    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>visual_hash</strong>(time_out = 50) 
+    - (<tt>Object</tt>) <strong>visual_hash</strong>(time_out = 50) 
   
 
   
@@ -1390,15 +1790,15 @@ Opera-specific
       <pre class="lines">
 
 
-93
-94
-95</pre>
+154
+155
+156</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/operawatir/window.rb', line 93</span>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/window.rb', line 154</span>
 
 <span class='def def kw'>def</span> <span class='visual_hash identifier id'>visual_hash</span><span class='lparen token'>(</span><span class='time_out identifier id'>time_out</span><span class='assign token'>=</span><span class='integer val'>50</span><span class='rparen token'>)</span>
-  <span class='document identifier id'>document</span><span class='dot token'>.</span><span class='visual_hash identifier id'>visual_hash</span> <span class='timeout identifier id'>timeout</span>
+  <span class='document identifier id'>document</span><span class='dot token'>.</span><span class='visual_hash identifier id'>visual_hash</span> <span class='time_out identifier id'>time_out</span>
 <span class='end end kw'>end</span>
 </pre>
     </td>
@@ -1411,9 +1811,9 @@ Opera-specific
 </div>
     
     <div id="footer">
-  Generated on Fri Dec 17 20:45:29 2010 by 
+  Generated on Wed Feb 09 12:20:08 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.6.3 (ruby-1.8.7).
+  0.6.4 (ruby-1.8.7).
 </div>
 
   </body>

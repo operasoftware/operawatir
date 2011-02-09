@@ -1,0 +1,3434 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta name="Content-Type" content="text/html; charset=utf8" />
+<title>Class: OperaWatir::DesktopBrowser</title>
+<link rel="stylesheet" href="../css/style.css" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="../css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  relpath = '..';
+  if (relpath != '') relpath += '/';
+</script>
+<script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+  </head>
+  <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../_index.html">Index (D)</a> &raquo; 
+    <span class='title'><span class='object_link'><a href="../OperaWatir.html" title="OperaWatir (module)">OperaWatir</a></span></span>
+     &raquo; 
+    <span class="title">DesktopBrowser</span>
+  
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  <a id="class_list_link" href="#">Class List</a>
+  <a id="method_list_link" href="#">Method List</a>
+  <a id ="file_list_link" href="#">File List</a>
+</div>
+
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><h1>Class: OperaWatir::DesktopBrowser
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName"><span class='object_link'><a href="Browser.html" title="OperaWatir::Browser (class)">Browser</a></span></span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next"><span class='object_link'><a href="Browser.html" title="OperaWatir::Browser (class)">Browser</a></span></li>
+          
+            <li class="next">OperaWatir::DesktopBrowser</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+      <dt class="r2">Includes:</dt>
+      <dd class="r2"><span class='object_link'><a href="DesktopCommon.html" title="OperaWatir::DesktopCommon (module)">DesktopCommon</a></span>, <span class='object_link'><a href="DesktopContainer.html" title="OperaWatir::DesktopContainer (module)">DesktopContainer</a></span></dd>
+      
+    
+  
+  
+  
+    <dt class="r1 last">Defined in:</dt>
+    <dd class="r1 last">lib/operawatir/desktop_browser.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+
+  <h2>Constant Summary</h2>
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#activate_tab_with_key_press-instance_method" title="#activate_tab_with_key_press (instance method)">- (int) <strong>activate_tab_with_key_press</strong>(key, *modifiers) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Clicks the key and modifiers and waits for a new tab to be activated.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#cache_preferences_path-instance_method" title="#cache_preferences_path (instance method)">- (String) <strong>cache_preferences_path</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Returns the full path to the Opera cache preferences folder.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#clear_all_private_data-instance_method" title="#clear_all_private_data (instance method)">- (int) <strong>clear_all_private_data</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Clear all private data (as in Delete Private Data Dialog).
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#clear_cache-instance_method" title="#clear_cache (instance method)">- (Object) <strong>clear_cache</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Clear disk cache.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#clear_history-instance_method" title="#clear_history (instance method)">- (Object) <strong>clear_history</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Clear typed and visited history.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#close_all_dialogs-instance_method" title="#close_all_dialogs (instance method)">- (Object) <strong>close_all_dialogs</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Close all open dialogs.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#close_all_tabs-instance_method" title="#close_all_tabs (instance method)">- (Object) <strong>close_all_tabs</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Close all open tabs (except last one).
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#close_dialog-instance_method" title="#close_dialog (instance method)">- (int) <strong>close_dialog</strong>(dialog_name) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Close the dialog with name dialog_name, using the &quot;Cancel&quot;
+action.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#close_window_with_action-instance_method" title="#close_window_with_action (instance method)">- (int) <strong>close_window_with_action</strong>(win_name, action_name, *params) </a>
+    
+
+    
+      (also: #close_dialog_with_action)
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Executes the action given by action_name, and waits for the window with
+window name win_name to close.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#close_window_with_key_press-instance_method" title="#close_window_with_key_press (instance method)">- (int) <strong>close_window_with_key_press</strong>(win_name, key, *opts) </a>
+    
+
+    
+      (also: #close_dialog_with_key_press)
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Presses the key, with optional modifiers, and waits for the window with
+window name win_name to close.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#delete_profile-instance_method" title="#delete_profile (instance method)">- (Object) <strong>delete_profile</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Deletes profile for the connected Opera instance.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#large_preferences_path-instance_method" title="#large_preferences_path (instance method)">- (String) <strong>large_preferences_path</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Returns the full path to the Opera large preferences folder.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#linux%3F-instance_method" title="#linux? (instance method)">- (Boolean) <strong>linux?</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Returns true if the test is running on Linux.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#load_page_with_key_press-instance_method" title="#load_page_with_key_press (instance method)">- (int) <strong>load_page_with_key_press</strong>(key, *modifiers) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Presses the key, with optional modifiers, and waits for loaded event.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#load_window_with_action-instance_method" title="#load_window_with_action (instance method)">- (int) <strong>load_window_with_action</strong>(win_name, action_name, *params) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Executes the action given by action_name, and waits for the window with
+window name win_name to be loaded.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#mac%3F-instance_method" title="#mac? (instance method)">- (Boolean) <strong>mac?</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Returns true if the test is running on Mac.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#open_dialog_with_click-instance_method" title="#open_dialog_with_click (instance method)">- (int) <strong>open_dialog_with_click</strong>(method, selector, win_name) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Clicks the element specified by method and selector, and waits for the
+window with name win_name to be shown.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#open_dialog_with_url-instance_method" title="#open_dialog_with_url (instance method)">- (int) <strong>open_dialog_with_url</strong>(dialog_name, url) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Opens a new tab and loads the url entered, then waits for a dialog to be
+shown based on the url entered.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#open_window_with_action-instance_method" title="#open_window_with_action (instance method)">- (int) <strong>open_window_with_action</strong>(win_name, action_name, *params) </a>
+    
+
+    
+      (also: #open_dialog_with_action)
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Executes the action given by action_name, and waits for the window with
+window name win_name to be shown.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#open_window_with_key_press-instance_method" title="#open_window_with_key_press (instance method)">- (int) <strong>open_window_with_key_press</strong>(win_name, key, *modifiers) </a>
+    
+
+    
+      (also: #open_dialog_with_key_press)
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Presses the key, with optional modifiers, and waits for the window with
+window name win_name to be shown.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#path-instance_method" title="#path (instance method)">- (String) <strong>path</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Returns the full path to the Opera executable.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#quick_windows-instance_method" title="#quick_windows (instance method)">- (Array) <strong>quick_windows</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Retrieves an array of all windows.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#quit_driver-instance_method" title="#quit_driver (instance method)">- (Object) <strong>quit_driver</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Quits the driver without exiting Opera.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#quit_opera-instance_method" title="#quit_opera (instance method)">- (Object) <strong>quit_opera</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Quits Opera.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#reset_prefs-instance_method" title="#reset_prefs (instance method)">- (Object) <strong>reset_prefs</strong>(new_prefs) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Reset prefs.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#restart-instance_method" title="#restart (instance method)">- (Object) <strong>restart</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Restarts Opera.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#set_alignment_with_action-instance_method" title="#set_alignment_with_action (instance method)">- (Object) <strong>set_alignment_with_action</strong>(toolbar_name, alignment) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Sets the alignment of a toolbar or panel.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#small_preferences_path-instance_method" title="#small_preferences_path (instance method)">- (String) <strong>small_preferences_path</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Returns the full path to the Opera small preferences folder.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#widgets-instance_method" title="#widgets (instance method)">- (Array) <strong>widgets</strong>(win_name) </a>
+    
+
+    
+      (also: #quick_widgets)
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Retrieves an array of all widgets in the window with window name win_name.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#window_name-instance_method" title="#window_name (instance method)">- (String) <strong>window_name</strong>(win_id) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Retrieves the name of a window based on it&#8217;s id.
+</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="DesktopContainer.html" title="OperaWatir::DesktopContainer (module)">DesktopContainer</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="DesktopContainer.html#quick_addressfield-instance_method" title="OperaWatir::DesktopContainer#quick_addressfield (method)">#quick_addressfield</a></span>, <span class='object_link'><a href="DesktopContainer.html#quick_button-instance_method" title="OperaWatir::DesktopContainer#quick_button (method)">#quick_button</a></span>, <span class='object_link'><a href="DesktopContainer.html#quick_checkbox-instance_method" title="OperaWatir::DesktopContainer#quick_checkbox (method)">#quick_checkbox</a></span>, <span class='object_link'><a href="DesktopContainer.html#quick_dialogtab-instance_method" title="OperaWatir::DesktopContainer#quick_dialogtab (method)">#quick_dialogtab</a></span>, <span class='object_link'><a href="DesktopContainer.html#quick_dropdown-instance_method" title="OperaWatir::DesktopContainer#quick_dropdown (method)">#quick_dropdown</a></span>, <span class='object_link'><a href="DesktopContainer.html#quick_editfield-instance_method" title="OperaWatir::DesktopContainer#quick_editfield (method)">#quick_editfield</a></span>, <span class='object_link'><a href="DesktopContainer.html#quick_label-instance_method" title="OperaWatir::DesktopContainer#quick_label (method)">#quick_label</a></span>, <span class='object_link'><a href="DesktopContainer.html#quick_radiobutton-instance_method" title="OperaWatir::DesktopContainer#quick_radiobutton (method)">#quick_radiobutton</a></span>, <span class='object_link'><a href="DesktopContainer.html#quick_searchfield-instance_method" title="OperaWatir::DesktopContainer#quick_searchfield (method)">#quick_searchfield</a></span>, <span class='object_link'><a href="DesktopContainer.html#quick_tab-instance_method" title="OperaWatir::DesktopContainer#quick_tab (method)">#quick_tab</a></span>, <span class='object_link'><a href="DesktopContainer.html#quick_thumbnail-instance_method" title="OperaWatir::DesktopContainer#quick_thumbnail (method)">#quick_thumbnail</a></span>, <span class='object_link'><a href="DesktopContainer.html#quick_toolbar-instance_method" title="OperaWatir::DesktopContainer#quick_toolbar (method)">#quick_toolbar</a></span>, <span class='object_link'><a href="DesktopContainer.html#quick_treeitem-instance_method" title="OperaWatir::DesktopContainer#quick_treeitem (method)">#quick_treeitem</a></span>, <span class='object_link'><a href="DesktopContainer.html#quick_treeview-instance_method" title="OperaWatir::DesktopContainer#quick_treeview (method)">#quick_treeview</a></span>, <span class='object_link'><a href="DesktopContainer.html#quick_window-instance_method" title="OperaWatir::DesktopContainer#quick_window (method)">#quick_window</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods inherited from <span class='object_link'><a href="Browser.html" title="OperaWatir::Browser (class)">Browser</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Browser.html#close_all-instance_method" title="OperaWatir::Browser#close_all (method)">#close_all</a></span>, <span class='object_link'><a href="Browser.html#copy-instance_method" title="OperaWatir::Browser#copy (method)">#copy</a></span>, <span class='object_link'><a href="Browser.html#cut-instance_method" title="OperaWatir::Browser#cut (method)">#cut</a></span>, <span class='object_link'><a href="Browser.html#desktop%3F-instance_method" title="OperaWatir::Browser#desktop? (method)">#desktop?</a></span>, <span class='object_link'><a href="Browser.html#name-instance_method" title="OperaWatir::Browser#name (method)">#name</a></span>, <span class='object_link'><a href="Browser.html#opera_action-instance_method" title="OperaWatir::Browser#opera_action (method)">#opera_action</a></span>, <span class='object_link'><a href="Browser.html#opera_action_list-instance_method" title="OperaWatir::Browser#opera_action_list (method)">#opera_action_list</a></span>, <span class='object_link'><a href="Browser.html#paste-instance_method" title="OperaWatir::Browser#paste (method)">#paste</a></span>, <span class='object_link'><a href="Browser.html#pid-instance_method" title="OperaWatir::Browser#pid (method)">#pid</a></span>, <span class='object_link'><a href="Browser.html#platform-instance_method" title="OperaWatir::Browser#platform (method)">#platform</a></span>, <span class='object_link'><a href="Browser.html#quit-instance_method" title="OperaWatir::Browser#quit (method)">#quit</a></span>, <span class='object_link'><a href="Browser.html#select_all-instance_method" title="OperaWatir::Browser#select_all (method)">#select_all</a></span>, <span class='object_link'><a href="Browser.html#settings-class_method" title="OperaWatir::Browser.settings (method)">settings</a></span>, <span class='object_link'><a href="Browser.html#settings%3D-class_method" title="OperaWatir::Browser.settings= (method)">settings=</a></span>, <span class='object_link'><a href="Browser.html#ua_string-instance_method" title="OperaWatir::Browser#ua_string (method)">#ua_string</a></span>, <span class='object_link'><a href="Browser.html#url%3D-instance_method" title="OperaWatir::Browser#url= (method)">#url=</a></span>, <span class='object_link'><a href="Browser.html#version-instance_method" title="OperaWatir::Browser#version (method)">#version</a></span></p>
+
+  
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="activate_tab_with_key_press-instance_method">
+  
+    - (<tt>int</tt>) <strong>activate_tab_with_key_press</strong>(key, *modifiers) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Clicks the key and modifiers and waits for a new tab to be activated
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+        <span class='name'>key</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+key to press (e.g. &quot;a&quot; or &quot;backspace&quot;)
+</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'>(<tt>Symbol</tt>)</span>
+      
+      
+        <span class='name'>modifiers</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+optional modifier(s) to hold down while pressing the key (e.g. :shift,
+:ctrl, :alt, :meta)
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>int</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+Window ID of the document window (tab) that is activated, or 0 if no tab is
+being activated
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/desktop_browser.rb', line 130</span>
+
+<span class='def def kw'>def</span> <span class='activate_tab_with_key_press identifier id'>activate_tab_with_key_press</span><span class='lparen token'>(</span><span class='key identifier id'>key</span><span class='comma token'>,</span> <span class='mult op'>*</span><span class='modifiers identifier id'>modifiers</span><span class='rparen token'>)</span>
+ <span class='wait_start identifier id'>wait_start</span>
+ <span class='comment val'># TODO: FIXME. key_down and up are not yet implemented on mac and windows</span>
+ <span class='if if kw'>if</span> <span class='linux? fid id'>linux?</span> 
+   <span class='key_down identifier id'>key_down</span><span class='lparen token'>(</span><span class='key identifier id'>key</span><span class='comma token'>,</span><span class='mult op'>*</span><span class='modifiers identifier id'>modifiers</span><span class='rparen token'>)</span>
+   <span class='key_up identifier id'>key_up</span><span class='lparen token'>(</span><span class='key identifier id'>key</span><span class='comma token'>,</span> <span class='mult op'>*</span><span class='modifiers identifier id'>modifiers</span><span class='rparen token'>)</span>
+ <span class='else else kw'>else</span>
+   <span class='key_press_direct identifier id'>key_press_direct</span><span class='lparen token'>(</span><span class='key identifier id'>key</span><span class='comma token'>,</span> <span class='mult op'>*</span><span class='modifiers identifier id'>modifiers</span><span class='rparen token'>)</span>
+ <span class='end end kw'>end</span>
+ <span class='wait_for_window_activated identifier id'>wait_for_window_activated</span><span class='lparen token'>(</span><span class='string val'>&quot;Document Window&quot;</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="cache_preferences_path-instance_method">
+  
+    - (<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>) <strong>cache_preferences_path</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Returns the full path to the Opera cache preferences folder
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+Full path to the cache preferences folder
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+398
+399
+400</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/desktop_browser.rb', line 398</span>
+
+<span class='def def kw'>def</span> <span class='cache_preferences_path identifier id'>cache_preferences_path</span>
+  <span class='driver identifier id'>driver</span><span class='dot token'>.</span><span class='getCachePreferencesPath identifier id'>getCachePreferencesPath</span><span class='lparen token'>(</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="clear_all_private_data-instance_method">
+  
+    - (<tt>int</tt>) <strong>clear_all_private_data</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Clear all private data (as in Delete Private Data Dialog)
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>int</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+0 if operation failed, else &gt; 0
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/desktop_browser.rb', line 429</span>
+
+<span class='def def kw'>def</span> <span class='clear_all_private_data identifier id'>clear_all_private_data</span>
+  
+  <span class='comment val'>#FIXME: Set CheckFlags to uncheck to prevent storing the settings used here</span>
+  
+  <span class='win_id identifier id'>win_id</span> <span class='assign token'>=</span> <span class='open_dialog_with_action identifier id'>open_dialog_with_action</span><span class='lparen token'>(</span><span class='string val'>&quot;Clear Private Data Dialog&quot;</span><span class='comma token'>,</span> <span class='string val'>&quot;Delete private data&quot;</span><span class='rparen token'>)</span>
+  <span class='return return kw'>return</span> <span class='integer val'>0</span> <span class='if if_mod kw'>if</span> <span class='win_id identifier id'>win_id</span> <span class='eq op'>==</span> <span class='integer val'>0</span>
+  
+  <span class='comment val'>#Ensure is Expanded</span>
+  <span class='if if kw'>if</span> <span class='quick_button identifier id'>quick_button</span><span class='lparen token'>(</span><span class='symbol val'>:name</span><span class='comma token'>,</span> <span class='string val'>&quot;Destails_expand&quot;</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='value identifier id'>value</span> <span class='eq op'>==</span> <span class='integer val'>0</span>
+    <span class='quick_button identifier id'>quick_button</span><span class='lparen token'>(</span><span class='symbol val'>:name</span><span class='comma token'>,</span> <span class='string val'>&quot;Destails_expand&quot;</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='toggle_with_click identifier id'>toggle_with_click</span>
+  <span class='end end kw'>end</span>
+       
+  <span class='quick_checkboxes identifier id'>quick_checkboxes</span><span class='lparen token'>(</span><span class='string val'>&quot;Clear Private Data Dialog&quot;</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='box identifier id'>box</span><span class='bitor op'>|</span>
+    <span class='box identifier id'>box</span><span class='dot token'>.</span><span class='toggle_with_click identifier id'>toggle_with_click</span> <span class='unless unless_mod kw'>unless</span> <span class='box identifier id'>box</span><span class='dot token'>.</span><span class='checked? fid id'>checked?</span>
+  <span class='end end kw'>end</span>
+  
+  <span class='comment val'>#Delete all</span>
+  <span class='win_id identifier id'>win_id</span> <span class='assign token'>=</span> <span class='quick_button identifier id'>quick_button</span><span class='lparen token'>(</span><span class='symbol val'>:name</span><span class='comma token'>,</span> <span class='string val'>&quot;button_OK&quot;</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='close_dialog_with_click identifier id'>close_dialog_with_click</span><span class='lparen token'>(</span><span class='string val'>&quot;Clear Private Data Dialog&quot;</span><span class='rparen token'>)</span>
+  
+  <span class='comment val'>#FIXME: Reset CheckFlags</span>
+  
+  <span class='win_id identifier id'>win_id</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="clear_cache-instance_method">
+  
+    - (<tt>Object</tt>) <strong>clear_cache</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Clear disk cache
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+466
+467
+468
+469</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/desktop_browser.rb', line 466</span>
+
+<span class='def def kw'>def</span> <span class='clear_cache identifier id'>clear_cache</span>
+  <span class='comment val'>#TODO: Use Delete Private Data Dialog?</span>
+  <span class='opera_desktop_action identifier id'>opera_desktop_action</span><span class='lparen token'>(</span><span class='string val'>&quot;Clear disk cache&quot;</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="clear_history-instance_method">
+  
+    - (<tt>Object</tt>) <strong>clear_history</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Clear typed and visited history
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+456
+457
+458
+459
+460</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/desktop_browser.rb', line 456</span>
+
+<span class='def def kw'>def</span> <span class='clear_history identifier id'>clear_history</span>
+  <span class='comment val'>#TODO: Use Delete Private Data Dialog?</span>
+  <span class='opera_desktop_action identifier id'>opera_desktop_action</span><span class='lparen token'>(</span><span class='string val'>&quot;Clear visited history&quot;</span><span class='rparen token'>)</span>
+  <span class='opera_desktop_action identifier id'>opera_desktop_action</span><span class='lparen token'>(</span><span class='string val'>&quot;Clear typed in history&quot;</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="close_all_dialogs-instance_method">
+  
+    - (<tt>Object</tt>) <strong>close_all_dialogs</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Close all open dialogs
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+492
+493
+494
+495
+496
+497
+498
+499
+500
+501
+502
+503
+504
+505
+506
+507
+508
+509
+510
+511
+512
+513
+514
+515
+516
+517
+518
+519
+520
+521
+522
+523
+524
+525
+526
+527
+528
+529
+530
+531
+532
+533
+534
+535
+536
+537
+538
+539
+540
+541
+542
+543
+544
+545
+546
+547
+548
+549
+550</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/desktop_browser.rb', line 492</span>
+
+<span class='def def kw'>def</span> <span class='close_all_dialogs identifier id'>close_all_dialogs</span>
+    <span class='win_id identifier id'>win_id</span> <span class='assign token'>=</span> <span class='driver identifier id'>driver</span><span class='dot token'>.</span><span class='getActiveQuickWindowID identifier id'>getActiveQuickWindowID</span><span class='lparen token'>(</span><span class='rparen token'>)</span>
+    <span class='until until kw'>until</span> <span class='quick_window identifier id'>quick_window</span><span class='lparen token'>(</span><span class='symbol val'>:id</span><span class='comma token'>,</span> <span class='win_id identifier id'>win_id</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='type identifier id'>type</span> <span class='neq op'>!=</span> <span class='symbol val'>:dialog</span> <span class='do do kw'>do</span>
+      <span class='win identifier id'>win</span> <span class='assign token'>=</span> <span class='quick_window identifier id'>quick_window</span><span class='lparen token'>(</span><span class='symbol val'>:id</span><span class='comma token'>,</span> <span class='driver identifier id'>driver</span><span class='dot token'>.</span><span class='getActiveQuickWindowID identifier id'>getActiveQuickWindowID</span><span class='lparen token'>(</span><span class='rparen token'>)</span><span class='rparen token'>)</span>
+      <span class='if if kw'>if</span> <span class='win identifier id'>win</span><span class='dot token'>.</span><span class='type identifier id'>type</span> <span class='eq op'>==</span> <span class='symbol val'>:dialog</span>
+        <span class='close_dialog identifier id'>close_dialog</span><span class='lparen token'>(</span><span class='win identifier id'>win</span><span class='dot token'>.</span><span class='name identifier id'>name</span><span class='rparen token'>)</span>
+        <span class='if if kw'>if</span> <span class='lparen token'>(</span><span class='driver identifier id'>driver</span><span class='dot token'>.</span><span class='getActiveQuickWindowID identifier id'>getActiveQuickWindowID</span><span class='lparen token'>(</span><span class='rparen token'>)</span> <span class='neq op'>!=</span> <span class='win_id identifier id'>win_id</span><span class='rparen token'>)</span>
+          <span class='win_id identifier id'>win_id</span> <span class='assign token'>=</span> <span class='driver identifier id'>driver</span><span class='dot token'>.</span><span class='getActiveQuickWindowID identifier id'>getActiveQuickWindowID</span><span class='lparen token'>(</span><span class='rparen token'>)</span>
+        <span class='else else kw'>else</span>
+          <span class='break break kw'>break</span>
+        <span class='end end kw'>end</span>
+      <span class='end end kw'>end</span>
+    <span class='end end kw'>end</span>
+  <span class='end end kw'>end</span>
+  
+  <span class='comment val'>############################################################################</span>
+  <span class='comment val'>#</span>
+  <span class='comment val'># Reset prefs</span>
+  <span class='comment val'>#</span>
+  <span class='comment val'># Quits Opera and copies prefs from src to dest, then restarts Opera with the</span>
+  <span class='comment val'># new Prefs</span>
+  <span class='comment val'>#</span>
+  <span class='def def kw'>def</span> <span class='reset_prefs identifier id'>reset_prefs</span><span class='lparen token'>(</span><span class='new_prefs identifier id'>new_prefs</span><span class='rparen token'>)</span>
+    <span class='driver identifier id'>driver</span><span class='dot token'>.</span><span class='resetOperaPrefs identifier id'>resetOperaPrefs</span><span class='lparen token'>(</span><span class='new_prefs identifier id'>new_prefs</span><span class='rparen token'>)</span>
+  <span class='end end kw'>end</span>
+  
+  <span class='comment val'>##############################################################################</span>
+  <span class='comment val'>#</span>
+  <span class='comment val'># Deletes profile for the connected Opera instance.</span>
+  <span class='comment val'># Should only be called after quitting (and before starting) Opera.</span>
+  <span class='comment val'>#</span>
+  <span class='comment val'>#</span>
+  <span class='def def kw'>def</span> <span class='delete_profile identifier id'>delete_profile</span>
+    <span class='driver identifier id'>driver</span><span class='dot token'>.</span><span class='deleteOperaPrefs identifier id'>deleteOperaPrefs</span>
+  <span class='end end kw'>end</span>
+  
+<span class='private identifier id'>private</span>
+
+ <span class='def def kw'>def</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='opera_driver_settings identifier id'>opera_driver_settings</span>
+   <span class='@opera_driver_settings ivar id'>@opera_driver_settings</span> <span class='opasgn op'>||=</span> <span class='OperaDriverSettings constant id'>OperaDriverSettings</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='dot token'>.</span><span class='tap identifier id'>tap</span> <span class='lbrace token'>{</span><span class='bitor op'>|</span><span class='s identifier id'>s</span><span class='bitor op'>|</span>
+     <span class='s identifier id'>s</span><span class='dot token'>.</span><span class='setRunOperaLauncherFromOperaDriver identifier id'>setRunOperaLauncherFromOperaDriver</span> <span class='true true kw'>true</span>
+     <span class='s identifier id'>s</span><span class='dot token'>.</span><span class='setOperaLauncherBinary identifier id'>setOperaLauncherBinary</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='settings identifier id'>settings</span><span class='lbrack token'>[</span><span class='symbol val'>:launcher</span><span class='rbrack token'>]</span>
+     <span class='s identifier id'>s</span><span class='dot token'>.</span><span class='setOperaBinaryLocation identifier id'>setOperaBinaryLocation</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='settings identifier id'>settings</span><span class='lbrack token'>[</span><span class='symbol val'>:path</span><span class='rbrack token'>]</span>
+     <span class='s identifier id'>s</span><span class='dot token'>.</span><span class='setOperaBinaryArguments identifier id'>setOperaBinaryArguments</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='settings identifier id'>settings</span><span class='lbrack token'>[</span><span class='symbol val'>:args</span><span class='rbrack token'>]</span> <span class='plus op'>+</span> <span class='string val'>' -watirtest'</span>
+     <span class='s identifier id'>s</span><span class='dot token'>.</span><span class='setNoQuit identifier id'>setNoQuit</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='settings identifier id'>settings</span><span class='lbrack token'>[</span><span class='symbol val'>:no_quit</span><span class='rbrack token'>]</span>
+     <span class='s identifier id'>s</span><span class='dot token'>.</span><span class='setNoRestart identifier id'>setNoRestart</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='settings identifier id'>settings</span><span class='lbrack token'>[</span><span class='symbol val'>:no_restart</span><span class='rbrack token'>]</span>
+   <span class='rbrace token'>}</span>
+ <span class='end end kw'>end</span>
+ 
+  <span class='comment val'># Gets the parent widget name of which there is none here</span>
+  <span class='def def kw'>def</span> <span class='parent_widget identifier id'>parent_widget</span>
+    <span class='nil nil kw'>nil</span>
+  <span class='end end kw'>end</span>
+  
+  <span class='comment val'># Gets the window id to use for the search</span>
+  <span class='def def kw'>def</span> <span class='window_id identifier id'>window_id</span>
+    <span class='integer val'>-1</span>
+  <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="close_all_tabs-instance_method">
+  
+    - (<tt>Object</tt>) <strong>close_all_tabs</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Close all open tabs (except last one)
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+475
+476
+477
+478
+479
+480
+481
+482
+483
+484
+485
+486</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/desktop_browser.rb', line 475</span>
+
+<span class='def def kw'>def</span> <span class='close_all_tabs identifier id'>close_all_tabs</span>
+  <span class='comment val'>#The collection has the activate tab first and then the rest sorted on number, so resort to get on descending position</span>
+  <span class='quick_tabbuttons identifier id'>quick_tabbuttons</span><span class='lparen token'>(</span><span class='string val'>&quot;Browser Window&quot;</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='sort identifier id'>sort</span> <span class='lbrace token'>{</span><span class='bitor op'>|</span><span class='t1 identifier id'>t1</span><span class='comma token'>,</span> <span class='t2 identifier id'>t2</span><span class='bitor op'>|</span> <span class='lparen token'>(</span><span class='t2 identifier id'>t2</span><span class='dot token'>.</span><span class='position identifier id'>position</span> <span class='cmp op'>&lt;=&gt;</span> <span class='t1 identifier id'>t1</span><span class='dot token'>.</span><span class='position identifier id'>position</span><span class='rparen token'>)</span> <span class='rbrace token'>}</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='btn identifier id'>btn</span><span class='bitor op'>|</span>
+    <span class='comment val'>#Tab button is in Browser window which is prob not the active window,</span>
+    <span class='comment val'>#so we cannot do this the easy way           </span>
+    <span class='comment val'>#btn.quick_button(:name, &quot;pb_CloseButton&quot;).close_window_with_click(&quot;Document Window&quot;) unless btn.position == 0</span>
+    <span class='comment val'>#puts &quot;Current tab = #{btn}&quot;</span>
+    <span class='if if kw'>if</span> <span class='btn identifier id'>btn</span><span class='dot token'>.</span><span class='position identifier id'>position</span> <span class='neq op'>!=</span> <span class='integer val'>0</span> <span class='or or kw'>or</span> <span class='btn identifier id'>btn</span><span class='dot token'>.</span><span class='value identifier id'>value</span> <span class='gt op'>&gt;</span> <span class='integer val'>1</span> <span class='then then kw'>then</span>
+      <span class='quick_window identifier id'>quick_window</span><span class='lparen token'>(</span><span class='symbol val'>:name</span><span class='comma token'>,</span> <span class='string val'>&quot;Browser Window&quot;</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='quick_tab identifier id'>quick_tab</span><span class='lparen token'>(</span><span class='symbol val'>:pos</span><span class='comma token'>,</span> <span class='btn identifier id'>btn</span><span class='dot token'>.</span><span class='position identifier id'>position</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='quick_button identifier id'>quick_button</span><span class='lparen token'>(</span><span class='symbol val'>:name</span><span class='comma token'>,</span> <span class='string val'>&quot;pb_CloseButton&quot;</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='close_window_with_click identifier id'>close_window_with_click</span><span class='lparen token'>(</span><span class='string val'>&quot;Document Window&quot;</span><span class='rparen token'>)</span>
+    <span class='end end kw'>end</span>  
+  <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="close_dialog-instance_method">
+  
+    - (<tt>int</tt>) <strong>close_dialog</strong>(dialog_name) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Close the dialog with name dialog_name, using the &quot;Cancel&quot; action
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+        <span class='name'>dialog_name</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+name of the dialog that will be closed (Pass a blank string for any window)
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>int</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+Window ID of the dialog closed or 0 if no window is closed
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+211
+212
+213
+214
+215</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/desktop_browser.rb', line 211</span>
+
+<span class='def def kw'>def</span> <span class='close_dialog identifier id'>close_dialog</span><span class='lparen token'>(</span><span class='dialog_name identifier id'>dialog_name</span><span class='rparen token'>)</span>
+  <span class='wait_start identifier id'>wait_start</span>
+  <span class='opera_desktop_action identifier id'>opera_desktop_action</span><span class='lparen token'>(</span><span class='string val'>&quot;Cancel&quot;</span><span class='rparen token'>)</span>
+  <span class='wait_for_window_close identifier id'>wait_for_window_close</span><span class='lparen token'>(</span><span class='dialog_name identifier id'>dialog_name</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="close_window_with_action-instance_method">
+  
+    - (<tt>int</tt>) <strong>close_window_with_action</strong>(win_name, action_name, *params) 
+  
+
+  
+    <span class="aliases">Also known as:
+    <span class="names"><span id='close_dialog_with_action-instance_method'>close_dialog_with_action</span></span>
+    </span>
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Executes the action given by action_name, and waits for the window with
+window name win_name to close
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h3>Examples:</h3>
+    
+      <h4><div class='inline'></div></h4>
+      <pre class="example code"><span class='browser identifier id'>browser</span><span class='dot token'>.</span><span class='close_window_with_action identifier id'>close_window_with_action</span><span class='lparen token'>(</span><span class='string val'>&quot;New Preferences Dialog&quot;</span><span class='comma token'>,</span> <span class='string val'>&quot;Cancel&quot;</span><span class='rparen token'>)</span>
+<span class='browser identifier id'>browser</span><span class='dot token'>.</span><span class='close_window_with_action identifier id'>close_window_with_action</span><span class='lparen token'>(</span><span class='string val'>&quot;New Preferences Dialog&quot;</span><span class='comma token'>,</span> <span class='string val'>&quot;Cancel&quot;</span><span class='comma token'>,</span> <span class='string val'>&quot;1&quot;</span><span class='rparen token'>)</span>
+</pre>
+    
+  </div>
+<h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+        <span class='name'>win_name</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+name of the window that will be closed (Pass a blank string for any window)
+</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+        <span class='name'>action_name</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+name of the action to execute to close the window
+</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+        <span class='name'>param</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+optional parameter(s) to be supplied with the Opera action.
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>int</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+Window ID of the window closed or 0 if no window is closed
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+173
+174
+175
+176
+177</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/desktop_browser.rb', line 173</span>
+
+<span class='def def kw'>def</span> <span class='close_window_with_action identifier id'>close_window_with_action</span><span class='lparen token'>(</span><span class='win_name identifier id'>win_name</span><span class='comma token'>,</span> <span class='action_name identifier id'>action_name</span><span class='comma token'>,</span> <span class='mult op'>*</span><span class='params identifier id'>params</span><span class='rparen token'>)</span>
+  <span class='wait_start identifier id'>wait_start</span>
+  <span class='opera_desktop_action identifier id'>opera_desktop_action</span><span class='lparen token'>(</span><span class='action_name identifier id'>action_name</span><span class='comma token'>,</span> <span class='mult op'>*</span><span class='params identifier id'>params</span><span class='rparen token'>)</span> 
+  <span class='wait_for_window_close identifier id'>wait_for_window_close</span><span class='lparen token'>(</span><span class='win_name identifier id'>win_name</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="close_window_with_key_press-instance_method">
+  
+    - (<tt>int</tt>) <strong>close_window_with_key_press</strong>(win_name, key, *opts) 
+  
+
+  
+    <span class="aliases">Also known as:
+    <span class="names"><span id='close_dialog_with_key_press-instance_method'>close_dialog_with_key_press</span></span>
+    </span>
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Presses the key, with optional modifiers, and waits for the window with
+window name win_name to close
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h3>Examples:</h3>
+    
+      <h4><div class='inline'></div></h4>
+      <pre class="example code"><span class='browser identifier id'>browser</span><span class='dot token'>.</span><span class='close_window_with_key_press identifier id'>close_window_with_key_press</span><span class='lparen token'>(</span><span class='string val'>&quot;New Preferences Dialog&quot;</span><span class='comma token'>,</span> <span class='string val'>&quot;Esc&quot;</span><span class='rparen token'>)</span>
+<span class='browser identifier id'>browser</span><span class='dot token'>.</span><span class='close_window_with_key_press identifier id'>close_window_with_key_press</span><span class='lparen token'>(</span><span class='string val'>&quot;New Preferences Dialog&quot;</span><span class='comma token'>,</span> <span class='string val'>&quot;w&quot;</span><span class='comma token'>,</span> <span class='symbol val'>:ctrl</span><span class='rparen token'>)</span>
+</pre>
+    
+  </div>
+<h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+        <span class='name'>win_name</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+name of the window that will be closed (Pass a blank string for any window)
+</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+        <span class='name'>key</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+key to press (e.g. &quot;a&quot; or &quot;backspace&quot;)
+</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'>(<tt>Symbol</tt>)</span>
+      
+      
+        <span class='name'>modifiers</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+optional modifier(s) to hold down while pressing the key (e.g. :shift,
+:ctrl, :alt, :meta)
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>int</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+Window ID of the window closed or 0 if no window is closed
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+195
+196
+197
+198
+199</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/desktop_browser.rb', line 195</span>
+
+<span class='def def kw'>def</span> <span class='close_window_with_key_press identifier id'>close_window_with_key_press</span><span class='lparen token'>(</span><span class='win_name identifier id'>win_name</span><span class='comma token'>,</span> <span class='key identifier id'>key</span><span class='comma token'>,</span> <span class='mult op'>*</span><span class='opts identifier id'>opts</span><span class='rparen token'>)</span>
+  <span class='wait_start identifier id'>wait_start</span>
+  <span class='key_press_direct identifier id'>key_press_direct</span><span class='lparen token'>(</span><span class='key identifier id'>key</span><span class='comma token'>,</span> <span class='mult op'>*</span><span class='opts identifier id'>opts</span><span class='rparen token'>)</span>
+  <span class='wait_for_window_close identifier id'>wait_for_window_close</span><span class='lparen token'>(</span><span class='win_name identifier id'>win_name</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="delete_profile-instance_method">
+  
+    - (<tt>Object</tt>) <strong>delete_profile</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Deletes profile for the connected Opera instance. Should only be called
+after quitting (and before starting) Opera.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+524
+525
+526</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/desktop_browser.rb', line 524</span>
+
+<span class='def def kw'>def</span> <span class='delete_profile identifier id'>delete_profile</span>
+  <span class='driver identifier id'>driver</span><span class='dot token'>.</span><span class='deleteOperaPrefs identifier id'>deleteOperaPrefs</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="large_preferences_path-instance_method">
+  
+    - (<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>) <strong>large_preferences_path</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Returns the full path to the Opera large preferences folder
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+Full path to the large preferences folder
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+380
+381
+382</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/desktop_browser.rb', line 380</span>
+
+<span class='def def kw'>def</span> <span class='large_preferences_path identifier id'>large_preferences_path</span>
+  <span class='driver identifier id'>driver</span><span class='dot token'>.</span><span class='getLargePreferencesPath identifier id'>getLargePreferencesPath</span><span class='lparen token'>(</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="linux?-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>linux?</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Returns true if the test is running on Linux
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+true we the operating system is Linux, otherwise false
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+416
+417
+418</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/desktop_browser.rb', line 416</span>
+
+<span class='def def kw'>def</span> <span class='linux? fid id'>linux?</span>
+  <span class='Config constant id'>Config</span><span class='colon2 op'>::</span><span class='CONFIG constant id'>CONFIG</span><span class='lbrack token'>[</span><span class='string val'>'target_os'</span><span class='rbrack token'>]</span> <span class='eq op'>==</span> <span class='string val'>&quot;linux&quot;</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="load_page_with_key_press-instance_method">
+  
+    - (<tt>int</tt>) <strong>load_page_with_key_press</strong>(key, *modifiers) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Presses the key, with optional modifiers, and waits for loaded event
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h3>Examples:</h3>
+    
+      <h4><div class='inline'></div></h4>
+      <pre class="example code"><span class='browser identifier id'>browser</span><span class='dot token'>.</span><span class='quick_toolbar identifier id'>quick_toolbar</span><span class='lparen token'>(</span><span class='symbol val'>:name</span><span class='comma token'>,</span> <span class='string val'>&quot;Document Toolbar&quot;</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='quick_addressfield identifier id'>quick_addressfield</span><span class='lparen token'>(</span><span class='symbol val'>:name</span><span class='comma token'>,</span> <span class='string val'>&quot;tba_address_field&quot;</span><span class='rparen token'>)</span><span class='dot token'>.</span>\<span class='n identifier id'>n</span>
+                       <span class='type_text identifier id'>type_text</span><span class='lparen token'>(</span><span class='text_to_type identifier id'>text_to_type</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='should identifier id'>should</span> <span class='eq op'>==</span> <span class='text_to_type identifier id'>text_to_type</span>
+<span class='browser identifier id'>browser</span><span class='dot token'>.</span><span class='load_page_with_key_press identifier id'>load_page_with_key_press</span><span class='lparen token'>(</span><span class='string val'>&quot;Enter&quot;</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='should identifier id'>should</span> <span class='gt op'>&gt;</span> <span class='integer val'>0</span>
+</pre>
+    
+  </div>
+<h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+        <span class='name'>key</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+key to press (e.g. &quot;a&quot; or &quot;backspace&quot;)
+</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'>(<tt>Symbol</tt>)</span>
+      
+      
+        <span class='name'>modifiers</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+optional modifier(s) to hold down while pressing the key (e.g. :shift,
+:ctrl, :alt, :meta)
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>int</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+Window ID of the window loaded or 0 if no window is loaded
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+340
+341
+342
+343
+344</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/desktop_browser.rb', line 340</span>
+
+<span class='def def kw'>def</span> <span class='load_page_with_key_press identifier id'>load_page_with_key_press</span><span class='lparen token'>(</span><span class='key identifier id'>key</span><span class='comma token'>,</span> <span class='mult op'>*</span><span class='modifiers identifier id'>modifiers</span><span class='rparen token'>)</span>
+     <span class='wait_start identifier id'>wait_start</span>
+     <span class='key_press_direct identifier id'>key_press_direct</span><span class='lparen token'>(</span><span class='key identifier id'>key</span><span class='comma token'>,</span> <span class='mult op'>*</span><span class='modifiers identifier id'>modifiers</span><span class='rparen token'>)</span>
+     <span class='wait_for_window_loaded identifier id'>wait_for_window_loaded</span><span class='lparen token'>(</span><span class='string val'>&quot;&quot;</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="load_window_with_action-instance_method">
+  
+    - (<tt>int</tt>) <strong>load_window_with_action</strong>(win_name, action_name, *params) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Executes the action given by action_name, and waits for the window with
+window name win_name to be loaded
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h3>Examples:</h3>
+    
+      <h4><div class='inline'></div></h4>
+      <pre class="example code"><span class='browser identifier id'>browser</span><span class='dot token'>.</span><span class='load_window_with_action identifier id'>load_window_with_action</span><span class='lparen token'>(</span><span class='string val'>&quot;Document Window&quot;</span><span class='comma token'>,</span> <span class='string val'>&quot;Open url in new page&quot;</span><span class='comma token'>,</span> <span class='string val'>&quot;http://elg.no&quot;</span><span class='rparen token'>)</span>
+</pre>
+    
+  </div>
+<h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+        <span class='name'>win_name</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+name of the window that will be opened (Pass a blank string for any window)
+</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+        <span class='name'>action_name</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+name of the action to execute to open the window the action has to be one
+of those in LoadActions
+</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+        <span class='name'>param</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+optional parameter(s) to be supplied with the Opera action.
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>int</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+Window ID of the window shown or 0 if no window is shown
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+88
+89
+90
+91
+92
+93
+94
+95
+96</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/desktop_browser.rb', line 88</span>
+
+<span class='def def kw'>def</span> <span class='load_window_with_action identifier id'>load_window_with_action</span><span class='lparen token'>(</span><span class='win_name identifier id'>win_name</span><span class='comma token'>,</span> <span class='action_name identifier id'>action_name</span><span class='comma token'>,</span> <span class='mult op'>*</span><span class='params identifier id'>params</span><span class='rparen token'>)</span>
+  <span class='if if kw'>if</span> <span class='LoadActions constant id'>LoadActions</span><span class='dot token'>.</span><span class='include? fid id'>include?</span><span class='lparen token'>(</span><span class='action_name identifier id'>action_name</span><span class='rparen token'>)</span> 
+    <span class='wait_start identifier id'>wait_start</span>
+    <span class='opera_desktop_action identifier id'>opera_desktop_action</span><span class='lparen token'>(</span><span class='action_name identifier id'>action_name</span><span class='comma token'>,</span> <span class='mult op'>*</span><span class='params identifier id'>params</span><span class='rparen token'>)</span>
+    <span class='wait_for_window_loaded identifier id'>wait_for_window_loaded</span><span class='lparen token'>(</span><span class='win_name identifier id'>win_name</span><span class='rparen token'>)</span>
+  <span class='else else kw'>else</span>
+    <span class='raise identifier id'>raise</span><span class='lparen token'>(</span><span class='DesktopExceptions constant id'>DesktopExceptions</span><span class='colon2 op'>::</span><span class='UnsupportedActionException constant id'>UnsupportedActionException</span><span class='comma token'>,</span> <span class='dstring node'>&quot;Action #{action_name} not supported&quot;</span><span class='rparen token'>)</span>
+  <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="mac?-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>mac?</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Returns true if the test is running on Mac
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+true we the operating system is Mac, otherwise false
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+407
+408
+409</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/desktop_browser.rb', line 407</span>
+
+<span class='def def kw'>def</span> <span class='mac? fid id'>mac?</span>
+  <span class='Config constant id'>Config</span><span class='colon2 op'>::</span><span class='CONFIG constant id'>CONFIG</span><span class='lbrack token'>[</span><span class='string val'>'target_os'</span><span class='rbrack token'>]</span> <span class='eq op'>==</span> <span class='string val'>&quot;darwin&quot;</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="open_dialog_with_click-instance_method">
+  
+    - (<tt>int</tt>) <strong>open_dialog_with_click</strong>(method, selector, win_name) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Clicks the element specified by method and selector, and waits for the
+window with name win_name to be shown
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>WebElement</tt>)</span>
+      
+      
+        <span class='name'>element</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+element to click
+</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+        <span class='name'>win_name</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+Name of window to be shown
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>int</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+Window ID of the window shown or 0 if no window is shown
+</p>
+<p>
+# or open_dialog_with_click(type, method, selector, win_name) #
+open_dialog_with_click(:button, :id, &quot;text&quot;, win_name)
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+359
+360
+361
+362
+363</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/desktop_browser.rb', line 359</span>
+
+<span class='def def kw'>def</span> <span class='open_dialog_with_click identifier id'>open_dialog_with_click</span><span class='lparen token'>(</span><span class='method identifier id'>method</span><span class='comma token'>,</span> <span class='selector identifier id'>selector</span><span class='comma token'>,</span> <span class='win_name identifier id'>win_name</span><span class='rparen token'>)</span>
+  <span class='wait_start identifier id'>wait_start</span>
+  <span class='OperaWatir constant id'>OperaWatir</span><span class='colon2 op'>::</span><span class='WebElement constant id'>WebElement</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='self self kw'>self</span><span class='comma token'>,</span> <span class='method identifier id'>method</span><span class='comma token'>,</span> <span class='selector identifier id'>selector</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='click identifier id'>click</span>
+  <span class='wait_for_window_shown identifier id'>wait_for_window_shown</span><span class='lparen token'>(</span><span class='win_name identifier id'>win_name</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="open_dialog_with_url-instance_method">
+  
+    - (<tt>int</tt>) <strong>open_dialog_with_url</strong>(dialog_name, url) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Opens a new tab and loads the url entered, then waits for a dialog to be
+shown based on the url entered
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+        <span class='name'>dialog_name</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+name of the dialog that will be opened (Pass a blank string for any window)
+</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+        <span class='name'>url</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+to load
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>int</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+Window ID of the dialog opened or 0 if no window is opened
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+152
+153
+154
+155
+156
+157</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/desktop_browser.rb', line 152</span>
+
+<span class='def def kw'>def</span> <span class='open_dialog_with_url identifier id'>open_dialog_with_url</span><span class='lparen token'>(</span><span class='dialog_name identifier id'>dialog_name</span><span class='comma token'>,</span> <span class='url identifier id'>url</span><span class='rparen token'>)</span>
+  <span class='wait_start identifier id'>wait_start</span>
+  <span class='opera_desktop_action identifier id'>opera_desktop_action</span><span class='lparen token'>(</span><span class='string val'>&quot;Open url in new page&quot;</span><span class='comma token'>,</span> <span class='url identifier id'>url</span><span class='rparen token'>)</span>
+  <span class='comment val'># The loading of the page will happen first then the dialog will be shown</span>
+  <span class='wait_for_window_shown identifier id'>wait_for_window_shown</span><span class='lparen token'>(</span><span class='dialog_name identifier id'>dialog_name</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="open_window_with_action-instance_method">
+  
+    - (<tt>int</tt>) <strong>open_window_with_action</strong>(win_name, action_name, *params) 
+  
+
+  
+    <span class="aliases">Also known as:
+    <span class="names"><span id='open_dialog_with_action-instance_method'>open_dialog_with_action</span></span>
+    </span>
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Executes the action given by action_name, and waits for the window with
+window name win_name to be shown
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h3>Examples:</h3>
+    
+      <h4><div class='inline'></div></h4>
+      <pre class="example code"><span class='browser identifier id'>browser</span><span class='dot token'>.</span><span class='open_window_with_action identifier id'>open_window_with_action</span><span class='lparen token'>(</span><span class='string val'>&quot;New Preferences Dialog&quot;</span><span class='comma token'>,</span> <span class='string val'>&quot;Show preferences&quot;</span><span class='rparen token'>)</span>
+<span class='browser identifier id'>browser</span><span class='dot token'>.</span><span class='open_window_with_action identifier id'>open_window_with_action</span><span class='lparen token'>(</span><span class='string val'>&quot;New Preferences Dialog&quot;</span><span class='comma token'>,</span> <span class='string val'>&quot;Show preferences&quot;</span><span class='comma token'>,</span> <span class='string val'>&quot;1&quot;</span><span class='rparen token'>)</span>
+</pre>
+    
+  </div>
+<h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+        <span class='name'>win_name</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+name of the window that will be opened (Pass a blank string for any window)
+</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+        <span class='name'>action_name</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+name of the action to execute to open the window the action cannot be a
+load action, see LoadActions
+</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+        <span class='name'>param</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+optional parameter(s) to be supplied with the Opera action.
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>int</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+Window ID of the window shown or 0 if no window is shown
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+63
+64
+65
+66
+67
+68
+69
+70
+71</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/desktop_browser.rb', line 63</span>
+
+<span class='def def kw'>def</span> <span class='open_window_with_action identifier id'>open_window_with_action</span><span class='lparen token'>(</span><span class='win_name identifier id'>win_name</span><span class='comma token'>,</span> <span class='action_name identifier id'>action_name</span><span class='comma token'>,</span> <span class='mult op'>*</span><span class='params identifier id'>params</span><span class='rparen token'>)</span>
+  <span class='if if kw'>if</span> <span class='LoadActions constant id'>LoadActions</span><span class='dot token'>.</span><span class='include? fid id'>include?</span><span class='lparen token'>(</span><span class='action_name identifier id'>action_name</span><span class='rparen token'>)</span> <span class='then then kw'>then</span>
+    <span class='raise identifier id'>raise</span><span class='lparen token'>(</span><span class='DesktopExceptions constant id'>DesktopExceptions</span><span class='colon2 op'>::</span><span class='UnsupportedActionException constant id'>UnsupportedActionException</span><span class='comma token'>,</span> <span class='dstring node'>&quot;Action #{action_name} not supported&quot;</span><span class='rparen token'>)</span>
+  <span class='end end kw'>end</span>
+  
+  <span class='wait_start identifier id'>wait_start</span>
+  <span class='opera_desktop_action identifier id'>opera_desktop_action</span><span class='lparen token'>(</span><span class='action_name identifier id'>action_name</span><span class='comma token'>,</span> <span class='mult op'>*</span><span class='params identifier id'>params</span><span class='rparen token'>)</span>
+  <span class='wait_for_window_shown identifier id'>wait_for_window_shown</span><span class='lparen token'>(</span><span class='win_name identifier id'>win_name</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="open_window_with_key_press-instance_method">
+  
+    - (<tt>int</tt>) <strong>open_window_with_key_press</strong>(win_name, key, *modifiers) 
+  
+
+  
+    <span class="aliases">Also known as:
+    <span class="names"><span id='open_dialog_with_key_press-instance_method'>open_dialog_with_key_press</span></span>
+    </span>
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Presses the key, with optional modifiers, and waits for the window with
+window name win_name to be shown
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h3>Examples:</h3>
+    
+      <h4><div class='inline'></div></h4>
+      <pre class="example code"><span class='browser identifier id'>browser</span><span class='dot token'>.</span><span class='open_window_with_key_press identifier id'>open_window_with_key_press</span><span class='lparen token'>(</span><span class='string val'>&quot;New Preferences Dialog&quot;</span><span class='comma token'>,</span> <span class='string val'>&quot;F12&quot;</span><span class='rparen token'>)</span>
+<span class='browser identifier id'>browser</span><span class='dot token'>.</span><span class='open_window_with_key_press identifier id'>open_window_with_key_press</span><span class='lparen token'>(</span><span class='string val'>&quot;New Preferences Dialog&quot;</span><span class='comma token'>,</span> <span class='string val'>&quot;F12&quot;</span><span class='comma token'>,</span> <span class='symbol val'>:ctrl</span><span class='comma token'>,</span> <span class='symbol val'>:shift</span><span class='rparen token'>)</span>
+</pre>
+    
+  </div>
+<h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+        <span class='name'>win_name</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+name of the window that will be opened (Pass a blank string for any window)
+</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+        <span class='name'>key</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+key to press (e.g. &quot;a&quot; or &quot;backspace&quot;)
+</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'>(<tt>Symbol</tt>)</span>
+      
+      
+        <span class='name'>modifiers</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+optional modifier(s) to hold down while pressing the key (e.g. :shift,
+:ctrl, :alt, :meta)
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>int</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+Window ID of the window shown or 0 if no window is shown
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+112
+113
+114
+115
+116</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/desktop_browser.rb', line 112</span>
+
+<span class='def def kw'>def</span> <span class='open_window_with_key_press identifier id'>open_window_with_key_press</span><span class='lparen token'>(</span><span class='win_name identifier id'>win_name</span><span class='comma token'>,</span> <span class='key identifier id'>key</span><span class='comma token'>,</span> <span class='mult op'>*</span><span class='modifiers identifier id'>modifiers</span><span class='rparen token'>)</span>
+  <span class='wait_start identifier id'>wait_start</span>
+  <span class='key_press_direct identifier id'>key_press_direct</span><span class='lparen token'>(</span><span class='key identifier id'>key</span><span class='comma token'>,</span> <span class='mult op'>*</span><span class='modifiers identifier id'>modifiers</span><span class='rparen token'>)</span>
+  <span class='wait_for_window_shown identifier id'>wait_for_window_shown</span><span class='lparen token'>(</span><span class='win_name identifier id'>win_name</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="path-instance_method">
+  
+    - (<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>) <strong>path</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Returns the full path to the Opera executable
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+Full path to the opera executable
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+371
+372
+373</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/desktop_browser.rb', line 371</span>
+
+<span class='def def kw'>def</span> <span class='path identifier id'>path</span>
+  <span class='driver identifier id'>driver</span><span class='dot token'>.</span><span class='getOperaPath identifier id'>getOperaPath</span><span class='lparen token'>(</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="quick_windows-instance_method">
+  
+    - (<tt>Array</tt>) <strong>quick_windows</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Retrieves an array of all windows
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+Array of windows
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+278
+279
+280
+281
+282</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/desktop_browser.rb', line 278</span>
+
+<span class='def def kw'>def</span> <span class='quick_windows identifier id'>quick_windows</span>
+  <span class='driver identifier id'>driver</span><span class='dot token'>.</span><span class='getQuickWindowList identifier id'>getQuickWindowList</span><span class='dot token'>.</span><span class='map identifier id'>map</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='java_window identifier id'>java_window</span><span class='bitor op'>|</span>
+    <span class='QuickWindow constant id'>QuickWindow</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='self self kw'>self</span><span class='comma token'>,</span><span class='java_window identifier id'>java_window</span><span class='rparen token'>)</span>
+  <span class='end end kw'>end</span><span class='dot token'>.</span><span class='to_a identifier id'>to_a</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="quit_driver-instance_method">
+  
+    - (<tt>Object</tt>) <strong>quit_driver</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Quits the driver without exiting Opera
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+45
+46
+47</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/desktop_browser.rb', line 45</span>
+
+<span class='def def kw'>def</span> <span class='quit_driver identifier id'>quit_driver</span>
+  <span class='driver identifier id'>driver</span><span class='dot token'>.</span><span class='quitDriver identifier id'>quitDriver</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="quit_opera-instance_method">
+  
+    - (<tt>Object</tt>) <strong>quit_opera</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Quits Opera
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+30
+31
+32</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/desktop_browser.rb', line 30</span>
+
+<span class='def def kw'>def</span> <span class='quit_opera identifier id'>quit_opera</span>
+  <span class='driver identifier id'>driver</span><span class='dot token'>.</span><span class='quitOpera identifier id'>quitOpera</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="reset_prefs-instance_method">
+  
+    - (<tt>Object</tt>) <strong>reset_prefs</strong>(new_prefs) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Reset prefs
+</p>
+<p>
+Quits Opera and copies prefs from src to dest, then restarts Opera with the
+new Prefs
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+514
+515
+516</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/desktop_browser.rb', line 514</span>
+
+<span class='def def kw'>def</span> <span class='reset_prefs identifier id'>reset_prefs</span><span class='lparen token'>(</span><span class='new_prefs identifier id'>new_prefs</span><span class='rparen token'>)</span>
+  <span class='driver identifier id'>driver</span><span class='dot token'>.</span><span class='resetOperaPrefs identifier id'>resetOperaPrefs</span><span class='lparen token'>(</span><span class='new_prefs identifier id'>new_prefs</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="restart-instance_method">
+  
+    - (<tt>Object</tt>) <strong>restart</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Restarts Opera
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+37
+38
+39
+40</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/desktop_browser.rb', line 37</span>
+
+<span class='def def kw'>def</span> <span class='restart identifier id'>restart</span>
+  <span class='driver identifier id'>driver</span><span class='dot token'>.</span><span class='quitOpera identifier id'>quitOpera</span>
+  <span class='driver identifier id'>driver</span><span class='dot token'>.</span><span class='startOpera identifier id'>startOpera</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="set_alignment_with_action-instance_method">
+  
+    - (<tt>Object</tt>) <strong>set_alignment_with_action</strong>(toolbar_name, alignment) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Sets the alignment of a toolbar or panel
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+        <span class='name'>toobar_name</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+name of the panel or toolbar to change the alignment of
+</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'>(<tt>int</tt>)</span>
+      
+      
+        <span class='name'>alignment</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+of the toolbar to set
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+224
+225
+226
+227</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/desktop_browser.rb', line 224</span>
+
+<span class='def def kw'>def</span> <span class='set_alignment_with_action identifier id'>set_alignment_with_action</span><span class='lparen token'>(</span><span class='toolbar_name identifier id'>toolbar_name</span><span class='comma token'>,</span> <span class='alignment identifier id'>alignment</span><span class='rparen token'>)</span>
+  <span class='opera_desktop_action identifier id'>opera_desktop_action</span><span class='lparen token'>(</span><span class='string val'>&quot;Set alignment&quot;</span><span class='comma token'>,</span> <span class='toolbar_name identifier id'>toolbar_name</span><span class='comma token'>,</span> <span class='alignment identifier id'>alignment</span><span class='rparen token'>)</span>
+  <span class='sleep identifier id'>sleep</span><span class='lparen token'>(</span><span class='integer val'>0</span><span class='integer val'>.1</span><span class='rparen token'>)</span> 
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="small_preferences_path-instance_method">
+  
+    - (<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>) <strong>small_preferences_path</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Returns the full path to the Opera small preferences folder
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+Full path to the small preferences folder
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+389
+390
+391</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/desktop_browser.rb', line 389</span>
+
+<span class='def def kw'>def</span> <span class='small_preferences_path identifier id'>small_preferences_path</span>
+  <span class='driver identifier id'>driver</span><span class='dot token'>.</span><span class='getSmallPreferencesPath identifier id'>getSmallPreferencesPath</span><span class='lparen token'>(</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="widgets-instance_method">
+  
+    - (<tt>Array</tt>) <strong>widgets</strong>(win_name) 
+  
+
+  
+    <span class="aliases">Also known as:
+    <span class="names"><span id='quick_widgets-instance_method'>quick_widgets</span></span>
+    </span>
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Retrieves an array of all widgets in the window with window name win_name
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h3>Examples:</h3>
+    
+      <h4><div class='inline'></div></h4>
+      <pre class="example code"><span class='browser identifier id'>browser</span><span class='dot token'>.</span><span class='widgets identifier id'>widgets</span><span class='lparen token'>(</span><span class='window_name identifier id'>window_name</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='quick_widget identifier id'>quick_widget</span><span class='bitor op'>|</span>
+    <span class='puts identifier id'>puts</span> <span class='quick_widget identifier id'>quick_widget</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span>
+<span class='end end kw'>end</span>
+</pre>
+    
+  </div>
+<h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+        <span class='name'>win_name</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+name or [int] id of the window to retrieve the list of widgets from,
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+Array of widgets retrieved from the window
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/desktop_browser.rb', line 242</span>
+
+<span class='def def kw'>def</span> <span class='widgets identifier id'>widgets</span><span class='lparen token'>(</span><span class='win_name identifier id'>win_name</span><span class='rparen token'>)</span>
+  <span class='driver identifier id'>driver</span><span class='dot token'>.</span><span class='getQuickWidgetList identifier id'>getQuickWidgetList</span><span class='lparen token'>(</span><span class='win_name identifier id'>win_name</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='map identifier id'>map</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='java_widget identifier id'>java_widget</span><span class='bitor op'>|</span>
+    <span class='case case kw'>case</span> <span class='java_widget identifier id'>java_widget</span><span class='dot token'>.</span><span class='getType identifier id'>getType</span>
+      <span class='when when kw'>when</span> <span class='QuickWidget constant id'>QuickWidget</span><span class='colon2 op'>::</span><span class='WIDGET_ENUM_MAP constant id'>WIDGET_ENUM_MAP</span><span class='lbrack token'>[</span><span class='symbol val'>:button</span><span class='rbrack token'>]</span>
+        <span class='QuickButton constant id'>QuickButton</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='self self kw'>self</span><span class='comma token'>,</span><span class='java_widget identifier id'>java_widget</span><span class='rparen token'>)</span>
+      <span class='when when kw'>when</span> <span class='QuickWidget constant id'>QuickWidget</span><span class='colon2 op'>::</span><span class='WIDGET_ENUM_MAP constant id'>WIDGET_ENUM_MAP</span><span class='lbrack token'>[</span><span class='symbol val'>:checkbox</span><span class='rbrack token'>]</span>
+        <span class='QuickCheckbox constant id'>QuickCheckbox</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='self self kw'>self</span><span class='comma token'>,</span><span class='java_widget identifier id'>java_widget</span><span class='rparen token'>)</span>
+      <span class='when when kw'>when</span> <span class='QuickWidget constant id'>QuickWidget</span><span class='colon2 op'>::</span><span class='WIDGET_ENUM_MAP constant id'>WIDGET_ENUM_MAP</span><span class='lbrack token'>[</span><span class='symbol val'>:dialogtab</span><span class='rbrack token'>]</span>
+        <span class='QuickDialogTab constant id'>QuickDialogTab</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='self self kw'>self</span><span class='comma token'>,</span><span class='java_widget identifier id'>java_widget</span><span class='rparen token'>)</span>
+      <span class='when when kw'>when</span> <span class='QuickWidget constant id'>QuickWidget</span><span class='colon2 op'>::</span><span class='WIDGET_ENUM_MAP constant id'>WIDGET_ENUM_MAP</span><span class='lbrack token'>[</span><span class='symbol val'>:dropdown</span><span class='rbrack token'>]</span>
+        <span class='QuickDropdown constant id'>QuickDropdown</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='self self kw'>self</span><span class='comma token'>,</span><span class='java_widget identifier id'>java_widget</span><span class='rparen token'>)</span>
+      <span class='when when kw'>when</span> <span class='QuickWidget constant id'>QuickWidget</span><span class='colon2 op'>::</span><span class='WIDGET_ENUM_MAP constant id'>WIDGET_ENUM_MAP</span><span class='lbrack token'>[</span><span class='symbol val'>:editfield</span><span class='rbrack token'>]</span>
+        <span class='QuickEditField constant id'>QuickEditField</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='self self kw'>self</span><span class='comma token'>,</span><span class='java_widget identifier id'>java_widget</span><span class='rparen token'>)</span>
+      <span class='when when kw'>when</span> <span class='QuickWidget constant id'>QuickWidget</span><span class='colon2 op'>::</span><span class='WIDGET_ENUM_MAP constant id'>WIDGET_ENUM_MAP</span><span class='lbrack token'>[</span><span class='symbol val'>:label</span><span class='rbrack token'>]</span>
+        <span class='QuickLabel constant id'>QuickLabel</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='self self kw'>self</span><span class='comma token'>,</span><span class='java_widget identifier id'>java_widget</span><span class='rparen token'>)</span>
+      <span class='when when kw'>when</span> <span class='QuickWidget constant id'>QuickWidget</span><span class='colon2 op'>::</span><span class='WIDGET_ENUM_MAP constant id'>WIDGET_ENUM_MAP</span><span class='lbrack token'>[</span><span class='symbol val'>:radiobutton</span><span class='rbrack token'>]</span>
+        <span class='QuickRadioButton constant id'>QuickRadioButton</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='self self kw'>self</span><span class='comma token'>,</span><span class='java_widget identifier id'>java_widget</span><span class='rparen token'>)</span>
+      <span class='when when kw'>when</span> <span class='QuickWidget constant id'>QuickWidget</span><span class='colon2 op'>::</span><span class='WIDGET_ENUM_MAP constant id'>WIDGET_ENUM_MAP</span><span class='lbrack token'>[</span><span class='symbol val'>:treeview</span><span class='rbrack token'>]</span>
+        <span class='QuickTreeView constant id'>QuickTreeView</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='self self kw'>self</span><span class='comma token'>,</span><span class='java_widget identifier id'>java_widget</span><span class='rparen token'>)</span>
+      <span class='when when kw'>when</span> <span class='QuickWidget constant id'>QuickWidget</span><span class='colon2 op'>::</span><span class='WIDGET_ENUM_MAP constant id'>WIDGET_ENUM_MAP</span><span class='lbrack token'>[</span><span class='symbol val'>:treeitem</span><span class='rbrack token'>]</span>
+        <span class='QuickTreeItem constant id'>QuickTreeItem</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='self self kw'>self</span><span class='comma token'>,</span><span class='java_widget identifier id'>java_widget</span><span class='rparen token'>)</span>
+      <span class='when when kw'>when</span> <span class='QuickWidget constant id'>QuickWidget</span><span class='colon2 op'>::</span><span class='WIDGET_ENUM_MAP constant id'>WIDGET_ENUM_MAP</span><span class='lbrack token'>[</span><span class='symbol val'>:thumbnail</span><span class='rbrack token'>]</span>
+        <span class='QuickTreeItem constant id'>QuickTreeItem</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='self self kw'>self</span><span class='comma token'>,</span><span class='java_widget identifier id'>java_widget</span><span class='rparen token'>)</span>
+    <span class='else else kw'>else</span>
+      <span class='QuickWidget constant id'>QuickWidget</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='self self kw'>self</span><span class='comma token'>,</span><span class='java_widget identifier id'>java_widget</span><span class='rparen token'>)</span>
+    <span class='end end kw'>end</span>
+  <span class='end end kw'>end</span><span class='dot token'>.</span><span class='to_a identifier id'>to_a</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="window_name-instance_method">
+  
+    - (<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>) <strong>window_name</strong>(win_id) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Retrieves the name of a window based on it&#8217;s id
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>int</tt>)</span>
+      
+      
+        <span class='name'>win_id</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+Window ID to retrieve the name for
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+Name of the window
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+323
+324
+325</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/desktop_browser.rb', line 323</span>
+
+<span class='def def kw'>def</span> <span class='window_name identifier id'>window_name</span><span class='lparen token'>(</span><span class='win_id identifier id'>win_id</span><span class='rparen token'>)</span>
+  <span class='driver identifier id'>driver</span><span class='dot token'>.</span><span class='getQuickWindowName identifier id'>getQuickWindowName</span><span class='lparen token'>(</span><span class='win_id identifier id'>win_id</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+    
+    <div id="footer">
+  Generated on Wed Feb 09 12:20:15 2011 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.6.4 (ruby-1.8.7).
+</div>
+
+  </body>
+</html>

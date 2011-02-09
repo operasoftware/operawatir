@@ -1,0 +1,585 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta name="Content-Type" content="text/html; charset=utf8" />
+<title>Class: OperaWatir::Preferences</title>
+<link rel="stylesheet" href="../css/style.css" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="../css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  relpath = '..';
+  if (relpath != '') relpath += '/';
+</script>
+<script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+  </head>
+  <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../_index.html">Index (P)</a> &raquo; 
+    <span class='title'><span class='object_link'><a href="../OperaWatir.html" title="OperaWatir (module)">OperaWatir</a></span></span>
+     &raquo; 
+    <span class="title">Preferences</span>
+  
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  <a id="class_list_link" href="#">Class List</a>
+  <a id="method_list_link" href="#">Method List</a>
+  <a id ="file_list_link" href="#">File List</a>
+</div>
+
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><h1>Class: OperaWatir::Preferences
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName">Object</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">OperaWatir::Preferences</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+      <dt class="r2">Extended by:</dt>
+      <dd class="r2">Forwardable</dd>
+      
+    
+  
+    
+      <dt class="r1">Includes:</dt>
+      <dd class="r1">Enumerable</dd>
+      
+    
+  
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">lib/operawatir/preferences.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Defined Under Namespace</h2>
+<p class="children">
+   
+    
+   
+    
+      <strong class="classes">Classes:</strong> <span class='object_link'><a href="Preferences/Entry.html" title="OperaWatir::Preferences::Entry (class)">Entry</a></span>
+    
+  
+</p>
+
+  <h2>Constant Summary</h2>
+  
+    <dl class="constants">
+      
+        <dt id="SECTIONS-constant" class="">SECTIONS =
+          <div class="docstring">
+  <div class="discussion">
+    <p>
+FIXME This should be retrievable from OperaDriver
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div>
+        </dt>
+        <dd><pre class="code"><span class='lbrack token'>[</span><span class='string val'>'Author Display Mode'</span><span class='comma token'>,</span> <span class='string val'>'Auto Update'</span><span class='comma token'>,</span> <span class='string val'>'BitTorrent'</span><span class='comma token'>,</span>
+<span class='string val'>'CSS Generic Font Family'</span><span class='comma token'>,</span> <span class='string val'>'Cache'</span><span class='comma token'>,</span> <span class='string val'>'Clear Private Data Dialog'</span><span class='comma token'>,</span>
+<span class='string val'>'Colors'</span><span class='comma token'>,</span> <span class='string val'>'Developer Tools'</span><span class='comma token'>,</span> <span class='string val'>'Disk Cache'</span><span class='comma token'>,</span> <span class='string val'>'Extensions'</span><span class='comma token'>,</span>
+<span class='string val'>'File Selector'</span><span class='comma token'>,</span> <span class='string val'>'File Types Section Info'</span><span class='comma token'>,</span> <span class='string val'>'Fonts'</span><span class='comma token'>,</span> <span class='string val'>'Geolocation'</span><span class='comma token'>,</span>
+<span class='string val'>'Handheld'</span><span class='comma token'>,</span> <span class='string val'>'HotListWindow'</span><span class='comma token'>,</span> <span class='string val'>'ISP'</span><span class='comma token'>,</span> <span class='string val'>'Install'</span><span class='comma token'>,</span> <span class='string val'>'Interface Colors'</span><span class='comma token'>,</span>
+<span class='string val'>'Java'</span><span class='comma token'>,</span> <span class='string val'>'Link'</span><span class='comma token'>,</span> <span class='string val'>'Mail'</span><span class='comma token'>,</span> <span class='string val'>'MailBox'</span><span class='comma token'>,</span> <span class='string val'>'Multimedia'</span><span class='comma token'>,</span> <span class='string val'>'Network'</span><span class='comma token'>,</span> <span class='string val'>'News'</span><span class='comma token'>,</span>
+<span class='string val'>'OEM'</span><span class='comma token'>,</span> <span class='string val'>'Opera Account'</span><span class='comma token'>,</span> <span class='string val'>'Opera Sync'</span><span class='comma token'>,</span> <span class='string val'>'Performance'</span><span class='comma token'>,</span> <span class='string val'>'Persistent Storage'</span><span class='comma token'>,</span>
+<span class='string val'>'Personal Info'</span><span class='comma token'>,</span> <span class='string val'>'Printer'</span><span class='comma token'>,</span> <span class='string val'>'Proxy'</span><span class='comma token'>,</span> <span class='string val'>'SVG'</span><span class='comma token'>,</span> <span class='string val'>'Saved Settings'</span><span class='comma token'>,</span>
+<span class='string val'>'Security Prefs'</span><span class='comma token'>,</span> <span class='string val'>'Sounds'</span><span class='comma token'>,</span> <span class='string val'>'Special'</span><span class='comma token'>,</span> <span class='string val'>'Transfer Window'</span><span class='comma token'>,</span>
+<span class='string val'>'User Agent'</span><span class='comma token'>,</span> <span class='string val'>'User Display Mode'</span><span class='comma token'>,</span> <span class='string val'>'User Prefs'</span><span class='comma token'>,</span> <span class='string val'>'Visited Link'</span><span class='comma token'>,</span>
+<span class='string val'>'Visited Link'</span><span class='comma token'>,</span> <span class='string val'>'Web Server'</span><span class='comma token'>,</span> <span class='string val'>'Widgets'</span><span class='comma token'>,</span> <span class='string val'>'Workspace'</span><span class='rbrack token'>]</span>
+</pre></dd>
+      
+    </dl>
+  
+
+
+  
+  
+  <h2>Instance Attribute Summary <small>(<a href="#" class="summary_toggle">collapse</a>)</small></h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#browser-instance_method" title="#browser (instance method)">- (Object) <strong>browser</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Returns the value of attribute browser.
+</p>
+</div></span>
+  
+</li>
+
+    
+  </ul>
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#cleanup-instance_method" title="#cleanup (instance method)">- (Object) <strong>cleanup</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#cleanup%21-instance_method" title="#cleanup! (instance method)">- (Object) <strong>cleanup!</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">- (Preferences) <strong>initialize</strong>(browser) </a>
+    
+
+    
+  </span>
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+A new instance of Preferences.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#method_missing-instance_method" title="#method_missing (instance method)">- (Object) <strong>method_missing</strong>(section) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Section locator.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#to_h-instance_method" title="#to_h (instance method)">- (Object) <strong>to_h</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#to_s-instance_method" title="#to_s (instance method)">- (Object) <strong>to_s</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+  <div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <p class="signature first" id="initialize-instance_method">
+  
+    - (<tt><span class='object_link'><a href="" title="OperaWatir::Preferences (class)">Preferences</a></span></tt>) <strong>initialize</strong>(browser) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+A new instance of Preferences
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+35
+36
+37</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/preferences.rb', line 35</span>
+
+<span class='def def kw'>def</span> <span class='initialize identifier id'>initialize</span><span class='lparen token'>(</span><span class='browser identifier id'>browser</span><span class='rparen token'>)</span>
+  <span class='self self kw'>self</span><span class='dot token'>.</span><span class='browser identifier id'>browser</span> <span class='assign token'>=</span> <span class='browser identifier id'>browser</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+<div id="method_missing_details" class="method_details_list">
+  <h2>Dynamic Method Handling</h2>
+  <p class="notice this">
+    This class handles dynamic methods through the <tt>method_missing</tt> method
+    
+  </p>
+  
+    <div class="method_details first">
+  <p class="signature first" id="method_missing-instance_method">
+  
+    - (<tt>Object</tt>) <strong>method_missing</strong>(section) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Section locator
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+40
+41
+42
+43</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/preferences.rb', line 40</span>
+
+<span class='def def kw'>def</span> <span class='method_missing identifier id'>method_missing</span><span class='lparen token'>(</span><span class='section identifier id'>section</span><span class='rparen token'>)</span>
+  <span class='comment val'># @_prefs[section.to_s] ||= Entry.new self, section</span>
+  <span class='Entry constant id'>Entry</span><span class='dot token'>.</span><span class='new identifier id'>new</span> <span class='self self kw'>self</span><span class='comma token'>,</span> <span class='section identifier id'>section</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+  <div id="instance_attr_details" class="attr_details">
+    <h2>Instance Attribute Details</h2>
+    
+      
+      <span id="browser=-instance_method"></span>
+      <span id="browser-instance_method"></span>
+      <div class="method_details first">
+  <p class="signature first" id="browser-instance_method">
+  
+    - (<tt>Object</tt>) <strong>browser</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Returns the value of attribute browser
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+20
+21
+22</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/preferences.rb', line 20</span>
+
+<span class='def def kw'>def</span> <span class='browser identifier id'>browser</span>
+  <span class='@browser ivar id'>@browser</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="cleanup-instance_method">
+  
+    - (<tt>Object</tt>) <strong>cleanup</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+45</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/preferences.rb', line 45</span>
+
+<span class='def def kw'>def</span> <span class='cleanup identifier id'>cleanup</span><span class='semicolon token'>;</span> <span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="cleanup!-instance_method">
+  
+    - (<tt>Object</tt>) <strong>cleanup!</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+46</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/preferences.rb', line 46</span>
+
+<span class='def def kw'>def</span> <span class='cleanup! fid id'>cleanup!</span><span class='semicolon token'>;</span> <span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="to_h-instance_method">
+  
+    - (<tt>Object</tt>) <strong>to_h</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+61
+62
+63</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/preferences.rb', line 61</span>
+
+<span class='def def kw'>def</span> <span class='to_h identifier id'>to_h</span>
+  <span class='_prefs identifier id'>_prefs</span><span class='dot token'>.</span><span class='dup identifier id'>dup</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="to_s-instance_method">
+  
+    - (<tt>Object</tt>) <strong>to_s</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+57
+58
+59</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/preferences.rb', line 57</span>
+
+<span class='def def kw'>def</span> <span class='to_s identifier id'>to_s</span>
+  <span class='pp identifier id'>pp</span> <span class='_prefs identifier id'>_prefs</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+    
+    <div id="footer">
+  Generated on Wed Feb 09 12:20:13 2011 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.6.4 (ruby-1.8.7).
+</div>
+
+  </body>
+</html>

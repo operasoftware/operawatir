@@ -1,0 +1,691 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta name="Content-Type" content="text/html; charset=utf8" />
+<title>Class: OperaWatir::Keys</title>
+<link rel="stylesheet" href="../css/style.css" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="../css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  relpath = '..';
+  if (relpath != '') relpath += '/';
+</script>
+<script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+  </head>
+  <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../_index.html">Index (K)</a> &raquo; 
+    <span class='title'><span class='object_link'><a href="../OperaWatir.html" title="OperaWatir (module)">OperaWatir</a></span></span>
+     &raquo; 
+    <span class="title">Keys</span>
+  
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  <a id="class_list_link" href="#">Class List</a>
+  <a id="method_list_link" href="#">Method List</a>
+  <a id ="file_list_link" href="#">File List</a>
+</div>
+
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><h1>Class: OperaWatir::Keys
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName">Object</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">OperaWatir::Keys</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">lib/operawatir/keys.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <p>
+-*- coding: utf-8 -*-
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div>
+
+  <h2>Instance Attribute Summary <small>(<a href="#" class="summary_toggle">collapse</a>)</small></h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#browser-instance_method" title="#browser (instance method)">- (Object) <strong>browser</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Returns the value of attribute browser.
+</p>
+</div></span>
+  
+</li>
+
+    
+  </ul>
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#down-instance_method" title="#down (instance method)">- (Object) <strong>down</strong>(*args) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Holds down supplied arbitrary list of keys indefinitely.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">- (Keys) <strong>initialize</strong>(browser) </a>
+    
+
+    
+  </span>
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+A new instance of Keys.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#release-instance_method" title="#release (instance method)">- (Object) <strong>release</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Releases all pressed down keys.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#send-instance_method" title="#send (instance method)">- (Object) <strong>send</strong>(*list) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Presses an arbitrary list of keys or key combinations.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#up-instance_method" title="#up (instance method)">- (Object) <strong>up</strong>(*args) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Depresses supplied arbitrary list of keys.
+</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+<div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <p class="signature first" id="initialize-instance_method">
+  
+    - (<tt><span class='object_link'><a href="" title="OperaWatir::Keys (class)">Keys</a></span></tt>) <strong>initialize</strong>(browser) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+A new instance of Keys
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+6
+7
+8</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/keys.rb', line 6</span>
+
+<span class='def def kw'>def</span> <span class='initialize identifier id'>initialize</span><span class='lparen token'>(</span><span class='browser identifier id'>browser</span><span class='rparen token'>)</span>
+  <span class='self self kw'>self</span><span class='dot token'>.</span><span class='browser identifier id'>browser</span> <span class='assign token'>=</span> <span class='browser identifier id'>browser</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+  <div id="instance_attr_details" class="attr_details">
+    <h2>Instance Attribute Details</h2>
+    
+      
+      <span id="browser=-instance_method"></span>
+      <span id="browser-instance_method"></span>
+      <div class="method_details first">
+  <p class="signature first" id="browser-instance_method">
+  
+    - (<tt>Object</tt>) <strong>browser</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Returns the value of attribute browser
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+4
+5
+6</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/keys.rb', line 4</span>
+
+<span class='def def kw'>def</span> <span class='browser identifier id'>browser</span>
+  <span class='@browser ivar id'>@browser</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="down-instance_method">
+  
+    - (<tt>Object</tt>) <strong>down</strong>(*args) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Holds down supplied arbitrary list of keys indefinitely.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h3>Examples:</h3>
+    
+      <h4><div class='inline'></div></h4>
+      <pre class="example code"><span class='browser identifier id'>browser</span><span class='dot token'>.</span><span class='keys identifier id'>keys</span><span class='dot token'>.</span><span class='down identifier id'>down</span> <span class='string val'>'a'</span>
+<span class='browser identifier id'>browser</span><span class='dot token'>.</span><span class='keys identifier id'>keys</span><span class='dot token'>.</span><span class='down identifier id'>down</span> <span class='string val'>'a'</span><span class='comma token'>,</span> <span class='symbol val'>:right</span>
+</pre>
+    
+  </div>
+<h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>Symbol</tt>, <tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+        <span class='name'>*args</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+Arbitrary list of symbols (modification keys) or strings (regular keys) to
+be pressed down.
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+22
+23
+24</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/keys.rb', line 22</span>
+
+<span class='def def kw'>def</span> <span class='down identifier id'>down</span><span class='lparen token'>(</span><span class='mult op'>*</span><span class='args identifier id'>args</span><span class='rparen token'>)</span>
+  <span class='args identifier id'>args</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='lbrace token'>{</span> <span class='bitor op'>|</span><span class='key identifier id'>key</span><span class='bitor op'>|</span> <span class='driver identifier id'>driver</span><span class='dot token'>.</span><span class='keyDown identifier id'>keyDown</span><span class='lparen token'>(</span><span class='key identifier id'>key</span><span class='rparen token'>)</span> <span class='rbrace token'>}</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="release-instance_method">
+  
+    - (<tt>Object</tt>) <strong>release</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Releases all pressed down keys.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h3>Examples:</h3>
+    
+      <h4><div class='inline'></div></h4>
+      <pre class="example code"><span class='browser identifier id'>browser</span><span class='dot token'>.</span><span class='keys identifier id'>keys</span><span class='dot token'>.</span><span class='down identifier id'>down</span> <span class='symbol val'>:control</span><span class='comma token'>,</span> <span class='symbol val'>:shift</span><span class='comma token'>,</span> <span class='string val'>'a'</span>
+<span class='browser identifier id'>browser</span><span class='dot token'>.</span><span class='keys identifier id'>keys</span><span class='dot token'>.</span><span class='release identifier id'>release</span>
+</pre>
+    
+  </div>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+44
+45
+46</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/keys.rb', line 44</span>
+
+<span class='def def kw'>def</span> <span class='release identifier id'>release</span>
+  <span class='driver identifier id'>driver</span><span class='dot token'>.</span><span class='releaseKeys identifier id'>releaseKeys</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="send-instance_method">
+  
+    - (<tt>Object</tt>) <strong>send</strong>(*list) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Presses an arbitrary list of keys or key combinations. Provided arguments
+are performed in sequence.
+</p>
+<p>
+Symbols are parsed as modification keys (such as :control, :shift,
+:backspace, &amp;c.), arraysd are interpreted as key combinations (e.g.
+[:control, &#8216;a&#8217;] will perform the combination C-a), and strings
+will be typed as regular words.
+</p>
+<p>
+Note that this method is not OS indepdendent in the sense that even though
+OS X does not have Control keys, it will not replace your sent keys with
+Command.
+</p>
+<p>
+Available modification keys: control, shift, access … TODO
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h3>Examples:</h3>
+    
+      <h4><div class='inline'></div></h4>
+      <pre class="example code"><span class='browser identifier id'>browser</span><span class='dot token'>.</span><span class='keys identifier id'>keys</span><span class='dot token'>.</span><span class='send identifier id'>send</span> <span class='string val'>'a'</span>
+<span class='browser identifier id'>browser</span><span class='dot token'>.</span><span class='keys identifier id'>keys</span><span class='dot token'>.</span><span class='send identifier id'>send</span> <span class='string val'>'foo'</span><span class='comma token'>,</span> <span class='string val'>'bar'</span>
+<span class='browser identifier id'>browser</span><span class='dot token'>.</span><span class='keys identifier id'>keys</span><span class='dot token'>.</span><span class='send identifier id'>send</span> <span class='symbol val'>:control</span>
+<span class='browser identifier id'>browser</span><span class='dot token'>.</span><span class='keys identifier id'>keys</span><span class='dot token'>.</span><span class='send identifier id'>send</span> <span class='lbrack token'>[</span><span class='symbol val'>:control</span><span class='comma token'>,</span> <span class='string val'>'a'</span><span class='rbrack token'>]</span>
+<span class='browser identifier id'>browser</span><span class='dot token'>.</span><span class='keys identifier id'>keys</span><span class='dot token'>.</span><span class='send identifier id'>send</span> <span class='lbrack token'>[</span><span class='symbol val'>:control</span><span class='comma token'>,</span> <span class='string val'>'a'</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='symbol val'>:backspace</span>
+</pre>
+    
+  </div>
+<h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>Symbol</tt>, <tt>Array</tt>, <tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+        <span class='name'>*list</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+Arbitrary list of symbols, arrays or strings which will form a sequence of
+keys to be pressed.
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/keys.rb', line 73</span>
+
+<span class='def def kw'>def</span> <span class='send identifier id'>send</span><span class='lparen token'>(</span><span class='mult op'>*</span><span class='list identifier id'>list</span><span class='rparen token'>)</span>  <span class='comment val'># TODO rename?</span>
+  <span class='list identifier id'>list</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='item identifier id'>item</span><span class='bitor op'>|</span>
+    <span class='case case kw'>case</span> <span class='item identifier id'>item</span>
+    <span class='when when kw'>when</span> <span class='Array constant id'>Array</span>
+      <span class='item identifier id'>item</span><span class='dot token'>.</span><span class='each_with_index identifier id'>each_with_index</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='key identifier id'>key</span><span class='comma token'>,</span> <span class='index identifier id'>index</span><span class='bitor op'>|</span>
+        <span class='case case kw'>case</span> <span class='key identifier id'>key</span>
+        <span class='when when kw'>when</span> <span class='symbol val'>:access</span>
+          <span class='access_key identifier id'>access_key</span> <span class='item identifier id'>item</span><span class='lbrack token'>[</span><span class='index identifier id'>index</span> <span class='plus op'>+</span> <span class='integer val'>1</span><span class='rbrack token'>]</span>
+        <span class='when when kw'>when</span> <span class='Symbol constant id'>Symbol</span>
+          <span class='down identifier id'>down</span> <span class='key identifier id'>key</span>
+        <span class='else else kw'>else</span>
+          <span class='key identifier id'>key</span> <span class='key identifier id'>key</span>
+          <span class='release identifier id'>release</span>
+        <span class='end end kw'>end</span>
+      <span class='end end kw'>end</span>
+    <span class='when when kw'>when</span> <span class='Symbol constant id'>Symbol</span>
+      <span class='key identifier id'>key</span> <span class='item identifier id'>item</span>
+    <span class='else else kw'>else</span>
+      <span class='type identifier id'>type</span> <span class='item identifier id'>item</span>
+    <span class='end end kw'>end</span>
+  <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="up-instance_method">
+  
+    - (<tt>Object</tt>) <strong>up</strong>(*args) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Depresses supplied arbitrary list of keys.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h3>Examples:</h3>
+    
+      <h4><div class='inline'></div></h4>
+      <pre class="example code"><span class='browser identifier id'>browser</span><span class='dot token'>.</span><span class='keys identifier id'>keys</span><span class='dot token'>.</span><span class='up identifier id'>up</span> <span class='string val'>'a'</span><span class='comma token'>,</span> <span class='symbol val'>:right</span>
+</pre>
+    
+  </div>
+<h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>Symbol</tt>, <tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+        <span class='name'>*args</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+Arbitrary list of symbols (modification keys) or strings (regular keys) to
+be depressed.
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+35
+36
+37</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/keys.rb', line 35</span>
+
+<span class='def def kw'>def</span> <span class='up identifier id'>up</span><span class='lparen token'>(</span><span class='mult op'>*</span><span class='args identifier id'>args</span><span class='rparen token'>)</span>
+  <span class='args identifier id'>args</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='lbrace token'>{</span> <span class='bitor op'>|</span><span class='key identifier id'>key</span><span class='bitor op'>|</span> <span class='driver identifier id'>driver</span><span class='dot token'>.</span><span class='keyUp identifier id'>keyUp</span><span class='lparen token'>(</span><span class='key identifier id'>key</span><span class='rparen token'>)</span> <span class='rbrace token'>}</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+    
+    <div id="footer">
+  Generated on Wed Feb 09 12:20:07 2011 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.6.4 (ruby-1.8.7).
+</div>
+
+  </body>
+</html>

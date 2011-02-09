@@ -53,10 +53,10 @@
   
     <dt class="r1">Inherits:</dt>
     <dd class="r1">
-      <span class="inheritName"><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></span>
+      <span class="inheritName">Object</span>
       
         <ul class="fullTree">
-          <li><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></li>
+          <li>Object</li>
           
             <li class="next">OperaWatir::Element</li>
           
@@ -374,7 +374,30 @@ Clicks on the top left of the element, or the given x, y offset.
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#click%21-instance_method" title="#click! (instance method)">- (Object) <strong>click!</strong>(x = 0, y = 0) </a>
+      <a href="#click_async-instance_method" title="#click_async (instance method)">- (Object) <strong>click_async</strong> </a>
+    
+
+    
+      (also: #click_no_wait)
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#compare_hash-instance_method" title="#compare_hash (instance method)">- (Object) <strong>compare_hash</strong>(other) </a>
     
 
     
@@ -388,30 +411,9 @@ Clicks on the top left of the element, or the given x, y offset.
 
   
     <span class="summary_desc"><div class='inline'><p>
-Events.
+Opera-specific.
 </p>
 </div></span>
-  
-</li>
-
-      
-        <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#click_async-instance_method" title="#click_async (instance method)">- (Object) <strong>click_async</strong> </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
@@ -504,6 +506,27 @@ Events.
   <span class="summary_signature">
     
       <a href="#eql%3F-instance_method" title="#eql? (instance method)">- (Boolean) <strong>eql?</strong>(other) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#fire_event-instance_method" title="#fire_event (instance method)">- (Object) <strong>fire_event</strong>(event, x = 0, y = 0) </a>
     
 
     
@@ -779,6 +802,27 @@ Gets the selected `&lt;option&gt;` elements in a `&lt;select&gt;` element.
         <li class="public ">
   <span class="summary_signature">
     
+      <a href="#send_keys-instance_method" title="#send_keys (instance method)">- (Object) <strong>send_keys</strong>(*list) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
       <a href="#submit-instance_method" title="#submit (instance method)">- (Object) <strong>submit</strong> </a>
     
 
@@ -833,30 +877,7 @@ Gets the text content of the element.
     
 
     
-      (also: #set)
-    
-  </span>
-  
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'></div></span>
-  
-</li>
-
-      
-        <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#trigger%21-instance_method" title="#trigger! (instance method)">- (Object) <strong>trigger!</strong>(event, x = 0, y = 0) </a>
-    
-
-    
-      (also: #fire_event)
+      (also: #set, #value=)
     
   </span>
   
@@ -956,8 +977,9 @@ element.
 
   
     <span class="summary_desc"><div class='inline'><p>
-On elements of type `&lt;input&gt;` this gets the value of the value
-attribute, on every other element type it returns the text content.
+On elements of type `input`, `textarea` or `select` it will fetch the
+texteditable `value` attribute, on every other element type it returns the
+DOM attribute `value`.
 </p>
 </div></span>
   
@@ -1070,7 +1092,7 @@ A new instance of Element
     <div class="method_details first">
   <p class="signature first" id="method_missing-instance_method">
   
-    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>method_missing</strong>(name, *args, &amp;blk) 
+    - (<tt>Object</tt>) <strong>method_missing</strong>(name, *args, &amp;blk) 
   
 
   
@@ -1115,7 +1137,7 @@ A new instance of Element
       <div class="method_details first">
   <p class="signature first" id="class-instance_method">
   
-    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>class</strong>  <span class="extras">(readonly)</span>
+    - (<tt>Object</tt>) <strong>class</strong>  <span class="extras">(readonly)</span>
   
 
   
@@ -1158,7 +1180,7 @@ Returns the value of attribute class
       <div class="method_details ">
   <p class="signature " id="colspan-instance_method">
   
-    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>colspan</strong>  <span class="extras">(readonly)</span>
+    - (<tt>Object</tt>) <strong>colspan</strong>  <span class="extras">(readonly)</span>
   
 
   
@@ -1179,12 +1201,12 @@ Returns the value of attribute colspan
       <pre class="lines">
 
 
-155
-156
-157</pre>
+145
+146
+147</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/operawatir/compat/element.rb', line 155</span>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/compat/element.rb', line 145</span>
 
 <span class='def def kw'>def</span> <span class='colspan identifier id'>colspan</span>
   <span class='attr identifier id'>attr</span><span class='lparen token'>(</span><span class='symbol val'>:colspan</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='to_i identifier id'>to_i</span>
@@ -1201,7 +1223,7 @@ Returns the value of attribute colspan
       <div class="method_details ">
   <p class="signature " id="id-instance_method">
   
-    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>id</strong>  <span class="extras">(readonly)</span>
+    - (<tt>Object</tt>) <strong>id</strong>  <span class="extras">(readonly)</span>
   
 
   
@@ -1244,7 +1266,7 @@ Returns the value of attribute id
       <div class="method_details ">
   <p class="signature " id="type-instance_method">
   
-    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>type</strong>  <span class="extras">(readonly)</span>
+    - (<tt>Object</tt>) <strong>type</strong>  <span class="extras">(readonly)</span>
   
 
   
@@ -1268,16 +1290,16 @@ returns the `type` attribute.
       <pre class="lines">
 
 
-144
-145
-146
-147
-148
-149
-150</pre>
+134
+135
+136
+137
+138
+139
+140</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/operawatir/compat/element.rb', line 144</span>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/compat/element.rb', line 134</span>
 
 <span class='def def kw'>def</span> <span class='type identifier id'>type</span>
   <span class='if if kw'>if</span> <span class='tag_name identifier id'>tag_name</span> <span class='eq op'>==</span> <span class='string val'>'SELECT'</span>
@@ -1302,7 +1324,7 @@ returns the `type` attribute.
       <div class="method_details first">
   <p class="signature first" id="==-instance_method">
   
-    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>==</strong>(other) 
+    - (<tt>Object</tt>) <strong>==</strong>(other) 
   
 
   
@@ -1331,7 +1353,7 @@ returns the `type` attribute.
       <div class="method_details ">
   <p class="signature " id="attr-instance_method">
   
-    - (<tt>String</tt>) <strong>attr</strong>(name) 
+    - (<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>) <strong>attr</strong>(name) 
   
 
   
@@ -1350,7 +1372,7 @@ Gets the attribute called name.
   
     <li>
       
-        <span class='type'>(<tt>String</tt>, <tt>Symbol</tt>)</span>
+        <span class='type'>(<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>, <tt>Symbol</tt>)</span>
       
       
         <span class='name'>name</span>
@@ -1371,7 +1393,7 @@ The name of the attribute to get
   
     <li>
       
-        <span class='type'>(<tt>String</tt>)</span>
+        <span class='type'>(<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>)</span>
       
       
       
@@ -1470,7 +1492,7 @@ true if the attribute exists on the element, false otherwise
       <div class="method_details ">
   <p class="signature " id="check!-instance_method">
   
-    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>check!</strong> 
+    - (<tt>Object</tt>) <strong>check!</strong> 
   
 
   
@@ -1480,19 +1502,17 @@ true if the attribute exists on the element, false otherwise
       <pre class="lines">
 
 
-81
-82
-83
-84
-85
-86</pre>
+91
+92
+93
+94
+95</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/operawatir/element.rb', line 81</span>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/element.rb', line 91</span>
 
 <span class='def def kw'>def</span> <span class='check! fid id'>check!</span>
-  <span class='result identifier id'>result</span> <span class='assign token'>=</span> <span class='node identifier id'>node</span><span class='dot token'>.</span><span class='toggle identifier id'>toggle</span>
-  <span class='if if kw'>if</span><span class='lparen token'>(</span><span class='result identifier id'>result</span> <span class='neq op'>!=</span> <span class='true true kw'>true</span><span class='rparen token'>)</span>
+  <span class='if if kw'>if</span> <span class='not not kw'>not</span> <span class='selected? fid id'>selected?</span>
     <span class='node identifier id'>node</span><span class='dot token'>.</span><span class='toggle identifier id'>toggle</span>
   <span class='end end kw'>end</span>
 <span class='end end kw'>end</span>
@@ -1505,7 +1525,7 @@ true if the attribute exists on the element, false otherwise
       <div class="method_details ">
   <p class="signature " id="class_name-instance_method">
   
-    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>class_name</strong> 
+    - (<tt>Object</tt>) <strong>class_name</strong> 
   
 
   
@@ -1534,7 +1554,7 @@ true if the attribute exists on the element, false otherwise
       <div class="method_details ">
   <p class="signature " id="clear-instance_method">
   
-    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>clear</strong> 
+    - (<tt>Object</tt>) <strong>clear</strong> 
   
 
   
@@ -1555,17 +1575,17 @@ Clears a text input or textarea of any text.
       <pre class="lines">
 
 
-90
-91
-92
-93</pre>
+77
+78
+79
+80</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/operawatir/compat/element.rb', line 90</span>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/compat/element.rb', line 77</span>
 
 <span class='def def kw'>def</span> <span class='clear identifier id'>clear</span>
   <span class='assert_enabled! fid id'>assert_enabled!</span>
-  <span class='node identifier id'>node</span><span class='dot token'>.</span><span class='clear identifier id'>clear</span>
+  <span class='uncheck! fid id'>uncheck!</span>
 <span class='end end kw'>end</span>
 </pre>
     </td>
@@ -1576,7 +1596,7 @@ Clears a text input or textarea of any text.
       <div class="method_details ">
   <p class="signature " id="click-instance_method">
   
-    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>click</strong>(x = 0, y = 0) 
+    - (<tt>Object</tt>) <strong>click</strong>(x = 0, y = 0) 
   
 
   
@@ -1639,13 +1659,13 @@ The offset from the top of the element
       <pre class="lines">
 
 
-71
-72
-73
-74</pre>
+106
+107
+108
+109</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/operawatir/compat/element.rb', line 71</span>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/element.rb', line 106</span>
 
 <span class='def def kw'>def</span> <span class='click identifier id'>click</span><span class='lparen token'>(</span><span class='x identifier id'>x</span><span class='assign token'>=</span><span class='integer val'>0</span><span class='comma token'>,</span> <span class='y identifier id'>y</span><span class='assign token'>=</span><span class='integer val'>0</span><span class='rparen token'>)</span>
   <span class='assert_enabled! fid id'>assert_enabled!</span>
@@ -1658,16 +1678,49 @@ The offset from the top of the element
 </div>
     
       <div class="method_details ">
-  <p class="signature " id="click!-instance_method">
+  <p class="signature " id="click_async-instance_method">
   
-    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>click!</strong>(x = 0, y = 0) 
+    - (<tt>Object</tt>) <strong>click_async</strong> 
+  
+
+  
+    <span class="aliases">Also known as:
+    <span class="names"><span id='click_no_wait-instance_method'>click_no_wait</span></span>
+    </span>
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+110
+111
+112</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/element.rb', line 110</span>
+
+<span class='def def kw'>def</span> <span class='click_async identifier id'>click_async</span>
+  <span class='node identifier id'>node</span><span class='dot token'>.</span><span class='click identifier id'>click</span> <span class='integer val'>1</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="compare_hash-instance_method">
+  
+    - (<tt>Object</tt>) <strong>compare_hash</strong>(other) 
   
 
   
 </p><div class="docstring">
   <div class="discussion">
     <p>
-Events
+Opera-specific
 </p>
 
 
@@ -1681,44 +1734,15 @@ Events
       <pre class="lines">
 
 
-98
-99
-100</pre>
+151
+152
+153</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/operawatir/element.rb', line 98</span>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/compat/element.rb', line 151</span>
 
-<span class='def def kw'>def</span> <span class='click! fid id'>click!</span><span class='lparen token'>(</span><span class='x identifier id'>x</span><span class='assign token'>=</span><span class='integer val'>0</span><span class='comma token'>,</span> <span class='y identifier id'>y</span><span class='assign token'>=</span><span class='integer val'>0</span><span class='rparen token'>)</span>
-  <span class='node identifier id'>node</span><span class='dot token'>.</span><span class='click identifier id'>click</span><span class='lparen token'>(</span><span class='x identifier id'>x</span><span class='dot token'>.</span><span class='to_i identifier id'>to_i</span><span class='comma token'>,</span> <span class='y identifier id'>y</span><span class='dot token'>.</span><span class='to_i identifier id'>to_i</span><span class='rparen token'>)</span>
-<span class='end end kw'>end</span>
-</pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-      <div class="method_details ">
-  <p class="signature " id="click_async-instance_method">
-  
-    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>click_async</strong> 
-  
-
-  
-</p><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-102
-103
-104</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'lib/operawatir/element.rb', line 102</span>
-
-<span class='def def kw'>def</span> <span class='click_async identifier id'>click_async</span>
-  <span class='node identifier id'>node</span><span class='dot token'>.</span><span class='click identifier id'>click</span> <span class='integer val'>1</span>
+<span class='def def kw'>def</span> <span class='compare_hash identifier id'>compare_hash</span><span class='lparen token'>(</span><span class='other identifier id'>other</span><span class='rparen token'>)</span>
+  <span class='visual_hash identifier id'>visual_hash</span> <span class='eq op'>==</span> <span class='other identifier id'>other</span><span class='dot token'>.</span><span class='visual_hash identifier id'>visual_hash</span>
 <span class='end end kw'>end</span>
 </pre>
     </td>
@@ -1760,12 +1784,12 @@ Events
       <pre class="lines">
 
 
-77
-78
-79</pre>
+87
+88
+89</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/operawatir/element.rb', line 77</span>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/element.rb', line 87</span>
 
 <span class='def def kw'>def</span> <span class='disabled? fid id'>disabled?</span>
   <span class='notop op'>!</span><span class='enabled? fid id'>enabled?</span>
@@ -1779,7 +1803,7 @@ Events
       <div class="method_details ">
   <p class="signature " id="double_click-instance_method">
   
-    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>double_click</strong> 
+    - (<tt>Object</tt>) <strong>double_click</strong> 
   
 
   
@@ -1789,12 +1813,12 @@ Events
       <pre class="lines">
 
 
-106
-107
-108</pre>
+114
+115
+116</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/operawatir/element.rb', line 106</span>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/element.rb', line 114</span>
 
 <span class='def def kw'>def</span> <span class='double_click identifier id'>double_click</span>
   <span class='node identifier id'>node</span><span class='dot token'>.</span><span class='click identifier id'>click</span> <span class='integer val'>2</span>
@@ -1808,7 +1832,7 @@ Events
       <div class="method_details ">
   <p class="signature " id="drag_and_drop_by-instance_method">
   
-    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>drag_and_drop_by</strong>(x, y) 
+    - (<tt>Object</tt>) <strong>drag_and_drop_by</strong>(x, y) 
   
 
   
@@ -1818,12 +1842,12 @@ Events
       <pre class="lines">
 
 
-126
-127
-128</pre>
+134
+135
+136</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/operawatir/element.rb', line 126</span>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/element.rb', line 134</span>
 
 <span class='def def kw'>def</span> <span class='drag_and_drop_by identifier id'>drag_and_drop_by</span><span class='lparen token'>(</span><span class='x identifier id'>x</span><span class='comma token'>,</span> <span class='y identifier id'>y</span><span class='rparen token'>)</span>
   <span class='node identifier id'>node</span><span class='dot token'>.</span><span class='dragAndDropBy identifier id'>dragAndDropBy</span><span class='lparen token'>(</span><span class='x identifier id'>x</span><span class='dot token'>.</span><span class='to_i identifier id'>to_i</span><span class='comma token'>,</span> <span class='y identifier id'>y</span><span class='dot token'>.</span><span class='to_i identifier id'>to_i</span><span class='rparen token'>)</span>
@@ -1837,7 +1861,7 @@ Events
       <div class="method_details ">
   <p class="signature " id="drag_and_drop_on-instance_method">
   
-    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>drag_and_drop_on</strong>(other) 
+    - (<tt>Object</tt>) <strong>drag_and_drop_on</strong>(other) 
   
 
   
@@ -1847,12 +1871,12 @@ Events
       <pre class="lines">
 
 
-122
-123
-124</pre>
+130
+131
+132</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/operawatir/element.rb', line 122</span>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/element.rb', line 130</span>
 
 <span class='def def kw'>def</span> <span class='drag_and_drop_on identifier id'>drag_and_drop_on</span><span class='lparen token'>(</span><span class='other identifier id'>other</span><span class='rparen token'>)</span>
   <span class='node identifier id'>node</span><span class='dot token'>.</span><span class='dragAndDropOn identifier id'>dragAndDropOn</span> <span class='other identifier id'>other</span><span class='dot token'>.</span><span class='node identifier id'>node</span>
@@ -1914,9 +1938,98 @@ Events
 </div>
     
       <div class="method_details ">
+  <p class="signature " id="fire_event-instance_method">
+  
+    - (<tt>Object</tt>) <strong>fire_event</strong>(event, x = 0, y = 0) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/element.rb', line 153</span>
+
+<span class='def def kw'>def</span> <span class='fire_event identifier id'>fire_event</span><span class='lparen token'>(</span><span class='event identifier id'>event</span><span class='comma token'>,</span> <span class='x identifier id'>x</span> <span class='assign token'>=</span> <span class='integer val'>0</span><span class='comma token'>,</span> <span class='y identifier id'>y</span> <span class='assign token'>=</span> <span class='integer val'>0</span><span class='rparen token'>)</span>
+  <span class='loc identifier id'>loc</span> <span class='assign token'>=</span> <span class='location identifier id'>location</span>
+  <span class='x identifier id'>x</span> <span class='opasgn op'>+=</span> <span class='loc identifier id'>loc</span><span class='lbrack token'>[</span><span class='symbol val'>:x</span><span class='rbrack token'>]</span>
+  <span class='y identifier id'>y</span> <span class='opasgn op'>+=</span> <span class='loc identifier id'>loc</span><span class='lbrack token'>[</span><span class='symbol val'>:y</span><span class='rbrack token'>]</span>
+
+  <span class='comment val'># In the case that event is given as symbol, we convert it to a</span>
+  <span class='comment val'># string.</span>
+  <span class='event identifier id'>event</span> <span class='assign token'>=</span> <span class='event identifier id'>event</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span>
+  <span class='event identifier id'>event</span> <span class='match op'>=~</span> <span class='regexp val'>/on(.*)/i</span>
+  <span class='event identifier id'>event</span> <span class='assign token'>=</span> <span class='$1 nth_ref id'>$1</span> <span class='if if_mod kw'>if</span> <span class='$1 nth_ref id'>$1</span>
+  <span class='event identifier id'>event</span> <span class='assign token'>=</span> <span class='event identifier id'>event</span><span class='dot token'>.</span><span class='downcase identifier id'>downcase</span><span class='dot token'>.</span><span class='to_sym identifier id'>to_sym</span>
+
+  <span class='comment val'># TODO Should this be moved to OperaDriver instead?</span>
+  <span class='case case kw'>case</span> <span class='event identifier id'>event</span>
+  <span class='when when kw'>when</span> <span class='symbol val'>:abort</span><span class='comma token'>,</span> <span class='symbol val'>:blur</span><span class='comma token'>,</span> <span class='symbol val'>:change</span><span class='comma token'>,</span> <span class='symbol val'>:error</span><span class='comma token'>,</span> <span class='symbol val'>:focus</span><span class='comma token'>,</span> <span class='symbol val'>:load</span><span class='comma token'>,</span> <span class='symbol val'>:reset</span><span class='comma token'>,</span>
+    <span class='symbol val'>:resize</span><span class='comma token'>,</span> <span class='symbol val'>:scroll</span><span class='comma token'>,</span> <span class='symbol val'>:submit</span><span class='comma token'>,</span> <span class='symbol val'>:unload</span>
+    <span class='type identifier id'>type</span> <span class='assign token'>=</span> <span class='string val'>'HTMLEvents'</span><span class='semicolon token'>;</span>
+    <span class='init identifier id'>init</span> <span class='assign token'>=</span> <span class='dstring node'>&quot;initEvent(\&quot;#{event.to_s}\&quot;, true, true)&quot;</span>
+  <span class='when when kw'>when</span> <span class='symbol val'>:click</span><span class='comma token'>,</span> <span class='symbol val'>:dblclick</span><span class='comma token'>,</span> <span class='symbol val'>:mousedown</span><span class='comma token'>,</span> <span class='symbol val'>:mousemove</span><span class='comma token'>,</span> <span class='symbol val'>:mouseout</span><span class='comma token'>,</span>
+    <span class='symbol val'>:mouseover</span><span class='comma token'>,</span> <span class='symbol val'>:mouseup</span>
+    <span class='type identifier id'>type</span> <span class='assign token'>=</span> <span class='string val'>'MouseEvents'</span>
+    <span class='init identifier id'>init</span> <span class='assign token'>=</span> <span class='dstring node'>&quot;initMouseEvent(\&quot;#{event.to_s}\&quot;, true, true, window, 1, 0, 0, 0, 0, false, false, false, false, 0, null)&quot;</span>
+  <span class='else else kw'>else</span>
+    <span class='raise identifier id'>raise</span> <span class='Exceptions constant id'>Exceptions</span><span class='colon2 op'>::</span><span class='NotImplementedException constant id'>NotImplementedException</span><span class='comma token'>,</span>
+    <span class='dstring node'>&quot;Event on#{event} is not a valid ECMAscript event for OperaWatir.&quot;</span>
+  <span class='end end kw'>end</span>
+
+  <span class='script identifier id'>script</span> <span class='assign token'>=</span> <span class='dstring node'>&quot;var event = document.createEvent(\&quot;#{type}\&quot;); &quot;</span> <span class='plus op'>+</span>
+    <span class='dstring node'>&quot;event.#{init}; &quot;</span> <span class='plus op'>+</span>
+    <span class='string val'>&quot;locator.dispatchEvent(event);&quot;</span>
+
+  <span class='node identifier id'>node</span><span class='dot token'>.</span><span class='callMethod identifier id'>callMethod</span><span class='lparen token'>(</span><span class='script identifier id'>script</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
   <p class="signature " id="focus-instance_method">
   
-    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>focus</strong> 
+    - (<tt>Object</tt>) <strong>focus</strong> 
   
 
   
@@ -1937,15 +2050,15 @@ Focuses the element
       <pre class="lines">
 
 
-77
-78
-79</pre>
+66
+67
+68</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/operawatir/compat/element.rb', line 77</span>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/compat/element.rb', line 66</span>
 
 <span class='def def kw'>def</span> <span class='focus identifier id'>focus</span>
-  <span class='trigger! fid id'>trigger!</span> <span class='symbol val'>:focus</span>
+  <span class='fire_event identifier id'>fire_event</span> <span class='symbol val'>:focus</span>
 <span class='end end kw'>end</span>
 </pre>
     </td>
@@ -2009,7 +2122,7 @@ TODO Move to Webdriver Relies on getAttribute returning nil
       <div class="method_details ">
   <p class="signature " id="hash-instance_method">
   
-    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>hash</strong> 
+    - (<tt>Object</tt>) <strong>hash</strong> 
   
 
   
@@ -2049,7 +2162,7 @@ TODO Need support for this in Webdriver
       <div class="method_details ">
   <p class="signature " id="location-instance_method">
   
-    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>location</strong> 
+    - (<tt>Object</tt>) <strong>location</strong> 
   
 
   
@@ -2059,13 +2172,13 @@ TODO Need support for this in Webdriver
       <pre class="lines">
 
 
-186
-187
-188
-189</pre>
+199
+200
+201
+202</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/operawatir/element.rb', line 186</span>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/element.rb', line 199</span>
 
 <span class='def def kw'>def</span> <span class='location identifier id'>location</span>
   <span class='loc identifier id'>loc</span> <span class='assign token'>=</span> <span class='node identifier id'>node</span><span class='dot token'>.</span><span class='getLocation identifier id'>getLocation</span>
@@ -2080,7 +2193,7 @@ TODO Need support for this in Webdriver
       <div class="method_details ">
   <p class="signature " id="quadruple_click-instance_method">
   
-    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>quadruple_click</strong> 
+    - (<tt>Object</tt>) <strong>quadruple_click</strong> 
   
 
   
@@ -2090,12 +2203,12 @@ TODO Need support for this in Webdriver
       <pre class="lines">
 
 
-114
-115
-116</pre>
+122
+123
+124</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/operawatir/element.rb', line 114</span>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/element.rb', line 122</span>
 
 <span class='def def kw'>def</span> <span class='quadruple_click identifier id'>quadruple_click</span>
   <span class='node identifier id'>node</span><span class='dot token'>.</span><span class='click identifier id'>click</span> <span class='integer val'>4</span>
@@ -2109,7 +2222,7 @@ TODO Need support for this in Webdriver
       <div class="method_details ">
   <p class="signature " id="right_click-instance_method">
   
-    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>right_click</strong> 
+    - (<tt>Object</tt>) <strong>right_click</strong> 
   
 
   
@@ -2119,12 +2232,12 @@ TODO Need support for this in Webdriver
       <pre class="lines">
 
 
-118
-119
-120</pre>
+126
+127
+128</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/operawatir/element.rb', line 118</span>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/element.rb', line 126</span>
 
 <span class='def def kw'>def</span> <span class='right_click identifier id'>right_click</span>
   <span class='node identifier id'>node</span><span class='dot token'>.</span><span class='rightClick identifier id'>rightClick</span>
@@ -2138,7 +2251,7 @@ TODO Need support for this in Webdriver
       <div class="method_details ">
   <p class="signature " id="screenshot-instance_method">
   
-    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>screenshot</strong>(file_name, time_out) 
+    - (<tt>Object</tt>) <strong>screenshot</strong>(file_name, time_out) 
   
 
   
@@ -2159,12 +2272,12 @@ UI
       <pre class="lines">
 
 
-180
-181
-182</pre>
+193
+194
+195</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/operawatir/element.rb', line 180</span>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/element.rb', line 193</span>
 
 <span class='def def kw'>def</span> <span class='screenshot identifier id'>screenshot</span><span class='lparen token'>(</span><span class='file_name identifier id'>file_name</span><span class='comma token'>,</span> <span class='time_out identifier id'>time_out</span><span class='rparen token'>)</span>
   <span class='node identifier id'>node</span><span class='dot token'>.</span><span class='saveScreenshot identifier id'>saveScreenshot</span><span class='lparen token'>(</span><span class='file_name identifier id'>file_name</span><span class='comma token'>,</span> <span class='time_out identifier id'>time_out</span><span class='rparen token'>)</span>
@@ -2199,7 +2312,7 @@ checks whether the selected option contains the given text.
   
     <li>
       
-        <span class='type'>(<tt>optional</tt>, <tt>String</tt>)</span>
+        <span class='type'>(<tt>optional</tt>, <tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>)</span>
       
       
         <span class='name'>value</span>
@@ -2244,16 +2357,16 @@ otherwise
       <pre class="lines">
 
 
-132
-133
-134
-135
-136
-137
-138</pre>
+120
+121
+122
+123
+124
+125
+126</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/operawatir/compat/element.rb', line 132</span>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/compat/element.rb', line 120</span>
 
 <span class='def def kw'>def</span> <span class='selected? fid id'>selected?</span><span class='lparen token'>(</span><span class='value identifier id'>value</span><span class='assign token'>=</span><span class='nil nil kw'>nil</span><span class='rparen token'>)</span>
   <span class='if if kw'>if</span> <span class='option identifier id'>option</span><span class='dot token'>.</span><span class='nil? fid id'>nil?</span>
@@ -2311,12 +2424,12 @@ a collection of the selected `&lt;option&gt;`s
       <pre class="lines">
 
 
-119
-120
-121</pre>
+107
+108
+109</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/operawatir/compat/element.rb', line 119</span>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/compat/element.rb', line 107</span>
 
 <span class='def def kw'>def</span> <span class='selected_options identifier id'>selected_options</span>
   <span class='options identifier id'>options</span><span class='lparen token'>(</span><span class='symbol val'>:selected?</span><span class='comma token'>,</span> <span class='true true kw'>true</span><span class='rparen token'>)</span>
@@ -2328,9 +2441,59 @@ a collection of the selected `&lt;option&gt;`s
 </div>
     
       <div class="method_details ">
+  <p class="signature " id="send_keys-instance_method">
+  
+    - (<tt>Object</tt>) <strong>send_keys</strong>(*list) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Raises:</h3>
+<ul class="raise">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Exceptions/NotImplementedException.html" title="OperaWatir::Exceptions::NotImplementedException (class)">Exceptions::NotImplementedException</a></span></tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+149
+150
+151</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/element.rb', line 149</span>
+
+<span class='def def kw'>def</span> <span class='send_keys identifier id'>send_keys</span><span class='lparen token'>(</span><span class='mult op'>*</span><span class='list identifier id'>list</span><span class='rparen token'>)</span>
+  <span class='raise identifier id'>raise</span> <span class='Exceptions constant id'>Exceptions</span><span class='colon2 op'>::</span><span class='NotImplementedException constant id'>NotImplementedException</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
   <p class="signature " id="submit-instance_method">
   
-    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>submit</strong> 
+    - (<tt>Object</tt>) <strong>submit</strong> 
   
 
   
@@ -2351,13 +2514,13 @@ Submits a form, or the form the elment is contained in.
       <pre class="lines">
 
 
-84
-85
-86
-87</pre>
+71
+72
+73
+74</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/operawatir/compat/element.rb', line 84</span>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/compat/element.rb', line 71</span>
 
 <span class='def def kw'>def</span> <span class='submit identifier id'>submit</span>
   <span class='assert_exists identifier id'>assert_exists</span>
@@ -2372,7 +2535,7 @@ Submits a form, or the form the elment is contained in.
       <div class="method_details ">
   <p class="signature " id="text-instance_method">
   
-    - (<tt>String</tt>) <strong>text</strong> 
+    - (<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>) <strong>text</strong> 
   
 
   
@@ -2395,7 +2558,7 @@ Gets the text content of the element.
   
     <li>
       
-        <span class='type'>(<tt>String</tt>)</span>
+        <span class='type'>(<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>)</span>
       
       
       
@@ -2435,49 +2598,12 @@ the text content
       <div class="method_details ">
   <p class="signature " id="text=-instance_method">
   
-    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>text=</strong>(string) 
+    - (<tt>Object</tt>) <strong>text=</strong>(string) 
   
 
   
     <span class="aliases">Also known as:
-    <span class="names"><span id='set-instance_method'>set</span></span>
-    </span>
-  
-</p><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-132
-133
-134
-135
-136</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'lib/operawatir/element.rb', line 132</span>
-
-<span class='def def kw'>def</span> <span class='text= identifier id'>text=</span><span class='lparen token'>(</span><span class='string identifier id'>string</span><span class='rparen token'>)</span>
-  <span class='comment val'># Focus before typing</span>
-  <span class='node identifier id'>node</span><span class='dot token'>.</span><span class='click identifier id'>click</span>
-  <span class='node identifier id'>node</span><span class='dot token'>.</span><span class='sendKeys identifier id'>sendKeys</span><span class='lparen token'>(</span><span class='string identifier id'>string</span><span class='dot token'>.</span><span class='split identifier id'>split</span><span class='lparen token'>(</span><span class='string val'>''</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='to_java identifier id'>to_java</span><span class='lparen token'>(</span><span class='symbol val'>:string</span><span class='rparen token'>)</span><span class='rparen token'>)</span>
-<span class='end end kw'>end</span>
-</pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-      <div class="method_details ">
-  <p class="signature " id="trigger!-instance_method">
-  
-    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>trigger!</strong>(event, x = 0, y = 0) 
-  
-
-  
-    <span class="aliases">Also known as:
-    <span class="names"><span id='fire_event-instance_method'>fire_event</span></span>
+    <span class="names"><span id='set-instance_method'>set</span>, <span id='value=-instance_method'>value=</span></span>
     </span>
   
 </p><table class="source_code">
@@ -2490,71 +2616,15 @@ the text content
 141
 142
 143
-144
-145
-146
-147
-148
-149
-150
-151
-152
-153
-154
-155
-156
-157
-158
-159
-160
-161
-162
-163
-164
-165
-166
-167
-168
-169
-170
-171
-172</pre>
+144</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/operawatir/element.rb', line 140</span>
 
-<span class='def def kw'>def</span> <span class='trigger! fid id'>trigger!</span><span class='lparen token'>(</span><span class='event identifier id'>event</span><span class='comma token'>,</span> <span class='x identifier id'>x</span> <span class='assign token'>=</span> <span class='integer val'>0</span><span class='comma token'>,</span> <span class='y identifier id'>y</span> <span class='assign token'>=</span> <span class='integer val'>0</span><span class='rparen token'>)</span>
-  <span class='loc identifier id'>loc</span> <span class='assign token'>=</span> <span class='location identifier id'>location</span>
-  <span class='x identifier id'>x</span> <span class='opasgn op'>+=</span> <span class='loc identifier id'>loc</span><span class='lbrack token'>[</span><span class='symbol val'>:x</span><span class='rbrack token'>]</span>
-  <span class='y identifier id'>y</span> <span class='opasgn op'>+=</span> <span class='loc identifier id'>loc</span><span class='lbrack token'>[</span><span class='symbol val'>:y</span><span class='rbrack token'>]</span>
-
-  <span class='comment val'># In the case that event is given as symbol, we convert it to a</span>
-  <span class='comment val'># string.</span>
-  <span class='event identifier id'>event</span> <span class='assign token'>=</span> <span class='event identifier id'>event</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span>
-  <span class='event identifier id'>event</span> <span class='match op'>=~</span> <span class='regexp val'>/on(.*)/i</span>
-  <span class='event identifier id'>event</span> <span class='assign token'>=</span> <span class='$1 nth_ref id'>$1</span> <span class='if if_mod kw'>if</span> <span class='$1 nth_ref id'>$1</span>
-  <span class='event identifier id'>event</span> <span class='assign token'>=</span> <span class='event identifier id'>event</span><span class='dot token'>.</span><span class='downcase identifier id'>downcase</span><span class='dot token'>.</span><span class='to_sym identifier id'>to_sym</span>
-
-  <span class='comment val'># TODO Should this be moved to OperaDriver instead?</span>
-  <span class='case case kw'>case</span> <span class='event identifier id'>event</span>
-  <span class='when when kw'>when</span> <span class='symbol val'>:abort</span><span class='comma token'>,</span> <span class='symbol val'>:blur</span><span class='comma token'>,</span> <span class='symbol val'>:change</span><span class='comma token'>,</span> <span class='symbol val'>:error</span><span class='comma token'>,</span> <span class='symbol val'>:focus</span><span class='comma token'>,</span> <span class='symbol val'>:load</span><span class='comma token'>,</span> <span class='symbol val'>:reset</span><span class='comma token'>,</span>
-    <span class='symbol val'>:resize</span><span class='comma token'>,</span> <span class='symbol val'>:scroll</span><span class='comma token'>,</span> <span class='symbol val'>:submit</span><span class='comma token'>,</span> <span class='symbol val'>:unload</span>
-    <span class='type identifier id'>type</span> <span class='assign token'>=</span> <span class='string val'>'HTMLEvents'</span><span class='semicolon token'>;</span>
-    <span class='init identifier id'>init</span> <span class='assign token'>=</span> <span class='dstring node'>&quot;initEvent(\&quot;#{event.to_s}\&quot;, true, true)&quot;</span>
-  <span class='when when kw'>when</span> <span class='symbol val'>:click</span><span class='comma token'>,</span> <span class='symbol val'>:dblclick</span><span class='comma token'>,</span> <span class='symbol val'>:mousedown</span><span class='comma token'>,</span> <span class='symbol val'>:mousemove</span><span class='comma token'>,</span> <span class='symbol val'>:mouseout</span><span class='comma token'>,</span>
-    <span class='symbol val'>:mouseover</span><span class='comma token'>,</span> <span class='symbol val'>:mouseup</span>
-    <span class='type identifier id'>type</span> <span class='assign token'>=</span> <span class='string val'>'MouseEvents'</span>
-    <span class='init identifier id'>init</span> <span class='assign token'>=</span> <span class='dstring node'>&quot;initMouseEvent(\&quot;#{event.to_s}\&quot;, true, true, window, 1, 0, 0, 0, 0, false, false, false, false, 0, null)&quot;</span>
-  <span class='else else kw'>else</span>
-    <span class='raise identifier id'>raise</span> <span class='Exceptions constant id'>Exceptions</span><span class='colon2 op'>::</span><span class='NotImplementedException constant id'>NotImplementedException</span><span class='comma token'>,</span>
-    <span class='dstring node'>&quot;Event on#{event} is not a valid ECMAscript event for OperaWatir.&quot;</span>
-  <span class='end end kw'>end</span>
-
-  <span class='script identifier id'>script</span> <span class='assign token'>=</span> <span class='dstring node'>&quot;var event = document.createEvent(\&quot;#{type}\&quot;); &quot;</span> <span class='plus op'>+</span>
-    <span class='dstring node'>&quot;event.#{init}; &quot;</span> <span class='plus op'>+</span>
-    <span class='string val'>&quot;locator.dispatchEvent(event);&quot;</span>
-
-  <span class='node identifier id'>node</span><span class='dot token'>.</span><span class='callMethod identifier id'>callMethod</span><span class='lparen token'>(</span><span class='script identifier id'>script</span><span class='rparen token'>)</span>
+<span class='def def kw'>def</span> <span class='text= identifier id'>text=</span><span class='lparen token'>(</span><span class='string identifier id'>string</span><span class='rparen token'>)</span>
+  <span class='comment val'># Focus before typing</span>
+  <span class='clear identifier id'>clear</span> <span class='unless unless_mod kw'>unless</span> <span class='value identifier id'>value</span><span class='dot token'>.</span><span class='empty? fid id'>empty?</span>
+  <span class='node identifier id'>node</span><span class='dot token'>.</span><span class='sendKeys identifier id'>sendKeys</span><span class='lparen token'>(</span><span class='string identifier id'>string</span><span class='dot token'>.</span><span class='split identifier id'>split</span><span class='lparen token'>(</span><span class='string val'>''</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='to_java identifier id'>to_java</span><span class='lparen token'>(</span><span class='symbol val'>:string</span><span class='rparen token'>)</span><span class='rparen token'>)</span>
 <span class='end end kw'>end</span>
 </pre>
     </td>
@@ -2565,7 +2635,7 @@ the text content
       <div class="method_details ">
   <p class="signature " id="triple_click-instance_method">
   
-    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>triple_click</strong> 
+    - (<tt>Object</tt>) <strong>triple_click</strong> 
   
 
   
@@ -2575,12 +2645,12 @@ the text content
       <pre class="lines">
 
 
-110
-111
-112</pre>
+118
+119
+120</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/operawatir/element.rb', line 110</span>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/element.rb', line 118</span>
 
 <span class='def def kw'>def</span> <span class='triple_click identifier id'>triple_click</span>
   <span class='node identifier id'>node</span><span class='dot token'>.</span><span class='click identifier id'>click</span> <span class='integer val'>3</span>
@@ -2594,7 +2664,7 @@ the text content
       <div class="method_details ">
   <p class="signature " id="uncheck!-instance_method">
   
-    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>uncheck!</strong> 
+    - (<tt>Object</tt>) <strong>uncheck!</strong> 
   
 
   
@@ -2604,19 +2674,17 @@ the text content
       <pre class="lines">
 
 
-88
-89
-90
-91
-92
-93</pre>
+97
+98
+99
+100
+101</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/operawatir/element.rb', line 88</span>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/element.rb', line 97</span>
 
 <span class='def def kw'>def</span> <span class='uncheck! fid id'>uncheck!</span>
-  <span class='result identifier id'>result</span> <span class='assign token'>=</span> <span class='node identifier id'>node</span><span class='dot token'>.</span><span class='toggle identifier id'>toggle</span>
-  <span class='if if kw'>if</span><span class='lparen token'>(</span><span class='result identifier id'>result</span> <span class='neq op'>!=</span> <span class='false false kw'>false</span><span class='rparen token'>)</span>
+  <span class='if if kw'>if</span> <span class='selected? fid id'>selected?</span>
     <span class='node identifier id'>node</span><span class='dot token'>.</span><span class='toggle identifier id'>toggle</span>
   <span class='end end kw'>end</span>
 <span class='end end kw'>end</span>
@@ -2629,7 +2697,7 @@ the text content
       <div class="method_details ">
   <p class="signature " id="url-instance_method">
   
-    - (<tt>String</tt>) <strong>url</strong> 
+    - (<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>) <strong>url</strong> 
   
 
   
@@ -2649,7 +2717,7 @@ element.
   
     <li>
       
-        <span class='type'>(<tt>String</tt>)</span>
+        <span class='type'>(<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>)</span>
       
       
       
@@ -2670,12 +2738,12 @@ an href or the url attribute
       <pre class="lines">
 
 
-111
-112
-113</pre>
+99
+100
+101</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/operawatir/compat/element.rb', line 111</span>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/compat/element.rb', line 99</span>
 
 <span class='def def kw'>def</span> <span class='url identifier id'>url</span>
   <span class='attr identifier id'>attr</span><span class='lparen token'>(</span><span class='tag_name identifier id'>tag_name</span> <span class='eq op'>==</span> <span class='string val'>'A'</span> <span class='question op'>?</span> <span class='symbol val'>:href</span> <span class='colon op'>:</span> <span class='symbol val'>:url</span><span class='rparen token'>)</span>
@@ -2689,15 +2757,16 @@ an href or the url attribute
       <div class="method_details ">
   <p class="signature " id="value-instance_method">
   
-    - (<tt>String</tt>) <strong>value</strong> 
+    - (<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>) <strong>value</strong> 
   
 
   
 </p><div class="docstring">
   <div class="discussion">
     <p>
-On elements of type `&lt;input&gt;` this gets the value of the value
-attribute, on every other element type it returns the text content.
+On elements of type `input`, `textarea` or `select` it will fetch the
+texteditable `value` attribute, on every other element type it returns the
+DOM attribute `value`.
 </p>
 
 
@@ -2709,14 +2778,14 @@ attribute, on every other element type it returns the text content.
   
     <li>
       
-        <span class='type'>(<tt>String</tt>)</span>
+        <span class='type'>(<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>)</span>
       
       
       
       
         &mdash;
         <div class='inline'><p>
-value of the element
+Value of the element.
 </p>
 </div>
       
@@ -2730,22 +2799,22 @@ value of the element
       <pre class="lines">
 
 
-41
-42
-43
-44
-45
-46
-47</pre>
+79
+80
+81
+82
+83
+84
+85</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/operawatir/compat/element.rb', line 41</span>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/element.rb', line 79</span>
 
 <span class='def def kw'>def</span> <span class='value identifier id'>value</span>
-  <span class='if if kw'>if</span> <span class='tag_name identifier id'>tag_name</span> <span class='eq op'>==</span> <span class='string val'>'INPUT'</span> <span class='or or kw'>or</span> <span class='attr? fid id'>attr?</span><span class='lparen token'>(</span><span class='symbol val'>:value</span><span class='rparen token'>)</span>
-    <span class='attr identifier id'>attr</span><span class='lparen token'>(</span><span class='symbol val'>:value</span><span class='rparen token'>)</span>
+  <span class='if if kw'>if</span> <span class='tag_name identifier id'>tag_name</span> <span class='match op'>=~</span> <span class='regexp val'>/input|textarea|select/i</span>
+    <span class='node identifier id'>node</span><span class='dot token'>.</span><span class='getValue identifier id'>getValue</span>
   <span class='else else kw'>else</span>
-    <span class='text identifier id'>text</span>
+    <span class='attr identifier id'>attr</span> <span class='symbol val'>:value</span>
   <span class='end end kw'>end</span>
 <span class='end end kw'>end</span>
 </pre>
@@ -2757,7 +2826,7 @@ value of the element
       <div class="method_details ">
   <p class="signature " id="verify_contains-instance_method">
   
-    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>verify_contains</strong>(str) 
+    - (<tt>Object</tt>) <strong>verify_contains</strong>(str) 
   
 
   
@@ -2784,7 +2853,7 @@ the compatibility layer as the preferred way of doing this is.
   
     <li>
       
-        <span class='type'>(<tt>String</tt>)</span>
+        <span class='type'>(<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>)</span>
       
       
         <span class='name'>String</span>
@@ -2824,12 +2893,12 @@ if the element&#8217;s text contains str, false otherwise
       <pre class="lines">
 
 
-58
-59
-60</pre>
+45
+46
+47</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/operawatir/compat/element.rb', line 58</span>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/compat/element.rb', line 45</span>
 
 <span class='def def kw'>def</span> <span class='verify_contains identifier id'>verify_contains</span><span class='lparen token'>(</span><span class='str identifier id'>str</span><span class='rparen token'>)</span>
   <span class='text identifier id'>text</span><span class='dot token'>.</span><span class='include? fid id'>include?</span><span class='lparen token'>(</span><span class='str identifier id'>str</span><span class='rparen token'>)</span>
@@ -2874,12 +2943,12 @@ if the element&#8217;s text contains str, false otherwise
       <pre class="lines">
 
 
-174
-175
-176</pre>
+187
+188
+189</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/operawatir/element.rb', line 174</span>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/element.rb', line 187</span>
 
 <span class='def def kw'>def</span> <span class='visible? fid id'>visible?</span>
   <span class='node identifier id'>node</span><span class='dot token'>.</span><span class='isVisible identifier id'>isVisible</span><span class='lparen token'>(</span><span class='rparen token'>)</span>
@@ -2895,9 +2964,9 @@ if the element&#8217;s text contains str, false otherwise
 </div>
     
     <div id="footer">
-  Generated on Fri Dec 17 20:45:32 2010 by 
+  Generated on Wed Feb 09 12:20:10 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.6.3 (ruby-1.8.7).
+  0.6.4 (ruby-1.8.7).
 </div>
 
   </body>

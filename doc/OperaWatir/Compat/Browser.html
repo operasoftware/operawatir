@@ -53,19 +53,24 @@
   
   
     
+      <dt class="r1">Extended by:</dt>
+      <dd class="r1">Forwardable</dd>
+      
+    
   
     
   
   
   
-    <dt class="r1 last">Defined in:</dt>
-    <dd class="r1 last">lib/operawatir/compat/browser.rb</dd>
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">lib/operawatir/compat/browser.rb</dd>
   
 </dl>
 <div class="clear"></div>
 
 
 
+  
 
   
     <h2>
@@ -123,7 +128,8 @@ Quits the browser.
     </ul>
   
 
-<div id="method_missing_details" class="method_details_list">
+
+  <div id="method_missing_details" class="method_details_list">
   <h2>Dynamic Method Handling</h2>
   <p class="notice this">
     This class handles dynamic methods through the <tt>method_missing</tt> method
@@ -133,7 +139,7 @@ Quits the browser.
     <div class="method_details first">
   <p class="signature first" id="method_missing-instance_method">
   
-    - (<tt><span class='object_link'><a href="../../Object.html" title="Object (class)">Object</a></span></tt>) <strong>method_missing</strong>(method, *args, &amp;blk) 
+    - (<tt>Object</tt>) <strong>method_missing</strong>(method, *args, &amp;blk) 
   
 
   
@@ -143,16 +149,16 @@ Quits the browser.
       <pre class="lines">
 
 
-5
 6
 7
 8
 9
 10
-11</pre>
+11
+12</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/operawatir/compat/browser.rb', line 5</span>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/compat/browser.rb', line 6</span>
 
 <span class='def def kw'>def</span> <span class='method_missing identifier id'>method_missing</span><span class='lparen token'>(</span><span class='method identifier id'>method</span><span class='comma token'>,</span> <span class='mult op'>*</span><span class='args identifier id'>args</span><span class='comma token'>,</span> <span class='bitand op'>&amp;</span><span class='blk identifier id'>blk</span><span class='rparen token'>)</span>
   <span class='if if kw'>if</span> <span class='active_window identifier id'>active_window</span><span class='dot token'>.</span><span class='respond_to? fid id'>respond_to?</span> <span class='method identifier id'>method</span>
@@ -177,7 +183,7 @@ Quits the browser.
       <div class="method_details first">
   <p class="signature first" id="quit-instance_method">
   
-    - (<tt><span class='object_link'><a href="../../Object.html" title="Object (class)">Object</a></span></tt>) <strong>quit</strong> 
+    - (<tt>Object</tt>) <strong>quit</strong> 
   
 
   
@@ -198,12 +204,12 @@ Quits the browser
       <pre class="lines">
 
 
-14
 15
-16</pre>
+16
+17</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/operawatir/compat/browser.rb', line 14</span>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/compat/browser.rb', line 15</span>
 
 <span class='def def kw'>def</span> <span class='quit identifier id'>quit</span>
   <span class='browser identifier id'>browser</span><span class='dot token'>.</span><span class='quit! fid id'>quit!</span>
@@ -219,9 +225,9 @@ Quits the browser
 </div>
     
     <div id="footer">
-  Generated on Fri Dec 17 20:45:33 2010 by 
+  Generated on Wed Feb 09 12:20:13 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.6.3 (ruby-1.8.7).
+  0.6.4 (ruby-1.8.7).
 </div>
 
   </body>

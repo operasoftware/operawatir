@@ -189,7 +189,7 @@
       <div class="method_details first">
   <p class="signature first" id="browser-instance_method">
   
-    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>browser</strong> 
+    - (<tt>Object</tt>) <strong>browser</strong> 
   
 
   
@@ -218,7 +218,7 @@
       <div class="method_details ">
   <p class="signature " id="configure_rspec!-instance_method">
   
-    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>configure_rspec!</strong> 
+    - (<tt>Object</tt>) <strong>configure_rspec!</strong> 
   
 
   
@@ -240,7 +240,10 @@
 31
 32
 33
-34</pre>
+34
+35
+36
+37</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/operawatir/helper.rb', line 22</span>
@@ -255,7 +258,10 @@
           
     <span class='config identifier id'>config</span><span class='dot token'>.</span><span class='include identifier id'>include</span> <span class='SpecHelpers constant id'>SpecHelpers</span>
     
-    <span class='config identifier id'>config</span><span class='dot token'>.</span><span class='after identifier id'>after</span><span class='lparen token'>(</span><span class='symbol val'>:suite</span><span class='rparen token'>)</span> <span class='lbrace token'>{</span> <span class='browser identifier id'>browser</span><span class='dot token'>.</span><span class='quit! fid id'>quit!</span> <span class='if if_mod kw'>if</span> <span class='browser identifier id'>browser</span> <span class='rbrace token'>}</span>
+    <span class='config identifier id'>config</span><span class='dot token'>.</span><span class='after identifier id'>after</span><span class='lparen token'>(</span><span class='symbol val'>:suite</span><span class='rparen token'>)</span> <span class='do do kw'>do</span>
+      <span class='browser identifier id'>browser</span><span class='dot token'>.</span><span class='quit identifier id'>quit</span> <span class='if if_mod kw'>if</span> <span class='browser identifier id'>browser</span>
+      <span class='exit identifier id'>exit</span>
+    <span class='end end kw'>end</span>
   <span class='end end kw'>end</span>
 <span class='end end kw'>end</span>
 </pre>
@@ -267,7 +273,7 @@
       <div class="method_details ">
   <p class="signature " id="run!-instance_method">
   
-    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>run!</strong>(settings = {}) 
+    - (<tt>Object</tt>) <strong>run!</strong>(settings = {}) 
   
 
   
@@ -277,14 +283,14 @@
       <pre class="lines">
 
 
-36
-37
-38
 39
-40</pre>
+40
+41
+42
+43</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/operawatir/helper.rb', line 36</span>
+      <pre class="code"><span class="info file"># File 'lib/operawatir/helper.rb', line 39</span>
 
 <span class='def def kw'>def</span> <span class='run! fid id'>run!</span><span class='lparen token'>(</span><span class='settings identifier id'>settings</span><span class='assign token'>=</span><span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
   <span class='OperaWatir constant id'>OperaWatir</span><span class='colon2 op'>::</span><span class='Browser constant id'>Browser</span><span class='dot token'>.</span><span class='settings identifier id'>settings</span> <span class='assign token'>=</span> <span class='settings identifier id'>settings</span>
@@ -300,7 +306,7 @@
       <div class="method_details ">
   <p class="signature " id="settings-instance_method">
   
-    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>settings</strong> 
+    - (<tt>Object</tt>) <strong>settings</strong> 
   
 
   
@@ -331,9 +337,9 @@
 </div>
     
     <div id="footer">
-  Generated on Fri Dec 17 20:45:29 2010 by 
+  Generated on Wed Feb 09 12:20:08 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.6.3 (ruby-1.8.7).
+  0.6.4 (ruby-1.8.7).
 </div>
 
   </body>
