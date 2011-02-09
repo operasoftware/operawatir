@@ -45,27 +45,21 @@
 
 <p><a href="http://operawatir.org/">OperaWatir</a> is a part of the <a href="http://watir.com/">Watir</a> (pronounced <em>water</em>) family of free software Ruby libraries for automating web browsers.  OperaWatir provides a querying engine and Ruby bindings for a backend Java library, OperaDriver, for driving the <a href="http://opera.com/">Opera web browser</a>.  It aims for full compliance with the <a href="https://github.com/jarib/watirspec">watirspec</a> specification.</p>
 
-<p>License:: <a href="https://github.com/operasoftware/operawatir/blob/master/LICENSE">New BSD</a>
-Project Home:: <a href="http://operawatir.org/">http://operawatir.org/</a>
-Source Code:: <a href="https://github.com/operasoftware/operawatir">https://github.com/operasoftware/operawatir</a>
-Mailing List:: <a href="https://list.opera.com/mailman/listinfo/operawatir-users">https://list.opera.com/mailman/listinfo/operawatir-users</a>
-Issues:: <a href="https://github.com/operasoftware/operawatir/issues">https://github.com/operasoftware/operawatir/issues</a>
-Gem:: <a href="http://rubygems.org/gems/operawatir">https://rubygems.org/operawatir</a></p>
-
-<h2>Third-Party Libraries</h2>
-
-<p>OperaDriver uses the following third-party Java libraries:</p>
-
 <ul>
-<li><a href="http://code.google.com/p/protobuf/">Google protobuf</a> (New BSD License)</li>
-<li><a href="http://commons.apache.org/jxpath/">Apache Commons JXPath</a> (Apache 2.0 License)</li>
+<li><strong>License:</strong> <a href="https://github.com/operasoftware/operawatir/blob/master/LICENSE">New BSD</a></li>
+<li><strong>Project Home:</strong> <a href="http://www.opera.com/developer/tools/operawatir/">http://www.opera.com/developer/tools/operawatir/</a></li>
+<li><strong>Source Code:</strong> <a href="https://github.com/operasoftware/operawatir">https://github.com/operasoftware/operawatir</a></li>
+<li><strong>Mailing List:</strong> <a href="https://list.opera.com/mailman/listinfo/operawatir-users">https://list.opera.com/mailman/listinfo/operawatir-users</a></li>
+<li><strong>Issues:</strong> <a href="https://github.com/operasoftware/operawatir/issues">https://github.com/operasoftware/operawatir/issues</a></li>
+<li><strong>Gem:</strong> <a href="http://rubygems.org/gems/operawatir">https://rubygems.org/operawatir</a></li>
 </ul>
 
-<p>More information about the New BSD (AKA Modified BSD or BSD-3) and Apache 2.0 licenses can be found in the appropriate text files in <code>lib/operadriver</code>.</p>
+<h2>Third-Party Libraries</h2>
 
 <p>OperaWatir uses the following libraries:</p>
 
 <ul>
+<li><a href="http://www.opera.com/developer/tools/operadriver/">OperaDriver</a> (Apache 2.0 License)</li>
 <li><a href="https://github.com/rspec/rspec">rspec</a> (MIT License)</li>
 <li><a href="https://github.com/technicalpickles/jeweler">jeweler</a> (MIT License)</li>
 <li><a href="https://github.com/jimweirich/rake">rake</a> (MIT License)</li>
@@ -73,17 +67,24 @@ Gem:: <a href="http://rubygems.org/gems/operawatir">https://rubygems.org/operawa
 <li><a href="http://rubyforge.org/projects/mongrel">mongrel</a> (Ruby License)</li>
 <li><a href="http://www.sinatrarb.com/">sinatra</a> (MIT License)</li>
 <li><a href="http://rubyforge.org/projects/double-ruby">rr</a> (MIT License)</li>
+<li><a href="http://deveiate.org/projects/BlueCloth">bluecloth</a> (BSD License)</li>
+<li><a href="https://github.com/TwP/inifile">inifile</a> (MIT License)</li>
+<li><a href="https://github.com/janlelis/clipboard">clipboard</a> (MIT License)</li>
+<li><a href="http://rubyonrails.org/">activesupport</a> (MIT License)</li>
+<li><a href="https://github.com/svenfuchs/i18n">i18n</a> (MIT License)</li>
+<li><a href="https://github.com/erikh/deprecated">deprecated</a> (BSD License)</li>
+<li><a href="http://gembundler.com/">bundler</a> (MIT License)</li>
 </ul>
 
 <h2>Install</h2>
 
 <h3>Requirements</h3>
 
-<p>OperaWatir runs on GNU/Linux and Windows operating systems.  Other UNIX-like systems, such as BSD and OS X, are not currently supported, but support is planned.  Required dependencies are <em>Java</em> >= 1.6.0, <em>JRuby</em> >= 1.5.1 (ruby 1.8.7 patchlevel 249), <em>RubyGems</em> >= 1.3.5, <em>RSpec</em> >= 2.0.0, and a somewhat recent desktop or nightly build of Opera.</p>
+<p>OperaWatir runs on GNU/Linux, Mac OS X and Windows operating systems. Required dependencies are <em>Java</em> >= 1.6.0, <em>JRuby</em> =&lt; 1.5.5, <em>RubyGems</em> >= 1.3.5, <em>RSpec</em> = 2.4, and a somewhat recent desktop or nightly build of Opera.  For Windows you must also have the Microsoft Visual C++ 2010 Redistributable Package (x86).</p>
 
 <h3>Installation procedure</h3>
 
-<p>Make sure that you have the right requirements for installing and running OperaWatir.  Please note that OperaWatir will only run on the JRuby platform. For more detailed installation instructions, please see our <a href="http://operasoftware.github.com/operawatir/tutorial.html">Getting Started</a> guide.</p>
+<p>Make sure that you have the right requirements for installing and running OperaWatir.  Please note that OperaWatir will only run on the JRuby platform. For more detailed installation instructions, please see our <a href="http://dev.opera.com/articles/view/opera-watir-tutorial/">Getting Started</a> guide.</p>
 
 <p>To install (leave out the “sudo” command if you're installing on Windows):</p>
 
@@ -203,18 +204,10 @@ Gem:: <a href="http://rubygems.org/gems/operawatir">https://rubygems.org/operawa
 <span class='integer val'>2</span> <span class='examples identifier id'>examples</span><span class='comma token'>,</span> <span class='integer val'>0</span> <span class='failures identifier id'>failures</span>
 </pre>
 
-<p>If anything fails, more information about each failure will be provided.</p>
-
-<h2>Merry Christmas!</h2>
-
-<p>Despite its shortcomings, we hope you will enjoy playing around with the Watir libraries for using OperaDriver driving Opera. We decided that we would rather see it go out to the public before Christmas than waiting for another month or two until it is pristine and perfect. </p>
-
-<p>One of the things we are most excited about is the new Watir 2 API that we have made a prototype implementation of, which is based on <a href="https://github.com/jarib/watir-webdriver/wiki/Comparison-with-Watir-1.X">Jari Bakken's ideas for a new API</a>. On top of this, we have written a Watir 1 compatibility layer which is switched on by default. We are looking forward to the design discussions that this will bring. Oh, and by the way, will you be able to find the magic switch for Watir 2? (-; </p>
-
-<p>We hope you'll enjoy this little Christmas gift! Furthermore, we wish you a Merry Christmas and a Happy New Year from us here at Opera Software in Oslo!</p></div></div>
+<p>If anything fails, more information about each failure will be provided.</p></div></div>
     
     <div id="footer">
-  Generated on Wed Feb 09 12:20:06 2011 by 
+  Generated on Wed Feb 09 12:52:27 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.4 (ruby-1.8.7).
 </div>
