@@ -2,24 +2,18 @@
 
 [OperaWatir](http://operawatir.org/) is a part of the [Watir](http://watir.com/) (pronounced _water_) family of free software Ruby libraries for automating web browsers.  OperaWatir provides a querying engine and Ruby bindings for a backend Java library, OperaDriver, for driving the [Opera web browser](http://opera.com/).  It aims for full compliance with the [watirspec](https://github.com/jarib/watirspec) specification.
 
-License:: [New BSD](https://github.com/operasoftware/operawatir/blob/master/LICENSE)
-Project Home:: [http://operawatir.org/](http://operawatir.org/)
-Source Code:: [https://github.com/operasoftware/operawatir](https://github.com/operasoftware/operawatir)
-Mailing List:: [https://list.opera.com/mailman/listinfo/operawatir-users](https://list.opera.com/mailman/listinfo/operawatir-users)
-Issues:: [https://github.com/operasoftware/operawatir/issues](https://github.com/operasoftware/operawatir/issues)
-Gem:: [https://rubygems.org/operawatir](http://rubygems.org/gems/operawatir)
+* __License:__ [New BSD](https://github.com/operasoftware/operawatir/blob/master/LICENSE)
+* __Project Home:__ [http://www.opera.com/developer/tools/operawatir/](http://www.opera.com/developer/tools/operawatir/)
+* __Source Code:__ [https://github.com/operasoftware/operawatir](https://github.com/operasoftware/operawatir)
+* __Mailing List:__ [https://list.opera.com/mailman/listinfo/operawatir-users](https://list.opera.com/mailman/listinfo/operawatir-users)
+* __Issues:__ [https://github.com/operasoftware/operawatir/issues](https://github.com/operasoftware/operawatir/issues)
+* __Gem:__ [https://rubygems.org/operawatir](http://rubygems.org/gems/operawatir)
 
 ## Third-Party Libraries
 
-OperaDriver uses the following third-party Java libraries:
-
-- [Google protobuf](http://code.google.com/p/protobuf/) (New BSD License)
-- [Apache Commons JXPath](http://commons.apache.org/jxpath/) (Apache 2.0 License)
-
-More information about the New BSD (AKA Modified BSD or BSD-3) and Apache 2.0 licenses can be found in the appropriate text files in ``lib/operadriver``.
-
 OperaWatir uses the following libraries:
 
+- [OperaDriver](http://www.opera.com/developer/tools/operadriver/) (Apache 2.0 License)
 - [rspec](https://github.com/rspec/rspec) (MIT License)
 - [jeweler](https://github.com/technicalpickles/jeweler) (MIT License)
 - [rake](https://github.com/jimweirich/rake) (MIT License)
@@ -27,16 +21,23 @@ OperaWatir uses the following libraries:
 - [mongrel](http://rubyforge.org/projects/mongrel) (Ruby License)
 - [sinatra](http://www.sinatrarb.com/) (MIT License)
 - [rr](http://rubyforge.org/projects/double-ruby) (MIT License)
+- [bluecloth](http://deveiate.org/projects/BlueCloth) (BSD License)
+- [inifile](https://github.com/TwP/inifile) (MIT License)
+- [clipboard](https://github.com/janlelis/clipboard) (MIT License)
+- [activesupport](http://rubyonrails.org/) (MIT License)
+- [i18n](https://github.com/svenfuchs/i18n) (MIT License)
+- [deprecated](https://github.com/erikh/deprecated) (BSD License)
+- [bundler](http://gembundler.com/) (MIT License)
 
 ## Install
 
 ### Requirements
 
-OperaWatir runs on GNU/Linux and Windows operating systems.  Other UNIX-like systems, such as BSD and OS X, are not currently supported, but support is planned.  Required dependencies are _Java_ >= 1.6.0, _JRuby_ >= 1.5.1 (ruby 1.8.7 patchlevel 249), _RubyGems_ >= 1.3.5, _RSpec_ >= 2.0.0, and a somewhat recent desktop or nightly build of Opera.
+OperaWatir runs on GNU/Linux, Mac OS X and Windows operating systems. Required dependencies are _Java_ >= 1.6.0, _JRuby_ =< 1.5.5, _RubyGems_ >= 1.3.5, _RSpec_ = 2.4, and a somewhat recent desktop or nightly build of Opera.  For Windows you must also have the Microsoft Visual C++ 2010 Redistributable Package (x86).
 
 ### Installation procedure
 
-Make sure that you have the right requirements for installing and running OperaWatir.  Please note that OperaWatir will only run on the JRuby platform. For more detailed installation instructions, please see our [Getting Started](http://operasoftware.github.com/operawatir/tutorial.html) guide.
+Make sure that you have the right requirements for installing and running OperaWatir.  Please note that OperaWatir will only run on the JRuby platform. For more detailed installation instructions, please see our [Getting Started](http://dev.opera.com/articles/view/opera-watir-tutorial/) guide.
 
 To install (leave out the “sudo” command if you're installing on Windows):
 
@@ -148,11 +149,3 @@ Each block of code corresponds to a single named test case returning PASS or FAI
     2 examples, 0 failures
 
 If anything fails, more information about each failure will be provided.
-
-## Merry Christmas!
-
-Despite its shortcomings, we hope you will enjoy playing around with the Watir libraries for using OperaDriver driving Opera. We decided that we would rather see it go out to the public before Christmas than waiting for another month or two until it is pristine and perfect. 
-
-One of the things we are most excited about is the new Watir 2 API that we have made a prototype implementation of, which is based on [Jari Bakken's ideas for a new API](https://github.com/jarib/watir-webdriver/wiki/Comparison-with-Watir-1.X). On top of this, we have written a Watir 1 compatibility layer which is switched on by default. We are looking forward to the design discussions that this will bring. Oh, and by the way, will you be able to find the magic switch for Watir 2? (-; 
-
-We hope you'll enjoy this little Christmas gift! Furthermore, we wish you a Merry Christmas and a Happy New Year from us here at Opera Software in Oslo!
