@@ -46,23 +46,6 @@ class OperaWatir::Browser
     active_window.url = url
   end
 
-  # Tells you whether the browser object exists.  Note that this is
-  # not the same as checking whether the object is connected to a
-  # browser.
-  #
-  # @return [Boolean] Whether Browser object exists.
-  def exists?
-    true
-  end
-
-  # Query to see if the browser instance is still connected.
-  #
-  # @return [Boolean] Whether driver is still connected to browser
-  #   instance.
-  def connected?
-    driver.isConnected
-  end
-
   # Instruct the browser instance to quit and shut down.
   def quit
     driver.shutdown
