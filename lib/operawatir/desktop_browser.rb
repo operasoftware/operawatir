@@ -528,48 +528,48 @@ module OperaWatir
       driver.deleteOperaPrefs
     end
     
-      # Set preference pref in prefs section prefs_section to value
-      # specified.
-      #
-      # TODO: This needs to be moved to a separate preference section.
-      #
-      # @param [String] prefs_section The prefs section the pref belongs to
-      # @param [String] pref          The preference to set
-      # @param [String] value         The value to set the preference to
-      def set_preference(prefs_section, pref, value)
-        driver.setPref(prefs_section, pref, value.to_s)
-      end
-          
-      # Get value of preference pref in prefs section prefs_section.
-      #
-      # TODO: This needs to be moved to a separate preference section.
-      #
-      # @param [String] prefs_section The prefs section the pref belongs to
-      # @param [String] pref          The preference to get
-      #
-      # @return [String] The value of the preference
-      def get_preference(prefs_section, pref)
-        driver.getPref(prefs_section, pref)
-      end
+    # Set preference pref in prefs section prefs_section to value
+    # specified.
+    #
+    # TODO: This needs to be moved to a separate preference section.
+    #
+    # @param [String] prefs_section The prefs section the pref belongs to
+    # @param [String] pref          The preference to set
+    # @param [String] value         The value to set the preference to
+    def set_preference(prefs_section, pref, value)
+      driver.setPref(prefs_section, pref, value.to_s)
+    end
+
+    # Get value of preference pref in prefs section prefs_section.
+    #
+    # TODO: This needs to be moved to a separate preference section.
+    #
+    # @param [String] prefs_section The prefs section the pref belongs to
+    # @param [String] pref          The preference to get
+    #
+    # @return [String] The value of the preference
+    def get_preference(prefs_section, pref)
+      driver.getPref(prefs_section, pref)
+    end
         
-      # Get default value of preference pref in prefs section
-      # prefs_section.
-      #
-      # TODO: This needs to be moved to a separate preference section.
-      #
-      # @param [String] prefs_section The prefs section the pref belongs to
-      # @param [String] pref          The preference to get
-      #
-      # @return [String] The value of the preference
-      def get_default_preference(prefs_section, pref)
-        driver.getDefaultPref(prefs_section, pref)
-      end
+    # Get default value of preference pref in prefs section
+    # prefs_section.
+    #
+    # TODO: This needs to be moved to a separate preference section.
+    #
+    # @param [String] prefs_section The prefs section the pref belongs to
+    # @param [String] pref          The preference to get
+    #
+    # @return [String] The value of the preference
+    def get_default_preference(prefs_section, pref)
+      driver.getDefaultPref(prefs_section, pref)
+    end
       
-      #@private
-      def start_opera
-        driver.startOpera
-      end
-    
+    # @private
+    def start_opera
+      driver.startOpera
+    end
+
 private
 
    def self.opera_driver_settings
@@ -595,4 +595,3 @@ private
   end
   
 end
-
