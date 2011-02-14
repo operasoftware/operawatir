@@ -23,7 +23,7 @@ module OperaWatir
     # dialogs to autoclose in Dialog.cpp when then OnUrlChanged is fired 
     # after a dialog is opened
     def goto(url = "")
-      super #active_window.url = url
+      active_window.url = url
       sleep(1)
     end
 
