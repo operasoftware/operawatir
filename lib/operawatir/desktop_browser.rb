@@ -576,14 +576,11 @@ private
      @opera_driver_settings ||= OperaDriverSettings.new.tap {|s|
        s.setRunOperaLauncherFromOperaDriver true
        s.setOperaLauncherBinary self.settings[:launcher]
-       if self.settings[:path] == nil
-         s.setOperaBinaryLocation ""
-       else
-         s.setOperaBinaryLocation self.settings[:path]
-       end
+       s.setOperaBinaryLocation self.settings[:path]
        s.setOperaBinaryArguments self.settings[:args].to_s + ' -autotestmode'
        s.setNoQuit self.settings[:no_quit]
        s.setNoRestart self.settings[:no_restart]
+       s.guessOperaPath false
      }
    end
    
