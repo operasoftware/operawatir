@@ -578,11 +578,11 @@ private
        s.setOperaLauncherBinary self.settings[:launcher]
        s.setOperaBinaryLocation self.settings[:path]
        if self.settings[:args] == nil
-         s.setOperaBinaryArguments ' -watirtest'
+         s.setOperaBinaryArguments ' -autotestmode'
        else
-         s.setOperaBinaryArguments self.settings[:args] + ' -watirtest'
+         s.setOperaBinaryArguments self.settings[:args] + ' -autotestmode'
        end
-       
+       s.setGuessOperaPath false
        s.setNoQuit self.settings[:no_quit]
        s.setNoRestart self.settings[:no_restart]
      }
