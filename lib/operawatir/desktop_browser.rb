@@ -580,7 +580,7 @@ private
        s.setOperaBinaryArguments self.settings[:args].to_s + ' -autotestmode'
        s.setNoQuit self.settings[:no_quit]
        s.setNoRestart self.settings[:no_restart]
-       s.guessOperaPath false
+       s.setGuessOperaPath false
      }
    end
    
