@@ -15,6 +15,8 @@ module OperaWatir
     # @return [String] text in the address field after the page is loaded
     #                  or a blank string
     def load_page_with_url(url)
+      # Must focus field before calling enter_text...
+      focus_with_click
       # Enters text in a field and then hits enter
       enter_text_and_hit_enter(url)
     end

@@ -96,8 +96,11 @@ module OperaWatir
     def enter_text_and_hit_enter(text)
       loaded_url = ""
       
+      # OBS: only caller should set focus, if not this will happily type 
+      # away in the incorrect field, if for example called from subclass address_field
       # Set focus
-      focus_with_click
+      # focus_with_click
+      
       # Clear the field
       clear()
       # Type in the text
