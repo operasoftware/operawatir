@@ -41,14 +41,12 @@ private
     end
     
     def key_down(key, *opts)
-      puts "keydown"
       list = Java::JavaUtil::ArrayList.new
       opts.each { |mod| list << KEYMODIFIER_ENUM_MAP[mod] }
       driver.keyDown(key, list)
     end
     
     def key_up(key, *opts)
-      puts "keyup"
       list = Java::JavaUtil::ArrayList.new
       opts.each { |mod| list << KEYMODIFIER_ENUM_MAP[mod] }
       driver.keyUp(key, list)
