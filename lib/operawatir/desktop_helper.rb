@@ -8,6 +8,48 @@ require 'operawatir'
 require 'rspec'
 require 'rbconfig'
 
+RSpec::Matchers.define :close_dialog do |expected|
+  match do |window_id|
+    window_id > 0
+  end
+
+  failure_message_for_should do |window_id|
+    "expected close_dialog to close dialog, but window_id returned not valid: #{window_id}"
+  end
+end 
+ 
+RSpec::Matchers.define :open_window do
+  match do |actual|
+    actual > 0
+  end
+end
+  
+RSpec::Matchers.define :close_window do
+  match do |actual|
+    actual > 0
+  end
+end
+
+RSpec::Matchers.define :open_dialog do
+  match do |actual|
+    actual > 0
+  end
+end
+
+
+RSpec::Matchers.define :load_window do
+  match do |actual|
+    actual > 0
+  end
+end
+
+RSpec::Matchers.define :load_page do
+  match do |actual|
+    actual > 0
+  end
+end
+
+
 module OperaWatir::DesktopHelper
   extend self
   
