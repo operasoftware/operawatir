@@ -149,8 +149,10 @@ private
       case @method
       when :name
         # Use active window when specifying by name "Document Window"
-        # and not the first if there are more than one 
-        if (@selector == "Document Window")
+        # and not the first if there are more than one
+        active_window_id = driver.getActiveQuickWindowID()
+        name = driver.getQuickWindowName(active_window_id);
+        if (@selector == "Document Window" && name == "Document Window")
           @element = driver.findWindowById(driver.getActiveQuickWindowID())
         else
           @element = driver.findWindowByName(@selector)
