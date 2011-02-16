@@ -1,3 +1,6 @@
 [submodule "spec/new_watirspec"]
 	path = spec/new_watirspec
   url = git://github.com/operasoftware/new-watir-spec.git
+[submodule "spec/watir3"]
+	path = spec/watir3
+	url = git@github.com:operasoftware/watir3-spec.git
