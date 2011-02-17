@@ -30,18 +30,6 @@ class OperaWatir::Preferences
               'User Agent', 'User Display Mode', 'User Prefs', 'Visited Link',
               'Visited Link', 'Web Server', 'Widgets', 'Workspace']
 
-=begin
-  new_sections = {}
-
-  SECTIONS.each_with_index do |s,i|
-    new_sections[s] = s.methodize
-  end
-
-  SECTIONS = new_sections
-  pp SECTIONS
-  abort
-=end
-
   def initialize(browser)
     self.browser, self.driver = browser, browser.driver
 
