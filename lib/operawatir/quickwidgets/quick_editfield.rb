@@ -102,7 +102,7 @@ module OperaWatir
       # focus_with_click
       
       # Clear the field
-      clear()
+      clear
       # Type in the text
       typed_text = type_text(text) #Opens dropdown window
       # Check that some text was typed, note the text might be changed in the
