@@ -2,7 +2,7 @@ require 'pp'
 
 class String
   def methodize
-    self.gsub(/\s+/, '_').downcase
+    self.gsub(/^\\t(\s+)/, '').gsub(/\s+/, '_').downcase
   end
 
   def keyize
@@ -41,17 +41,28 @@ class OperaWatir::Preferences
   end
 
   def method_missing(section)
-    if _prefs.any? { |s| s.method == section }
-      _prefs.find { |s| s.method == section }
+    if _prefs.any? { |s| s.method == section.to_s }
+      _prefs.find { |s| s.method == section.to_s }
     else
       _prefs << Entry.new(self, section)
       _prefs.last
     end
   end
 
-  def_delegators :_sections, :each
+  def_delegators :_prefs, :each,
+                          :length,
+                          :size,
+                          :first,
+                          :last,
+                          :empty?
 
-  alias_method :each_section, :each
+  def to_s
+    pp _prefs
+  end
+
+  def to_h
+    _prefs.dup
+  end
 
 private
 
@@ -59,34 +70,18 @@ private
     @_prefs ||= []
   end
 
-  def _sections
-=begin
-    if @_prefs.size != SECTIONS.size
-      _prefs = []
-      SECTIONS.each do |s|
-#        puts "#{s} => #{s.methodize} => #{s.methodize.keyize}"
-        puts "#{s} => #{s[0]}"
-        _prefs << Entry.new(self, s[0])# s.methodize)
-      end
-    end
-=end
-
-    _prefs
-  end
-
 
   class Entry
     extend Forwardable
     include Enumerable
 
-    attr_accessor :parent, :method, :key, :value, :driver
+    attr_accessor :parent, :method, :key, :value, :default, :driver
 
-    def initialize(parent, method, key='')
-      self.parent, self.method, self.key, self.driver = parent, method, (key ? key : method.to_s.keyize), parent.driver
-
-#      puts "Preferences::Entry#new (#{method}, #{key})"
-
-      #raise OperaWatir::Exceptions::PreferencesException, 'No such preference' unless exists?
+    def initialize(parent, method, key=nil)
+      self.parent = parent
+      self.method = method
+      self.key    = key ? key : method.to_s.keyize
+      self.driver = parent.driver
     end
 
     def method_missing(key)
@@ -99,9 +94,23 @@ private
     end
 
     def value
-#      puts "Preferences::Entry#value (parent key: #{parent.key}, key: #{key})"
+      raise OperaWatir::Exceptions::PreferencesException, 'Sections do not have values' if section?
+      @value ||=  driver.getPref(parent.key, key)
+    end
 
-      @value ||= section? ? key : driver.getPref(parent.key, key)
+    def value=(value)
+      raise OperaWatir::Exceptions::PreferencesException, 'Sections cannot have values' if section?
+      driver.setPref parent.key, key, value
+      @value = value
+    end
+
+    def default
+      return OperaWatir::Exceptions::PreferencesException, 'Sections do not have defaults' if section?
+      @default ||= driver.getDefaultPref parent.key, key
+    end
+
+    def default!
+      value=(default)
     end
 
     def section?
@@ -114,12 +123,17 @@ private
 
     alias_method :exist?, :exists?  # LOL Ruby
 
-#    def_delegators :_keys, :each
     def each
-      _keys = all_keys
+      return unless block_given?
+      _keys = all_keys  # Updates cache
+      _keys.each { |k| yield k }
     end
 
-    alias_method :each_key, :each
+    def_delegators :_keys, :length,
+                           :size,
+                           :first,
+                           :last,
+                           :empty?
 
   private
 
@@ -131,13 +145,13 @@ private
       return if not section?
       keys = []
 
-      driver.listPrefs(true, key).to_a.each do |data|
+      driver.listPrefs(true, key.to_s).to_a.each do |data|
         data = data.to_s
 
         data =~ /^key: \"([a-zA-Z0-9\(\)\\\.\-\s]*)\"/
-        new_key = $1.gsub(/\\t/, '')
+        new_key = $1
 
-        keys << Entry.new(self, new_key.methodize, new_key)
+        keys << Entry.new(self, new_key.methodize, new_key.gsub(/^\\t/, "\t"))
       end
 
       keys
