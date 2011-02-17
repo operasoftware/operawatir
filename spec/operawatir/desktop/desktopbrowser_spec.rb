@@ -4,6 +4,7 @@ require File.expand_path('../../watirspec_helper', __FILE__)
 describe 'DesktopBrowser' do
   before :all do
     browser.url = fixture('simple.html')
+    @window = browser.quick_window(:name, "Tab 0")
   end
   
   describe "#goto" do
@@ -22,42 +23,62 @@ describe 'DesktopBrowser' do
     it "quits and restarts opera"
   end
 
-  describe "#open_window_with_action" do
-    it "opens new window" do
-      browser.open_window_with_action("", "New page", "1").should open_window
+  describe "open and load window" do
+    after(:each) do
+      browser.close_all_tabs
     end
     
-    it "fails for actions not opening a new window"
-  end
+    describe "#open_window_with_action" do
+      it "opens new window" do
+        browser.open_window_with_action("Document Window", "New page", "1").should open_window
+      end
+    
+      it "fails for actions not opening a new window"
+    end
      
-  describe "#load_window_with_action" do
-    it "loads window"
-    it "fails for actions not loading"
-  end
+    describe "#load_window_with_action" do
+      it "loads window" do
+        browser.load_window_with_action("Document Window", "Open url in new page", WatirSpec.files + "/boxes.html").should > 0
+      end
+      it "fails for actions not loading"
+    end
 
-  describe "#open_window_with_key_press" do
-    it "opens window"
+    describe "#open_window_with_key_press" do
+      it "opens window" do
+        browser.open_window_with_key_press("Document Window", "t", :ctrl).should > 0
+      end
+    end
   end
-
-  describe "#activate_tab_with_key_press" do
-    it "activates tab"
-  end
+  
+  describe "close window" do
+    before(:each) do
+      browser.open_window_with_key_press("Document Window", "t", :ctrl).should > 0
+    end
+    
+    describe "#close_window_with_action" do
+      it "closes window" do
+        browser.close_window_with_action("Document Window", "Close page").should > 0
+      end
+    end
    
-  describe "#open_dialog_with_url" do
-    it "opens dialog"
-  end
-   
-  describe "#close_window_with_action" do
-    it "closes dialog"
-  end
-   
-   describe "#close_window_with_key_press" do
-     it "closes window"
+    describe "#close_window_with_key_press" do
+      it "closes window" do
+        browser.close_window_with_key_press("Document Window", "w", :ctrl).should > 0
+      end
+    end
    end
-   
+
+    describe "#open_dialog_with_url" do
+      it "opens dialog"
+    end
+     
    describe "#close_dialog" do
      it "closes dialog"
    end
+   
+  describe "#activate_tab_with_key_press" do
+    it "activates tab"
+  end
      
    describe "#set_alignment_with_action" do
      it "sets alignment"
