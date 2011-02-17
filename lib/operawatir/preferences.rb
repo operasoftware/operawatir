@@ -1,23 +1,21 @@
-require 'inifile'
-require 'tmpdir'
 require 'pp'
-require 'active_support/inflector'
 
 class String
-  def keyize
-    self.humanize.titleize
+  def methodize
+    self.gsub(/\s+/, '_').downcase
   end
 
-  def methodize
-    self.titleize.gsub(/\s+/, '').underscore
+  def keyize
+    self.gsub(/_/, ' ').gsub(/\b('?[a-z])/) { $1.capitalize }
   end
 end
+
 
 class OperaWatir::Preferences
   extend Forwardable
   include Enumerable
 
-  attr_accessor :browser
+  attr_accessor :browser, :driver
 
   # FIXME This should be retrievable from OperaDriver
   SECTIONS = ['Author Display Mode', 'Auto Update', 'BitTorrent',
@@ -33,60 +31,47 @@ class OperaWatir::Preferences
               'Visited Link', 'Web Server', 'Widgets', 'Workspace']
 
   def initialize(browser)
-    self.browser = browser
-  end
+    self.browser, self.driver = browser, browser.driver
 
-  # Section locator
-  def method_missing(section)
-    # @_prefs[section.to_s] ||= Entry.new self, section
-    Entry.new self, section
-  end
+    @_prefs = []
 
-  def cleanup; end
-  def cleanup!; end
-
-  def_delegators :sections, :each,
-                            :length,
-                            :size,
-                            :first,
-                            :last,
-                            :empty?
-
-  alias_method :each_section, :each
-
-  def to_s
-    pp _prefs
-  end
-
-  def to_h
-    _prefs.dup
-  end
-
-private
-  def sections
-#    @_prefs ||= all_prefs
-    all_prefs
-  end
-
-  def all_prefs
-    list = []
-    SECTIONS.each { |s| list << Entry.new(self, s.methodize) }
-    list
-  end
-
-  def load_from_file(file)
-    inifile = Loader.new file
-    loaded_prefs = IniFile.new inifile.output.path
-
-    loaded_prefs.each_section do |s|
-      s.each do |k,v|
-        driver.setPref s,k,v
-      end
+    SECTIONS.each do |s|
+      _prefs << Entry.new(self, s.methodize, s)
     end
   end
 
-  def driver
-    browser.driver
+  def method_missing(section)
+    if _prefs.any? { |s| s.method == section }
+      _prefs.find { |s| s.method == section }
+    else
+      _prefs << Entry.new(self, section)
+      _prefs.last
+    end
+  end
+
+  def_delegators :_sections, :each
+
+  alias_method :each_section, :each
+
+private
+
+  def _prefs
+    @_prefs ||= []
+  end
+
+  def _sections
+=begin
+    if @_prefs.size != SECTIONS.size
+      _prefs = []
+      SECTIONS.each do |s|
+#        puts "#{s} => #{s.methodize} => #{s.methodize.keyize}"
+        puts "#{s} => #{s[0]}"
+        _prefs << Entry.new(self, s[0])# s.methodize)
+      end
+    end
+=end
+
+    _prefs
   end
 
 
@@ -94,66 +79,65 @@ private
     extend Forwardable
     include Enumerable
 
-    attr_accessor :parent, :method, :key, :value
+    attr_accessor :parent, :method, :key, :value, :driver
 
-    def initialize(parent, method)
-      self.parent, self.method, self.key = parent, method, method.to_s.keyize
+    def initialize(parent, method, key='')
+      self.parent, self.method, self.key, self.driver = parent, method, (key ? key : method.to_s.keyize), parent.driver
+
+#      puts "Preferences::Entry#new (#{method}, #{key})"
+
+      #raise OperaWatir::Exceptions::PreferencesException, 'No such preference' unless exists?
     end
 
     def method_missing(key)
-      Entry.new self, key
+      if _keys.any? { |k| k.method == key }
+        _keys.find { |k| k.method == key }
+      else
+        _keys << Entry.new(self, key)
+        _keys.last
+      end
     end
 
     def value
-      return nil if is_section?
-      @value ||= driver.getPref parent.key, @key
+#      puts "Preferences::Entry#value (parent key: #{parent.key}, key: #{key})"
+
+      @value ||= section? ? key : driver.getPref(parent.key, key)
     end
 
-    def value=(value)
-      raise OperaWatir::Exceptions::PreferencesException, 'Sections cannot have values'
-      driver.setPref parent.key, @key, value
+    def section?
+      parent.kind_of? OperaWatir::Preferences
     end
 
-    def default
-      return nil if is_section?
-      @default ||= driver.getDefaultPref parent.key, @key
+    def exists?
+      section? ? SECTIONS.include?(key) : !type.empty?
     end
 
-    def default!
-      raise OperaWatir::Exceptions::PreferencesException, 'Sections do not have defaults'
-      value=(default)
+    alias_method :exist?, :exists?  # LOL Ruby
+
+#    def_delegators :_keys, :each
+    def each
+      _keys = all_keys
     end
 
-    def each_key
-      return unless block_given?
-      raw_keys.each { |k| yield k }
-    end
-
-    alias_method :each, :each_key
-
-    def is_section?
-      @parent.kind_of? OperaWatir::Preferences
-    end
+    alias_method :each_key, :each
 
   private
-    def driver
-      @parent.browser.driver || @parent.parent.browser.driver
-    end
 
-    def raw_keys
-      @_keys ||= all_keys
+    def _keys
+      @_keys ||= []
     end
 
     def all_keys
+      return if not section?
       keys = []
 
-      driver.listPrefs(true, @key).to_a.each do |data|
+      driver.listPrefs(true, key).to_a.each do |data|
         data = data.to_s
 
         data =~ /^key: \"([a-zA-Z0-9\(\)\\\.\-\s]*)\"/
-        key = $1.gsub(/\\t/, '')
+        new_key = $1.gsub(/\\t/, '')
 
-        keys << Entry.new(self, key.methodize)
+        keys << Entry.new(self, new_key.methodize, new_key)
       end
 
       keys
