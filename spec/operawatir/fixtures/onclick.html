@@ -1,0 +1,20 @@
+<!doctype html>
+<meta charset="utf-8" />
+<title>onclick</title>
+
+<p>
+	<button onclick="clickme()">Click me</button>
+</p>
+
+<p id="clicks"></p>
+
+<script>
+
+	var clicks = 0;
+
+	function clickme() {
+		clicks++;
+		document.getElementById('clicks').innerHTML = clicks;
+	}
+
+</script>

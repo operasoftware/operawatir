@@ -19,6 +19,26 @@ class OperaWatir::Keys
   #
   # @seealso up
   # @seealso send
+  
+  
+  
+=begin
+
+  Holds down supplied arbitrary list of keys indefinitely.
+  
+  @param [Symbol, String] *args  Arbitrary list of symbols (modification)
+                                 keys or strings (regular keys) to be
+                                 pressed down.
+                                 
+  @example
+  
+    browser.keys.down 'a'
+    browser.keys.down 'a', :right
+    
+  @seealso up
+  @seealso send
+  
+=end
   def down(*args)
     args.each { |key| driver.keyDown(key) }
   end
