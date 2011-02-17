@@ -112,7 +112,7 @@ class OperaWatir::Browser
   # @param  [String] Name of the action.
   # @return [String] Optional return from the performed action.
   def opera_action(name, *args)
-    driver.operaAction(name, param.to_java(:string))
+    driver.operaAction(name, args.to_java(:string))
   end
   deprecated :opera_action
 
