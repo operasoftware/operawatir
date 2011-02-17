@@ -1,35 +1,55 @@
 # encoding: utf-8
-require File.expand_path('../watirspec_helper', __FILE__)
+require File.expand_path('../../watirspec_helper', __FILE__)
 
 describe 'quick_window' do
 
   describe "#exist?" do
-    it "returns true for existing window"
-    it "returns false for non-existing window"
+    it "returns true for existing window" do
+      browser.quick_window(:name, "Browser Window").should exist
+    end
+    
+    it "returns false for non-existing window" do
+      browser.quick_window(:name, "Nonexisting window").should_not exist
+    end
   end
 
   describe "#type" do
-    it "returns Normal for Document Window"
-    it "returns Dialog for Dialog"
+    it "returns Normal for Document Window" do
+      browser.quick_window(:name, "Document Window").type == "Normal"
+    end
+    
+    it "returns Dialog for Dialog" do
+      browser.open_dialog_with_key_press("New Preferences Dialog", "F12", :ctrl).should > 0
+      browser.quick_window(:name, "New Preferences Dialog").type == "Dialog"
+      browser.close_dialog("New Preferences Dialog")
+    end
   end
 
   describe "#name" do
-    it "is non-empty"
+    it "returns window name" do
+      browser.quick_window(:name, "Document Window").name.should_not be_empty
+    end
   end
     
   describe "#title" do
-    is "non-empty"
+    it "returns title" do
+      browser.quick_window(:name, "Document Window").title.should_not be_empty
+    end
   end
         
   describe "#to_s" do
-   
+    it "returns string" do
+      browser.quick_window(:name, "Document Window").to_s.should_not be_empty
+    end
   end
     
   describe "#on_screen?" do
   end
     
   describe "#window_id" do
-    it "is non-zero integer"
+    it "is non-zero integer" do
+      browser.quick_window(:name, "Document Window").window_id.should_not be_zero
+    end
   end
     
   describe "#window_info_string" do
