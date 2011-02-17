@@ -34,7 +34,7 @@ module WatirSpec
 
   module Helpers
     def browser
-      OperaWatir::Helper.browser
+      OperaWatir::DesktopHelper.browser
     end
 
     def window
