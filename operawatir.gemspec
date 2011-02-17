@@ -5,12 +5,12 @@
 
 Gem::Specification.new do |s|
   s.name = %q{operawatir}
-  s.version = "0.3.5"
+  s.version = "0.4"
   s.platform = %q{jruby}
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = ["Deniz Turkoglu", "Andreas Tolf Tolfsen", "Chris Lloyd", "Stuart Knightley"]
-  s.date = %q{2011-02-08}
+  s.authors = ["Andreas Tolf Tolfsen", "Chris Lloyd", "Stuart Knightley", "Deniz Turkoglu"]
+  s.date = %q{2011-02-17}
   s.description = %q{    OperaWatir is a part of the Watir (pronounced water) family of
     free software Ruby libraries for automating web
     browsers.  OperaWatir provides a querying engine and Ruby bindings
@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
     browser.  It aims for full compliancy with the watirspec
     specification.
 }
-  s.email = ["dturkoglu@opera.com", "andreastt@opera.com", "christopherl@opera.com", "stuartk@opera.com"]
+  s.email = ["andreastt@opera.com", "christopherl@opera.com", "stuartk@opera.com", "dturkoglu@opera.com"]
   s.executables = ["desktopwatir", "operawatir"]
   s.extra_rdoc_files = [
     "README.md"
@@ -97,133 +97,145 @@ Gem::Specification.new do |s|
     "spec/fire_event/interactive/onMouseOver.html",
     "spec/fire_event/interactive/onMouseUp.html",
     "spec/fire_event/interactive/onScroll.html",
-    "spec/legacy_watirspec/area_spec.rb",
-    "spec/legacy_watirspec/areas_spec.rb",
-    "spec/legacy_watirspec/browser_spec.rb",
-    "spec/legacy_watirspec/button_spec.rb",
-    "spec/legacy_watirspec/buttons_spec.rb",
-    "spec/legacy_watirspec/checkbox_spec.rb",
-    "spec/legacy_watirspec/checkboxes_spec.rb",
-    "spec/legacy_watirspec/collections_spec.rb",
-    "spec/legacy_watirspec/dd_spec.rb",
-    "spec/legacy_watirspec/dds_spec.rb",
-    "spec/legacy_watirspec/del_spec.rb",
-    "spec/legacy_watirspec/dels_spec.rb",
-    "spec/legacy_watirspec/div_spec.rb",
-    "spec/legacy_watirspec/divs_spec.rb",
-    "spec/legacy_watirspec/dl_spec.rb",
-    "spec/legacy_watirspec/dls_spec.rb",
-    "spec/legacy_watirspec/dt_spec.rb",
-    "spec/legacy_watirspec/dts_spec.rb",
-    "spec/legacy_watirspec/element_spec.rb",
-    "spec/legacy_watirspec/em_spec.rb",
-    "spec/legacy_watirspec/ems_spec.rb",
-    "spec/legacy_watirspec/filefield_spec.rb",
-    "spec/legacy_watirspec/filefields_spec.rb",
-    "spec/legacy_watirspec/fixtures/2000_spans.html",
-    "spec/legacy_watirspec/fixtures/bug_duplicate_attributes.html",
-    "spec/legacy_watirspec/fixtures/bug_javascript_001.html",
-    "spec/legacy_watirspec/fixtures/buttons_with_duplicate_ids.html",
-    "spec/legacy_watirspec/fixtures/collections.html",
-    "spec/legacy_watirspec/fixtures/definition_lists.html",
-    "spec/legacy_watirspec/fixtures/euc-jp_text.html",
-    "spec/legacy_watirspec/fixtures/forms_with_input_elements.html",
-    "spec/legacy_watirspec/fixtures/frame_1.html",
-    "spec/legacy_watirspec/fixtures/frame_2.html",
-    "spec/legacy_watirspec/fixtures/frames.html",
-    "spec/legacy_watirspec/fixtures/iframes.html",
-    "spec/legacy_watirspec/fixtures/images.html",
-    "spec/legacy_watirspec/fixtures/images/1.gif",
-    "spec/legacy_watirspec/fixtures/images/2.gif",
-    "spec/legacy_watirspec/fixtures/images/3.gif",
-    "spec/legacy_watirspec/fixtures/images/button.jpg",
-    "spec/legacy_watirspec/fixtures/images/circle.jpg",
-    "spec/legacy_watirspec/fixtures/images/map.gif",
-    "spec/legacy_watirspec/fixtures/images/map2.gif",
-    "spec/legacy_watirspec/fixtures/images/minus.gif",
-    "spec/legacy_watirspec/fixtures/images/originaltriangle.jpg",
-    "spec/legacy_watirspec/fixtures/images/plus.gif",
-    "spec/legacy_watirspec/fixtures/images/square.jpg",
-    "spec/legacy_watirspec/fixtures/images/triangle.jpg",
-    "spec/legacy_watirspec/fixtures/iso-2022-jp_text.html",
-    "spec/legacy_watirspec/fixtures/javascript/helpers.js",
-    "spec/legacy_watirspec/fixtures/jquery.html",
-    "spec/legacy_watirspec/fixtures/latin1_text.html",
-    "spec/legacy_watirspec/fixtures/multiple_ids.html",
-    "spec/legacy_watirspec/fixtures/non_control_elements.html",
-    "spec/legacy_watirspec/fixtures/parser_bug_001.html",
-    "spec/legacy_watirspec/fixtures/prevent_form_submit.html",
-    "spec/legacy_watirspec/fixtures/right_click.html",
-    "spec/legacy_watirspec/fixtures/shift_jis_text.html",
-    "spec/legacy_watirspec/fixtures/tables.html",
-    "spec/legacy_watirspec/fixtures/timeout.html",
-    "spec/legacy_watirspec/fixtures/timeout_window_location.html",
-    "spec/legacy_watirspec/fixtures/tiny_mce.html",
-    "spec/legacy_watirspec/fixtures/utf8_text.html",
-    "spec/legacy_watirspec/fixtures/watirspec.css",
-    "spec/legacy_watirspec/form_spec.rb",
-    "spec/legacy_watirspec/forms_spec.rb",
-    "spec/legacy_watirspec/frame_spec.rb",
-    "spec/legacy_watirspec/frames_spec.rb",
-    "spec/legacy_watirspec/guards.rb",
-    "spec/legacy_watirspec/hidden_spec.rb",
-    "spec/legacy_watirspec/hiddens_spec.rb",
-    "spec/legacy_watirspec/hn_spec.rb",
-    "spec/legacy_watirspec/hns_spec.rb",
-    "spec/legacy_watirspec/image_spec.rb",
-    "spec/legacy_watirspec/images_spec.rb",
-    "spec/legacy_watirspec/ins_spec.rb",
-    "spec/legacy_watirspec/inses_spec.rb",
-    "spec/legacy_watirspec/label_spec.rb",
-    "spec/legacy_watirspec/labels_spec.rb",
-    "spec/legacy_watirspec/li_spec.rb",
-    "spec/legacy_watirspec/link_spec.rb",
-    "spec/legacy_watirspec/links_spec.rb",
-    "spec/legacy_watirspec/lis_spec.rb",
-    "spec/legacy_watirspec/map_spec.rb",
-    "spec/legacy_watirspec/maps_spec.rb",
-    "spec/legacy_watirspec/meta_spec.rb",
-    "spec/legacy_watirspec/metas_spec.rb",
-    "spec/legacy_watirspec/ol_spec.rb",
-    "spec/legacy_watirspec/ols_spec.rb",
-    "spec/legacy_watirspec/option_spec.rb",
-    "spec/legacy_watirspec/p_spec.rb",
-    "spec/legacy_watirspec/pre_spec.rb",
-    "spec/legacy_watirspec/pres_spec.rb",
-    "spec/legacy_watirspec/ps_spec.rb",
-    "spec/legacy_watirspec/radio_spec.rb",
-    "spec/legacy_watirspec/radios_spec.rb",
-    "spec/legacy_watirspec/select_list_spec.rb",
-    "spec/legacy_watirspec/select_lists_spec.rb",
-    "spec/legacy_watirspec/server.rb",
-    "spec/legacy_watirspec/span_spec.rb",
-    "spec/legacy_watirspec/spans_spec.rb",
-    "spec/legacy_watirspec/spec_helper.rb",
-    "spec/legacy_watirspec/strong_spec.rb",
-    "spec/legacy_watirspec/strongs_spec.rb",
-    "spec/legacy_watirspec/table_bodies_spec.rb",
-    "spec/legacy_watirspec/table_body_spec.rb",
-    "spec/legacy_watirspec/table_cell_spec.rb",
-    "spec/legacy_watirspec/table_cells_spec.rb",
-    "spec/legacy_watirspec/table_footer_spec.rb",
-    "spec/legacy_watirspec/table_footers_spec.rb",
-    "spec/legacy_watirspec/table_header_spec.rb",
-    "spec/legacy_watirspec/table_headers_spec.rb",
-    "spec/legacy_watirspec/table_row_spec.rb",
-    "spec/legacy_watirspec/table_rows_spec.rb",
-    "spec/legacy_watirspec/table_spec.rb",
-    "spec/legacy_watirspec/tables_spec.rb",
-    "spec/legacy_watirspec/text_field_spec.rb",
-    "spec/legacy_watirspec/text_fields_spec.rb",
-    "spec/legacy_watirspec/ul_spec.rb",
-    "spec/legacy_watirspec/uls_spec.rb",
-    "spec/legacy_watirspec/watir_compatibility_spec.rb",
-    "spec/legacy_watirspec/watirspec_helper.rb",
+    "spec/operawatir/README.md",
+    "spec/operawatir/core/element_spec.rb",
+    "spec/operawatir/core/preferences_spec.rb",
+    "spec/operawatir/core/spatnav_spec.rb",
+    "spec/operawatir/fixtures/boxes.html",
+    "spec/operawatir/fixtures/grid.html",
+    "spec/operawatir/fixtures/onclick.html",
+    "spec/operawatir/fixtures/paragraphs.html",
+    "spec/operawatir/guards.rb",
+    "spec/operawatir/server.rb",
+    "spec/operawatir/watirspec.rake",
+    "spec/operawatir/watirspec_helper.rb",
+    "spec/watir2/area_spec.rb",
+    "spec/watir2/areas_spec.rb",
+    "spec/watir2/browser_spec.rb",
+    "spec/watir2/button_spec.rb",
+    "spec/watir2/buttons_spec.rb",
+    "spec/watir2/checkbox_spec.rb",
+    "spec/watir2/checkboxes_spec.rb",
+    "spec/watir2/collections_spec.rb",
+    "spec/watir2/dd_spec.rb",
+    "spec/watir2/dds_spec.rb",
+    "spec/watir2/del_spec.rb",
+    "spec/watir2/dels_spec.rb",
+    "spec/watir2/div_spec.rb",
+    "spec/watir2/divs_spec.rb",
+    "spec/watir2/dl_spec.rb",
+    "spec/watir2/dls_spec.rb",
+    "spec/watir2/dt_spec.rb",
+    "spec/watir2/dts_spec.rb",
+    "spec/watir2/element_spec.rb",
+    "spec/watir2/em_spec.rb",
+    "spec/watir2/ems_spec.rb",
+    "spec/watir2/filefield_spec.rb",
+    "spec/watir2/filefields_spec.rb",
+    "spec/watir2/fixtures/2000_spans.html",
+    "spec/watir2/fixtures/bug_duplicate_attributes.html",
+    "spec/watir2/fixtures/bug_javascript_001.html",
+    "spec/watir2/fixtures/buttons_with_duplicate_ids.html",
+    "spec/watir2/fixtures/collections.html",
+    "spec/watir2/fixtures/definition_lists.html",
+    "spec/watir2/fixtures/euc-jp_text.html",
+    "spec/watir2/fixtures/forms_with_input_elements.html",
+    "spec/watir2/fixtures/frame_1.html",
+    "spec/watir2/fixtures/frame_2.html",
+    "spec/watir2/fixtures/frames.html",
+    "spec/watir2/fixtures/iframes.html",
+    "spec/watir2/fixtures/images.html",
+    "spec/watir2/fixtures/images/1.gif",
+    "spec/watir2/fixtures/images/2.gif",
+    "spec/watir2/fixtures/images/3.gif",
+    "spec/watir2/fixtures/images/button.jpg",
+    "spec/watir2/fixtures/images/circle.jpg",
+    "spec/watir2/fixtures/images/map.gif",
+    "spec/watir2/fixtures/images/map2.gif",
+    "spec/watir2/fixtures/images/minus.gif",
+    "spec/watir2/fixtures/images/originaltriangle.jpg",
+    "spec/watir2/fixtures/images/plus.gif",
+    "spec/watir2/fixtures/images/square.jpg",
+    "spec/watir2/fixtures/images/triangle.jpg",
+    "spec/watir2/fixtures/iso-2022-jp_text.html",
+    "spec/watir2/fixtures/javascript/helpers.js",
+    "spec/watir2/fixtures/jquery.html",
+    "spec/watir2/fixtures/latin1_text.html",
+    "spec/watir2/fixtures/multiple_ids.html",
+    "spec/watir2/fixtures/non_control_elements.html",
+    "spec/watir2/fixtures/parser_bug_001.html",
+    "spec/watir2/fixtures/prevent_form_submit.html",
+    "spec/watir2/fixtures/right_click.html",
+    "spec/watir2/fixtures/shift_jis_text.html",
+    "spec/watir2/fixtures/tables.html",
+    "spec/watir2/fixtures/timeout.html",
+    "spec/watir2/fixtures/timeout_window_location.html",
+    "spec/watir2/fixtures/tiny_mce.html",
+    "spec/watir2/fixtures/utf8_text.html",
+    "spec/watir2/fixtures/watirspec.css",
+    "spec/watir2/form_spec.rb",
+    "spec/watir2/forms_spec.rb",
+    "spec/watir2/frame_spec.rb",
+    "spec/watir2/frames_spec.rb",
+    "spec/watir2/guards.rb",
+    "spec/watir2/hidden_spec.rb",
+    "spec/watir2/hiddens_spec.rb",
+    "spec/watir2/hn_spec.rb",
+    "spec/watir2/hns_spec.rb",
+    "spec/watir2/image_spec.rb",
+    "spec/watir2/images_spec.rb",
+    "spec/watir2/ins_spec.rb",
+    "spec/watir2/inses_spec.rb",
+    "spec/watir2/label_spec.rb",
+    "spec/watir2/labels_spec.rb",
+    "spec/watir2/li_spec.rb",
+    "spec/watir2/link_spec.rb",
+    "spec/watir2/links_spec.rb",
+    "spec/watir2/lis_spec.rb",
+    "spec/watir2/map_spec.rb",
+    "spec/watir2/maps_spec.rb",
+    "spec/watir2/meta_spec.rb",
+    "spec/watir2/metas_spec.rb",
+    "spec/watir2/ol_spec.rb",
+    "spec/watir2/ols_spec.rb",
+    "spec/watir2/option_spec.rb",
+    "spec/watir2/p_spec.rb",
+    "spec/watir2/pre_spec.rb",
+    "spec/watir2/pres_spec.rb",
+    "spec/watir2/ps_spec.rb",
+    "spec/watir2/radio_spec.rb",
+    "spec/watir2/radios_spec.rb",
+    "spec/watir2/select_list_spec.rb",
+    "spec/watir2/select_lists_spec.rb",
+    "spec/watir2/server.rb",
+    "spec/watir2/span_spec.rb",
+    "spec/watir2/spans_spec.rb",
+    "spec/watir2/spec_helper.rb",
+    "spec/watir2/strong_spec.rb",
+    "spec/watir2/strongs_spec.rb",
+    "spec/watir2/table_bodies_spec.rb",
+    "spec/watir2/table_body_spec.rb",
+    "spec/watir2/table_cell_spec.rb",
+    "spec/watir2/table_cells_spec.rb",
+    "spec/watir2/table_footer_spec.rb",
+    "spec/watir2/table_footers_spec.rb",
+    "spec/watir2/table_header_spec.rb",
+    "spec/watir2/table_headers_spec.rb",
+    "spec/watir2/table_row_spec.rb",
+    "spec/watir2/table_rows_spec.rb",
+    "spec/watir2/table_spec.rb",
+    "spec/watir2/tables_spec.rb",
+    "spec/watir2/text_field_spec.rb",
+    "spec/watir2/text_fields_spec.rb",
+    "spec/watir2/ul_spec.rb",
+    "spec/watir2/uls_spec.rb",
+    "spec/watir2/watir_compatibility_spec.rb",
+    "spec/watir2/watirspec_helper.rb",
     "utils/Rakefile",
     "utils/formatters/operahelper_formatter.rb",
     "utils/formatters/spartan_formatter.rb"
   ]
-  s.homepage = %q{http://operasoftware.github.com/operawatir}
+  s.homepage = %q{http://www.opera.com/developer/tools/operawatir/}
   s.require_paths = ["lib"]
   s.required_ruby_version = Gem::Requirement.new(">= 1.8.7")
   s.rubyforge_project = %q{operawatir}
@@ -231,87 +243,6 @@ Gem::Specification.new do |s|
   s.summary = %q{Toolkit for automating interactions with the Opera web browser.}
   s.test_files = [
     "spec/fire_event/fire_event.rb",
-    "spec/legacy_watirspec/area_spec.rb",
-    "spec/legacy_watirspec/areas_spec.rb",
-    "spec/legacy_watirspec/browser_spec.rb",
-    "spec/legacy_watirspec/button_spec.rb",
-    "spec/legacy_watirspec/buttons_spec.rb",
-    "spec/legacy_watirspec/checkbox_spec.rb",
-    "spec/legacy_watirspec/checkboxes_spec.rb",
-    "spec/legacy_watirspec/collections_spec.rb",
-    "spec/legacy_watirspec/dd_spec.rb",
-    "spec/legacy_watirspec/dds_spec.rb",
-    "spec/legacy_watirspec/del_spec.rb",
-    "spec/legacy_watirspec/dels_spec.rb",
-    "spec/legacy_watirspec/div_spec.rb",
-    "spec/legacy_watirspec/divs_spec.rb",
-    "spec/legacy_watirspec/dl_spec.rb",
-    "spec/legacy_watirspec/dls_spec.rb",
-    "spec/legacy_watirspec/dt_spec.rb",
-    "spec/legacy_watirspec/dts_spec.rb",
-    "spec/legacy_watirspec/element_spec.rb",
-    "spec/legacy_watirspec/em_spec.rb",
-    "spec/legacy_watirspec/ems_spec.rb",
-    "spec/legacy_watirspec/filefield_spec.rb",
-    "spec/legacy_watirspec/filefields_spec.rb",
-    "spec/legacy_watirspec/form_spec.rb",
-    "spec/legacy_watirspec/forms_spec.rb",
-    "spec/legacy_watirspec/frame_spec.rb",
-    "spec/legacy_watirspec/frames_spec.rb",
-    "spec/legacy_watirspec/guards.rb",
-    "spec/legacy_watirspec/hidden_spec.rb",
-    "spec/legacy_watirspec/hiddens_spec.rb",
-    "spec/legacy_watirspec/hn_spec.rb",
-    "spec/legacy_watirspec/hns_spec.rb",
-    "spec/legacy_watirspec/image_spec.rb",
-    "spec/legacy_watirspec/images_spec.rb",
-    "spec/legacy_watirspec/ins_spec.rb",
-    "spec/legacy_watirspec/inses_spec.rb",
-    "spec/legacy_watirspec/label_spec.rb",
-    "spec/legacy_watirspec/labels_spec.rb",
-    "spec/legacy_watirspec/li_spec.rb",
-    "spec/legacy_watirspec/link_spec.rb",
-    "spec/legacy_watirspec/links_spec.rb",
-    "spec/legacy_watirspec/lis_spec.rb",
-    "spec/legacy_watirspec/map_spec.rb",
-    "spec/legacy_watirspec/maps_spec.rb",
-    "spec/legacy_watirspec/meta_spec.rb",
-    "spec/legacy_watirspec/metas_spec.rb",
-    "spec/legacy_watirspec/ol_spec.rb",
-    "spec/legacy_watirspec/ols_spec.rb",
-    "spec/legacy_watirspec/option_spec.rb",
-    "spec/legacy_watirspec/p_spec.rb",
-    "spec/legacy_watirspec/pre_spec.rb",
-    "spec/legacy_watirspec/pres_spec.rb",
-    "spec/legacy_watirspec/ps_spec.rb",
-    "spec/legacy_watirspec/radio_spec.rb",
-    "spec/legacy_watirspec/radios_spec.rb",
-    "spec/legacy_watirspec/select_list_spec.rb",
-    "spec/legacy_watirspec/select_lists_spec.rb",
-    "spec/legacy_watirspec/server.rb",
-    "spec/legacy_watirspec/span_spec.rb",
-    "spec/legacy_watirspec/spans_spec.rb",
-    "spec/legacy_watirspec/spec_helper.rb",
-    "spec/legacy_watirspec/strong_spec.rb",
-    "spec/legacy_watirspec/strongs_spec.rb",
-    "spec/legacy_watirspec/table_bodies_spec.rb",
-    "spec/legacy_watirspec/table_body_spec.rb",
-    "spec/legacy_watirspec/table_cell_spec.rb",
-    "spec/legacy_watirspec/table_cells_spec.rb",
-    "spec/legacy_watirspec/table_footer_spec.rb",
-    "spec/legacy_watirspec/table_footers_spec.rb",
-    "spec/legacy_watirspec/table_header_spec.rb",
-    "spec/legacy_watirspec/table_headers_spec.rb",
-    "spec/legacy_watirspec/table_row_spec.rb",
-    "spec/legacy_watirspec/table_rows_spec.rb",
-    "spec/legacy_watirspec/table_spec.rb",
-    "spec/legacy_watirspec/tables_spec.rb",
-    "spec/legacy_watirspec/text_field_spec.rb",
-    "spec/legacy_watirspec/text_fields_spec.rb",
-    "spec/legacy_watirspec/ul_spec.rb",
-    "spec/legacy_watirspec/uls_spec.rb",
-    "spec/legacy_watirspec/watir_compatibility_spec.rb",
-    "spec/legacy_watirspec/watirspec_helper.rb",
     "spec/new_watirspec/browser_spec.rb",
     "spec/new_watirspec/clipboard_spec.rb",
     "spec/new_watirspec/collection_spec.rb",
@@ -323,7 +254,94 @@ Gem::Specification.new do |s|
     "spec/new_watirspec/server.rb",
     "spec/new_watirspec/spatnav_spec.rb",
     "spec/new_watirspec/watirspec_helper.rb",
-    "spec/new_watirspec/window_spec.rb"
+    "spec/new_watirspec/window_spec.rb",
+    "spec/operawatir/core/element_spec.rb",
+    "spec/operawatir/core/preferences_spec.rb",
+    "spec/operawatir/core/spatnav_spec.rb",
+    "spec/operawatir/guards.rb",
+    "spec/operawatir/server.rb",
+    "spec/operawatir/watirspec_helper.rb",
+    "spec/watir2/area_spec.rb",
+    "spec/watir2/areas_spec.rb",
+    "spec/watir2/browser_spec.rb",
+    "spec/watir2/button_spec.rb",
+    "spec/watir2/buttons_spec.rb",
+    "spec/watir2/checkbox_spec.rb",
+    "spec/watir2/checkboxes_spec.rb",
+    "spec/watir2/collections_spec.rb",
+    "spec/watir2/dd_spec.rb",
+    "spec/watir2/dds_spec.rb",
+    "spec/watir2/del_spec.rb",
+    "spec/watir2/dels_spec.rb",
+    "spec/watir2/div_spec.rb",
+    "spec/watir2/divs_spec.rb",
+    "spec/watir2/dl_spec.rb",
+    "spec/watir2/dls_spec.rb",
+    "spec/watir2/dt_spec.rb",
+    "spec/watir2/dts_spec.rb",
+    "spec/watir2/element_spec.rb",
+    "spec/watir2/em_spec.rb",
+    "spec/watir2/ems_spec.rb",
+    "spec/watir2/filefield_spec.rb",
+    "spec/watir2/filefields_spec.rb",
+    "spec/watir2/form_spec.rb",
+    "spec/watir2/forms_spec.rb",
+    "spec/watir2/frame_spec.rb",
+    "spec/watir2/frames_spec.rb",
+    "spec/watir2/guards.rb",
+    "spec/watir2/hidden_spec.rb",
+    "spec/watir2/hiddens_spec.rb",
+    "spec/watir2/hn_spec.rb",
+    "spec/watir2/hns_spec.rb",
+    "spec/watir2/image_spec.rb",
+    "spec/watir2/images_spec.rb",
+    "spec/watir2/ins_spec.rb",
+    "spec/watir2/inses_spec.rb",
+    "spec/watir2/label_spec.rb",
+    "spec/watir2/labels_spec.rb",
+    "spec/watir2/li_spec.rb",
+    "spec/watir2/link_spec.rb",
+    "spec/watir2/links_spec.rb",
+    "spec/watir2/lis_spec.rb",
+    "spec/watir2/map_spec.rb",
+    "spec/watir2/maps_spec.rb",
+    "spec/watir2/meta_spec.rb",
+    "spec/watir2/metas_spec.rb",
+    "spec/watir2/ol_spec.rb",
+    "spec/watir2/ols_spec.rb",
+    "spec/watir2/option_spec.rb",
+    "spec/watir2/p_spec.rb",
+    "spec/watir2/pre_spec.rb",
+    "spec/watir2/pres_spec.rb",
+    "spec/watir2/ps_spec.rb",
+    "spec/watir2/radio_spec.rb",
+    "spec/watir2/radios_spec.rb",
+    "spec/watir2/select_list_spec.rb",
+    "spec/watir2/select_lists_spec.rb",
+    "spec/watir2/server.rb",
+    "spec/watir2/span_spec.rb",
+    "spec/watir2/spans_spec.rb",
+    "spec/watir2/spec_helper.rb",
+    "spec/watir2/strong_spec.rb",
+    "spec/watir2/strongs_spec.rb",
+    "spec/watir2/table_bodies_spec.rb",
+    "spec/watir2/table_body_spec.rb",
+    "spec/watir2/table_cell_spec.rb",
+    "spec/watir2/table_cells_spec.rb",
+    "spec/watir2/table_footer_spec.rb",
+    "spec/watir2/table_footers_spec.rb",
+    "spec/watir2/table_header_spec.rb",
+    "spec/watir2/table_headers_spec.rb",
+    "spec/watir2/table_row_spec.rb",
+    "spec/watir2/table_rows_spec.rb",
+    "spec/watir2/table_spec.rb",
+    "spec/watir2/tables_spec.rb",
+    "spec/watir2/text_field_spec.rb",
+    "spec/watir2/text_fields_spec.rb",
+    "spec/watir2/ul_spec.rb",
+    "spec/watir2/uls_spec.rb",
+    "spec/watir2/watir_compatibility_spec.rb",
+    "spec/watir2/watirspec_helper.rb"
   ]
 
   if s.respond_to? :specification_version then
@@ -333,20 +351,17 @@ Gem::Specification.new do |s|
     if Gem::Version.new(Gem::RubyGemsVersion) >= Gem::Version.new('1.2.0') then
       s.add_development_dependency(%q<bundler>, ["~> 1.0.0"])
       s.add_development_dependency(%q<jeweler>, [">= 0"])
-      s.add_development_dependency(%q<bluecloth>, ["= 1.0.1"])
+      s.add_development_dependency(%q<BlueCloth>, ["= 1.0.1"])
       s.add_development_dependency(%q<yard>, [">= 0"])
       s.add_development_dependency(%q<mongrel>, [">= 1.1.5"])
       s.add_development_dependency(%q<sinatra>, [">= 1.1"])
       s.add_development_dependency(%q<rr>, [">= 0"])
       s.add_development_dependency(%q<clipboard>, [">= 0"])
       s.add_runtime_dependency(%q<rspec>, ["= 2.4"])
-      s.add_runtime_dependency(%q<inifile>, [">= 0.3"])
-      s.add_runtime_dependency(%q<i18n>, [">= 0"])
-      s.add_runtime_dependency(%q<activesupport>, [">= 3.0.1"])
       s.add_runtime_dependency(%q<deprecated>, [">= 0"])
       s.add_development_dependency(%q<jeweler>, [">= 0"])
       s.add_development_dependency(%q<rake>, [">= 0"])
-      s.add_development_dependency(%q<bluecloth>, ["= 1.0.1"])
+      s.add_development_dependency(%q<BlueCloth>, ["= 1.0.1"])
       s.add_development_dependency(%q<yard>, [">= 0"])
       s.add_development_dependency(%q<mongrel>, [">= 1.1.5"])
       s.add_development_dependency(%q<sinatra>, [">= 1.1"])
@@ -355,20 +370,17 @@ Gem::Specification.new do |s|
     else
       s.add_dependency(%q<bundler>, ["~> 1.0.0"])
       s.add_dependency(%q<jeweler>, [">= 0"])
-      s.add_dependency(%q<bluecloth>, ["= 1.0.1"])
+      s.add_dependency(%q<BlueCloth>, ["= 1.0.1"])
       s.add_dependency(%q<yard>, [">= 0"])
       s.add_dependency(%q<mongrel>, [">= 1.1.5"])
       s.add_dependency(%q<sinatra>, [">= 1.1"])
       s.add_dependency(%q<rr>, [">= 0"])
       s.add_dependency(%q<clipboard>, [">= 0"])
       s.add_dependency(%q<rspec>, ["= 2.4"])
-      s.add_dependency(%q<inifile>, [">= 0.3"])
-      s.add_dependency(%q<i18n>, [">= 0"])
-      s.add_dependency(%q<activesupport>, [">= 3.0.1"])
       s.add_dependency(%q<deprecated>, [">= 0"])
       s.add_dependency(%q<jeweler>, [">= 0"])
       s.add_dependency(%q<rake>, [">= 0"])
-      s.add_dependency(%q<bluecloth>, ["= 1.0.1"])
+      s.add_dependency(%q<BlueCloth>, ["= 1.0.1"])
       s.add_dependency(%q<yard>, [">= 0"])
       s.add_dependency(%q<mongrel>, [">= 1.1.5"])
       s.add_dependency(%q<sinatra>, [">= 1.1"])
@@ -378,20 +390,17 @@ Gem::Specification.new do |s|
   else
     s.add_dependency(%q<bundler>, ["~> 1.0.0"])
     s.add_dependency(%q<jeweler>, [">= 0"])
-    s.add_dependency(%q<bluecloth>, ["= 1.0.1"])
+    s.add_dependency(%q<BlueCloth>, ["= 1.0.1"])
     s.add_dependency(%q<yard>, [">= 0"])
     s.add_dependency(%q<mongrel>, [">= 1.1.5"])
     s.add_dependency(%q<sinatra>, [">= 1.1"])
     s.add_dependency(%q<rr>, [">= 0"])
     s.add_dependency(%q<clipboard>, [">= 0"])
     s.add_dependency(%q<rspec>, ["= 2.4"])
-    s.add_dependency(%q<inifile>, [">= 0.3"])
-    s.add_dependency(%q<i18n>, [">= 0"])
-    s.add_dependency(%q<activesupport>, [">= 3.0.1"])
     s.add_dependency(%q<deprecated>, [">= 0"])
     s.add_dependency(%q<jeweler>, [">= 0"])
     s.add_dependency(%q<rake>, [">= 0"])
-    s.add_dependency(%q<bluecloth>, ["= 1.0.1"])
+    s.add_dependency(%q<BlueCloth>, ["= 1.0.1"])
     s.add_dependency(%q<yard>, [">= 0"])
     s.add_dependency(%q<mongrel>, [">= 1.1.5"])
     s.add_dependency(%q<sinatra>, [">= 1.1"])
