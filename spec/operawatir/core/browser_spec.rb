@@ -44,7 +44,6 @@ describe 'Browser' do
     end
   end
 
-
   # Note: This method is deprecated, but still needs to be tested.
   describe '#key_up' do
     it 'releases the specfied key' do
