@@ -1,15 +1,8 @@
-require 'inifile'
-require 'tmpdir'
 require 'pp'
-require 'active_support/inflector'
 
 class String
-  def keyize
-    self.humanize.titleize
-  end
-
   def methodize
-    self.titleize.gsub(/\s+/, '').underscore
+    self.gsub(/\s+/, '_').downcase
   end
 end
 
@@ -34,6 +27,7 @@ class OperaWatir::Preferences
 
   def initialize(browser)
     self.browser = browser
+    @_prefs = []
   end
 
   # Section locator
