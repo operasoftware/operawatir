@@ -4,7 +4,7 @@ require File.expand_path('../../watirspec_helper', __FILE__)
 describe 'DesktopBrowser' do
   before :all do
     browser.url = fixture('simple.html')
-    @window = browser.quick_window(:name, "Tab 0")
+    #@window = browser.quick_window(:name, "Tab 0")
   end
   
   describe "#goto" do
