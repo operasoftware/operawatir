@@ -1,5 +1,3 @@
-require 'pp'
-
 class String
   def methodize
     self.gsub(/^\\t(\s+)/, '').gsub(/\s+/, '_').downcase
@@ -57,7 +55,19 @@ class OperaWatir::Preferences
                           :empty?
 
   def to_s
-    pp _prefs
+    text = ''
+
+    _prefs.each do |s|
+      text << "#{s.method}\n"
+
+      s.each do |k|
+        text << "  #{k.method}\n"
+        text << "    value:    #{k.value.inspect}\n"
+        text << "    default:  #{k.default.inspect}\n"
+      end
+    end
+
+    text
   end
 
   def to_h
