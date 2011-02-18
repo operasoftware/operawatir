@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 require File.expand_path('../../watirspec_helper', __FILE__)
 
 describe 'Preferences' do
@@ -8,25 +9,129 @@ describe 'Preferences' do
 
   describe '#new' do
     it 'constructs a new instance' do
-      @prefs.exist?.should be_true
+      @prefs.should exist
+      @prefs.should be_kind_of OperaWatir::Preferences
     end
   end
 
-  describe '#to_s' do; end
-
-  describe '#each_section' do  # #each is an alias
-    it 'contains a list' do
-      @prefs.each_section do |p|
-        p.kind_of?(OperaWatir::Preferences::Entry).should be_true
+  describe '#each' do
+    it 'contains a list of entries' do
+      @prefs.each do |p|
+        p.should be_kind_of OperaWatir::Preferences::Entry
       end
     end
   end
 
-  describe '#length' do; end  # #size is an alias
-  describe '#last' do; end
-  describe '#empty?' do; end
+  describe '#length' do
+    it 'has a valid length' do
+      @prefs.length.should be_kind_of Integer
+    end
 
-  describe 'Section' do  # Entry / Preferences#method_missing
+    it 'has several sections' do
+      @prefs.length.should > 10
+    end
+
+    it 'responds to alias #size' do
+      @prefs.size.should == @prefs.length
+    end
+  end
+
+  describe '#first' do
+    it 'is a valid entry' do
+      @prefs.first.should be_kind_of OperaWatir::Preferences::Entry
+    end
+
+    it 'is a section' do
+      @prefs.first.should be_section
+    end
+
+    it 'has a key' do
+      @prefs.first.key.should_not be_empty
+    end
+
+    it 'has a method' do
+      @prefs.first.key.should match /^([a-z_]+)/
+    end
+  end
+
+  describe '#last' do
+    it 'is a valid entry' do
+      @prefs.last.should be_kind_of OperaWatir::Preferences::Entry
+    end
+
+    it 'is a section' do
+      @prefs.last.should be_section
+    end
+
+    it 'has a key' do
+      @prefs.last.key.should_not be_empty
+    end
+
+    it 'has a method' do
+      @prefs.last.key.should match /^([a-z_]+)/
+    end
+  end
+
+  describe '#empty?' do
+    it 'returns a valid type' do
+      @prefs.empty?.should be_kind_of Boolean
+    end
+
+    it 'is not empty' do
+      @prefs.should_not be_empty
+    end
+  end
+
+  describe '#to_s' do
+    before :all do
+      @string = @prefs.to_s
+    end
+
+    it 'returns a string' do
+      @string.should be_kind_of? String
+    end
+
+    it 'contains sections' do
+      @string.should match /^([a-z_]+)/
+    end
+
+    it 'contains keys' do
+      @string.should match /^\s{2}([a-z_]+)/
+    end
+
+    it 'contains values' do
+      @string.should match /^\s{4}value:.+\"(.+)\"/
+    end
+
+    it 'contains defaults' do
+      @string.should match /^\s{4}default:.+\"(.+)\"/
+    end
+  end
+
+  describe '#to_h' do
+    before :all do
+      @hash = @prefs.to_h
+    end
+
+    it 'returns a hash' do
+      @hash.should be_kind_of? Hash
+    end
+
+    it 'returns entries of the type Preference' do
+      @hash[0].parent.should be_kind_of? OperaWatir::Preferences::Entry
+    end
+
+    it 'has several entries' do
+      @hash.size > 10
+    end
+
+    it 'contains keys' do
+      @hash[0].key.should_not be_empty
+      @hash[0].method.should match /([a-z_]+)/
+    end
+  end
+
+  describe 'Section' do  # Preferences::Entry / Preferences#method_missing
 
     before :all do
       @section = @prefs.link
@@ -34,29 +139,173 @@ describe 'Preferences' do
       
     describe '#new' do
       it 'constructs a new instance' do
-        @section.exist?.should be_true
+        @section.should exist
+        @section.should be_kind_of OperaWatir::Preferences::Entry
       end
     end
 
-    describe '#value' do; end
-    describe '#value=' do; end
-    describe '#default' do; end
-    describe '#default!' do; end
-    describe '#each_key' do; end  # #each is an alias
+    describe '#parent' do
+      it 'contains the parent class' do
+        @section.parent.should be_kind_of OperaWatir::Preferences
+      end
+    end
 
-    describe '#is_section?' do
+    describe '#method' do
+      it 'has a valid method name' do
+        @section.method.should match /([a-z_]+/
+      end
+    end
+
+    describe '#key' do
+      it 'has a key name' do
+        @section.key.should_not be_empty
+      end
+    end
+
+    describe '#value' do
+      it 'raises exception' do
+        @section.value.should raise OperaWatir::Exceptions::PreferencesException
+      end
+    end
+
+    describe '#value=' do
+      it 'raises exception' do
+        @section.value.should raise OperaWatir::Exceptions::PreferencesException
+      end
+    end
+
+    describe '#default' do
+      it 'raises exception' do
+        @section.value.should raise OperaWatir::Exceptions::PreferencesException
+      end
+    end
+
+    describe '#default!' do
+      it 'raises exception' do
+        @section.value.should raise OperaWatir::Exceptions::PreferencesException
+      end
+    end
+
+    describe '#section?' do
+      it 'returns a valid type' do
+        @section.section?.should be_kind_of Boolean
+      end
+
       it 'is a section' do
-        @section.is_section?.should be_true
+        @section.section?.should be_true
       end
     end
 
-    describe 'Keys' do  # Entry / Entry#method_missing
+    describe '#exists?' do
+      it 'returns a valid type' do
+        @section.exists?.should be_kind_of Boolean
+      end
+
+      it 'exists' do
+        @section.exists?.should be_true
+      end
+
+      it 'responds to alias #exist?' do
+        @section.exist?.should == @section.exists?
+      end
+    end
+
+    describe '#each' do
+      it 'contains a list of entries' do
+        @section.each do |k|
+          k.should be_kind_of OperaWatir::Preferences::Entry
+        end
+      end
+    end
+
+    describe '#length' do
+      it 'has a valid length' do
+        @section.length.should be_kind_of Integer
+      end
+
+      it 'has one or more sections' do
+        @section.length.should >= 1
+      end
+
+      it 'responds alias #size' do
+        @section.size.should == @section.length
+      end
+    end
+
+    describe '#first' do
+      it 'is a valid entry' do
+        @section.first.should be_kind_of OperaWatir::Preferences::Entry
+      end
+
+      it 'is a section' do
+        @section.first.should be_section
+      end
+
+      it 'has a key' do
+        @section.first.key.should_not be_empty
+      end
+
+      it 'has a method' do
+        @section.first.key.should match /^([a-z_]+)/
+      end
+    end
+
+    describe '#last' do
+      it 'is a valid entry' do
+        @section.last.should be_kind_of OperaWatir::Preferences::Entry
+      end
+
+      it 'is a section' do
+        @section.last.should be_section
+      end
+
+      it 'has a key' do
+        @section.last.key.should_not be_empty
+      end
+
+      it 'has a method' do
+        @section.last.key.should match /^([a-z_]+)/
+      end
+    end
+
+    describe '#empty?' do
+      it 'returns a valid type' do
+        @section.empty?.should be_kind_of Boolean
+      end
+
+      it 'is not empty' do
+        @section.should_not be_empty
+      end
+    end
+
+    describe 'Keys' do  # Preferences::Entry / Entry#method_missing
 
       before :all do
         @key = @section.expiry
       end
 
-      describe '#type' do
+      describe '#parent' do
+        it 'contains the parent class' do
+          @key.parent.should be_kind_of OperaWatir::Preferences::Entry
+        end
+      end
+
+      describe '#method' do
+        it 'has a valid method name' do
+          @key.method.should match /([a-z_]+/
+        end
+      end
+
+      describe '#key' do
+        it 'has a key name' do
+          @section.key.should_not be_empty
+        end
+      end
+
+      describe '#type' do  # TODO
+
+        # Note that the types aren't proper Ruby objects, but strings.
+
         it '`expiry` is a type integer' do
           @key.type.should include 'Integer'
         end
@@ -71,11 +320,15 @@ describe 'Preferences' do
       end
 
       describe '#value' do
+        it 'returns a valid type' do
+          @key.value.should be_kind_of String
+        end
+
         it 'is not empty' do
           @key.value.should_not be_empty
         end
 
-        it 'is numeric' do
+        it 'is numeric' do  # Is this needed?
           @key.value.should be_numeric
         end
       end
@@ -122,11 +375,53 @@ describe 'Preferences' do
         end
       end
 
-      describe '#each_key' do; end  # #each is an alias
+      describe '#section?' do
+        it 'returns a valid type' do
+          @key.section?.should be_kind_of Boolean
+        end
 
-      describe '#is_section?' do
         it 'is not a section' do
-          @key.is_section?.should be_false
+          @key.section?.should be_false
+        end
+      end
+
+      describe '#each' do
+        it 'contains a list of entries' do
+          @key.each do |e|
+            e.should raise RuntimeException
+          end
+        end
+      end
+
+      describe '#length' do
+        it 'not be 0' do
+          @key.length.should == 0
+        end
+
+        it 'responds to alias #size' do
+          @key.size.should == @key.length
+        end
+      end
+
+      describe '#first' do
+        it 'is empty' do
+          @key.first.should be_empty
+        end
+      end
+
+      describe '#last' do
+        it 'is empty' do
+          @key.last.should be_empty
+        end
+      end
+
+      describe '#empty?' do
+        it 'returns a valid type' do
+          @key.empty?.should be_kind_of Boolean
+        end
+
+        it 'is empty' do
+          @key.empty?.should be_true
         end
       end
 
@@ -134,8 +429,8 @@ describe 'Preferences' do
 
   end
 
-  describe '#cleanup' do; end
-  describe '#cleanup!' do; end
+  describe '#cleanup' do; end   # TODO
+  describe '#cleanup!' do; end  # TODO
 
   after :all do
     @prefs.cleanup!

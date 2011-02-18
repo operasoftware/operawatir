@@ -103,6 +103,10 @@ private
       end
     end
 
+    def type
+      raise OperaWatir::Exceptions::NotImplementedException
+    end
+
     def value
       raise OperaWatir::Exceptions::PreferencesException, 'Sections do not have values' if section?
       @value ||=  driver.getPref(parent.key, key)
