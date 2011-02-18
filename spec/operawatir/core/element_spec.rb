@@ -1,20 +1,51 @@
 require File.expand_path('../../watirspec_helper', __FILE__)
+require 'tmpdir'
 
 describe 'Element' do
 
+  describe '#triple_click' do
+    it 'clicks three times' do
+      browser.url = fixture('onclick.html')
+      window.find_by_tag('button').triple_click
+      window.find_by_id('clicks').text.should == '3'
+    end
+  end
+
   describe '#quadruple_click' do
-    
     it 'clicks four times' do
       browser.url = fixture('onclick.html')
       window.find_by_tag('button').quadruple_click
       window.find_by_id('clicks').text.should == '4'
     end
-    
-    it 'selects a full paragraph' do
-      browser.url = fixture('paragraphs.html')
-      p = window.find_by_id('first')
-      p.quadruple_click
-      window.eval_js('var first = document.getElementById("first"); first.value.substr(first.selectionStart, first.selectionEnd - first.selectionStart)').to_s.should == p.text
+  end
+
+  # This method is deprecated, but needs to be tested anyway.
+  describe '#compare_hash' do
+
+    before :each do
+      browser.url = fixture('boxes.html')
+      @one   = window.find_by_id('one');
+      @two   = window.find_by_id('two');
+      @three = window.find_by_id('three');
+    end
+
+    it 'interprets two visually different elements as different' do
+      @one.compare_hash(@two).should be_false
+    end
+
+    it 'interprets two visually identical elements as identical' do
+      @one.compare_hash(@three).should be_true
+    end
+  end
+
+  describe '#screenshot' do
+    after (:each) do
+      File.delete(Dir.tmpdir + '/screenshot.png')
+    end
+
+    it 'takes a screenshot of the specified element' do
+      browser.url = fixture('boxes.html')
+      window.find_by_id('one').screenshot(Dir.tmpdir + '/screenshot.png', 1000).should be_true
     end
   end
 
@@ -46,7 +77,7 @@ describe 'Element' do
       @one.visual_hash.should_not == @two.visual_hash
       @two.visual_hash.should_not == @three.visual_hash
     end
-    
+
   end
-  
+
 end
