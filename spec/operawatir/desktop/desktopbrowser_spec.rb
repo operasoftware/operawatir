@@ -8,19 +8,34 @@ describe 'DesktopBrowser' do
   end
   
   describe "#goto" do
-    it "loads page"
+    it "loads page" 
   end
   
+  
   describe "#quit_opera" do
-    it "quits opera without quitting driver"
+    it "quits opera without quitting driver" 
   end
+  
+  describe "#start_opera" do
+    before(:each) do
+      browser.quit_opera
+    end
+    
+     it "starts opera" do
+       browser.start_opera
+       browser.quick_windows.should_not be_empty
+     end
+   end
   
   describe "#quit_driver" do
     it "quits driver"
   end
   
   describe "#restart" do
-    it "quits and restarts opera"
+    it "starts opera" do
+      browser.restart
+      browser.quick_windows.should_not be_empty
+    end
   end
 
   describe "open and load window" do
@@ -235,11 +250,7 @@ describe 'DesktopBrowser' do
      it "gets default value of preference"
    end
      
-   describe "#start_opera" do
-     it "starts opera"
-   end
-
-   # Gets the parent widget name of which there is none here
+    # Gets the parent widget name of which there is none here
    #describe "#parent_widget" do
    #  it "is nil" do
    #   browser.parent_widget.should be_nil
