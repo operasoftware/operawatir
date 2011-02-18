@@ -5,7 +5,7 @@ module OperaWatir
     
     #@private
     LoadActions = ["Open url in new page", "Open url in current page", "Open url in background page",
-      "Open url in new window"]
+      "Open url in new window", "New private page", "Paste and go", "Paste and go background", "Hotclick search"]
     
     # @private
     def initialize
