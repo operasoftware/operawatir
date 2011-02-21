@@ -126,7 +126,7 @@ private
     end
 
     def default
-      return OperaWatir::Exceptions::PreferencesException, 'Sections do not have defaults' if section?
+      raise OperaWatir::Exceptions::PreferencesException, 'Sections do not have defaults' if section?
       @default ||= driver.getDefaultPref parent.key, key
     end
 
@@ -146,7 +146,7 @@ private
 
     def each
       return unless block_given?
-      _keys = all_keys  # Updates cache
+#      _keys = all_keys  # Updates cache
       _keys.each { |k| yield k }
     end
 
@@ -159,7 +159,7 @@ private
   private
 
     def _keys
-      @_keys ||= []
+      @_keys ||= all_keys
     end
 
     def all_keys

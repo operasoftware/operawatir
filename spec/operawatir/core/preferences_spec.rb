@@ -130,7 +130,7 @@ describe 'Preferences' do
       @array[0].method.should match /([a-z_]+)/
     end
   end
-=begin
+
   describe 'Section' do  # Preferences::Entry / Preferences#method_missing
 
     before :all do
@@ -164,25 +164,25 @@ describe 'Preferences' do
 
     describe '#value' do
       it 'raises exception' do
-        @section.value.should raise_error OperaWatir::Exceptions::PreferencesException
+        lambda { @section.value }.should raise_error OperaWatir::Exceptions::PreferencesException
       end
     end
 
     describe '#value=' do
       it 'raises exception' do
-        @section.value.should raise_error OperaWatir::Exceptions::PreferencesException
+        lambda { @section.value = 'hoobaflooba' }.should raise_error OperaWatir::Exceptions::PreferencesException
       end
     end
 
     describe '#default' do
       it 'raises exception' do
-        @section.value.should raise_error OperaWatir::Exceptions::PreferencesException
+        lambda { @section.default }.should raise_error OperaWatir::Exceptions::PreferencesException
       end
     end
 
     describe '#default!' do
       it 'raises exception' do
-        @section.value.should raise_error OperaWatir::Exceptions::PreferencesException
+        lambda { @section.default! }.should raise_error OperaWatir::Exceptions::PreferencesException
       end
     end
 
@@ -223,7 +223,7 @@ describe 'Preferences' do
         @section.length.should be_kind_of Integer
       end
 
-      it 'has one or more sections' do
+      it 'has one or more keys' do
         @section.length.should >= 1
       end
 
@@ -237,16 +237,16 @@ describe 'Preferences' do
         @section.first.should be_kind_of OperaWatir::Preferences::Entry
       end
 
-      it 'is a section' do
-        @section.first.should be_section
-      end
-
       it 'has a key' do
         @section.first.key.should_not be_empty
       end
 
-      it 'has a method' do
-        @section.first.key.should match /^([a-z_]+)/
+      it 'has a key which is not a section' do
+        @section.first.should_not be_section
+      end
+
+      it 'has a key with a method' do
+        @section.first.method.should match /^([a-z_]+)/
       end
     end
 
@@ -255,22 +255,22 @@ describe 'Preferences' do
         @section.last.should be_kind_of OperaWatir::Preferences::Entry
       end
 
-      it 'is a section' do
-        @section.last.should be_section
-      end
-
       it 'has a key' do
         @section.last.key.should_not be_empty
       end
 
-      it 'has a method' do
-        @section.last.key.should match /^([a-z_]+)/
+      it 'is a key which is not section' do
+        @section.last.should_not be_section
+      end
+
+      it 'has a key with a method' do
+        @section.last.method.should match /^([a-z_]+)/
       end
     end
 
     describe '#empty?' do
       it 'returns a valid type' do
-        @section.empty?.should be_kind_of TrueClass
+        @section.empty?.should be_kind_of FalseClass
       end
 
       it 'is not empty' do
@@ -292,7 +292,7 @@ describe 'Preferences' do
 
       describe '#method' do
         it 'has a valid method name' do
-          @key.method.should match /([a-z_]+/
+          @key.method.should match /([a-z_]+)/
         end
       end
 
@@ -377,7 +377,7 @@ describe 'Preferences' do
 
       describe '#section?' do
         it 'returns a valid type' do
-          @key.section?.should be_kind_of TrueClass
+          @key.section?.should be_kind_of FalseClass
         end
 
         it 'is not a section' do
@@ -388,7 +388,7 @@ describe 'Preferences' do
       describe '#each' do
         it 'contains a list of entries' do
           @key.each do |e|
-            e.should raise_error RuntimeException
+            lambda { e }.should raise_error RuntimeException
           end
         end
       end
@@ -435,5 +435,5 @@ describe 'Preferences' do
   after :all do
     @prefs.cleanup!
   end
-=end
+
 end
