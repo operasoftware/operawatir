@@ -150,7 +150,8 @@ private
       _keys.each { |k| yield k }
     end
 
-    def_delegators :_keys, :length,
+    def_delegators :_keys, :[],
+                           :length,
                            :size,
                            :first,
                            :last,
