@@ -330,9 +330,14 @@ describe 'Preferences' do
       end
 
       describe '#value=' do
-        it 'is changed when set' do
+        it 'is changed when set on a string preference' do
           @key.value = '20'
           @key.value.should == '20'
+        end
+        
+        it 'is changed when set on an integer preference' do
+          @section.color.value = true
+          @section.color.value.should be_true
         end
 
         it 'has effect in the browser when changed' do
@@ -349,6 +354,8 @@ describe 'Preferences' do
         
         after :each do
           @key.default!
+          @section.color.default!
+          @section.strikethrough.default!
         end
       end
 

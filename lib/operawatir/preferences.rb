@@ -63,6 +63,7 @@ class OperaWatir::Preferences
 
       s.each do |k|
         text << "  #{k.method}\n"
+        text << "    type:     #{k.type.inspect}\n"
         text << "    value:    #{k.value.inspect}\n"
         text << "    default:  #{k.default.inspect}\n"
       end
@@ -92,12 +93,13 @@ private
     extend Forwardable
     include Enumerable
 
-    attr_accessor :parent, :method, :key, :value, :default, :driver
+    attr_accessor :parent, :method, :key, :value, :type, :default, :driver
 
-    def initialize(parent, method, key=nil)
+    def initialize(parent, method, key=nil, type=nil)
       self.parent = parent
       self.method = method.to_s
       self.key    = key ? key : method.to_s.keyize
+      self.type   = type
       self.driver = parent.driver
     end
 
@@ -112,19 +114,14 @@ private
       end
     end
 
-    def type
-      raise OperaWatir::Exceptions::NotImplementedException
-    end
-
     def value
       raise OperaWatir::Exceptions::PreferencesException, 'Sections do not have values' if section?
-      @value ||=  driver.getPref(parent.key, key)
+      @value ||= driver.getPref(parent.key, key)
     end
 
     def value=(value)
       raise OperaWatir::Exceptions::PreferencesException, 'Sections cannot have values' if section?
-#      value = value.truthy? ? '1' : '0' if value.kind_of?(TrueClass || FalseClass)
-
+      value = value.truthy? ? '1' : '0' if type.include?('Boolean')
       driver.setPref parent.key, key, value.to_s
       @value = value
     end
@@ -173,11 +170,14 @@ private
 
       driver.listPrefs(true, key.to_s).to_a.each do |data|
         data = data.to_s
-
-        data =~ /^key: \"([a-zA-Z0-9\(\)\\\.\-\s]*)\"/
+        
+        data =~ /^key: \"([a-zA-Z0-9\(\)\\\.\-\s]*)\"$/
         new_key = $1
+        
+        data =~ /^type: ([A-Z]+)$/
+        type = $1.to_s.capitalize
 
-        keys << Entry.new(self, new_key.methodize, new_key.gsub(/^\\t/, "\t"))
+        keys << Entry.new(self, new_key.methodize, new_key.gsub(/^\\t/, "\t"), type)
       end
 
       keys
