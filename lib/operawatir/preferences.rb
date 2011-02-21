@@ -30,12 +30,6 @@ class OperaWatir::Preferences
 
   def initialize(browser)
     self.browser, self.driver = browser, browser.driver
-
-    @_prefs = []
-
-    SECTIONS.each do |s|
-      _prefs << Entry.new(self, s.methodize, s)
-    end
   end
 
   def method_missing(section)
@@ -84,11 +78,7 @@ class OperaWatir::Preferences
 private
 
   def _prefs
-#    @_prefs ||= []
-    
-    
-    @_prefs ||= SECTIONS.each { |s| foo << Entry.new(self, s.methodize, s) }
-    end
+    @_prefs ||= SECTIONS.map { |s| Entry.new(self, s.methodize, s) }
   end
 
 
