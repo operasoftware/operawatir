@@ -168,16 +168,16 @@ private
       return if not section?
       keys = []
 
-      driver.listPrefs(true, key.to_s).to_a.each do |data|
-        data = data.to_s
+      driver.listPrefs(true, key).to_a.each do |p|
+        p = p.to_s
         
-        data =~ /^key: \"([a-zA-Z0-9\(\)\\\.\-\s]*)\"$/
-        new_key = $1
+        p =~ /^key: \"([a-zA-Z0-9\(\)\\\.\-\s]*)\"$/
+        key = $1
         
-        data =~ /^type: ([A-Z]+)$/
+        p =~ /^type: ([A-Z]+)$/
         type = $1.to_s.capitalize
 
-        keys << Entry.new(self, new_key.methodize, new_key.gsub(/^\\t/, "\t"), type)
+        keys << Entry.new(self, key.methodize, key.gsub(/^\\t/, "\t"), type)
       end
 
       keys
