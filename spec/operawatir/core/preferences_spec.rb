@@ -50,7 +50,7 @@ describe 'Preferences' do
     end
 
     it 'has a method' do
-      @prefs.first.key.should match /^([a-z_]+)/
+      @prefs.first.method.should match /^([a-z_]+)/
     end
   end
 
@@ -68,13 +68,13 @@ describe 'Preferences' do
     end
 
     it 'has a method' do
-      @prefs.last.key.should match /^([a-z_]+)/
+      @prefs.last.method.should match /^([a-z_]+)/
     end
   end
 
   describe '#empty?' do
     it 'returns a valid type' do
-      @prefs.empty?.should be_kind_of Boolean
+      @prefs.empty?.should be_kind_of TrueClass
     end
 
     it 'is not empty' do
@@ -88,7 +88,7 @@ describe 'Preferences' do
     end
 
     it 'returns a string' do
-      @string.should be_kind_of? String
+      @string.should be_kind_of String
     end
 
     it 'contains sections' do
@@ -114,11 +114,11 @@ describe 'Preferences' do
     end
 
     it 'returns a hash' do
-      @hash.should be_kind_of? Hash
+      @hash.should be_kind_of Hash
     end
 
     it 'returns entries of the type Preference' do
-      @hash[0].parent.should be_kind_of? OperaWatir::Preferences::Entry
+      @hash[0].parent.should be_kind_of OperaWatir::Preferences::Entry
     end
 
     it 'has several entries' do
@@ -152,7 +152,7 @@ describe 'Preferences' do
 
     describe '#method' do
       it 'has a valid method name' do
-        @section.method.should match /([a-z_]+/
+        @section.method.should match /([a-z_]+)/
       end
     end
 
@@ -164,31 +164,31 @@ describe 'Preferences' do
 
     describe '#value' do
       it 'raises exception' do
-        @section.value.should raise OperaWatir::Exceptions::PreferencesException
+        @section.value.should raise_error OperaWatir::Exceptions::PreferencesException
       end
     end
 
     describe '#value=' do
       it 'raises exception' do
-        @section.value.should raise OperaWatir::Exceptions::PreferencesException
+        @section.value.should raise_error OperaWatir::Exceptions::PreferencesException
       end
     end
 
     describe '#default' do
       it 'raises exception' do
-        @section.value.should raise OperaWatir::Exceptions::PreferencesException
+        @section.value.should raise_error OperaWatir::Exceptions::PreferencesException
       end
     end
 
     describe '#default!' do
       it 'raises exception' do
-        @section.value.should raise OperaWatir::Exceptions::PreferencesException
+        @section.value.should raise_error OperaWatir::Exceptions::PreferencesException
       end
     end
 
     describe '#section?' do
       it 'returns a valid type' do
-        @section.section?.should be_kind_of Boolean
+        @section.section?.should be_kind_of TrueClass
       end
 
       it 'is a section' do
@@ -198,7 +198,7 @@ describe 'Preferences' do
 
     describe '#exists?' do
       it 'returns a valid type' do
-        @section.exists?.should be_kind_of Boolean
+        @section.exists?.should be_kind_of TrueClass
       end
 
       it 'exists' do
@@ -270,7 +270,7 @@ describe 'Preferences' do
 
     describe '#empty?' do
       it 'returns a valid type' do
-        @section.empty?.should be_kind_of Boolean
+        @section.empty?.should be_kind_of TrueClass
       end
 
       it 'is not empty' do
@@ -377,7 +377,7 @@ describe 'Preferences' do
 
       describe '#section?' do
         it 'returns a valid type' do
-          @key.section?.should be_kind_of Boolean
+          @key.section?.should be_kind_of TrueClass
         end
 
         it 'is not a section' do
@@ -388,7 +388,7 @@ describe 'Preferences' do
       describe '#each' do
         it 'contains a list of entries' do
           @key.each do |e|
-            e.should raise RuntimeException
+            e.should raise_error RuntimeException
           end
         end
       end
@@ -417,7 +417,7 @@ describe 'Preferences' do
 
       describe '#empty?' do
         it 'returns a valid type' do
-          @key.empty?.should be_kind_of Boolean
+          @key.empty?.should be_kind_of TrueClass
         end
 
         it 'is empty' do
