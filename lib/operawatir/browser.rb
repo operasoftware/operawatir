@@ -73,7 +73,7 @@ class OperaWatir::Browser
   # @return [String] Operating system flavour of the device we're
   #   testing on.
   def platform
-    driver.getPlatform
+    window.execute_script('navigator.platform')
   end
 
   # Get the full path to the attached browser binary.
