@@ -114,7 +114,7 @@ describe 'Preferences' do
     end
 
     it 'returns a hash' do
-      @hash.should be_kind_of Hash
+      @hash.should be_kind_of Array
     end
 
     it 'returns entries of the type Preference' do
