@@ -117,8 +117,8 @@ describe 'Preferences' do
       @array.should be_kind_of Array
     end
 
-    it 'returns entries of the type Preference' do
-      @array[0].parent.should be_kind_of OperaWatir::Preferences::Entry
+    it 'returns entries of the type Preference::Entry' do
+      @array[0].should be_kind_of OperaWatir::Preferences::Entry
     end
 
     it 'has several entries' do
