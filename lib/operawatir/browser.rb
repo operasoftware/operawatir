@@ -67,14 +67,6 @@ class OperaWatir::Browser
     driver.getVersion
   end
 
-  # Get process identifier for spawned Opera browser instance.  This
-  # will only work if instance was started through OperaWatir.
-  #
-  # @return [Integer] The process ID of the browser instance.
-  def pid
-    driver.getPid
-  end
-
   # Get the target device's platform.  This is not equivalent of the
   # platform the OperaWatir server might be running on.
   #
