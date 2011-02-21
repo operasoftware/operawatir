@@ -84,7 +84,11 @@ class OperaWatir::Preferences
 private
 
   def _prefs
-    @_prefs ||= []
+#    @_prefs ||= []
+    
+    
+    @_prefs ||= SECTIONS.each { |s| foo << Entry.new(self, s.methodize, s) }
+    end
   end
 
 
