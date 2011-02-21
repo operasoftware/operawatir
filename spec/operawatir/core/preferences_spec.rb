@@ -315,7 +315,7 @@ describe 'Preferences' do
         end
 
         it '`opera_account.server_address` is a type string' do
-          @prefs.opera_account.server_address.should include 'String'
+          @prefs.opera_account.server_address.type.should include 'String'
         end
       end
 
@@ -326,10 +326,6 @@ describe 'Preferences' do
 
         it 'is not empty' do
           @key.value.should_not be_empty
-        end
-
-        it 'is numeric' do  # Is this needed?
-          @key.value.should be_numeric
         end
       end
 

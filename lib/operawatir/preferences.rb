@@ -90,12 +90,14 @@ private
 
     def initialize(parent, method, key=nil)
       self.parent = parent
-      self.method = method
+      self.method = method.to_s
       self.key    = key ? key : method.to_s.keyize
       self.driver = parent.driver
     end
 
     def method_missing(key)
+      key = key.to_s
+      
       if _keys.any? { |k| k.method == key }
         _keys.find { |k| k.method == key }
       else
