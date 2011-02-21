@@ -1,4 +1,5 @@
 class OperaWatir::Element
+  include Deprecated
 
   # Gets the attribute called name.
   #
@@ -151,6 +152,7 @@ class OperaWatir::Element
   def compare_hash(other)
     visual_hash == other.visual_hash
   end
+  deprecated :compare_hash, 'element.visual_hash'
 
 private
 
