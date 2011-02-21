@@ -47,7 +47,8 @@ class OperaWatir::Preferences
     end
   end
 
-  def_delegators :_prefs, :each,
+  def_delegators :_prefs, :[],
+                          :each,
                           :length,
                           :size,
                           :first,
@@ -73,6 +74,12 @@ class OperaWatir::Preferences
   def to_h
     _prefs.dup
   end
+
+  def exists?
+    !_prefs.empty?
+  end
+  
+  alias_method :exist?, :exists?  # LOL Ruby
 
 private
 
