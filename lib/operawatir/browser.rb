@@ -87,7 +87,7 @@ class OperaWatir::Browser
   #
   # @return [String] User agent string.
   def ua_string
-    driver.getUaString
+    window.execute_script('navigator.userAgent')
   end
 
   # Is attached browser instance of type internal build or public
