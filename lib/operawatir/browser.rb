@@ -22,7 +22,7 @@ class OperaWatir::Browser
   def initialize
     OperaWatir.compatibility! unless OperaWatir.api >= 3
 
-    self.driver        = OperaDriver.new(self.class.opera_driver_settings)
+    self.driver        = self.class.settings[:manual] ? OperaDriver.new(nil) : OperaDriver.new(self.class.opera_driver_settings)
     self.active_window = OperaWatir::Window.new(self)
     self.preferences   = OperaWatir::Preferences.new(self)
     self.keys          = OperaWatir::Keys.new(self)

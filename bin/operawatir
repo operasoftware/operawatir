@@ -7,6 +7,7 @@ require 'operawatir'
 require 'operawatir/helper'
 
 @options = {
+  :manual        => false,
   :ng            => false,
   :color_enabled => OperaWatir::Platform.os == :windows ? false : true,
   :check_syntax  => false,
@@ -19,12 +20,17 @@ require 'operawatir/helper'
 begin
   OptionParser.new do |opts|
     opts.banner = <<EOS
-Usage: operawatir [-l|--launcher=BINARY] [-b|--binary=BINARY] [-a|--args=ARGUMENTS]
-       [--no-color] [-f|--format=FORMAT] [-o|--out=FILE] [-h|--help] [-v|--version] FILES
+Usage: operawatir [-m|--manual] [-l|--launcher=BINARY] [-b|--binary=BINARY]
+       [-a|--args=ARGUMENTS] [--no-color] [-f|--format=FORMAT] [-o|--out=FILE]
+       [-h|--help] [-v|--version] FILES
 EOS
 
     opts.separator ""
     opts.separator "Specific options:"
+
+    opts.on('-m', '--manual', 'Wait for a manual connection from opera:debug') do |c|
+      @options[:manual] = c
+    end
 
     opts.on('-l', '--launcher=BINARY', 'Path to launcher binary, will use environmental ',
             'variable OPERA_LAUNCHER if not specified') do |c|

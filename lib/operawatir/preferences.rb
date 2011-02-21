@@ -8,6 +8,12 @@ class String
   end
 end
 
+class Object
+  def truthy?
+    self && [true, 'true', 'yes', 'y', '1', 1].include?(self)
+  end
+end
+
 
 class OperaWatir::Preferences
   extend Forwardable
@@ -30,12 +36,6 @@ class OperaWatir::Preferences
 
   def initialize(browser)
     self.browser, self.driver = browser, browser.driver
-
-    @_prefs = []
-
-    SECTIONS.each do |s|
-      _prefs << Entry.new(self, s.methodize, s)
-    end
   end
 
   def method_missing(section)
@@ -47,7 +47,8 @@ class OperaWatir::Preferences
     end
   end
 
-  def_delegators :_prefs, :each,
+  def_delegators :_prefs, :[],
+                          :each,
                           :length,
                           :size,
                           :first,
@@ -62,6 +63,7 @@ class OperaWatir::Preferences
 
       s.each do |k|
         text << "  #{k.method}\n"
+        text << "    type:     #{k.type.inspect}\n"
         text << "    value:    #{k.value.inspect}\n"
         text << "    default:  #{k.default.inspect}\n"
       end
@@ -70,14 +72,20 @@ class OperaWatir::Preferences
     text
   end
 
-  def to_h
+  def to_a
     _prefs.dup
   end
+
+  def exists?
+    !_prefs.empty?
+  end
+  
+  alias_method :exist?, :exists?  # LOL Ruby
 
 private
 
   def _prefs
-    @_prefs ||= []
+    @_prefs ||= SECTIONS.map { |s| Entry.new(self, s.methodize, s) }
   end
 
 
@@ -85,16 +93,19 @@ private
     extend Forwardable
     include Enumerable
 
-    attr_accessor :parent, :method, :key, :value, :default, :driver
+    attr_accessor :parent, :method, :key, :value, :type, :default, :driver
 
-    def initialize(parent, method, key=nil)
+    def initialize(parent, method, key=nil, type=nil)
       self.parent = parent
-      self.method = method
+      self.method = method.to_s
       self.key    = key ? key : method.to_s.keyize
+      self.type   = type
       self.driver = parent.driver
     end
 
     def method_missing(key)
+      key = key.to_s
+      
       if _keys.any? { |k| k.method == key }
         _keys.find { |k| k.method == key }
       else
@@ -103,28 +114,25 @@ private
       end
     end
 
-    def type
-      raise OperaWatir::Exceptions::NotImplementedException
-    end
-
     def value
       raise OperaWatir::Exceptions::PreferencesException, 'Sections do not have values' if section?
-      @value ||=  driver.getPref(parent.key, key)
+      @value ||= driver.getPref(parent.key, key)
     end
 
     def value=(value)
       raise OperaWatir::Exceptions::PreferencesException, 'Sections cannot have values' if section?
-      driver.setPref parent.key, key, value
+      value = value.truthy? ? '1' : '0' if type.include?('Boolean')
+      driver.setPref parent.key, key, value.to_s
       @value = value
     end
 
     def default
-      return OperaWatir::Exceptions::PreferencesException, 'Sections do not have defaults' if section?
+      raise OperaWatir::Exceptions::PreferencesException, 'Sections do not have defaults' if section?
       @default ||= driver.getDefaultPref parent.key, key
     end
 
     def default!
-      value=(default)
+      self.value=(default)  # WTF?  Bug in Ruby?
     end
 
     def section?
@@ -139,11 +147,11 @@ private
 
     def each
       return unless block_given?
-      _keys = all_keys  # Updates cache
       _keys.each { |k| yield k }
     end
 
-    def_delegators :_keys, :length,
+    def_delegators :_keys, :[],
+                           :length,
                            :size,
                            :first,
                            :last,
@@ -152,20 +160,24 @@ private
   private
 
     def _keys
-      @_keys ||= []
+      raise OperaWatir::Exceptions::PreferencesException, 'Keys are not iteratable objects' if not section?
+      @_keys ||= all_keys
     end
 
     def all_keys
       return if not section?
       keys = []
 
-      driver.listPrefs(true, key.to_s).to_a.each do |data|
-        data = data.to_s
+      driver.listPrefs(true, key).to_a.each do |p|
+        p = p.to_s
+        
+        p =~ /^key: \"([a-zA-Z0-9\(\)\\\.\-\s]*)\"$/
+        key = $1
+        
+        p =~ /^type: ([A-Z]+)$/
+        type = $1.to_s.capitalize
 
-        data =~ /^key: \"([a-zA-Z0-9\(\)\\\.\-\s]*)\"/
-        new_key = $1
-
-        keys << Entry.new(self, new_key.methodize, new_key.gsub(/^\\t/, "\t"))
+        keys << Entry.new(self, key.methodize, key.gsub(/^\\t/, "\t"), type)
       end
 
       keys

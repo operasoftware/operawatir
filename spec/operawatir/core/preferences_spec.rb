@@ -50,7 +50,7 @@ describe 'Preferences' do
     end
 
     it 'has a method' do
-      @prefs.first.key.should match /^([a-z_]+)/
+      @prefs.first.method.should match /^([a-z_]+)/
     end
   end
 
@@ -68,13 +68,13 @@ describe 'Preferences' do
     end
 
     it 'has a method' do
-      @prefs.last.key.should match /^([a-z_]+)/
+      @prefs.last.method.should match /^([a-z_]+)/
     end
   end
 
   describe '#empty?' do
     it 'returns a valid type' do
-      @prefs.empty?.should be_kind_of Boolean
+      @prefs.empty?.should be_kind_of FalseClass
     end
 
     it 'is not empty' do
@@ -88,7 +88,7 @@ describe 'Preferences' do
     end
 
     it 'returns a string' do
-      @string.should be_kind_of? String
+      @string.should be_kind_of String
     end
 
     it 'contains sections' do
@@ -108,26 +108,26 @@ describe 'Preferences' do
     end
   end
 
-  describe '#to_h' do
+  describe '#to_a' do
     before :all do
-      @hash = @prefs.to_h
+      @array = @prefs.to_a
     end
 
-    it 'returns a hash' do
-      @hash.should be_kind_of? Hash
+    it 'returns an array' do
+      @array.should be_kind_of Array
     end
 
-    it 'returns entries of the type Preference' do
-      @hash[0].parent.should be_kind_of? OperaWatir::Preferences::Entry
+    it 'returns entries of the type Preference::Entry' do
+      @array[0].should be_kind_of OperaWatir::Preferences::Entry
     end
 
     it 'has several entries' do
-      @hash.size > 10
+      @array.size > 10
     end
 
     it 'contains keys' do
-      @hash[0].key.should_not be_empty
-      @hash[0].method.should match /([a-z_]+)/
+      @array[0].key.should_not be_empty
+      @array[0].method.should match /([a-z_]+)/
     end
   end
 
@@ -136,7 +136,7 @@ describe 'Preferences' do
     before :all do
       @section = @prefs.link
     end
-      
+
     describe '#new' do
       it 'constructs a new instance' do
         @section.should exist
@@ -152,7 +152,7 @@ describe 'Preferences' do
 
     describe '#method' do
       it 'has a valid method name' do
-        @section.method.should match /([a-z_]+/
+        @section.method.should match /([a-z_]+)/
       end
     end
 
@@ -164,31 +164,31 @@ describe 'Preferences' do
 
     describe '#value' do
       it 'raises exception' do
-        @section.value.should raise OperaWatir::Exceptions::PreferencesException
+        lambda { @section.value }.should raise_error OperaWatir::Exceptions::PreferencesException
       end
     end
 
     describe '#value=' do
       it 'raises exception' do
-        @section.value.should raise OperaWatir::Exceptions::PreferencesException
+        lambda { @section.value = 'hoobaflooba' }.should raise_error OperaWatir::Exceptions::PreferencesException
       end
     end
 
     describe '#default' do
       it 'raises exception' do
-        @section.value.should raise OperaWatir::Exceptions::PreferencesException
+        lambda { @section.default }.should raise_error OperaWatir::Exceptions::PreferencesException
       end
     end
 
     describe '#default!' do
       it 'raises exception' do
-        @section.value.should raise OperaWatir::Exceptions::PreferencesException
+        lambda { @section.default! }.should raise_error OperaWatir::Exceptions::PreferencesException
       end
     end
 
     describe '#section?' do
       it 'returns a valid type' do
-        @section.section?.should be_kind_of Boolean
+        @section.section?.should be_kind_of TrueClass
       end
 
       it 'is a section' do
@@ -198,7 +198,7 @@ describe 'Preferences' do
 
     describe '#exists?' do
       it 'returns a valid type' do
-        @section.exists?.should be_kind_of Boolean
+        @section.exists?.should be_kind_of TrueClass
       end
 
       it 'exists' do
@@ -223,7 +223,7 @@ describe 'Preferences' do
         @section.length.should be_kind_of Integer
       end
 
-      it 'has one or more sections' do
+      it 'has one or more keys' do
         @section.length.should >= 1
       end
 
@@ -237,16 +237,16 @@ describe 'Preferences' do
         @section.first.should be_kind_of OperaWatir::Preferences::Entry
       end
 
-      it 'is a section' do
-        @section.first.should be_section
-      end
-
       it 'has a key' do
         @section.first.key.should_not be_empty
       end
 
-      it 'has a method' do
-        @section.first.key.should match /^([a-z_]+)/
+      it 'has a key which is not a section' do
+        @section.first.should_not be_section
+      end
+
+      it 'has a key with a method' do
+        @section.first.method.should match /^([a-z_]+)/
       end
     end
 
@@ -255,22 +255,22 @@ describe 'Preferences' do
         @section.last.should be_kind_of OperaWatir::Preferences::Entry
       end
 
-      it 'is a section' do
-        @section.last.should be_section
-      end
-
       it 'has a key' do
         @section.last.key.should_not be_empty
       end
 
-      it 'has a method' do
-        @section.last.key.should match /^([a-z_]+)/
+      it 'is a key which is not section' do
+        @section.last.should_not be_section
+      end
+
+      it 'has a key with a method' do
+        @section.last.method.should match /^([a-z_]+)/
       end
     end
 
     describe '#empty?' do
       it 'returns a valid type' do
-        @section.empty?.should be_kind_of Boolean
+        @section.empty?.should be_kind_of FalseClass
       end
 
       it 'is not empty' do
@@ -292,7 +292,7 @@ describe 'Preferences' do
 
       describe '#method' do
         it 'has a valid method name' do
-          @key.method.should match /([a-z_]+/
+          @key.method.should match /([a-z_]+)/
         end
       end
 
@@ -315,7 +315,7 @@ describe 'Preferences' do
         end
 
         it '`opera_account.server_address` is a type string' do
-          @prefs.opera_account.server_address.should include 'String'
+          @prefs.opera_account.server_address.type.should include 'String'
         end
       end
 
@@ -327,57 +327,62 @@ describe 'Preferences' do
         it 'is not empty' do
           @key.value.should_not be_empty
         end
-
-        it 'is numeric' do  # Is this needed?
-          @key.value.should be_numeric
-        end
       end
 
       describe '#value=' do
-        it 'is changed when set' do
+        it 'is changed when set on a string preference' do
           @key.value = '20'
           @key.value.should == '20'
         end
-
-        it 'has effect in the browser when changed' do
-          @section.strike_through.value = true
-          window.url = fixture('simple.html')
-          window.a.eval_js('this.currentStyle.textDecoration').should include /strike\-through/
+        
+        it 'is changed when set on an integer preference' do
+          @section.color.value = true
+          @section.color.value.should be_true
         end
 
-        it 'does not allow setting an invalid value' do
-          old_value = @section.color.value
-          @section.color.value = 'foo'
-          @section.color.value.should_not == 'foo'
-          @section.color.value.should == old_value
+        it 'has effect in the browser when changed' do
+          @section.strikethrough.value = '1' #true
+          window.url = fixture('../simple.html')
+          window.a.execute_script('this.currentStyle.textDecoration').should include /strike\-through/
+        end
+
+        # JRUBY-1127 makes it impossible to unwrap Java exceptions in JRuby.
+        
+        # it 'does not allow setting an invalid value' do
+        #   lambda { @section.color.value = 'foo' }.should raise_error NativeException
+        # end
+        
+        after :each do
+          @key.default!
+          @section.color.default!
+          @section.strikethrough.default!
         end
       end
 
       describe '#default' do
         it 'returns the default value' do
-          @key.default == '10'
+          @key.default.should == '10'
         end
       end
 
       describe '#default!' do
         before :each do
-          @default_value = @key.default
           @key.value = '1337'
         end
-
+        
         it 'returns and sets default value' do
-          @key.default!.should == @default_value
-          @key.value.should == @default_value
+          @key.default!.should == @key.default
+          @key.value.should == @key.default
         end
 
         after :all do
-          @key.value = @default_value
+          @key.default!
         end
       end
 
       describe '#section?' do
         it 'returns a valid type' do
-          @key.section?.should be_kind_of Boolean
+          @key.section?.should be_kind_of FalseClass
         end
 
         it 'is not a section' do
@@ -386,42 +391,36 @@ describe 'Preferences' do
       end
 
       describe '#each' do
-        it 'contains a list of entries' do
-          @key.each do |e|
-            e.should raise RuntimeException
-          end
+        it 'raises error' do
+          lambda { @key.each { |e| } }.should raise_error OperaWatir::Exceptions::PreferencesException
         end
       end
 
       describe '#length' do
-        it 'not be 0' do
-          @key.length.should == 0
+        it 'raises error' do
+          lambda { @key.length }.should raise_error OperaWatir::Exceptions::PreferencesException
         end
 
         it 'responds to alias #size' do
-          @key.size.should == @key.length
+          lambda { @key.size }.should raise_error OperaWatir::Exceptions::PreferencesException
         end
       end
 
       describe '#first' do
-        it 'is empty' do
-          @key.first.should be_empty
+        it 'raises error' do
+          lambda { @key.first }.should raise_error OperaWatir::Exceptions::PreferencesException
         end
       end
 
       describe '#last' do
-        it 'is empty' do
-          @key.last.should be_empty
+        it 'raises error' do
+          lambda { @key.last }.should raise_error OperaWatir::Exceptions::PreferencesException
         end
       end
 
       describe '#empty?' do
-        it 'returns a valid type' do
-          @key.empty?.should be_kind_of Boolean
-        end
-
-        it 'is empty' do
-          @key.empty?.should be_true
+        it 'raises error' do
+          lambda { @key.empty? }.should raise_error OperaWatir::Exceptions::PreferencesException
         end
       end
 
