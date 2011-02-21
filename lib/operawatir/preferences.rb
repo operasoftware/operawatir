@@ -8,6 +8,12 @@ class String
   end
 end
 
+class Object
+  def truthy?
+    self && [true, 'true', 'yes', 'y', '1', 1].include?(self)
+  end
+end
+
 
 class OperaWatir::Preferences
   extend Forwardable
@@ -117,7 +123,9 @@ private
 
     def value=(value)
       raise OperaWatir::Exceptions::PreferencesException, 'Sections cannot have values' if section?
-      driver.setPref parent.key, key, value
+#      value = value.truthy? ? '1' : '0' if value.kind_of?(TrueClass || FalseClass)
+
+      driver.setPref parent.key, key, value.to_s
       @value = value
     end
 
@@ -127,7 +135,7 @@ private
     end
 
     def default!
-      value=(default)
+      self.value=(default)  # WTF?  Bug in Ruby?
     end
 
     def section?
@@ -155,6 +163,7 @@ private
   private
 
     def _keys
+      raise OperaWatir::Exceptions::PreferencesException, 'Keys are not iteratable objects' if not section?
       @_keys ||= all_keys
     end
 

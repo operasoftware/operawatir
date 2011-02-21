@@ -136,7 +136,7 @@ describe 'Preferences' do
     before :all do
       @section = @prefs.link
     end
-      
+
     describe '#new' do
       it 'constructs a new instance' do
         @section.should exist
@@ -336,38 +336,40 @@ describe 'Preferences' do
         end
 
         it 'has effect in the browser when changed' do
-          @section.strike_through.value = true
-          window.url = fixture('simple.html')
-          window.a.eval_js('this.currentStyle.textDecoration').should include /strike\-through/
+          @section.strikethrough.value = '1' #true
+          window.url = fixture('../simple.html')
+          window.a.execute_script('this.currentStyle.textDecoration').should include /strike\-through/
         end
 
-        it 'does not allow setting an invalid value' do
-          old_value = @section.color.value
-          @section.color.value = 'foo'
-          @section.color.value.should_not == 'foo'
-          @section.color.value.should == old_value
+        # JRUBY-1127 makes it impossible to unwrap Java exceptions in JRuby.
+        
+        # it 'does not allow setting an invalid value' do
+        #   lambda { @section.color.value = 'foo' }.should raise_error NativeException
+        # end
+        
+        after :each do
+          @key.default!
         end
       end
 
       describe '#default' do
         it 'returns the default value' do
-          @key.default == '10'
+          @key.default.should == '10'
         end
       end
 
       describe '#default!' do
         before :each do
-          @default_value = @key.default
           @key.value = '1337'
         end
-
+        
         it 'returns and sets default value' do
-          @key.default!.should == @default_value
-          @key.value.should == @default_value
+          @key.default!.should == @key.default
+          @key.value.should == @key.default
         end
 
         after :all do
-          @key.value = @default_value
+          @key.default!
         end
       end
 
@@ -382,42 +384,36 @@ describe 'Preferences' do
       end
 
       describe '#each' do
-        it 'contains a list of entries' do
-          @key.each do |e|
-            lambda { e }.should raise_error RuntimeException
-          end
+        it 'raises error' do
+          lambda { @key.each { |e| } }.should raise_error OperaWatir::Exceptions::PreferencesException
         end
       end
 
       describe '#length' do
-        it 'not be 0' do
-          @key.length.should == 0
+        it 'raises error' do
+          lambda { @key.length }.should raise_error OperaWatir::Exceptions::PreferencesException
         end
 
         it 'responds to alias #size' do
-          @key.size.should == @key.length
+          lambda { @key.size }.should raise_error OperaWatir::Exceptions::PreferencesException
         end
       end
 
       describe '#first' do
-        it 'is empty' do
-          @key.first.should be_empty
+        it 'raises error' do
+          lambda { @key.first }.should raise_error OperaWatir::Exceptions::PreferencesException
         end
       end
 
       describe '#last' do
-        it 'is empty' do
-          @key.last.should be_empty
+        it 'raises error' do
+          lambda { @key.last }.should raise_error OperaWatir::Exceptions::PreferencesException
         end
       end
 
       describe '#empty?' do
-        it 'returns a valid type' do
-          @key.empty?.should be_kind_of TrueClass
-        end
-
-        it 'is empty' do
-          @key.empty?.should be_true
+        it 'raises error' do
+          lambda { @key.empty? }.should raise_error OperaWatir::Exceptions::PreferencesException
         end
       end
 
