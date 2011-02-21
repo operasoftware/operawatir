@@ -108,26 +108,26 @@ describe 'Preferences' do
     end
   end
 
-  describe '#to_h' do
+  describe '#to_a' do
     before :all do
-      @hash = @prefs.to_h
+      @array = @prefs.to_a
     end
 
-    it 'returns a hash' do
-      @hash.should be_kind_of Array
+    it 'returns an array' do
+      @array.should be_kind_of Array
     end
 
     it 'returns entries of the type Preference' do
-      @hash[0].parent.should be_kind_of OperaWatir::Preferences::Entry
+      @array[0].parent.should be_kind_of OperaWatir::Preferences::Entry
     end
 
     it 'has several entries' do
-      @hash.size > 10
+      @array.size > 10
     end
 
     it 'contains keys' do
-      @hash[0].key.should_not be_empty
-      @hash[0].method.should match /([a-z_]+)/
+      @array[0].key.should_not be_empty
+      @array[0].method.should match /([a-z_]+)/
     end
   end
 =begin

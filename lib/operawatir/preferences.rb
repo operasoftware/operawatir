@@ -71,7 +71,7 @@ class OperaWatir::Preferences
     text
   end
 
-  def to_h
+  def to_a
     _prefs.dup
   end
 
