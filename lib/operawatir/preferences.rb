@@ -146,7 +146,6 @@ private
 
     def each
       return unless block_given?
-#      _keys = all_keys  # Updates cache
       _keys.each { |k| yield k }
     end
 
