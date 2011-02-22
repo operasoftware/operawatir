@@ -91,12 +91,6 @@ class OperaWatir::Window
     url != ''
   end
 
-  # TODO
-=begin
-  def document
-  end
-=end
-
   # Executes the given JavaScript on the current window.
   #
   # @param  [String] js The script to be executed.
@@ -104,8 +98,9 @@ class OperaWatir::Window
   def execute_script(js)
     object = driver.executeScript(js, [].to_java(:string))
   end
+
   alias_method :eval_js, :execute_script
-  deprecated :eval_js, "window.execute_script"
+  deprecated :eval_js, 'window.execute_script'
 
 
   # Keyboard
@@ -113,22 +108,26 @@ class OperaWatir::Window
   def key(key)
     driver.key(key)
   end
-  deprecated :key, "browser.keys.send"
+
+  deprecated :key, 'browser.keys.send'
 
   def key_down(key)
     driver.keyDown(key)
   end
-  deprecated :key, "browser.keys.down"
+
+  deprecated :key, 'browser.keys.down'
 
   def key_up(key)
     driver.keyUp(key)
   end
-  deprecated :key, "browser.keys.up or browser.keys.release"
+
+  deprecated :key, 'browser.keys.up or browser.keys.release'
 
   def type(text)
     driver.type(text)
   end
-  deprecated :key, "browser.keys.send"
+
+  deprecated :key, 'browser.keys.send'
 
 
   # Opera-specific
