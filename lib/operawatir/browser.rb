@@ -176,6 +176,33 @@ class OperaWatir::Browser
     end
   end
 
+
+  # Keyboard
+
+  def key(key)
+    driver.key(key)
+  end
+
+  deprecated :key, 'browser.keys.send'
+
+  def key_down(key)
+    driver.keyDown(key)
+  end
+
+  deprecated :key, 'browser.keys.down'
+
+  def key_up(key)
+    driver.keyUp(key)
+  end
+
+  deprecated :key, 'browser.keys.up or browser.keys.release'
+
+  def type(text)
+    driver.type(text)
+  end
+
+  deprecated :key, 'browser.keys.send'
+
 private
 
   def self.opera_driver_settings
