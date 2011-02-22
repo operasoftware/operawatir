@@ -67,4 +67,10 @@ describe 'Browser' do
     end
   end
 
+  describe '#desktop?' do
+    it 'returns a value' do
+      browser.desktop?.should_not be_nil
+    end
+  end
+
 end
