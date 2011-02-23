@@ -68,8 +68,8 @@ describe 'Browser' do
   end
 
   describe '#desktop?' do
-    it 'returns a value' do
-      browser.desktop?.should_not be_nil
+    it 'returns true or false' do
+       [true,false].should include browser.desktop?
     end
   end
 
