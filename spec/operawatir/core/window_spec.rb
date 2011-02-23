@@ -21,7 +21,7 @@ describe 'Window' do
     end
 
      it 'returns a hash' do
-      @reference.length.should == 34
+      @reference.visual_hash.should =~ /^(0x)[a-f0-9]{32}$/
     end
 
     it 'returns identical hashes for visually identical pages' do
