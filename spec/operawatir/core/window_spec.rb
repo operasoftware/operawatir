@@ -29,7 +29,7 @@ describe 'Window' do
       window.visual_hash.should == @reference
     end
 
-    it 'returns different hashes for visually different elements' do
+    it 'returns different hashes for visually different pages' do
       browser.url = fixture('grid.html')
       window.visual_hash.should_not == @reference
     end
