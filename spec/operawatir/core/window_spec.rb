@@ -35,4 +35,11 @@ describe 'Window' do
     end
   end
 
+  # This method is deprecated, but must be tested anyway.
+  describe '#eval_js' do
+    it 'works the same way as execute_script' do
+      window.eval_js('1+1').should == window.execute_script('1+1');
+    end
+  end
+
 end
