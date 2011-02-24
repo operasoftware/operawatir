@@ -3,16 +3,16 @@ class OperaWatir::Element
 
   # Gets the attribute called name.
   #
-  # @param [String, Symbol] name The name of the attribute to get
-  # @return [String] The value of the attribute
+  # @param  [String, Symbol] name  The name of the attribute to get.
+  # @return [String]               The value of the attribute.
   def attr(name)
     node.getAttribute(name.to_s) || ''
   end
 
   # Check the existence of the attribute on the element.
   #
-  # @return [Boolean] true if the attribute exists on the element,
-  #   false otherwise
+  # @return [Boolean] True if the attribute exists on the element,
+  #                   false otherwise.
   def attr?(name)
     !node.getAttribute(name.to_s).nil?
   end
@@ -27,9 +27,13 @@ class OperaWatir::Element
 
   # Gets the text content of the element.
   #
-  # @return [String] the text content
+  # @return [String] The text content.
   def text
-    node.getText.strip
+    if node.tag_name =~ /input|textarea|select/i
+      node.value.strip
+    else
+      node.getText.strip
+    end
   end
 
   alias_method :to_s, :text
