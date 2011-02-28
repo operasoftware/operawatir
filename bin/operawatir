@@ -1,6 +1,7 @@
 #!/usr/bin/env jruby
 require 'rubygems'
 require 'optparse'
+require 'stringio'
 require 'rspec'
 require 'rbconfig'
 require 'operawatir'
