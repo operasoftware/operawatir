@@ -6,7 +6,8 @@ require 'rspec'
 require 'guards'
 require 'server'
 
-require 'operawatir/helper'
+#require 'operawatir/helper'
+require 'operawatir/desktop_helper'
 
 OperaWatir.api = 2
 
@@ -48,7 +49,8 @@ module WatirSpec
 
 end
 
-include OperaWatir::Exceptions
+#include OperaWatir::Exceptions
+include OperaWatir::DesktopExceptions
 
 include WatirSpec::Guard::Helpers
 
