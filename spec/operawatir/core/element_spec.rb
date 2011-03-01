@@ -60,7 +60,7 @@ describe 'Element' do
     end
 
     it 'returns a hash' do
-      @one.visual_hash.length.should == 34
+      @one.visual_hash.should =~ /^(0x)[a-f0-9]{32}$/
     end
 
     it 'returns identical hashes for visually identical elements' do

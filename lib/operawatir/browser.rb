@@ -90,13 +90,6 @@ class OperaWatir::Browser
     window.execute_script('navigator.userAgent')
   end
 
-  # Fetches the build number of the build in use.
-  #
-  # @return [Integer] Build number.
-  def build
-    window.execute_script('opera.buildNumber()').to_i
-  end
-
   # Is attached browser instance of type internal build or public
   # desktop?
   #

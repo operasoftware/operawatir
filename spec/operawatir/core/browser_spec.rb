@@ -67,4 +67,16 @@ describe 'Browser' do
     end
   end
 
+  describe '#desktop?' do
+    it 'returns true or false' do
+       [true,false].should include browser.desktop?
+    end
+  end
+
+  describe '#version' do
+    it 'fetches the version number of the driver' do
+      browser.version.should match /\d{1,}\.\d{1,}\.\d{1,}/
+    end
+  end
+
 end
