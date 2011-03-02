@@ -157,6 +157,21 @@ describe 'DesktopBrowser' do
     end
   end
   
+  describe "#quick_checkboxes" do
+    before(:each) do
+      browser.open_dialog_with_action("New Preferences Dialog", "Show preferences", 4).should > 0
+    end
+    it "retrieves checkboxes" do
+      browser.quick_checkboxes("New Preferences Dialog").should_not be_empty
+    end
+    it "retrieves only checkboxes" do
+      browser.quick_checkboxes("New Preferences Dialog").select { |c| c.type != :checkbox }.should be_empty
+    end
+    after(:each) do
+      browser.close_dialog("New Preferences Dialog")
+    end
+  end
+  
   #TODO: Add all other collection types
    
    describe "#window_name" do 
@@ -235,15 +250,22 @@ describe 'DesktopBrowser' do
    end
    
    describe "#delete_profile" do
-     it "deletes profile"
+     it "deletes profile" do
+       
+     end
+     it "doesn't delete main profile"
    end
    
    describe "#set_preference" do
-     it "sets preference"
+     it "sets preference" do
+       browser.set_preference("User Prefs", "Speed Dial State", 0)
+     end
    end
 
    describe "#get_preference" do
-     it "gets preference"
+     it "returns string" do 
+       browser.get_preference("User Prefs", "Speed Dial State").should be_kind_of String
+     end
    end
        
    describe "#get_default_preference" do
