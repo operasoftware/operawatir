@@ -11,7 +11,7 @@ describe "quick_widget" do
     end
   
     describe "#close_window_with_click" do
-    
+      it "raises exception" 
     end
   
     describe "#load_page_with_click" do

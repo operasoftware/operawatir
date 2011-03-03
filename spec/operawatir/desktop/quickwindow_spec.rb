@@ -29,17 +29,26 @@ describe 'quick_window' do
     it "returns window name" do
       browser.quick_window(:name, "Document Window").name.should_not be_empty
     end
+    it "returns a string" do
+      browser.quick_window(:name, "Document Window").name.should be_kind_of String
+    end
   end
     
   describe "#title" do
     it "returns title" do
       browser.quick_window(:name, "Document Window").title.should_not be_empty
     end
+    it "returns a string" do
+      browser.quick_window(:name, "Document Window").title.should be_kind_of String
+    end
   end
         
   describe "#to_s" do
     it "returns string" do
       browser.quick_window(:name, "Document Window").to_s.should_not be_empty
+    end
+    it "returns a string" do
+      browser.quick_window(:name, "Document Window").to_s.should be_kind_of String
     end
   end
     
@@ -50,9 +59,18 @@ describe 'quick_window' do
     it "is non-zero integer" do
       browser.quick_window(:name, "Document Window").window_id.should_not be_zero
     end
+    it "returns an integer" do
+      browser.quick_window(:name, "Document Window").window_id.should be_integer
+    end
   end
     
   describe "#window_info_string" do
+    it "returns string" do
+        browser.quick_window(:name, "Document Window").window_info_string.should be_kind_of String
+    end
+    it "is nonempty" do
+        browser.quick_window(:name, "Document Window").window_info_string.should_not be_empty
+    end
   end
 
     # @private    
