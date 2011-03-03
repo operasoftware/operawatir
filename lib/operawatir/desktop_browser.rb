@@ -4,9 +4,9 @@ module OperaWatir
     include DesktopCommon
     
     #@private
-    LoadActions = ["Open url in new page", "Open url in current page", "Open url in background page",
-      "Open url in new window", "New private page", "Paste and go", "Paste and go background", "Hotclick search",
-      "Duplicate page", "Reopen page", "Back", "Forward", "Help"]
+    LoadActions = ["Open url in new page", "Open url in current page", "Open url in new background page",
+      "Open link in background page", "Open url in new window", "New private page", "Paste and go", "Paste and go background", 
+      "Hotclick search", "Duplicate page", "Reopen page", "Back", "Forward", "Help"]
     
     # @private
     def initialize
