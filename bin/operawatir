@@ -12,7 +12,9 @@ require 'operawatir/helper'
   :ng            => false,
   :color_enabled => OperaWatir::Platform.os == :windows ? false : true,
   :check_syntax  => false,
-  :format        => 'progress'
+  :format        => 'progress',
+  :no_quit       => false,
+  :opera_idle    => true
 }
 
 # TODO
@@ -22,8 +24,8 @@ begin
   OptionParser.new do |opts|
     opts.banner = <<EOS
 Usage: operawatir [-m|--manual] [-l|--launcher=BINARY] [-b|--binary=BINARY]
-       [-a|--args=ARGUMENTS] [--no-color] [-f|--format=FORMAT] [-o|--out=FILE]
-       [-h|--help] [-v|--version] FILES
+       [-a|--args=ARGUMENTS] [-q|--no-quit] [--no-opera-idle] [--no-color]
+       [-f|--format=FORMAT] [-o|--out=FILE] [-h|--help] [-v|--version] FILES
 EOS
 
     opts.separator ""
@@ -38,14 +40,23 @@ EOS
       @options[:launcher] = c
     end
 
-    opts.on('-b', '--binary=BINARY', 'Browser to run the test with, will use environmental ',
-            'variable OPERA_PATH if not specified') do |e|
+    opts.on('-b', '--binary=BINARY', 'Browser to run the test with, will use guess the ',
+            'path or use environmental variable OPERA_PATH if ',
+            'not specified') do |e|
       @options[:path] = e
     end
 
-    opts.on('-a', '--args=ARGUMENTS', 'Arguments passed to the executable.  ',
-            'Will override environmental variable OPERA_ARGS') do |a|
+    opts.on('-a', '--args=ARGUMENTS', 'Arguments passed to the binary, will override  ',
+            'environmental variable OPERA_ARGS') do |a|
       @options[:args] = a
+    end
+
+    opts.on('-q', '--no-quit', 'Disable quitting of Opera at the end of a test run') do |c|
+      @options[:no_quit] = true
+    end
+
+    opts.on('--no-opera-idle', 'Disable OperaIdle') do |c|
+      @options[:opera_idle] = false
     end
 
     opts.on('--no-color', 'Disable colorized output') do |c|
@@ -53,8 +64,8 @@ EOS
     end
 
     opts.on('-f', '--format=FORMAT',
-            'Specify RSpec output formatter (documentation, html, ',
-            'progress (default), textmate)') do |formatter|
+            'Specify RSpec output formatter (documentation, ',
+            'html, progress (default), textmate)') do |formatter|
       @options[:formatter] = formatter
     end
 

@@ -30,8 +30,7 @@ module OperaWatir::Helper
       config.include SpecHelpers
       
       config.after(:suite) do
-        browser.quit if browser
-        exit
+        browser.quit if @browser
       end
     end
   end

@@ -22,7 +22,7 @@ class OperaWatir::Browser
   def initialize
     OperaWatir.compatibility! unless OperaWatir.api >= 3
 
-    self.driver        = self.class.settings[:manual] ? OperaDriver.new(nil) : OperaDriver.new(self.class.opera_driver_settings)
+    self.driver        = OperaDriver.new(self.class.opera_driver_settings)
     self.active_window = OperaWatir::Window.new(self)
     self.preferences   = OperaWatir::Preferences.new(self)
     self.keys          = OperaWatir::Keys.new(self)
@@ -199,11 +199,13 @@ class OperaWatir::Browser
 private
 
   def self.opera_driver_settings
-    @opera_driver_settings ||= OperaDriverSettings.new.tap {|s|
-      s.setRunOperaLauncherFromOperaDriver true
+    @opera_driver_settings ||= OperaDriverSettings.new.tap { |s|
+      s.setAutostart false if self.settings[:manual]
       s.setOperaLauncherBinary self.settings[:launcher] if self.settings[:launcher]
       s.setOperaBinaryLocation self.settings[:path] if self.settings[:path]
-      s.setOperaBinaryArguments self.settings[:args].to_s + ' opera:debug' #+ ' -watirtest'
+      s.setOperaBinaryArguments self.settings[:args].to_s if self.settings[:args]
+      s.setNoQuit true if self.settings[:no_quit]
+      s.setUseOperaIdle false if !self.settings[:opera_idle]
     }
   end
 
