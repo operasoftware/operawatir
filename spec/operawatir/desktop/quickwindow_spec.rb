@@ -1,7 +1,7 @@
 # encoding: utf-8
 require File.expand_path('../../watirspec_helper', __FILE__)
 
-describe 'quick_window' do
+describe 'QuickWindow' do
 
   describe "#exist?" do
     it "returns true for existing window" do

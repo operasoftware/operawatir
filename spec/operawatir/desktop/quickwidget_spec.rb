@@ -1,6 +1,8 @@
 require File.expand_path('../../watirspec_helper', __FILE__)
 
-describe "quick_widget" do
+describe "QuickWidget" do
+  
+    let()
     describe "#open_window_with_hover" do
       it "opens window on hover" do
         browser.quick_window(:name, "Browser Window").quick_toolbar(:name, "Pagebar").quick_tab(:pos, 0).open_window_with_hover.should > 0
