@@ -2,20 +2,23 @@
 require File.expand_path('../../watirspec_helper', __FILE__)
 
 describe 'QuickWindow' do
-
+  let(:documentwindow) { browser.quick_window(:name, "Document Window") }
+  let(:browserwindow) { browser.quick_window(:name, "Browser Window") }
+  let(:nonexisting_window) { browser.quick_window(:name, "Doc Window") }
+  
   describe "#exist?" do
     it "returns true for existing window" do
-      browser.quick_window(:name, "Browser Window").should exist
+      browserwindow.should exist
     end
     
     it "returns false for non-existing window" do
-      browser.quick_window(:name, "Nonexisting window").should_not exist
+      nonexisting_window.should_not exist
     end
   end
 
   describe "#type" do
     it "returns Normal for Document Window" do
-      browser.quick_window(:name, "Document Window").type == "Normal"
+      documentwindow.type == "Normal"
     end
     
     it "returns Dialog for Dialog" do
@@ -25,75 +28,75 @@ describe 'QuickWindow' do
     end
     
     it "throws exception if unknown window" do
-      expect { browser.quick_window(:name, "Doc Window").type }.to raise_error OperaWatir::Exceptions::UnknownObjectException
+      expect { nonexisting_window.type }.to raise_error OperaWatir::Exceptions::UnknownObjectException
     end
   end
 
   describe "#name" do
     it "returns window name" do
-      browser.quick_window(:name, "Document Window").name.should_not be_empty
+      documentwindow.name.should_not be_empty
     end
     it "returns a string" do
-      browser.quick_window(:name, "Document Window").name.should be_kind_of String
+      documentwindow.name.should be_kind_of String
     end
     it "throws exception if unknown window" do
-      expect { browser.quick_window(:name, "Doc Window").name }.to raise_error OperaWatir::Exceptions::UnknownObjectException
+      expect { nonexisting_window.name }.to raise_error OperaWatir::Exceptions::UnknownObjectException
     end
   end
     
   describe "#title" do
     it "returns title" do
-      browser.quick_window(:name, "Document Window").title.should_not be_empty
+      documentwindow.title.should_not be_empty
     end
     it "returns a string" do
-      browser.quick_window(:name, "Document Window").title.should be_kind_of String
+      documentwindow.title.should be_kind_of String
     end
     it "throws exception if unknown window" do
-      expect { browser.quick_window(:name, "Doc Window").title }.to raise_error OperaWatir::Exceptions::UnknownObjectException
+      expect { nonexisting_window.title }.to raise_error OperaWatir::Exceptions::UnknownObjectException
     end
 
   end
         
   describe "#to_s" do
     it "returns string" do
-      browser.quick_window(:name, "Document Window").to_s.should_not be_empty
+      documentwindow.to_s.should_not be_empty
     end
     it "returns a string" do
-      browser.quick_window(:name, "Document Window").to_s.should be_kind_of String
+      documentwindow.to_s.should be_kind_of String
     end
     it "throws exception if unknown window" do
-      expect { browser.quick_window(:name, "Doc Window").to_s }.to raise_error OperaWatir::Exceptions::UnknownObjectException
+      expect { nonexisting_window.to_s }.to raise_error OperaWatir::Exceptions::UnknownObjectException
     end
 
   end
     
   describe "#on_screen?" do
     it "throws exception if unknown window" do
-      expect { browser.quick_window(:name, "Doc Window").on_screen? }.to raise_error OperaWatir::Exceptions::UnknownObjectException
+      expect { nonexisting_window.on_screen? }.to raise_error OperaWatir::Exceptions::UnknownObjectException
     end
   end
     
   describe "#window_id" do
     it "is non-zero integer" do
-      browser.quick_window(:name, "Document Window").window_id.should_not be_zero
+      documentwindow.window_id.should_not be_zero
     end
     it "returns an integer" do
-      browser.quick_window(:name, "Document Window").window_id.should be_integer
+      documentwindow.window_id.should be_integer
     end
     it "throws exception if unknown window" do
-      expect { browser.quick_window(:name, "Doc Window").window_id }.to raise_error OperaWatir::Exceptions::UnknownObjectException
+      expect { nonexisting_window.window_id }.to raise_error OperaWatir::Exceptions::UnknownObjectException
     end
   end
     
   describe "#window_info_string" do
     it "returns string" do
-        browser.quick_window(:name, "Document Window").window_info_string.should be_kind_of String
+        documentwindow.window_info_string.should be_kind_of String
     end
     it "is nonempty" do
-        browser.quick_window(:name, "Document Window").window_info_string.should_not be_empty
+        documentwindow.window_info_string.should_not be_empty
     end
     it "throws exception if unknown window" do
-      expect { browser.quick_window(:name, "Doc Window").window_info_string }.to raise_error OperaWatir::Exceptions::UnknownObjectException
+      expect { nonexisting_window.window_info_string }.to raise_error OperaWatir::Exceptions::UnknownObjectException
     end
   end
 
