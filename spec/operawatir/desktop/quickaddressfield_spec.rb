@@ -1,5 +1,22 @@
 require File.expand_path('../../watirspec_helper', __FILE__)
 
+#TODO: These should be in quickeditfield_spec
+shared_examples_for "an editfield" do
+  describe "#focus_with_click" do
+    it "focuses editfield" do
+      widget.focus_with_click
+    end
+  end
+      
+  #describe "#type_text" do
+  #end
+  #describe "#clear" do
+  #end
+  #describe "#key_press" do
+  #end
+end
+
+
 #TODO: These should be in quickwidget_spec
 shared_examples_for "a widget" do
   describe "#exist?" do
@@ -41,6 +58,7 @@ describe "QuickAddressfield" do
    subject { addressfield }
      
    it_behaves_like "a widget"
+   it_behaves_like "an editfield"
 
    describe "#load_page_with_url" do
      it "loads page" do
@@ -74,5 +92,4 @@ describe "QuickAddressfield" do
        expect { unknown_addressfield.highlighted_text }.to raise_error OperaWatir::Exceptions::UnknownObjectException
      end
     end
-
 end
