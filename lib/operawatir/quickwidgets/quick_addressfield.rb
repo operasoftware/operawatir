@@ -14,6 +14,8 @@ module OperaWatir
     # @param  [String] URL to load
     # @return [String] text in the address field after the page is loaded
     #                  or a blank string
+    # @raise [Exceptions::UnknownObjectException] if the widget could not be found
+    #           using the specified method
     def load_page_with_url(url)
       # Must focus field before calling enter_text...
       focus_with_click
@@ -24,6 +26,10 @@ module OperaWatir
     #
     # Gets the visible text in the address field
     #
+    # @return [String] visible text in address field
+    #
+    # @raise [Exceptions::UnknownObjectException] if the widget could not be found
+    #           using the specified method
     def visible_text
       element.getVisibleText()
     end
@@ -31,6 +37,10 @@ module OperaWatir
     #
     # Gets the highlighted text in the address field
     #
+    # @return [String] higlighted text in address field, if any, else empty
+    #
+    # @raise [Exceptions::UnknownObjectException] if the widget could not be found
+    #           using the specified method
     def highlighted_text
       element.getAdditionalText()     
     end
