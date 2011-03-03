@@ -32,6 +32,8 @@ module OperaWatir
     #
     # @return [Symbol] type of the window (e.g. :dropdown, :button)
     #
+    # @raise [Exceptions::UnknownObjectException] if the widget could not be found
+    #           using the specified method
     def type
       return WINDOW_ENUM_MAP.invert[@elm.getType] unless @elm == nil
       return WINDOW_ENUM_MAP.invert[element.getType] 
