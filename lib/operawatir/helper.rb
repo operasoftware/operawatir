@@ -31,6 +31,7 @@ module OperaWatir::Helper
       
       config.after(:suite) do
         browser.quit if @browser
+        abort
       end
     end
   end

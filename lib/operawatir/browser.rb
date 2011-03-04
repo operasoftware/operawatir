@@ -124,7 +124,6 @@ class OperaWatir::Browser
   # to pressing C-a in a desktop browser.  To select content in a
   # <textarea> or an <input> field, remember to click it first.
   def select_all
-
     # FIXME
     driver.operaAction('Select all')
   end
