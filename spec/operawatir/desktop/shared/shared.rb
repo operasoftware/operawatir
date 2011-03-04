@@ -20,6 +20,8 @@ shared_examples_for "a widget" do
     it "returns true for existing widget" do
       widget.should exist
     end
+  end
+  
     its(:text) { should be_kind_of String } #be_a
     its(:name) { should be_kind_of String }
     its(:row_info_string) { should be_kind_of String }
@@ -42,5 +44,5 @@ shared_examples_for "a widget" do
        end
      end
  
-  end
 end
+

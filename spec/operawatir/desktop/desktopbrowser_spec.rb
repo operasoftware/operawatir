@@ -156,16 +156,19 @@ describe 'DesktopBrowser' do
       browser.quick_tabbuttons("Browser Window").should_not be_empty
     end
   end
-  
+
   describe "#quick_thumbnails" do
-    before(:each) do
-      browser.open_window_with_key_press("Document Window", "t", :ctrl)
+    before do
+      browser.open_window_with_key_press("Document Window", "t", :ctrl).should > 0
+    end
+    after do
+      browser.quick_window(:name, "Browser Window").quick_toolbar(:name, "Pagebar").quick_tab(:text, "Speed Dial").quick_button(:name, "pb_CloseButton").close_window_with_click("Document Window")
     end
     it "retrieves thumbnails from the active window" do
       browser.quick_thumbnails("Document Window").length.should be > 0
     end
   end
-  
+
   describe "#quick_checkboxes" do
     before(:each) do
       browser.open_dialog_with_action("New Preferences Dialog", "Show preferences", 4).should > 0
@@ -280,7 +283,7 @@ describe 'DesktopBrowser' do
    describe "#get_default_preference" do
      it "gets default value of preference"
    end
-     
+
     # Gets the parent widget name of which there is none here
    #describe "#parent_widget" do
    #  it "is nil" do

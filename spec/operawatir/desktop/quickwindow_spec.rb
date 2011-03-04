@@ -88,9 +88,7 @@ describe 'QuickWindow' do
     end
   end
 
-    # @private    
-  describe "#driver" do
-  end
+  its(:driver) { should be_instance_of Java::ComOperaCoreSystems::OperaDesktopDriver }
 
 #private
 #    def parent_widget
