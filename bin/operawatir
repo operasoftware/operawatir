@@ -12,7 +12,7 @@ require 'operawatir/helper'
   :ng            => false,
   :color_enabled => true,
   :check_syntax  => false,
-  :output_stream => IO.new(2, 'w'),
+  :output_stream => IO.new(1, 'w'),
   :format        => 'progress',
   :no_quit       => false,
   :opera_idle    => true
