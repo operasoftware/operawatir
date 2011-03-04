@@ -26,7 +26,7 @@ module OperaWatir::Helper
       settings.each do |key, value|
         config.send("#{key}=", value) if config.respond_to?("#{key}=")
       end
-            
+
       config.include SpecHelpers
       
       config.after(:suite) do

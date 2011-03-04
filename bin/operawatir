@@ -10,8 +10,9 @@ require 'operawatir/helper'
 @options = {
   :manual        => false,
   :ng            => false,
-  :color_enabled => OperaWatir::Platform.os == :windows ? false : true,
+  :color_enabled => true,
   :check_syntax  => false,
+  :output_stream => IO.new(2, 'w'),
   :format        => 'progress',
   :no_quit       => false,
   :opera_idle    => true
@@ -63,15 +64,15 @@ EOS
       @options[:color_enabled] = false
     end
 
+    opts.on('-o', '--out=FILE', 'Send output to a file instead of STDOUT') do |o|
+      @options[:output_stream] = File.open(o, 'w') or
+        abort "operawatir: Unable to write to file `#{o}'"
+    end
+
     opts.on('-f', '--format=FORMAT',
             'Specify RSpec output formatter (documentation, ',
             'html, progress (default), textmate)') do |formatter|
       @options[:formatter] = formatter
-    end
-
-    opts.on('-o', '--out=FILE', 'Send output to a file instead of STDOUT') do |o|
-      @options[:output_stream] = File.open(o, 'w') or
-        abort "operawatir: Unable to write to file `#{o}'"
     end
 
     opts.separator ''
