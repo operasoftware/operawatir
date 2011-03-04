@@ -157,6 +157,15 @@ describe 'DesktopBrowser' do
     end
   end
   
+  describe "#quick_thumbnails" do
+    before(:each) do
+      browser.open_window_with_key_press("Document Window", "t", :ctrl)
+    end
+    it "retrieves thumbnails from the active window" do
+      browser.quick_thumbnails("Document Window").length.should be > 0
+    end
+  end
+  
   describe "#quick_checkboxes" do
     before(:each) do
       browser.open_dialog_with_action("New Preferences Dialog", "Show preferences", 4).should > 0
