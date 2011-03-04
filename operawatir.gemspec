@@ -5,12 +5,12 @@
 
 Gem::Specification.new do |s|
   s.name = %q{operawatir}
-  s.version = "0.4"
+  s.version = "0.4.1.pre1"
   s.platform = %q{jruby}
 
-  s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
+  s.required_rubygems_version = Gem::Requirement.new("> 1.3.1") if s.respond_to? :required_rubygems_version=
   s.authors = ["Andreas Tolf Tolfsen", "Chris Lloyd", "Stuart Knightley", "Deniz Turkoglu"]
-  s.date = %q{2011-02-17}
+  s.date = %q{2011-03-04}
   s.description = %q{    OperaWatir is a part of the Watir (pronounced water) family of
     free software Ruby libraries for automating web
     browsers.  OperaWatir provides a querying engine and Ruby bindings
@@ -98,13 +98,17 @@ Gem::Specification.new do |s|
     "spec/fire_event/interactive/onMouseUp.html",
     "spec/fire_event/interactive/onScroll.html",
     "spec/operawatir/README.md",
+    "spec/operawatir/core/browser_spec.rb",
     "spec/operawatir/core/element_spec.rb",
     "spec/operawatir/core/preferences_spec.rb",
     "spec/operawatir/core/spatnav_spec.rb",
+    "spec/operawatir/core/window_spec.rb",
     "spec/operawatir/fixtures/boxes.html",
     "spec/operawatir/fixtures/grid.html",
+    "spec/operawatir/fixtures/input_fields_value.html",
     "spec/operawatir/fixtures/onclick.html",
     "spec/operawatir/fixtures/paragraphs.html",
+    "spec/operawatir/fixtures/two_input_fields.html",
     "spec/operawatir/guards.rb",
     "spec/operawatir/server.rb",
     "spec/operawatir/watirspec.rake",
@@ -243,21 +247,11 @@ Gem::Specification.new do |s|
   s.summary = %q{Toolkit for automating interactions with the Opera web browser.}
   s.test_files = [
     "spec/fire_event/fire_event.rb",
-    "spec/new_watirspec/browser_spec.rb",
-    "spec/new_watirspec/clipboard_spec.rb",
-    "spec/new_watirspec/collection_spec.rb",
-    "spec/new_watirspec/element_spec.rb",
-    "spec/new_watirspec/guards.rb",
-    "spec/new_watirspec/keys_spec.rb",
-    "spec/new_watirspec/preferences_spec.rb",
-    "spec/new_watirspec/screenshot_spec.rb",
-    "spec/new_watirspec/server.rb",
-    "spec/new_watirspec/spatnav_spec.rb",
-    "spec/new_watirspec/watirspec_helper.rb",
-    "spec/new_watirspec/window_spec.rb",
+    "spec/operawatir/core/browser_spec.rb",
     "spec/operawatir/core/element_spec.rb",
     "spec/operawatir/core/preferences_spec.rb",
     "spec/operawatir/core/spatnav_spec.rb",
+    "spec/operawatir/core/window_spec.rb",
     "spec/operawatir/guards.rb",
     "spec/operawatir/server.rb",
     "spec/operawatir/watirspec_helper.rb",
@@ -341,7 +335,16 @@ Gem::Specification.new do |s|
     "spec/watir2/ul_spec.rb",
     "spec/watir2/uls_spec.rb",
     "spec/watir2/watir_compatibility_spec.rb",
-    "spec/watir2/watirspec_helper.rb"
+    "spec/watir2/watirspec_helper.rb",
+    "spec/watir3/browser_spec.rb",
+    "spec/watir3/clipboard_spec.rb",
+    "spec/watir3/collection_spec.rb",
+    "spec/watir3/element_spec.rb",
+    "spec/watir3/guards.rb",
+    "spec/watir3/keys_spec.rb",
+    "spec/watir3/server.rb",
+    "spec/watir3/watirspec_helper.rb",
+    "spec/watir3/window_spec.rb"
   ]
 
   if s.respond_to? :specification_version then
