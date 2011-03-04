@@ -13,7 +13,7 @@
 
 ### Requirements
 
-OperaWatir runs on GNU/Linux, Mac OS X and Windows operating systems. Required dependencies are _Java_ >= 1.6.0, _JRuby_ <= 1.5.5, _RubyGems_ >= 1.3.5, _RSpec_ = 2.4, and a somewhat recent desktop or nightly build of Opera.  For Windows you must also have the Microsoft Visual C++ 2008 Redistributable Package.
+OperaWatir runs on GNU/Linux, Mac OS X and Windows operating systems. Required dependencies are _Java_ >= 1.6.0, _JRuby_ <= 1.5.5, _RubyGems_ >= 1.3.5, _RSpec_ <= 2.5, and a somewhat recent desktop or nightly build of Opera.  For Windows you must also have the Microsoft Visual C++ 2008 Redistributable Package.
 
 ### Installation procedure
 
