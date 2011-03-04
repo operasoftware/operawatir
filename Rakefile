@@ -17,11 +17,11 @@ Jeweler::Tasks.new do |gem|
   gem.summary     = 'Toolkit for automating interactions with the Opera web browser.'
   gem.description = <<-EOF
     OperaWatir is a part of the Watir (pronounced water) family of
-    free software Ruby libraries for automating web
-    browsers.  OperaWatir provides a querying engine and Ruby bindings
-    for a backend Java library, OperaDriver, for driving the Opera web
-    browser.  It aims for full compliancy with the watirspec
-    specification.
+    free software Ruby libraries for automating web browsers.
+    OperaWatir provides a querying engine and Ruby bindings for a
+    backend Java library, OperaDriver, for driving the Opera web
+    browser.  It aims for full compliancy with the Watir 2 and Watir 3
+    specifications.
 EOF
 
   gem.rubyforge_project = gem.name

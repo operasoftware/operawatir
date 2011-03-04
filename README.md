@@ -1,6 +1,6 @@
 # Readme
 
-[OperaWatir](http://operawatir.org/) is a part of the [Watir](http://watir.com/) (pronounced _water_) family of free software Ruby libraries for automating web browsers.  OperaWatir provides a querying engine and Ruby bindings for a backend Java library, OperaDriver, for driving the [Opera web browser](http://opera.com/).  It aims for full compliance with the [watirspec](https://github.com/jarib/watirspec) specification.
+[OperaWatir](http://operawatir.org/) is a part of the [Watir](http://watir.com/) (pronounced _water_) family of free software Ruby libraries for automating web browsers.  OperaWatir provides a querying engine and Ruby bindings for a backend Java library, OperaDriver, for driving the [Opera web browser](http://opera.com/).  It aims for full compliance with the [Watir 2](https://github.com/jarib/watirspec) and the [Watir 3](https://github.com/operasoftware/watir3-spec) specifications.
 
 * __License:__ [New BSD](https://github.com/operasoftware/operawatir/blob/master/LICENSE)
 * __Project Home:__ [http://www.opera.com/developer/tools/operawatir/](http://www.opera.com/developer/tools/operawatir/)
@@ -9,31 +9,11 @@
 * __Issues:__ [https://github.com/operasoftware/operawatir/issues](https://github.com/operasoftware/operawatir/issues)
 * __Gem:__ [https://rubygems.org/operawatir](http://rubygems.org/gems/operawatir)
 
-## Third-Party Libraries
-
-OperaWatir uses the following libraries:
-
-- [OperaDriver](http://www.opera.com/developer/tools/operadriver/) (Apache 2.0 License)
-- [rspec](https://github.com/rspec/rspec) (MIT License)
-- [jeweler](https://github.com/technicalpickles/jeweler) (MIT License)
-- [rake](https://github.com/jimweirich/rake) (MIT License)
-- [yard](https://github.com/lsegal/yard) (MIT License)
-- [mongrel](http://rubyforge.org/projects/mongrel) (Ruby License)
-- [sinatra](http://www.sinatrarb.com/) (MIT License)
-- [rr](http://rubyforge.org/projects/double-ruby) (MIT License)
-- [bluecloth](http://deveiate.org/projects/BlueCloth) (BSD License)
-- [inifile](https://github.com/TwP/inifile) (MIT License)
-- [clipboard](https://github.com/janlelis/clipboard) (MIT License)
-- [activesupport](http://rubyonrails.org/) (MIT License)
-- [i18n](https://github.com/svenfuchs/i18n) (MIT License)
-- [deprecated](https://github.com/erikh/deprecated) (BSD License)
-- [bundler](http://gembundler.com/) (MIT License)
-
 ## Install
 
 ### Requirements
 
-OperaWatir runs on GNU/Linux, Mac OS X and Windows operating systems. Required dependencies are _Java_ >= 1.6.0, _JRuby_ =< 1.5.5, _RubyGems_ >= 1.3.5, _RSpec_ = 2.4, and a somewhat recent desktop or nightly build of Opera.  For Windows you must also have the Microsoft Visual C++ 2010 Redistributable Package (x86).
+OperaWatir runs on GNU/Linux, Mac OS X and Windows operating systems. Required dependencies are _Java_ >= 1.6.0, _JRuby_ <= 1.5.5, _RubyGems_ >= 1.3.5, _RSpec_ = 2.4, and a somewhat recent desktop or nightly build of Opera.  For Windows you must also have the Microsoft Visual C++ 2008 Redistributable Package.
 
 ### Installation procedure
 
@@ -44,16 +24,6 @@ To install (leave out the “sudo” command if you're installing on Windows):
     % sudo jruby -S gem install operawatir
 
 Next, make sure that JRuby's ``bin`` directory is a part of your ``PATH`` environmental variable on GNU/Linux.
-
-## Limitations
-
-__Before you get started playing with OperaWatir, there are a few important things you need to keep in mind.__
-
-This is a __pre-release__ of OperaWatir (0.3), and should not be considered stable or suitable for use in production.  It should be treated as a proof of concept. 
-
-It is not possible to run OperaWatir without specifying the ``OPERA_PATH`` (full path to Opera binary) and ``OPERA_LAUNCHER`` (full path to Opera launcher binary) environmental variables. 
-
-Since the launcher applications are not shipped with the latest public release of Opera, we have bundled them with the gem.  They can be found in ``./utils/launchers/`` under the gem's directory (typically ``/usr/lib/jruby/lib/ruby/gems/1.8/gems/operawatir-0.3-java/utils/launchers/`` on GNU/Linux systems and ``C:\\JRuby-1.5.2\\lib\\ruby\\gems\\1.8\\gems\\operawatir-0.3-java\\utils\\launchers\\`` on Windows).  The launchers provided will work on 32-bit GNU/Linux and Windows operating systems.  OS X support is planned.
 
 ## Examples
 
@@ -149,3 +119,47 @@ Each block of code corresponds to a single named test case returning PASS or FAI
     2 examples, 0 failures
 
 If anything fails, more information about each failure will be provided.
+
+You can also see ``operawatir -h`` for more usage information:
+
+    Usage: operawatir [-m|--manual] [-l|--launcher=BINARY] [-b|--binary=BINARY]
+           [-a|--args=ARGUMENTS] [-q|--no-quit] [--no-opera-idle] [--no-color]
+           [-f|--format=FORMAT] [-o|--out=FILE] [-h|--help] [-v|--version] FILES
+    
+    Specific options:
+        -m, --manual                     Wait for a manual connection from opera:debug
+        -l, --launcher=BINARY            Path to launcher binary, will use environmental 
+                                         variable OPERA_LAUNCHER if not specified
+        -b, --binary=BINARY              Browser to run the test with, will use guess the 
+                                         path or use environmental variable OPERA_PATH if 
+                                         not specified
+        -a, --args=ARGUMENTS             Arguments passed to the binary, will override  
+                                         environmental variable OPERA_ARGS
+        -q, --no-quit                    Disable quitting of Opera at the end of a test run
+            --no-opera-idle              Disable OperaIdle
+            --no-color                   Disable colorized output
+        -o, --out=FILE                   Send output to a file instead of STDOUT
+        -f, --format=FORMAT              Specify RSpec output formatter (documentation, 
+                                         html, progress (default), textmate)
+    
+    Common options:
+        -h, --help                       Show this message
+        -v, --version                    Show version
+
+## Third-Party Libraries
+
+OperaWatir uses the following libraries:
+
+- [OperaDriver](http://www.opera.com/developer/tools/operadriver/) (Apache 2.0 License)
+- [rspec](https://github.com/rspec/rspec) (MIT License)
+- [jeweler](https://github.com/technicalpickles/jeweler) (MIT License)
+- [rake](https://github.com/jimweirich/rake) (MIT License)
+- [yard](https://github.com/lsegal/yard) (MIT License)
+- [mongrel](http://rubyforge.org/projects/mongrel) (Ruby License)
+- [sinatra](http://www.sinatrarb.com/) (MIT License)
+- [rr](http://rubyforge.org/projects/double-ruby) (MIT License)
+- [bluecloth](http://deveiate.org/projects/BlueCloth) (BSD License)
+- [clipboard](https://github.com/janlelis/clipboard) (MIT License)
+- [deprecated](https://github.com/erikh/deprecated) (BSD License)
+- [bundler](http://gembundler.com/) (MIT License)
+
