@@ -1,4 +1,4 @@
-require File.expand_path('../../watirspec_helper', __FILE__)
+require File.expand_path('../../watirspec_desktophelper', __FILE__)
 require File.expand_path('../shared/shared', __FILE__)
 
 describe "QuickAddressfield" do

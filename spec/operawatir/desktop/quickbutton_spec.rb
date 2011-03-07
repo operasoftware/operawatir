@@ -1,4 +1,4 @@
-require File.expand_path('../../watirspec_helper', __FILE__)
+require File.expand_path('../../watirspec_desktophelper', __FILE__)
 
 describe "QuickButton" do
     describe "#default?" do

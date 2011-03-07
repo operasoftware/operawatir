@@ -1,4 +1,4 @@
-require File.expand_path('../../watirspec_helper', __FILE__)
+require File.expand_path('../../watirspec_desktophelper', __FILE__)
 
 describe "QuickWidget" do
     describe "#open_window_with_hover" do

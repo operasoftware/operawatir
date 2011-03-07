@@ -1,5 +1,5 @@
 # encoding: utf-8
-require File.expand_path('../../watirspec_helper', __FILE__)
+require File.expand_path('../../watirspec_desktophelper', __FILE__)
 
 describe 'QuickWindow' do
   let(:documentwindow) { browser.quick_window(:name, "Document Window") }
