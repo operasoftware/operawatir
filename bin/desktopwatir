@@ -76,6 +76,13 @@ EOS
       @options[:formatter] = formatter
     end
  
+     opts.on('-t', '--tag=TAG',
+            'Specify tags to only run examples with the specified tag
+             To exclude examples, add ~ before the tag (e.g. ~slow)
+            (TAG is always converted to a symbol)') do |tag|
+      @options[:filter_run] = tag
+    end
+ 
     opts.separator ''
     opts.separator 'Common options:'
 
