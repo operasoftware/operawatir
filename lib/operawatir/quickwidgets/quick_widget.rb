@@ -303,7 +303,7 @@ private
     
     # Click widget
     def click(button = :left, times = 1, *opts)
-      raise Exceptions::WidgetDisabledException, "Element #{@selector} is disabled" unless enabled?
+      raise DesktopExceptions::WidgetDisabledException, "Element #{@selector} is disabled" unless enabled?
       
       #Some buttons etc. aren't visible until hovering them
       if (visible? == false and type != :dialogtab)
