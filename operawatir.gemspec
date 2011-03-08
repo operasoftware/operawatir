@@ -10,13 +10,13 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new("> 1.3.1") if s.respond_to? :required_rubygems_version=
   s.authors = ["Andreas Tolf Tolfsen", "Chris Lloyd", "Stuart Knightley", "Deniz Turkoglu"]
-  s.date = %q{2011-03-04}
+  s.date = %q{2011-03-08}
   s.description = %q{    OperaWatir is a part of the Watir (pronounced water) family of
-    free software Ruby libraries for automating web
-    browsers.  OperaWatir provides a querying engine and Ruby bindings
-    for a backend Java library, OperaDriver, for driving the Opera web
-    browser.  It aims for full compliancy with the watirspec
-    specification.
+    free software Ruby libraries for automating web browsers.
+    OperaWatir provides a querying engine and Ruby bindings for a
+    backend Java library, OperaDriver, for driving the Opera web
+    browser.  It aims for full compliancy with the Watir 2 and Watir 3
+    specifications.
 }
   s.email = ["andreastt@opera.com", "christopherl@opera.com", "stuartk@opera.com", "dturkoglu@opera.com"]
   s.executables = ["desktopwatir", "operawatir"]
@@ -241,7 +241,6 @@ Gem::Specification.new do |s|
   ]
   s.homepage = %q{http://www.opera.com/developer/tools/operawatir/}
   s.require_paths = ["lib"]
-  s.required_ruby_version = Gem::Requirement.new(">= 1.8.7")
   s.rubyforge_project = %q{operawatir}
   s.rubygems_version = %q{1.3.6}
   s.summary = %q{Toolkit for automating interactions with the Opera web browser.}
@@ -360,7 +359,7 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<sinatra>, [">= 1.1"])
       s.add_development_dependency(%q<rr>, [">= 0"])
       s.add_development_dependency(%q<clipboard>, [">= 0"])
-      s.add_runtime_dependency(%q<rspec>, ["<= 2.5"])
+      s.add_runtime_dependency(%q<rspec>, [">= 2.4"])
       s.add_runtime_dependency(%q<deprecated>, [">= 0"])
       s.add_development_dependency(%q<jeweler>, [">= 0"])
       s.add_development_dependency(%q<rake>, [">= 0"])
@@ -379,7 +378,7 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<sinatra>, [">= 1.1"])
       s.add_dependency(%q<rr>, [">= 0"])
       s.add_dependency(%q<clipboard>, [">= 0"])
-      s.add_dependency(%q<rspec>, ["<= 2.5"])
+      s.add_dependency(%q<rspec>, [">= 2.4"])
       s.add_dependency(%q<deprecated>, [">= 0"])
       s.add_dependency(%q<jeweler>, [">= 0"])
       s.add_dependency(%q<rake>, [">= 0"])
@@ -399,7 +398,7 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<sinatra>, [">= 1.1"])
     s.add_dependency(%q<rr>, [">= 0"])
     s.add_dependency(%q<clipboard>, [">= 0"])
-    s.add_dependency(%q<rspec>, ["<= 2.5"])
+    s.add_dependency(%q<rspec>, [">= 2.4"])
     s.add_dependency(%q<deprecated>, [">= 0"])
     s.add_dependency(%q<jeweler>, [">= 0"])
     s.add_dependency(%q<rake>, [">= 0"])
