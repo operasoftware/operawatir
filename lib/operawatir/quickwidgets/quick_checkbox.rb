@@ -21,7 +21,7 @@ module OperaWatir
     ######################################################################
     # Clicks a radio button or checkbox and toggles it state
     #
-    # @return [int] the new state of the radio button or checkbox,
+    # @return [Boolean] the new state of the radio button or checkbox,
     #               false for not checked, or true for checked
     #
     # @raise [DesktopExceptions::WidgetNotVisibleException] if the checkbox
