@@ -45,9 +45,9 @@ module OperaWatir
     ######################################################################
     # Clears the contents of the edit field
     #
-    # @note The edit field must have focus for this method to work
-    #
     def clear
+      focus_with_click
+      
       key_press_direct("a", :ctrl)
       key_press_direct("backspace")
       
