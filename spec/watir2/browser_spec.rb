@@ -9,11 +9,13 @@ describe "Browser" do
       browser.should exist
     end
 
+=begin
     it "returns false after IE#close" do
       b = WatirSpec.new_browser
       b.close
       b.should_not exist
     end
+=end
   end
 
   describe "#html" do

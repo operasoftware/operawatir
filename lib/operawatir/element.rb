@@ -137,10 +137,10 @@ class OperaWatir::Element
 
   def_delegator :node, :submit, :submit!
 
-  def text=(string)
+  def text=(input)
     # Focus before typing
     clear unless value.empty?
-    node.sendKeys(string.split('').to_java(:string))
+    node.sendKeys(input.to_s.split('').to_java(:string))
   end
 
   alias_method :set, :text=
