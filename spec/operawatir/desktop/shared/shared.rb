@@ -1,23 +1,23 @@
 require File.expand_path('../../../watirspec_desktophelper', __FILE__)
 
-shared_examples_for "an editfield" do
-  describe "#focus_with_click" do
-    it "focuses editfield" do
+shared_examples_for 'an editfield' do
+  describe '#focus_with_click' do
+    it 'focuses editfield' do
       widget.focus_with_click
     end
   end
       
-  #describe "#type_text" do
+  #describe '#type_text' do
   #end
-  #describe "#clear" do
+  #describe '#clear' do
   #end
-  #describe "#key_press" do
+  #describe '#key_press' do
   #end
 end
 
-shared_examples_for "a widget" do
-  describe "#exist?" do
-    it "returns true for existing widget" do
+shared_examples_for 'a widget' do
+  describe '#exist?' do
+    it 'returns true for existing widget' do
       widget.should exist
     end
   end
@@ -32,14 +32,14 @@ shared_examples_for "a widget" do
     its(:driver) { should be_instance_of Java::ComOperaCoreSystems::OperaDesktopDriver }
     #its(:type) { should }
       
-    describe "#enabled?" do
-      it "should return boolean" do
+    describe '#enabled?' do
+      it 'should return boolean' do
         [true, false].should include widget.enabled?
       end
     end
        
-     describe "#visible?" do
-       it "should return boolean" do
+     describe '#visible?' do
+       it 'should return boolean' do
         [true, false].should include widget.enabled?
        end
      end
