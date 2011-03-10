@@ -48,7 +48,7 @@ module WatirSpec
 
 end
 
-include OperaWatir::Exceptions
+include OperaWatir::DesktopExceptions
 
 include WatirSpec::Guard::Helpers
 
