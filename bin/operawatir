@@ -8,14 +8,15 @@ require 'operawatir'
 require 'operawatir/helper'
 
 @options = {
-  :manual        => false,
-  :ng            => false,
-  :color_enabled => true,
-  :check_syntax  => false,
-  :output_stream => IO.new(1, 'w'),
-  :format        => 'progress',
-  :no_quit       => false,
-  :opera_idle    => true
+  :manual         => false,
+  :ng             => false,
+  :color_enabled  => true,
+  :check_syntax   => false,
+  :output_stream  => IO.new(1, 'w'),
+  :format         => 'progress',
+  :no_quit        => false,
+  :opera_idle     => true,
+  :full_backtrace => false
 }
 
 # TODO
@@ -24,9 +25,10 @@ require 'operawatir/helper'
 begin
   OptionParser.new do |opts|
     opts.banner = <<EOS
-Usage: operawatir [-m|--manual] [-l|--launcher=BINARY] [-b|--binary=BINARY]
+Usage: operawatir [-m|--manual] [-l|--launcher=BINARY] [--binary=BINARY]
        [-a|--args=ARGUMENTS] [-q|--no-quit] [--no-opera-idle] [--no-color]
-       [-f|--format=FORMAT] [-o|--out=FILE] [-h|--help] [-v|--version] FILES
+       [-f|--format=FORMAT] [-o|--out=FILE] [-b|--backtrace] [-h|--help]
+       [-v|--version] FILES
 EOS
 
     opts.separator ""
@@ -41,7 +43,7 @@ EOS
       @options[:launcher] = c
     end
 
-    opts.on('-b', '--binary=BINARY', 'Browser to run the test with, will use guess the ',
+    opts.on('--binary=BINARY', 'Browser to run the test with, will use guess the ',
             'path or use environmental variable OPERA_PATH if ',
             'not specified') do |e|
       @options[:path] = e
@@ -73,6 +75,10 @@ EOS
             'Specify RSpec output formatter (documentation, ',
             'html, progress (default), textmate)') do |formatter|
       @options[:formatter] = formatter
+    end
+
+    opts.on('-b', '--backtrace', 'Enable full backtrace') do |c|
+      @options[:full_backtrace] = true
     end
 
     opts.separator ''
