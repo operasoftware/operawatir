@@ -89,7 +89,8 @@ module OperaWatir
     # Clicks a button or expand control and toggles it state
     #
     # @return [int] the new state of the button or expand control,
-    #               0 for not pressed, or 1 for pressed
+    #               0 for not pressed, or 1 for pressed,
+    #               nil if the element does no longer exist
     #
     # @raise [DesktopExceptions::WidgetNotVisibleException] if the button
     #            is not visible
@@ -100,7 +101,12 @@ module OperaWatir
       # Cheat since we don't have an event yet 
       sleep(0.1)
         
-      element(true).getValue
+      # Note: click might have made this element dissapear ...
+      begin
+        element(true).getValue
+      rescue Exceptions::UnknownObjectException
+        nil
+      end
     end
   
     ######################################################################

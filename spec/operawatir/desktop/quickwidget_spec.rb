@@ -13,6 +13,7 @@ describe 'QuickWidget' do
     describe '#verify_text' do
     end
   
+    #This is deprecated
     describe '#verify_includes_text' do
     end
     
