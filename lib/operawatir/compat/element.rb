@@ -159,6 +159,7 @@ class OperaWatir::Element
   deprecated :compare_hash, 'element.visual_hash'
 
   alias_method :get_hash, :visual_hash
+  deprecated :get_hash, 'element.visual_hash'
 
 private
 

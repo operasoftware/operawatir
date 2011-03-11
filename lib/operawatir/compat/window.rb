@@ -24,6 +24,7 @@ module OperaWatir
 
       # Opera specific
       alias_method :get_hash, :visual_hash
+      deprecated :get_hash, 'browser.visual_hash'
 
     end
   end
