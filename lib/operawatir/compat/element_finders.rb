@@ -52,6 +52,10 @@ module OperaWatir::Compat::ElementFinders
 
   def_element :dt, :dts
 
+  def_element :element, :elements do |selector|
+    selector.xpath '//*'
+  end
+
   def_element :em, :ems
 
   def_element :file_field, :file_fields, :how => :name do |selector|
