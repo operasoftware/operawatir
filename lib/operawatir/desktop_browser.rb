@@ -3,9 +3,9 @@ module OperaWatir
     include DesktopContainer
     include DesktopCommon
     
-    #@private
-    LoadActions = ["Open url in new page", "Open url in current page", "Open url in background page",
-      "Open url in new window"]
+    LoadActions = ["Open url in new page", "Open url in current page", "Open url in new background page",
+      "Open url in new window", "New private page", "Paste and go", "Paste and go background", 
+      "Hotclick search", "Duplicate page", "Reopen page", "Back", "Forward", "Help"]
     
     # @private
     def initialize
@@ -238,12 +238,24 @@ module OperaWatir
     #       puts quick_widget.to_s
     #   end
     #
-    # @param win_name [String] name or [int] id of the window to retrieve the list of widgets from,
+    # @param window [String] name or [int] id of the window to retrieve the list of widgets from,
     #
     # @return [Array] Array of widgets retrieved from the window
     #
-    def widgets(win_name)
-      driver.getQuickWidgetList(win_name).map do |java_widget|
+    def widgets(window)
+      
+      # If window specifies window name, and the active window has this name
+      # use its id to get the widgets,
+      if window.is_a? String
+        active_win_id = driver.getActiveQuickWindowID()
+        active_win_name = driver.getQuickWindowName(active_win_id)
+        
+        #If the active window is of same type, then grab that one, not first
+        if active_win_name == window #e.g. Both Document Window 
+          window = active_win_id
+        end
+      end
+      driver.getQuickWidgetList(window).map do |java_widget|
         case java_widget.getType
           when QuickWidget::WIDGET_ENUM_MAP[:button]
             QuickButton.new(self,java_widget)

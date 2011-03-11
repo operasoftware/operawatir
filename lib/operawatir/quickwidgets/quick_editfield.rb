@@ -45,9 +45,9 @@ module OperaWatir
     ######################################################################
     # Clears the contents of the edit field
     #
-    # @note The edit field must have focus for this method to work
-    #
     def clear
+      focus_with_click
+      
       key_press_direct("a", :ctrl)
       key_press_direct("backspace")
       
@@ -96,10 +96,13 @@ module OperaWatir
     def enter_text_and_hit_enter(text)
       loaded_url = ""
       
+      # OBS: only caller should set focus, if not this will happily type 
+      # away in the incorrect field, if for example called from subclass address_field
       # Set focus
-      focus_with_click
+      # focus_with_click
+      
       # Clear the field
-      clear()
+      clear
       # Type in the text
       typed_text = type_text(text) #Opens dropdown window
       # Check that some text was typed, note the text might be changed in the

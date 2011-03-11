@@ -10,6 +10,7 @@ require 'operawatir/desktop_helper'
   :ng            => false,
   :color_enabled => Config::CONFIG['host_os'] =~ /mswin|mingw|bccwin|wince|emx/ ? false : true,
   :check_syntax  => false,
+  :output_stream => IO.new(2, 'w'),
   :format	     => 'progress', 
   :no_quit		 => false,
   :no_restart   => false
@@ -63,18 +64,25 @@ EOS
     #        'own JVM') do |ng|
     #  @options[:ng] = ng
     #end
+    
+    opts.on('-o', '--out=FILE', 'Send output to a file instead of STDOUT') do |o|
+      @options[:output_stream] = File.open(o, 'w') or
+        abort "desktopwatir: Unable to write to file `#{o}'"
+    end
   
     opts.on('-f', '--format=FORMAT',
             'Specify RSpec output formatter (documentation, html, ',
             'progress (default), textmate)') do |formatter|
       @options[:formatter] = formatter
     end
-
-    opts.on('-o', '--out=FILE', 'Send output to a file instead of STDOUT') do |o|
-      @options[:output_stream] = File.open(o, 'w') or
-        abort "desktopwatir: Unable to write to file `#{o}'"
+ 
+     opts.on('-t', '--tag=TAG',
+            'Specify tags to only run examples with the specified tag
+             To exclude examples, add ~ before the tag (e.g. ~slow)
+            (TAG is always converted to a symbol)') do |tag|
+      @options[:filter_run] = tag
     end
-
+ 
     opts.separator ''
     opts.separator 'Common options:'
 

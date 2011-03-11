@@ -8,6 +8,8 @@ require 'operawatir'
 require 'rspec'
 require 'rbconfig'
 
+require File.expand_path('../../../spec/operawatir/matchers', __FILE__)
+
 module OperaWatir::DesktopHelper
   extend self
   

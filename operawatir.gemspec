@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new("> 1.3.1") if s.respond_to? :required_rubygems_version=
   s.authors = ["Andreas Tolf Tolfsen", "Chris Lloyd", "Stuart Knightley", "Deniz Turkoglu"]
-  s.date = %q{2011-03-08}
+  s.date = %q{2011-03-11}
   s.description = %q{    OperaWatir is a part of the Watir (pronounced water) family of
     free software Ruby libraries for automating web browsers.
     OperaWatir provides a querying engine and Ruby bindings for a
@@ -103,6 +103,12 @@ Gem::Specification.new do |s|
     "spec/operawatir/core/preferences_spec.rb",
     "spec/operawatir/core/spatnav_spec.rb",
     "spec/operawatir/core/window_spec.rb",
+    "spec/operawatir/desktop/desktopbrowser_spec.rb",
+    "spec/operawatir/desktop/quickaddressfield_spec.rb",
+    "spec/operawatir/desktop/quickbutton_spec.rb",
+    "spec/operawatir/desktop/quickwidget_spec.rb",
+    "spec/operawatir/desktop/quickwindow_spec.rb",
+    "spec/operawatir/desktop/shared/shared.rb",
     "spec/operawatir/fixtures/boxes.html",
     "spec/operawatir/fixtures/grid.html",
     "spec/operawatir/fixtures/input_fields_value.html",
@@ -110,8 +116,10 @@ Gem::Specification.new do |s|
     "spec/operawatir/fixtures/paragraphs.html",
     "spec/operawatir/fixtures/two_input_fields.html",
     "spec/operawatir/guards.rb",
+    "spec/operawatir/matchers.rb",
     "spec/operawatir/server.rb",
     "spec/operawatir/watirspec.rake",
+    "spec/operawatir/watirspec_desktophelper.rb",
     "spec/operawatir/watirspec_helper.rb",
     "spec/watir2/area_spec.rb",
     "spec/watir2/areas_spec.rb",
@@ -251,8 +259,16 @@ Gem::Specification.new do |s|
     "spec/operawatir/core/preferences_spec.rb",
     "spec/operawatir/core/spatnav_spec.rb",
     "spec/operawatir/core/window_spec.rb",
+    "spec/operawatir/desktop/desktopbrowser_spec.rb",
+    "spec/operawatir/desktop/quickaddressfield_spec.rb",
+    "spec/operawatir/desktop/quickbutton_spec.rb",
+    "spec/operawatir/desktop/quickwidget_spec.rb",
+    "spec/operawatir/desktop/quickwindow_spec.rb",
+    "spec/operawatir/desktop/shared/shared.rb",
     "spec/operawatir/guards.rb",
+    "spec/operawatir/matchers.rb",
     "spec/operawatir/server.rb",
+    "spec/operawatir/watirspec_desktophelper.rb",
     "spec/operawatir/watirspec_helper.rb",
     "spec/watir2/area_spec.rb",
     "spec/watir2/areas_spec.rb",
