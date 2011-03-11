@@ -1,17 +1,14 @@
 require File.expand_path('../../watirspec_desktophelper', __FILE__)
+
 describe 'QuickTreeItem' do
 
+  describe '#correct_type?' do
+  end
 
-    describe '#correct_type?' do
-	
-    end
-
-
-    describe '#focus_with_click' do
-    end
+  describe '#focus_with_click' do
+  end
         
-
-    describe '#expand_with_click' do
+  describe '#expand_with_click' do
 	
 		before(:all) do
 			browser.open_dialog_with_action("New Preferences Dialog", "Show preferences").should > 0
@@ -25,7 +22,7 @@ describe 'QuickTreeItem' do
 			browser.quick_treeview(:name, "Input_treeview").quick_treeitem(:text, "Copy").visible?.should be_true
 		end
 		
-		it 'colapse with click ' do
+		it 'collapse with click ' do
 			browser.quick_treeview(:name, "Input_treeview").quick_treeitem(:text, "Application    (defaults)").expand_with_click
 			browser.quick_treeview(:name, "Input_treeview").quick_treeitem(:text, "Copy").visible?.should be_false
 		end
@@ -39,34 +36,30 @@ describe 'QuickTreeItem' do
 			browser.close_all_dialogs
 		end
 		
-    end
+  end
 
-    describe '#expand_with_double_click' do
-    end
+  describe '#expand_with_double_click' do
+  end
     
    # alias_method :collapse_with_double_click, :expand_with_double_click
     
-    describe '#key_press(key, *opts)' do
-    end
+  describe '#key_press(key, *opts)' do
+  end
         
-
-    describe '#selected?' do
-    end
+  describe '#selected?' do
+  end
      
+  describe '#activate_tab_with_click' do
+  end
     
-    describe '#activate_tab_with_click' do
-    end
-    
-    describe '#open_window_with_double_click(win_name)' do
-    end
+  describe '#open_window_with_double_click(win_name)' do
+  end
     
    # alias_method :open_dialog_with_double_click, :open_window_with_double_click
     
-
 #private
-
-    describe '#scroll_item_into_view' do 
-    end
+  describe '#scroll_item_into_view' do
+  end
   
   
 end
