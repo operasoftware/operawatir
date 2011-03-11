@@ -10,8 +10,10 @@ module OperaWatir
     ######################################################################
     # Set focus to the tree item by clicking on it
     #
-    # @raise [DesktopExceptions::WidgetNotVisibleException] if the treeview
+    # @raise [DesktopExceptions::WidgetNotVisibleException] if the treeview 
     #            the treeitem is in is not visible
+    # @raise [DesktopExceptions::WidgetDisabledException] if the treeitem
+    #            is disabled
     #
     def focus_with_click
       # First scroll the item into view
