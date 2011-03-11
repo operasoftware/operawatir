@@ -7,13 +7,15 @@ require 'operawatir'
 require 'operawatir/desktop_helper'
 
 @options = {
-  :ng            => false,
-  :color_enabled => Config::CONFIG['host_os'] =~ /mswin|mingw|bccwin|wince|emx/ ? false : true,
-  :check_syntax  => false,
-  :output_stream => IO.new(1, 'w'),
-  :format	     => 'progress', 
-  :no_quit		 => false,
-  :no_restart   => false
+  :ng             => false,
+  :color_enabled  => true,
+  :check_syntax   => false,
+  :output_stream  => IO.new(1, 'w'),
+  :format         => 'progress',
+  :no_quit        => false,
+  :no_restart     => false,
+  :opera_idle     => false,
+  :full_backtrace => false
 }
 
 # TODO
@@ -22,12 +24,14 @@ require 'operawatir/desktop_helper'
 begin
   OptionParser.new do |opts|
     opts.banner = <<EOS
-Usage: desktopwatir [-l|--launcher=BINARY] [-e|--executable=BINARY] [-a|--args=ARGUMENTS]
-       [--no-color] [-q|--no-quit] [-r|--no-restart] [-f|--format=FORMAT] [-o|--out=FILE] [-h|--help] [-v|--version] FILES
+Usage: desktopwatir [-l|--launcher=BINARY] [-e|--executable=BINARY]
+       [-a|--args=ARGUMENTS] [--no-color] [-q|--no-quit] [-r|--no-restart]
+       [--opera-idle] [-b|--backtrace] [-t|--tag=TAG] [-f|--format=FORMAT]
+       [-o|--out=FILE] [-h|--help] [-v|--version] FILES
 EOS
 
-    opts.separator ""
-    opts.separator "Specific options:"
+    opts.separator ''
+    opts.separator 'Specific options:'
 
     opts.on('-l', '--launcher=BINARY', 'Path to launcher binary, will use environmental ',
             'variable OPERA_LAUNCHER if not specified') do |c|
@@ -52,8 +56,16 @@ EOS
       @options[:no_quit] = true
     end
 
-   opts.on('-r', '--no-restart', 'Disables automatic relaunching of Opera') do |c|
+    opts.on('-r', '--no-restart', 'Disables automatic relaunching of Opera') do |c|
       @options[:no_restart] = true
+    end
+
+    opts.on('--opera-idle', 'Enable OperaIdle') do |c|
+      @options[:opera_idle] = true
+    end
+
+    opts.on('-b', '--backtrace', 'Enable full backtrace') do |c|
+      @options[:full_backtrace] = true
     end
 
     #opts.on('-c', '--check-syntax', 'Check syntax only') do |c|
@@ -76,9 +88,9 @@ EOS
       @options[:formatter] = formatter
     end
  
-     opts.on('-t', '--tag=TAG',
+    opts.on('-t', '--tag=TAG',
             'Specify tags to only run examples with the specified tag
-             To exclude examples, add ~ before the tag (e.g. ~slow)
+            To exclude examples, add ~ before the tag (e.g. ~slow)
             (TAG is always converted to a symbol)') do |tag|
       @options[:filter_run] = tag
     end
