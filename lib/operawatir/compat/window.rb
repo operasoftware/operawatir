@@ -1,6 +1,7 @@
 module OperaWatir
   module Compat
     module Window
+      include Deprecated
 
       # Checks whether the body has the given text in it.
       #
@@ -23,7 +24,10 @@ module OperaWatir
       alias_method :element_by_xpath, :elements_by_xpath
 
       # Opera specific
-      alias_method :get_hash, :visual_hash
+      def get_hash
+        visual_hash
+      end
+
       deprecated :get_hash, 'browser.visual_hash'
 
     end
