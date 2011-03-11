@@ -1,19 +1,24 @@
 require File.expand_path('../../watirspec_desktophelper', __FILE__)
+require File.expand_path('../shared/shared', __FILE__)
 
 describe 'QuickButton' do
 
 	let(:url) { "http://t/platforms/desktop/automated/resources/documents/page1.html" }
 	let(:url2) { "http://t/platforms/desktop/automated/resources/documents/page2.html" }
-
-    describe '#default?' do
-		
-		 before(:each) do
+  
+  let(:widget) { browser.quick_window(:name, "Document Window").quick_toolbar(:name, "Document Toolbar")  .quick_button(:name, "tbb_Home") }
+  subject { widget }
+    
+  it_behaves_like "a widget"
+   
+  describe '#default?' do
+		before(:each) do
 			browser.open_dialog_with_action("New Preferences Dialog", "Show preferences").should > 0
-		 end
+	 	end
 		
-		after(:each) do
+    after(:each) do
 			browser.close_dialog("New Preferences Dialog").should > 0
-		 end
+		end
 		
 		it 'default button' do
 			browser.quick_button(:name, "button_OK").should be_default
@@ -22,15 +27,15 @@ describe 'QuickButton' do
 		it 'non-default button' do
 			browser.quick_button(:name, "button_Cancel").should_not be_default
 		end
-    end
+  end
 
-    describe '#open_window_with_click' do
-				
+  describe '#open_window_with_click' do
+=begin    
 		it 'a click does not open any windows' do
 			browser.open_window_with_key_press("Document Window", "t", :ctrl).should > 0
 			browser.quick_window(:name, "Document Window").quick_toolbar(:name, "Document Toolbar").quick_addressfield(:name, "tba_address_field").quick_button(:name, "af_ProtocolButton").open_window_with_click("Addressbar Overlay Window").should_not open_window
 		end
-		
+=end		
 		it 'a click opens a window' do
 			browser.quick_window(:name, "Document Window").quick_toolbar(:name, "Document Toolbar").quick_addressfield(:name, "tba_address_field").load_page_with_url(url).should == url
 			browser.quick_window(:name, "Document Window").quick_toolbar(:name, "Document Toolbar").quick_addressfield(:name, "tba_address_field").quick_button(:name, "af_ProtocolButton").open_window_with_click("Addressbar Overlay Window").should open_window
@@ -54,11 +59,9 @@ describe 'QuickButton' do
 			end
 			browser.quick_button(:name, "button_OK").close_dialog_with_click("Customize Toolbar Dialog").should close_dialog
 		end
-		
-		
-    end
+  end
   
-    describe '#change_page_with_click' do
+  describe '#change_page_with_click' do
 	
 		before(:each) do
 			browser.open_dialog_with_action("New Account Wizard", "New account").should > 0
@@ -68,14 +71,15 @@ describe 'QuickButton' do
 			browser.quick_button(:name, "button_Next").change_page_with_click.should > 0
 			browser.close_dialog("New Account Wizard").should > 0
 		end
-		
+=begin		
 		it 'returns 0 - no new page is loaded ' do
 			browser.quick_button(:name, "button_Cancel").change_page_with_click.should == 0
 		end
-				
-    end
+=end		
+  end
   
-    describe '#close_window_with_click' do
+  describe '#close_window_with_click' do
+    it 'raises exception'
 	
 		it 'close_dialog_with_click' do
 			browser.open_dialog_with_action("Add Bookmark Dialog", "Add to bookmarks").should > 0
@@ -86,26 +90,25 @@ describe 'QuickButton' do
 			browser.open_window_with_key_press("Document Window", "t", :ctrl).should > 0
 			browser.quick_window(:name, "Browser Window").quick_toolbar(:name, "Pagebar").quick_tab(:name, "Tab 1").quick_button(:name, "pb_CloseButton").close_dialog_with_click("Document Window").should > 0
 		end
-		
-    end
+  end
 
 	  
-    describe '#load_page_with_click' do
-	
+  describe '#load_page_with_click' do
 		it 'returns window id' do
 			browser.quick_toolbar(:name, "Document Toolbar").quick_addressfield(:name, "tba_address_field").load_page_with_url(url).should == url
 			browser.quick_toolbar(:name, "Document Toolbar").quick_addressfield(:name, "tba_address_field").load_page_with_url(url2).should == url2
 			browser.quick_toolbar(:name, "Document Toolbar").quick_button(:name, "tbb_Back").load_page_with_click.should > 0
 		end
-		
+=begin		
 		it 'returns 0 - no windows is open' do
 			browser.open_window_with_key_press("Document Window", "t", :ctrl).should open_window
 			browser.quick_toolbar(:name, "Document Toolbar").quick_button(:name, "tbb_Stop_Reload").load_page_with_click.should == 0
 			browser.close_window_with_key_press("Document Window", "w", :ctrl).should close_window
 		end
-    end
+=end		
+  end
     
-    describe '#toggle_with_click' do
+  describe '#toggle_with_click' do
 		
 		before(:all) do
 			browser.open_dialog_with_action("Clear Private Data Dialog", "Delete private data").should open_dialog
@@ -122,12 +125,12 @@ describe 'QuickButton' do
 		after(:all) do
 			browser.close_dialog("Clear Private Data Dialog").should close_dialog
 		end
-    end
+  end
 
-    describe '#close_toolbar_with_click' do
-    end
+  describe '#close_toolbar_with_click' do
+  end
 
-    describe '#expand_with_click' do
+  describe '#expand_with_click' do
 	
 		before(:all) do
 			browser.open_dialog_with_action("Clear Private Data Dialog", "Delete private data").should open_dialog
@@ -151,9 +154,9 @@ describe 'QuickButton' do
 		after(:all) do
 			browser.close_dialog("Clear Private Data Dialog").should close_dialog
 		end
-    end
+  end
 
-    describe '#value' do
+  describe '#value' do
 	
 		before(:all) do
 			browser.open_dialog_with_action("Clear Private Data Dialog", "Delete private data").should open_dialog
@@ -173,9 +176,9 @@ describe 'QuickButton' do
 		after(:all) do
 			browser.close_dialog("Clear Private Data Dialog").should close_dialog
 		end
-    end
+  end
 
-    describe '#close_toolbar_with_click' do
+  describe '#close_toolbar_with_click' do
 		
 		it 'opens toolbar' do
 			browser.quick_window(:name, "Browser Window").quick_toolbar(:name, "Status Toolbar Head").quick_button(:name, "tbb_Panel").close_toolbar_with_click
@@ -187,9 +190,9 @@ describe 'QuickButton' do
 			browser.quick_window(:name, "Browser Window").quick_toolbar(:name, "Hotlist Panel Selector").visible?.should be_false
 		end
 		
-    end   
+  end
   
-    describe '#wait_for_enabled' do
+  describe '#wait_for_enabled' do
 	
 		it 'returns true' do
 			browser.open_dialog_with_url("Setup Apply Dialog Confirm Dialog", "http://t/platforms/desktop/bts/DSK-311302/keyboard.ini").should > 0
@@ -197,7 +200,7 @@ describe 'QuickButton' do
 			browser.quick_button(:name, "button_OK").enabled?.should be_true
 			browser.close_all_dialogs
 		end
-		
+=begin		
 		it 'returns false' do
 			browser.open_dialog_with_action("Customize Toolbar Dialog", "Customize Toolbars").should open_dialog
 			browser.quick_dialogtab(:name, "tab_appearance_buttons").activate_tab_with_click
@@ -206,9 +209,6 @@ describe 'QuickButton' do
 			browser.quick_button(:name, "Reset button").enabled?.should be_false
 			browser.close_dialog("Customize Toolbar Dialog").should close_dialog
 		end
-
-
-    end
+=end    
+  end
 end
-
-

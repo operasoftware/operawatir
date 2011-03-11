@@ -1,6 +1,20 @@
 require File.expand_path('../../watirspec_desktophelper', __FILE__)
+require File.expand_path('../shared/shared', __FILE__)
 
 describe 'QuickTreeItem' do
+  
+  before(:all) do
+    browser.open_window_with_key_press("Bookmarks Panel Window", "b", :ctrl, :shift) 
+  end
+  
+  after(:all) do
+    browser.close_all_tabs
+  end
+  
+  let(:widget) { browser.quick_window(:name, "Browser Window").quick_treeview(:name, "Bookmarks View Small").quick_treeitem(:pos, [0, 0]) }
+  subject { widget }
+    
+  it_behaves_like "a widget"
 
   describe '#correct_type?' do
   end
