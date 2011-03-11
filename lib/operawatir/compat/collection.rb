@@ -102,4 +102,6 @@ private
     blk.call(raw_elements.first)
   end
 
+  alias_method :find_elements_by_selector, :find_elements_by_css
+
 end

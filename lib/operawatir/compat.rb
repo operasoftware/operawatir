@@ -2,7 +2,7 @@ module OperaWatir
   
   module Compat; end
 
-  # Switches on compatibility layer (Watir 1 API).
+  # Switches on compatibility layer (Watir 2 API).
   def self.compatibility!
     require 'operawatir/compat/browser'
     require 'operawatir/compat/element_finders'
@@ -16,7 +16,8 @@ module OperaWatir
     # TODO Ruby Modules can't override methods defined in their included klass
     #   Requiring the files is OK, but there needs to be some way of detecting
     #   that we are in compatibility mode.
-    
+
+    require 'operawatir/compat/selector'
     require 'operawatir/compat/collection'
     require 'operawatir/compat/element'
   end
