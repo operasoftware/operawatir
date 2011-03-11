@@ -10,7 +10,7 @@ require 'operawatir/desktop_helper'
   :ng            => false,
   :color_enabled => Config::CONFIG['host_os'] =~ /mswin|mingw|bccwin|wince|emx/ ? false : true,
   :check_syntax  => false,
-  :output_stream => IO.new(2, 'w'),
+  :output_stream => IO.new(1, 'w'),
   :format	     => 'progress', 
   :no_quit		 => false,
   :no_restart   => false
