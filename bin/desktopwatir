@@ -114,7 +114,14 @@ if ARGV.empty?
   abort 'desktopwatir: You need to specify at least one test file to run'
 else
   @options[:files_to_run] = ARGV
-  @options[:files_to_run].map! { | f | Dir.glob(f) }.flatten!
+  @options[:files_to_run].each { | f | puts f if f.include?("\\") }
+  @options[:files_to_run].map! do | f |
+    if f.include? "\\"
+      f
+    else 
+  	  Dir.glob(f)
+  	end 
+  end.flatten!
 end
 
 #abort 'desktopwatir: --ng and --check-syntax are disabled for now' if @options[:ng] || @options[:check_syntax]
