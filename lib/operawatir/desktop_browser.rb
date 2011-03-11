@@ -296,8 +296,11 @@ module OperaWatir
       end.to_a
     end
     
-    #@private
-    # Retrieve all tabs
+    ####################################################
+    # Retrieves an array of all tabs (Document Windows)
+    #
+    # @return [Array] Array of windows
+    #
     def open_pages
       quick_windows.select { |win| win.name == "Document Window" }
     end
