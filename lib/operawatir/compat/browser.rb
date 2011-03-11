@@ -11,11 +11,6 @@ module OperaWatir
         end
       end
 
-      # Quits the browser
-      def quit
-        browser.quit!
-      end
-
       # Class#type is defined by Ruby, it will never reach
       # #method_missing.
       def_delegator :active_window, :type
