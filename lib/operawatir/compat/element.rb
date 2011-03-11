@@ -158,6 +158,8 @@ class OperaWatir::Element
   end
   deprecated :compare_hash, 'element.visual_hash'
 
+  alias_method :get_hash, :visual_hash
+
 private
 
   def assert_enabled!

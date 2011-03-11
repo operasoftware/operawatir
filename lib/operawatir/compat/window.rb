@@ -22,6 +22,9 @@ module OperaWatir
 
       alias_method :element_by_xpath, :elements_by_xpath
 
+      # Opera specific
+      alias_method :get_hash, :visual_hash
+
     end
   end
 end
