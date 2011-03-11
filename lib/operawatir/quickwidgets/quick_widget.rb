@@ -2,6 +2,7 @@ module OperaWatir
   class QuickWidget
     include DesktopCommon
     include DesktopContainer
+    include Deprecated
     
     # @private
     # window_id is set if constructor is called on a (parent) window
@@ -70,8 +71,7 @@ module OperaWatir
     # Gets the text of the widget
     #
     # @note This method should not be used to check the text in a widget if
-    #       the text is in the Opera language file. Use verify_text or
-    #       verify_includes_text instead
+    #       the text is in the Opera language file. Use verify_text instead
     #
     # @return [String] text of the widget
     #
@@ -131,10 +131,17 @@ module OperaWatir
     #               using the specified method
     #
     def verify_text(string_id)
-      element.verifyText(string_id);
+      text = driver.getString(string_id)
+      if text.include? "%"
+        text.gsub!(/%[ds]/, ".*") 
+        res = /#{text}/ =~ element.getText()
+        res == nil ? false: true
+      else
+        element.verifyText(string_id)
+      end
     end
   
-    alias_method :is_text?, :verify_text
+    alias_method :has_ui_string?, :verify_text
     
     ######################################################################
     # Checks that the text in the widget includes the text as loaded
@@ -153,6 +160,8 @@ module OperaWatir
     end
     
     alias_method :includes_text?, :verify_includes_text
+    deprecated :verify_includes_text
+    deprecated :includes_text?
 
     ######################################################################
     # Prints out all of the row/col information in single lines. Used to

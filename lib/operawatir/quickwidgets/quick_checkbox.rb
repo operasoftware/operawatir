@@ -33,6 +33,7 @@ module OperaWatir
       # Cheat since we don't have an even yet 
       sleep(0.1)
 
+      # is this guaranteed to be same as getValue?
       element(true).isSelected
     end
 
