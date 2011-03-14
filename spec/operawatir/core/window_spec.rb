@@ -3,10 +3,6 @@ require 'tmpdir'
 
 describe 'Window' do
 
-  before :all do
-    @filename = "#{Dir.tmpdir}/screenshot.png"
-  end
-
   describe '#visual_hash' do
     before :each do
       browser.url = fixture('boxes.html')
