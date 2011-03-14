@@ -1,0 +1,220 @@
+v0.4.1.pre3  2011-03-14
+
+  [API CHANGES]
+
+  * window.element (and browser.element if you're running in
+    compatibility mode) now works.  Fixes backwards compatibility for
+    SPARTAN tests.  Related to WTR-260.  (andreastt)
+
+  * :selector has now been added as a basic type in Watir 2
+    compatibility mode (e.g. element(:css, 'foo')).  This is aliased to
+    :css.  Added method Compat::Collection#find_elements_by_selector as
+    alias to Collection#find_by_css.  (andreastt)
+
+  * Element#get_hash is now alias to Element#visual_hash for backwards
+    compatiblity with WTR-260.  (andreastt)
+
+  * Window#get_hash is now aliased to Window#visual_hash for backwards
+    compatibility with WTR-260.  (andreastt)
+
+  * Compat::Browser#quit is no longer needed, removed method.  We no
+    longer use Browser#quit! which it was an alias for.  (andreastt)
+
+  [NEW FEATURES]
+
+  * New command-line option --tag (or -t for short) for specifying to
+    run only tagged tests.  Adding ~ (tilde) before the tag (e.g. ~slow)
+    will exclude given tests.
+
+  * New command-line option --backtrace (or -b for short) for enabling
+    full backtraces from RSpec.  As a result, --binary has lost its
+    shortcut -b.  (andreastt)
+
+  [ENHANCEMENTS]
+
+  * Upgraded to OperaDriver v0.4.2.pre5.  (andreastt)
+
+  * Added specifications tests for Desktop part of OperaWatir.  (karie,
+    mariap)
+
+  * OperaWatir specification tests for Desktop are now using RSpec
+    matchers.  Makes it easier to expect windows to be closed, opened,
+    &c.  (karie)
+
+  * --no-opera-idle has been renamed to --opera-idle.  OperaIdle is now
+    by default switched off due to instability.  (andreastt)
+
+  * desktopwatir is no longer writing to STDERR, but to STDOUT.
+    (andreastt)
+
+  * Synced operawatir and desktopwatir binaries.  (andreastt)
+
+  * Updated /spec/watir2/element_spec.rb to HEAD from watirspec.
+    (andreastt)
+
+  [BUG FIXES]
+
+  * Window#get_hash and Element#get_hash methods are now marked as
+    deprecated.
+
+  * Resolved failing to activate address field will use the current
+    control without any errors.  Fixes DSK-320799.  (karie)
+
+  * Widgets should return widgets listing from active Document Window.
+    Fixes DSK-330102.  (karie)
+
+  * Renamed paramter in DesktopBrowser#widgets since it's not
+    necessarily the window name the user will be looking for.  (karie)
+
+  * Added more load actions to be handled by load_window_with_action.
+    Fixes DSK-320817.  (karie)
+
+  * Failing to activate address field will use the current control
+    without any errors.  Focus moved from edit_field to its subclass
+    before call to enter text.  Fixes DSK-320799.  (karie)
+
+  * Defaulting to active window when Document Window is specified, fixed
+    to only default when active window is actually a Document Window.
+    Related to DSK-320786.  (karie)
+
+  * Documentation fixes in Desktop code.  (karie)
+
+  [OTHER]
+
+  * Updated /README.me with the latest version requirements.
+  (andreastt)
+
+v0.4.1.pre2  2011-03-08
+
+  [BUG FIXES]
+
+  * Stringifying text before splitting it in Element#text=.  Thanks to
+    Hallvord R. M. Steen.  (andreastt)
+
+  * Depending on RSpec v2.4 or above, not v2.5 or less as we did
+    previously.  This resolves upgrading OperaWatir if you already have
+    an ancient version of RSpec installed (like we did on SPARTAN).
+    (andreastt)
+
+v0.4.1.pre1  2011-03-04
+
+  [API CHANGES]
+
+  * Dropped support for Browser#build.  (wilhelmja)
+
+  * Moved deprecated keyboard interaction methods (Window#key,
+    Window#key_down, Window#key_up, Window#type) from Window to Browser.
+    If you're running operawatir in Watir 2 compatibility mode (which is
+    enabled by default), this won't change anything for you.
+    (andreastt)
+
+  * Added a new preferences API which is accessible from
+    browser.preferences.  Removed Browser#set_preference,
+    Browser#get_default_preference and Browser#get_preference.
+    (andreastt)
+
+  * Added Browser#build.  (wilhelmja)
+
+  * Removed Browser#pid.  (wilhelmja)
+
+  * Removed Browser#goto.  It's still available in Browser::Compat#goto,
+    which is included by default.  (andreastt)
+
+  * Added DesktopBrowser#get_preference, DesktopBrowser#set_preference
+    and DesktopBrowser#get_default_preference.  (karie)
+
+  * Removed Browser#exists? and Browser#connected?.  (andreastt)
+
+  [NEW FEATURES]
+
+  * Support for disabling OperaIdle with --no-opera-idle.  (andreastt)
+
+  * Added option to wait for connection from Opera.  operawatir binary
+    now accepts --manual (or -m for short).  This will allow you to go
+    to opera:debug and hit connect manually.  (andreastt)
+
+  [ENHANCEMENTS]
+
+  * Updated OperaDriver to v0.4.2.pre2.  (andreastt)
+
+  * Added tests for deprecated method Window#eval_js.  (wilhelmja)
+
+  * Added deprecation notice to Element#compare_hash.  (andreastt)
+
+  * Added specification tests for Window#screenshot,
+    Element#triple_click, Element#compare_hash.  (wilhelmja)
+
+  * Added more specification tests for Window#quadruple_click.
+    (andreastt)
+
+  * DesktopBrowser is now using guessOperaPath from OperaDriver.
+    (karie)
+
+  [BUG FIXES]
+
+  * Fixed passing wrong variable (param instead of args) in
+    Browser#opera_action.  This fixes browser.opera_action('foo').
+    (wilhelmja)
+
+  * Browser#ua_string now returns the navigator.userAgent value from
+    JavaScript.  (wilhelmja)
+
+  * Browser#platform now returns the navigator.platform value from
+    JavaScript.  (wilhelmja)
+
+  * Compat::Element#text now supports getting texteditable values from
+    input, textarea and select elements.  (andreastt)
+
+  * Requiring stringio as JRuby apparently doesn't by default, fixes
+    problem with RSpec formatters.  (andreastt)
+
+  * Colours are now enabled by default, even on Windows.  Installing the
+    gem `ansicolor' fixes colour problems on Windows.  (andreastt)
+
+  * --output now writes to a file, was broken when upgrading to RSpec
+    v2.5.  (andreastt)
+
+  * --format was not working, fixed.  (andreastt)
+
+  * Now requiring RSpec v2.5, not v2.5.1.  rspec-core is v2.5.1, but the
+    main gem, rspec, is only 2.5.  (andreastt)
+
+  * operawatir-launched tests now write to STDOUT instead of STDERR.
+    (andreastt)
+
+  * Check that Browser#desktop? actually returns true or false.
+    (wilhelmja)
+
+  * Check that Window#visual_hash and Element#visual_hash returns a hash
+    in the correct format 8an md5sum preceded by 0x.  (wilhelmja)
+
+  * Added tests for Window#visual_hash and Browser#desktop?.
+    (wilhelmja)
+
+  * Misc. test name fixes.  (wilhelmja)
+
+  * Removing Ruby platform dependency.  (andreastt)
+
+  * We need to exit forcibly (I think because of RSpec) when we come to
+    the end of the test suite.  (andreastt)
+
+  * Fixed compat problem and changed autostart fix to use empty Opera
+    path instead of separate setting.  (karie)
+
+  * Super goto (in DesktopBrowser) disappeared, so don't use it.
+
+  [OTHER]
+
+  * Updated /README.md with the latest version requirements.
+    (andreastt)
+
+  * Updated documentation in /README.md.  Also added a new section
+    listing the operawatir binary's option list.  (andreastt)
+
+  * Set up framework for OperaWatir-specific specification tests.
+    (andreastt)
+
+  * Renamed /spec/legacy_watirspec to /spec/watir2.  (andreastt)
+
+  * Renamed /spec/new_watirspec to /spec/watir3.  (andreastt)
+
