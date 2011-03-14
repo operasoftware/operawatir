@@ -7,18 +7,6 @@ describe 'Window' do
     @filename = "#{Dir.tmpdir}/screenshot.png"
   end
 
-  describe '#screenshot' do
-    it 'takes a screenshot of the specified element' do
-      browser.url = fixture('boxes.html')
-      window.screenshot(@filename).should be_true
-      File.new(@filename).should exist
-    end
-
-    after :each do
-      File.delete @filename if File.exists? @filename
-    end
-  end
-
   describe '#visual_hash' do
     before :each do
       browser.url = fixture('boxes.html')
