@@ -20,6 +20,11 @@ v0.4.1.pre3  2011-03-14
   * Compat::Browser#quit is no longer needed, removed method.  We no
     longer use Browser#quit! which it was an alias for.  (andreastt)
 
+  * Window#screenshot now returns a Screenshot interface or the absolute
+    path to the file depending on whether an argument is given.  This
+    provides backwards compatibility, but also allows you to access the
+    newly added methods Screenshot#save, …#blank?, …#png and …#md5.
+
   [NEW FEATURES]
 
   * New command-line option --tag (or -t for short) for specifying to
@@ -29,6 +34,9 @@ v0.4.1.pre3  2011-03-14
   * New command-line option --backtrace (or -b for short) for enabling
     full backtraces from RSpec.  As a result, --binary has lost its
     shortcut -b.  (andreastt)
+
+  * Implemented a new screenshot API that exposes ScreenShotReply from
+    OperaDriver.  (andreastt)
 
   [ENHANCEMENTS]
 
