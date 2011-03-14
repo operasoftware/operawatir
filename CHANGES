@@ -44,15 +44,15 @@ v0.4.1.pre3  2011-03-14
   * --no-opera-idle has been renamed to --opera-idle.  OperaIdle is now
     by default switched off due to instability.  (andreastt)
 
-  * desktopwatir is no longer writing to STDERR, but to STDOUT.
-    (andreastt)
-
   * Synced operawatir and desktopwatir binaries.  (andreastt)
 
   * Updated /spec/watir2/element_spec.rb to HEAD from watirspec.
     (andreastt)
 
   [BUG FIXES]
+
+  * desktopwatir is no longer writing to STDERR, but to STDOUT.
+    (andreastt)
 
   * Window#get_hash and Element#get_hash methods are now marked as
     deprecated.
@@ -100,8 +100,6 @@ v0.4.1.pre1  2011-03-04
 
   [API CHANGES]
 
-  * Dropped support for Browser#build.  (wilhelmja)
-
   * Moved deprecated keyboard interaction methods (Window#key,
     Window#key_down, Window#key_up, Window#type) from Window to Browser.
     If you're running operawatir in Watir 2 compatibility mode (which is
@@ -112,8 +110,6 @@ v0.4.1.pre1  2011-03-04
     browser.preferences.  Removed Browser#set_preference,
     Browser#get_default_preference and Browser#get_preference.
     (andreastt)
-
-  * Added Browser#build.  (wilhelmja)
 
   * Removed Browser#pid.  (wilhelmja)
 
