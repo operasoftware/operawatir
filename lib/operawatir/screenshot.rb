@@ -13,7 +13,7 @@ class OperaWatir::Screenshot
   # @return [String] The full path to the file that was saved.
   def save(filename)
     File.open(filename, 'w') { |f| f.write png }
-    File.absolute_path filename
+    File.expand_path filename
   end
 
   # Is the screenshot blank?
