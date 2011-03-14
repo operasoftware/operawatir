@@ -5,12 +5,12 @@
 
 Gem::Specification.new do |s|
   s.name = %q{operawatir}
-  s.version = "0.4.1.pre2"
+  s.version = "0.4.1.pre3"
   s.platform = %q{jruby}
 
   s.required_rubygems_version = Gem::Requirement.new("> 1.3.1") if s.respond_to? :required_rubygems_version=
   s.authors = ["Andreas Tolf Tolfsen", "Chris Lloyd", "Stuart Knightley", "Deniz Turkoglu"]
-  s.date = %q{2011-03-11}
+  s.date = %q{2011-03-14}
   s.description = %q{    OperaWatir is a part of the Watir (pronounced water) family of
     free software Ruby libraries for automating web browsers.
     OperaWatir provides a querying engine and Ruby bindings for a
@@ -27,6 +27,7 @@ Gem::Specification.new do |s|
     ".gitmodules",
     ".yardopts",
     "AUTHORS",
+    "CHANGES",
     "Gemfile",
     "LICENSE",
     "README.md",
@@ -49,6 +50,7 @@ Gem::Specification.new do |s|
     "lib/operawatir/compat/collection.rb",
     "lib/operawatir/compat/element.rb",
     "lib/operawatir/compat/element_finders.rb",
+    "lib/operawatir/compat/selector.rb",
     "lib/operawatir/compat/window.rb",
     "lib/operawatir/desktop-waiter.rb",
     "lib/operawatir/desktop_browser.rb",
@@ -80,6 +82,7 @@ Gem::Specification.new do |s|
     "lib/operawatir/quickwidgets/quick_treeview.rb",
     "lib/operawatir/quickwidgets/quick_widget.rb",
     "lib/operawatir/quickwidgets/quick_window.rb",
+    "lib/operawatir/screenshot.rb",
     "lib/operawatir/selector.rb",
     "lib/operawatir/spatnav.rb",
     "lib/operawatir/version.rb",
@@ -101,6 +104,7 @@ Gem::Specification.new do |s|
     "spec/operawatir/core/browser_spec.rb",
     "spec/operawatir/core/element_spec.rb",
     "spec/operawatir/core/preferences_spec.rb",
+    "spec/operawatir/core/screenshot_spec.rb",
     "spec/operawatir/core/spatnav_spec.rb",
     "spec/operawatir/core/window_spec.rb",
     "spec/operawatir/desktop/desktopbrowser_spec.rb",
@@ -257,6 +261,7 @@ Gem::Specification.new do |s|
     "spec/operawatir/core/browser_spec.rb",
     "spec/operawatir/core/element_spec.rb",
     "spec/operawatir/core/preferences_spec.rb",
+    "spec/operawatir/core/screenshot_spec.rb",
     "spec/operawatir/core/spatnav_spec.rb",
     "spec/operawatir/core/window_spec.rb",
     "spec/operawatir/desktop/desktopbrowser_spec.rb",
