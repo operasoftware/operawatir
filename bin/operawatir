@@ -16,7 +16,7 @@ require 'operawatir/helper'
   :format         => 'progress',
   :no_quit        => false,
   :opera_idle     => false,
-  :full_backtrace => false
+  #:full_backtrace => false  # TODO: Provide fix for RSpec
 }
 
 # TODO
