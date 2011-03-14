@@ -114,11 +114,13 @@ class OperaWatir::Window
   # @return [Object]          A Screenshot object.
   # @return [String]          Filename to the saved file.
   def screenshot(filename=nil)
+    # TODO: This should call document.screenshot instead, but that
+    # requires a generic ScreenShotReply interface in OperaDriver.
     filename.nil? ? OperaWatir::Screenshot.new(self) : OperaWatir::Screenshot.new(self).save(filename)
   end
 
   def visual_hash
-    document.visual_hash 50
+    document.visual_hash
   end
 
   # Raw finders
@@ -133,6 +135,13 @@ class OperaWatir::Window
 
   alias_method :find_by_class, :find_by_class_name
   alias_method :find_by_tag, :find_by_tag_name
+
+  # Finds the document of a page.
+  #
+  # @return [Element] The body/document of a page.
+  def document
+    find_by_tag('body')
+  end
 
   # Finds all elements in document.
   #

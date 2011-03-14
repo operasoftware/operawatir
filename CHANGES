@@ -29,6 +29,9 @@ v0.4.1.pre3  2011-03-14
   * Removed timeout argument to Window#visual_hash.  We now default to
     50 milliseconds.  (andreastt)
 
+  * Added Window#document which returns the body/document of a page.
+    (andreastt)
+
   [NEW FEATURES]
 
   * New command-line option --tag (or -t for short) for specifying to
