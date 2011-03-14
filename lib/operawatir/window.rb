@@ -117,8 +117,8 @@ class OperaWatir::Window
     filename.nil? ? OperaWatir::Screenshot.new(self) : OperaWatir::Screenshot.new(self).save(filename)
   end
 
-  def visual_hash(time_out=50)
-    document.visual_hash time_out
+  def visual_hash
+    document.visual_hash 50
   end
 
   # Raw finders

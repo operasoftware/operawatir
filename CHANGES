@@ -24,6 +24,10 @@ v0.4.1.pre3  2011-03-14
     path to the file depending on whether an argument is given.  This
     provides backwards compatibility, but also allows you to access the
     newly added methods Screenshot#save, …#blank?, …#png and …#md5.
+    (andreastt)
+
+  * Removed timeout argument to Window#visual_hash.  We now default to
+    50 milliseconds.  (andreastt)
 
   [NEW FEATURES]
 
