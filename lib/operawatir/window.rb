@@ -105,22 +105,16 @@ class OperaWatir::Window
 
   # Opera-specific
 
-  # Saves a screenshot of the window to the filesystem of the server.
+  # Creates a Screenshot interface or saves screenshot to specified
+  # location if a file path is given.
   #
-  # @param [String]  file_name The absolute path to the location where 
-  #   you want the screenshot saved.
-  # @param [Hash]    hashes    A list of hashes to compare.  If the hashes
-  #   match the hashes of what you are trying to take a screenshot of,
-  #   this method will return a boolean value instead of an actual
-  #   screenshot.
-  # @param [Integer] time_out  Specifies how long we should wait before
-  #   timing out.
+  # @param [String] file_name The absolute path to the location where 
+  #                           you want the screenshot saved.
   #
-  # @return [Object]  A ScreenShotReply object.
-  # @return [Boolean] True/false depending on whether you have given a
-  #   hash as an argument.
-  def screenshot(file_name, hashes=[], time_out=2)
-    driver.saveScreenshot(file_name, time_out, hashes.to_java(:string))
+  # @return [Object]          A Screenshot object.
+  # @return [String]          Filename to the saved file.
+  def screenshot(filename=nil)
+    filename.nil? ? OperaWatir::Screenshot.new(self) : OperaWatir::Screenshot.new(self).save(filename)
   end
 
   def visual_hash(time_out=50)

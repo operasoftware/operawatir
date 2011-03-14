@@ -3,14 +3,19 @@ require 'tmpdir'
 
 describe 'Window' do
 
-  describe '#screenshot' do
-    after (:each) do
-      File.delete(Dir.tmpdir + '/screenshot.png')
-    end
+  before :all do
+    @filename = "#{Dir.tmpdir}/screenshot.png"
+  end
 
+  describe '#screenshot' do
     it 'takes a screenshot of the specified element' do
       browser.url = fixture('boxes.html')
-      window.screenshot(Dir.tmpdir + '/screenshot.png').should be_true
+      window.screenshot(@filename).should be_true
+      File.new(@filename).should exist
+    end
+
+    after :each do
+      File.delete @filename if File.exists? @filename
     end
   end
 
@@ -21,7 +26,7 @@ describe 'Window' do
     end
 
      it 'returns a hash' do
-      @reference.visual_hash.should =~ /^(0x)[a-f0-9]{32}$/
+      @reference.visual_hash.should match /^(0x)[a-f0-9]{32}$/
     end
 
     it 'returns identical hashes for visually identical pages' do
