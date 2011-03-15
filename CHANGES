@@ -7,8 +7,8 @@ v0.4.1.pre3  2011-03-14
     SPARTAN tests.  Related to WTR-260.  (andreastt)
 
   * :selector has now been added as a basic type in Watir 2
-    compatibility mode (e.g. element(:css, 'foo')).  This is aliased to
-    :css.  Added method Compat::Collection#find_elements_by_selector as
+    compatibility mode (e.g. element(:selector, 'foo')).  This is aliased
+    to :css.  Added method Compat::Collection#find_elements_by_selector as
     alias to Collection#find_by_css.  (andreastt)
 
   * Element#get_hash is now alias to Element#visual_hash for backwards
