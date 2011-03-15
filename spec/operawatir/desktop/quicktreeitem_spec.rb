@@ -52,8 +52,8 @@ describe 'QuickTreeItem' do
 			browser.quick_treeview(:name, "Input_treeview").quick_treeitem(:text, "Copy").visible?.should be_true
 		end
 		
-		it 'collapse with click ' do
-			browser.quick_treeview(:name, "Input_treeview").quick_treeitem(:text, "Application    (defaults)").collapse_with_click
+		it 'collapse with click' do
+			browser.quick_treeview(:name, "Input_treeview").quick_treeitem(:text, "Application    (defaults)").expand_with_click
 			browser.quick_treeview(:name, "Input_treeview").quick_treeitem(:text, "Copy").visible?.should be_false
 		end
 		
@@ -87,7 +87,7 @@ describe 'QuickTreeItem' do
     
    # alias_method :open_dialog_with_double_click, :open_window_with_double_click
     
-#private
+  #private
   describe '#scroll_item_into_view' do
   end
   
