@@ -5,13 +5,14 @@ describe 'QuickTreeItem' do
   
   before(:all) do
     browser.open_window_with_key_press("Bookmarks Panel Window", "b", :ctrl, :shift) 
+	#browser.quick_treeview(:name, "Bookmarks Folders View").focus_with_click
   end
   
   after(:all) do
     browser.close_all_tabs
   end
   
-  let(:widget) { browser.quick_window(:name, "Browser Window").quick_treeview(:name, "Bookmarks View Small").quick_treeitem(:pos, [0, 0]) }
+  let(:widget) { browser.quick_window(:name, "Bookmarks Panel Window").quick_treeview(:name, "Bookmarks View").quick_treeitem(:pos, [0, 0]) }
   subject { widget }
     
   it_behaves_like "a widget"
@@ -19,8 +20,23 @@ describe 'QuickTreeItem' do
   #describe '#correct_type?' do
   #end
 
-  #describe '#focus_with_click' do
-  #end
+  describe '#focus_with_click' do
+  
+		before(:all) do
+			browser.open_dialog_with_action("New Preferences Dialog", "Show preferences").should > 0
+			browser.quick_dialogtab(:name, "tab_prefs_advanced").activate_tab_with_click
+		end
+		
+		it 'focus a treeitem' do
+			 browser.quick_treeview(:name, "Advanced_treeview").quick_treeitem(:string_id, "D_NEW_PREFS_SHORTCUTS").focus_with_click
+			 browser.quick_checkbox(:name, "Mouse_gestures_checkbox").should be_visible
+		end
+	
+		
+		after(:all) do
+			browser.close_all_dialogs
+		end
+  end
         
   describe '#expand_with_click' do
 	
