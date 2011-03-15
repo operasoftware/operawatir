@@ -36,7 +36,7 @@ describe 'QuickButton' do
 			browser.quick_window(:name, "Document Window").quick_toolbar(:name, "Document Toolbar").quick_addressfield(:name, "tba_address_field").quick_button(:name, "af_ProtocolButton").open_window_with_click("Addressbar Overlay Window").should_not open_window
 		end
 =end		
-		it 'a click opens a window' do
+		it 'opens a window' do
 			browser.quick_window(:name, "Document Window").quick_toolbar(:name, "Document Toolbar").quick_addressfield(:name, "tba_address_field").load_page_with_url(url).should == url
 			browser.quick_window(:name, "Document Window").quick_toolbar(:name, "Document Toolbar").quick_addressfield(:name, "tba_address_field").quick_button(:name, "af_ProtocolButton").open_window_with_click("Addressbar Overlay Window").should open_window
 		end
@@ -88,10 +88,9 @@ describe 'QuickButton' do
     
 		it 'close_window_with_click' do
 			browser.open_window_with_key_press("Document Window", "t", :ctrl).should > 0
-			browser.quick_window(:name, "Browser Window").quick_toolbar(:name, "Pagebar").quick_tab(:name, "Tab 1").quick_button(:name, "pb_CloseButton").close_dialog_with_click("Document Window").should > 0
+			browser.quick_window(:name, "Browser Window").quick_toolbar(:name, "Pagebar").quick_tab(:name, "Tab 1").quick_button(:name, "pb_CloseButton").close_window_with_click("Document Window").should > 0
 		end
   end
-
 	  
   describe '#load_page_with_click' do
 		it 'returns window id' do
@@ -114,11 +113,11 @@ describe 'QuickButton' do
 			browser.open_dialog_with_action("Clear Private Data Dialog", "Delete private data").should open_dialog
 		end
 		
-		it 'returns true' do
+		it 'returns value = 1 of button when button is pressed' do
 			browser.quick_button(:name, "Destails_expand").toggle_with_click.should == 1
 		end
 		
-		it 'returns false' do
+		it 'returns value = 0 of button when button is unpressed' do
 			browser.quick_button(:name, "Destails_expand").toggle_with_click.should == 0
 		end
 		
@@ -141,8 +140,8 @@ describe 'QuickButton' do
 			browser.quick_button(:name, "button_manage_wand").visible?.should be_true
 		end
 		
-		
-		it 'colapse with click ' do
+
+		it 'collapse with click ' do
 			browser.quick_button(:name, "Destails_expand").expand_with_click
 			browser.quick_button(:name, "button_manage_wand").visible?.should be_false
 		end
@@ -179,7 +178,7 @@ describe 'QuickButton' do
   end
 
   describe '#close_toolbar_with_click' do
-		
+		# TODO: Move to separate example for open_toolbar ...
 		it 'opens toolbar' do
 			browser.quick_window(:name, "Browser Window").quick_toolbar(:name, "Status Toolbar Head").quick_button(:name, "tbb_Panel").close_toolbar_with_click
 			browser.quick_window(:name, "Browser Window").quick_toolbar(:name, "Hotlist Panel Selector").visible?.should be_true
