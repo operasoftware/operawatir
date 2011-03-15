@@ -43,6 +43,13 @@ shared_examples_for 'a widget' do
         [true, false].should include widget.enabled?
        end
      end
+     
+  #describe 'print_row' do
+  #end
+
+  #describe '#print_widget_info' do
+  #end
+
  
 end
 
