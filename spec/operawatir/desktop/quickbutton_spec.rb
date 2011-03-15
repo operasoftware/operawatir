@@ -10,6 +10,11 @@ describe 'QuickButton' do
   subject { widget }
     
   it_behaves_like "a widget"
+  
+  describe "quick_button" do
+    it "constructs a button by its position" #New in task5
+    it "constructs a button by its name"
+  end
    
   describe '#default?' do
 		before(:each) do
@@ -120,6 +125,8 @@ describe 'QuickButton' do
 		it 'returns value = 0 of button when button is unpressed' do
 			browser.quick_button(:name, "Destails_expand").toggle_with_click.should == 0
 		end
+		
+		it "returns false when it removes a button" #New in Task 5
 		
 		after(:all) do
 			browser.close_dialog("Clear Private Data Dialog").should close_dialog
