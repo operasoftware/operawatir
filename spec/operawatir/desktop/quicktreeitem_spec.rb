@@ -16,11 +16,11 @@ describe 'QuickTreeItem' do
     
   it_behaves_like "a widget"
 
-  describe '#correct_type?' do
-  end
+  #describe '#correct_type?' do
+  #end
 
-  describe '#focus_with_click' do
-  end
+  #describe '#focus_with_click' do
+  #end
         
   describe '#expand_with_click' do
 	
@@ -37,7 +37,7 @@ describe 'QuickTreeItem' do
 		end
 		
 		it 'collapse with click ' do
-			browser.quick_treeview(:name, "Input_treeview").quick_treeitem(:text, "Application    (defaults)").expand_with_click
+			browser.quick_treeview(:name, "Input_treeview").quick_treeitem(:text, "Application    (defaults)").collapse_with_click
 			browser.quick_treeview(:name, "Input_treeview").quick_treeitem(:text, "Copy").visible?.should be_false
 		end
 		
