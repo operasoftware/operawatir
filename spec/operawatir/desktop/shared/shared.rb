@@ -1,5 +1,14 @@
 require File.expand_path('../../../watirspec_desktophelper', __FILE__)
 
+shared_examples_for 'a button' do
+  describe '#default?' do
+  end
+  describe '#value' do
+  end
+  #describe '#toggle_with_click' do
+  #end
+end
+
 shared_examples_for 'an editfield' do
   describe '#focus_with_click' do
     it 'focuses editfield' do
