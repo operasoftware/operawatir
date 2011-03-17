@@ -1,3 +1,21 @@
+v0.4.1.pre4  2011-03-17
+
+  [NEW FEATURES]
+
+  * Imlemented temporary environmental variable for switching OperaIdle
+    on and off for SPARTAN.  This will override the --opera-idle option.
+    Set the OPERA_IDLE environmental variable to a truthy variable
+    (true, "true", 1, "1") to enable.
+
+  [BUG FIXES]
+
+  * Temporarily passing OPERA_ARGS environmental variable to OperaDriver
+    to enable fullscreen testing on SPARTAN.  OPERA_ARGS will in the
+    future be detected in OperaDriver.
+
+  * /lib/operawatir/helper.rb will now autorun RSpec, fixing the
+    all-tests-failing issue on SPARTAN.
+
 v0.4.1.pre3  2011-03-14
 
   [API CHANGES]
