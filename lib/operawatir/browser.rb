@@ -202,7 +202,8 @@ private
       s.setAutostart false if self.settings[:manual]
       s.setOperaLauncherBinary self.settings[:launcher] if self.settings[:launcher]
       s.setOperaBinaryLocation self.settings[:path] if self.settings[:path]
-      s.setOperaBinaryArguments self.settings[:args].to_s if self.settings[:args]
+      # FIXME: OPERA_ARGS will be moved to OperaDriver soon.
+      s.setOperaBinaryArguments ENV['OPERA_ARGS'] + ' ' + self.settings[:args].to_s # if self.settings[:args]
       s.setNoQuit true if self.settings[:no_quit]
       s.setUseOperaIdle false if !self.settings[:opera_idle]
     }

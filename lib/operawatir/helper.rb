@@ -55,4 +55,4 @@ private
   end
 end
 
-#OperaWatir::Helper.run!
+OperaWatir::Helper.run!
