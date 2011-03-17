@@ -8,13 +8,6 @@ class String
   end
 end
 
-class Object
-  def truthy?
-    self && [true, 'true', 'yes', 'y', '1', 1].include?(self)
-  end
-end
-
-
 class OperaWatir::Preferences
   extend Forwardable
   include Enumerable

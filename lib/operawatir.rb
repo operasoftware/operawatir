@@ -22,6 +22,12 @@ include_class com.opera.core.systems.QuickWidget
 
 $KCODE = 'u'  # UTF-8 support
 
+class Object
+  def truthy?
+    self && [true, 'true', 'yes', 'y', '1', 1].include?(self)
+  end
+end
+
 # TODO This should be replaced when we decide upon a better way of
 # enabling the Watir 3 API.
 module OperaWatir
