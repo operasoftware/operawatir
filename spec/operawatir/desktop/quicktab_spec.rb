@@ -10,7 +10,7 @@ describe 'QuickTab' do
    it_behaves_like "a widget"
    it_behaves_like "a button"
    
-  describe "quick_tab" do
+  describe "#quick_tab" do
     it "constructs tabbutton by its position"
     it "constructs tabbutton by its name"
     it "constructs tabbutton by its text"

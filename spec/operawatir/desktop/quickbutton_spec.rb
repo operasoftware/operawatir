@@ -12,7 +12,7 @@ describe 'QuickButton' do
   it_behaves_like "a widget"
   it_behaves_like "a button"
   
-  describe "quick_button" do
+  describe "#quick_button" do
     it "constructs a button by its position" #New in task5
     it "constructs a button by its name"
   end

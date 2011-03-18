@@ -7,6 +7,11 @@ describe 'QuickWindow' do
   let(:nonexisting_window) { browser.quick_window(:name, "Doc Window") }
     
   subject { documentwindow }
+    
+  describe '#quick_window' do
+    it "constructs window by id"
+    it "constructs window by name"
+  end
   
   describe '#exist?' do
     it 'returns true for existing window' do
