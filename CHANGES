@@ -1,3 +1,10 @@
+v0.4.1.pre5  2011-03-18
+
+  [BUG FIXES]
+
+  * Upgraded to OperaDriver v0.4.2.pre5-15-gf8e8949 containing an
+    updated 64-bit launcher that will work on older versions of libc.
+
 v0.4.1.pre4  2011-03-17
 
   [NEW FEATURES]
