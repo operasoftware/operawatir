@@ -11,6 +11,10 @@ describe 'QuickAddressfield' do
      
    it_behaves_like "a widget"
    it_behaves_like "an editfield"
+   
+   describe "quick_addressfield" do
+     it "constructs addressfield by its name"
+   end
 
    describe '#load_page_with_url' do
      it 'loads page' do
@@ -44,4 +48,5 @@ describe 'QuickAddressfield' do
        expect { unknown_addressfield.highlighted_text }.to raise_error OperaWatir::Exceptions::UnknownObjectException
      end
     end
+
 end
