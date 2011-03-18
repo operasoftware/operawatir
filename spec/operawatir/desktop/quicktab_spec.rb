@@ -8,6 +8,6 @@ describe 'QuickTab' do
    subject { widget }
      
    it_behaves_like "a widget"
-   #it_behaves_like "a button"
+   it_behaves_like "a button"
    
 end
