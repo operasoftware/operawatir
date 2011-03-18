@@ -10,7 +10,7 @@ describe 'QuickThumbnail' do
    it_behaves_like "a widget"
    it_behaves_like "a button"
    
-  describe "quick_thumbnail" do
+  describe "#quick_thumbnail" do
      it "constructs thumbnail by its position"
      it "constructs thumbnail by its name"
      it "constructs thumbnail by its text"

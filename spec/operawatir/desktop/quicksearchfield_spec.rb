@@ -9,7 +9,7 @@ describe 'QuickSearchField' do
    it_behaves_like "a widget"
    it_behaves_like "an editfield"
    
-  describe "quick_searchfield" do
+  describe "#quick_searchfield" do
     it "constructs searchfield by its name"
   end
    
