@@ -198,6 +198,32 @@ module OperaWatir
       return col if type == :tabbutton
       false
     end
+
+    ########################################################################
+    #
+    # @return width of widget
+    #
+    def width
+      element.getRect().width
+    end
+
+    ########################################################################
+    #
+    # @return height of widget
+    #
+    def height
+      element.getRect().height
+    end
+
+    #@private
+    def x
+      element.getRect().x
+    end
+
+    #@private
+    def y
+      element.getRect().y
+    end
     
     ######################################################################
     # Prints out all of the internal information about the widget. Used

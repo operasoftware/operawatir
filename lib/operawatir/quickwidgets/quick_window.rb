@@ -106,7 +106,33 @@ module OperaWatir
     def print_window_info
       puts window_info_string
     end
+    
+    ########################################################################
+    #
+    # @return width of widget
+    #
+    def width
+      element.getRect().width
+    end
 
+    ########################################################################
+    #
+    # @return height of widget
+    #
+    def height
+      element.getRect().height
+    end
+
+    #@private
+    def x
+      element.getRect().x
+    end
+
+    #@private
+    def y
+      element.getRect().y
+    end
+  
     ######################################################################
     # Returns a string of the internal information about the window. Used
     # to discover the names of widgets and windows to use in the tests.

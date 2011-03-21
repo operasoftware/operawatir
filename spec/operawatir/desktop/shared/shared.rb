@@ -79,6 +79,10 @@ shared_examples_for 'a widget' do
     its(:value) { should be_integer }
     its(:to_s) { should be_kind_of String }
     its(:driver) { should be_instance_of Java::ComOperaCoreSystems::OperaDesktopDriver }
+    its(:width) { should be > 0 }
+    its(:height) { should be > 0 }
+    its(:x) { should be > 0 }
+    its(:y) { should be > 0 }
     #its(:type) { should }
       
     describe '#enabled?' do
