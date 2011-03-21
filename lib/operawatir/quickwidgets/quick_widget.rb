@@ -133,7 +133,7 @@ module OperaWatir
     def verify_text(string_id)
       text = driver.getString(string_id)
       if text.include? "%"
-        text.gsub!(/%[ds]/, ".*") 
+        text.gsub!(/%[csduoxefg0-9]/, ".*") 
         res = /#{text}/ =~ element.getText()
         res == nil ? false: true
       else

@@ -17,6 +17,7 @@ describe 'QuickFind' do
      
    it_behaves_like "a widget"
    
+   
    describe "#quick_find" do
      it "constructs thumbnail by its name" do
       browser.quick_find(:name, "Filetypes_quickfind").should exist 

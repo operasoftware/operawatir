@@ -16,7 +16,7 @@ describe 'QuickCheckbox' do
 		let(:widget) {  browser.quick_checkbox(:name, "Delete_all_cookies") }
 		subject { widget }
     
-		it_behaves_like "a checkbox"
+		it_behaves_like 'a checkbox'
    # end
 	
     describe '#correct_type?' do
