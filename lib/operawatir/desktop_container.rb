@@ -84,7 +84,21 @@ module OperaWatir
       QuickDropdown.new(self, how, what, parent_widget, window_id)
     end
 
-    
+   ######################################################################
+   # Method for accessing a quickfind element
+   #
+   # @example
+   #   browser.quick_find(:name, "Filetypes_quickfind")
+   #
+   # @param [String] how   Method to find the element. :name, :string_id or :text
+   # @param [String] what  Search text to find the element with.  
+   #
+   # @return [Object] quickfind object if found, otherwise nil
+   #
+   def quick_find(how, what)
+     QuickFind.new(self, how, what, parent_widget, window_id)
+   end
+
     ######################################################################
     # Method for accessing an edit or multiedit element
     #
