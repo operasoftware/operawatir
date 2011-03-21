@@ -103,6 +103,19 @@ shared_examples_for 'a widget' do
   #describe '#print_widget_info' do
   #end
 
+  shared_examples_for 'a checkbox' do
+  describe '#checked?' do
+    it "returns a boolean" do
+      [true, false].should include widget.default?
+    end
+  end
+
+  describe '#toggle_with_click' do
+    it "returns value" do
+      [true, false].should include widget.toggle_with_click
+    end
+  end
+end
  
 end
 
