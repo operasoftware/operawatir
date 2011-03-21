@@ -416,6 +416,18 @@ module OperaWatir
     def cache_preferences_path
       driver.getCachePreferencesPath()
     end
+    
+    ######################################################################
+    # Returns the language string corresponding to the string_id provided
+    #
+    # @example
+    #   browser.string("D_NEW_PREFERENCES_GENERAL")
+    #
+    # @return [String] the language string corresponding to the string_id
+    #
+    def string(string_id)
+      driver.getString(string_id)
+    end
 
     ######################################################################
     # Returns true if the test is running on Mac 
