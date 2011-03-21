@@ -219,7 +219,18 @@ module OperaWatir
     def quick_treeitem(how, what)
       QuickTreeItem.new(self, how, what, parent_widget, window_id)
     end
- 
+
+    #@private
+    def quick_griditem(how, what)
+      QuickGridItem.new(self, how, what, parent_widget, window_id)
+    end
+
+     #@private
+     def quick_gridlayout(how, what)
+       QuickGridLayout.new(self, how, what, parent_widget, window_id)
+     end
+
+     
     ######################################################################
     # Method for accessing a thumbnail (speeddial, thumbnail when  hovering tab groups)
     #
