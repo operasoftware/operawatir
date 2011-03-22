@@ -9,7 +9,7 @@ describe 'QuickDialogTab' do
   let(:widget) { browser.quick_window(:name, "Document Window").quick_toolbar(:name, "Document Toolbar").quick_button(:name, "tbb_Home") }
   subject { widget }
     
-  it_behaves_like "a widget"
+  it_behaves_like 'a widget'
 
   describe '#activate_tab_with_click' do
 	 it 'activates a tab with click' do

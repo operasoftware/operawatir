@@ -15,7 +15,7 @@ describe 'QuickTreeItem' do
   let(:widget) { browser.quick_window(:name, "Bookmarks Panel Window").quick_treeview(:name, "Bookmarks View").quick_treeitem(:pos, [0, 0]) }
   subject { widget }
     
-  it_behaves_like "a widget"
+  it_behaves_like 'a widget'
 
   #describe '#correct_type?' do
   #end

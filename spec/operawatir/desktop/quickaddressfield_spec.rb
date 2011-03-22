@@ -9,11 +9,11 @@ describe 'QuickAddressfield' do
   
    subject { addressfield }
      
-   it_behaves_like "a widget"
-   it_behaves_like "an editfield"
+   it_behaves_like 'a widget'
+   it_behaves_like 'an editfield'
    
-   describe "#quick_addressfield" do
-     it "constructs addressfield by its name"
+   describe '#quick_addressfield' do
+     it 'constructs addressfield by its name'
    end
 
    describe '#load_page_with_url' do
