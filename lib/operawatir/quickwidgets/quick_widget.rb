@@ -196,6 +196,7 @@ module OperaWatir
     def position
       return [row, col] if type == :treeitem
       return col if type == :tabbutton
+      return col if type == :button
       false
     end
 
