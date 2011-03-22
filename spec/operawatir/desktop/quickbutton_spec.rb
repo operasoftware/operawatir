@@ -9,14 +9,37 @@ describe 'QuickButton' do
   let(:widget) { browser.quick_window(:name, "Document Window").quick_toolbar(:name, "Document Toolbar")  .quick_button(:name, "tbb_Home") }
   subject { widget }
     
-  it_behaves_like "a widget"
-  it_behaves_like "a button"
+  it_behaves_like 'a widget'
+  it_behaves_like 'a button'
   
-  describe "#quick_button" do
-    it "constructs a button by its position" #New in task5
-    it "constructs a button by its name"
+  describe '#quick_button' do
+    it "constructs a button by its name" 
   end
-   
+  
+  describe 'position' do
+    before(:all) do
+      browser.open_dialog_with_action("Customize Toolbar Dialog", "Customize Toolbars")
+      browser.quick_dialogtab(:name, "tab_appearance_toolbars").activate_tab_with_click
+      bookmarks = browser.quick_checkbox(:name, "bookmarks_bar")
+      bookmarks.toggle_with_click unless bookmarks.value == 1
+      browser.close_dialog("Customize Toolbar Dialog")
+    end
+    after(:all) do
+      browser.open_dialog_with_action("Customize Toolbar Dialog", "Customize Toolbars")
+      browser.quick_dialogtab(:name, "tab_appearance_toolbars").activate_tab_with_click
+      browser.quick_checkbox(:name, "bookmarks_bar").toggle_with_click
+      browser.close_dialog("Customize Toolbar Dialog")
+    end
+    it 'returns position for button in personalbar' do 
+      browser.quick_window(:name, "Document Window").quick_toolbar(:name, "Personalbar Inline").quick_button(:text, "Kayak").position >= 0
+    end
+    it "can specify which button to construct" do
+      #browser.quick_buttons("Document Window").each { | b | puts b.to_s }
+      browser.quick_window(:name, "Document Window").quick_toolbar(:name, "Personalbar Inline").quick_button(:pos, 1).should exist
+    end
+  end
+
+  #This is already in shared for a button
   describe '#default?' do
 		before(:each) do
 			browser.open_dialog_with_action("New Preferences Dialog", "Show preferences").should > 0
