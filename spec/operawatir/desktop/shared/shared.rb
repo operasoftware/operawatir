@@ -15,6 +15,9 @@ shared_examples_for 'a button' do
     it "returns value" do
       [0, 1].should include widget.toggle_with_click
     end
+    after(:each) do
+      widget.toggle_with_click
+    end
   end
 end
 
@@ -61,6 +64,9 @@ shared_examples_for 'a checkbox' do
   describe '#toggle_with_click' do
     it "returns value" do
       [true, false].should include widget.toggle_with_click
+    end
+    after(:each) do
+      widget.toggle_with_click
     end
   end
 end
