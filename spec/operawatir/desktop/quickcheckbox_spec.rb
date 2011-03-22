@@ -9,7 +9,7 @@ describe 'QuickCheckbox' do
 			browser.quick_button(:name, "Destails_expand").toggle_with_click
 		end
    
-   		after(:all) do
+   	after(:all) do
 			browser.close_all_dialogs
 		end
   
@@ -17,8 +17,10 @@ describe 'QuickCheckbox' do
 		subject { widget }
     
 		it_behaves_like 'a checkbox'
+	end
+		
+    describe '#toggle_with_click' do
     end
-	
     
     describe '#open_dialog_with_click' do
 	
