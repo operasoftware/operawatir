@@ -221,11 +221,10 @@ describe 'QuickButton' do
   end
   
   describe '#wait_for_enabled' do
-	
-		it 'returns true' do
+		it 'returns true when button is enabled' do
 			browser.open_dialog_with_url("Setup Apply Dialog Confirm Dialog", "http://t/platforms/desktop/bts/DSK-311302/keyboard.ini").should > 0
 			browser.quick_button(:name, "button_OK").wait_for_enabled.should be_true
-			browser.quick_button(:name, "button_OK").enabled?.should be_true
+			browser.quick_button(:name, "button_OK").should be_enabled
 			browser.close_all_dialogs
 		end
 =begin		
