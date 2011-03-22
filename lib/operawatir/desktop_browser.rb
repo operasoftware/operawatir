@@ -433,8 +433,10 @@ module OperaWatir
     #
     def string(string_id, skip_ampersand = true)
       string = driver.getString(string_id)
-      if skip_ampersand and string.include "&"
+      if skip_ampersand and string.include? "&"
          string.gsub!("&", "")
+      else
+        string
       end
     end
 
