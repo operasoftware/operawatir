@@ -16,7 +16,7 @@ shared_examples_for 'a button' do
       [0, 1].should include widget.toggle_with_click
     end
     after(:each) do
-      widget.toggle_with_click
+      widget.toggle_with_click unless widget.type == :thumbnail
     end
   end
 end

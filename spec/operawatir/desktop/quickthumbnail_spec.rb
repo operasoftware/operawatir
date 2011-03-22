@@ -3,17 +3,22 @@ require File.expand_path('../shared/shared', __FILE__)
 
 describe 'QuickThumbnail' do
   
-   let(:widget) { browser.quick_window(:name, "Browser Window").quick_toolbar(:name, "Pagebar").quick_tab(:name, "Tab 0") }
+  before(:all) do
+    browser.open_window_with_key_press("Document Window", "t", :ctrl)
+  end
   
-   subject { widget }
+  let(:widget) { browser.quick_thumbnail(:name, "Speed Dial 1") }
+  
+  subject { widget }
      
-   it_behaves_like "a widget"
-   it_behaves_like "a button"
+  it_behaves_like "a widget"
+  it_behaves_like "a button"
    
+  #This is really on browser, widgets, and window
   describe "#quick_thumbnail" do
-     it "constructs thumbnail by its position"
-     it "constructs thumbnail by its name"
-     it "constructs thumbnail by its text"
-   end
+    it "constructs thumbnail by its position"
+    it "constructs thumbnail by its name"
+    it "constructs thumbnail by its text"
+  end
    
 end
