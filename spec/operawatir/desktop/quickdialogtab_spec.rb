@@ -12,14 +12,14 @@ describe 'QuickDialogTab' do
   it_behaves_like "a widget"
 
   describe '#activate_tab_with_click' do
-	it "activate a tab with click" do
-		browser.quick_window(:name, "Document Window").quick_toolbar(:name, "Document Toolbar").quick_addressfield(:name, "tba_address_field").load_page_with_url(url1).should == url1
-		browser.load_window_with_action("Document Window", "Open url in new page", url2).should > 0
-		browser.quick_window(:name, "Browser Window").quick_toolbar(:name, "Pagebar").quick_tab(:name, "Tab 0").activate_tab_with_click
-		browser.quick_window(:name, "Browser Window").quick_toolbar(:name, "Pagebar").quick_tab(:name, "Tab 0").text.should == "Test Page 1"
-		browser.quick_window(:name, "Browser Window").quick_toolbar(:name, "Pagebar").quick_tab(:name, "Tab 1").activate_tab_with_click
-		browser.quick_window(:name, "Browser Window").quick_toolbar(:name, "Pagebar").quick_tab(:name, "Tab 1").text.should == "Test Page 2"
-	end
+	 it 'activates a tab with click' do
+	   browser.quick_window(:name, "Document Window").quick_toolbar(:name, "Document Toolbar").quick_addressfield(:name, "tba_address_field").load_page_with_url(url1).should == url1
+	   browser.load_window_with_action("Document Window", "Open url in new page", url2).should > 0
+	   browser.quick_window(:name, "Browser Window").quick_toolbar(:name, "Pagebar").quick_tab(:name, "Tab 0").activate_tab_with_click
+	   browser.quick_window(:name, "Browser Window").quick_toolbar(:name, "Pagebar").quick_tab(:name, "Tab 0").text.should == "Test Page 1"
+	   browser.quick_window(:name, "Browser Window").quick_toolbar(:name, "Pagebar").quick_tab(:name, "Tab 1").activate_tab_with_click
+	   browser.quick_window(:name, "Browser Window").quick_toolbar(:name, "Pagebar").quick_tab(:name, "Tab 1").text.should == "Test Page 2"
+	 end
   end
   
  
