@@ -22,7 +22,7 @@ describe 'QuickCheckbox' do
     
   describe '#open_dialog_with_click' do
 	
-		it "returns window id" do
+		it 'returns window id' do
 			browser.quick_button(:name, "Set_password_button").open_dialog_with_click("Change Masterpassword Dialog").should > 0
 			browser.quick_editfield(:name, "Password_edit").focus_with_click
 			browser.quick_editfield(:name, "Password_edit").type_text("masterpass1").should == "masterpass1" 
