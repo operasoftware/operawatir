@@ -34,7 +34,6 @@ describe 'QuickButton' do
       browser.quick_window(:name, "Document Window").quick_toolbar(:name, "Personalbar Inline").quick_button(:text, "Kayak").position >= 0
     end
     it "can specify which button to construct" do
-      #browser.quick_buttons("Document Window").each { | b | puts b.to_s }
       browser.quick_window(:name, "Document Window").quick_toolbar(:name, "Personalbar Inline").quick_button(:pos, 1).should exist
     end
   end
@@ -192,12 +191,12 @@ describe 'QuickButton' do
 			browser.open_dialog_with_action("Clear Private Data Dialog", "Delete private data").should open_dialog
 		end
 		
-		it 'returns 1' do
+		it 'returns 1 when button is pressed' do
 			browser.quick_button(:name, "Destails_expand").toggle_with_click.should == 1
 			browser.quick_button(:name, "Destails_expand").value.should == 1
 		end
 		
-		it 'returns 0' do
+		it 'returns 0 when button is unpressed' do
 			browser.quick_button(:name, "Destails_expand").toggle_with_click.should == 0
 			browser.quick_button(:name, "Destails_expand").value.should == 0
 		end
@@ -209,15 +208,14 @@ describe 'QuickButton' do
   end
 
   describe '#close_toolbar_with_click' do
-		# TODO: Move to separate example for open_toolbar ...
-		it 'opens toolbar' do
-			browser.quick_window(:name, "Browser Window").quick_toolbar(:name, "Status Toolbar Head").quick_button(:name, "tbb_Panel").close_toolbar_with_click
-			browser.quick_window(:name, "Browser Window").quick_toolbar(:name, "Hotlist Panel Selector").visible?.should be_true
+		before(:each) do
+			browser.quick_window(:name, "Browser Window").quick_toolbar(:name, "Status Toolbar Head").quick_button(:name, "tbb_Panel").toggle_with_click
 		end
 		
 		it 'closes toolbar' do
+      browser.quick_window(:name, "Browser Window").quick_toolbar(:name, "Hotlist Panel Selector").should be_visible
 			browser.quick_window(:name, "Browser Window").quick_toolbar(:name, "Status Toolbar Head").quick_button(:name, "tbb_Panel").close_toolbar_with_click
-			browser.quick_window(:name, "Browser Window").quick_toolbar(:name, "Hotlist Panel Selector").visible?.should be_false
+			browser.quick_window(:name, "Browser Window").quick_toolbar(:name, "Hotlist Panel Selector").should_not be_visible
 		end
 		
   end
