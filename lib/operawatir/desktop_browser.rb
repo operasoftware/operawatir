@@ -420,13 +420,22 @@ module OperaWatir
     ######################################################################
     # Returns the language string corresponding to the string_id provided
     #
+    # @param string_id the string_id to convert to the corresponding
+    #                  language string
+    # @param skip_ampersand if false, then leave string as is, else
+    #                  (default) remove any ampersand in string
+    #
+    #
     # @example
     #   browser.string("D_NEW_PREFERENCES_GENERAL")
     #
     # @return [String] the language string corresponding to the string_id
     #
-    def string(string_id)
-      driver.getString(string_id)
+    def string(string_id, skip_ampersand = true)
+      string = driver.getString(string_id)
+      if skip_ampersand and string.include "&"
+         string.gsub!("&", "")
+      end
     end
 
     ######################################################################
