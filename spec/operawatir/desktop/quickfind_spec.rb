@@ -5,6 +5,7 @@ describe 'QuickFind' do
   
    before(:all) do
      browser.open_dialog_with_action("New Preferences Dialog", "Show preferences", 4).should > 0
+     browser.quick_treeview(:name, "Advanced_treeview").quick_treeitem(:text, "Downloads").activate_tab_with_click
    end
    
    after(:all) do
@@ -14,12 +15,12 @@ describe 'QuickFind' do
    let(:widget) { browser.quick_find(:name, "Filetypes_quickfind") }
   
    subject { widget }
-     
-   it_behaves_like "a widget"
    
+   it_behaves_like 'an editfield'
+   it_behaves_like 'a widget'
    
-   describe "#quick_find" do
-     it "constructs thumbnail by its name" do
+   describe '#quick_find' do
+     it 'constructs thumbnail by its name' do
       browser.quick_find(:name, "Filetypes_quickfind").should exist 
      end
    end
