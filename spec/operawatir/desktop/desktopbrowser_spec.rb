@@ -224,6 +224,22 @@ describe 'DesktopBrowser' do
        browser.cache_preferences_path.should_not be_empty
      end
    end
+   
+   describe '#string' do
+     it 'returns string corresponding to string_id' do
+       
+     end
+     it 'removes ampersands in string with ampersand' do
+       
+     end
+     it 'leaves ampersand in string when skip_ampersand is true' do
+       
+     end
+     it 'fails in some reasonable way if string_id doesn\'t exist' do
+       
+     end
+     
+   end
 
    describe '#mac?' do
    end
