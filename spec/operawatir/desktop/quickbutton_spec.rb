@@ -16,6 +16,10 @@ describe 'QuickButton' do
     it "constructs a button by its name" 
   end
   
+  after(:all) do
+    browser.close_all_tabs
+  end
+  
   describe 'position' do
     before(:all) do
       browser.open_dialog_with_action("Customize Toolbar Dialog", "Customize Toolbars")
@@ -201,9 +205,8 @@ describe 'QuickButton' do
 			browser.quick_button(:name, "Destails_expand").value.should == 0
 		end
 		
-		
 		after(:all) do
-			browser.close_dialog("Clear Private Data Dialog").should close_dialog
+			browser.close_dialog("Clear Private Data Dialog")
 		end
   end
 
@@ -221,11 +224,13 @@ describe 'QuickButton' do
   end
   
   describe '#wait_for_enabled' do
+    after(:each) do
+      browser.close_all_dialogs
+    end
 		it 'returns true when button is enabled' do
 			browser.open_dialog_with_url("Setup Apply Dialog Confirm Dialog", "http://t/platforms/desktop/bts/DSK-311302/keyboard.ini").should > 0
 			browser.quick_button(:name, "button_OK").wait_for_enabled.should be_true
 			browser.quick_button(:name, "button_OK").should be_enabled
-			browser.close_all_dialogs
 		end
 =begin		
 		it 'returns false' do
