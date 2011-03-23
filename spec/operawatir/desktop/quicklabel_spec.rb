@@ -17,8 +17,8 @@ describe 'QuickLabel' do
      
    it_behaves_like "a widget"
    
-   describe "#quick_thumbnail" do
-     it "constructs thumbnail by its name" do
+   describe "#quick_label" do
+     it "constructs label by its name" do
       browser.quick_label(:name, "label_for_Name_edit").should exist 
      end
    end

@@ -11,14 +11,21 @@ describe 'QuickThumbnail' do
   
   subject { widget }
      
-  it_behaves_like "a widget"
-  it_behaves_like "a button"
+  it_behaves_like 'a widget'
+  it_behaves_like 'a button'
    
   #This is really on browser, widgets, and window
-  describe "#quick_thumbnail" do
-    it "constructs thumbnail by its position"
-    it "constructs thumbnail by its name"
-    it "constructs thumbnail by its text"
+  describe '#quick_thumbnail' do
+    it 'constructs thumbnail by its position'
+    it 'constructs thumbnail by its name'
+    it 'constructs thumbnail by its text'
+  end
+  
+  describe '#move_with_drag' do
+    it 'moves thumbnail'
+    context 'when target is not a thumbnail' do
+      it 'raises UnknownObjectException'
+    end
   end
    
 end

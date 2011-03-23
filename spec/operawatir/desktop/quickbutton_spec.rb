@@ -113,17 +113,17 @@ describe 'QuickButton' do
   describe '#close_window_with_click' do
     it 'raises exception'
 	
-		it 'close_dialog_with_click' do
+		it 'returns window id of closed dialog window' do
 			browser.open_dialog_with_action("Add Bookmark Dialog", "Add to bookmarks").should > 0
 			browser.quick_button(:name, "button_Cancel").close_dialog_with_click("Add Bookmark Dialog").should > 0
 		end
     
-		it 'close_window_with_click' do
+		it 'returns window id of closed window' do
 			browser.open_window_with_key_press("Document Window", "t", :ctrl).should > 0
 			browser.quick_window(:name, "Browser Window").quick_toolbar(:name, "Pagebar").quick_tab(:name, "Tab 1").quick_button(:name, "pb_CloseButton").close_window_with_click("Document Window").should > 0
 		end
   end
-	  
+  
   describe '#load_page_with_click' do
 		it 'returns window id' do
 			browser.quick_toolbar(:name, "Document Toolbar").quick_addressfield(:name, "tba_address_field").load_page_with_url(url).should == url
