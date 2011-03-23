@@ -2,27 +2,27 @@ require File.expand_path('../../watirspec_desktophelper', __FILE__)
 require File.expand_path('../shared/shared', __FILE__)
 
 describe 'QuickDialogTab' do
-
-	let(:url1) { "http://t/platforms/desktop/automated/resources/documents/page1.html" }
-	let(:url2) { "http://t/platforms/desktop/automated/resources/documents/page2.html" }
+	before(:all) do
+		browser.open_dialog_with_action("New Preferences Dialog", "Show preferences").should > 0
+	end
+	
+	after(:all) do
+		browser.close_all_dialogs
+	end
   
-  let(:widget) { browser.quick_window(:name, "Document Window").quick_toolbar(:name, "Document Toolbar").quick_button(:name, "tbb_Home") }
+  let(:widget) { browser.quick_dialogtab(:name, "tab_prefs_advanced") }
   subject { widget }
     
   it_behaves_like 'a widget'
 
   describe '#activate_tab_with_click' do
 	 it 'activates a tab with click' do
-	   browser.quick_window(:name, "Document Window").quick_toolbar(:name, "Document Toolbar").quick_addressfield(:name, "tba_address_field").load_page_with_url(url1).should == url1
-	   browser.load_window_with_action("Document Window", "Open url in new page", url2).should > 0
-	   browser.quick_window(:name, "Browser Window").quick_toolbar(:name, "Pagebar").quick_tab(:name, "Tab 0").activate_tab_with_click
-	   browser.quick_window(:name, "Browser Window").quick_toolbar(:name, "Pagebar").quick_tab(:name, "Tab 0").text.should == "Test Page 1"
-	   browser.quick_window(:name, "Browser Window").quick_toolbar(:name, "Pagebar").quick_tab(:name, "Tab 1").activate_tab_with_click
-	   browser.quick_window(:name, "Browser Window").quick_toolbar(:name, "Pagebar").quick_tab(:name, "Tab 1").text.should == "Test Page 2"
+	   browser.quick_dialogtab(:name, "tab_prefs_advanced").activate_tab_with_click
+	   browser.quick_checkbox(:name, "Thumbnails_in_tab_cycle").should be_visible
 	 end
   end
-  
- 
- 
+   
 end
+
+
 
