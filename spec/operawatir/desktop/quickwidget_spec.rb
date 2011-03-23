@@ -42,12 +42,9 @@ describe 'QuickWidget' do
     end
     
     describe '#focus_with_click' do
-		
+      #Not really testable until theres a way to check focus		
       it 'should focus the addressfield' do
 			 browser.quick_toolbar(:name, "Document Toolbar").quick_addressfield(:name, "tba_address_field").focus_with_click
-			 browser.quick_toolbar(:name, "Document Toolbar").quick_addressfield(:name, "tba_address_field").clear
-			 browser.quick_toolbar(:name, "Document Toolbar").quick_addressfield(:name, "tba_address_field").type_text("www_address").should == "www_address"
-			 browser.quick_toolbar(:name, "Document Toolbar").quick_addressfield(:name, "tba_address_field").text.should == "www_address"
       end
 	  end
     
