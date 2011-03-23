@@ -39,7 +39,6 @@ describe 'QuickTreeItem' do
   end
         
   describe '#expand_with_click' do
-	
 		before(:all) do
 			browser.open_dialog_with_action("New Preferences Dialog", "Show preferences").should > 0
 			browser.quick_dialogtab(:name, "tab_prefs_advanced").activate_tab_with_click
@@ -65,7 +64,6 @@ describe 'QuickTreeItem' do
 		after(:all) do
 			browser.close_all_dialogs
 		end
-		
   end
 
   describe '#expand_with_double_click' do
