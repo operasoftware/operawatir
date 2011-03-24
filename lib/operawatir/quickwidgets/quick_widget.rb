@@ -121,6 +121,7 @@ module OperaWatir
     ######################################################################
     # Checks that the text in the widget matches the text as loaded
     # from the current language file in Opera using the string_id
+    # (Strips &'s from the string returned)
     #
     # @param [String] string_id String ID to use to load the string from the current
     #                 language file (e.g. "D_NEW_PREFERENCES_GENERAL")
@@ -131,13 +132,13 @@ module OperaWatir
     #               using the specified method
     #
     def verify_text(string_id)
-      text = driver.getString(string_id)
+      text = driver.getString(string_id, true) #true => stripAmpersands from string
       if text.include? "%"
-        text.gsub!(/%[csduoxefg0-9]/, ".*") 
+        text.gsub!(/%[csduoxefg0-9]/, ".*")
         res = /#{text}/ =~ element.getText()
         res == nil ? false: true
       else
-        element.verifyText(string_id)
+        element.verifyText(string_id) 
       end
     end
   
