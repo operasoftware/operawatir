@@ -1,7 +1,7 @@
 require File.expand_path('../../watirspec_desktophelper', __FILE__)
 
 describe 'QuickWidget' do
-=begin  
+  
     describe '#open_window_with_hover' do
       it 'opens window on hover' do
         browser.quick_window(:name, "Browser Window").quick_toolbar(:name, "Pagebar").quick_tab(:pos, 0).open_window_with_hover.should > 0
@@ -21,7 +21,7 @@ describe 'QuickWidget' do
         end
       end
     end
-=end
+
     describe '#verify_text' do
       before(:all) do
         browser.open_dialog_with_action("New Preferences Dialog", "Show preferences", 2).should open_dialog
@@ -47,7 +47,7 @@ describe 'QuickWidget' do
         browser.quick_treeview(:name, "Web_search_treeview").quick_treeitem(:pos, [@last_row,0]).verify_text("S_FIND_IN_PAGE").should be_true
       end
     end
-=begin  
+
     #NOTE: This is deprecated
     describe '#verify_includes_text' do
       it 'verifies the include text id' do
@@ -63,7 +63,7 @@ describe 'QuickWidget' do
 			 browser.quick_toolbar(:name, "Document Toolbar").quick_addressfield(:name, "tba_address_field").focus_with_click
       end
 	  end
-=end   
+   
 	  # Private
 	  # Also: Test in shared.rb not here
     #describe '#element' do

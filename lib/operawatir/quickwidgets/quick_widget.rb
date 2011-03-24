@@ -121,7 +121,7 @@ module OperaWatir
     ######################################################################
     # Checks that the text in the widget matches the text as loaded
     # from the current language file in Opera using the string_id
-    # (Strips &'s from the string returned)
+    # (Strips &'s from the string before comparing)
     #
     # @param [String] string_id String ID to use to load the string from the current
     #                 language file (e.g. "D_NEW_PREFERENCES_GENERAL")
