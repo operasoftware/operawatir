@@ -81,7 +81,7 @@ class OperaWatir::Element
   # Clears a text input or textarea of any text.
   def clear
     assert_enabled!
-    uncheck!
+    node.clear
   end
 
   # If passed a value it will type text into the element, otherwise it
