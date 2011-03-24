@@ -72,7 +72,7 @@ class OperaWatir::Window
   #
   # @return [String] The text of the document.
   def text
-    driver.getText
+    document.getText
   end
 
   # Retrieves the HTML/source code of the currently loaded document.
