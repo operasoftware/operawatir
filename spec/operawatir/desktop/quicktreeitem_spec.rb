@@ -16,6 +16,8 @@ describe 'QuickTreeItem' do
   subject { widget }
     
   it_behaves_like 'a widget'
+  
+  its(:type) { should == :treeitem }
 
   #describe '#correct_type?' do
   #end

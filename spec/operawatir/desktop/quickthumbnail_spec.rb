@@ -13,6 +13,8 @@ describe 'QuickThumbnail' do
      
   it_behaves_like 'a widget'
   it_behaves_like 'a button'
+  
+  its(:type) { should == :thumbnail }
    
   #This is really on browser, widgets, and window
   describe '#quick_thumbnail' do

@@ -12,6 +12,8 @@ describe 'QuickButton' do
   it_behaves_like 'a widget'
   it_behaves_like 'a button'
   
+  its(:type) { should == :button }
+  
   describe '#quick_button' do
     it "constructs a button by its name" 
   end

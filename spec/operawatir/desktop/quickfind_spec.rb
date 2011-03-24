@@ -19,6 +19,8 @@ describe 'QuickFind' do
    it_behaves_like 'an editfield'
    it_behaves_like 'a widget'
    
+  its(:type) { should == :quickfind }
+   
    describe '#quick_find' do
      it 'constructs quickfind by its name' do
       browser.quick_find(:name, "Filetypes_quickfind").should exist 

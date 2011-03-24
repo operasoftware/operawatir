@@ -14,6 +14,8 @@ describe 'QuickDialogTab' do
   subject { widget }
     
   it_behaves_like 'a widget'
+  
+  its(:type) { should == :dialogtab }
 
   describe '#activate_tab_with_click' do
 	 it 'activates a tab with click' do

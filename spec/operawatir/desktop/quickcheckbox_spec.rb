@@ -17,8 +17,10 @@ describe 'QuickCheckbox' do
     
   it_behaves_like 'a checkbox'
 		
-  describe '#toggle_with_click' do
-  end
+  #describe '#toggle_with_click' do
+  #end
+  
+  its(:type) { should == :checkbox }
     
   describe '#open_dialog_with_click' do
 		it 'returns window id' do

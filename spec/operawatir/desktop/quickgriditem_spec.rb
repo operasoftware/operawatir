@@ -5,6 +5,7 @@ describe 'QuickItem' do
    #let(:widget) { browser.quick_label(:name, "label_for_Name_edit") }
    #subject { widget }
    #it_behaves_like "a widget"
+   #its(:type) { should == :griditem }
    
    describe "#quick_griditem" do
      it "constructs grid_item by its name" do

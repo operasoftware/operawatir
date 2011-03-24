@@ -9,6 +9,8 @@ describe 'QuickSearchField' do
    it_behaves_like "a widget"
    it_behaves_like "an editfield"
    
+  its(:type) { should == :search }
+   
   describe '#quick_searchfield' do
     it 'constructs searchfield by its name'
   end
