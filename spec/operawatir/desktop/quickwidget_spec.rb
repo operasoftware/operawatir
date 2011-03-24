@@ -7,19 +7,18 @@ describe 'QuickWidget' do
       end
     end
     
-    describe '#type' do
-      it 'type:addressfield' do
-			 browser.quick_toolbar(:name, "Document Toolbar").quick_addressfield(:name, "tba_address_field").type.should == :addressfield
+    
+    describe '#exists' do
+      context 'when widget exists' do
+        it 'returns true' do
+          browser.browser.quick_toolbar(:name, "Document Toolbar").quick_addressfield(:name, "tba_address_field").should exist
+        end
       end
-		
-      it 'type:button' do
-			 browser.quick_window(:name, "Document Window").quick_toolbar(:name, "Document Toolbar").quick_button(:name, "tbb_Forward").type.should == :button
+      context 'when widget doesn\'t exist' do
+        it 'returns false' do
+          browser.browser.quick_toolbar(:name, "Document Toolbar").quick_addressfield(:name, "tba_address_field2").should_not exist
+        end
       end
-		
-      it 'type:tabbutton' do
-			 browser.quick_window(:name, "Browser Window").quick_toolbar(:name, "Pagebar").quick_tab(:name, "Tab 0").type.should == :tabbutton
-      end
-		
     end
  
     describe '#verify_text' do
@@ -42,7 +41,7 @@ describe 'QuickWidget' do
     end
     
     describe '#focus_with_click' do
-      #Not really testable until theres a way to check focus		
+      #Not really testable until there's a way to check focus		
       it 'should focus the addressfield' do
 			 browser.quick_toolbar(:name, "Document Toolbar").quick_addressfield(:name, "tba_address_field").focus_with_click
       end

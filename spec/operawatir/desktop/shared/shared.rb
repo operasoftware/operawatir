@@ -102,7 +102,6 @@ shared_examples_for 'a widget' do
     its(:height) { should be > 0 }
     its(:x) { should be > 0 }
     its(:y) { should be > 0 }
-    #its(:type) { should }
       
     describe '#enabled?' do
       it 'returns a boolean' do

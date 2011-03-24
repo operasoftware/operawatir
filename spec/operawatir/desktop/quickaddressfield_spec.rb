@@ -13,9 +13,16 @@ describe 'QuickAddressfield' do
    it_behaves_like 'an editfield'
    
    describe '#quick_addressfield' do
-     it 'constructs addressfield by its name'
+     it 'constructs addressfield by its name' do
+       browser.quick_toolbar(:name, "Document Toolbar").quick_addressfield(:name, "tba_address_field")
+     end
+     it 'constructs addressfield by its name' do
+            browser.quick_toolbar(:name, "Document Toolbar").quick_addressfield(:name, "tba_address_field2")
+     end
    end
-
+   
+   its(:type) { should == :addressfield }
+ 
    describe '#load_page_with_url' do
      it 'loads page' do
        addressfield.load_page_with_url("opera:debug").should == "opera:debug"
