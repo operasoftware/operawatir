@@ -24,10 +24,51 @@ describe 'Window' do
     end
   end
 
+
+  #
   # This method is deprecated, but must be tested anyway.
+  #
+
   describe '#eval_js' do
     it 'works the same way as execute_script' do
       window.eval_js('1+1').should == window.execute_script('1+1');
+    end
+  end
+
+  #
+  # The frames implementation is a relic from the old OperaWatir.  We
+  # need to replace this with a better frames implementation in the
+  # future.
+  #
+
+  describe '#frame' do
+    before :all do
+      require 'operawatir/compat/window'
+      OperaWatir::Window.send :include, OperaWatir::Compat::Window
+      browser.url = fixture('frames.html')
+    end
+
+    it 'will switch to the specified frame' do
+      p window.text
+      window.frame(:name, 'test')
+      p window.text
+      window.text.should include 'Lorem ipsum'
+      window.text.should_not include 'foobar'
+    end
+  end
+
+  describe '#switch_to_default' do
+    before :all do 
+      browser.url = fixture('frames.html')
+      sleep 5
+      window.frame(:name, 'test')
+    end
+
+    it 'will switch back to the default top frame' do
+      window.switch_to_default
+      p window.text
+      window.text.should include 'foobar'
+      window.text.should_not include 'Lorem ipsum'
     end
   end
 

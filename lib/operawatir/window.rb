@@ -72,7 +72,7 @@ class OperaWatir::Window
   #
   # @return [String] The text of the document.
   def text
-    document.getText
+    document.text
   end
 
   # Retrieves the HTML/source code of the currently loaded document.
@@ -140,7 +140,7 @@ class OperaWatir::Window
   #
   # @return [Element] The body/document of a page.
   def document
-    find_by_tag('body')
+    find_by_tag('html')
   end
 
   # Finds all elements in document.
