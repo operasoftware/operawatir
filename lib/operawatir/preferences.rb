@@ -165,7 +165,7 @@ private
         p = p.to_s
         
         p =~ /^key: \"([a-zA-Z0-9\(\)\\\.\-\s]*)\"$/
-        key = $1
+        key = $1.to_s
         
         p =~ /^type: ([A-Z]+)$/
         type = $1.to_s.capitalize

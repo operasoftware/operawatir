@@ -49,9 +49,7 @@ describe 'Window' do
     end
 
     it 'will switch to the specified frame' do
-      p window.text
       window.frame(:name, 'test')
-      p window.text
       window.text.should include 'Lorem ipsum'
       window.text.should_not include 'foobar'
     end
@@ -60,13 +58,11 @@ describe 'Window' do
   describe '#switch_to_default' do
     before :all do 
       browser.url = fixture('frames.html')
-      sleep 5
       window.frame(:name, 'test')
     end
 
     it 'will switch back to the default top frame' do
       window.switch_to_default
-      p window.text
       window.text.should include 'foobar'
       window.text.should_not include 'Lorem ipsum'
     end
