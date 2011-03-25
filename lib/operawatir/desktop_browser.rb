@@ -26,7 +26,7 @@ module OperaWatir
       active_window.url = url
       sleep(1)
     end
-
+    
     ######################################################################
     # Quits Opera
     #
@@ -564,8 +564,6 @@ module OperaWatir
     # Set preference pref in prefs section prefs_section to value
     # specified.
     #
-    # TODO: This needs to be moved to a separate preference section.
-    #
     # @param [String] prefs_section The prefs section the pref belongs to
     # @param [String] pref          The preference to set
     # @param [String] value         The value to set the preference to
@@ -574,8 +572,6 @@ module OperaWatir
     end
 
     # Get value of preference pref in prefs section prefs_section.
-    #
-    # TODO: This needs to be moved to a separate preference section.
     #
     # @param [String] prefs_section The prefs section the pref belongs to
     # @param [String] pref          The preference to get
@@ -587,8 +583,6 @@ module OperaWatir
         
     # Get default value of preference pref in prefs section
     # prefs_section.
-    #
-    # TODO: This needs to be moved to a separate preference section.
     #
     # @param [String] prefs_section The prefs section the pref belongs to
     # @param [String] pref          The preference to get

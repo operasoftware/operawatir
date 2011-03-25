@@ -225,12 +225,37 @@ module OperaWatir
       QuickTreeItem.new(self, how, what, parent_widget, window_id)
     end
 
-    #@private
+    ######################################################################
+    # Method for accessing a grid item in a gridlayout
+    #
+    # @example (The label dialog for mail labels)
+    #   browser.quick_gridlayout(:name, "RulesGrid").quick_griditem(:name, "GridItem0").quick_editfield(:name, "Match")
+    #
+    # @param [String] how   Method to find the element. :name, :string_id or :text
+    # @param [String] what  Search text to find the element with. Text or position 
+    #                        of treeitem. Position is specified as [row, column]
+    #
+    # @return [Object] griditem object if found, otherwise nil
+    #
     def quick_griditem(how, what)
       QuickGridItem.new(self, how, what, parent_widget, window_id)
     end
 
      #@private
+    ######################################################################
+    # Method for accessing a grid layout 
+    # (A grid layout would normally be used to specify the path to a child item
+    #  in one of its cells)
+    #
+    # @example (The label dialog for mail labels)
+    #   browser.quick_gridlayout(:name, "RulesGrid").quick_griditem(:name, "GridItem0").quick_editfield(:name, "Match")
+    #
+    # @param [String] how   Method to find the element. :name, :string_id or :text
+    # @param [String] what  Search text to find the element with. Text or position 
+    #                        of treeitem. Position is specified as [row, column]
+    #
+    # @return [Object] gridlayout object if found, otherwise nil
+    #
      def quick_gridlayout(how, what)
        QuickGridLayout.new(self, how, what, parent_widget, window_id)
      end
