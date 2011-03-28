@@ -7,13 +7,15 @@ module OperaWatir
     # @private
     # window_id is set if constructor is called on a (parent) window
     # location is set is this is called on a (parent) widget
-    def initialize(container, method, selector=nil, location=nil, window_id=-1)
+    def initialize(container, method, selector=nil, location=nil, window_id=-1, type=nil)
       @container = container
                             
       if method.is_a? Java::ComOperaCoreSystems::QuickWidget
         @elm = method
+        @type = WIDGET_ENUM_MAP.invert[method.getType]
       else
         @method    = method
+        @type      = type
         @selector  = selector
         @location  = location
         @window_id  = window_id
@@ -281,7 +283,7 @@ module OperaWatir
     def value
       return element.getValue
     end
-
+    
 protected
     #@private
     # Return the element
@@ -293,8 +295,8 @@ protected
       raise(Exceptions::UnknownObjectException, "Element #{@selector} not found using #{@method}") unless @elm 
       @elm
     end
-    
-    
+
+  
 private
     
    def drag_and_drop_on(other, drop_pos)
@@ -341,15 +343,15 @@ private
     # Click widget
     def click(button = :left, times = 1, *opts)
       raise DesktopExceptions::WidgetDisabledException, "Element #{@selector} is disabled" unless enabled?
-      
+  
       #Some buttons etc. aren't visible until hovering them
       if (visible? == false and type != :dialogtab)
         element.hover
         element(true)
       end
-      
+  
       # Dialog tabs are always visible even if the page they are connected to isn't
-      if visible? == true or type == :dialogtab 
+      if visible? == true or type == :dialogtab
         button = DesktopEnums::MOUSEBUTTON_ENUM_MAP[button]
         list = Java::JavaUtil::ArrayList.new
         opts.each { |mod| list << DesktopEnums::KEYMODIFIER_ENUM_MAP[mod] }
@@ -358,12 +360,12 @@ private
         raise(DesktopExceptions::WidgetNotVisibleException, "Widget #{name.length > 0 ? name : text} not visible")
       end
     end
-    
+
     # Right click a widget
     def right_click
       click(:right, 1)
     end
-    
+  
     # double click widget
     def double_click
       click(:left, 2) 
@@ -398,31 +400,31 @@ private
       if @selector == nil && @elm != nil
         set_selector
       end
-      #puts "<find> Find Widget by " + @method.to_s + " " + @window_id.to_s + ", " + @selector.to_s + ", " + @location.to_s
+      #puts "\n<find> Find Widget by " + @method.to_s + " " + @window_id.to_s + ", " + @selector.to_s + ", " + @location.to_s + ", " + @type.to_s
       case @method
       when :name
         if @location != nil
-          @element = driver.findWidgetByName(@window_id, @selector, @location)
+          @element = driver.findWidgetByName(WIDGET_ENUM_MAP[@type], @window_id, @selector, @location)
         else
-          @element = driver.findWidgetByName(@window_id, @selector)
+          @element = driver.findWidgetByName(WIDGET_ENUM_MAP[@type], @window_id, @selector)
         end
       when :string_id
         if @location != nil
-          @element = driver.findWidgetByStringId(@window_id, @selector, @location)
+          @element = driver.findWidgetByStringId(WIDGET_ENUM_MAP[@type], @window_id, @selector, @location)
         else
-          @element = driver.findWidgetByStringId(@window_id, @selector)
+          @element = driver.findWidgetByStringId(WIDGET_ENUM_MAP[@type], @window_id, @selector)
         end
       when :text
         if @location != nil
-          @element = driver.findWidgetByText(@window_id, @selector, @location)
+          @element = driver.findWidgetByText(WIDGET_ENUM_MAP[@type], @window_id, @selector, @location)
         else
-          @element = driver.findWidgetByText(@window_id, @selector)
+          @element = driver.findWidgetByText(WIDGET_ENUM_MAP[@type], @window_id, @selector)
         end
       when :pos
         if @location != nil
-          @element = driver.findWidgetByPosition(@window_id, @selector[0], @selector[1], @location)
+          @element = driver.findWidgetByPosition(WIDGET_ENUM_MAP[@type], @window_id, @selector[0], @selector[1], @location)
         else
-          @element = driver.findWidgetByPosition(@window_id, @selector[0], @selector[1])
+          @element = driver.findWidgetByPosition(WIDGET_ENUM_MAP[@type], @window_id, @selector[0], @selector[1])
         end
      end
       if @window_id < 0 && @element != nil

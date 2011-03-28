@@ -19,7 +19,7 @@ module OperaWatir
           what = [0, what]
         end
       end
-      QuickButton.new(self, how, what, parent_widget, window_id)
+      QuickButton.new(self, how, what, parent_widget, window_id, :button)
     end
     
     ######################################################################
@@ -41,7 +41,7 @@ module OperaWatir
           what = [0, what]
         end
       end
-      QuickTab.new(self, how, what, parent_widget, window_id)
+      QuickTab.new(self, how, what, parent_widget, window_id, :tabbutton)
     end
        
     ######################################################################
@@ -56,7 +56,7 @@ module OperaWatir
     # @return [Object] checkbox object if found, otherwise nil
     #
     def quick_checkbox(how, what)
-      QuickCheckbox.new(self, how, what, parent_widget, window_id)
+      QuickCheckbox.new(self, how, what, parent_widget, window_id, :checkbox)
     end
 
     ######################################################################
@@ -71,7 +71,7 @@ module OperaWatir
     # @return [Object] dialog tab object if found, otherwise nil
     #
     def quick_dialogtab(how, what)
-      QuickDialogTab.new(self, how, what, parent_widget, window_id)
+      QuickDialogTab.new(self, how, what, parent_widget, window_id, :dialogtab)
     end
 
     ######################################################################
@@ -86,7 +86,7 @@ module OperaWatir
     # @return [Object] drop down object if found, otherwise nil
     #
     def quick_dropdown(how, what)
-      QuickDropdown.new(self, how, what, parent_widget, window_id)
+      QuickDropdown.new(self, how, what, parent_widget, window_id, :dropdown)
     end
 
    ######################################################################
@@ -101,7 +101,7 @@ module OperaWatir
    # @return [Object] quickfind object if found, otherwise nil
    #
    def quick_find(how, what)
-     QuickFind.new(self, how, what, parent_widget, window_id)
+     QuickFind.new(self, how, what, parent_widget, window_id, :quickfind)
    end
 
     ######################################################################
@@ -116,7 +116,7 @@ module OperaWatir
     # @return [Object] edit field object if found, otherwise nil
     #
     def quick_editfield(how, what)
-      QuickEditField.new(self, how, what, parent_widget, window_id)
+      QuickEditField.new(self, how, what, parent_widget, window_id, :editfield)
     end
 
     ######################################################################
@@ -131,7 +131,7 @@ module OperaWatir
     # @return [Object] label object if found, otherwise nil
     #
     def quick_label(how, what)
-      QuickLabel.new(self, how, what, parent_widget, window_id)
+      QuickLabel.new(self, how, what, parent_widget, window_id, :label)
     end
 
     ######################################################################
@@ -146,7 +146,7 @@ module OperaWatir
     # @return [Object] radio button object if found, otherwise nil
     #
     def quick_radiobutton(how, what)
-      QuickRadioButton.new(self, how, what, parent_widget, window_id)
+      QuickRadioButton.new(self, how, what, parent_widget, window_id, :radiobutton)
     end
 
     ######################################################################
@@ -161,7 +161,7 @@ module OperaWatir
     # @return [Object] treeview object if found, otherwise nil
     #
     def quick_treeview(how, what)
-      QuickTreeView.new(self, how, what, parent_widget, window_id)
+      QuickTreeView.new(self, how, what, parent_widget, window_id, :treeview)
     end
     
     ######################################################################
@@ -176,7 +176,7 @@ module OperaWatir
     # @return [Object] addressfield object if found, otherwise nil
     #
     def quick_addressfield(how, what)
-        QuickAddressField.new(self, how, what, parent_widget, window_id)
+        QuickAddressField.new(self, how, what, parent_widget, window_id, :addressfield)
     end
         
     ######################################################################
@@ -191,7 +191,7 @@ module OperaWatir
     # @return [Object] searchfield object if found, otherwise nil
     #
     def quick_searchfield(how, what)
-      QuickSearchField.new(self, how, what, parent_widget, window_id)
+      QuickSearchField.new(self, how, what, parent_widget, window_id, :search)
     end
     
     ######################################################################
@@ -206,7 +206,7 @@ module OperaWatir
     # @return [Object] toolbar object if found, otherwise nil
     #
     def quick_toolbar(how, what)
-      QuickToolbar.new(self, how, what, parent_widget, window_id)
+      QuickToolbar.new(self, how, what, parent_widget, window_id, :toolbar)
     end
     
     ######################################################################
@@ -222,7 +222,7 @@ module OperaWatir
     # @return [Object] treeitem object if found, otherwise nil
     #
     def quick_treeitem(how, what)
-      QuickTreeItem.new(self, how, what, parent_widget, window_id)
+      QuickTreeItem.new(self, how, what, parent_widget, window_id, :treeitem)
     end
 
     ######################################################################
@@ -238,7 +238,7 @@ module OperaWatir
     # @return [Object] griditem object if found, otherwise nil
     #
     def quick_griditem(how, what)
-      QuickGridItem.new(self, how, what, parent_widget, window_id)
+      QuickGridItem.new(self, how, what, parent_widget, window_id, :griditem)
     end
 
      #@private
@@ -257,7 +257,7 @@ module OperaWatir
     # @return [Object] gridlayout object if found, otherwise nil
     #
      def quick_gridlayout(how, what)
-       QuickGridLayout.new(self, how, what, parent_widget, window_id)
+       QuickGridLayout.new(self, how, what, parent_widget, window_id, :gridlayout)
      end
 
      
@@ -280,7 +280,7 @@ module OperaWatir
            what = [0, what]
          end
        end
-      QuickThumbnail.new(self, how, what, parent_widget, window_id)
+      QuickThumbnail.new(self, how, what, parent_widget, window_id, :thumbnail)
     end
 
     ######################################################################
