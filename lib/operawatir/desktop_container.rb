@@ -243,8 +243,7 @@ module OperaWatir
 
     ######################################################################
     # Method for accessing a grid layout 
-    # (A grid layout would normally be used to specify the path to a child item
-    #  in one of its cells. 
+    # (A grid layout would normally be used to specify the path to a child item in one of its cells. 
     #
     # @example (The label dialog for mail labels)
     #   browser.quick_gridlayout(:name, "RulesGrid").quick_griditem(:name, "GridItem0").quick_editfield(:name, "Match")
