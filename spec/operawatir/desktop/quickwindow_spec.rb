@@ -9,8 +9,14 @@ describe 'QuickWindow' do
   subject { documentwindow }
     
   describe '#quick_window' do
-    it "constructs window by id"
-    it "constructs window by name"
+    it 'constructs window by id' do
+      browser.quick_windows.each do |win|
+        browser.quick_window(:id, win.window_id).should exist
+      end
+    end
+    it 'constructs window by name' do
+      browser.quick_window(:name, "Browser Window").should exist
+    end
   end
   
   describe '#exist?' do
