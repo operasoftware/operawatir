@@ -18,7 +18,7 @@ describe 'QuickTreeItem' do
   it_behaves_like 'a widget'
   
   its(:type) { should == :treeitem }
-
+  end
   #describe '#correct_type?' do
   #end
 
@@ -33,7 +33,6 @@ describe 'QuickTreeItem' do
 			 browser.quick_treeview(:name, "Advanced_treeview").quick_treeitem(:string_id, "D_NEW_PREFS_SHORTCUTS").focus_with_click
 			 browser.quick_checkbox(:name, "Mouse_gestures_checkbox").should be_visible
 		end
-	
 		
 		after(:all) do
 			browser.close_all_dialogs
@@ -70,58 +69,53 @@ describe 'QuickTreeItem' do
 
   describe '#expand_with_double_click' do
 	
-	before(:each) do
-		browser.open_window_with_key_press("Bookmarks Panel Window", "b", :ctrl, :shift).should > 0
-		browser.quick_treeview(:name, "Bookmarks Folders View").focus_with_click
-		browser.quick_window(:name, "Bookmarks Panel Window").quick_treeview(:name, "Bookmarks View").quick_treeitem(:text, "Opera").focus_with_click
-	end
+    before(:each) do
+      browser.open_window_with_key_press("Bookmarks Panel Window", "b", :ctrl, :shift).should > 0
+      browser.quick_treeview(:name, "Bookmarks Folders View").focus_with_click
+      browser.quick_window(:name, "Bookmarks Panel Window").quick_treeview(:name, "Bookmarks View").quick_treeitem(:text, "Opera").focus_with_click
+	 end
 	
-	it 'expand with double click' do
-		browser.quick_window(:name, "Bookmarks Panel Window").quick_treeview(:name, "Bookmarks View").quick_treeitem(:text, "Opera").expand_with_double_click
-		browser.quick_window(:name, "Bookmarks Panel Window").quick_treeview(:name, "Bookmarks View").quick_treeitem(:text, "http://www.opera.com/download/").should be_visible
-	end
+	 it 'expand with double click' do
+	   browser.quick_window(:name, "Bookmarks Panel Window").quick_treeview(:name, "Bookmarks View").quick_treeitem(:text, "Opera").expand_with_double_click
+	   browser.quick_window(:name, "Bookmarks Panel Window").quick_treeview(:name, "Bookmarks View").quick_treeitem(:text, "http://www.opera.com/download/").should be_visible
+	 end
 	
+	 it 'collapse with double clik' do
+	   browser.quick_window(:name, "Bookmarks Panel Window").quick_treeview(:name, "Bookmarks View").quick_treeitem(:text, "Opera").expand_with_double_click
+	   browser.quick_window(:name, "Bookmarks Panel Window").quick_treeview(:name, "Bookmarks View").quick_treeitem(:text, "Opera").collapse_with_double_click
+	   #browser.quick_window(:name, "Bookmarks Panel Window").quick_treeview(:name, "Bookmarks View").quick_treeitem(:text, "http://my.opera.com/").visible?.should == false
+	 end
 	
-	it 'collapse with double clik' do
-		browser.quick_window(:name, "Bookmarks Panel Window").quick_treeview(:name, "Bookmarks View").quick_treeitem(:text, "Opera").expand_with_double_click
-		browser.quick_window(:name, "Bookmarks Panel Window").quick_treeview(:name, "Bookmarks View").quick_treeitem(:text, "Opera").collapse_with_double_click
-		#browser.quick_window(:name, "Bookmarks Panel Window").quick_treeview(:name, "Bookmarks View").quick_treeitem(:text, "http://my.opera.com/").visible?.should == false
-
-	end
+	 it 'Raises Exceptions' do
+	   #browser.quick_window(:name, "Bookmarks Panel Window").quick_treeview(:name, "Bookmarks View").quick_treeitem(:text, "Opera").key_press("Del")
+	   #lambda { browser.quick_window(:name, "Bookmarks Panel Window").quick_treeview(:name, "Bookmarks View").quick_treeitem(:text, "Opera").expand_with_double_click }.should raise_error OperaWatir::DesktopExceptions::WidgetNotVisibleException
+	 end
 	
-	it 'Raises Exceptions' do
-		#browser.quick_window(:name, "Bookmarks Panel Window").quick_treeview(:name, "Bookmarks View").quick_treeitem(:text, "Opera").key_press("Del")
-		#lambda { browser.quick_window(:name, "Bookmarks Panel Window").quick_treeview(:name, "Bookmarks View").quick_treeitem(:text, "Opera").expand_with_double_click }.should raise_error OperaWatir::DesktopExceptions::WidgetNotVisibleException
-	end
-	
-	after(:each) do
-		browser.close_all_tabs
-		browser.close_all_dialogs
-	end
-	
+	 after(:each) do
+	   browser.close_all_tabs
+	   browser.close_all_dialogs
+	 end
   end
     
    # alias_method :collapse_with_double_click, :expand_with_double_click
     
   describe '#key_press(key, *opts)' do
+    it "key press with modifiers" do
+      browser.quick_window(:name, "Document Window").quick_toolbar(:name, "Document Toolbar").quick_addressfield(:name, "tba_address_field").focus_with_click
+      browser.quick_window(:name, "Document Window").quick_toolbar(:name, "Document Toolbar").quick_addressfield(:name, "tba_address_field").clear
+      browser.quick_window(:name, "Document Window").quick_toolbar(:name, "Document Toolbar").quick_addressfield(:name, "tba_address_field").type_text("opera:config").should == "opera:config"
+      #browser.quick_window(:name, "Document Window").quick_toolbar(:name, "Document Toolbar").quick_addressfield(:name, "tba_address_field").key_press("Enter")
+      browser.quick_window(:name, "Document Window").quick_toolbar(:name, "Document Toolbar").quick_addressfield(:name, "tba_address_field").key_press("a", :ctrl)
+      browser.quick_window(:name, "Document Window").quick_toolbar(:name, "Document Toolbar").quick_addressfield(:name, "tba_address_field").key_press("c", :ctrl)
+      browser.open_window_with_key_press("Document Window", "t", :ctrl).should > 0
+      browser.quick_window(:name, "Document Window").quick_toolbar(:name, "Document Toolbar").quick_addressfield(:name, "tba_address_field").focus_with_click
+      browser.quick_window(:name, "Document Window").quick_toolbar(:name, "Document Toolbar").quick_addressfield(:name, "tba_address_field").key_press("v", :ctrl)
+      browser.quick_window(:name, "Document Window").quick_toolbar(:name, "Document Toolbar").quick_addressfield(:name, "tba_address_field").text.should == "opera:config"
+	 end
 	
-	it "key press with modifiers" do
-		browser.quick_window(:name, "Document Window").quick_toolbar(:name, "Document Toolbar").quick_addressfield(:name, "tba_address_field").focus_with_click
-		browser.quick_window(:name, "Document Window").quick_toolbar(:name, "Document Toolbar").quick_addressfield(:name, "tba_address_field").clear
-		browser.quick_window(:name, "Document Window").quick_toolbar(:name, "Document Toolbar").quick_addressfield(:name, "tba_address_field").type_text("opera:config").should == "opera:config"
-		#browser.quick_window(:name, "Document Window").quick_toolbar(:name, "Document Toolbar").quick_addressfield(:name, "tba_address_field").key_press("Enter")
-		browser.quick_window(:name, "Document Window").quick_toolbar(:name, "Document Toolbar").quick_addressfield(:name, "tba_address_field").key_press("a", :ctrl)
-		browser.quick_window(:name, "Document Window").quick_toolbar(:name, "Document Toolbar").quick_addressfield(:name, "tba_address_field").key_press("c", :ctrl)
-		browser.open_window_with_key_press("Document Window", "t", :ctrl).should > 0
-		browser.quick_window(:name, "Document Window").quick_toolbar(:name, "Document Toolbar").quick_addressfield(:name, "tba_address_field").focus_with_click
-		browser.quick_window(:name, "Document Window").quick_toolbar(:name, "Document Toolbar").quick_addressfield(:name, "tba_address_field").key_press("v", :ctrl)
-		browser.quick_window(:name, "Document Window").quick_toolbar(:name, "Document Toolbar").quick_addressfield(:name, "tba_address_field").text.should == "opera:config"
-	end
-	
-	after(:all) do
-		browser.close_all_tabs
-	end
-	
+	 after(:all) do
+	   browser.close_all_tabs
+	 end
   end
         
   describe '#selected?' do
@@ -138,7 +132,5 @@ describe 'QuickTreeItem' do
   #private
   describe '#scroll_item_into_view' do
   end
-  
-  
 end
 
