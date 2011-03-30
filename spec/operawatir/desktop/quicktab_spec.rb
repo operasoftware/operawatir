@@ -15,10 +15,10 @@ describe 'QuickTab' do
    
   its(:type) { should == :tabbutton }
    
-  describe "#quick_tab" do
-    it "constructs tabbutton by its position"
-    it "constructs tabbutton by its name"
-    it "constructs tabbutton by its text"
+  describe '#quick_tab' do
+    it 'constructs tabbutton by its position'
+    it 'constructs tabbutton by its name'
+    it 'constructs tabbutton by its text'
   end
   
   describe '#move_with_drag' do

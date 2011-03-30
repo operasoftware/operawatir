@@ -19,8 +19,8 @@ describe 'QuickLabel' do
    
    its(:type) { should == :label }
    
-   describe "#quick_label" do
-     it "constructs label by its name" do
+   describe '#quick_label' do
+     it 'constructs label by its name' do
       browser.quick_label(:name, "label_for_Name_edit").should exist 
      end
    end

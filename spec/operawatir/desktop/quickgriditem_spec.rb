@@ -7,8 +7,8 @@ describe 'QuickItem' do
    #it_behaves_like "a widget"
    #its(:type) { should == :griditem }
    
-   describe "#quick_griditem" do
-     it "constructs grid_item by its name" do
+   describe '#quick_griditem' do
+     it 'constructs grid_item by its name' do
       browser.quick_griditem(:name, "some_name") 
      end
    end
