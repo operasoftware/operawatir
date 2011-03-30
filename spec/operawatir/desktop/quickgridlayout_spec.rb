@@ -7,10 +7,9 @@ describe 'QuickLayout' do
    #it_behaves_like "a widget"
   #its(:type) { should == :gridlayout }
    
-   describe ''#quick_gridlayout' do
+   describe '#quick_gridlayout' do
      it 'constructs grid_layout by its name' do
       browser.quick_gridlayout(:name, "some_name") 
      end
    end
-   
 end
