@@ -16,7 +16,7 @@ require 'operawatir/desktop_helper'
   :no_quit        => false,
   :no_restart     => false,
   :opera_idle     => false,
-  :full_backtrace => false
+  #:full_backtrace => false
 }
 
 # TODO
@@ -75,9 +75,9 @@ EOS
       @options[:opera_idle] = true
     end
 
-    opts.on('-b', '--backtrace', 'Enable full backtrace') do |c|
-      @options[:full_backtrace] = true
-    end
+    #opts.on('-b', '--backtrace', 'Enable full backtrace') do |c|
+    #  @options[:full_backtrace] = true
+    #end
 
     #opts.on('-c', '--check-syntax', 'Check syntax only') do |c|
     #  @options[:check_syntax] = true
