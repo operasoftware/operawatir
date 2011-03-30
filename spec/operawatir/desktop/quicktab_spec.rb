@@ -16,9 +16,24 @@ describe 'QuickTab' do
   its(:type) { should == :tabbutton }
    
   describe '#quick_tab' do
-    it 'constructs tabbutton by its position'
-    it 'constructs tabbutton by its name'
-    it 'constructs tabbutton by its text'
+    before(:all) do
+      browser.quick_window(:name, "Document Window").quick_toolbar(:name, "Document Toolbar").quick_addressfield(:name, "tba_address_field").load_page_with_url(url1).should == url1
+      browser.load_window_with_action("Document Window", "Open url in new page", url2).should > 0
+    end
+
+    it 'constructs tabbutton by its position' do
+      browser.quick_window(:name, "Browser Window").quick_toolbar(:name, "Pagebar").quick_tab(:pos, 0).should exist
+    end
+    it 'constructs tabbutton by its name' do
+      browser.quick_window(:name, "Browser Window").quick_toolbar(:name, "Pagebar").quick_tab(:name, "Tab 0").should exist
+    end
+    it 'constructs tabbutton by its text' do
+      browser.quick_window(:name, "Browser Window").quick_toolbar(:name, "Pagebar").quick_tab(:text, "Test Page 1").should exist
+    end
+    
+    after(:all) do
+      browser.close_all_tabs
+    end
   end
   
   describe '#move_with_drag' do
@@ -28,21 +43,37 @@ describe 'QuickTab' do
   end
   
   describe '#activate_tab_with_click' do
-     it 'returns windowid of window activated'
+    before(:all) do
+      browser.quick_window(:name, "Document Window").quick_toolbar(:name, "Document Toolbar").quick_addressfield(:name, "tba_address_field").load_page_with_url(url1).should == url1
+      browser.load_window_with_action("Document Window", "Open url in new page", url2).should > 0
+    end
+    
+     it 'returns windowid of window activated' do
+       browser.quick_window(:name, "Browser Window").quick_toolbar(:name, "Pagebar").quick_tab(:name, "Tab 0").activate_tab_with_click.should > 0
+     end
+     
      context 'when the window is already active' do
-       it 'returns 0'
+       it 'returns 0' do
+         browser.quick_window(:name, "Browser Window").quick_toolbar(:name, "Pagebar").quick_tab(:name, "Tab 0").activate_tab_with_click.should == 0    
+       end
      end
+     
+     context 'when the tab button does not exist' do
+       it 'raises UnknownObjectException' #do
+         #expect { browser.quick_window(:name, "Browser Window").quick_toolbar(:name, "Pagebar").quick_tab(:name, "Tab 2").activate_tab_with_click }.to raise(OperaWatir::Exceptions::UnknownObjectException) 
+       #end
+     end
+     
      context 'when the tab button is not visible' do
-       it 'raises exception'
+       it 'raises WidgetNotVisibleException'
      end
-	 it 'activates a tab with click' do
-	   browser.quick_window(:name, "Document Window").quick_toolbar(:name, "Document Toolbar").quick_addressfield(:name, "tba_address_field").load_page_with_url(url1).should == url1
-	   browser.load_window_with_action("Document Window", "Open url in new page", url2).should > 0
-	   browser.quick_window(:name, "Browser Window").quick_toolbar(:name, "Pagebar").quick_tab(:name, "Tab 0").activate_tab_with_click
-	   browser.quick_window(:name, "Browser Window").quick_toolbar(:name, "Pagebar").quick_tab(:name, "Tab 0").text.should == "Test Page 1"
-	   browser.quick_window(:name, "Browser Window").quick_toolbar(:name, "Pagebar").quick_tab(:name, "Tab 1").activate_tab_with_click
-	   browser.quick_window(:name, "Browser Window").quick_toolbar(:name, "Pagebar").quick_tab(:name, "Tab 1").text.should == "Test Page 2"
-	 end
+
+     it 'activates a tab with click' do
+       browser.quick_window(:name, "Browser Window").quick_toolbar(:name, "Pagebar").quick_tab(:name, "Tab 0").activate_tab_with_click
+       browser.quick_window(:name, "Browser Window").quick_toolbar(:name, "Pagebar").quick_tab(:name, "Tab 0").text.should == "Test Page 1"
+       browser.quick_window(:name, "Browser Window").quick_toolbar(:name, "Pagebar").quick_tab(:name, "Tab 1").activate_tab_with_click
+       browser.quick_window(:name, "Browser Window").quick_toolbar(:name, "Pagebar").quick_tab(:name, "Tab 1").text.should == "Test Page 2"
+     end
   end
   
   #Note this part of api will probably change when new tab grouping is handled
