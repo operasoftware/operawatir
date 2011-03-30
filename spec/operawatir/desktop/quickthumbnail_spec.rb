@@ -18,8 +18,12 @@ describe 'QuickThumbnail' do
    
   #This is really on browser, widgets, and window
   describe '#quick_thumbnail' do
-    it 'constructs thumbnail by its position'
-    it 'constructs thumbnail by its name'
+    it 'constructs thumbnail by its position' do
+      browser.quick_thumbnail(:pos, 1).should exist
+    end
+    it 'constructs thumbnail by its name' do
+      browser.quick_thumbnail(:name, "Speed Dial 1").should exist
+    end
     it 'constructs thumbnail by its text'
   end
   
