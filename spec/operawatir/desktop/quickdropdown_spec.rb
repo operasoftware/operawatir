@@ -19,12 +19,11 @@ describe 'QuickDropdown' do
 
 	
 	describe '#selected?'do
-	
-		it "returns true" do
+		it "returns true for selected item" do
 			browser.quick_dropdown(:name, "Startup_mode_dropdown").selected?("D_STARTUP_LAST_TIME").should be_true
 		end
 		
-		it "returns false" do
+		it "returns false for not selected item" do
 			browser.quick_dropdown(:name, "Startup_mode_dropdown").selected?("D_STARTUP_SAVED_SESSIONS").should be_false
 		end
 		
