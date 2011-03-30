@@ -80,7 +80,7 @@ describe 'QuickTreeItem' do
 	   browser.quick_window(:name, "Bookmarks Panel Window").quick_treeview(:name, "Bookmarks View").quick_treeitem(:text, "http://www.opera.com/download/").should be_visible
 	 end
 	
-	 it 'collapse with double clik' do
+	 it 'collapse with double click' do
 	   browser.quick_window(:name, "Bookmarks Panel Window").quick_treeview(:name, "Bookmarks View").quick_treeitem(:text, "Opera").expand_with_double_click
 	   browser.quick_window(:name, "Bookmarks Panel Window").quick_treeview(:name, "Bookmarks View").quick_treeitem(:text, "Opera").collapse_with_double_click
 	   #browser.quick_window(:name, "Bookmarks Panel Window").quick_treeview(:name, "Bookmarks View").quick_treeitem(:text, "http://my.opera.com/").visible?.should == false
@@ -96,10 +96,9 @@ describe 'QuickTreeItem' do
 	   browser.close_all_dialogs
 	 end
   end
-    
    # alias_method :collapse_with_double_click, :expand_with_double_click
     
-  describe '#key_press(key, *opts)' do
+  describe '#key_press' do
     it "key press with modifiers" do
       browser.quick_window(:name, "Document Window").quick_toolbar(:name, "Document Toolbar").quick_addressfield(:name, "tba_address_field").focus_with_click
       browser.quick_window(:name, "Document Window").quick_toolbar(:name, "Document Toolbar").quick_addressfield(:name, "tba_address_field").clear
