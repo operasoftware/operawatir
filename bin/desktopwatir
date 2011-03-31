@@ -59,10 +59,6 @@ EOS
       @options[:color_enabled] = false
     end
     
-    opts.on('--no-opera-idle', 'Disable OperaIdle') do |c|
-      @options[:opera_idle] = false
-    end
-
     opts.on('-q', '--no-quit', 'Disable quitting of Opera at the end of a testrun') do |c|
       @options[:no_quit] = true
     end
