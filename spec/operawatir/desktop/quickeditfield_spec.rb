@@ -5,7 +5,7 @@ require File.expand_path('../shared/shared', __FILE__)
 describe 'QuickEditField' do
 
 	before(:all) do
-		browser.open_dialog_with_action("New Preferences Dialog", "Show preferences", 1).should > 0
+		browser.open_dialog_with_action("New Preferences Dialog", "Show preferences", 1).should open_dialog
 	end
   
 	after(:all) do
@@ -24,9 +24,8 @@ describe 'QuickEditField' do
   
 	its(:type) { should == :editfield }
 
-
-    describe '#load_page_with_key_press(key, *modifiers)' do
-		it "presses a single key" do
+  describe '#load_page_with_key_press(key, *modifiers)' do
+		it 'loads page' do
 			browser.close_all_dialogs
 			browser.quick_window(:name, "Document Window").quick_toolbar(:name, "Document Toolbar").quick_addressfield(:name, "tba_address_field").focus_with_click
 			browser.quick_window(:name, "Document Window").quick_toolbar(:name, "Document Toolbar").quick_addressfield(:name, "tba_address_field").clear
@@ -35,8 +34,7 @@ describe 'QuickEditField' do
 			browser.quick_window(:name, "Document Window").quick_toolbar(:name, "Document Toolbar").quick_addressfield(:name, "tba_address_field").text.should == url1
 			browser.quick_window(:name, "Browser Window").quick_toolbar(:name, "Pagebar").quick_tab(:name, "Tab 0").text.should == "Test Page 1"
 		end	
-    end
-
+  end
 
 =begin # it is a private method
     describe '#enter_text_and_hit_enter(text)' do
@@ -47,9 +45,6 @@ describe 'QuickEditField' do
 			browser.quick_window(:name, "Document Window").quick_toolbar(:name, "Document Toolbar").quick_addressfield(:name, "tba_address_field").text.should == url2
 			browser.quick_window(:name, "Browser Window").quick_toolbar(:name, "Pagebar").quick_tab(:name, "Tab 0").text.should == "Test Page 2"
 		end
-      
-	  
-	  
     end
 =end
 

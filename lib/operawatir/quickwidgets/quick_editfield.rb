@@ -20,7 +20,7 @@ module OperaWatir
     ######################################################################
     # Types a text string into the edit field
     #
-    # @note Only chanracters that appear on the keyboard that is currently
+    # @note Only characters that appear on the keyboard that is currently
     #       selected can be typed, and the edit field must have focus.
     #
     # @param [String] text text string to type in

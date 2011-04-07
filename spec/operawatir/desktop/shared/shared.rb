@@ -49,7 +49,8 @@ shared_examples_for 'an editfield' do
       widget.focus_with_click
     end
   end
-  
+
+=begin
   describe '#key_press' do
 	it "presses keys with modifiers" do
 		widget.type_text "some other text"
@@ -61,8 +62,10 @@ shared_examples_for 'an editfield' do
 		widget.text.should include "some other text"
 	end
   end
+=end  
 end
 
+  
 shared_examples_for 'a checkbox' do
   describe '#checked?' do
     it "returns a boolean" do
