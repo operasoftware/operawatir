@@ -134,9 +134,15 @@ class OperaWatir::Element
   def_delegator :node, :submit, :submit!
 
   def text=(input)
-    # Focus before typing
-    clear unless value.empty?
-    node.sendKeys(input.to_s.split('').to_java(:string))
+    puts attr(:type)
+
+    if attr(:type) =~ /checkbox/i
+      toggle_check! unless checked?
+    else
+      # Focus before typing
+      clear unless value.empty?
+      node.sendKeys(input.to_s.split('').to_java(:string))
+    end
   end
 
   alias_method :set, :text=
