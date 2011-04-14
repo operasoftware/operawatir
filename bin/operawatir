@@ -15,7 +15,7 @@ require 'operawatir'
   :format         => 'progress',
   :no_quit        => false,
   :opera_idle     => false,
-  #:full_backtrace => false  # TODO: Provide fix for RSpec
+  :full_backtrace => false  # TODO: Provide fix for RSpec
 }
 
 # TODO
@@ -105,7 +105,7 @@ end
 if ARGV.empty?
   abort 'operawatir: You need to specify at least one test file to run'
 else
-  @options[:files_to_run] = ARGV
+  @options[:files_or_directories_to_run] = ARGV
 end
 
 require 'operawatir/helper'
