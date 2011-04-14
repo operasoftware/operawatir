@@ -224,6 +224,22 @@ describe 'DesktopBrowser' do
        browser.cache_preferences_path.should_not be_empty
      end
    end
+   
+   describe '#string' do
+     it 'returns string corresponding to string_id' do
+       browser.string("D_NEW_PREFERENCES_GENERAL").should == "General"
+     end
+     it 'removes ampersands in string with ampersand' do
+       browser.string("S_FIND_IN_PAGE").should == "Find in page"
+     end
+     it 'leaves ampersand in string when skip_ampersand is true' do
+       browser.string("S_FIND_IN_PAGE", false).should == "&Find in page"
+     end
+     #it 'fails in some reasonable way if string_id doesn\'t exist' do
+     #  browser.string("SOME_STRING")
+     #end
+     
+   end
 
    describe '#mac?' do
    end

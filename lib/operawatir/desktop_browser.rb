@@ -26,7 +26,7 @@ module OperaWatir
       active_window.url = url
       sleep(1)
     end
-
+    
     ######################################################################
     # Quits Opera
     #
@@ -296,8 +296,11 @@ module OperaWatir
       end.to_a
     end
     
-    #@private
-    # Retrieve all tabs
+    ####################################################
+    # Retrieves an array of all tabs (Document Windows)
+    #
+    # @return [Array] Array of windows
+    #
     def open_pages
       quick_windows.select { |win| win.name == "Document Window" }
     end
@@ -412,6 +415,24 @@ module OperaWatir
     #
     def cache_preferences_path
       driver.getCachePreferencesPath()
+    end
+    
+    ######################################################################
+    # Returns the language string corresponding to the string_id provided
+    #
+    # @param string_id the string_id to convert to the corresponding
+    #                  language string
+    # @param skip_ampersand if false, then leave string as is, else
+    #                  (default) remove any ampersand in string
+    #
+    #
+    # @example
+    #   browser.string("D_NEW_PREFERENCES_GENERAL")
+    #
+    # @return [String] the language string corresponding to the string_id
+    #
+    def string(string_id, skip_ampersand = true)
+      string = driver.getString(string_id, skip_ampersand)
     end
 
     ######################################################################
@@ -543,8 +564,6 @@ module OperaWatir
     # Set preference pref in prefs section prefs_section to value
     # specified.
     #
-    # TODO: This needs to be moved to a separate preference section.
-    #
     # @param [String] prefs_section The prefs section the pref belongs to
     # @param [String] pref          The preference to set
     # @param [String] value         The value to set the preference to
@@ -553,8 +572,6 @@ module OperaWatir
     end
 
     # Get value of preference pref in prefs section prefs_section.
-    #
-    # TODO: This needs to be moved to a separate preference section.
     #
     # @param [String] prefs_section The prefs section the pref belongs to
     # @param [String] pref          The preference to get
@@ -566,8 +583,6 @@ module OperaWatir
         
     # Get default value of preference pref in prefs section
     # prefs_section.
-    #
-    # TODO: This needs to be moved to a separate preference section.
     #
     # @param [String] prefs_section The prefs section the pref belongs to
     # @param [String] pref          The preference to get
@@ -587,12 +602,14 @@ private
    def self.opera_driver_settings
      @opera_driver_settings ||= OperaDriverSettings.new.tap {|s|
        s.setRunOperaLauncherFromOperaDriver true
+       s.setAutostart false if self.settings[:manual]
        s.setOperaLauncherBinary self.settings[:launcher]
        s.setOperaBinaryLocation self.settings[:path]
        s.setOperaBinaryArguments self.settings[:args].to_s + ' -autotestmode'
        s.setNoQuit self.settings[:no_quit]
        s.setNoRestart self.settings[:no_restart]
        s.setGuessOperaPath false
+       s.setUseOperaIdle false if !self.settings[:opera_idle]
      }
    end
    

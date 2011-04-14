@@ -33,6 +33,7 @@ module OperaWatir
       # Cheat since we don't have an even yet 
       sleep(0.1)
 
+      # is this guaranteed to be same as getValue?
       element(true).isSelected
     end
 
@@ -49,10 +50,9 @@ module OperaWatir
     #            is not visible
     #
     def open_dialog_with_click(win_name)
-      super
-      #wait_start
-      #click
-      #wait_for_window_shown(win_name)
+      wait_start
+      click
+      wait_for_window_shown(win_name)
     end
 
   end

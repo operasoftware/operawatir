@@ -7,6 +7,7 @@ require 'operawatir'
 require 'operawatir/desktop_helper'
 
 @options = {
+  #:manual        => false,
   :ng             => false,
   :color_enabled  => true,
   :check_syntax   => false,
@@ -15,7 +16,7 @@ require 'operawatir/desktop_helper'
   :no_quit        => false,
   :no_restart     => false,
   :opera_idle     => false,
-  :full_backtrace => false
+  #:full_backtrace => false
 }
 
 # TODO
@@ -24,6 +25,7 @@ require 'operawatir/desktop_helper'
 begin
   OptionParser.new do |opts|
     opts.banner = <<EOS
+
 Usage: desktopwatir [-l|--launcher=BINARY] [-e|--executable=BINARY]
        [-a|--args=ARGUMENTS] [--no-color] [-q|--no-quit] [-r|--no-restart]
        [--opera-idle] [-b|--backtrace] [-t|--tag=TAG] [-f|--format=FORMAT]
@@ -33,6 +35,11 @@ EOS
     opts.separator ''
     opts.separator 'Specific options:'
 
+    #run without launcher and with manual connection, restart not possible (same as -rq)
+    #opts.on('-m', '--manual', 'Wait for a manual connection from opera:debug') do |c|
+    #  @options[:manual] = c
+    #end
+    
     opts.on('-l', '--launcher=BINARY', 'Path to launcher binary, will use environmental ',
             'variable OPERA_LAUNCHER if not specified') do |c|
       @options[:launcher] = c
@@ -51,7 +58,7 @@ EOS
     opts.on('--no-color', 'Disable colorized output') do |c|
       @options[:color_enabled] = false
     end
-
+    
     opts.on('-q', '--no-quit', 'Disable quitting of Opera at the end of a testrun') do |c|
       @options[:no_quit] = true
     end
@@ -64,9 +71,9 @@ EOS
       @options[:opera_idle] = true
     end
 
-    opts.on('-b', '--backtrace', 'Enable full backtrace') do |c|
-      @options[:full_backtrace] = true
-    end
+    #opts.on('-b', '--backtrace', 'Enable full backtrace') do |c|
+    #  @options[:full_backtrace] = true
+    #end
 
     #opts.on('-c', '--check-syntax', 'Check syntax only') do |c|
     #  @options[:check_syntax] = true
@@ -114,7 +121,13 @@ if ARGV.empty?
   abort 'desktopwatir: You need to specify at least one test file to run'
 else
   @options[:files_to_run] = ARGV
-  @options[:files_to_run].map! { | f | Dir.glob(f) }.flatten!
+  @options[:files_to_run].map! do | f |
+    if f.include? "\\"
+      f
+    else 
+      Dir.glob(f)
+  	end 
+  end.flatten!
 end
 
 #abort 'desktopwatir: --ng and --check-syntax are disabled for now' if @options[:ng] || @options[:check_syntax]

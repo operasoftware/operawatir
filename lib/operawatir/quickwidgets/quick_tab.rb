@@ -12,7 +12,6 @@ module OperaWatir
     #
     # @param [QuickTab] tab button to drop this tab on
     #
-    #
     # @raise [DesktopExceptions::UnknownObjectException] if the target is not a tab
     #
     def move_with_drag(tab_target)
