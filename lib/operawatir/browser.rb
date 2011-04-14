@@ -206,7 +206,7 @@ private
       s.setOperaBinaryArguments ENV['OPERA_ARGS'].to_s + ' ' + self.settings[:args].to_s # if self.settings[:args]
       s.setNoQuit true if self.settings[:no_quit]
       s.setUseOperaIdle false if !self.settings[:opera_idle]
-      s.setUseOperaIdle true if ENV['OPERA_IDLE'].truthy?
+      s.setUseOperaIdle true if ENV['OPERA_IDLE'].truthy?  # FIXME Move to OperaDriver
     }
   end
 
