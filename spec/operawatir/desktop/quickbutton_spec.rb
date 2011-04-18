@@ -54,11 +54,11 @@ describe 'QuickButton' do
 			browser.close_dialog("New Preferences Dialog").should > 0
 		end
 		
-		it 'default button' do
+		it 'returns true for default button' do
 			browser.quick_button(:name, "button_OK").should be_default
 		end
 		
-		it 'non-default button' do
+		it 'returns false for non-default button' do
 			browser.quick_button(:name, "button_Cancel").should_not be_default
 		end
   end
@@ -75,14 +75,14 @@ describe 'QuickButton' do
 			browser.quick_window(:name, "Document Window").quick_toolbar(:name, "Document Toolbar").quick_addressfield(:name, "tba_address_field").quick_button(:name, "af_ProtocolButton").open_window_with_click("Addressbar Overlay Window").should open_window
 		end
 		
-		it 'raises exception' do
+		it 'raises exception for not visible button' do
 			browser.open_dialog_with_action("Customize Toolbar Dialog", "Customize Toolbars").should open_dialog
 			browser.quick_dialogtab(:name, "tab_appearance_toolbars").activate_tab_with_click
 			if browser.quick_checkbox(:name, "address_bar").checked? == true
 				browser.quick_checkbox(:name, "address_bar").toggle_with_click.should == false
 			end
 			browser.quick_button(:name, "button_OK").close_dialog_with_click("Customize Toolbar Dialog").should close_dialog
-			lambda { browser.quick_window(:name, "Document Window").quick_toolbar(:name, "Document Toolbar").quick_addressfield(:name, "tba_address_field").quick_button(:name, "af_ProtocolButton").open_window_with_click("Addressbar Overlay Window") }.should raise_error OperaWatir::DesktopExceptions::WidgetNotVisibleException
+			expect { browser.quick_window(:name, "Document Window").quick_toolbar(:name, "Document Toolbar").quick_addressfield(:name, "tba_address_field").quick_button(:name, "af_ProtocolButton").open_window_with_click("Addressbar Overlay Window") }.to raise_error OperaWatir::DesktopExceptions::WidgetNotVisibleException
 		end
 		
 		after(:all) do
@@ -101,7 +101,7 @@ describe 'QuickButton' do
 			browser.open_dialog_with_action("New Account Wizard", "New account").should > 0
 		end
 		
-		it 'change to a different page, with ID > 0' do
+		it 'changes dialog to a different page' do
 			browser.quick_button(:name, "button_Next").change_page_with_click.should > 0
 			browser.close_dialog("New Account Wizard").should > 0
 		end
@@ -171,18 +171,18 @@ describe 'QuickButton' do
 			browser.open_dialog_with_action("Clear Private Data Dialog", "Delete private data").should open_dialog
 		end
 	
-		it 'expand with click' do
+		it 'expands dialog with click' do
 			browser.quick_button(:name, "Destails_expand").expand_with_click
-			browser.quick_button(:name, "button_manage_wand").visible?.should be_true
+			browser.quick_button(:name, "button_manage_wand").should be_visible
 		end
 		
 
-		it 'collapse with click ' do
+		it 'collapses dialog with click ' do
 			browser.quick_button(:name, "Destails_expand").expand_with_click
-			browser.quick_button(:name, "button_manage_wand").visible?.should be_false
+			browser.quick_button(:name, "button_manage_wand").should_not be_visible
 		end
 		
-		it 'raises exception' do
+		it 'raises exception when button is not visible' do
 			lambda { browser.quick_button(:name, "button_manage_wand").expand_with_click }.should raise_error OperaWatir::DesktopExceptions::WidgetNotVisibleException
 		end
 		
