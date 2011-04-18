@@ -48,7 +48,9 @@ describe 'DesktopBrowser' do
         browser.open_window_with_action("Document Window", "New page", "1").should open_window
       end
     
-      it 'fails for actions not opening a new window'
+      it 'fails for actions not opening a new window' do
+        browser.open_window_with_action("Document Window", "Close page", "1").should_not open_window
+      end
     end
      
     describe '#load_window_with_action' do
@@ -118,25 +120,55 @@ describe 'DesktopBrowser' do
   end
    
   describe '#activate_tab_with_key_press' do
-    it 'activates tab'
+    before(:each) do
+      browser.open_window_with_key_press("Document Window", "t", :ctrl).should > 0 
+      browser.url = fixture('two_input_fields.html')
+    end
+    after(:each) do
+      browser.close_all_tabs
+    end
+    it 'activates the next tab' do
+      
+      text =  browser.quick_toolbar(:name, "Document Toolbar").quick_addressfield(:name, "tba_address_field").text
+      if browser.mac?
+        browser.activate_tab_with_key_press("tab", :meta).should > 0
+      elsif
+        browser.activate_tab_with_key_press("F6", :ctrl).should > 0
+      end
+      #Check we switched pages
+      browser.quick_toolbar(:name, "Document Toolbar").quick_addressfield(:name, "tba_address_field").text.should_not == text
+    end
   end
      
    describe '#set_alignment_with_action' do
-     it 'sets alignment'
+     it 'sets alignment' do
+       browser.set_alignment_with_action("pagebar", 2)
+       browser.set_alignment_with_action("pagebar", 3)
+       browser.set_alignment_with_action("pagebar", 4)
+       browser.set_alignment_with_action("pagebar", 1)
+     end
    end
 
    describe '#widgets' do
      it 'retrieves all widgets' do
        browser.widgets("Browser Window").should_not be_empty
      end
-     it 'retrieves only windows'
+     it 'retrieves only widgets' do
+       browser.widgets("Browser Window").select { |w| w.kind_of? OperaWatir::QuickWindow }.should be_empty
+     end
+     it 'retrieves widgets in correct window' do
+       docwins = browser.quick_windows.select { | w | w.name == "Document Window" }
+       browser.widgets("Browser Window").select { | w | docwins.include?(w.send :window_id) }.should be_empty
+     end
    end
   
    describe '#quick_windows' do
      it 'retrieves all windows' do
        browser.quick_windows.should_not be_empty
      end
-     it 'retrieves only windows'
+     it 'retrieves only windows' do
+       browser.quick_windows.select { | win | win.kind_of? QuickWidget }.should be_empty
+     end
    end
    
    describe '#open_pages' do
@@ -242,10 +274,16 @@ describe 'DesktopBrowser' do
    end
 
    describe '#mac?' do
+     it 'returns boolean value' do
+      [true, false].should include browser.mac?
+     end
    end
    
    describe '#linux?' do
+     it 'returns true or false' do
+      [true, false].should include browser.linux?
     end
+   end
 
    describe '#driver' do
    end
@@ -281,7 +319,7 @@ describe 'DesktopBrowser' do
      it 'deletes profile' do
        
      end
-     it 'doesn\'t delete main profile'
+     it 'doesn\'t delete main profile' 
    end
    
    describe '#set_preference' do
