@@ -159,5 +159,9 @@ module OperaWatir
       wait_for_widget_enabled
     end
     
+    def wait_for_visible
+      wait_for_widget_visible
+    end
+    
   end
 end
