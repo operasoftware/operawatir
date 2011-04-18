@@ -14,11 +14,12 @@ module OperaWatir
     # @return [Object] button object if found, otherwise nil
     #
     def quick_button(how, what)
-      if how == :pos
-        if what.is_a? Fixnum
-          what = [0, what]
-        end
-      end
+      what = [0, what] if how == :pos && (what.is_a? Fixnum)
+      #if how == :pos
+      #  if what.is_a? Fixnum
+      #    what = [0, what]
+      #  end
+      #end
       QuickButton.new(self, how, what, parent_widget, window_id, :button)
     end
     
