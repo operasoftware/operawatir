@@ -197,10 +197,15 @@ module OperaWatir
     # @return position for elements that have a position, else false
     #
     def position
-      return [row, col] if type == :treeitem
-      return col if type == :tabbutton
-      return col if type == :button
-      false
+      case type
+        when :treeitem then [row, col]
+        when :tabbutton, :button then col
+        else false
+      end
+      #[row, col] if type == :treeitem
+      #col if type == :tabbutton
+      #col if type == :button
+      #false
     end
 
     ########################################################################
