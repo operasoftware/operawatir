@@ -39,19 +39,19 @@ private
       opts.each { |mod| list << KEYMODIFIER_ENUM_MAP[mod] }
       driver.keyPress(key, list)
     end
-    
-    def key_down(key, *opts)
+
+    def key_down_direct(key, *opts)
       list = Java::JavaUtil::ArrayList.new
       opts.each { |mod| list << KEYMODIFIER_ENUM_MAP[mod] }
       driver.keyDown(key, list)
     end
     
-    def key_up(key, *opts)
+    def key_up_direct(key, *opts)
       list = Java::JavaUtil::ArrayList.new
       opts.each { |mod| list << KEYMODIFIER_ENUM_MAP[mod] }
       driver.keyUp(key, list)
     end
-    
+        
    # Private wait functions
     #
     def wait_start
@@ -81,6 +81,11 @@ private
       # tab title taking extra time to change
       sleep(0.5)
       win_id
+    end
+    
+    def wait_for_widget_visible
+      i = 15
+      sleep(0.1) while element(true).isVisible == false and (i -= 1)  > 0 
     end
     
     def wait_for_widget_enabled

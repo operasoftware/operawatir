@@ -134,14 +134,14 @@ module OperaWatir
       wait_start
       # TODO: FIXME. key_down and up are not yet implemented on mac and windows
       if linux? 
-        key_down(key,*modifiers)
-        key_up(key, *modifiers)
+        key_down_direct(key,*modifiers)
+        key_up_direct(key, *modifiers)
       else
         key_press_direct(key, *modifiers)
       end
       wait_for_window_activated("Document Window")
      end
-    
+     
     ######################################################################
     # Opens a new tab and loads the url entered, then waits for
     # a dialog to be shown based on the url entered
@@ -595,6 +595,15 @@ module OperaWatir
     # @private
     def start_opera
       driver.startOpera
+    end
+    
+    # Is attached browser instance of type internal build or public
+    # desktop?
+    #
+    # @return [Boolean] True if browser attached is of type desktop,
+    #   false otherwise.
+    def desktop?
+      true # Not nice, but if you're running desktopbrowser, assume running desktop
     end
 
 private
