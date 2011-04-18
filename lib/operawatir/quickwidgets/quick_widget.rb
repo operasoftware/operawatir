@@ -202,9 +202,9 @@ module OperaWatir
         when :tabbutton, :button then col
         else false
       end
-      #[row, col] if type == :treeitem
-      #col if type == :tabbutton
-      #col if type == :button
+      #return [row, col] if type == :treeitem
+      #return col if type == :tabbutton
+      #return col if type == :button
       #false
     end
 
