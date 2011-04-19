@@ -7,42 +7,27 @@ class OperaWatir::Keys
     self.browser = browser
   end
 
+  #
   # Holds down supplied arbitrary list of keys indefinitely.
   #
-  # @param [Symbol, String] *args Arbitrary list of symbols
-  #   (modification keys) or strings (regular keys) to be pressed
-  #   down.
-  #
+  # @param [Symbol, String] *args  Arbitrary list of symbols (modification)
+  #                                keys or strings (regular keys) to be
+  #                                pressed down.
+  #                               
   # @example
+  #
   #   browser.keys.down 'a'
   #   browser.keys.down 'a', :right
-  #
+  #  
   # @seealso up
   # @seealso send
+  #
   
-  
-  
-=begin
-
-  Holds down supplied arbitrary list of keys indefinitely.
-  
-  @param [Symbol, String] *args  Arbitrary list of symbols (modification)
-                                 keys or strings (regular keys) to be
-                                 pressed down.
-                                 
-  @example
-  
-    browser.keys.down 'a'
-    browser.keys.down 'a', :right
-    
-  @seealso up
-  @seealso send
-  
-=end
   def down(*args)
     args.each { |key| driver.keyDown(key) }
   end
 
+  #
   # Depresses supplied arbitrary list of keys.
   #
   # @param [Symbol, String] *args Arbitrary list of symbols
@@ -52,19 +37,25 @@ class OperaWatir::Keys
   #   browser.keys.up 'a', :right
   #
   # @seealso release
+  #
+
   def up(*args)
     args.each { |key| driver.keyUp(key) }
   end
 
+  #
   # Releases all pressed down keys.
   #
   # @example
   #   browser.keys.down :control, :shift, 'a'
   #   browser.keys.release
+  #
+
   def release
     driver.releaseKeys
   end
 
+  #
   # Presses an arbitrary list of keys or key combinations.  Provided
   # arguments are performed in sequence.
   #
@@ -90,6 +81,8 @@ class OperaWatir::Keys
   #   browser.keys.send :control
   #   browser.keys.send [:control, 'a']
   #   browser.keys.send [:control, 'a'], :backspace
+  #
+
   def send(*list)  # TODO rename?
     list.each do |item|
       case item

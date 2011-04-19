@@ -52,20 +52,33 @@ class OperaWatir::Window
     driver.getTitle
   end
 
+  #
   # Gets the URL of the document.
   #
   # @return [String] The URL of the current document.
+  #
+
   def url
     driver.getCurrentUrl
   end
 
+  #
   # Navigates to a new URL.
   #
-  # @param [String] url The new URL to navigate to.
+
   def url=(url)
-    driver.get(url)
+    driver.navigate.to(url)
   end
+
   alias_method :goto, :url=  # deprecate?
+
+  #
+  # Refreshes the page.
+  #
+
+  def refresh
+    driver.navigate.refresh
+  end
 
   # Retrieves the text without the DOM or source code from the
   # currently loaded document.
