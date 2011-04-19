@@ -95,9 +95,9 @@ class OperaWatir::Keys
             down key
           else
             key key
-            release
           end
         end
+        release
       when Symbol
         key item
       else
