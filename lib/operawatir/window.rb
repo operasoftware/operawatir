@@ -105,6 +105,7 @@ class OperaWatir::Window
 
   # Opera-specific
 
+  #
   # Creates a Screenshot interface or saves screenshot to specified
   # location if a file path is given.
   #
@@ -113,11 +114,20 @@ class OperaWatir::Window
   #
   # @return [Object]          A Screenshot object.
   # @return [String]          Filename to the saved file.
+  #
+
   def screenshot(filename=nil)
     # TODO: This should call document.screenshot instead, but that
     # requires a generic ScreenShotReply interface in OperaDriver.
     filename.nil? ? OperaWatir::Screenshot.new(self) : OperaWatir::Screenshot.new(self).save(filename)
   end
+
+  #
+  # Returns a visual hash sum of the document.  It takes a screenshot of
+  # the page and generates an MD5 hash sum of it.
+  #
+  # @return [String]          A hash sum.
+  #
 
   def visual_hash
     document.visual_hash
@@ -136,16 +146,23 @@ class OperaWatir::Window
   alias_method :find_by_class, :find_by_class_name
   alias_method :find_by_tag, :find_by_tag_name
 
-  # Finds the document of a page.
   #
-  # @return [Element] The body/document of a page.
+  # Finds the root element of the document.  For HTML document, this is
+  # the element with the tagName “HTML”.
+  #
+  # @return [Element] The root element of the document.
+  #
+
   def document
-    find_by_tag('html')
+    find_by_css(':root')
   end
 
+  #
   # Finds all elements in document.
   #
   # @return [Collection] A collection of elements.
+  #
+
   def elements
     find_by_tag('*')
   end
@@ -160,61 +177,42 @@ class OperaWatir::Window
 
 private
 
-  # Locate elements by id.
-  #
-  # @return [Array] An array of found elements.
   def find_elements_by_id(value)
     driver.findElementsById(value).to_a.map do |node|
       OperaWatir::Element.new(node)
     end
   end
 
-  # Locate elements by class.
-  #
-  # @return [Array] An array of found elements.
   def find_elements_by_class_name(value)
     driver.findElementsByClassName(value).to_a.map do |node|
       OperaWatir::Element.new(node)
     end
   end
 
-  # Locate elements by tag name.
-  #
-  # @return [Array] An array of found elements.
   def find_elements_by_tag_name(value)
     driver.findElementsByTagName(value).to_a.map do |node|
       OperaWatir::Element.new(node)
     end
   end
 
-  # Locate elements by CSS selector.
-  #
-  # @return [Array] An array of found elements.
   def find_elements_by_css(value)
     driver.findElementsByCssSelector(value).to_a.map do |node|
       OperaWatir::Element.new(node)
     end
   end
 
-  # Locate elements by XPath expression.
-  #
-  # @return [Array] An array of found elements.
   def find_elements_by_xpath(value)
     driver.findElementsByXPath(value).to_a.map do |node|
       OperaWatir::Element.new(node)
     end
   end
 
-  # Locate elements by attribute @name.
-  #
-  # @return [Array] An array of found elements.
   def find_elements_by_name(value)
     driver.findElementsByName(value).to_a.map do |node|
       OperaWatir::Element.new(node)
     end
   end
 
-  # @private
   def driver
     browser.driver
   end
