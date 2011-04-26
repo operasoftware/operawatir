@@ -84,6 +84,18 @@ class OperaWatir::Element
     end
   end
 
+  #
+  # Does the element exist in the DOM?
+  #
+  # @return [Boolean] True if element exists, false otherwise.
+  #
+
+  def exist?
+    !!!tag_name.empty?
+  end
+
+  alias_method :exists?, :exist?  # LOL Ruby
+
   def disabled?
     !enabled?
   end
