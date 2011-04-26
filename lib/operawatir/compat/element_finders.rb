@@ -9,7 +9,7 @@ module OperaWatir::Compat::ElementFinders
       OperaWatir::Collection.new(self).tap do |c|
         blk.call c.selector
         c.add_selector_from_arguments arguments, default_method
-      end
+      end.first
     end
 
     define_method plural do |*arguments|
