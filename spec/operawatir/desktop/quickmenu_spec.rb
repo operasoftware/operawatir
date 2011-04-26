@@ -15,6 +15,29 @@ describe 'QuickMenu' do
   
 end
 
+#######################################
+#Added here for now until we have menus support
+describe 'QuickButton' do
+  describe 'open_menu_with_click' do
+    it 'opens a menu'
+  end
+  describe 'open_menu_with_long_click' do
+    it 'opens a menu'
+  end
+end
+
+describe 'DesktopBrowser' do
+  describe 'open_menu_with_key_press' do
+    it 'opens a menu'
+  end
+  
+  #Web page ...
+  describe 'open_menu_with_right_click' do
+    it 'opens rightclick menu'
+  end
+end
+####################################
+
 describe 'QuickMenuItem' do
   
   #browser.quick_menu(:name, "Image Popup Menu").quick_menuitem(:pos, 1) # Not platform independent
