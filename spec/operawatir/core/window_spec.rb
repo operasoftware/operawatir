@@ -22,6 +22,11 @@ describe 'Window' do
       browser.url = fixture('grid.html')
       window.visual_hash.should_not == @reference
     end
+
+    it 'returns a hash of an SVG document' do
+      browser.url = fixture('browsers.svg')
+      browser.visual_hash.should match /^(0x)[a-f0-9]{32}$/
+    end
   end
 
 

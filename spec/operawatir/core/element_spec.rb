@@ -78,6 +78,11 @@ describe 'Element' do
       @two.visual_hash.should_not == @three.visual_hash
     end
 
+    it 'returns a hash of an SVG element' do
+      browser.url = fixture('browsers.svg')
+      window.find_by_tag('svg').visual_hash.should =~ /^(0x)[a-f0-9]{32}$/
+    end
+
   end
 
 end
