@@ -67,6 +67,7 @@ class OperaWatir::Element
 
   #
   # Clicks on the top left of the element, or the given x, y offset.
+  # Asserts whether element is enabled first.
   #
   # @param [optional, Fixnum] x The offset from the left of the
   #   element
@@ -103,6 +104,7 @@ class OperaWatir::Element
 
   def clear
     assert_enabled!
+    click
     node.clear
   end
 

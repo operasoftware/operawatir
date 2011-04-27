@@ -109,6 +109,14 @@ class OperaWatir::Element
 
   # Events
 
+  #
+  # Clicks on the top left of the element, or the given x,y offset
+  # relative to the element.
+  #
+  # @param [Integer] x The offset from the top left of the element.
+  # @param [Integer] y The offset from the top of the element.
+  #
+
   def click(x=0, y=0)
     node.click(x.to_i, y.to_i)
   end
@@ -162,6 +170,8 @@ class OperaWatir::Element
     raise Exceptions::NotImplementedException
   end
 
+  # FIXME: This should be migrated to using browserbot.js, as watir-webdriver
+  # is using.
   def fire_event(event, x = 0, y = 0)
     loc = location
     x += loc[:x]
@@ -174,7 +184,6 @@ class OperaWatir::Element
     event = $1 if $1
     event = event.downcase.to_sym
 
-    # TODO Should this be moved to OperaDriver instead?
     case event
     when :abort, :blur, :change, :error, :focus, :load, :reset, :resize, :scroll, :submit, :unload
       type = 'HTMLEvents';
