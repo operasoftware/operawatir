@@ -45,8 +45,6 @@ class OperaWatir::Element
     end
   end
 
-  alias_method :to_s, :text
-
   #
   # Checks whether the text content of the element contains the given
   # string In the compatibility layer as the preferred way of doing

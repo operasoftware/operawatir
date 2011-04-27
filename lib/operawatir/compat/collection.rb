@@ -79,6 +79,10 @@ class OperaWatir::Collection
     define_method(name) {method_missing(name)}
   end
 
+=begin
+  This only applies to Watir 1.  #to_s is in Watir 2 treated the same
+  way as Object#to_s (which will give you a Collection instance).
+
   # Fetches the string representation of this collection.
   #
   # @return [String] the string representation of this collection
@@ -95,6 +99,7 @@ class OperaWatir::Collection
       "  text:         #{el.text}"
     end.join("\n")
   end
+=end
 
 private
 

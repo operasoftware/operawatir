@@ -66,8 +66,6 @@ class OperaWatir::Element
   def_delegator :node, :getText, :text
   def_delegator :node, :getHTML, :html
 
-  alias_method :to_s, :text
-
   def_delegator :node, :getElementName, :tag_name
   def_delegator :node, :clear, :clear
 
