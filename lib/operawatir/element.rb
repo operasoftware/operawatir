@@ -176,12 +176,10 @@ class OperaWatir::Element
 
     # TODO Should this be moved to OperaDriver instead?
     case event
-    when :abort, :blur, :change, :error, :focus, :load, :reset,
-      :resize, :scroll, :submit, :unload
+    when :abort, :blur, :change, :error, :focus, :load, :reset, :resize, :scroll, :submit, :unload
       type = 'HTMLEvents';
       init = "initEvent(\"#{event.to_s}\", true, true)"
-    when :click, :dblclick, :mousedown, :mousemove, :mouseout,
-      :mouseover, :mouseup
+    when :click, :dblclick, :mousedown, :mousemove, :mouseout, :mouseover, :mouseup
       type = 'MouseEvents'
       init = "initMouseEvent(\"#{event.to_s}\", true, true, window, 1, 0, 0, 0, 0, false, false, false, false, 0, null)"
     else
