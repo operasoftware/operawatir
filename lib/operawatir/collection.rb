@@ -51,7 +51,7 @@ class OperaWatir::Collection
   # Public interface to elms, used in Selector
   def raw_elements
     _elms.tap do |e|
-      raise(OperaWatir::Exceptions::UnknownObjectException) if e.empty?
+      #raise(OperaWatir::Exceptions::UnknownObjectException) if e.empty?
     end
   end
 
