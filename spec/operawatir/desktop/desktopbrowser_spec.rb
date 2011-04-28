@@ -2,13 +2,17 @@
 require File.expand_path('../../watirspec_desktophelper', __FILE__)
 
 describe 'DesktopBrowser' do
+ 
   before :all do
     browser.url = fixture('simple.html')
     #@window = browser.quick_window(:name, "Tab 0")
   end
-  
+ 
   describe '#goto' do
-    it 'loads page' 
+    it 'loads page' do
+		browser.goto("http://t/platforms/desktop/automated/resources/documents/page1.html").should > 0
+	end
+
   end
   
   
@@ -57,7 +61,7 @@ describe 'DesktopBrowser' do
       it 'loads window' do
         browser.load_window_with_action("Document Window", "Open url in new page", WatirSpec.files + "/boxes.html").should > 0
       end
-      it 'fails for actions not loading'
+      it 'fails for actions not loading'  # no supported actions for not loading window
     end
 
     describe '#open_window_with_key_press' do
@@ -66,7 +70,7 @@ describe 'DesktopBrowser' do
       end
     end
   end
-  
+ 
   describe 'close window' do
     before(:each) do
       browser.open_window_with_key_press("Document Window", "t", :ctrl).should > 0
@@ -89,12 +93,15 @@ describe 'DesktopBrowser' do
      after(:each) do
        browser.close_all_dialogs
      end
+
     describe '#open_dialog_with_url' do
-      it 'opens dialog'
+		it 'opens dialog' do
+			browser.open_dialog_with_url("Download Dialog", WatirSpec.files + "/d_file.ini").should > 0
+		end
     end
     
-    describe '#open_dialog_with_click' do
-      it 'opens dialog'
+    describe '#open_dialog_with_click' do 
+      it 'opens dialog' #needs to be changed due to changes in the core methods
     end
     
    end
@@ -121,8 +128,9 @@ describe 'DesktopBrowser' do
    
   describe '#activate_tab_with_key_press' do
     before(:each) do
+		url = WatirSpec.files + "/two_input_fields.html"
       browser.open_window_with_key_press("Document Window", "t", :ctrl).should > 0 
-      browser.url = fixture('two_input_fields.html')
+      browser.quick_toolbar(:name, "Document Toolbar").quick_addressfield(:name, "tba_address_field").load_page_with_url(url)
     end
     after(:each) do
       browser.close_all_tabs
@@ -228,10 +236,14 @@ describe 'DesktopBrowser' do
        browser.window_name(valid_id).should == "Document Window"
      end
    end
-    
+   
    describe '#load_page_with_key_press' do
-     it 'load page'
-   end
+     it 'load page' do
+		browser.quick_toolbar(:name, "Document Toolbar").quick_addressfield(:name, "tba_address_field").focus_with_click
+	 	browser.quick_toolbar(:name, "Document Toolbar").quick_addressfield(:name, "tba_address_field").type_text(WatirSpec.files + "/boxes.html").should include "/boxes.html"
+		browser.load_page_with_key_press("Enter").should > 0
+	 end
+	end
    
    describe '#path' do
      it 'is not be empty' do
@@ -293,15 +305,38 @@ describe 'DesktopBrowser' do
    #attr_reader :driver
    
    describe '#clear_all_private_data' do
-     it 'clears private data'
+     it 'clears private data' do
+		browser.load_window_with_action("Document Window", "Open url in new page", WatirSpec.files + "/boxes.html").should > 0
+		browser.clear_all_private_data.should > 0
+		
+		if browser.mac?
+			browser.open_window_with_key_press("Document Window", "n", :ctrl).should > 0
+		end
+		
+		browser.open_pages.length.should == 1
+		browser.quick_toolbar(:name, "Document Toolbar").quick_addressfield(:name, "tba_address_field").text.should == ""
+	 end
    end
    
    describe '#clear_history' do
-     it 'clears history'
+     it 'clears history' #blocked due to DSK-327327
    end
    
    describe '#clear_cache' do
-     it 'clears cache' 
+     it 'clears cache' do
+		browser.load_window_with_action("Document Window", "Open url in new page", "http://elg.no/").should > 0
+		browser.close_all_tabs
+		
+		browser.load_window_with_action("Document Window", "Open url in current page", "opera:cache").should > 0
+		browser.text.include?("elg.no").should==true
+		
+		browser.close_all_tabs
+		
+		browser.clear_cache
+		
+		browser.load_window_with_action("Document Window", "Open url in current page", "opera:cache").should > 0
+		browser.text.include?("elg.no").should==false
+	 end
    end
    
    describe '#close_all_tabs' do
@@ -312,12 +347,25 @@ describe 'DesktopBrowser' do
    end
    
    describe '#reset_prefs' do
-     it 'resets prefs' 
+     it 'resets prefs' do
+		browser.set_preference("User Prefs", "Speed Dial State", 5)
+		browser.get_preference("User Prefs", "Speed Dial State").should == "5"
+		browser.reset_prefs("Speed Dial State")
+		browser.get_preference("User Prefs", "Speed Dial State").should_not == "5"
+	 end
    end
-   
+ 
    describe '#delete_profile' do
      it 'deletes profile' do
-       
+       browser.quick_toolbar(:name, "Document Toolbar").quick_addressfield(:name, "tba_address_field").load_page_with_url(WatirSpec.files + "/boxes.html").should include "/boxes.html"
+	   browser.open_window_with_key_press("Document Window", "t", :ctrl).should > 0
+	   browser.open_window_with_key_press("Document Window", "t", :ctrl).should > 0
+	   browser.quick_tabbuttons("Browser Window").length.should == 3
+	   browser.quit_opera
+	   browser.delete_profile
+	   browser.start_opera
+	   browser.quick_tabbuttons("Browser Window").length.should == 1
+	   browser.quick_toolbar(:name, "Document Toolbar").quick_addressfield(:name, "tba_address_field").text.should == "opera:debug"
      end
      it 'doesn\'t delete main profile' 
    end
@@ -335,7 +383,12 @@ describe 'DesktopBrowser' do
    end
        
    describe '#get_default_preference' do
-     it 'gets default value of preference'
+     it 'gets default value of preference' do
+		def_pref = browser.get_default_preference("User Prefs", "Speed Dial State")
+		browser.set_preference("User Prefs", "Speed Dial State", 7)
+		browser.get_preference("User Prefs", "Speed Dial State").should == "7"
+		browser.get_default_preference("User Prefs", "Speed Dial State").should == def_pref
+	 end
    end
 
     # Gets the parent widget name of which there is none here
@@ -350,5 +403,6 @@ describe 'DesktopBrowser' do
    #   browser.window_id.should be_nil
    #  end
    #end
+
 end
 
