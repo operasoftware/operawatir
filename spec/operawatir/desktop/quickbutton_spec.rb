@@ -15,7 +15,9 @@ describe 'QuickButton' do
   its(:type) { should == :button }
   
   describe '#quick_button' do
-    it "constructs a button by its name" 
+    it "constructs a button by its name" do
+		browser.quick_window(:name, "Document Window").quick_toolbar(:name, "Document Toolbar")
+	end
   end
   
   after(:all) do
@@ -113,7 +115,13 @@ describe 'QuickButton' do
   end
   
   describe '#close_window_with_click' do
-    it 'raises exception'
+		it 'raises exception' do
+			browser.open_dialog_with_action("Clear Private Data Dialog", "Delete private data").should > 0
+			browser.quick_button(:name, "button_manage_cookies").visible?.should == false
+			lambda { browser.quick_button(:name, "button_manage_cookies").close_window_with_click("")}.should raise_error OperaWatir::DesktopExceptions::WidgetNotVisibleException
+			browser.close_dialog("Clear Private Data Dialog").should > 0
+		
+		end
 	
 		it 'returns window id of closed dialog window' do
 			browser.open_dialog_with_action("Add Bookmark Dialog", "Add to bookmarks").should > 0
@@ -153,13 +161,15 @@ describe 'QuickButton' do
 		
 		it 'returns value = 0 of button when button is unpressed' do
 			browser.quick_button(:name, "Destails_expand").toggle_with_click.should == 0
-		end
-		
-		it "returns false when it removes a button" #New in Task 5
-		
-		after(:all) do
 			browser.close_dialog("Clear Private Data Dialog").should close_dialog
 		end
+		
+		it "returns false when it removes a button" do #New in Task 5
+			browser.open_window_with_key_press("Document Window", "t", :ctrl).should > 0
+			browser.quick_window(:name, "Document Window").quick_thumbnail(:name, "Speed Dial 1").quick_button(:name, "tb_CloseButton").toggle_with_click.should == nil
+		end
+		
+
   end
 
   describe '#close_toolbar_with_click' do
