@@ -26,6 +26,10 @@ describe 'QuickMenu' do
     it 'constructs a menu item by its position (row)' do
       browser.quick_menu(:name, "Toolbar Edit Item Popup Menu").quick_menuitem(:pos, 1).should exist
     end
+    it 'constructs a menu item by its shortcutletter' do
+      browser.quick_menu(:name, "Toolbar Edit Item Popup Menu").quick_menuitem(:acckey, "r").should exist
+    end
+    it 'constructs a menu item by its shortcut'
     it 'constructs a menu item by its string_id'
   end
   
