@@ -331,6 +331,23 @@ module OperaWatir
     end
 #=end
     
+    #TODO
+    def quick_menus
+      driver.getQuickMenuList().map do |java_menu|
+        QuickMenu.new(self, java_menu)
+      end.to_a
+    end
+    
+    #TODO
+    def quick_menuitems
+      items
+      quick_menus.map do |menu|
+        menu.getItemList().map do |java_item|
+          QuickMenuItem.new(self, java_item)
+        end
+      end.to_a
+    end
+    
     ######################################################################
     # Retrieves the name of a window based on it's id
     #
@@ -361,6 +378,7 @@ module OperaWatir
          wait_for_window_loaded("")
     end
     
+=begin    
     ##############################################################################
     # Clicks the element specified by method and selector, 
     # and waits for the window with name win_name to be shown
@@ -370,16 +388,16 @@ module OperaWatir
     #
     # @return [int] Window ID of the window shown or 0 if no window is shown
     #
-=begin    
+#=begin    
     # or open_dialog_with_click(type, method, selector, win_name)
     # open_dialog_with_click(:button, :id, "text", win_name)
-=end   
+#=end   
     def open_dialog_with_click(method, selector, win_name)
       wait_start
       OperaWatir::WebElement.new(self, method, selector).click
       wait_for_window_shown(win_name)
     end
-
+=end
 
     ######################################################################
     # Returns the full path to the Opera executable 
