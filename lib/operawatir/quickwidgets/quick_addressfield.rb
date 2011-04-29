@@ -23,6 +23,24 @@ module OperaWatir
       enter_text_and_hit_enter(url)
     end
     
+    ######################################################################
+    # Clicks the button, and waits for the window with window name 
+    # win_name to be shown
+    #
+    # @param [String] win_name name of the window that will be opened (Pass a blank string for any window)
+    #
+    # @return [int] Window ID of the window shown or 0 if no window is shown
+    #
+    # @raise [DesktopExceptions::WidgetNotVisibleException] if the button
+    #            is not visible
+    #
+    def open_menu_with_rightclick(menu_name)
+      wait_start
+      click(:right)
+      wait_for_menu_shown(menu_name)
+    end
+
+    
     #
     # Gets the visible text in the address field
     #
