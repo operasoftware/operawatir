@@ -11,24 +11,35 @@ describe 'QuickMenu' do
   }
     
   describe '#quick_menu' do
-    #browser.quick_menu(:name, "Image Popup Menu")
-    it 'constructs a menu by its action name' do
+    before(:all) do
       # 1. Rightclick in address field
       addressfield.open_menu_with_rightclick("Toolbar Edit Item Popup Menu").should open_menu
-      
-      # 2.
+    end
+    
+    it 'constructs a menu by its name' do
       browser.quick_menu(:name, "Toolbar Edit Item Popup Menu").should exist
+    end
+    
+    it 'constructs a menu item by its action name' do
       browser.quick_menu(:name, "Toolbar Edit Item Popup Menu").quick_menuitem(:action, "Clear").should exist
     end
+    
+    it 'constructs a menu item by its submenu name' do
+      browser.quick_menu(:name, "Toolbar Edit Item Popup Menu").quick_menuitem(:submenu, "Toolbar Popup Customize Menu").should exist
+    end
+    
     it 'constructs a menu item by its text' do
       browser.quick_menu(:name, "Toolbar Edit Item Popup Menu").quick_menuitem(:text, "Clear All").should exist
     end
+    
     it 'constructs a menu item by its position (row)' do
       browser.quick_menu(:name, "Toolbar Edit Item Popup Menu").quick_menuitem(:pos, 1).should exist
     end
+    
     it 'constructs a menu item by its shortcutletter' do
       browser.quick_menu(:name, "Toolbar Edit Item Popup Menu").quick_menuitem(:acckey, "r").should exist
     end
+    
     it 'constructs a menu item by its shortcut'
     it 'constructs a menu item by its string_id'
   end
