@@ -15,7 +15,7 @@ require 'operawatir'
   :format         => 'progress',
   :no_quit        => false,
   :opera_idle     => false,
-  :full_backtrace => false  # TODO: Provide fix for RSpec
+  #:full_backtrace => false  # TODO: Provide fix for RSpec
 }
 
 # TODO
