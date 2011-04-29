@@ -150,6 +150,22 @@ module OperaWatir
     end
     
     ######################################################################
+    # Clicks the button, and waits for the window with menu with name
+    # menu_name to be shown
+    #
+    # @param [String] 
+    #
+    # @raise [DesktopExceptions::WidgetNotVisibleException] if the button
+    #            is not visible
+    #
+    def open_menu_with_click(menu_name)
+      wait_start
+      click
+      wait_for_menu_shown(menu_name)
+    end
+
+    
+    ######################################################################
     # Pauses to wait for security dialogs when buttons are not active
     # right away on opening 
     #
