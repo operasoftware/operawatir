@@ -14,6 +14,10 @@ RSpec::Matchers.define :close_dialog do |expected|
   end
 end 
 
+RSpec::Matchers.define :close_menu do |expected|
+  match { |name| name.length > 0 }
+end
+
 RSpec::Matchers.define :open_window do
   match { |actual| actual > 0 }
   
@@ -28,6 +32,15 @@ RSpec::Matchers.define :open_dialog do
   failure_message_for_should do |window_id|
     "expected open_dialog to close dialog, but window_id returned is not valid: #{window_id}"
   end
+end
+
+#FIXME:TODO: Check match with menu name
+RSpec::Matchers.define :open_menu do
+  match { |name| name.length > 0 }
+  
+  #failure_message_for_should do |window_id|
+  #  "expected open_menu to open menu"
+  #end
 end
 
 
