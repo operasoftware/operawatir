@@ -1,6 +1,6 @@
 require File.expand_path('../../watirspec_desktophelper', __FILE__)
 require File.expand_path('../shared/shared', __FILE__)
-
+=begin
 describe 'QuickMenu' do
   
   #button#open_menu_with_click
@@ -18,8 +18,11 @@ describe 'QuickMenu' do
     
     it 'constructs a menu by its name' do
       browser.quick_menu(:name, "Toolbar Edit Item Popup Menu").should exist
+      browser.quick_menu(:name, "Toolbar Edit Item Popup Menu").click
+      sleep(2)
     end
-    
+  
+#=begin    
     it 'constructs a menu item by its action name' do
       browser.quick_menu(:name, "Toolbar Edit Item Popup Menu").quick_menuitem(:action, "Clear").should exist
     end
@@ -43,11 +46,43 @@ describe 'QuickMenu' do
     it 'constructs a menu item by its shortcut'
     it 'constructs a menu item by its string_id'
   end
-  
+#=end  
   #Submenu 
   
 end
+=end
+describe 'QuickMenuItem' do
+  let(:addressfield) { browser.quick_window(:name, "Document Window").quick_toolbar(:name, "Document Toolbar").quick_addressfield(:name, "tba_address_field") }
+  let(:menu) { browser.quick_menu(:name, "Toolbar Edit Item Popup Menu") }
+    
+  before(:each) do
+    # 1. Rightclick in address field
+    addressfield.open_menu_with_rightclick("Toolbar Edit Item Popup Menu").should open_menu
+  end
+=begin
+  describe 'close_menu_with_click' do
+    it 'closes menu' do
+      browser.quick_menu(:name, "Toolbar Edit Item Popup Menu").quick_menuitem(:action, "Delete").close_menu_with_click("Toolbar Edit Item Popup Menu").should close_menu
+      addressfield.key_press("enter")
+    end
+  end
 
+  describe 'click' do
+    it 'closes menu' do
+      browser.quick_menu(:name, "Toolbar Edit Item Popup Menu").quick_menuitem(:action, "Select all").click#.should close_menu
+      #TODO: Check menu is closed
+    end
+  end
+=end
+  describe 'open_menu_with_hover' do
+    it 'opens submenu' do
+      menu.quick_menuitem(:submenu, "Toolbar Popup Customize Menu").open_menu_with_hover("Toolbar Popup Customize Menu").should open_menu
+    end
+  end
+
+end
+
+=begin
 #######################################
 #Added here for now until we have menus support
 describe 'QuickButton' do
@@ -90,7 +125,7 @@ describe 'QuickMenuItem' do
   #it_behaves_like 'a button'
   #its(:type) { should == :menu_entry }
   
-=begin  
+#=begin  
   its(:shortcut) { should be_kind_of String }
   its(:shortcutletter) { should be kind_of String }
   its(:text) { should_not be_empty }
@@ -102,7 +137,7 @@ describe 'QuickMenuItem' do
   its(:checked?) { should be_boolean }
   #its(:icon)
   #its(:rect)
-=end  
+#=end  
   describe 'position' do
     it 'returns position for menuitem in personalbar' 
     it 'can specify which menuitem to construct'
@@ -126,6 +161,6 @@ describe 'QuickMenuItem' do
   describe '#load_page_with_click' do
     it 'returns window id'  
   end
-    
+=end
   #describe '#value' do
-end
+#end

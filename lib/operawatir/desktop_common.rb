@@ -89,6 +89,13 @@ private
       name
     end
     
+    def wait_for_menu_closed(menu_name = "")
+      name = driver.waitForMenuClosed(menu_name)
+      puts "name returned by driver.WaitForMenuShown = #{name}"
+      name
+    end
+
+ 
     def wait_for_widget_visible
       i = 15
       sleep(0.1) while element(true).isVisible == false and (i -= 1)  > 0 
