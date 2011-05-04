@@ -24,6 +24,26 @@ module OperaWatir
         @location  = location
       end
     end
+    
+    #
+    # TODO: Document
+    #
+    def open_menu_with_hover(menu_name)
+      wait_start
+      element.hover
+      wait_for_menu_shown(menu_name)
+    end
+    
+    def click
+      puts "quick_menuitem#click "
+      #super.click(:left)
+    end
+    
+    def close_menu_with_click(menu_name)
+      wait_start
+      click
+      wait_for_menu_closed(menu_name)
+    end
 
 private    
     # Finds the element on the page.  
