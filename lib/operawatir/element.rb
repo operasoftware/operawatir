@@ -152,8 +152,6 @@ class OperaWatir::Element
   def_delegator :node, :submit, :submit!
 
   def text=(input)
-    puts attr(:type)
-
     if attr(:type) =~ /checkbox/i
       toggle_check! unless checked?
     else
