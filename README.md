@@ -13,7 +13,7 @@
 
 ### Requirements
 
-OperaWatir runs on GNU/Linux, Mac OS X and Windows operating systems. Required dependencies are _Java_ >= 1.6.0, _JRuby_ <= 1.5.5, _RubyGems_ >= 1.3.5, _RSpec_ <= 2.5, and a somewhat recent desktop or nightly build of Opera.  For Windows you must also have the Microsoft Visual C++ 2008 Redistributable Package.
+OperaWatir runs on GNU/Linux, Mac OS X and Windows operating systems. Required dependencies are _Java_ >= 1.6.0, _JRuby_ <= 1.5.5, _RubyGems_ >= 1.3.5, _RSpec_ >= 2.4, and a somewhat recent build of Opera (desktop, internal, mobile).  For Windows you must also have the Microsoft Visual C++ 2008 Redistributable Package.
 
 ### Installation procedure
 
@@ -37,8 +37,8 @@ Let's take a closer look at how this works.
     browser = OperaWatir::Browser.new
     
     browser.goto 'http://en.wikipedia.org/'
-    browser.text_field(:id => 'searchInput').set 'Opera'
-    browser.button(:id => 'searchButton').click
+    browser.text_field(:id, 'searchInput').set 'Opera'
+    browser.button(:id, 'searchButton').click
 
 The script above will tell the browser to load the front page of Wikipedia, write “Opera” in the search field and click the search button.  If all goes as intended, the browser will end up at a relevant article. 
 
@@ -54,10 +54,9 @@ As Watir scripts are run in a full-featured browser, all keypresses and clicks w
     browser = OperaWatir::Browser.new
     
     browser.goto 'http://en.wikipedia.org/'
-    browser.text_field(:id => 'searchInput').click
+    browser.text_field(:id, 'searchInput').click
     browser.type 'Hello world'
-    browser.key 'Down'
-    browser.key 'Enter'
+    browser.keys.send :down, :enter
 
 The first suggested link will be selected by pressing arrow down (``'Down'``) and navigated to (``'Enter'``).  Using the same key events, you could even teach a script to play platform games: 
 
@@ -66,12 +65,12 @@ The first suggested link will be selected by pressing arrow down (``'Down'``) an
   
     browser.goto 'http://www.phoboslab.org/biolab/'
     sleep 2
-    browser.key 'X'
+    browser.keys.send 'X'
     sleep 1
-    browser.key_down 'Right'
-    5.times { browser.key 'X' }
-    2.times { browser.key 'C' }
-    browser.key_up 'Right'
+    browser.keys.down :right
+    5.times { browser.keys.send 'X' }
+    2.times { browser.keys.send 'C' }
+    browser.keys.up :right
 
 Sending commands to the browser is great, but sometimes we want to get something back too.  The following lines of code will have the browser automatically look up the phone number of Opera Software in the [yellow pages](http://gulesider.no/) and write it to the console.
 
@@ -81,9 +80,9 @@ Sending commands to the browser is great, but sometimes we want to get something
     browser = OperaWatir::Browser.new
     
     browser.goto 'http://gulesider.no/'
-    browser.text_field(:name => 'search_word').set 'Opera Software'
-    browser.button(:name => 'btn_cs').click
-    puts browser.li(:class => 'tel').text
+    browser.text_field(:name, 'search_word').set 'Opera Software'
+    browser.button(:name, 'btn_cs').click
+    puts browser.li(:class, 'tel').text
 
 When running proper functional tests on your web application with Watir, you might want a bit more structured output.  To define assertions and get pretty test reports, you can use [RSpec](http://rspec.info/), a behaviour-driven testing framework. 
 
@@ -95,15 +94,15 @@ When writing test suites you can use the OperaWatir::Helper class to help ease s
       end
     
       it 'finds the phone number to Opera Software' do
-        browser.text_field(:name => 'search_word').set 'Opera Software'
-        browser.button(:name => 'btn_cs').click
+        browser.text_field(:name, 'search_word').set 'Opera Software'
+        browser.button(:name, 'btn_cs').click
         browser.li(:class => 'tel').text.should == '24 16 40 00'
       end
     
       it 'finds the phone number to the Norwegian Opera and Ballet' do
-        browser.text_field(:name => 'search_word').set 'Den Norske Opera'
-        browser.button(:name => 'btn_cs').click
-        browser.li(:class => 'tel').text.should == '21 42 21 00'
+        browser.text_field(:name, 'search_word').set 'Den Norske Opera'
+        browser.button(:name, 'btn_cs').click
+        browser.li(:class, 'tel').text.should == '21 42 21 00'
       end
     end
 
@@ -122,29 +121,34 @@ If anything fails, more information about each failure will be provided.
 
 You can also see ``operawatir -h`` for more usage information:
 
-    Usage: operawatir [-m|--manual] [-l|--launcher=BINARY] [-b|--binary=BINARY]
-           [-a|--args=ARGUMENTS] [-q|--no-quit] [--no-opera-idle] [--no-color]
-           [-f|--format=FORMAT] [-o|--out=FILE] [-h|--help] [-v|--version] FILES
+    Usage: operawatir [-m|--manual] [-l|--launcher=BINARY] [--binary=BINARY]
+           [-a|--args=ARGUMENTS] [-q|--no-quit] [--opera-idle] [-b|--backtrace]
+           [--no-color] [-t|--tag=TAG] [-f|--format=FORMAT] [-o|--out=FILE]
+           [-h|--help] [-v|--version] FILES
     
     Specific options:
         -m, --manual                     Wait for a manual connection from opera:debug
         -l, --launcher=BINARY            Path to launcher binary, will use environmental 
                                          variable OPERA_LAUNCHER if not specified
-        -b, --binary=BINARY              Browser to run the test with, will use guess the 
+            --binary=BINARY              Browser to run the test with, will use guess the 
                                          path or use environmental variable OPERA_PATH if 
                                          not specified
         -a, --args=ARGUMENTS             Arguments passed to the binary, will override  
                                          environmental variable OPERA_ARGS
         -q, --no-quit                    Disable quitting of Opera at the end of a test run
-            --no-opera-idle              Disable OperaIdle
+            --opera-idle                 Enable OperaIdle
+        -b, --backtrace                  Enable full backtrace
             --no-color                   Disable colorized output
+        -t, --tag=TAG                    Specify tags to only run examples with the specified
+                                         tag, to exclude examples, add ~ before the tag (e.g.
+                                         `~slow')
         -o, --out=FILE                   Send output to a file instead of STDOUT
         -f, --format=FORMAT              Specify RSpec output formatter (documentation, 
                                          html, progress (default), textmate)
     
     Common options:
         -h, --help                       Show this message
-        -v, --version                    Show version
+       -v, --version                    Show version
 
 ## Third-Party Libraries
 
@@ -162,4 +166,3 @@ OperaWatir uses the following libraries:
 - [clipboard](https://github.com/janlelis/clipboard) (MIT License)
 - [deprecated](https://github.com/erikh/deprecated) (BSD License)
 - [bundler](http://gembundler.com/) (MIT License)
-
