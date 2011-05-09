@@ -5,12 +5,12 @@
 
 Gem::Specification.new do |s|
   s.name = %q{operawatir}
-  s.version = "0.4.1.pre3"
+  s.version = "0.4.1.pre6"
   s.platform = %q{jruby}
 
   s.required_rubygems_version = Gem::Requirement.new("> 1.3.1") if s.respond_to? :required_rubygems_version=
   s.authors = ["Andreas Tolf Tolfsen", "Chris Lloyd", "Stuart Knightley", "Deniz Turkoglu"]
-  s.date = %q{2011-03-14}
+  s.date = %q{2011-05-09}
   s.description = %q{    OperaWatir is a part of the Watir (pronounced water) family of
     free software Ruby libraries for automating web browsers.
     OperaWatir provides a querying engine and Ruby bindings for a
@@ -37,10 +37,10 @@ Gem::Specification.new do |s|
     "bin/operawatir",
     "lib/operadriver/APACHE_2.0_LICENSE.txt",
     "lib/operadriver/NEW_BSD_LICENSE.txt",
+    "lib/operadriver/client-combined-nodeps.jar",
     "lib/operadriver/commons-io-2.0.1.jar",
     "lib/operadriver/commons-jxpath-1.3.jar",
     "lib/operadriver/protobuf-java-2.3.0.jar",
-    "lib/operadriver/selenium-common.jar",
     "lib/operadriver/webdriver-opera.jar",
     "lib/operawatir.rb",
     "lib/operawatir/browser.rb",
@@ -72,6 +72,9 @@ Gem::Specification.new do |s|
     "lib/operawatir/quickwidgets/quick_dialogtab.rb",
     "lib/operawatir/quickwidgets/quick_dropdown.rb",
     "lib/operawatir/quickwidgets/quick_editfield.rb",
+    "lib/operawatir/quickwidgets/quick_find.rb",
+    "lib/operawatir/quickwidgets/quick_griditem.rb",
+    "lib/operawatir/quickwidgets/quick_gridlayout.rb",
     "lib/operawatir/quickwidgets/quick_label.rb",
     "lib/operawatir/quickwidgets/quick_radiobutton.rb",
     "lib/operawatir/quickwidgets/quick_searchfield.rb",
@@ -110,10 +113,26 @@ Gem::Specification.new do |s|
     "spec/operawatir/desktop/desktopbrowser_spec.rb",
     "spec/operawatir/desktop/quickaddressfield_spec.rb",
     "spec/operawatir/desktop/quickbutton_spec.rb",
+    "spec/operawatir/desktop/quickcheckbox_spec.rb",
+    "spec/operawatir/desktop/quickdialogtab_spec.rb",
+    "spec/operawatir/desktop/quickdropdown_spec.rb",
+    "spec/operawatir/desktop/quickeditfield_spec.rb",
+    "spec/operawatir/desktop/quickfind_spec.rb",
+    "spec/operawatir/desktop/quickgriditem_spec.rb",
+    "spec/operawatir/desktop/quickgridlayout_spec.rb",
+    "spec/operawatir/desktop/quicklabel_spec.rb",
+    "spec/operawatir/desktop/quickradiobutton_spec.rb",
+    "spec/operawatir/desktop/quicksearchfield_spec.rb",
+    "spec/operawatir/desktop/quicktab_spec.rb",
+    "spec/operawatir/desktop/quickthumbnail_spec.rb",
+    "spec/operawatir/desktop/quicktreeitem_spec.rb",
+    "spec/operawatir/desktop/quicktreeview_spec.rb",
     "spec/operawatir/desktop/quickwidget_spec.rb",
     "spec/operawatir/desktop/quickwindow_spec.rb",
     "spec/operawatir/desktop/shared/shared.rb",
     "spec/operawatir/fixtures/boxes.html",
+    "spec/operawatir/fixtures/browsers.svg",
+    "spec/operawatir/fixtures/frames.html",
     "spec/operawatir/fixtures/grid.html",
     "spec/operawatir/fixtures/input_fields_value.html",
     "spec/operawatir/fixtures/onclick.html",
@@ -254,7 +273,7 @@ Gem::Specification.new do |s|
   s.homepage = %q{http://www.opera.com/developer/tools/operawatir/}
   s.require_paths = ["lib"]
   s.rubyforge_project = %q{operawatir}
-  s.rubygems_version = %q{1.3.6}
+  s.rubygems_version = %q{1.3.7}
   s.summary = %q{Toolkit for automating interactions with the Opera web browser.}
   s.test_files = [
     "spec/fire_event/fire_event.rb",
@@ -267,6 +286,20 @@ Gem::Specification.new do |s|
     "spec/operawatir/desktop/desktopbrowser_spec.rb",
     "spec/operawatir/desktop/quickaddressfield_spec.rb",
     "spec/operawatir/desktop/quickbutton_spec.rb",
+    "spec/operawatir/desktop/quickcheckbox_spec.rb",
+    "spec/operawatir/desktop/quickdialogtab_spec.rb",
+    "spec/operawatir/desktop/quickdropdown_spec.rb",
+    "spec/operawatir/desktop/quickeditfield_spec.rb",
+    "spec/operawatir/desktop/quickfind_spec.rb",
+    "spec/operawatir/desktop/quickgriditem_spec.rb",
+    "spec/operawatir/desktop/quickgridlayout_spec.rb",
+    "spec/operawatir/desktop/quicklabel_spec.rb",
+    "spec/operawatir/desktop/quickradiobutton_spec.rb",
+    "spec/operawatir/desktop/quicksearchfield_spec.rb",
+    "spec/operawatir/desktop/quicktab_spec.rb",
+    "spec/operawatir/desktop/quickthumbnail_spec.rb",
+    "spec/operawatir/desktop/quicktreeitem_spec.rb",
+    "spec/operawatir/desktop/quicktreeview_spec.rb",
     "spec/operawatir/desktop/quickwidget_spec.rb",
     "spec/operawatir/desktop/quickwindow_spec.rb",
     "spec/operawatir/desktop/shared/shared.rb",
@@ -371,7 +404,7 @@ Gem::Specification.new do |s|
     current_version = Gem::Specification::CURRENT_SPECIFICATION_VERSION
     s.specification_version = 3
 
-    if Gem::Version.new(Gem::RubyGemsVersion) >= Gem::Version.new('1.2.0') then
+    if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_development_dependency(%q<bundler>, ["~> 1.0.0"])
       s.add_development_dependency(%q<jeweler>, [">= 0"])
       s.add_development_dependency(%q<BlueCloth>, ["= 1.0.1"])

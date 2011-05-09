@@ -1,9 +1,169 @@
+v0.4.1.pre6  2011-05-09
+
+  [API CHANGES]
+
+  * Added Compat::Collection#select.  (andreastt)
+
+  * Added Compat::Collection#selected?.  (andreastt)
+
+  * Added Compat::Window#frame.  (andreastt)
+
+  * Added Compat::Window#show_frames.  (andreastt)
+
+  * Added Compat::Window#switch_to_default.  (andreastt)
+
+  * Added DesktopBrowser#string.  (karie)
+
+  * Added DesktopContainer#quick_find.  (karie)
+
+  * Added DesktopContainer#quick_griditem.  (karie)
+
+  * Added DesktopContainer#quick_gridlayout.  (karie)
+
+  * Added Element#exist? and alias Element#exists? which will ensure
+    that querying whether elements exists in Watir 2 compatibility
+    mode will work.  (andreastt)
+
+  * New classes QuickFind, QuickGridItem and QuickGridLayout.  (karie)
+
+  * Added QuickTreeItem#collapse_with_click.  (karie)
+
+  * Added QuickTreeItem#load_window_with_double_click.  (karie)
+
+  * Added QuickWidget#has_ui_string?.  (karie)
+
+  * Added QuickWidget#height.  (karie)
+
+  * Added QuickWidget#width.  (karie)
+
+  * Added QuickWidget#x.  (karie)
+
+  * Added QuickWidget#y.  (karie)
+
+  * Added QuickWindow#height.  (karie)
+
+  * Added QuickWindow#width.  (karie)
+
+  * Added QuickWindow#x.  (karie)
+
+  * Added QuickWindow#y.  (karie)
+
+  * Removed Collection#to_s.  (karie)
+
+  * Removed Element#to_s.  (karie)
+
+  * Removed QuickWidget#is_text?.  (karie)
+
+  * Deprecated QuickWidgets#verify_includes_text, making #verify_text
+    handle text substitution.  Fixes DSK-329541 and DSK-330462.
+    (karie)
+
+  [NEW FEATURES]
+
+  * Added --opera-idle command line option to desktopwatir binary.
+    (karie)
+
+  * Added --manual command line option to desktopwatir binary.
+    (karie)
+
+  [ENHANCEMENTS]
+
+  * Upgraded OperaDriver to v0.4.2.pre7-g4db1c56-internal.
+    (andreastt)
+
+  * Enabling full backtrace (from RSpec) again.
+
+  * OperaDriver.getText() has been removed, replaced by doing
+    Window#document.getText() instead.  #document calls root element
+    using CSS selectors.  Fixes WTR-338.  (andreastt)
+
+  * Cleaned up some code in Element by simplifying if-blocks.
+    (andreastt)
+
+  * OperaWatir Desktop specification suite has been completed.
+    (karie, mariap)
+
+  * Updated Mac launcher which now includes the emo patch.
+    (andreastt)
+
+  [BUG FIXES]
+
+  * Idle is now disabled by default in OperaDriver, adding
+    environmental check and enabling --opera-idle switch properly.
+    (andreastt)
+
+  * Added support for accessing method select_list(s) from Watir 2.
+    (andreastt)
+
+  * Releasing all parts of an array when modifiers are pressed as
+    second argument.  Fixes WTR-339.  (andreastt)
+
+  * QuickSearchField#search_with_index retuns text in search field,
+    not address bar.  Fixes DSK-328699.  (karie)
+
+  * Fix in bin/desktopwatir for calling binary with full path to Watir
+    script.  Fixes DSK-330007.  (karie)
+
+  * Now using RSpec's :file_or_directories_to_run option instead of
+    :files_to_run, which has been deprecated.  (andreastt)
+
+  * #text= is called by compatibility code, but didn't have a check
+    for whether element was an INPUT @type="checkbox".  we are now
+    toggling check instead of attempting to send keys.  (andreastt)
+
+  * Helper executes RSpec autorun programmatically, disabling this by
+    moving it to the end of the file if any of the above abort
+    statements in bin/operawatir is called.  (andreastt)
+
+  * Attempted to do #uncheck! on textareas or input elements, fixed by
+    calling WebDriver's clear() method instead.  Fixes WTR-331.
+    (andreastt)
+
+  * Removed workaround for option --opera-idle.  This has now properly
+    been implemented in OperaDriver, and we are as such doing the
+    right thing now.  (andreastt)
+
+  * QuickWidgets#toggle_with_click failed if clicking removed the
+    element clicked.  Fixes DSK-330329.  (karie)
+
+  * Now handling ampersands in strings got from string_ids.  Fixes
+    DSK-319071.  (karie)
+
+  * Construction of buttons by position is now possible.  (karie)
+
+  * Add type checking to retrieval algorithm for widgets.  Fixes
+    DSK-320616.  (karie)
+
+  * Never raise UnknownObjectException on lookup, user must be able to
+    execute methods like Collection#exist? on empty collection
+    according to Watir specification.  (andreastt)
+
+  * #full_backtrace= is broken in RSpec, but andreastt has patched it
+     in upstream.  Added temporary workaround for it in
+     bin/operawatir.
+
+  * Element#value no longer does check for INPUT, TEXTAREA or SELECT
+    fields in Watir, but leaves this to OperaDriver.  (andreastt)
+
+  [OTHER]
+
+  * Added documentation for the Preferences implementation.
+    (andreastt)
+
+  * Added documentation for more desktop code.  (karie)
+
+  * Added #visual_hash tests for SVG documents.  (andreastt)
+
+  * Upgraded select_list_spec.rb to latest HEAD from jarib:watirspec.
+    (andreastt)
+
 v0.4.1.pre5  2011-03-18
 
   [BUG FIXES]
 
   * Upgraded to OperaDriver v0.4.2.pre5-15-gf8e8949 containing an
     updated 64-bit launcher that will work on older versions of libc.
+    (andreastt)
 
 v0.4.1.pre4  2011-03-17
 
@@ -12,16 +172,16 @@ v0.4.1.pre4  2011-03-17
   * Imlemented temporary environmental variable for switching OperaIdle
     on and off for SPARTAN.  This will override the --opera-idle option.
     Set the OPERA_IDLE environmental variable to a truthy variable
-    (true, "true", 1, "1") to enable.
+    (true, "true", 1, "1") to enable.  (andreastt)
 
   [BUG FIXES]
 
   * Temporarily passing OPERA_ARGS environmental variable to OperaDriver
     to enable fullscreen testing on SPARTAN.  OPERA_ARGS will in the
-    future be detected in OperaDriver.
+    future be detected in OperaDriver.  (andreastt)
 
   * /lib/operawatir/helper.rb will now autorun RSpec, fixing the
-    all-tests-failing issue on SPARTAN.
+    all-tests-failing issue on SPARTAN.  (andreastt)
 
 v0.4.1.pre3  2011-03-14
 
