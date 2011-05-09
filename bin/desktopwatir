@@ -4,7 +4,7 @@ require 'optparse'
 require 'rspec'
 require 'rbconfig'
 require 'operawatir'
-require 'operawatir/desktop_helper'
+
 
 @options = {
   #:manual        => false,
@@ -16,7 +16,7 @@ require 'operawatir/desktop_helper'
   :no_quit        => false,
   :no_restart     => false,
   :opera_idle     => false,
-  #:full_backtrace => false
+  #:full_backtrace => false  # TODO: Provide fix for RSpec
 }
 
 # TODO
@@ -71,19 +71,10 @@ EOS
       @options[:opera_idle] = true
     end
 
-    #opts.on('-b', '--backtrace', 'Enable full backtrace') do |c|
-    #  @options[:full_backtrace] = true
-    #end
+    opts.on('-b', '--backtrace', 'Enable full backtrace') do |c|
+      @options[:full_backtrace] = true
+    end
 
-    #opts.on('-c', '--check-syntax', 'Check syntax only') do |c|
-    #  @options[:check_syntax] = true
-    #end
-
-    #opts.on('--ng', 'Connect to Nailgun server instead of starting out ',
-    #        'own JVM') do |ng|
-    #  @options[:ng] = ng
-    #end
-    
     opts.on('-o', '--out=FILE', 'Send output to a file instead of STDOUT') do |o|
       @options[:output_stream] = File.open(o, 'w') or
         abort "desktopwatir: Unable to write to file `#{o}'"
@@ -120,8 +111,8 @@ end
 if ARGV.empty?
   abort 'desktopwatir: You need to specify at least one test file to run'
 else
-  @options[:files_to_run] = ARGV
-  @options[:files_to_run].map! do | f |
+  @options[:files_or_directories_to_run] = ARGV
+  @options[:files_or_directories_to_run].map! do | f |
     if f.include? "\\"
       f
     else 
@@ -130,6 +121,5 @@ else
   end.flatten!
 end
 
-#abort 'desktopwatir: --ng and --check-syntax are disabled for now' if @options[:ng] || @options[:check_syntax]
-
+require 'operawatir/desktop_helper'
 OperaWatir::DesktopHelper.run! @options

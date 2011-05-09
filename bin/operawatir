@@ -30,8 +30,8 @@ Usage: operawatir [-m|--manual] [-l|--launcher=BINARY] [--binary=BINARY]
        [-h|--help] [-v|--version] FILES
 EOS
 
-    opts.separator ""
-    opts.separator "Specific options:"
+    opts.separator ''
+    opts.separator 'Specific options:'
 
     opts.on('-m', '--manual', 'Wait for a manual connection from opera:debug') do |c|
       @options[:manual] = c
