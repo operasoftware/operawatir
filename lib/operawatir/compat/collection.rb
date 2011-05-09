@@ -101,6 +101,14 @@ class OperaWatir::Collection
   end
 =end
 
+  def select(option_text)
+    option(:text => option_text).node.setSelected
+  end
+
+  def selected?(option_text)
+    option(:text => option_text).node.isSelected
+  end
+
 private
 
   def map_or_return(&blk)

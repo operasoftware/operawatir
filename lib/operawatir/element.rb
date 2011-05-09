@@ -35,9 +35,9 @@ class OperaWatir::Element
     !attr(name).nil?
   end
 
-  def method_missing(name, *args, &blk)
-    if !(block_given? || !args.empty?) && has_attribute?(name)
-      attr(name)
+  def method_missing(method, *args, &blk)
+    if !(block_given? || !args.empty?) && has_attribute?(method)
+      attr(method)
     else
       super
     end
@@ -59,6 +59,8 @@ class OperaWatir::Element
   def_delegator :node, :isEnabled, :enabled?
   def_delegator :node, :isSelected, :checked?
 
+  def_delegator :node, :setSelected, :select
+
   def_delegator :node, :isSelected, :selected?
 
   def_delegator :node, :toggle, :toggle_check!
@@ -75,11 +77,17 @@ class OperaWatir::Element
   #
   # @return [String] Value of the element.
   def value
+=begin
     if tag_name =~ /input|textarea|select/i
-      node.getValue
+      node.getValue  #
+    elsif tag_name =~ /button/i
+      text           # getVisibleContents
     else
-      attr :value
+      attr :value    # attribute @value
     end
+=end
+
+    node.getValue
   end
 
   #
@@ -201,7 +209,7 @@ class OperaWatir::Element
   end
 
   def visible?
-    node.isVisible()
+    node.isVisible
   end
 
   # UI
