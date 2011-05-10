@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class String
 
   #
@@ -382,11 +383,13 @@ private
         p = p.to_s
         
         p =~ /^key: \"([a-zA-Z0-9\(\)\\\.\-\s]*)\"$/
-        key = $1.to_s
+        key = $1.to_s.gsub(/^\\t/, "\t")  # Workaround for double-encoded tabs:
+                                          # We get \\t, but it only accepts \t.
         
         p =~ /^type: ([A-Z]+)$/
         type = $1.to_s.capitalize
 
+        next if key.empty?  # “Opera Widgets/Unite Style File” is bugged, workaround.
         keys << Entry.new(self, key.methodize, key.gsub(/^\\t/, "\t"), type)
       end
 
