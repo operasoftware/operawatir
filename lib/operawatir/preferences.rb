@@ -390,7 +390,7 @@ private
         type = $1.to_s.capitalize
 
         next if key.empty?  # “Opera Widgets/Unite Style File” is bugged, workaround.
-        keys << Entry.new(self, key.methodize, key.gsub(/^\\t/, "\t"), type)
+        keys << Entry.new(self, key.methodize, key, type)
       end
 
       keys
