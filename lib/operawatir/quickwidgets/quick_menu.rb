@@ -29,6 +29,10 @@ module OperaWatir
       element.getName
     end
     
+    def to_s
+      "QUICKMENU #{name}, visible=#{visible?}" # TODO: Add rect
+    end
+    
     ######################################################################
     # Checks whether a widget exists or not
     #
@@ -40,7 +44,11 @@ module OperaWatir
         false
     end
     alias_method :exists?, :exist?
-
+    
+    #def items
+    #  method.getMenuItemList
+    #end
+    
 private    
     # Finds the element on the page.  
     def find

@@ -1,5 +1,5 @@
 module OperaWatir
-  class QuickMenuItem < QuickWidget
+  class QuickMenuItem < QuickWidget #
 
     # @private
     # Checks the type of the widget is correct
@@ -12,7 +12,7 @@ module OperaWatir
     # location is set is this is called on a (parent) widget
     def initialize(container, method, selector=nil, location=nil)
       
-      puts "QuickMenuItem initialize method #{method}, selector #{selector}"
+      #puts "QuickMenuItem initialize method #{method}, selector #{selector}"
       
       @container = container
                             
@@ -25,6 +25,10 @@ module OperaWatir
       end
     end
     
+     def name
+       element.getName
+     end
+     
     #
     # TODO: Document
     #
@@ -34,16 +38,52 @@ module OperaWatir
       wait_for_menu_shown(menu_name)
     end
     
+    ######################################################################
+    # Clicks the button, and waits for the window with menu with name
+    # menu_name to be shown
+    #
+    # @param [String] 
+    #
+    # @raise [DesktopExceptions::WidgetNotVisibleException] if the button
+    #            is not visible
+    #
+    def open_menu_with_click(menu_name)
+      wait_start
+      click
+      wait_for_menu_shown(menu_name)
+    end
+
+
+    # Obs: Dont repeat these here, only temporary    
+    def load_page_with_click
+      wait_start
+      click
+      # Just wait for the load
+      wait_for_window_loaded("")
+    end
+    
     def click
-      puts "quick_menuitem#click "
       super
     end
+    
+    def open_window_with_click(win_name)
+      wait_start
+      click
+      wait_for_window_shown(win_name)
+    end
+    
+    alias_method :open_dialog_with_click, :open_window_with_click
     
     def close_menu_with_click(menu_name)
       wait_start
       click
       wait_for_menu_closed(menu_name)
     end
+    
+    def to_s
+      "QUICKMENUITEM #{name}, visible=#{visible?}"
+    end
+
 
 private    
     # Finds the element on the page.  
@@ -56,6 +96,8 @@ private
       #puts "\n<find> Find Menu by " + @method.to_s + ", " + @selector.to_s + ", " + @location.to_s
       case @method
         # action or submenu name?
+      when :name
+        @element = driver.getQuickMenuItemByName(@selector)
       when :action
         @element = driver.getQuickMenuItemByAction(@selector)
       when :submenu
