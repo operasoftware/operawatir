@@ -340,14 +340,11 @@ module OperaWatir
     
     #TODO
     def quick_menuitems
-      items
-      quick_menus.map do |menu|
-        menu.getItemList().map do |java_item|
-          QuickMenuItem.new(self, java_item)
-        end
+      driver.getQuickMenuItemList().map do |java_item|
+        QuickMenuItem.new(self, java_item)
       end.to_a
     end
-    
+
     ######################################################################
     # Retrieves the name of a window based on it's id
     #
