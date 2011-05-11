@@ -19,6 +19,8 @@ include_class com.opera.core.systems.OperaDesktopDriver
 include_class com.opera.core.systems.scope.protos.DesktopWmProtos
 include_class com.opera.core.systems.scope.protos.SystemInputProtos
 include_class com.opera.core.systems.QuickWidget
+include_class com.opera.core.systems.QuickMenu
+include_class com.opera.core.systems.QuickMenuItem
 
 $KCODE = 'u'  # UTF-8 support
 

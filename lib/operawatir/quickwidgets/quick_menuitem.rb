@@ -36,7 +36,7 @@ module OperaWatir
     
     def click
       puts "quick_menuitem#click "
-      #super.click(:left)
+      super
     end
     
     def close_menu_with_click(menu_name)
