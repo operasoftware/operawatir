@@ -1,6 +1,6 @@
 require File.expand_path('../../watirspec_desktophelper', __FILE__)
 require File.expand_path('../shared/shared', __FILE__)
-=begin
+
 describe 'QuickMenu' do
   
   #button#open_menu_with_click
@@ -15,81 +15,55 @@ describe 'QuickMenu' do
       # 1. Rightclick in address field
       addressfield.open_menu_with_rightclick("Toolbar Edit Item Popup Menu").should open_menu
     end
+    after(:all) do
+      addressfield.right_click
+    end
     
     it 'constructs a menu by its name' do
       browser.quick_menu(:name, "Toolbar Edit Item Popup Menu").should exist
       browser.quick_menu(:name, "Toolbar Edit Item Popup Menu").click
-      sleep(2)
+      #sleep(2)
     end
   
-#=begin    
-    it 'constructs a menu item by its action name' do
-      browser.quick_menu(:name, "Toolbar Edit Item Popup Menu").quick_menuitem(:action, "Clear").should exist
+    describe '#quick_menus' do
+      it 'lists all menus' do
+        #Just to test more than main menu :)
+        #addressfield.open_menu_with_rightclick("Toolbar Edit Item Popup Menu").should open_menu
+        browser.quick_menus.each do |menu|
+          puts menu.to_s
+        end
+      end
     end
-    
-    it 'constructs a menu item by its submenu name' do
-      browser.quick_menu(:name, "Toolbar Edit Item Popup Menu").quick_menuitem(:submenu, "Toolbar Popup Customize Menu").should exist
+
+=begin    
+    describe 'opening a rightclick menu from link in webpage' do
+      it 'works' do
+        browser.goto(WatirSpec.files + "/non_control_elements.html")
+        browser.link(:id, 'link_2').right_click
+      end
     end
-    
-    it 'constructs a menu item by its text' do
-      browser.quick_menu(:name, "Toolbar Edit Item Popup Menu").quick_menuitem(:text, "Clear All").should exist
-    end
-    
-    it 'constructs a menu item by its position (row)' do
-      browser.quick_menu(:name, "Toolbar Edit Item Popup Menu").quick_menuitem(:pos, 1).should exist
-    end
-    
-    it 'constructs a menu item by its shortcutletter' do
-      browser.quick_menu(:name, "Toolbar Edit Item Popup Menu").quick_menuitem(:acckey, "r").should exist
-    end
-    
-    it 'constructs a menu item by its shortcut'
-    it 'constructs a menu item by its string_id'
-  end
-#=end  
-  #Submenu 
+=end
+
+
   
-end
-=end
-describe 'QuickMenuItem' do
-  let(:addressfield) { browser.quick_window(:name, "Document Window").quick_toolbar(:name, "Document Toolbar").quick_addressfield(:name, "tba_address_field") }
-  let(:menu) { browser.quick_menu(:name, "Toolbar Edit Item Popup Menu") }
-    
-  before(:each) do
-    # 1. Rightclick in address field
-    addressfield.open_menu_with_rightclick("Toolbar Edit Item Popup Menu").should open_menu
   end
-=begin
-  describe 'close_menu_with_click' do
-    it 'closes menu' do
-      browser.quick_menu(:name, "Toolbar Edit Item Popup Menu").quick_menuitem(:action, "Delete").close_menu_with_click("Toolbar Edit Item Popup Menu").should close_menu
-      addressfield.key_press("enter")
-    end
-  end
-
-  describe 'click' do
-    it 'closes menu' do
-      browser.quick_menu(:name, "Toolbar Edit Item Popup Menu").quick_menuitem(:action, "Select all").click#.should close_menu
-      #TODO: Check menu is closed
-    end
-  end
-=end
-  describe 'open_menu_with_hover' do
-    it 'opens submenu' do
-      menu.quick_menuitem(:submenu, "Toolbar Popup Customize Menu").open_menu_with_hover("Toolbar Popup Customize Menu").should open_menu
-    end
-  end
-
 end
 
-=begin
+
 #######################################
-#Added here for now until we have menus support
+
 describe 'QuickButton' do
   let(:menubutton) { browser.quick_window(:name, "Browser Window").quick_toolbar(:name, "Pagebar Head").quick_button(:name, "tbb_MenuButton") }
+  let(:menubar) { browser.quick_menu(:name, "Main Menu")}
   describe 'open_menu_with_click' do
+    before(:each) do
+      unless menubutton.exists? 
+        menubar.quick_menuitem(:name, "Browser File Menu").open_menu_with_click("Browser File Menu").should open_menu
+        browser.quick_menu(:name, "Browser File Menu").quick_menuitem(:action, "Enable menu bar").click
+      end
+    end
     it 'opens a menu' do
-      menubutton.open_menu_with_click("").should open_menu 
+      menubutton.open_menu_with_click("Browser Button Menu Bar").should open_menu 
     end
   end
   describe 'open_menu_with_long_click' do
@@ -107,60 +81,3 @@ describe 'DesktopBrowser' do
     it 'opens rightclick menu'
   end
 end
-####################################
-
-describe 'QuickMenuItem' do
-  
-  #For menuitem: Action == Name
-  
-  #browser.quick_menu(:name, "Image Popup Menu").quick_menuitem(:pos, 1) # Not platform independent
-  #browser.quick_menu(:name, "Image Popup Menu").quick_menuitem(:string_id, ID) #Tiresome to look up
-  #browser.quick_menu(:name, "Image Popup Menu").quick_menuitem(:text, ..) #Not language independent
-  #browser.quick_menu(:name, "Image Popup Menu").quick_menuitem(:action, ..) #Language independent
-  #browser.quick_menu(:name, "Image Popup Menu").quick_menuitem(:shortcut, ..)#Not platform independent 
-
-  #let(:widget) { browser.quick_window(:name, "Document Window").quick_toolbar(:name, "Document Toolbar")  .quick_button(:name, "tbb_Home") }
-  #subject { widget }
-  #it_behaves_like 'a widget'
-  #it_behaves_like 'a button'
-  #its(:type) { should == :menu_entry }
-  
-#=begin  
-  its(:shortcut) { should be_kind_of String }
-  its(:shortcutletter) { should be kind_of String }
-  its(:text) { should_not be_empty }
-  #its(:string_id) #??
-  #its(:action)
-  #its(:submenu)
-  its(:enabled?) { should be_boolean }
-  its(:selected?) { should be_boolean }
-  its(:checked?) { should be_boolean }
-  #its(:icon)
-  #its(:rect)
-#=end  
-  describe 'position' do
-    it 'returns position for menuitem in personalbar' 
-    it 'can specify which menuitem to construct'
-  end
-  
-  #hover may open a submenu
-  describe 'open_menu_with_hover' do
-    
-  end
-  
-  #click invokes the action of the item
-  describe 'click' do
-    
-  end
-
-  describe '#open_window_with_click' do
-    it 'opens a window' 
-    it 'raises exception if menuitem is disabled'
-  end
-  
-  describe '#load_page_with_click' do
-    it 'returns window id'  
-  end
-=end
-  #describe '#value' do
-#end
