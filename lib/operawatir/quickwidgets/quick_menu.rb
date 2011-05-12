@@ -30,9 +30,35 @@ module OperaWatir
     end
     
     def to_s
-      "QUICKMENU #{name}, visible=#{visible?}" # TODO: Add rect
+      "QUICKMENU #{name}" # TODO: Add rect
     end
     
+    ########################################################################
+    #
+    # @return width of widget
+    #
+    def width
+      element.getRect().width
+    end
+
+    ########################################################################
+    #
+    # @return height of widget
+    #
+    def height
+      element.getRect().height
+    end
+
+    #@private
+    def x
+      element.getRect().x
+    end
+
+    #@private
+    def y
+      element.getRect().y
+    end
+  
     ######################################################################
     # Checks whether a widget exists or not
     #
