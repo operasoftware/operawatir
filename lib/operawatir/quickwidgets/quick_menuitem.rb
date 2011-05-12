@@ -172,8 +172,9 @@ private
         @element = driver.getQuickMenuItemByPosition(@selector, @location)
       when :acckey
         @element = driver.getQuickMenuItemByAccKey(@selector, @location)
+      when :string_id
+        @element = driver.getQuickMenuItemByStringId(@selector)
       end
-        
         
       raise(Exceptions::UnknownObjectException, "Element #{@selector} not found using #{@method}") unless @element 
       @element
