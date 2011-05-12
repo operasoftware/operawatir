@@ -29,6 +29,68 @@ module OperaWatir
        element.getName
      end
      
+     def text
+       element.getText()
+     end
+     
+     def string_id
+       element.getStringId()
+     end
+     
+     def selected?
+       element.isSelected()
+     end
+     
+     def bold?
+       element.isBold()
+     end
+     
+     def shortcutletter
+       element.getShortcutLetter()
+     end
+     
+     def shortcut
+       element.getShortcut()
+     end
+     
+     def row
+       element.getRow()
+     end
+     
+     def action
+       element.getActionName()
+     end
+     
+     def submenu
+       element.getSubMenu()
+     end
+     
+    ########################################################################
+     #
+     # @return width of widget
+     #
+     def width
+       element.getRect().width
+     end
+ 
+     ########################################################################
+     #
+     # @return height of widget
+     #
+     def height
+       element.getRect().height
+     end
+ 
+     #@private
+     def x
+       element.getRect().x
+     end
+ 
+     #@private
+     def y
+       element.getRect().y
+     end
+   
     #
     # TODO: Document
     #
@@ -81,7 +143,7 @@ module OperaWatir
     end
     
     def to_s
-      "QUICKMENUITEM #{name}, visible=#{visible?}"
+      "QUICKMENUITEM #{name}"
     end
 
 
