@@ -1,3 +1,28 @@
+v0.4.1.pre7  2011-05-12
+
+  [API CHANGES]
+
+  * Added browser.iframe and browser.iframes to Watir 2 compatibility
+    layer.  (andreastt)
+
+  [ENHANCEMENTS]
+
+  * Upgraded OperaDriver to v0.4.2.pre7-7-g261741e-internal.
+    (andreastt)
+
+  [BUG FIXES]
+
+  * Workaround for empty preference values sent from core in
+    ListPrefs, skipping them as they will terminate Scope if passed
+    back to Opera in GetPref or SetPref.  (andreastt)
+
+  [OTHER]
+
+  * Using #first instead of #[0] when querying raw elements array.
+    (andreastt)
+
+  * Reduced some code duplication.  (andreastt)
+
 v0.4.1.pre6  2011-05-09
 
   [API CHANGES]
