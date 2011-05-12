@@ -172,6 +172,8 @@ private
         @element = driver.getQuickMenuItemByPosition(@selector, @location)
       when :acckey
         @element = driver.getQuickMenuItemByAccKey(@selector, @location)
+      when :shortcut
+        @element = driver.getQuickMenuItemByShortcut(@selector)
       when :string_id
         @element = driver.getQuickMenuItemByStringId(@selector)
       end
