@@ -63,7 +63,7 @@ class OperaWatir::Collection
   end
 
   def attr(name)
-    raw_elements[0].attr(name)
+    raw_elements.first.attr(name)
   end
 
   def attrs(name)
