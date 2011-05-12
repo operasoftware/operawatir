@@ -80,6 +80,8 @@ module OperaWatir::Compat::ElementFinders
 
   def_element :h6, :h6s
 
+  def_element :iframe, :iframes
+
   def_element :image, :images, :how => :src do |selector|
     selector.tag :img
   end
