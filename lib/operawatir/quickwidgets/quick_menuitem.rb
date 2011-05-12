@@ -45,6 +45,10 @@ module OperaWatir
        element.isBold()
      end
      
+     def has_submenu?
+       element.hasSubmenu()
+     end
+     
      def shortcutletter
        element.getShortcutLetter()
      end

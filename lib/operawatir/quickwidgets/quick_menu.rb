@@ -58,6 +58,10 @@ module OperaWatir
     def y
       element.getRect().y
     end
+    
+    def submenu?
+      element.isSubmenu()
+    end
   
     ######################################################################
     # Checks whether a widget exists or not
