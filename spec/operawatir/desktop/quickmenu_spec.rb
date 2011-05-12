@@ -21,8 +21,6 @@ describe 'QuickMenu' do
     
     it 'constructs a menu by its name' do
       browser.quick_menu(:name, "Toolbar Edit Item Popup Menu").should exist
-      browser.quick_menu(:name, "Toolbar Edit Item Popup Menu").click
-      #sleep(2)
     end
   
     describe '#quick_menus' do

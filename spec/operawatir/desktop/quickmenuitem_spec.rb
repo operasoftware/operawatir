@@ -8,16 +8,19 @@ describe 'QuickMenuItem' do
 
   let(:addressfield) { browser.quick_toolbar(:name, "Document Toolbar").quick_addressfield(:name, "tba_address_field") }
 
+  before(:all) { addressfield.right_click }
   after(:all) { addressfield.right_click }
     
   #browser.quick_menu(:name, "Image Popup Menu").quick_menuitem(:string_id, ID) #Tiresome to look up
   #browser.quick_menu(:name, "Image Popup Menu").quick_menuitem(:shortcut, ..)#Not platform independent 
     
   describe '#quick_menuitem' do
+
     it 'constructs a menu item by its action name' do
+      browser.quick_menu(:name, "Toolbar Edit Item Popup Menu").should exist
       browser.quick_menu(:name, "Toolbar Edit Item Popup Menu").quick_menuitem(:action, "Clear").should exist
     end
-    
+   
     it 'constructs a menu item by its submenu name' do
       browser.quick_menu(:name, "Toolbar Edit Item Popup Menu").quick_menuitem(:submenu, "Toolbar Popup Customize Menu").should exist
     end
@@ -31,14 +34,20 @@ describe 'QuickMenuItem' do
     end
     
     it 'constructs a menu item by its shortcutletter' do
-      browser.quick_menu(:name, "Toolbar Edit Item Popup Menu").quick_menuitem(:acckey, "r").should exist
+      browser.quick_menu(:name, "Toolbar Edit Item Popup Menu").quick_menuitem(:acckey, "R").should exist
     end
     
-    it 'constructs a menu item by its shortcut'
-    it 'constructs a menu item by its string_id'
-  end
-end
+    it 'constructs a menu item by its shortcut' do
+      browser.quick_menu(:name, "Toolbar Edit Item Popup Menu").quick_menuitem(:shortcut, "Ctrl+V").should exist
+    end
+    
+    it 'constructs a menuitem by its stringId' do
+      browser.quick_menu(:name, "Toolbar Edit Item Popup Menu").quick_menuitem(:string_id, "MI_IDM_EDIT_UNDO").should exist
+    end
 
+  end    
+end
+=begin
 describe 'QuickMenuItem' do
   let(:addressfield) { browser.quick_window(:name, "Document Window").quick_toolbar(:name, "Document Toolbar").quick_addressfield(:name, "tba_address_field") }
   let(:menu) { browser.quick_menu(:name, "Toolbar Edit Item Popup Menu") }
@@ -50,7 +59,7 @@ describe 'QuickMenuItem' do
     
   let(:menubar) {browser.quick_menu(:name, "Main Menu")}
   
-=begin    
+#=begin    
   before(:each) do
     # 1. Rightclick in address field
     addressfield.open_menu_with_rightclick("Toolbar Edit Item Popup Menu").should open_menu
@@ -74,7 +83,7 @@ describe 'QuickMenuItem' do
       #TODO: Check menu is closed
     end
   end
-=end
+#=end
   
 =begin  
   describe 'open_menu_with_hover' do
@@ -92,8 +101,11 @@ describe 'QuickMenuItem' do
     end
     
   end
+
 end  
 =end
+
+=begin
   describe 'QuickMenuItem' do
 
   describe '#load_page_with_click' do
@@ -153,9 +165,11 @@ end
       end
     end
   
-  end
 end
 
+=end
+
+=begin
 describe 'QuickMenuItem' do
   
   #For menuitem: Action == Name
@@ -204,6 +218,6 @@ describe 'QuickMenuItem' do
   describe '#load_page_with_click' do
     it 'returns window id'  
   end
-
+=end
   #describe '#value' do
-end
+#end
