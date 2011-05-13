@@ -313,11 +313,7 @@ module OperaWatir
      button = DesktopEnums::MOUSEBUTTON_ENUM_MAP[button]
      list = Java::JavaUtil::ArrayList.new
      opts.each { |mod| list << DesktopEnums::KEYMODIFIER_ENUM_MAP[mod] }
-     puts "Will click"
-     sleep(1)
      element.click(button, times, list)
-     puts "Did click"
-     sleep(2)
    else
      raise(DesktopExceptions::WidgetNotVisibleException, "Widget #{name.length > 0 ? name : text} not visible")
    end
