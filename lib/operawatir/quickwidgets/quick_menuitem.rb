@@ -26,7 +26,11 @@ module OperaWatir
     end
     
      def name
-       element.getName
+       element.getName()
+     end
+     
+     def menu
+       element.getMenu()
      end
      
      def text
@@ -57,7 +61,7 @@ module OperaWatir
        element.getShortcut()
      end
      
-     def row
+     def pos
        element.getRow()
      end
      
@@ -128,9 +132,9 @@ module OperaWatir
       wait_for_window_loaded("")
     end
     
-    def click
-      super
-    end
+    #def click(button = :left, times = 1, *opts)
+    #  super
+    #end
     
     def open_window_with_click(win_name)
       wait_start
@@ -147,7 +151,7 @@ module OperaWatir
     end
     
     def to_s
-      "QUICKMENUITEM #{name}"
+      "QUICKMENUITEM #{name}, pos #{pos}, menu #{menu}"
     end
 
 
