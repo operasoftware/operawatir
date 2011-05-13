@@ -3,16 +3,12 @@ require File.expand_path('../shared/shared', __FILE__)
 
 describe 'QuickMenuItem' do
   
-  #button#open_menu_with_click
-  # open_right_click_menu / open_menu_with_right_click (button#, treeitem#, link#, ..)
+  # link.open_right_click_menu / menuitem.open_menu_with_right_click (button#, treeitem#, link#, ..)
 
   let(:addressfield) { browser.quick_toolbar(:name, "Document Toolbar").quick_addressfield(:name, "tba_address_field") }
 
   before(:all) { addressfield.right_click }
   after(:all) { addressfield.right_click }
-    
-  #browser.quick_menu(:name, "Image Popup Menu").quick_menuitem(:string_id, ID) #Tiresome to look up
-  #browser.quick_menu(:name, "Image Popup Menu").quick_menuitem(:shortcut, ..)#Not platform independent 
     
   describe '#quick_menuitem' do
 
@@ -105,23 +101,29 @@ describe 'QuickMenuItem' do
 end  
 =end
 
-=begin
+#=begin
   describe 'QuickMenuItem' do
-
+    let(:addressfield) { browser.quick_window(:name, "Document Window").quick_toolbar(:name, "Document Toolbar").quick_addressfield(:name, "tba_address_field") }
+    let(:menu) { browser.quick_menu(:name, "Toolbar Edit Item Popup Menu") }
+    let(:submenu) { browser.quick_menu(:name, "Toolbar Popup Customize Menu")}
+    let(:mainmenu) { browser.quick_menu(:name, "Browser Button Menu Bar")}
+      
+    let(:menubutton) { browser.quick_window(:name, "Browser Window").quick_toolbar(:name, "Pagebar Head").quick_button(:name, "tbb_MenuButton")}
+    let(:bookmarksmenu) { browser.quick_menu(:name, "Browser Bookmarks Menu")}
+      
+    let(:menubar) {browser.quick_menu(:name, "Main Menu")}
+   
   describe '#load_page_with_click' do
     it 'loads a page (from bookmark)' do
       menubutton.open_menu_with_click("Browser Button Menu Bar").should open_menu
       mainmenu.quick_menuitem(:submenu, "Browser Bookmarks Menu").open_menu_with_hover("Browser Bookmarks Menu").should open_menu
+      #mainmenu.quick_menuitem(:shortcut, "B").open_menu_with_hover("Browser Bookmarks Menu").should open_menu
       bookmarksmenu.quick_menuitem(:text, "Kayak").load_page_with_click.should be > 0
     end
   end
 
   describe '#open_window_with_click' do
     it 'opens window (Downloads tab)' do
-      browser.quick_widgets("Browser Window").each do |w|
-        puts w.to_s
-      end
-      
       menubutton.open_menu_with_click("Browser Button Menu Bar").should open_menu
       
       # TODO, WhatToDo, more actions with same action, different params ...
@@ -152,11 +154,11 @@ end
         end
       end
       it 'opens window (Downloads tab)' do
-        browser.quick_windows.each do |win|
+        #browser.quick_windows.each do |win|
           #if win.type == "Browser Window"
-        puts win.to_s + ", #{win.x}, #{win.y}, #{win.width}, #{win.height}"
+        #puts win.to_s + ", #{win.x}, #{win.y}, #{win.width}, #{win.height}"
           #end
-        end
+        #end
         
         menubar.quick_menuitem(:name, "Browser Tools Menu").open_menu_with_click("Browser Tools Menu").should open_menu
         
@@ -167,7 +169,6 @@ end
   
 end
 
-=end
 
 =begin
 describe 'QuickMenuItem' do
@@ -196,13 +197,7 @@ describe 'QuickMenuItem' do
   end
       
   describe 'position' do
-    it 'returns position for menuitem in personalbar' 
-    it 'can specify which menuitem to construct'
-  end
-  
-  #hover may open a submenu
-  describe 'open_menu_with_hover' do
-    
+    it 'returns position for menuitem' 
   end
   
   #click invokes the action of the item

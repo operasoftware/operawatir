@@ -65,6 +65,8 @@ describe 'QuickButton' do
       menubutton.open_menu_with_click("Browser Button Menu Bar").should open_menu 
     end
   end
+  
+  #We don't support longclick yet
   describe 'open_menu_with_long_click' do
     it 'opens a menu'
   end

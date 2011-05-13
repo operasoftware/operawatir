@@ -8,6 +8,7 @@ module OperaWatir
     # window_id is set if constructor is called on a (parent) window
     # location is set is this is called on a (parent) widget
     def initialize(container, method, selector=nil, location=nil, window_id=-1, type=nil)
+      
       @container = container
                             
       if method.is_a? Java::ComOperaCoreSystems::QuickWidget
@@ -289,6 +290,41 @@ module OperaWatir
       return element.getValue
     end
     
+    # Right click a widget
+    def right_click
+      click(:right, 1)
+    end
+    
+# Click widget
+ def click(button = :left, times = 1, *opts)
+   
+   puts "QuickWidget#click"
+   
+   #raise DesktopExceptions::WidgetDisabledException, "Element #{@selector} is disabled" unless enabled?
+
+   #Some buttons etc. aren't visible until hovering them
+   if (visible? == false and type != :dialogtab)
+     element.hover
+     element(true)
+   end
+
+   # Dialog tabs are always visible even if the page they are connected to isn't
+   if visible? == true or type == :dialogtab
+     button = DesktopEnums::MOUSEBUTTON_ENUM_MAP[button]
+     list = Java::JavaUtil::ArrayList.new
+     opts.each { |mod| list << DesktopEnums::KEYMODIFIER_ENUM_MAP[mod] }
+     puts "Will click"
+     sleep(1)
+     element.click(button, times, list)
+     puts "Did click"
+     sleep(2)
+   else
+     raise(DesktopExceptions::WidgetNotVisibleException, "Widget #{name.length > 0 ? name : text} not visible")
+   end
+ end
+
+
+    
 protected
     #@private
     # Return the element
@@ -345,32 +381,7 @@ private
       @window_id
     end
     
-    # Click widget
-    def click(button = :left, times = 1, *opts)
-      raise DesktopExceptions::WidgetDisabledException, "Element #{@selector} is disabled" unless enabled?
-  
-      #Some buttons etc. aren't visible until hovering them
-      if (visible? == false and type != :dialogtab)
-        element.hover
-        element(true)
-      end
-  
-      # Dialog tabs are always visible even if the page they are connected to isn't
-      if visible? == true or type == :dialogtab
-        button = DesktopEnums::MOUSEBUTTON_ENUM_MAP[button]
-        list = Java::JavaUtil::ArrayList.new
-        opts.each { |mod| list << DesktopEnums::KEYMODIFIER_ENUM_MAP[mod] }
-        element.click(button, times, list)
-      else
-        raise(DesktopExceptions::WidgetNotVisibleException, "Widget #{name.length > 0 ? name : text} not visible")
-      end
-    end
-
-    # Right click a widget
-    def right_click
-      click(:right, 1)
-    end
-  
+   
     # double click widget
     def double_click
       click(:left, 2) 
@@ -405,7 +416,7 @@ private
       if @selector == nil && @elm != nil
         set_selector
       end
-      #puts "\n<find> Find Widget by " + @method.to_s + " " + @window_id.to_s + ", " + @selector.to_s + ", " + @location.to_s + ", " + @type.to_s
+      puts "\n<find> Find Widget by " + @method.to_s + " " + @window_id.to_s + ", " + @selector.to_s + ", " + @location.to_s + ", " + @type.to_s
       case @method
       when :name
         if @location != nil
@@ -431,7 +442,7 @@ private
         else
           @element = driver.findWidgetByPosition(WIDGET_ENUM_MAP[@type], @window_id, @selector[0], @selector[1])
         end
-     end
+      end
       if @window_id < 0 && @element != nil
          @window_id = @element.getParentWindowId
       end

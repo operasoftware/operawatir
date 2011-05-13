@@ -23,5 +23,12 @@ module OperaWatir
       element.isSelected(string_id)
     end
     
+    #def selected()
+    #  
+    #end
+    
+    #def is_dropped_down()
+    #end
+    
   end
 end 
