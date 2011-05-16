@@ -85,13 +85,11 @@ private
     
     def wait_for_menu_shown(menu_name = "")
       name = driver.waitForMenuShown(menu_name)
-      puts "name returned by driver.WaitForMenuShown = #{name}"
       name
     end
     
     def wait_for_menu_closed(menu_name = "")
       name = driver.waitForMenuClosed(menu_name)
-      puts "name returned by driver.WaitForMenuClosed = #{name}"
       name
     end
 

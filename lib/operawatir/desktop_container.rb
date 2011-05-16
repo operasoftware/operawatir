@@ -302,13 +302,11 @@ module OperaWatir
     end
 
     def quick_menu(how, what)
-      puts "quick_menu"
       QuickMenu.new(self, how, what)
     end
     
     #name is name of menu, quick_menuitem is always constructed from a menu
     def quick_menuitem(how, what)
-      puts "quick_menuitem"
       QuickMenuItem.new(self, how, what, name)
     end
     

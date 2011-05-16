@@ -298,8 +298,6 @@ module OperaWatir
 # Click widget
  def click(button = :left, times = 1, *opts)
    
-   puts "QuickWidget#click"
-   
    #raise DesktopExceptions::WidgetDisabledException, "Element #{@selector} is disabled" unless enabled?
 
    #Some buttons etc. aren't visible until hovering them
@@ -412,7 +410,7 @@ private
       if @selector == nil && @elm != nil
         set_selector
       end
-      puts "\n<find> Find Widget by " + @method.to_s + " " + @window_id.to_s + ", " + @selector.to_s + ", " + @location.to_s + ", " + @type.to_s
+      #puts "\n<find> Find Widget by " + @method.to_s + " " + @window_id.to_s + ", " + @selector.to_s + ", " + @location.to_s + ", " + @type.to_s
       case @method
       when :name
         if @location != nil

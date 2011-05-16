@@ -12,8 +12,6 @@ module OperaWatir
     # location is set is this is called on a (parent) widget
     def initialize(container, method, selector=nil, location=nil)
       
-      puts "QuickMenu initialize method #{method}, selector #{selector}"
-      
       @container = container
                             
       if method.is_a? Java::ComOperaCoreSystems::QuickMenu
