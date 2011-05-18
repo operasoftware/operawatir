@@ -133,6 +133,22 @@ module OperaWatir
       wait_for_window_loaded(win_name)
     end
     
+    ######################################################################
+    # Clicks the button, and waits for the window with menu with name
+    # menu_name to be shown
+    #
+    # @param [String] 
+    #
+    # @raise [DesktopExceptions::WidgetNotVisibleException] if the button
+    #            is not visible
+    #
+    def open_menu_with_rightclick(menu_name)
+      wait_start
+      click(:right)
+      wait_for_menu_shown(menu_name)
+    end
+    
+
 
 private
     # @private
