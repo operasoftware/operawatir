@@ -35,6 +35,21 @@ module OperaWatir
     end
     
     ######################################################################
+    # Rightclicks the widget, and waits for the menu with name
+    # menu_name to be shown
+    #
+    # @param [String] menu name (from standard_menu.ini)
+    #
+    # @raise [DesktopExceptions::WidgetNotVisibleException] if the button
+    #            is not visible
+    #
+    def open_menu_with_rightclick(menu_name)
+      wait_start
+      click(:right)
+      wait_for_menu_shown(menu_name)
+    end
+  
+    ######################################################################
     # Checks whether a widget exists or not
     #
     # @return [Boolean] true if the widget exists otherwise false
