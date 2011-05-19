@@ -1,3 +1,14 @@
+v0.4.1       2011-05-19
+
+  [ENHANCEMENTS]
+
+  * Upgraded OperaDriver to v0.4.2.  (andreastt)
+
+  [BUG FIXES]
+
+  * OPERA_ARGS detection has now been moved to OperaDriver, removing
+    workaround from OperaWatir::Browser.  (andreastt)
+
 v0.4.1.pre7  2011-05-12
 
   [API CHANGES]
