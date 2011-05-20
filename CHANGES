@@ -1,3 +1,12 @@
+v0.4.2       2011-05-20
+
+  [OTHER]
+
+  * Downgrading dependency rspec to 2.5.0.  rspec 2.6.0 has an timestamp
+    format in the gem package that triggers a bug in rubygems.  Since
+    JRuby patches rubygems natively, we can't just upgrade rubygems.
+    (andreastt)
+
 v0.4.1       2011-05-19
 
   [ENHANCEMENTS]
