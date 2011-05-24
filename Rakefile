@@ -30,7 +30,7 @@ EOF
   gem.has_rdoc              = true
   gem.extra_rdoc_files      = ['README.md']
 
-  gem.add_dependency 'rspec', '<= 2.5'
+  gem.add_dependency 'rspec', '~> 2.6.0'  # pessimistic operator, it actually means ['>= 2.6.0', '< 2.7.0']
   gem.add_dependency 'deprecated'
 
   gem.add_development_dependency 'jeweler'
