@@ -1,3 +1,10 @@
+v0.4.3.pre1  2011-05-24
+
+  [OTHER]
+
+  * Using pessimistic operator to determine rspec version between 2.6.0
+    and 2.7.0.  rspec v2.6.0 should now be fixed for JRuby.  (andreastt)
+
 v0.4.2       2011-05-20
 
   [OTHER]
