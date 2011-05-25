@@ -4,6 +4,8 @@ module OperaWatir
     include DesktopContainer
     include Deprecated
     
+    ConditionTimeout = 10.0
+    
     # @private
     # window_id is set if constructor is called on a (parent) window
     # location is set is this is called on a (parent) widget
@@ -317,6 +319,23 @@ module OperaWatir
       click
       # No event yet so just cheat and sleep
       sleep(0.1);
+    end
+    
+    def focus_with_key_press(key, *modifiers)
+      key_press(key, modifiers)
+      sleep(0.1)
+    end
+    
+    def click_with_condition(button = :left, times = 1)
+      click(button, times)
+      start = Time.now
+      until res = yield do
+        if Time.now - start > ConditionTimeout
+          return false
+      end
+      sleep 0.1
+      end
+      res # well it's true
     end
     
     #@private

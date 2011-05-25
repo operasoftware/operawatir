@@ -3,6 +3,8 @@ module OperaWatir
     include DesktopContainer
     include DesktopCommon
     
+    ConditionTimeout = 10.0
+    
     LoadActions = ["Open url in new page", "Open url in current page", "Open url in new background page",
       "Open url in new window", "New private page", "Paste and go", "Paste and go background", 
       "Hotclick search", "Duplicate page", "Reopen page", "Back", "Forward", "Help", "Autocomplete server name"]
@@ -642,6 +644,31 @@ module OperaWatir
           end
         end
       end
+    end
+    
+    def key_press_with_condition(key, *modifiers)
+      key_press_direct(key, *modifiers)
+      start = Time.now
+      until res = yield do
+        if Time.now - start > ConditionTimeout
+          return false
+        end
+      sleep 0.1
+      end
+      res
+    end
+
+    
+    def action_with_condition(action_name, *params)
+      opera_desktop_action(action_name, *params)
+      start = Time.now
+      until res = yield do
+        if Time.now - start > ConditionTimeout
+           return false
+         end
+      sleep 0.1
+      end
+      res  
     end
     
     ############################################################################
