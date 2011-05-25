@@ -321,11 +321,6 @@ module OperaWatir
       sleep(0.1);
     end
     
-    def focus_with_key_press(key, *modifiers)
-      key_press(key, modifiers)
-      sleep(0.1)
-    end
-    
     def click_with_condition(button = :left, times = 1)
       click(button, times)
       start = Time.now
