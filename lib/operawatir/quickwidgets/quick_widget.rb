@@ -323,32 +323,34 @@ module OperaWatir
     
     ###############################################################
     #
+    # click_with_condition { block } → res
     #
+    # Clicks widget and waits until block evaluates to true or timeout is hit 
     #
+    # @returns value of block
     #
-    #Refactor, these functions are all the same
-    def click_with_condition(button = :left, times = 1)
-      return false unless block_given? 
+    def click_with_condition_internal(button = :left, times = 1, &blk)
+      puts "Block_given? #{block_given?}"
+      return false unless block_given?
 
       click(button, times)
-      
+
       start = Time.now
       res = false
       until res do
         begin
           res = yield
         rescue OperaWatir::Exceptions::OperaWatirException
-          puts "Exception"
         end
         if Time.now - start > ConditionTimeout
           return false
         end
         sleep 0.1
       end
-      
-      res # well it's true
-    end
-    
+
+        res # well it's true
+      end
+
     #@private
     def value
       return element.getValue
@@ -370,6 +372,7 @@ protected
 
   
 private
+
 # Right click a widget
   def right_click
     click(:right, 1)
