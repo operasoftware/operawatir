@@ -647,27 +647,46 @@ module OperaWatir
     end
     
     def key_press_with_condition(key, *modifiers)
+      return false unless block_given?
+
       key_press_direct(key, *modifiers)
+      
       start = Time.now
-      until res = yield do
+      res = false
+      until res do
+        begin
+          res = yield
+        rescue OperaWatir::Exceptions::OperaWatirException
+        end
+        
         if Time.now - start > ConditionTimeout
           return false
         end
-      sleep 0.1
+        sleep 0.1
       end
-      res
+      
+       res
     end
 
     
     def action_with_condition(action_name, *params)
+      return false unless block_given? 
+      
       opera_desktop_action(action_name, *params)
+      
       start = Time.now
-      until res = yield do
+      res = false   
+      until res do
+        begin
+          res = yield
+        rescue OperaWatir::Exceptions::OperaWatirException
+        end
         if Time.now - start > ConditionTimeout
-           return false
-         end
-      sleep 0.1
+          return false
+        end
+        sleep 0.1                
       end
+      
       res  
     end
     

@@ -321,15 +321,31 @@ module OperaWatir
       sleep(0.1);
     end
     
+    ###############################################################
+    #
+    #
+    #
+    #
+    #Refactor, these functions are all the same
     def click_with_condition(button = :left, times = 1)
+      return false unless block_given? 
+
       click(button, times)
+      
       start = Time.now
-      until res = yield do
+      res = false
+      until res do
+        begin
+          res = yield
+        rescue OperaWatir::Exceptions::OperaWatirException
+          puts "Exception"
+        end
         if Time.now - start > ConditionTimeout
           return false
+        end
+        sleep 0.1
       end
-      sleep 0.1
-      end
+      
       res # well it's true
     end
     
