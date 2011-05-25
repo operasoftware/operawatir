@@ -321,7 +321,7 @@ module OperaWatir
     #  widgets("Browser Window").select { | w | w.type == :tabbutton }
     #end
     
-#=begin
+=begin
     # Return collection for each widget type
     # example browser.quick_buttons
     #         browser.quick_treeitems
@@ -339,7 +339,7 @@ module OperaWatir
         widgets(win).select { |w| w.type == widget_type}
       end
     end
-#=end
+=end
     
     #TODO
     def quick_menus
