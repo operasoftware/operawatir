@@ -372,7 +372,6 @@ module OperaWatir
       else
         my_type << "s"
       end
-      puts my_type.to_sym
       define_method(my_type.to_sym) do #|win|
         quick_widgets.select { |w| w.type == widget_type and w.parent_name == name }
       end
