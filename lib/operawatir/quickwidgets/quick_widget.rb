@@ -327,7 +327,7 @@ module OperaWatir
     #
     # Clicks widget and waits until block evaluates to true or timeout is hit 
     #
-    # @returns value of block
+    # @return value of block
     #
     def click_with_condition_internal(button = :left, times = 1, &blk)
       puts "Block_given? #{block_given?}"
@@ -358,7 +358,7 @@ module OperaWatir
     
     #########################################################
     #
-    # @returns all widgets inside this widget
+    # @return all widgets inside this widget
     #
     def quick_widgets
       widgets(window_id)

@@ -688,7 +688,7 @@ module OperaWatir
     # @param [String] action_name - name of action to execute
     # @param *params - parameters to the action
     #
-    # @returns value of block
+    # @return value of block
     #
     def action_with_condition(action_name, *params)
       return false unless block_given? 
