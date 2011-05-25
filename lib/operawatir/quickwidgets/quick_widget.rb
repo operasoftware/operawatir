@@ -329,7 +329,7 @@ module OperaWatir
     #
     # @return value of block
     #
-    def click_with_condition_internal(button = :left, times = 1, &blk)
+    def click_with_condition(button = :left, times = 1, &blk)
       return false unless block_given?
 
       click(button, times)
