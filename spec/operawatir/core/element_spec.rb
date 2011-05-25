@@ -3,6 +3,15 @@ require 'tmpdir'
 
 describe 'Element' do
 
+  describe '#click' do
+    # TODO: Move to watirspec
+    it 'clicks LABEL elements tied to form submit' do
+      browser.url = fixture('label_submit.html')
+      window.find_by_tag('label').click
+      window.text.should include 'PASS'
+    end
+  end
+
   describe '#triple_click' do
     it 'clicks three times' do
       browser.url = fixture('onclick.html')

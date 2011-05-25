@@ -1,3 +1,10 @@
+v0.4.3.pre2  2011-05-25
+
+  [BUG FIXES]
+
+  * Element#click and Compat::Element#click now defaults to
+    coordinates [1,1], fixing WTR-354.  (andreastt)
+
 v0.4.3.pre1  2011-05-24
 
   [OTHER]

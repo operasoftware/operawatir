@@ -125,7 +125,7 @@ class OperaWatir::Element
   # @param [Integer] y The offset from the top of the element.
   #
 
-  def click(x=0, y=0)
+  def click(x=1, y=1)
     node.click(x.to_i, y.to_i)
   end
 
