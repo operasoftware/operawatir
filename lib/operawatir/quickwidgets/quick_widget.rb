@@ -349,6 +349,10 @@ module OperaWatir
     #
     # click_with_condition { block } → res
     #
+    # @example 
+    #      browser.quick_button(:name, "[buttonname]").click_with_condition { 
+    #          browser.quick_treeview(:name, "[name]").quick_treeitems.length == 4
+    #
     # Clicks widget and waits until block evaluates to true or timeout is hit 
     #
     # @return value of block
@@ -379,6 +383,17 @@ module OperaWatir
     #########################################################
     #
     # @return all widgets inside this widget
+    #
+    # @example
+    #    browser.quick_treeview(:name, "Mail View").quick_widgets
+    # 
+    # @note 
+    #   you can also specify the widgets by type to retrieve only
+    #   a specific type of widgets
+    # 
+    # @example
+    #      browser.quick_treeview(:name, "Mail View").quick_treeitems
+    #
     #
     def quick_widgets
       widgets(window_id)

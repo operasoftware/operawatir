@@ -133,6 +133,9 @@ module OperaWatir
     ######################################################################
     # Clicks the key and modifiers and waits for a new tab to be activated
     #
+    # @example
+    #     browser.activate_tab_with_key_press("F6", :ctrl)
+    #
     # @param [String]  key         key to press (e.g. "a" or "backspace")
     # @param [Symbol]  modifiers   optional modifier(s) to hold down while pressing 
     #                                the key (e.g. :shift, :ctrl, :alt, :meta)
@@ -155,6 +158,10 @@ module OperaWatir
     ######################################################################
     # Opens a new tab and loads the url entered, then waits for
     # a dialog to be shown based on the url entered
+    #
+    # @example
+    #     browser.open_dialog_with_url("Setup Apply Dialog Confirm Dialog", \
+    #              "http://t/platforms/desktop/bts/DSK-316777/001-1.ini")
     #
     # @param [String] dialog_name name of the dialog that will be opened 
     #                       (Pass a blank string for any window)
@@ -215,6 +222,9 @@ module OperaWatir
     
     ######################################################################
     # Close the dialog with name dialog_name, using the "Cancel" action
+    #
+    # @example
+    #   browser.close_dialog("New Preferences Dialog")
     #
     # @param [String] dialog_name name of the dialog that will be closed 
     #                 (Pass a blank string for any window)
@@ -298,6 +308,9 @@ module OperaWatir
     ####################################################
     # Retrieves an array of all windows 
     #
+    # @example
+    #     browser.quick_windows.each { |win| puts win.to_s }
+    #
     # @return [Array] Array of windows
     #
     def quick_windows
@@ -308,6 +321,9 @@ module OperaWatir
     
     ####################################################
     # Retrieves an array of all tabs (Document Windows)
+    #
+    # @example
+    #    browser.open_pages.length.should == 2
     #
     # @return [Array] Array of windows
     #
@@ -650,6 +666,9 @@ module OperaWatir
     #
     # key_press_with_condition { block } → res
     #
+    # @example
+    #
+    #
     # Performs the keypress specified and waits until block evaluates to true or timeout is hit 
     #
     # @param [String] key - key to press
@@ -675,6 +694,8 @@ module OperaWatir
     ###############################################################
     #
     # action_with_condition { block } → res
+    #
+    # @example
     #
     # Executes action and waits until block evaluates to true or timeout is hit.
     #

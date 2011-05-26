@@ -164,9 +164,21 @@ module OperaWatir
     end
     
     #TODO: common with widget
-   def quick_widgets
-     widgets(window_id)
-   end
+    ##################################################################
+    #
+    #  quick_widgets
+    #
+    # @example
+    #     browser.quick_window(:name, "Document Window").quick_widgets
+    # @note
+    #   You can also retrieve only widgets of a given type, using for example
+    #    browser.quick_window(:name, "Document Window").quick_toolbars
+    #
+    # @return array of widgets in this window
+    #
+    def quick_widgets
+      widgets(window_id)
+    end
   
     WIDGET_ENUM_MAP.keys.each do |widget_type|
       my_type = "quick_" << widget_type.to_s
