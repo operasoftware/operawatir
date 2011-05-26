@@ -663,27 +663,20 @@ module OperaWatir
       key_press_direct(key, *modifiers)
       
       start = Time.now
-      res = false
-      until res do
-        begin
-          res = yield
-        rescue OperaWatir::Exceptions::OperaWatirException
-        end
-        
+      until res = yield rescue false do
         if Time.now - start > ConditionTimeout
           return false
         end
         sleep 0.1
       end
-      
-       res
+      res
     end
 
     ###############################################################
     #
     # action_with_condition { block } → res
     #
-    # Executes action and waits until block evaluates to true or timeout is hit 
+    # Executes action and waits until block evaluates to true or timeout is hit.
     #
     # @param [String] action_name - name of action to execute
     # @param *params - parameters to the action
@@ -696,21 +689,15 @@ module OperaWatir
       opera_desktop_action(action_name, *params)
       
       start = Time.now
-      res = false   
-      until res do
-        begin
-          res = yield
-        rescue OperaWatir::Exceptions::OperaWatirException
-        end
+      until res = yield rescue false do
         if Time.now - start > ConditionTimeout
-          return false
+           return false
         end
-        sleep 0.1                
+        sleep 0.1
       end
-      
-      res  
+      res
     end
-    
+
     ############################################################################
     #
     # Reset prefs

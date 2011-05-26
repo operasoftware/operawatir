@@ -321,6 +321,14 @@ module OperaWatir
       sleep(0.1);
     end
     
+    def double_click_with_condition(&condition)
+      click_with_condition(:left, 2, &condition)
+    end
+    
+    def right_click_with_condition(&condition)
+      click_with_condition(:right, 1, &condition)
+    end
+    
     ###############################################################
     #
     # click_with_condition { block } → res
@@ -333,24 +341,21 @@ module OperaWatir
       return false unless block_given?
 
       click(button, times)
-
+      
       start = Time.now
-      res = false
-      until res do
-        begin
-          res = yield
-        rescue OperaWatir::Exceptions::OperaWatirException
-        end
+      until res = yield rescue false do
         if Time.now - start > ConditionTimeout
           return false
         end
         sleep 0.1
       end
+      res
+    end
 
-        res # well it's true
-      end
-
-    #@private
+    #######################################################
+    #
+    #
+    #
     def value
       return element.getValue
     end
