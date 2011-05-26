@@ -321,10 +321,26 @@ module OperaWatir
       sleep(0.1);
     end
     
+    ###############################################################
+    #
+    # double_click_with_condition { block } → res
+    #
+    # Clicks widget and waits until block evaluates to true or timeout is hit 
+    #
+    # @return value of block
+    #
     def double_click_with_condition(&condition)
       click_with_condition(:left, 2, &condition)
     end
     
+    ###############################################################
+    #
+    # right_click_with_condition { block } → res
+    #
+    # Clicks widget and waits until block evaluates to true or timeout is hit 
+    #
+    # @return value of block
+    #
     def right_click_with_condition(&condition)
       click_with_condition(:right, 1, &condition)
     end
