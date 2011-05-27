@@ -325,7 +325,7 @@ module OperaWatir
     # Focus a widget by moving the mouse over it
     #
     def focus_with_hover
-      hover
+      element.hover
       #No event yet so just cheat and sleep
       sleep(0.1)
     end
@@ -436,8 +436,9 @@ private
           return false
         end
         sleep 0.1
+        
       end
-        res
+      res
     end
 
 # Right click a widget
