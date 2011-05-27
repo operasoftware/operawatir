@@ -318,7 +318,16 @@ module OperaWatir
     def focus_with_click
       click
       # No event yet so just cheat and sleep
-      sleep(0.1);
+      sleep(0.1)
+    end
+    
+    #################################################################
+    # Focus a widget by moving the mouse over it
+    #
+    def focus_with_hover
+      hover
+      #No event yet so just cheat and sleep
+      sleep(0.1)
     end
     
     ###############################################################
