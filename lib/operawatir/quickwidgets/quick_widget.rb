@@ -395,7 +395,7 @@ module OperaWatir
     #
     #
     def quick_widgets
-      widgets(window_id)
+      widgets(window_id).select { | w | w.parent_name == name }
     end
     
     WIDGET_ENUM_MAP.keys.each do |widget_type|
