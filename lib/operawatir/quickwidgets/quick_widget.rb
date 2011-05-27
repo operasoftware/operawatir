@@ -330,7 +330,7 @@ module OperaWatir
     # @return value of block, or false if no block provided
     #
     def double_click_with_condition(&condition)
-      click_with_condition(:left, 2, &condition)
+      click_with_condition_internal(:left, 2, &condition)
     end
     
     ###############################################################
@@ -342,7 +342,7 @@ module OperaWatir
     # @return value of block, or false if no block provided
     #
     def right_click_with_condition(&condition)
-      click_with_condition(:right, 1, &condition)
+      click_with_condition_internal(:right, 1, &condition)
     end
     
     ###############################################################
@@ -357,20 +357,10 @@ module OperaWatir
     #
     # @return value of block, or false if no block provided
     #
-    def click_with_condition(button = :left, times = 1, &blk)
-      return false unless block_given?
-
-      click(button, times)
-      
-      start = Time.now
-      until res = yield rescue false do
-        if Time.now - start > ConditionTimeout
-          return false
-        end
-        sleep 0.1
-      end
-      res
+    def click_with_condition(&condition)
+      click_with_condition_internal(:left, 1, &condition)
     end
+    
 
     #######################################################
     #
@@ -426,6 +416,20 @@ protected
 
   
 private
+  def click_with_condition_internal(button = :left, times = 1, &blk)
+      return false unless block_given?
+
+      click(button, times)
+  
+      start = Time.now
+      until res = yield rescue false do
+        if Time.now - start > ConditionTimeout
+          return false
+        end
+        sleep 0.1
+      end
+        res
+    end
 
 # Right click a widget
   def right_click
