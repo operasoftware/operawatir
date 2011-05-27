@@ -325,9 +325,9 @@ module OperaWatir
     #
     # double_click_with_condition { block } → res
     #
-    # Clicks widget and waits until block evaluates to true or timeout is hit 
+    # Doubleclicks widget and waits until block evaluates to true or timeout is hit 
     #
-    # @return value of block
+    # @return value of block, or false if no block provided
     #
     def double_click_with_condition(&condition)
       click_with_condition(:left, 2, &condition)
@@ -337,9 +337,9 @@ module OperaWatir
     #
     # right_click_with_condition { block } → res
     #
-    # Clicks widget and waits until block evaluates to true or timeout is hit 
+    # Rightclicks widget and waits until block evaluates to true or timeout is hit 
     #
-    # @return value of block
+    # @return value of block, or false if no block provided
     #
     def right_click_with_condition(&condition)
       click_with_condition(:right, 1, &condition)
@@ -351,11 +351,11 @@ module OperaWatir
     #
     # @example 
     #      browser.quick_button(:name, "[buttonname]").click_with_condition { 
-    #          browser.quick_treeview(:name, "[name]").quick_treeitems.length == 4
+    #            browser.quick_treeview(:name, "[name]").quick_treeitems.length == 4 }.should be_true
     #
     # Clicks widget and waits until block evaluates to true or timeout is hit 
     #
-    # @return value of block
+    # @return value of block, or false if no block provided
     #
     def click_with_condition(button = :left, times = 1, &blk)
       return false unless block_given?

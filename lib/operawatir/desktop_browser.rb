@@ -664,9 +664,7 @@ module OperaWatir
     
     ###############################################################
     #
-    # key_press_with_condition { block } → res
-    #
-    # @example
+    # key_press_with_condition(key, modifiers) { block } → res
     #
     #
     # Performs the keypress specified and waits until block evaluates to true or timeout is hit 
@@ -674,7 +672,7 @@ module OperaWatir
     # @param [String] key - key to press
     # @param *modifiers - modifier(s) to hold while pressing key
     #
-    # @return value of block
+    # @return value of block, or false if no block provided
     #
     def key_press_with_condition(key, *modifiers)
       return false unless block_given?
@@ -695,14 +693,13 @@ module OperaWatir
     #
     # action_with_condition { block } → res
     #
-    # @example
     #
     # Executes action and waits until block evaluates to true or timeout is hit.
     #
     # @param [String] action_name - name of action to execute
     # @param *params - parameters to the action
     #
-    # @return value of block
+    # @return value of block, or false if no block provided
     #
     def action_with_condition(action_name, *params)
       return false unless block_given? 
