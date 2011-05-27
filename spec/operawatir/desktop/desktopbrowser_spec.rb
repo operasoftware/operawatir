@@ -25,6 +25,33 @@ describe 'DesktopBrowser' do
     it 'closes active menu' 
   end
   
+  describe '#key_press_with_condition' do
+    it 'should fail without condition' do
+      browser.key_press_with_condition("c", :ctrl).should be_false
+    end
+    it 'should return result of condition' do
+      browser.key_press_with_condition("c)") { true }.should be_true
+    end
+    it 'should return result of condition' do
+      browser.key_press_with_condition("c") { false }.should be_false
+    end
+  end
+  
+  describe '#action_with_condition' do
+    it 'should fail without condition' do
+      browser.action_with_condition("Copy link").should be_false
+    end
+    it 'should return result of condition' do
+      browser.action_with_condition("Copy link") { true }.should be_true
+    end
+    it 'should return result of condition' do
+      browser.action_with_condition("Copy link") { false }.should be_false
+    end
+    it 'should throw exception for nonexisting action' do
+      expect { browser.action_with_condition("Make dinner and do the laundry") { true } }.to raise_error(NativeException)
+    end
+  end
+  
   describe '#goto' do
     it 'loads page' do
       browser.goto("http://t/platforms/desktop/automated/resources/documents/page1.html").should > 0

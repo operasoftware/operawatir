@@ -1,7 +1,7 @@
 require File.expand_path('../../watirspec_desktophelper', __FILE__)
 
 describe 'QuickWidget' do
-  
+    let(:home) { browser.quick_window(:name, "Document Window").quick_toolbar(:name, "Document Toolbar").quick_button(:name, "tbb_Home")}
     describe '#open_window_with_hover' do
       it 'opens window on hover' do
         browser.quick_window(:name, "Browser Window").quick_toolbar(:name, "Pagebar").quick_tab(:pos, 0).open_window_with_hover.should > 0
@@ -41,9 +41,9 @@ describe 'QuickWidget' do
       it 'verifies strings with string substitution' 
 
       it 'verifies strings with ampersand' do
-        puts "click on item in row #{@last_row}"
-        puts browser.string("S_FIND_IN_PAGE")
-        puts browser.quick_treeview(:name, "Web_search_treeview").quick_treeitem(:pos, [@last_row,0]).text
+        #puts "click on item in row #{@last_row}"
+        #puts browser.string("S_FIND_IN_PAGE")
+        #puts browser.quick_treeview(:name, "Web_search_treeview").quick_treeitem(:pos, [@last_row,0]).text
         browser.quick_treeview(:name, "Web_search_treeview").quick_treeitem(:pos, [@last_row,0]).verify_text("S_FIND_IN_PAGE").should be_true
       end
     end
@@ -63,7 +63,45 @@ describe 'QuickWidget' do
 			 browser.quick_toolbar(:name, "Document Toolbar").quick_addressfield(:name, "tba_address_field").focus_with_click
       end
 	  end
+	  
+	  describe '#focus_with_hover' do
+	    
+	    it 'should hover widget' do
+	      home.focus_with_hover
+	      browser.quick_window(:name, "Browser Window").quick_toolbar(:name, "Status Toolbar Head").quick_label(:name, "tbb_Status").text.should_not be_empty 
+	    end
+	  end
+  
+	  describe '#click_with_condition' do
+  
+	    it 'should fail without condition' do
+	      browser.quick_toolbar(:name, "Document Toolbar").click_with_condition.should be_false
+	    end
+
+	    it 'should not throw exception for nonexisting widget' do
+	      home.click_with_condition do 
+	         browser.quick_button(:name, "tbb_nonexisting").visible?
+	      end.should be_false
+	    end
+      it 'should fail if exception thrown' do
+        home.click_with_condition { 
+          browser.quick_button(:name, "tbb_nonexisting").visible?
+        }.should be_false
+      end
+  
+      it 'should return result of condition' do
+        home.click_with_condition { true }.should be_true
+      end
+
+      it 'should return result of condition' do
+        home.click_with_condition { false }.should be_false
+      end
+    
+	  end
    
+	  #Those are really the same as click..
+	  #describe '#double_click_with_condition'
+    #describe '#right_click_with_condition'
 	  # Private
 	  # Also: Test in shared.rb not here
     #describe '#element' do

@@ -98,6 +98,10 @@ describe 'QuickWindow' do
       expect { nonexisting_window.window_info_string }.to raise_error OperaWatir::Exceptions::UnknownObjectException
     end
   end
+  
+  describe '#quick_buttons' do
+     its(:quick_buttons) { should be_kind_of Array }
+   end
 
   its(:driver) { should be_instance_of Java::ComOperaCoreSystems::OperaDesktopDriver }
 
