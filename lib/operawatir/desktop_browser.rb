@@ -19,6 +19,10 @@ module OperaWatir
       self.keys          = OperaWatir::Keys.new(self)
       self.spatnav       = OperaWatir::Spatnav.new(self)
     end
+    
+    #def running?
+    #  driver.isOperaRunning()
+    #end
 
     # @private
     # Hack overload to allow for timing of the OnLoaded event that can cause 
