@@ -179,6 +179,11 @@ module OperaWatir
     def quick_widgets
       widgets(window_id)
     end
+    
+    def quick_tabs
+      quick_tabbuttons
+    end
+      
   
     WIDGET_ENUM_MAP.keys.each do |widget_type|
       my_type = "quick_" << widget_type.to_s
