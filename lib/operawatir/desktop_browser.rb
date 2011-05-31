@@ -409,6 +409,13 @@ module OperaWatir
       end
     end
     
+    ######################################################################
+    #
+    # @return [Array] with all tabs (quick_tab)
+    #
+    def quick_tabs
+      quick_tabbuttons
+    end
     
     ######################################################################
     # Retrieves the name of a window based on it's id
