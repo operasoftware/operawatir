@@ -354,6 +354,18 @@ module OperaWatir
       click_with_condition_internal(:right, 1, &condition)
     end
     
+    ##############################################################
+    #
+    # middle_click_with_condition { block } → res
+    #
+    # Middleclicks widget and waits until block evaluates to true or timeout is hit 
+    #
+    # @return value of block, or false if no block provided
+    #
+    def middle_click_with_condition(&condition)
+      click_with_condition_internal(:middle, 1, &condition)
+    end
+    
     ###############################################################
     #
     # click_with_condition { block } → res
