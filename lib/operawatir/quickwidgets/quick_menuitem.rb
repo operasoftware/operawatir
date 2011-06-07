@@ -26,7 +26,7 @@ module OperaWatir
     end
     
      def name
-       element.getName()
+       separator? ? "Separator" : element.getName();
      end
      
      def menu
@@ -47,6 +47,10 @@ module OperaWatir
      
      def bold?
        element.isBold()
+     end
+     
+     def separator?
+       element.isSeparator()
      end
      
      def has_submenu?
