@@ -4,15 +4,21 @@ require File.expand_path('../../watirspec_desktophelper', __FILE__)
 describe 'DesktopBrowser' do
  
   before :all do
-    browser.url = fixture('simple.html')
+    browser.url = fixture('onclick.html') # simple
     #@window = browser.quick_window(:name, "Tab 0")
   end
  
+  describe '#open_menu_with_rightclick' do
+    it 'opens a menu' do
+      elem =  window.find_by_tag('button')
+      browser.open_menu_with_rightclick(elem, "").should open_menu
+    end
+  end
+  
   describe '#goto' do
     it 'loads page' do
-		browser.goto("http://t/platforms/desktop/automated/resources/documents/page1.html").should > 0
-	end
-
+      browser.goto("http://t/platforms/desktop/automated/resources/documents/page1.html").should > 0
+	 end
   end
   
   
