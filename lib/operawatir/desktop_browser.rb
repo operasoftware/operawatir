@@ -375,6 +375,21 @@ module OperaWatir
          wait_for_window_loaded("")
     end
     
+    ######################################################################
+    # Clicks the element and waits for the menu with menu_name as given
+    # opens
+    #
+    # @param [String]  element     Web page element to click (a link, an image ..)
+    # @param [Symbol]  menu_name   Name of menu that should open when clicking the element
+    #
+    # @return [String] name of menu opened
+    #
+    def open_menu_with_rightclick(element, menu_name)
+      wait_start
+      element.right_click
+      wait_for_menu_shown(menu_name)
+    end
+    
 =begin    
     ##############################################################################
     # Clicks the element specified by method and selector, 
