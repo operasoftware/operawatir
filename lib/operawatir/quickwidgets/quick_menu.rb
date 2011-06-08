@@ -27,8 +27,13 @@ module OperaWatir
       element.getName
     end
     
+    def window_id
+      element.getParentWindowId()
+    end
+    
     def to_s
-      "QUICKMENU #{name}" # TODO: Add rect
+      window = window_id > 0 ? "window_id #{window_id}" : "" 
+      "QUICKMENU #{name} #{window}" # TODO: Add rect
     end
     
     ########################################################################
