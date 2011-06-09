@@ -26,6 +26,10 @@ module OperaWatir
     #def is_open
     #end
 
+    
+    ############################################################################
+    # Click dropdown to open it
+    #
     def open_with_click
       click
       sleep(0.1)

@@ -20,8 +20,9 @@ module OperaWatir
     end
     
     ##########################################################################
+    # Select item by click
     #
-    #
+    # @return true if item is now selected, otherwise false
     #
     def select_with_click
       click
