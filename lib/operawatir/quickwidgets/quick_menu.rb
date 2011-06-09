@@ -83,6 +83,19 @@ module OperaWatir
     def submenu?
       element.isSubmenu()
     end
+    
+    ########################################################################
+    #
+    # @return true if this menu has one or more submenus
+    #
+    def parentmenu?
+      element.getItemList().each do |item|
+        if item.hasSubMenu()
+          return true
+        end
+      end
+      false
+    end
   
     ######################################################################
     # Checks whether a widget exists or not
