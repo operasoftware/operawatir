@@ -87,15 +87,23 @@ module OperaWatir
     def separator?
       element.isSeparator()
     end
+    
+    def action_item?
+      action.length > 0
+    end
+    
+    def submenu_item?
+      has_submenu?
+    end
      
     #####################################################################
     #
     # @return true if this menuitem opens a submenu, otherwise false
     #
     def has_submenu?
-      element.hasSubmenu()
+      element.hasSubMenu()
     end
-    
+   
     #####################################################################
     #
     # @return shortcutletter of this menuitem (typing this letter while the
@@ -220,12 +228,15 @@ module OperaWatir
     #  super
     #end
     
+    ###########################################################
+    #
+    #
+    #
     def open_window_with_click(win_name)
       wait_start
       click
       wait_for_window_shown(win_name)
     end
-    
     alias_method :open_dialog_with_click, :open_window_with_click
     
     def close_menu_with_click(menu_name)
