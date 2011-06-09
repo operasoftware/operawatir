@@ -23,12 +23,13 @@ module OperaWatir
       element.isSelected(string_id)
     end
     
-    #def selected()
-    #  
+    #def is_open
     #end
-    
-    #def is_dropped_down()
-    #end
+
+    def open_with_click
+      click
+      sleep(0.1)
+    end
     
   end
 end 

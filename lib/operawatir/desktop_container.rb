@@ -90,6 +90,22 @@ module OperaWatir
       QuickDropdown.new(self, how, what, parent_widget, window_id, :dropdown)
     end
 
+    ######################################################################
+    # Method for accessing a combobox (i.e. dropdown) element
+    #
+    # @example
+    #   browser.quick_dropdown(:name, "Startup_mode_dropdown")
+    #
+    # @param [String] how   Method to find the element. :name, :string_id or :text
+    # @param [String] what  Search text to find the element with.  
+    #
+    # @return [Object] drop down object if found, otherwise nil
+    #
+    def quick_dropdownitem(how, what)
+      QuickDropdownItem.new(self, how, what, parent_widget, window_id, :dropdownitem)
+    end
+
+    
    ######################################################################
    # Method for accessing a quickfind element
    #
