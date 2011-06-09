@@ -25,86 +25,164 @@ module OperaWatir
       end
     end
     
-     def name
-       separator? ? "Separator" : element.getName();
-     end
+    #########################################################################
+    #
+    # Returns the name of the menuitem. The name is either the action name
+    # of the action the item performs, or the name of the submenu the item
+    # opens. If the item is a separator, the name is "Separator"
+    # 
+    # @return name of menuitem
+    #
+    def name
+      separator? ? "Separator" : element.getName();
+    end
+    
+    ##########################################################################
+    #
+    # @return name of the menu this menuitem is part of 
+    #
+    def menu
+      element.getMenu()
+    end
      
-     def menu
-       element.getMenu()
-     end
+    ##########################################################################
+    #
+    # @return the text of this menu item
+    #
+    # (Note: this should normally not be used to access the item, as it will
+    #        be language dependent)
+    #
+    def text
+      element.getText()
+    end
      
-     def text
-       element.getText()
-     end
+    ############################################################################
+    #
+    # @return the string_id of this menuitem as a string
+    #
+    def string_id
+      element.getStringId()
+    end
+    
+    ###############################################################################
+    #
+    # @return true if this menuitem is selected, otherwise false
+    #
+    def selected?
+      element.isSelected()
+    end
      
-     def string_id
-       element.getStringId()
-     end
+    #####################################################################
+    #
+    # @return true if this menuitem has bold text, otherwise false
+    #
+    def bold?
+      element.isBold()
+    end
+    
+    #####################################################################
+    #
+    # @return true if this menuitem is a separator, else false
+    #
+    def separator?
+      element.isSeparator()
+    end
      
-     def selected?
-       element.isSelected()
-     end
+    #####################################################################
+    #
+    # @return true if this menuitem opens a submenu, otherwise false
+    #
+    def has_submenu?
+      element.hasSubmenu()
+    end
+    
+    #####################################################################
+    #
+    # @return shortcutletter of this menuitem (typing this letter while the
+    #           menu is open, will select the item)
+    #
+    def shortcutletter
+      element.getShortcutLetter()
+    end
      
-     def bold?
-       element.isBold()
-     end
+    #####################################################################
+    #
+    # @return the shortcut of this menuitem as a string
+    #
+    def shortcut
+      element.getShortcut()
+    end
      
-     def separator?
-       element.isSeparator()
-     end
+    #####################################################################
+    #
+    # @return position of this menuitem within the menu, also counting 
+    #           separators (TODO: Check this!)
+    #
+    #
+    def pos
+      element.getRow()
+    end
      
-     def has_submenu?
-       element.hasSubmenu()
-     end
-     
-     def shortcutletter
-       element.getShortcutLetter()
-     end
-     
-     def shortcut
-       element.getShortcut()
-     end
-     
-     def pos
-       element.getRow()
-     end
-     
-     def action
-       element.getActionName()
-     end
-     
-     def submenu
-       element.getSubMenu()
-     end
+    #####################################################################
+    #
+    # @return the name of the action this item executes when selected 
+    #
+    def action
+      element.getActionName()
+    end
+    
+    ########################################################################
+    #
+    # @return the parameters to the action that will be used for the action
+    #         executed for this item when it is selected
+    #
+    def action_params
+      element.getActionParameters()
+    end
+    
+    ##########################################################################
+    #
+    # @return the name of the submenu this item opens
+    #
+    # (Note: an item will either have a submenu, or an action)  
+    #
+    def submenu
+      element.getSubMenu()
+    end
+       
      
     ########################################################################
-     #
-     # @return width of widget
-     #
-     def width
-       element.getRect().width
-     end
- 
-     ########################################################################
-     #
-     # @return height of widget
-     #
-     def height
-       element.getRect().height
-     end
- 
-     #@private
-     def x
-       element.getRect().x
-     end
- 
-     #@private
-     def y
-       element.getRect().y
-     end
-   
     #
-    # TODO: Document
+    # @return width of the menuitem
+    #
+    def width
+      element.getRect().width
+    end
+ 
+    ########################################################################
+    #
+    # @return height of the menuitem
+    #
+    def height
+      element.getRect().height
+    end
+ 
+    #@private
+    def x
+      element.getRect().x
+    end
+ 
+    #@private
+    def y
+      element.getRect().y
+    end
+   
+    ########################################################################
+    # Hovers the menuitem and waits for the menu with menu_name to open
+    #
+    # @param [String] name of menu that will open
+    #
+    # @return name of menu opened
     #
     def open_menu_with_hover(menu_name)
       wait_start
@@ -113,13 +191,15 @@ module OperaWatir
     end
     
     ######################################################################
-    # Clicks the button, and waits for the window with menu with name
+    # Clicks the menuitem, and waits for the menu with menu with name
     # menu_name to be shown
     #
-    # @param [String] 
+    # @param [String] name of menu that should open
     #
     # @raise [DesktopExceptions::WidgetNotVisibleException] if the button
     #            is not visible
+    #
+    # @return name of menu opened
     #
     def open_menu_with_click(menu_name)
       wait_start
@@ -128,7 +208,7 @@ module OperaWatir
     end
 
 
-    # Obs: Dont repeat these here, only temporary    
+    # Obs: Dont repeat these here, only temporary    _TODO!!
     def load_page_with_click
       wait_start
       click

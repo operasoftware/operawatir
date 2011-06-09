@@ -23,14 +23,28 @@ module OperaWatir
       end
     end
     
+    ####################################################################
+    #
+    # @return the name of the menu (as found in standard_menu.ini)
+    #
     def name
       element.getName
     end
     
+    
+    #######################################################################
+    #
+    # @return the window_id of the window the menu is attached to
+    # (Note this only makes sense for the menubars)
+    #
     def window_id
       element.getParentWindowId()
     end
     
+    #######################################################################
+    #
+    #
+    #
     def to_s
       window = window_id > 0 ? "window_id #{window_id}" : "" 
       "QUICKMENU #{name} #{window}" # TODO: Add rect
@@ -62,6 +76,10 @@ module OperaWatir
       element.getRect().y
     end
     
+    ######################################################################
+    #
+    # @return true if this menu is a submenu of another menu, else false
+    #
     def submenu?
       element.isSubmenu()
     end
