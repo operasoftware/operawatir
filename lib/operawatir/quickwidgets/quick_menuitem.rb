@@ -145,7 +145,7 @@ module OperaWatir
     #         executed for this item when it is selected
     #
     def action_params
-      element.getActionParameters()
+      element.getActionParameter()
     end
     
     ##########################################################################
