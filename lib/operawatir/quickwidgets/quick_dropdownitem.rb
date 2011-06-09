@@ -16,7 +16,7 @@ module OperaWatir
     # @raise [Exceptions::UnknownObjectException] if the widget could not be found
     #           using the specified method
     def selected?
-      element.isSelected
+      element(true).isSelected()
     end
     
     ##########################################################################
