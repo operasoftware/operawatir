@@ -23,8 +23,13 @@ module OperaWatir
       element.isSelected(string_id)
     end
     
-    #def is_open
-    #end
+    #########################################################################
+    #
+    # @return true if dropdown is dropped_down/open, else false
+    #
+    def dropped_down?
+      element.getValue() > 0
+    end
 
     
     ############################################################################
