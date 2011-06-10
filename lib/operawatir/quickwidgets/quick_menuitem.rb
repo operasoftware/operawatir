@@ -34,7 +34,7 @@ module OperaWatir
     # @return name of menuitem
     #
     def name
-      separator? ? "Separator" : element.getName();
+      element.getName();
     end
     
     ##########################################################################
