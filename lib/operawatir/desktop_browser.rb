@@ -48,6 +48,14 @@ module OperaWatir
     def quit_driver
       driver.quitDriver
     end
+    
+    ######################################################################
+    #
+    # Get ID of active window
+    #
+    def active_window
+      driver.getActiveWindowID() 
+    end
       
     ######################################################################
     # Executes the action given by action_name, and waits for
