@@ -25,6 +25,9 @@ module OperaWatir
     
     ####################################################################
     #
+    # @example
+    #   browser.quick_menu(:name, "Browser Button Menu Bar").name.should == "Browser Button Menu Bar")
+    #
     # @return the name of the menu (as found in standard_menu.ini)
     #
     def name
