@@ -51,10 +51,10 @@ module OperaWatir
     
     ######################################################################
     #
-    # Get ID of active window
+    # Get ID of active Desktop UI window
     #
-    def active_window
-      driver.getActiveWindowID() 
+    def active_quick_window
+      driver.getActiveQuickWindowID() 
     end
       
     ######################################################################
