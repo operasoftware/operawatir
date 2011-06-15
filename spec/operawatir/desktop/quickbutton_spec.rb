@@ -256,3 +256,26 @@ describe 'QuickButton' do
 =end    
   end
 end
+
+describe 'QuickButton' do
+  let(:menubutton) { browser.quick_window(:name, "Browser Window").quick_toolbar(:name, "Pagebar Head").quick_button(:name, "tbb_MenuButton") }
+  let(:menubar)    { browser.quick_menu(:name, "Main Menu")}
+    
+  describe 'open_menu_with_click' do
+    before(:each) do
+      unless menubutton.exists? 
+        menubar.quick_menuitem(:name, "Browser File Menu").open_menu_with_click("Browser File Menu").should open_menu
+        browser.quick_menu(:name, "Browser File Menu").quick_menuitem(:action, "Enable menu bar").click
+      end
+    end
+    it 'opens a menu' do
+      menubutton.open_menu_with_click("Browser Button Menu Bar").should open_menu 
+    end
+  end
+  
+  #We don't support longclick yet
+  describe 'open_menu_with_long_click' do
+    it 'opens a menu'
+  end
+end
+

@@ -2,6 +2,8 @@
 require File.expand_path('../../watirspec_desktophelper', __FILE__)
 
 describe 'DesktopBrowser' do
+  
+  let(:addressfield) { browser.quick_toolbar(:name, "Document Toolbar").quick_addressfield(:name, "tba_address_field") }
  
   before :all do
     browser.url = fixture('onclick.html') # simple
@@ -395,6 +397,23 @@ describe 'DesktopBrowser' do
 		browser.get_preference("User Prefs", "Speed Dial State").should == "7"
 		browser.get_default_preference("User Prefs", "Speed Dial State").should == def_pref
 	 end
+   end
+   
+   describe 'open_menu_with_key_press' do
+    it 'opens a menu'
+   end
+  
+   describe 'open_menu_with_right_click' do
+     before :all do
+       browser.goto 'file://localhost/home/karianne/ui_test/opera-watir/spec/operawatir/fixtures/onclick.html'
+     end
+     after(:all) do
+       addressfield.click
+     end
+     it 'opens a menu' do
+         elem =  window.find_by_tag('button')
+         browser.open_menu_with_rightclick(elem, "").should open_menu
+     end
    end
 
     # Gets the parent widget name of which there is none here
