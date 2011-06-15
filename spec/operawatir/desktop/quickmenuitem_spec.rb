@@ -18,7 +18,7 @@ describe 'QuickMenuItem' do
     #its(:string_id) #??
     its(:enabled?) {should == true }
     its(:selected?) { should == false }
-    #its(:checked?) 
+    its(:checked?) { should == false } 
     its(:pos) { should be_kind_of Integer }
     its(:name) { should_not be_empty }
     its(:text) { should_not be_empty }
