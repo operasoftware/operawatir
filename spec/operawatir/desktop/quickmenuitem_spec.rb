@@ -3,12 +3,52 @@ require File.expand_path('../shared/shared', __FILE__)
 
 describe 'QuickMenuItem' do
   
-  # link.open_right_click_menu / menuitem.open_menu_with_right_click (button#, treeitem#, link#, ..)
-
   let(:addressfield) { browser.quick_toolbar(:name, "Document Toolbar").quick_addressfield(:name, "tba_address_field") }
-
+  let(:menuitem) { browser.quick_menuitem(:name, "Clear") }
+    
   before(:all) { addressfield.right_click }
   after(:all) { addressfield.right_click }
+    
+  subject { menuitem }
+  #its(:type) { should == :menu_entry }
+    
+    its(:shortcut) { should be_kind_of(String) }
+    its(:shortcutletter) { should be_kind_of String }
+    its(:text) { should_not be_empty }
+    #its(:string_id) #??
+    its(:enabled?) {should == true }
+    its(:selected?) { should == false }
+    #its(:checked?) 
+    its(:pos) { should be_kind_of Integer }
+    its(:name) { should_not be_empty }
+    its(:text) { should_not be_empty }
+    its(:menu) { should == "Toolbar Edit Item Popup Menu" }
+    #it should_not be_separator
+    #it should_not be_selected
+    #it should_not be_bold
+    #it should be_action_item
+    #it should_not be_submenu_item
+    its(:action_params) { should be_empty }
+    its(:submenu) { should be_empty }
+    its(:width) { should be_kind_of Integer }
+    its(:height) { should be_kind_of Integer }
+    its(:x) { should be_kind_of Integer }
+    its(:y) { should be_kind_of Integer }
+    its(:to_s) { should_not be_empty } 
+    
+    it 'should have action or submenu' do
+      #
+    end
+        
+    describe '#open_window_with_click' do
+      it 'opens a window' 
+      it 'raises exception if menuitem is disabled'
+    end
+    
+    describe '#load_page_with_click' do
+      it 'returns window id'  
+    end
+
     
   describe '#quick_menuitem' do
 
@@ -43,7 +83,7 @@ describe 'QuickMenuItem' do
 
   end    
 end
-=begin
+
 describe 'QuickMenuItem' do
   let(:addressfield) { browser.quick_window(:name, "Document Window").quick_toolbar(:name, "Document Toolbar").quick_addressfield(:name, "tba_address_field") }
   let(:menu) { browser.quick_menu(:name, "Toolbar Edit Item Popup Menu") }
@@ -71,27 +111,15 @@ describe 'QuickMenuItem' do
       #addressfield.key_press("enter")
     end
   end
-
-
-  describe '#click' do
-    it 'closes menu' do
-      browser.quick_menu(:name, "Toolbar Edit Item Popup Menu").quick_menuitem(:action, "Select all").click#.should close_menu
-      #TODO: Check menu is closed
-    end
-  end
-#=end
   
-=begin  
   describe 'open_menu_with_hover' do
    
     it 'opens submenu' do
-      puts "OPEN_MENU_WITH_HOVER ------------------------------"
       menu.quick_menuitem(:submenu, "Toolbar Popup Customize Menu").open_menu_with_hover("Toolbar Popup Customize Menu").should open_menu
     #end
     
     #it 'closes menu' do
       sleep(5)
-      puts " OPEN DIALOG WITH CLICK ------------------------------"
       submenu.quick_menuitem(:action, "Customize Toolbars").open_dialog_with_click("Customize Toolbar Dialog").should > 0
       #submenu.quick_menuitem(:action, "Customize Toolbars").close_menu_with_click("Toolbar Popup Customize Menu").should close_menu
     end
@@ -99,9 +127,7 @@ describe 'QuickMenuItem' do
   end
 
 end  
-=end
 
-#=begin
   describe 'QuickMenuItem' do
     let(:addressfield) { browser.quick_window(:name, "Document Window").quick_toolbar(:name, "Document Toolbar").quick_addressfield(:name, "tba_address_field") }
     let(:menu) { browser.quick_menu(:name, "Toolbar Edit Item Popup Menu") }
@@ -136,11 +162,7 @@ end
       #before:enable menubar?
       it 'lists menuitems' do
         #addressfield.open_menu_with_rightclick("Toolbar Edit Item Popup Menu").should open_menu
-        puts browser.quick_menuitems
-        #browser.quick_menuitems.each do |item|
-        #   puts item.to_s
-        #end
-        #browser.quick_menuitems.
+        browser.quick_menuitems.should_not be_empty
       end
     end
 
@@ -153,66 +175,13 @@ end
           mainmenu.quick_menuitem(:action, "Enable menu bar").click
         end
       end
+      
       it 'opens window (Downloads tab)' do
-        #browser.quick_windows.each do |win|
-          #if win.type == "Browser Window"
-        #puts win.to_s + ", #{win.x}, #{win.y}, #{win.width}, #{win.height}"
-          #end
-        #end
-        
         menubar.quick_menuitem(:name, "Browser Tools Menu").open_menu_with_click("Browser Tools Menu").should open_menu
         
-        # TODO, WhatToDo, more actions with same action, different params ...
         browser.quick_menu(:name, "Browser Tools Menu").quick_menuitem(:text, "Downloads").open_window_with_click("Transfers Panel Window").should open_window
       end
     end
-  
 end
 
 
-=begin
-describe 'QuickMenuItem' do
-  
-  #For menuitem: Action == Name
-  
-  let(:widget) { browser.quick_window(:name, "Document Window").quick_toolbar(:name, "Document Toolbar")  .quick_button(:name, "tbb_Home") }
-  subject { widget }
-  #it_behaves_like 'a widget'
-  #it_behaves_like 'a button'
-  #its(:type) { should == :menu_entry }
-  
-#=begin  
-  its(:shortcut) { should be_kind_of String }
-  its(:shortcutletter) { should be kind_of String }
-  its(:text) { should_not be_empty }
-  #its(:string_id) #??
-  its(:enabled?) { should be_boolean }
-  its(:selected?) { should be_boolean }
-  its(:checked?) { should be_boolean }
-  #its(:icon)
-  #its(:rect)
-#=end
-  it 'should have action or submenu' do
-    widget.action ? true : widget.submenu
-  end
-      
-  describe 'position' do
-    it 'returns position for menuitem' 
-  end
-  
-  #click invokes the action of the item
-  describe 'click' do
-    
-  end
-
-  describe '#open_window_with_click' do
-    it 'opens a window' 
-    it 'raises exception if menuitem is disabled'
-  end
-  
-  describe '#load_page_with_click' do
-    it 'returns window id'  
-  end
-=end
-  #describe '#value' do
-#end
