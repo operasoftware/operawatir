@@ -71,6 +71,14 @@ module OperaWatir
     def selected?
       element.isSelected()
     end
+    
+    ######################################################################
+    #
+    # @return true if element is a checkbox item that is checked, else false
+    #
+    def checked?
+      element.isChecked()
+    end
      
     #####################################################################
     #
