@@ -83,9 +83,10 @@ module OperaWatir
     #
     # @return true if this menu is a submenu of another menu, else false
     #
-    def submenu?
-      element.isSubMenu()
-    end
+    #@private
+    #def submenu?
+    #  element.isSubMenu()
+    #end
     
     ########################################################################
     #

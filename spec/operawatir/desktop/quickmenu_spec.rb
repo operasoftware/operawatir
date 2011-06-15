@@ -2,36 +2,60 @@ require File.expand_path('../../watirspec_desktophelper', __FILE__)
 require File.expand_path('../shared/shared', __FILE__)
 
 describe 'QuickMenu' do
-  
-  #button#open_menu_with_click
-  # open_right_click_menu / open_menu_with_right_click (button#, treeitem#, link#, ..)
   let(:addressfield) { browser.quick_toolbar(:name, "Document Toolbar").quick_addressfield(:name, "tba_address_field") }
-  #after(:all) {
-  #  addressfield.right_click 
-  #}
+  let(:menu) { browser.quick_menu(:name, "Toolbar Edit Item Popup Menu") }
     
-  describe '#quick_menu' do
-    before(:all) do
-      # 1. Rightclick in address field
-      addressfield.open_menu_with_rightclick("Toolbar Edit Item Popup Menu").should open_menu
-    end
-    after(:all) do
-      addressfield.click#right_click
-    end
+  subject { menu }
     
-    it 'constructs a menu by its name' do
-      browser.quick_menu(:name, "Toolbar Edit Item Popup Menu").should exist
-    end
+  before(:all) do
+    addressfield.open_menu_with_rightclick("Toolbar Edit Item Popup Menu").should open_menu
+  end
+  after(:all) do
+    addressfield.click
+  end
+      
+  #its(:type) { should == :menu }
+  its(:name) { should_not be_empty }
+  its(:window_id) { should be_kind_of Integer }
+  #its(:to_s) { should == menu.element.toString() }
+  its(:width) { should be_kind_of Integer }
+  its(:height)  { should be_kind_of Integer }
+  its(:x) { should be_kind_of Integer }
+  its(:y) { should be_kind_of Integer }
   
-    describe '#quick_menus' do
-      it 'lists all menus' do
-        #Just to test more than main menu :)
-        #addressfield.open_menu_with_rightclick("Toolbar Edit Item Popup Menu").should open_menu
-        browser.quick_menus.each do |menu|
-          puts menu.to_s
-        end
-      end
+  describe '#exists'do
+    it 'should return true' do
+      menu.should exist
     end
+  end
+  
+  describe '#parentmenu?' do
+    it 'should return true or false' do
+      menu.should be_parentmenu
+    end
+  end
+
+  describe '#quick_menu' do
+    it 'constructs a menu by its name' do
+      menu.should exist
+    end
+  end
+      
+  describe '#quick_menus' do
+    it 'lists all menus' do
+      #Just to test more than main menu :)
+      addressfield.open_menu_with_rightclick("Toolbar Edit Item Popup Menu").should open_menu
+      browser.quick_menus.should_not be_empty
+    end
+  end
+  
+  #describe '#menuitems' do
+  #  it 'lists menuitems in this menu' do
+  #    menu.menuitems.select { |item| item.menu != name }.should be_empty
+  #    menu.menuitems.select { |item| item.menu == name }.should_not be_empty
+  #    menu.menuitems.select { |item| item.submenu? == true }.should_not be_empty
+  #  end
+  #end
 
 =begin    
     describe 'opening a rightclick menu from link in webpage' do
@@ -41,44 +65,4 @@ describe 'QuickMenu' do
       end
     end
 =end
-
-
-  
-  end
-end
-
-
-#######################################
-
-describe 'QuickButton' do
-  let(:menubutton) { browser.quick_window(:name, "Browser Window").quick_toolbar(:name, "Pagebar Head").quick_button(:name, "tbb_MenuButton") }
-  let(:menubar)    { browser.quick_menu(:name, "Main Menu")}
-    
-  describe 'open_menu_with_click' do
-    before(:each) do
-      unless menubutton.exists? 
-        menubar.quick_menuitem(:name, "Browser File Menu").open_menu_with_click("Browser File Menu").should open_menu
-        browser.quick_menu(:name, "Browser File Menu").quick_menuitem(:action, "Enable menu bar").click
-      end
-    end
-    it 'opens a menu' do
-      menubutton.open_menu_with_click("Browser Button Menu Bar").should open_menu 
-    end
-  end
-  
-  #We don't support longclick yet
-  describe 'open_menu_with_long_click' do
-    it 'opens a menu'
-  end
-end
-
-describe 'DesktopBrowser' do
-  describe 'open_menu_with_key_press' do
-    it 'opens a menu'
-  end
-  
-  #Web page ..., Addressfield, .... Anywhere ...
-  describe 'open_menu_with_right_click' do
-    it 'opens rightclick menu'
-  end
 end
