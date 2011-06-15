@@ -88,10 +88,18 @@ module OperaWatir
       element.isSeparator()
     end
     
+    #####################################################################
+    #
+    # @return true if this item is a command/action item
+    #
     def action_item?
       action.length > 0
     end
     
+    ####################################################################
+    #
+    # @return true if this item opens a submenu
+    #
     def submenu_item?
       has_submenu?
     end
