@@ -51,10 +51,10 @@ describe 'QuickMenu' do
   
   describe '#menuitems' do
     it 'lists menuitems in this menu' do
-      #puts menu.menuitems
-      menu.menuitems.select { |item| item.menu != menu.name }.should be_empty
-      menu.menuitems.select { |item| item.menu == menu.name }.should_not be_empty
-      menu.menuitems.select { |item| item.submenu_item? == true }.should_not be_empty
+      puts menu.quick_menuitems
+      menu.quick_menuitems.select { |item| item.menu != menu.name }.should be_empty
+      menu.quick_menuitems.select { |item| item.menu == menu.name }.should_not be_empty
+      menu.quick_menuitems.select { |item| item.submenu_item? == true }.should_not be_empty
     end
   end
 

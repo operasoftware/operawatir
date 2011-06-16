@@ -30,6 +30,9 @@ module OperaWatir
     # Returns the name of the menuitem. The name is either the action name
     # of the action the item performs, or the name of the submenu the item
     # opens. If the item is a separator, the name is "Separator"
+    #
+    # @example (RSpec)
+    #    menuitem.name.should == "Separator"
     # 
     # @return name of menuitem
     #
@@ -40,6 +43,10 @@ module OperaWatir
     ##########################################################################
     #
     # @return name of the menu this menuitem is part of 
+    #
+    # @example
+    #   browser.quick_menu(:name, "Browser File Menu").quick_menuitem(:text, "Open File").name
+    #
     #
     def menu
       element.getMenu()
