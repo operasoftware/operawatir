@@ -1,5 +1,6 @@
 module OperaWatir
   class QuickMenuItem < QuickWidget #
+    include ClickableItem
 
     # @private
     # Checks the type of the widget is correct
@@ -225,52 +226,10 @@ module OperaWatir
       wait_for_menu_shown(menu_name)
     end
     
-    ######################################################################
-    # Clicks the menuitem, and waits for the menu with menu with name
-    # menu_name to be shown
-    #
-    # @param [String] name of menu that should open
-    #
-    # @raise [DesktopExceptions::WidgetNotVisibleException] if the button
-    #            is not visible
-    #
-    # @return name of menu opened
-    #
-    def open_menu_with_click(menu_name)
-      wait_start
-      click
-      wait_for_menu_shown(menu_name)
-    end
 
-
-    # Obs: Dont repeat these here, only temporary    _TODO!!
-    def load_page_with_click
-      wait_start
-      click
-      # Just wait for the load
-      wait_for_window_loaded("")
-    end
-    
     #def click(button = :left, times = 1, *opts)
     #  super
     #end
-    
-    ###########################################################
-    #
-    #
-    #
-    def open_window_with_click(win_name)
-      wait_start
-      click
-      wait_for_window_shown(win_name)
-    end
-    alias_method :open_dialog_with_click, :open_window_with_click
-    
-    def close_menu_with_click(menu_name)
-      wait_start
-      click
-      wait_for_menu_closed(menu_name)
-    end
     
     def to_s
       "QUICKMENUITEM #{name}, pos #{pos}, menu #{menu}, rect #{x}, #{y}, #{width}, #{height}, pos #{pos}, acckey #{shortcutletter}, #{shortcut unless shortcut.nil?}"
