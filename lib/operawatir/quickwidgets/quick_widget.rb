@@ -163,6 +163,25 @@ module OperaWatir
     alias_method :has_ui_string?, :verify_text
     
     ######################################################################
+    # Checks that the text in the widget matches the text as loaded
+    # from the current language file in Opera using the string_id
+    # (Strips &'s from the string before comparing)
+    #
+    # @param [String] string_id String ID to use to load the string from the current
+    #                 language file (e.g. "D_NEW_PREFERENCES_GENERAL")
+    # 
+    # @return [Boolean] true if the text matches, otherwise false
+    #
+    # @raise [Exceptions::UnknownObjectException] if the widget cannot be found
+    #               using the specified method
+    #
+    def verify_text(string_id, *params)
+      text = driver.getString(string_id, true)
+      verify_realtext(text, *params)
+    end
+    
+    
+    ######################################################################
     # Checks that the text in the widget includes the text as loaded
     # from the current language file in Opera using the string_id
     #
@@ -348,6 +367,26 @@ protected
 
   
 private
+
+  def verify_realtext(text, *params)
+    if text.include? "%1"
+      result = text.scan(/%\d/)
+      if (params.length == result.length)
+        result.length.times do |time|
+          number = time+1
+          p = params[time]
+          text.gsub!("%#{number}", params[time])
+        end
+      end
+      text == element.getText()
+    else
+      params.each do |param|
+        text.gsub!(/%[csduoxefg0-9]/, param)
+      end
+     text == element.getText()
+    end
+  end
+
     
    def drag_and_drop_on(other, drop_pos)
      element.dragAndDropOn(other.element, DROPPOSITION_ENUM_MAP[drop_pos])
