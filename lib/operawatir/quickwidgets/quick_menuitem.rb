@@ -132,6 +132,10 @@ module OperaWatir
     # @return shortcutletter of this menuitem (typing this letter while the
     #           menu is open, will select the item)
     #
+    # @example (t is shortcutletter to open submenu below)
+    #    addressfield.open_menu_with_rightclick("Toolbar Edit Item Popup Menu")
+    #    browser.open_menu_with_key_press("Toolbar Popup Customize Menu", "t")     
+    #
     def shortcutletter
       element.getShortcutLetter()
     end
