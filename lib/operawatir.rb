@@ -71,6 +71,7 @@ require 'operawatir/compat'
 # Desktop stuff
 require 'operawatir/desktop_enums'
 require 'operawatir/desktop_common'
+require 'operawatir/clickable_item'
 require 'operawatir/desktop_container'
 require 'operawatir/desktop_browser'
 require 'operawatir/quickwidgets'
