@@ -126,6 +126,11 @@ module OperaWatir
       wait_for_widget_enabled
     end
     
+    ######################################################################
+    # Waits for widget to be visible
+    #
+    # @return [Boolean] Returns true if the button becomes active
+    #
     def wait_for_visible
       wait_for_widget_visible
     end

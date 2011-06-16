@@ -226,6 +226,18 @@ module OperaWatir
       wait_for_menu_shown(menu_name)
     end
     
+    ######################################################################
+    # Use to toggle a checkbox or radio item item 
+    #
+    #
+    def toggle_with_click
+      click
+          
+      # Cheat since we don't have an event yet 
+      sleep(0.1)
+    end
+
+    
 
     #def click(button = :left, times = 1, *opts)
     #  super
