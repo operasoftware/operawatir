@@ -100,6 +100,16 @@ module OperaWatir
       end
       false
     end
+    
+    ########################################################################
+    #
+    # @return array of all menuitems in this menu
+    #
+    def menuitems
+      element.getItemList().map do |java_item|
+        QuickMenuItem.new(self,java_item)
+      end
+    end
   
     ######################################################################
     # Checks whether a widget exists or not

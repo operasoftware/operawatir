@@ -49,13 +49,14 @@ describe 'QuickMenu' do
     end
   end
   
-  #describe '#menuitems' do
-  #  it 'lists menuitems in this menu' do
-  #    menu.menuitems.select { |item| item.menu != name }.should be_empty
-  #    menu.menuitems.select { |item| item.menu == name }.should_not be_empty
-  #    menu.menuitems.select { |item| item.submenu? == true }.should_not be_empty
-  #  end
-  #end
+  describe '#menuitems' do
+    it 'lists menuitems in this menu' do
+      #puts menu.menuitems
+      menu.menuitems.select { |item| item.menu != menu.name }.should be_empty
+      menu.menuitems.select { |item| item.menu == menu.name }.should_not be_empty
+      menu.menuitems.select { |item| item.submenu_item? == true }.should_not be_empty
+    end
+  end
 
 =begin    
     describe 'opening a rightclick menu from link in webpage' do
