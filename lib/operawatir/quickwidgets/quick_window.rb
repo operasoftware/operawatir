@@ -150,7 +150,7 @@ module OperaWatir
     def window_info_string
       "    Name: " + name +
       "\n   Title: " + title +
-      "\n  Active: " + active + 
+      "\n  Active: " + active?.to_s + 
       "\n      ID: " + id.to_s +
       "\n    Type: " + type.to_s +
       "\nOnScreen: " + on_screen?.to_s +
