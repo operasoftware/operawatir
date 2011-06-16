@@ -26,7 +26,7 @@ module OperaWatir
     ####################################################################
     #
     # @example
-    #   browser.quick_menu(:name, "Browser Button Menu Bar").name.should == "Browser Button Menu Bar")
+    #   browser.quick_menu(:name, "Browser Button Menu Bar").name.should == "Browser Button Menu Bar"
     #
     # @return the name of the menu (as found in standard_menu.ini)
     #
@@ -38,7 +38,15 @@ module OperaWatir
     #######################################################################
     #
     # @return the window_id of the window the menu is attached to
-    # (Note this only makes sense for the menubars)
+    #
+    # Note: This only makes sense for the menubars (and not on mac where there is
+    #           only one menubar)
+    # Note: This makes it possible to distinguish between menubars in different
+    #         main windows
+    #
+    # @example: 
+    #   browser.quick_window(:id, <id>).quick_menu(:name, "Browser File Menu")...
+    #
     #
     def window_id
       element.getParentWindowId()
@@ -46,7 +54,7 @@ module OperaWatir
     
     #######################################################################
     #
-    #
+    # @return string representation of menu
     #
     def to_s
       window = window_id > 0 ? "window_id #{window_id}" : "" 
@@ -92,6 +100,10 @@ module OperaWatir
     #
     # @return true if this menu has one or more submenus
     #
+    # @example
+    #     menu.should be_parentmenu
+    #
+    #
     def parentmenu?
       element.getItemList().each do |item|
         if item.hasSubMenu()
@@ -104,6 +116,10 @@ module OperaWatir
     ########################################################################
     #
     # @return array of all menuitems in this menu
+    #
+    # @example:
+    #    menu.menuitems.select { |item| item.menu != menu.name }.should be_empty
+    #    menu.menuitems.each { | item | puts item.name }
     #
     def menuitems
       element.getItemList().map do |java_item|
