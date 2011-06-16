@@ -398,6 +398,22 @@ module OperaWatir
       wait_for_menu_shown(menu_name)
     end
     
+    #####################################################################
+    #
+    # Presses key and waits for the manu to show
+    #
+    # @param [String] menu_name  Name of the menu that should be opened
+    # @param [String] key        Key to press
+    #
+    # @return [String] name of menu that was opened, or empty
+    #
+    def open_menu_with_key_press(menu_name, key, *modifiers)
+      wait_start
+      key_press_direct(key, *modifiers)
+      wait_for_menu_shown(menu_name)
+    end
+    
+    
 =begin    
     ##############################################################################
     # Clicks the element specified by method and selector, 
