@@ -400,7 +400,7 @@ module OperaWatir
     
     #####################################################################
     #
-    # Presses key and waits for the manu to show
+    # Presses key and waits for the menu to show
     #
     # @param [String] menu_name  Name of the menu that should be opened
     # @param [String] key        Key to press
