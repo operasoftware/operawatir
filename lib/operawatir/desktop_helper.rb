@@ -12,6 +12,7 @@ require File.expand_path('../../../spec/operawatir/matchers', __FILE__)
 
 module OperaWatir::DesktopHelper
   extend self
+  @@files = []
   
   def settings
     OperaWatir::DesktopBrowser.settings
