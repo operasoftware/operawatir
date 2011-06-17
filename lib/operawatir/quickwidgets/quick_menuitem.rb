@@ -112,19 +112,11 @@ module OperaWatir
       action.length > 0
     end
     
-    ####################################################################
-    #
-    # @return true if this item opens a submenu
-    #
-    def submenu_item?
-      has_submenu?
-    end
-     
     #####################################################################
     #
     # @return true if this menuitem opens a submenu, otherwise false
     #
-    def has_submenu?
+    def submenu_item?
       element.hasSubMenu()
     end
    
