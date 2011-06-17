@@ -353,6 +353,17 @@ module OperaWatir
       end.to_a
     end
 
+    #####################################################################
+    #
+    # Closes the active menu
+    #
+    def close_active_menu
+      wait_start
+      key_press_direct("Esc")
+      wait_for_menu_closed("")
+    end
+    
+    
     ######################################################################
     # Retrieves the name of a window based on it's id
     #
