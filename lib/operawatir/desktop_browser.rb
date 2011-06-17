@@ -363,6 +363,19 @@ module OperaWatir
       wait_for_menu_closed("")
     end
     
+    #####################################################################
+    #
+    # Closes all open menus
+    #
+    def close_all_menus
+      i = 6 
+      while quick_menus.delete_if { |menu| menu.name == "Main Menu" }.length > 0 
+         close_active_menu
+         i-=1
+         break if i == 0
+      end
+    end
+    
     
     ######################################################################
     # Retrieves the name of a window based on it's id
@@ -419,6 +432,21 @@ module OperaWatir
     # @return [String] name of menu that was opened, or empty
     #
     def open_menu_with_key_press(menu_name, key, *modifiers)
+      wait_start
+      key_press_direct(key, *modifiers)
+      wait_for_menu_shown(menu_name)
+    end
+    
+    #####################################################################
+    #
+    # Presses key and waits for the menu to close
+    #
+    # @param [String] menu_name  Name of the menu that should be opened
+    # @param [String] key        Key to press
+    #
+    # @return [String] name of menu that was closed, or empty string
+    #
+    def close_menu_with_key_press(menu_name, key, *modifiers)
       wait_start
       key_press_direct(key, *modifiers)
       wait_for_menu_shown(menu_name)
