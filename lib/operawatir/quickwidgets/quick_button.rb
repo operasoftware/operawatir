@@ -21,6 +21,9 @@ module OperaWatir
     # Clicks the button, and waits for the dialog wizard to switch
     # to the next page
     #
+    # @example
+    #        browser.quick_button(:name, "button_Next").change_page_with_click
+    #
     # @return [int] Window ID of the dialog wizard or 0 if no window is shown
     #
     # @raise [DesktopExceptions::WidgetNotVisibleException] if the button
@@ -32,6 +35,7 @@ module OperaWatir
       wait_for_window_shown("")
     end
    
+    
     ######################################################################
     # Clicks the button, and waits for the window with window name 
     # win_name to closed
@@ -79,6 +83,9 @@ module OperaWatir
     ######################################################################
     # Clicks button to close the toolbar 
     #
+    # @example
+    #  browser.quick_toolbar(:name, "Go To Intranet Toolbar").quick_button(:name, "Done").close_toolbar_with_click
+    #
     # @raise [DesktopExceptions::WidgetNotVisibleException] if the button
     #            is not visible
     #
@@ -119,6 +126,9 @@ module OperaWatir
     ######################################################################
     # Pauses to wait for security dialogs when buttons are not active
     # right away on opening 
+    #
+    # @example (RSpec)
+    #   browser.quick_button(:name, "button_OK").wait_for_enabled.should == true
     #
     # @return [Boolean] Returns true if the button becomes active
     #

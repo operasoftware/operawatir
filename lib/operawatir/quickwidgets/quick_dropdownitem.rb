@@ -22,6 +22,9 @@ module OperaWatir
     ##########################################################################
     # Select item by click
     #
+    # @example
+    #    browser.quick_dropdownitem(:text, "Activate the next tab").select_with_click
+    #
     # @return true if item is now selected, otherwise false
     #
     def select_with_click

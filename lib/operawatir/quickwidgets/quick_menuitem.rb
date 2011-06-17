@@ -208,6 +208,9 @@ module OperaWatir
     ########################################################################
     # Hovers the menuitem and waits for the menu with menu_name to open
     #
+    # @example
+    #    menu.quick_menuitem(:submenu, "Toolbar Popup Customize Menu").open_menu_with_hover("Toolbar Popup Customize Menu")
+    #
     # @param [String] name of menu that will open
     #
     # @return name of menu opened

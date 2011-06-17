@@ -66,7 +66,6 @@ module OperaWatir
     #
     # @return [int] Window ID of the window that was closed
     #
-    #
     def close_window_with_doubleclick
       wait_start
       click(:left, 2)

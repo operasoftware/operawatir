@@ -10,6 +10,9 @@ module OperaWatir
     ######################################################################
     # Sets focus to the edit field by clicking on it
     #
+    # @example
+    #   browser.quick_editfield(:name, "Startpage_edit").focus_with_clic
+    #
     # @raise [DesktopExceptions::WidgetNotVisibleException] if the editfield 
     #            is not visible
     #
