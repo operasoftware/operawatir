@@ -1,7 +1,5 @@
 module OperaWatir
   class QuickMenuItem < QuickWidget #
-    include ClickableItem
-
     # @private
     # Checks the type of the widget is correct
     #def correct_type?
@@ -243,6 +241,73 @@ module OperaWatir
     end
 
 
+    ######################################################################
+    # Clicks the button, and waits for loading to finish
+    #  
+    # @return [int] Window ID of the window shown or 0 if no window is shown
+    #
+    # @raise [DesktopExceptions::WidgetNotVisibleException] if the button
+    #            is not visible
+    #
+    def load_page_with_click
+      wait_start
+      click
+      # Just wait for the load
+      wait_for_window_loaded("")
+    end
+    
+    ######################################################################
+    # Clicks the button, and waits for the window with window name 
+    # win_name to be shown
+    #
+    # @param [String] win_name name of the window that will be opened (Pass a blank string for any window)
+    #
+    # @return [int] Window ID of the window shown or 0 if no window is shown
+    #
+    # @raise [DesktopExceptions::WidgetNotVisibleException] if the button
+    #            is not visible
+    #
+    def open_window_with_click(win_name)
+      wait_start
+      click
+      wait_for_window_shown(win_name)
+    end
+    alias_method :open_dialog_with_click, :open_window_with_click
+    
+    ######################################################################
+    # Clicks item and waits for the menu to close
+    #
+    # @return name of menu closed
+    #
+    def close_menu_with_click(menu_name)
+      wait_start
+      click
+      wait_for_menu_closed(menu_name)
+    end
+    
+    ######################################################################
+    # Clicks the item, and waits for the menu with menu with name
+    # menu_name to be shown
+    #
+    # @param [String] name of menu that should open
+    #
+    # @raise [DesktopExceptions::WidgetNotVisibleException] if the button
+    #            is not visible
+    #
+    # @return name of menu opened
+    #
+    def open_menu_with_click(menu_name)
+      if mac_internal?
+        wait_start
+        press_menu
+        wait_for_menu_pressed
+      else
+        wait_start
+        click
+        wait_for_menu_shown(menu_name)
+      end
+    end
+
 private    
     # Finds the element on the page.  
     def find
@@ -277,7 +342,17 @@ private
       raise(Exceptions::UnknownObjectException, "Element #{@selector} not found using #{@method}") unless @element 
       @element
     end
+    
+    # Presses a menu on Mac where you can't click them
+    def press_menu
+      driver.pressQuickMenuItem(text);
+    end
 
+    # Waits for the menu to be pressed 
+    def wait_for_menu_pressed
+      name = driver.waitForMenuItemPressed(text)
+      name
+    end
 
   end
 end

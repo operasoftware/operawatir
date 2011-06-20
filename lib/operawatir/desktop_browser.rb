@@ -534,7 +534,7 @@ module OperaWatir
     # @return [Boolean] true we the operating system is Mac, otherwise false 
     #
     def mac?
-      Config::CONFIG['target_os'] == "darwin"
+      mac_internal?
     end
     
     ######################################################################

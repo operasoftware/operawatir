@@ -93,7 +93,6 @@ private
       name
     end
 
- 
     def wait_for_widget_visible
       i = 15
       sleep(0.1) while element(true).isVisible == false and (i -= 1)  > 0 
@@ -121,5 +120,10 @@ private
       # Return true
       true
     end
+    
+    def mac_internal?
+        Config::CONFIG['target_os'] == "darwin"
+    end
+    
   end
 end
