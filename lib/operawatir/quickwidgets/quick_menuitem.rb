@@ -250,10 +250,19 @@ module OperaWatir
     #            is not visible
     #
     def load_page_with_click
-      wait_start
-      click
-      # Just wait for the load
-      wait_for_window_loaded("")
+      if mac_internal?
+        wait_start
+        press_menu
+        wait_for_menu_pressed
+        wait_start
+        # Just wait for the load
+        wait_for_window_loaded("")
+      else
+        wait_start
+        click
+        # Just wait for the load
+        wait_for_window_loaded("")
+      end
     end
     
     ######################################################################
