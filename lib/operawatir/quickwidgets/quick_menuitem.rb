@@ -268,9 +268,17 @@ module OperaWatir
     #            is not visible
     #
     def open_window_with_click(win_name)
-      wait_start
-      click
-      wait_for_window_shown(win_name)
+      if mac_internal?
+        wait_start
+        press_menu
+        wait_for_menu_pressed
+        wait_start
+        wait_for_window_shown(win_name)
+      else
+        wait_start
+        click
+        wait_for_window_shown(win_name)
+      end
     end
     alias_method :open_dialog_with_click, :open_window_with_click
     
