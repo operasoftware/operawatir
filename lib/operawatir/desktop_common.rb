@@ -84,13 +84,11 @@ private
     end
     
     def wait_for_menu_shown(menu_name = "")
-      name = driver.waitForMenuShown(menu_name)
-      name
+      driver.waitForMenuShown(menu_name)
     end
     
     def wait_for_menu_closed(menu_name = "")
-      name = driver.waitForMenuClosed(menu_name)
-      name
+      driver.waitForMenuClosed(menu_name)
     end
 
     def wait_for_widget_visible

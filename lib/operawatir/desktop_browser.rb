@@ -53,7 +53,7 @@ module OperaWatir
     #
     # Get ID of active Desktop UI window
     #
-    def active_quick_window
+    def active_quick_window_id
       driver.getActiveQuickWindowID() 
     end
       
