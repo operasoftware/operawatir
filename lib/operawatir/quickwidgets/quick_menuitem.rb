@@ -296,9 +296,9 @@ module OperaWatir
     #
     # @return name of menu closed
     #
-    def close_menu_with_click(menu_name)
+    def close_menu_with_key_press(menu_name, key, *modifiers)
       wait_start
-      click
+      key_press_direct(key, *modifiers)
       wait_for_menu_closed(menu_name)
     end
     
