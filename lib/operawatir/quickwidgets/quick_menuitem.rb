@@ -32,6 +32,8 @@ module OperaWatir
     #
     # @example (RSpec)
     #    menuitem.name.should == "Separator"
+    #    menuitem.name.should == "Close page" #action
+    #    menuitem.name.should == "Toolbar Popup Customize Menu" #submenu
     # 
     # @return name of menuitem
     #
@@ -127,6 +129,7 @@ module OperaWatir
     #    addressfield.open_menu_with_rightclick("Toolbar Edit Item Popup Menu")
     #    browser.open_menu_with_key_press("Toolbar Popup Customize Menu", "t")     
     #
+    # (Note: not used on mac, so not a platform dependant feature)
     def shortcutletter
       element.getShortcutLetter()
     end
@@ -135,6 +138,8 @@ module OperaWatir
     #
     # @return the shortcut of this menuitem as a string
     #
+    # browser.quick_menuitem(:action, "Close page").shortcut # Ctrl+W
+    #
     def shortcut
       element.getShortcut()
     end
@@ -142,8 +147,9 @@ module OperaWatir
     #####################################################################
     #
     # @return position of this menuitem within the menu, also counting 
-    #           separators (TODO: Check this!)
+    #           separators 
     #
+    # browser.quick_menu(:name, "Browser Tools Menu").quick_menuitem(:pos, 2).name.should == "Separator"
     #
     def pos
       element.getRow()
@@ -220,8 +226,7 @@ module OperaWatir
     end
     
     ######################################################################
-    # Use to toggle a checkbox or radio item item 
-    #
+    # Use to toggle a checkbox or radio item menuitem 
     #
     def toggle_with_click
       click
@@ -230,12 +235,6 @@ module OperaWatir
       sleep(0.1)
     end
 
-    
-
-    #def click(button = :left, times = 1, *opts)
-    #  super
-    #end
-    
     def to_s
       "QUICKMENUITEM #{name}, pos #{pos}, menu #{menu}, rect #{x}, #{y}, #{width}, #{height}, pos #{pos}, acckey #{shortcutletter}, #{shortcut unless shortcut.nil?}"
     end
@@ -290,6 +289,7 @@ module OperaWatir
       end
     end
     alias_method :open_dialog_with_click, :open_window_with_click
+    
     
     ######################################################################
     # Clicks item and waits for the menu to close
