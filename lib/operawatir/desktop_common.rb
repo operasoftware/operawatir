@@ -125,5 +125,10 @@ private
         Config::CONFIG['target_os'] == "darwin"
     end
     
+    def linux_internal?
+       Config::CONFIG['target_os'] == "linux"
+     end
+    
+    
   end
 end

@@ -554,7 +554,7 @@ module OperaWatir
     # @return [Boolean] true we the operating system is Linux, otherwise false 
     #
     def linux?
-       Config::CONFIG['target_os'] == "linux"
+      linux_internal?
      end
     
     # @private
