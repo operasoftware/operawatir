@@ -324,33 +324,6 @@ module OperaWatir
       return element.getValue
     end
     
-    # Right click a widget
-    def right_click
-      click(:right, 1)
-    end
-    
-# Click widget
- def click(button = :left, times = 1, *opts)
-   
-   #raise DesktopExceptions::WidgetDisabledException, "Element #{@selector} is disabled" unless enabled?
-
-   #Some buttons etc. aren't visible until hovering them
-   if (visible? == false and type != :dialogtab)
-     element.hover
-     element(true)
-   end
-
-   # Dialog tabs are always visible even if the page they are connected to isn't
-   if visible? == true or type == :dialogtab
-     button = DesktopEnums::MOUSEBUTTON_ENUM_MAP[button]
-     list = Java::JavaUtil::ArrayList.new
-     opts.each { |mod| list << DesktopEnums::KEYMODIFIER_ENUM_MAP[mod] }
-     element.click(button, times, list)
-   else
-     raise(DesktopExceptions::WidgetNotVisibleException, "Widget #{name.length > 0 ? name : text} not visible")
-   end
- end
-
 
     
 protected
@@ -367,6 +340,32 @@ protected
 
   
 private
+# Right click a widget
+  def right_click
+    click(:right, 1)
+  end
+
+  # Click widget
+  def click(button = :left, times = 1, *opts)
+
+    #raise DesktopExceptions::WidgetDisabledException, "Element #{@selector} is disabled" unless enabled?
+
+    #Some buttons etc. aren't visible until hovering them
+    if (visible? == false and type != :dialogtab)
+      element.hover
+      element(true)
+    end
+
+    # Dialog tabs are always visible even if the page they are connected to isn't
+    if visible? == true or type == :dialogtab
+      button = DesktopEnums::MOUSEBUTTON_ENUM_MAP[button]
+      list = Java::JavaUtil::ArrayList.new
+      opts.each { |mod| list << DesktopEnums::KEYMODIFIER_ENUM_MAP[mod] }
+      element.click(button, times, list)
+    else
+      raise(DesktopExceptions::WidgetNotVisibleException, "Widget #{name.length > 0 ? name : text} not visible")
+    end
+  end
 
   def verify_realtext(text, *params)
     if text.include? "%1"

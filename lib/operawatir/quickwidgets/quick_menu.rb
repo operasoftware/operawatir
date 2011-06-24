@@ -1,6 +1,5 @@
 module OperaWatir
   class QuickMenu < QuickWidget #??
-
     # @private
     # Checks the type of the widget is correct
     #def correct_type?
@@ -87,22 +86,12 @@ module OperaWatir
       element.getRect().y
     end
     
-    ######################################################################
-    #
-    # @return true if this menu is a submenu of another menu, else false
-    #
-    #@private
-    #def submenu?
-    #  element.isSubMenu()
-    #end
-    
     ########################################################################
     #
     # @return true if this menu has one or more submenus
     #
     # @example
     #     menu.should be_parentmenu
-    #
     #
     def parentmenu?
       element.getItemList().each do |item|
@@ -140,9 +129,6 @@ module OperaWatir
     end
     alias_method :exists?, :exist?
     
-    #def items
-    #  method.getMenuItemList
-    #end
     
 private    
     # Finds the element on the page.  
@@ -160,7 +146,6 @@ private
       raise(Exceptions::UnknownObjectException, "Element #{@selector} not found using #{@method}") unless @element 
       @element
     end
-
 
   end
 end

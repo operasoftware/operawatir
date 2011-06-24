@@ -359,18 +359,29 @@ module OperaWatir
     #
     def close_active_menu
       wait_start
-      key_press_direct("Esc")
+      
+      menus = quick_menus
+      main = menus.select {|menu| menu.name == "Main Menu"}
+      main_open = main.length > 0
+      real_submenu = main_open ? (menus.length > 2) : menus.length > 1       
+       
+      if real_submenu
+        key_press_direct("Left")
+      else
+        close_menu
+      end
+      
       wait_for_menu_closed("")
     end
     
     #####################################################################
     #
     # Closes all open menus
-    #
+    # (Note: On mac one esc closes all menus)
     def close_all_menus
       i = 6 
       while quick_menus.delete_if { |menu| menu.name == "Main Menu" }.length > 0 
-         close_active_menu
+         close_menu
          i-=1
          break if i == 0
       end
@@ -449,7 +460,7 @@ module OperaWatir
     def close_menu_with_key_press(menu_name, key, *modifiers)
       wait_start
       key_press_direct(key, *modifiers)
-      wait_for_menu_shown(menu_name)
+      wait_for_menu_closed(menu_name)
     end
     
     
@@ -543,7 +554,7 @@ module OperaWatir
     # @return [Boolean] true we the operating system is Linux, otherwise false 
     #
     def linux?
-       Config::CONFIG['target_os'] == "linux"
+      linux_internal?
      end
     
     # @private
@@ -700,6 +711,13 @@ module OperaWatir
     end
 
 private
+
+   def close_menu
+      wait_start
+      key_press_direct("Esc")
+      wait_for_menu_closed("")
+   end
+          
 
    def self.opera_driver_settings
      @opera_driver_settings ||= OperaDriverSettings.new.tap {|s|
