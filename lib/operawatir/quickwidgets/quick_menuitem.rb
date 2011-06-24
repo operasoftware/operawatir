@@ -220,9 +220,15 @@ module OperaWatir
     # @return name of menu opened
     #
     def open_menu_with_hover(menu_name)
-      wait_start
-      element.hover
-      wait_for_menu_shown(menu_name)
+      if mac_internal?
+        wait_start
+        press_menu
+        wait_for_menu_pressed
+      else
+        wait_start
+        element.hover
+        wait_for_menu_shown(menu_name)
+      end
     end
     
     ######################################################################
