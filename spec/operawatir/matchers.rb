@@ -34,12 +34,12 @@ RSpec::Matchers.define :open_dialog do
   end
 end
 
-#FIXME:TODO: Check match with menu name
-RSpec::Matchers.define :open_menu do
+RSpec::Matchers.define :open_menu do |expected|
+#  match { |actual| actual == expected } #menuname not accessible for mac, so leave this
   match { |name| name.length > 0 }
   
-  #failure_message_for_should do |window_id|
-  #  "expected open_menu to open menu"
+  #failure_message_for_should do |expected|
+  #  "expected open_menu to open menu, #{expected}"
   #end
 end
 
