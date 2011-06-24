@@ -235,10 +235,16 @@ module OperaWatir
     # Use to toggle a checkbox or radio item menuitem 
     #
     def toggle_with_click
-      click
+      if mac_internal?
+        wait_start
+        press_menu
+        wait_for_menu_pressed
+      else
+        click
           
-      # Cheat since we don't have an event yet 
-      sleep(0.1)
+        # Cheat since we don't have an event yet 
+        sleep(0.1)
+      end
     end
 
     def to_s
