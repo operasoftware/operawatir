@@ -1,8 +1,5 @@
 #!/usr/bin/env jruby
 require 'rubygems'
-
-$LOAD_PATH.unshift "/Users/minch/Documents/DesktopDev/OperaWatir/opera-watir/lib"
-
 require 'optparse'
 require 'rspec'
 require 'rbconfig'
