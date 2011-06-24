@@ -22,8 +22,16 @@ module OperaWatir::DesktopHelper
     @browser ||= OperaWatir::DesktopBrowser.new
   end
   
+  def mac?
+    Config::CONFIG['target_os'] == "darwin"
+  end
+  
   def configure_rspec!
     RSpec.configure do |config|
+      
+      if mac?
+        config.filter_run_excluding :nonmac? => true
+      end
       
       # Set every RSpec option
       settings.each do |key, value|
