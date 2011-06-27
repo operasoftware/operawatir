@@ -374,7 +374,7 @@ private
     
     # Presses a menu on Mac where you can't click them
     def press_menu
-      driver.pressQuickMenuItem(text);
+      driver.pressQuickMenuItem(text, false);
     end
 
     # Waits for the menu to be pressed 
