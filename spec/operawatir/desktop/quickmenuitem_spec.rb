@@ -15,19 +15,17 @@ describe 'QuickMenuItem' do
     its(:shortcut) { should be_kind_of(String) }
     its(:shortcutletter) { should be_kind_of String }
     its(:text) { should_not be_empty }
-    #its(:string_id) #??
+    its(:string_id) { should_not be_empty }
     its(:enabled?) {should == true }
     its(:selected?) { should == false }
     its(:checked?) { should == false } 
     its(:pos) { should be_kind_of Integer }
     its(:name) { should_not be_empty }
-    its(:text) { should_not be_empty }
     its(:menu) { should == "Toolbar Edit Item Popup Menu" }
-    #it should_not be_separator
-    #it should_not be_selected
-    #it should_not be_bold
-    #it should be_action_item
-    #it should_not be_submenu_item
+    its(:separator?) { should be_false }
+    its(:bold?)  { should be_false }
+    its(:action_item) { should be_true }
+    its(:submenu_item) {should be_false }
     its(:action_params) { should be_empty }
     its(:submenu) { should be_empty }
     its(:width) { should be_kind_of Integer }
@@ -45,8 +43,8 @@ describe 'QuickMenuItem' do
       it 'raises exception if menuitem is disabled'
     end
     
-    describe '#load_page_with_click' do
-      it 'returns window id'  
+    describe '#toggle_with_click' do
+      it 'toggles checkbox of menuitem'  
     end
 
     
