@@ -7,11 +7,11 @@ describe 'QuickMenu' do
     
   subject { menu }
     
-  before(:all) do
+  before(:each) do
     addressfield.open_menu_with_rightclick("Toolbar Edit Item Popup Menu").should open_menu
   end
-  after(:all) do
-    addressfield.click
+  after(:each) do
+    browser.close_all_menus
   end
       
   its(:name) { should_not be_empty }
@@ -42,8 +42,6 @@ describe 'QuickMenu' do
       
   describe '#quick_menus' do
     it 'lists all menus' do
-      #Just to test more than main menu :)
-      addressfield.open_menu_with_rightclick("Toolbar Edit Item Popup Menu").should open_menu
       browser.quick_menus.should_not be_empty
     end
   end
@@ -56,13 +54,4 @@ describe 'QuickMenu' do
       menu.quick_menuitems.select { |item| item.submenu_item? == true }.should_not be_empty
     end
   end
-
-=begin    
-    describe 'opening a rightclick menu from link in webpage' do
-      it 'works' do
-        browser.goto(WatirSpec.files + "/non_control_elements.html")
-        browser.link(:id, 'link_2').right_click
-      end
-    end
-=end
 end
