@@ -46,7 +46,7 @@ module OperaWatir
     # @return name of the menu this menuitem is part of 
     #
     # @example
-    #   browser.quick_menu(:name, "Browser File Menu").quick_menuitem(:text, "Open File").name
+    #   browser.quick_menu(:name, "Browser File Menu").quick_menuitem(:text, "Open File").menu
     #
     #
     def menu
