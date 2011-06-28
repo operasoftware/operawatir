@@ -14,10 +14,9 @@ describe 'QuickMenu' do
     addressfield.click
   end
       
-  #its(:type) { should == :menu }
   its(:name) { should_not be_empty }
   its(:window_id) { should be_kind_of Integer }
-  #its(:to_s) { should == menu.element.toString() }
+  its(:to_s) { should_not be_empty } #should == menu.element.toString() 
   its(:width) { should be_kind_of Integer }
   its(:height)  { should be_kind_of Integer }
   its(:x) { should be_kind_of Integer }
