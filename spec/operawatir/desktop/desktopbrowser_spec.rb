@@ -17,6 +17,14 @@ describe 'DesktopBrowser' do
     end
   end
   
+  describe '#close_all_menus' do
+    it 'closes all menus' 
+  end
+  
+  describe '#close_active_menu' do
+    it 'closes active menu' 
+  end
+  
   describe '#goto' do
     it 'loads page' do
       browser.goto("http://t/platforms/desktop/automated/resources/documents/page1.html").should > 0
