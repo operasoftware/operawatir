@@ -28,9 +28,18 @@ module OperaWatir
     # @return true if item is now selected, otherwise false
     #
     def select_with_click
-      click
+      if mac_internal?
+        press_menu
+      else
+        click
+      end
       selected?
     end
-    
+
+ private   
+    # Selects an item from a drop down pop menu where you can't click them on Mac
+    def press_menu
+      driver.pressQuickMenuItem(text, true);
+    end
   end
 end 
