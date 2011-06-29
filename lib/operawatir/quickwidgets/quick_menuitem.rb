@@ -358,8 +358,6 @@ private
         @element = driver.getQuickMenuItemByAction(@selector)
       when :submenu
         @element = driver.getQuickMenuItemBySubmenu(@selector)
-      #when :string_id
-      #  @element = driver.getMenuItemByStringId(WIDGET_ENUM_MAP[@type], @window_id, @selector, @location)
       when :text
         @element = driver.getQuickMenuItemByText(@selector)
       when :pos # only row
