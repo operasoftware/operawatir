@@ -317,11 +317,46 @@ module OperaWatir
       QuickWindow.new(self, how, what)
     end
 
+    ##########################################################################
+    # Method for accessing a menu
+    #
+    # @example
+    #    browser.quick_menu(:name, "Main Menu")
+    #
+    # @param [String] how Method to find the element. Supported: :name
+    # @param [String] what Search text to find the element with. 
+    #
     def quick_menu(how, what)
       QuickMenu.new(self, how, what)
     end
     
-    #name is name of menu, quick_menuitem is always constructed from a menu
+    #############################################################################
+    # Method for accessing a menuitem
+    #
+    # @example
+    #     browser.quick_menu(:name, "Main Menu").quick_menuitem(:submenu, "Browser Tools Menu")
+    #     browser.quick_menuitem(:name, "Browser File Menu")
+    #     browser.quick_menuitem(:action, "Open page")
+    #     browser.quick_menuitem(:name, "Open link, vg.no") 
+    #     browser.quick_menuitem(:string_id, "SOME_STRING_ID")
+    #     browser.quick_menu(:name, "Main Menu").quick_menuitem(:acckey, "b")
+    #     browser.quick_menu(:name, "Edit Item Popup Menu").quick_menuitem(:pos, 2)
+    #
+    #
+    # @param [String] how Method to find the element. Supported: name, text, string_id, action
+    #                      submenu, pos, acckey, shortcut.
+    #                      The item name is:
+    #                      - if the item has an action, the action
+    #                      - if the item has an action with a parameter; "<action>, <actionparameter>"
+    #                      - else if the item opens a submenu, the submenuname
+    #
+    #                     An acckey and pos are unique only within a given menu, so in this case
+    #                     the accesspath to specify the item should include the menu 
+    #
+    #
+    #                     Note that only methods that identify a unique item gives a predictable result
+    # @param [String] what Search text to find element with
+    #
     def quick_menuitem(how, what)
       QuickMenuItem.new(self, how, what, name)
     end
