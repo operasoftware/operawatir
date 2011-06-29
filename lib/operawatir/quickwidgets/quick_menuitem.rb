@@ -248,7 +248,7 @@ module OperaWatir
     end
 
     def to_s
-      "QUICKMENUITEM #{name}, pos #{pos}, menu #{menu}, rect: #{x}, #{y}, #{width}, #{height}, selected? #{selected?}, pos #{pos}, acckey #{shortcutletter}, #{shortcut unless shortcut.nil?}"
+      "QUICKMENUITEM #{name}, pos #{pos}, menu #{menu}, rect: #{x}, #{y}, #{width}, #{height}, checked? #{checked?}, pos #{pos}, acckey #{shortcutletter}, #{shortcut unless shortcut.nil?}"
     end
 
 
