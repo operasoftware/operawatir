@@ -327,7 +327,7 @@ module OperaWatir
     # @param [String] what Search text to find the element with. 
     #
     def quick_menu(how, what)
-      QuickMenu.new(self, how, what)
+      QuickMenu.new(self, how, what, window_id)
     end
     
     #############################################################################
@@ -358,7 +358,11 @@ module OperaWatir
     # @param [String] what Search text to find element with
     #
     def quick_menuitem(how, what)
-      QuickMenuItem.new(self, how, what, name)
+      if window_id != nil && window_id <= 0
+        QuickMenuItem.new(self, how, what, name)
+      else
+        QuickMenuItem.new(self, how, what, window_id)
+      end
     end
     
   end

@@ -248,7 +248,7 @@ module OperaWatir
     end
 
     def to_s
-      "QUICKMENUITEM #{name}, pos #{pos}, menu #{menu}, rect #{x}, #{y}, #{width}, #{height}, pos #{pos}, acckey #{shortcutletter}, #{shortcut unless shortcut.nil?}"
+      "QUICKMENUITEM #{name}, pos #{pos}, menu #{menu}, rect: #{x}, #{y}, #{width}, #{height}, selected? #{selected?}, pos #{pos}, acckey #{shortcutletter}, #{shortcut unless shortcut.nil?}"
     end
 
 
@@ -345,11 +345,15 @@ private
       #if @selector == nil && @elm != nil
       #  set_selector
       #end
-      #puts "\n<find> Find Menu by " + @method.to_s + ", " + @selector.to_s + ", " + @location.to_s
+      #puts "\n<find MenuItem> Find MenuItem by " + @method.to_s + ", " + @selector.to_s + ", " + @location.to_s
       case @method
         # action or submenu name?
       when :name
-        @element = driver.getQuickMenuItemByName(@selector)
+        if @location.class == Fixnum && @location >= 0
+          @element = driver.getQuickMenuItemByName(@selector, @location)
+        else
+          @element = driver.getQuickMenuItemByName(@selector)
+        end
       when :action
         @element = driver.getQuickMenuItemByAction(@selector)
       when :submenu

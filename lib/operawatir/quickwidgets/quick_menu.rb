@@ -8,7 +8,7 @@ module OperaWatir
     
     # @private
     # window_id is set if constructor is called on a (parent) window
-    # location is set is this is called on a (parent) widget
+    # location if set is this is called on a (parent) widget
     def initialize(container, method, selector=nil, location=nil)
       
       @container = container
@@ -44,6 +44,7 @@ module OperaWatir
     #         main windows
     #
     # @example: 
+    #   browser.quick_menu(:name, "Main Menu").window_id
     #   browser.quick_window(:id, <id>).quick_menu(:name, "Browser File Menu")...
     #
     #
@@ -141,7 +142,11 @@ private
       #puts "\n<find> Find Menu by " + @method.to_s + ", " + @selector.to_s + ", " + @location.to_s
       case @method
       when :name
-        @element = driver.getQuickMenu(@selector)#, @location)
+        if @location != nil && @location >= 0
+          @element = driver.getQuickMenu(@selector, @location)
+        else
+          @element = driver.getQuickMenu(@selector)
+        end
       end
       raise(Exceptions::UnknownObjectException, "Element #{@selector} not found using #{@method}") unless @element 
       @element
