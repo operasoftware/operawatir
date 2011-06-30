@@ -359,7 +359,7 @@ module OperaWatir
     #
     def quick_menuitem(how, what)
       if window_id != nil && window_id <= 0
-        QuickMenuItem.new(self, how, what, name)
+          QuickMenuItem.new(self, how, what, name == 'Opera' ? nil : name)
       else
         QuickMenuItem.new(self, how, what, window_id)
       end
