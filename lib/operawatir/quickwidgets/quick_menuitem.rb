@@ -64,14 +64,6 @@ module OperaWatir
       element.getText()
     end
      
-    ############################################################################
-    #
-    # @return the string_id of this menuitem as a string
-    #
-    def string_id
-      element.getStringId()
-    end
-    
     ###############################################################################
     #
     # @return true if this menuitem is selected, otherwise false
