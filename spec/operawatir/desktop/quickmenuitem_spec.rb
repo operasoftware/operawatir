@@ -80,10 +80,6 @@ describe 'QuickMenuItem' do
   let(:addressfield) { browser.quick_window(:name, "Document Window").quick_toolbar(:name, "Document Toolbar").quick_addressfield(:name, "tba_address_field") }
   let(:menu) { browser.quick_menu(:name, "Toolbar Edit Item Popup Menu") }
   let(:submenu) { browser.quick_menu(:name, "Toolbar Popup Customize Menu")}
-  #let(:mainmenu) { browser.quick_menu(:name, "Browser Button Menu Bar")}
-    
-  #let(:menubutton) { browser.quick_window(:name, "Browser Window").quick_toolbar(:name, "Pagebar Head").quick_button(:name, "tbb_MenuButton")}
-  #let(:bookmarksmenu) { browser.quick_menu(:name, "Browser Bookmarks Menu")}
     
   let(:menubar) {browser.quick_menu(:name, "Main Menu")}
   
