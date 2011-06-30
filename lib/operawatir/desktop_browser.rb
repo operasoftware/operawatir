@@ -401,7 +401,7 @@ module OperaWatir
     # Closes all open menus
     # (Note: On mac one esc closes all menus)
     def close_all_menus
-      i = 6 
+      i = 6 #Just some number
       while quick_menus.delete_if { |menu| menu.name == "Main Menu" }.length > 0 
          close_menu
          i-=1
