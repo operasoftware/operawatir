@@ -39,6 +39,9 @@ module OperaWatir::DesktopHelper
         if key.to_s.eql?("files_to_run")
           @@files = value
         end
+        if key.to_s.eql?("files_or_directories_to_run")
+          @@files = value
+        end
       end
             
       config.include SpecHelpers
