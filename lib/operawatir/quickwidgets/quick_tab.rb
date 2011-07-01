@@ -69,7 +69,7 @@ module OperaWatir
     def close_window_with_doubleclick
       wait_start
       click(:left, 2)
-      wait_for_window_closed("Document Window")
+      wait_for_window_close("Document Window")
     end
 
   end
