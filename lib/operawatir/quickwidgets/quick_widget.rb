@@ -441,6 +441,13 @@ protected
 
   
 private
+
+  def open_window_with_click(win_name, num_clicks)
+    wait_start
+    click(:left, num_clicks)
+    wait_for_window_shown(win_name)
+  end
+    
   def click_with_condition_internal(button = :left, times = 1, &blk)
       return false unless block_given?
 
