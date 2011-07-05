@@ -130,6 +130,7 @@ module OperaWatir
       open_window_with_click(win_name, 1)
     end
 
+    alias_method :open_dialog_with_click, :open_window_with_click
     
     ######################################################################
     # Double clicks the tree item, and waits for the window with 
