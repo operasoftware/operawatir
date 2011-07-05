@@ -442,7 +442,7 @@ protected
   
 private
 
-  def open_window_with_click(win_name, num_clicks)
+  def open_window_with_click_internal(win_name, num_clicks)
     wait_start
     click(:left, num_clicks)
     wait_for_window_shown(win_name)

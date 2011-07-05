@@ -109,7 +109,7 @@ module OperaWatir
     #            is not visible
     #
     def open_window_with_double_click(win_name)
-      open_window_with_click(win_name, 2)
+      open_window_with_click_internal(win_name, 2)
     end
     
     alias_method :open_dialog_with_double_click, :open_window_with_double_click
@@ -127,7 +127,7 @@ module OperaWatir
     #            is not visible
     #
     def open_window_with_click(win_name)
-      open_window_with_click(win_name, 1)
+      open_window_with_click_internal(win_name, 1)
     end
 
     alias_method :open_dialog_with_click, :open_window_with_click
