@@ -6,7 +6,7 @@ describe 'QuickButton' do
 	let(:url) { "http://t/platforms/desktop/automated/resources/documents/page1.html" }
 	let(:url2) { "http://t/platforms/desktop/automated/resources/documents/page2.html" }
   
-  let(:widget) { browser.quick_window(:name, "Document Window").quick_toolbar(:name, "Document Toolbar")  .quick_button(:name, "tbb_Home") }
+  let(:widget) { browser.quick_window(:name, "Document Window").quick_toolbar(:name, "Document Toolbar")  .quick_button(:name, "tbb_Stop_Reload") }
   subject { widget }
     
   it_behaves_like 'a widget'
