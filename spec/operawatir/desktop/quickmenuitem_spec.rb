@@ -14,7 +14,6 @@ describe 'QuickMenuItem' do
     its(:shortcut) { should be_kind_of(String) }
     its(:shortcutletter) { should be_kind_of String }
     its(:text) { should_not be_empty }
-    #its(:string_id) { should_not be_empty }
     its(:enabled?) {should be_true }
     its(:checked?) { should be_false } 
     its(:pos) { should be_kind_of Integer }
@@ -78,18 +77,16 @@ end
 describe 'QuickMenuItem' do
   let(:addressfield) { browser.quick_window(:name, "Document Window").quick_toolbar(:name, "Document Toolbar").quick_addressfield(:name, "tba_address_field") }
   let(:menu) { browser.quick_menu(:name, "Toolbar Edit Item Popup Menu") }
-  let(:submenu) { browser.quick_menu(:name, "Toolbar Popup Customize Menu")}
+  #let(:submenu) { browser.quick_menu(:name, "Toolbar Popup Customize Menu")}
     
-  let(:menubar) {browser.quick_menu(:name, "Main Menu")}
+  #let(:menubar) {browser.quick_menu(:name, "Main Menu")}
   
   before(:each) do
-    # 1. Rightclick in address field
     addressfield.open_menu_with_rightclick("Toolbar Edit Item Popup Menu").should open_menu
   end
 
   after(:each) do
-    #addressfield.focus_with_click
-	browser.close_all_menus
+    browser.close_all_menus
     browser.close_all_dialogs
   end
 
