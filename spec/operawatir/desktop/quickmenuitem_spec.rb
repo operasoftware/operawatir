@@ -6,7 +6,7 @@ describe 'QuickMenuItem' do
   let(:addressfield) { browser.quick_toolbar(:name, "Document Toolbar").quick_addressfield(:name, "tba_address_field") }
   let(:menuitem) { browser.quick_menuitem(:name, "Clear") }
     
-  before(:all) { addressfield.open_menu_with_rightclick }
+  before(:all) { addressfield.open_menu_with_rightclick("Toolbar Edit Item Popup Menu") }
   after(:all) { browser.close_all_menus }
     
   subject { menuitem }
@@ -16,7 +16,6 @@ describe 'QuickMenuItem' do
     its(:text) { should_not be_empty }
     #its(:string_id) { should_not be_empty }
     its(:enabled?) {should be_true }
-    its(:selected?) { should be_false }
     its(:checked?) { should be_false } 
     its(:pos) { should be_kind_of Integer }
     its(:name) { should_not be_empty }
