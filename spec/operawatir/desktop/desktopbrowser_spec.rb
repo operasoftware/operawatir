@@ -4,7 +4,7 @@ require File.expand_path('../../watirspec_desktophelper', __FILE__)
 describe 'DesktopBrowser' do
   
   let(:addressfield) { browser.quick_toolbar(:name, "Document Toolbar").quick_addressfield(:name, "tba_address_field") }
- 
+  
   before :all do
     browser.url = fixture('onclick.html') # simple
     #@window = browser.quick_window(:name, "Tab 0")
@@ -435,24 +435,28 @@ describe 'DesktopBrowser' do
    end
    
    describe 'open_menu_with_key_press' do
-    before(:all) do #enable main menu
-      let(:menubutton) { browser.quick_window(:name, "Browser Window").quick_toolbar(:name, "Pagebar Head").quick_button(:name, "tbb_MenuButton")}
+   let(:menubutton) { browser.quick_window(:name, "Browser Window").quick_toolbar(:name, "Pagebar Head").quick_button(:name, "tbb_MenuButton")}
+   let(:mainmenu) { browser.quick_menu(:name, "Browser Button Menu Bar")}
+       before(:all) do #enable main menu
+      #let(:menubutton) { browser.quick_window(:name, "Browser Window").quick_toolbar(:name, "Pagebar Head").quick_button(:name, "tbb_MenuButton")}
       if menubutton.exists? 
         menubutton.open_menu_with_click("Browser Button Menu Bar").should open_menu
-        mainmenu.quick_menuitem(:action, "Enable menu bar").click
+        mainmenu.quick_menuitem(:action, "Enable menu bar").toggle_with_click
       end
     end
     it 'opens a menu' do
       browser.open_menu_with_key_press("Browser File Menu", "F", :alt).should open_menu
     end
    end
-  
+ 
    describe 'open_menu_with_right_click' do
      before :all do
-       browser.goto 'file://localhost/home/karianne/ui_test/opera-watir/spec/operawatir/fixtures/onclick.html'
+		browser.url = fixture('onclick.html')
+       #browser.goto 'file://localhost/home/karianne/ui_test/opera-watir/spec/operawatir/fixtures/onclick.html'
      end
      after(:all) do
-       addressfield.click
+       #addressfield.click
+	   #browser.close_all_menus
      end
      it 'opens a menu' do
          elem =  window.find_by_tag('button')
