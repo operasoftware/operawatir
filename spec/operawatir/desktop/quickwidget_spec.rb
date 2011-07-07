@@ -1,7 +1,7 @@
 require File.expand_path('../../watirspec_desktophelper', __FILE__)
 
 describe 'QuickWidget' do
-    let(:home) { browser.quick_window(:name, "Document Window").quick_toolbar(:name, "Document Toolbar").quick_button(:name, "tbb_Home")}
+    let(:home) { browser.quick_window(:name, "Document Window").quick_toolbar(:name, "Document Toolbar").quick_button(:name, "tbb_Stop_Reload")}
     describe '#open_window_with_hover' do
       it 'opens window on hover' do
         browser.quick_window(:name, "Browser Window").quick_toolbar(:name, "Pagebar").quick_tab(:pos, 0).open_window_with_hover.should > 0
