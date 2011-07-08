@@ -454,7 +454,8 @@ module OperaWatir
     # @param [String]  element     Web page element to click (a link, an image ..)
     # @param [Symbol]  menu_name   Name of menu that should open when clicking the element
     #
-    # @return [String] name of menu opened
+    # @return [String] name of menu opened if it matches menu_name given as 
+    #          parameter, otherwise empty string
     #
     def open_menu_with_rightclick(element, menu_name)
       wait_start

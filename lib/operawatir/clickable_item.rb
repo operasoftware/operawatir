@@ -54,7 +54,8 @@ module OperaWatir
     # @raise [DesktopExceptions::WidgetNotVisibleException] if the button
     #            is not visible
     #
-    # @return name of menu opened
+    # @return name of menu opened if it matches the parameter menu_name,
+    #           otherwise returns empty string
     #
     def open_menu_with_click(menu_name)
       wait_start
