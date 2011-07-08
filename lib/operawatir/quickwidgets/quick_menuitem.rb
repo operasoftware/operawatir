@@ -209,7 +209,8 @@ module OperaWatir
     #
     # @param [String] name of menu that will open
     #
-    # @return name of menu opened
+    # @return name of menu opened if it matches menu_name parameter, 
+    #           otherwise returns the empty string
     #
     def open_menu_with_hover(menu_name)
       if mac_internal?
@@ -315,7 +316,8 @@ module OperaWatir
     # @raise [DesktopExceptions::WidgetNotVisibleException] if the button
     #            is not visible
     #
-    # @return name of menu opened
+    # @return name of menu opened if it matches menu_name (or if menu_name is ""),
+    #             otherwise returns empty string
     #
     def open_menu_with_click(menu_name)
       if mac_internal?
