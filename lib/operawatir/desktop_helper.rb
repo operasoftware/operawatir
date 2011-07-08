@@ -26,11 +26,21 @@ module OperaWatir::DesktopHelper
     Config::CONFIG['target_os'] == "darwin"
   end
   
+  def linux?
+    Config::CONFIG['target_os'] == "linux"
+  end
+  
   def configure_rspec!
     RSpec.configure do |config|
       
+     
+      
       if mac?
         config.filter_run_excluding :nonmac? => true
+      end
+      
+      if linux? == false
+        config.filter_run_excluding :nix? => true
       end
       
       # Set every RSpec option
