@@ -45,6 +45,9 @@ module OperaWatir
     # @raise [DesktopExceptions::WidgetNotVisibleException] if the button
     #            is not visible
     #
+    # @return [String] name of menu opened if it matches parameter menu_name
+    #              otherwise empty string
+    #
     def open_menu_with_rightclick(menu_name)
       wait_start
       click(:right)
