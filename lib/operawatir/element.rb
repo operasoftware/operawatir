@@ -149,6 +149,10 @@ class OperaWatir::Element
     node.rightClick
   end
 
+  def middle_click
+    node.middleClick
+  end
+
   def drag_and_drop_on(other)
     node.dragAndDropOn other.node
   end
