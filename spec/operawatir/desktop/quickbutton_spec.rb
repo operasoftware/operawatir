@@ -166,7 +166,7 @@ describe 'QuickButton' do
 		
 		it "returns false when it removes a button" do #New in Task 5
 			browser.open_window_with_key_press("Document Window", "t", :ctrl).should > 0
-			browser.quick_window(:name, "Document Window").quick_thumbnail(:name, "Speed Dial 1").quick_button(:name, "tb_CloseButton").toggle_with_click.should == nil
+			browser.quick_window(:name, "Document Window").quick_thumbnail(:name, name).quick_button(:name, "tb_CloseButton").toggle_with_click
 		end
 		
 
