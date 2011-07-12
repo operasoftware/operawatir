@@ -330,6 +330,17 @@ module OperaWatir
         wait_for_menu_shown(menu_name)
       end
     end
+    
+    ######################################################################
+    # Clicks item and waits for the menu to close
+    #
+    # @return name of menu closed
+    #
+    def close_menu_with_click(menu_name)
+      wait_start
+      click
+      wait_for_menu_closed(menu_name)
+    end
 
 private    
     # Finds the element on the page.  
