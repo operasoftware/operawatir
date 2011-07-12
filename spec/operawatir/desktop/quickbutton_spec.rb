@@ -265,7 +265,7 @@ describe 'QuickButton' do
     before(:each) do
       unless menubutton.exists? 
         menubar.quick_menuitem(:name, "Browser File Menu").open_menu_with_click("Browser File Menu").should open_menu
-        browser.quick_menu(:name, "Browser File Menu").quick_menuitem(:action, "Enable menu bar").click
+        browser.quick_menu(:name, "Browser File Menu").quick_menuitem(:action, "Enable menu bar").toggle_with_click
       end
     end
     it 'opens a menu' do
