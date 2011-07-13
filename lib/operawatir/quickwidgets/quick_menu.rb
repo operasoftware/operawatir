@@ -112,7 +112,6 @@ module OperaWatir
     #    menu.menuitems.each { | item | puts item.name }
     #
     def quick_menuitems
-      #@container.quick_menuitems#.select {|item| item.menu == name }
       element.getItemList().map do |java_item|
         QuickMenuItem.new(self,java_item)
       end
