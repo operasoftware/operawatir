@@ -89,7 +89,7 @@ describe 'QuickMenuItem' do
   end
 
   #describe '#close_menu_with_key_press' do
-  #  it 'closes menu' do
+  #  it 'closes menu' #do
       #browser.quick_menu(:name, "Toolbar Edit Item Popup Menu").quick_menuitem(:action, "Delete").close_menu_with_key_press("Toolbar Edit Item Popup Menu", "Esc").should close_menu
   #  end
   #end
@@ -100,7 +100,10 @@ describe 'QuickMenuItem' do
       submenu.quick_menuitem(:action, "Customize Toolbars").open_dialog_with_click("Customize Toolbar Dialog").should > 0
       #submenu.quick_menuitem(:action, "Customize Toolbars").close_menu_with_click("Toolbar Popup Customize Menu").should close_menu
     end
-    
+  end
+  
+  describe '#close_menu_with_click' do
+    it 'closes menu'
   end
 
 end  

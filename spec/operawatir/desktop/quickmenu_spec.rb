@@ -46,7 +46,7 @@ describe 'QuickMenu' do
     end
   end
   
-  describe '#menuitems' do
+  describe '#quick_menuitems' do
     it 'lists menuitems in this menu' do
       puts menu.quick_menuitems
       menu.quick_menuitems.select { |item| item.menu != menu.name }.should be_empty
