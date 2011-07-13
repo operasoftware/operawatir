@@ -36,7 +36,8 @@ module OperaWatir
       selected?
     end
 
- private   
+    private
+
     # Selects an item from a drop down pop menu where you can't click them on Mac
     def press_menu
       driver.pressQuickMenuItem(text, true);

@@ -180,24 +180,6 @@ module OperaWatir
       widgets(window_id)
     end
     
-    def quick_tabs
-      quick_tabbuttons
-    end
-      
-  
-    WIDGET_ENUM_MAP.keys.each do |widget_type|
-      my_type = "quick_" << widget_type.to_s
-      type = my_type
-      if my_type == "quick_search" || my_type == "quick_checkbox"
-        my_type << "es"
-      else
-        my_type << "s"
-      end
-      define_method(my_type.to_sym) do #|win|
-        quick_widgets.select { |w| w.type == widget_type and w.parent_name == name }
-      end
-    end
-
 private
 
     # Gets the parent widget name of which there is none here

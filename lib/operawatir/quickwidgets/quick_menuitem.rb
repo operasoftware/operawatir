@@ -334,7 +334,8 @@ module OperaWatir
       wait_for_menu_closed(menu_name)
     end
 
-private    
+    private
+
     # Finds the element on the page.  
     def find
       #If @method set and we do new find because of refresh, we need to get @selector first

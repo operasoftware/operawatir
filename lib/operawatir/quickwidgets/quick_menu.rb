@@ -129,8 +129,8 @@ module OperaWatir
     end
     alias_method :exists?, :exist?
     
-    
-private    
+    private
+
     # Finds the element on the page.  
     def find
       #If @method set and we do new find because of refresh, we need to get @selector first
