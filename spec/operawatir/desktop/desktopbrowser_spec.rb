@@ -463,6 +463,10 @@ describe 'DesktopBrowser' do
          browser.open_menu_with_rightclick(elem, "").should open_menu
      end
    end
+   
+   describe 'close_menu_with_key_press' do
+     it 'closes menu'
+   end
 
     # Gets the parent widget name of which there is none here
    #describe "#parent_widget" do
