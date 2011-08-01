@@ -47,12 +47,12 @@ describe 'QuickTreeItem' do
 			browser.quick_button(:name, "button_keyboard_Edit").open_dialog_with_click("Input Manager Dialog").should > 0
 		end
 	
-		it 'expand with click' do
+		it 'expands treeitem with click' do
 			browser.quick_treeview(:name, "Input_treeview").quick_treeitem(:text, "Application    (defaults)").expand_with_click
 			browser.quick_treeview(:name, "Input_treeview").quick_treeitem(:text, "Copy").should be_visible
 		end
 
-		it 'collapse with click ' do
+		it 'collapses treeitem with click ' do
 			browser.quick_treeview(:name, "Input_treeview").quick_treeitem(:text, "Application    (defaults)").collapse_with_click
 			browser.quick_treeview(:name, "Input_treeview").quick_treeitem(:text, "Copy").should_not be_visible
 		end

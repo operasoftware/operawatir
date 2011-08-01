@@ -18,7 +18,7 @@ module OperaWatir
     ######################################################################
     # Checks whether a window exists or not
     #
-    # @return [Boolean] true if the widget exists otherwise false
+    # @return [Boolean] true if the window exists otherwise false
     #
     def exist?
       !!element
@@ -28,11 +28,19 @@ module OperaWatir
     alias_method :exists?, :exist?
     
     ######################################################################
+    #
+    # @return [Boolean] true if window is active
+    #
+    def active?
+      element.isActive()
+    end
+    
+    ######################################################################
     # Gets the type of a window
     #
-    # @return [Symbol] type of the window (e.g. :dropdown, :button)
+    # @return [Symbol] type of the window 
     #
-    # @raise [Exceptions::UnknownObjectException] if the widget could not be found
+    # @raise [Exceptions::UnknownObjectException] if the window could not be found
     #           using the specified method
     def type
       return WINDOW_ENUM_MAP.invert[@elm.getType] unless @elm == nil
@@ -42,9 +50,9 @@ module OperaWatir
     ######################################################################
     # Gets the name of the window
     #
-    # @return [String] name of the widget
+    # @return [String] name of the window
     #
-    # @raise [Exceptions::UnknownObjectException] if the widget could not be found
+    # @raise [Exceptions::UnknownObjectException] if the window could not be found
     #           using the specified method
     def name
       element.getName
@@ -55,7 +63,7 @@ module OperaWatir
     #
     # @return [String] title of window
     #
-    # @raise [Exceptions::UnknownObjectException] if the widget could not be found
+    # @raise [Exceptions::UnknownObjectException] if the window could not be found
     #           using the specified method
     def title
       element.getTitle
@@ -65,20 +73,20 @@ module OperaWatir
     ######################################################################
     # Gets a string representation of the window
     #
-    # @return [String] representation of the widget
+    # @return [String] representation of the window
     #
-    # @raise [Exceptions::UnknownObjectException] if the widget could not be found
+    # @raise [Exceptions::UnknownObjectException] if the window could not be found
     #           using the specified method
     def to_s
-      "#{type} #{name}, title=#{title}, id=#{id}, on_screen=#{on_screen?}"
+      "#{type} #{name}, title=#{title}, id=#{id}, on_screen=#{on_screen?}, active=#{active?}"
     end
     
     ######################################################################
     #
     # @return [bool] true if window is on screen
     #
-    # @raise [Exceptions::UnknownObjectException] if the widget could not be found
-    #           using the specified method
+    # @raise [Exceptions::UnknownObjectException] if the window could not be found
+    #
     def on_screen?
       element.isOnScreen
     end
@@ -88,8 +96,8 @@ module OperaWatir
     #
     # @return [int] the windows window_id
     #
-    # @raise [Exceptions::UnknownObjectException] if the widget could not be found
-    #           using the specified method
+    # @raise [Exceptions::UnknownObjectException] if the window could not be found
+    #
     def window_id
       element.getWindowID
     end
@@ -100,8 +108,8 @@ module OperaWatir
     # Prints out all of the internal information about the window. Used
     # to discover the names of widgets and windows to use in the tests.
     #
-    # @raise [Exceptions::UnknownObjectException] if the widget could not be found
-    #           using the specified method
+    # @raise [Exceptions::UnknownObjectException] if the window could not be found
+    #           
     #@private
     def print_window_info
       puts window_info_string
@@ -109,7 +117,7 @@ module OperaWatir
     
     ########################################################################
     #
-    # @return width of widget
+    # @return width of window
     #
     def width
       element.getRect().width
@@ -117,7 +125,7 @@ module OperaWatir
 
     ########################################################################
     #
-    # @return height of widget
+    # @return height of window
     #
     def height
       element.getRect().height
@@ -137,11 +145,12 @@ module OperaWatir
     # Returns a string of the internal information about the window. Used
     # to discover the names of widgets and windows to use in the tests.
     #
-    # @raise [Exceptions::UnknownObjectException] if the widget could not be found
-    #           using the specified method
+    # @raise [Exceptions::UnknownObjectException] if the window could not be found
+    #
     def window_info_string
       "    Name: " + name +
       "\n   Title: " + title +
+      "\n  Active: " + active?.to_s + 
       "\n      ID: " + id.to_s +
       "\n    Type: " + type.to_s +
       "\nOnScreen: " + on_screen?.to_s +
@@ -153,7 +162,24 @@ module OperaWatir
     def driver
       @container.driver
     end
-
+    
+    #TODO: common with widget
+    ##################################################################
+    #
+    #  quick_widgets
+    #
+    # @example
+    #     browser.quick_window(:name, "Document Window").quick_widgets
+    # @note
+    #   You can also retrieve only widgets of a given type, using for example
+    #    browser.quick_window(:name, "Document Window").quick_toolbars
+    #
+    # @return array of widgets in this window
+    #
+    def quick_widgets
+      widgets(window_id)
+    end
+    
 private
 
     # Gets the parent widget name of which there is none here

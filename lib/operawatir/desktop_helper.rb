@@ -12,6 +12,7 @@ require File.expand_path('../../../spec/operawatir/matchers', __FILE__)
 
 module OperaWatir::DesktopHelper
   extend self
+  @@files = []
   
   def settings
     OperaWatir::DesktopBrowser.settings
@@ -21,13 +22,34 @@ module OperaWatir::DesktopHelper
     @browser ||= OperaWatir::DesktopBrowser.new
   end
   
+  def mac?
+    Config::CONFIG['target_os'] == "darwin"
+  end
+  
+  def linux?
+    Config::CONFIG['target_os'] == "linux"
+  end
+  
   def configure_rspec!
     RSpec.configure do |config|
+      
+     
+      
+      if mac?
+        config.filter_run_excluding :nonmac? => true
+      end
+      
+      if linux? == false
+        config.filter_run_excluding :nix? => true
+      end
       
       # Set every RSpec option
       settings.each do |key, value|
         config.send("#{key}=", value) if config.respond_to?("#{key}=")
         if key.to_s.eql?("files_to_run")
+          @@files = value
+        end
+        if key.to_s.eql?("files_or_directories_to_run")
           @@files = value
         end
       end

@@ -27,9 +27,9 @@ describe 'QuickDropdown' do
 			browser.quick_dropdown(:name, "Startup_mode_dropdown").selected?("D_STARTUP_SAVED_SESSIONS").should be_false
 		end
 		
-		it 'raises an exception' do
+		it 'raises an exception for not shown widget' do
 			browser.close_all_dialogs
-			lambda { browser.quick_dropdown(:name, "Startup_mode_dropdown").selected?("D_STARTUP_SAVED_SESSIONS") }.should raise_error OperaWatir::DesktopExceptions::UnknownObjectException
+			expect { browser.quick_dropdown(:name, "Startup_mode_dropdown").selected?("D_STARTUP_SAVED_SESSIONS") }.to raise_error OperaWatir::DesktopExceptions::UnknownObjectException
 		end
 		
     end

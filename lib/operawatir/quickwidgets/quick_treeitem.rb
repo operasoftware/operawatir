@@ -109,13 +109,29 @@ module OperaWatir
     #            is not visible
     #
     def open_window_with_double_click(win_name)
-      wait_start
-      click(:left, 2)
-      wait_for_window_shown(win_name)
+      open_window_with_click_internal(win_name, 2)
     end
     
     alias_method :open_dialog_with_double_click, :open_window_with_double_click
 
+    
+    ######################################################################
+    # Clicks the tree item, and waits for the window with 
+    # window name win_name to be shown
+    #
+    # @param [String] win_name name of the window that will be opened (Pass a blank string for any window)
+    #
+    # @return [int] Window ID of the window shown or 0 if no window is shown
+    #
+    # @raise [DesktopExceptions::WidgetNotVisibleException] if the treeitem
+    #            is not visible
+    #
+    def open_window_with_click(win_name)
+      open_window_with_click_internal(win_name, 1)
+    end
+
+    alias_method :open_dialog_with_click, :open_window_with_click
+    
     ######################################################################
     # Double clicks the tree item, and waits for the window with 
     # window name win_name to be loaded with the url of the treeitem

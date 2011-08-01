@@ -19,8 +19,32 @@ module OperaWatir
     #
     # @raise [Exceptions::UnknownObjectException] if the widget could not be found
     #           using the specified method
+    #
     def selected?(string_id)
       element.isSelected(string_id)
+    end
+    
+    #########################################################################
+    #
+    # @example
+    #    browser.quick_dropdown(:name, "Close_tab_dropdown").dropped_down?
+    #
+    # @return true if dropdown is dropped_down/open, else false
+    #
+    def dropped_down?
+      element.getValue() > 0
+    end
+
+    
+    ############################################################################
+    # Click dropdown to open it
+    #
+    # @example
+    #    browser.quick_dropdown(:name, "Close_tab_dropdown").open_with_click
+    #
+    def open_with_click
+      click
+      sleep(0.1)
     end
     
   end

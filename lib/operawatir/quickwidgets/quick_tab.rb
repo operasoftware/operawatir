@@ -60,6 +60,17 @@ module OperaWatir
       click 
       wait_for_window_activated("Document Window")
     end
+    
+    ###########################################################################
+    # Double clicks the tab and waits for it to be closed
+    #
+    # @return [int] Window ID of the window that was closed
+    #
+    def close_window_with_doubleclick
+      wait_start
+      click(:left, 2)
+      wait_for_window_close("Document Window")
+    end
 
   end
 end
