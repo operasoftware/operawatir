@@ -68,6 +68,7 @@ module OperaWatir::DesktopHelper
           # test is run before Opera has been launched
           browser
         end
+		browser.set_preference("User Prefs", "Enable UI Animations", 0)
       }
 
       config.after(:suite) { 
