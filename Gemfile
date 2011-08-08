@@ -10,6 +10,7 @@ group :development do
   gem "rr"
   gem "clipboard"
   gem "rspec", "~> 2.6.0"
+  gem "ci_reporter"
   gem "deprecated"
   gem "builder"
 end
