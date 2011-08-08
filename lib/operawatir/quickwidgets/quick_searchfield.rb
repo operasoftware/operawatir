@@ -8,7 +8,7 @@ module OperaWatir
     end
 
     ######################################################################
-    # Enters the search text into the search field, and waits for page 
+    # Enters the search text into the search field, and waits for page
     # loading to finish
     #
     # @example (RSpec)
@@ -22,13 +22,13 @@ module OperaWatir
     def search_with_text(search_text)
       # Must focus field before calling enter_text...
       focus_with_click
-      
+
       # Enters text in a field and then hits enter
       t = enter_text_and_hit_enter(search_text)
 
-      # return text in addressfield (in same window as search field)      
+      # return text in addressfield (in same window as search field)
       driver.findWidgetByName(WIDGET_ENUM_MAP[:addressfield], @window_id, "tba_address_field", "Document Toolbar").getText
     end
-    
+
   end
 end

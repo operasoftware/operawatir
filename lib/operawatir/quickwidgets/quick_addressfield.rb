@@ -8,7 +8,7 @@ module OperaWatir
       @element.getType == WIDGET_ENUM_MAP[:addressfield]
     end
 
-    # Enters the url into the address field, and waits for page loading 
+    # Enters the url into the address field, and waits for page loading
     # to finish
     #
     # @example (with RSpec)
@@ -23,11 +23,11 @@ module OperaWatir
     def load_page_with_url(url)
       # Must focus field before calling enter_text...
       focus_with_click
-      
+
       # Enters text in a field and then hits enter
       enter_text_and_hit_enter(url)
     end
-    
+
     #
     # Gets the visible text in the address field
     #
@@ -39,7 +39,7 @@ module OperaWatir
     def visible_text
       element.getVisibleText()
     end
-    
+
     #
     # Gets the highlighted text in the address field
     #
@@ -49,8 +49,8 @@ module OperaWatir
     #           using the specified method
     #
     def highlighted_text
-      element.getAdditionalText()     
+      element.getAdditionalText()
     end
-    
+
   end
 end

@@ -5,16 +5,16 @@ module OperaWatir
     #def correct_type?
     #  @element.getType == WIDGET_ENUM_MAP[:menuitem]
     #end
-    
+
     # @private
     # window_id is set if constructor is called on a (parent) window
     # location is set is this is called on a (parent) widget
     def initialize(container, method, selector=nil, location=nil)
-      
+
       #puts "QuickMenuItem initialize method #{method}, selector #{selector}"
-      
+
       @container = container
-                            
+
       if method.is_a? Java::ComOperaCoreSystems::QuickMenuItem
         @elm = method
       else
@@ -23,7 +23,7 @@ module OperaWatir
         @location  = location
       end
     end
-    
+
     #########################################################################
     #
     # Returns the name of the menuitem. The name is either the action name
@@ -34,16 +34,16 @@ module OperaWatir
     #    menuitem.name.should == "Separator"
     #    menuitem.name.should == "Close page" #action
     #    menuitem.name.should == "Toolbar Popup Customize Menu" #submenu
-    # 
+    #
     # @return name of menuitem
     #
     def name
       element.getName();
     end
-    
+
     ##########################################################################
     #
-    # @return name of the menu this menuitem is part of 
+    # @return name of the menu this menuitem is part of
     #
     # @example
     #   browser.quick_menu(:name, "Browser File Menu").quick_menuitem(:text, "Open File").menu
@@ -52,7 +52,7 @@ module OperaWatir
     def menu
       element.getMenu()
     end
-     
+
     ##########################################################################
     #
     # @return the text of this menu item
@@ -63,7 +63,7 @@ module OperaWatir
     def text
       element.getText()
     end
-     
+
     ######################################################################
     #
     # @return true if element is a checkbox item that is checked, else false
@@ -71,7 +71,7 @@ module OperaWatir
     def checked?
       element.isChecked()
     end
-     
+
     #####################################################################
     #
     # @return true if this menuitem has bold text, otherwise false
@@ -79,7 +79,7 @@ module OperaWatir
     def bold?
       element.isBold()
     end
-    
+
     #####################################################################
     #
     # @return true if this menuitem is a separator, else false
@@ -87,7 +87,7 @@ module OperaWatir
     def separator?
       element.isSeparator()
     end
-    
+
     #####################################################################
     #
     # @return true if this item is a command/action item
@@ -95,7 +95,7 @@ module OperaWatir
     def action_item?
       action.length > 0
     end
-    
+
     #####################################################################
     #
     # @return true if this menuitem opens a submenu, otherwise false
@@ -103,7 +103,7 @@ module OperaWatir
     def submenu_item?
       element.hasSubMenu()
     end
-   
+
     #####################################################################
     #
     # @return shortcutletter of this menuitem (typing this letter while the
@@ -111,13 +111,13 @@ module OperaWatir
     #
     # @example (t is shortcutletter to open submenu below)
     #    addressfield.open_menu_with_rightclick("Toolbar Edit Item Popup Menu")
-    #    browser.open_menu_with_key_press("Toolbar Popup Customize Menu", "t")     
+    #    browser.open_menu_with_key_press("Toolbar Popup Customize Menu", "t")
     #
     # (Note: not used on mac, so not a platform dependant feature)
     def shortcutletter
       element.getShortcutLetter()
     end
-     
+
     #####################################################################
     #
     # @return the shortcut of this menuitem as a string
@@ -127,26 +127,26 @@ module OperaWatir
     def shortcut
       element.getShortcut()
     end
-     
+
     #####################################################################
     #
-    # @return position of this menuitem within the menu, also counting 
-    #           separators 
+    # @return position of this menuitem within the menu, also counting
+    #           separators
     #
     # browser.quick_menu(:name, "Browser Tools Menu").quick_menuitem(:pos, 2).name.should == "Separator"
     #
     def pos
       element.getRow()
     end
-     
+
     #####################################################################
     #
-    # @return the name of the action this item executes when selected 
+    # @return the name of the action this item executes when selected
     #
     def action
       element.getActionName()
     end
-    
+
     ########################################################################
     #
     # @return the parameters to the action that will be used for the action
@@ -155,18 +155,18 @@ module OperaWatir
     def action_params
       element.getActionParameter()
     end
-    
+
     ##########################################################################
     #
     # @return the name of the submenu this item opens
     #
-    # (Note: an item will either have a submenu, or an action)  
+    # (Note: an item will either have a submenu, or an action)
     #
     def submenu
       element.getSubMenu()
     end
-       
-     
+
+
     ########################################################################
     #
     # @return width of the menuitem
@@ -174,7 +174,7 @@ module OperaWatir
     def width
       element.getRect().width
     end
- 
+
     ########################################################################
     #
     # @return height of the menuitem
@@ -182,17 +182,17 @@ module OperaWatir
     def height
       element.getRect().height
     end
- 
+
     #@private
     def x
       element.getRect().x
     end
- 
+
     #@private
     def y
       element.getRect().y
     end
-   
+
     ########################################################################
     # Hovers the menuitem and waits for the menu with menu_name to open
     #
@@ -201,7 +201,7 @@ module OperaWatir
     #
     # @param [String] name of menu that will open
     #
-    # @return name of menu opened if it matches menu_name parameter, 
+    # @return name of menu opened if it matches menu_name parameter,
     #           otherwise returns the empty string
     #
     def open_menu_with_hover(menu_name)
@@ -215,9 +215,9 @@ module OperaWatir
         wait_for_menu_shown(menu_name)
       end
     end
-    
+
     ######################################################################
-    # Use to toggle a checkbox or radio item menuitem 
+    # Use to toggle a checkbox or radio item menuitem
     #
     def toggle_with_click
       if mac_internal?
@@ -226,8 +226,8 @@ module OperaWatir
         wait_for_menu_pressed
       else
         click
-          
-        # Cheat since we don't have an event yet 
+
+        # Cheat since we don't have an event yet
         sleep(0.1)
       end
     end
@@ -239,7 +239,7 @@ module OperaWatir
 
     ######################################################################
     # Clicks the button, and waits for loading to finish
-    #  
+    #
     # @return [int] Window ID of the window shown or 0 if no window is shown
     #
     # @raise [DesktopExceptions::WidgetNotVisibleException] if the button
@@ -260,9 +260,9 @@ module OperaWatir
         wait_for_window_loaded("")
       end
     end
-    
+
     ######################################################################
-    # Clicks the button, and waits for the window with window name 
+    # Clicks the button, and waits for the window with window name
     # win_name to be shown
     #
     # @param [String] win_name name of the window that will be opened (Pass a blank string for any window)
@@ -286,8 +286,8 @@ module OperaWatir
       end
     end
     alias_method :open_dialog_with_click, :open_window_with_click
-    
-    
+
+
     ######################################################################
     # Clicks item and waits for the menu to close
     #
@@ -298,7 +298,7 @@ module OperaWatir
       key_press_direct(key, *modifiers)
       wait_for_menu_closed(menu_name)
     end
-    
+
     ######################################################################
     # Clicks the item, and waits for the menu with menu with name
     # menu_name to be shown
@@ -322,7 +322,7 @@ module OperaWatir
         wait_for_menu_shown(menu_name)
       end
     end
-    
+
     ######################################################################
     # Clicks item and waits for the menu to close
     #
@@ -336,7 +336,7 @@ module OperaWatir
 
     private
 
-    # Finds the element on the page.  
+    # Finds the element on the page.
     def find
       #If @method set and we do new find because of refresh, we need to get @selector first
       #Have the java object because the construct was done on it
@@ -367,17 +367,17 @@ module OperaWatir
       when :string_id
         @element = driver.getQuickMenuItemByStringId(@selector)
       end
-        
-      raise(Exceptions::UnknownObjectException, "Element #{@selector} not found using #{@method}") unless @element 
+
+      raise(Exceptions::UnknownObjectException, "Element #{@selector} not found using #{@method}") unless @element
       @element
     end
-    
+
     # Presses a menu on Mac where you can't click them
     def press_menu
       driver.pressQuickMenuItem(text, false);
     end
 
-    # Waits for the menu to be pressed 
+    # Waits for the menu to be pressed
     def wait_for_menu_pressed
       name = driver.waitForMenuItemPressed(text)
       name

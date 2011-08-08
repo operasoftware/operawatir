@@ -6,6 +6,6 @@ module OperaWatir
     def correct_type?
       @element.getType == WIDGET_ENUM_MAP[:toolbar]
     end
-    
+
   end
 end

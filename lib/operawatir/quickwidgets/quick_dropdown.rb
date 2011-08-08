@@ -6,7 +6,7 @@ module OperaWatir
     def correct_type?
       @element.getType == WIDGET_ENUM_MAP[:dropdown]
     end
-    
+
     ######################################################################
     # Checks if the item selected in the dropdown matches the text loaded
     # from Opera using the string_id
@@ -14,7 +14,7 @@ module OperaWatir
     # @param [String] string_id String ID to use to load the string from the current
     #                 language file (e.g. "D_NEW_PREFERENCES_GENERAL")
     #
-    # @return [Boolean] true if the dropdown has the item with the 
+    # @return [Boolean] true if the dropdown has the item with the
     #                   string_id selected, otherwise false
     #
     # @raise [Exceptions::UnknownObjectException] if the widget could not be found
@@ -23,7 +23,7 @@ module OperaWatir
     def selected?(string_id)
       element.isSelected(string_id)
     end
-    
+
     #########################################################################
     #
     # @example
@@ -35,7 +35,7 @@ module OperaWatir
       element.getValue() > 0
     end
 
-    
+
     ############################################################################
     # Click dropdown to open it
     #
@@ -46,6 +46,6 @@ module OperaWatir
       click
       sleep(0.1)
     end
-    
+
   end
-end 
+end

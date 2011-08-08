@@ -6,7 +6,7 @@ module OperaWatir
     # @private
     def initialize(container, method, selector=nil)
       @container = container
-      
+
       if method.is_a? Java::ComOperaCoreSystems::QuickWindow
         @elm = method
       else
@@ -26,7 +26,7 @@ module OperaWatir
         false
     end
     alias_method :exists?, :exist?
-    
+
     ######################################################################
     #
     # @return [Boolean] true if window is active
@@ -34,19 +34,19 @@ module OperaWatir
     def active?
       element.isActive()
     end
-    
+
     ######################################################################
     # Gets the type of a window
     #
-    # @return [Symbol] type of the window 
+    # @return [Symbol] type of the window
     #
     # @raise [Exceptions::UnknownObjectException] if the window could not be found
     #           using the specified method
     def type
       return WINDOW_ENUM_MAP.invert[@elm.getType] unless @elm == nil
-      return WINDOW_ENUM_MAP.invert[element.getType] 
+      return WINDOW_ENUM_MAP.invert[element.getType]
     end
-    
+
     ######################################################################
     # Gets the name of the window
     #
@@ -57,7 +57,7 @@ module OperaWatir
     def name
       element.getName
     end
-    
+
     ######################################################################
     # Gets the title of the window
     #
@@ -68,8 +68,8 @@ module OperaWatir
     def title
       element.getTitle
     end
-        
-    
+
+
     ######################################################################
     # Gets a string representation of the window
     #
@@ -80,7 +80,7 @@ module OperaWatir
     def to_s
       "#{type} #{name}, title=#{title}, id=#{id}, on_screen=#{on_screen?}, active=#{active?}"
     end
-    
+
     ######################################################################
     #
     # @return [bool] true if window is on screen
@@ -90,7 +90,7 @@ module OperaWatir
     def on_screen?
       element.isOnScreen
     end
-    
+
     ######################################################################
     # Gets this windows window id
     #
@@ -101,20 +101,20 @@ module OperaWatir
     def window_id
       element.getWindowID
     end
-    
+
     alias_method :id, :window_id
-        
+
     ######################################################################
     # Prints out all of the internal information about the window. Used
     # to discover the names of widgets and windows to use in the tests.
     #
     # @raise [Exceptions::UnknownObjectException] if the window could not be found
-    #           
+    #
     #@private
     def print_window_info
       puts window_info_string
     end
-    
+
     ########################################################################
     #
     # @return width of window
@@ -140,7 +140,7 @@ module OperaWatir
     def y
       element.getRect().y
     end
-  
+
     ######################################################################
     # Returns a string of the internal information about the window. Used
     # to discover the names of widgets and windows to use in the tests.
@@ -150,7 +150,7 @@ module OperaWatir
     def window_info_string
       "    Name: " + name +
       "\n   Title: " + title +
-      "\n  Active: " + active?.to_s + 
+      "\n  Active: " + active?.to_s +
       "\n      ID: " + id.to_s +
       "\n    Type: " + type.to_s +
       "\nOnScreen: " + on_screen?.to_s +
@@ -158,11 +158,11 @@ module OperaWatir
       "\n    Size: width=" + element.getRect().width.to_s + ", height=" + element.getRect().height.to_s + "\n"
     end
 
-    # @private    
+    # @private
     def driver
       @container.driver
     end
-    
+
     #TODO: common with widget
     ##################################################################
     #
@@ -179,7 +179,7 @@ module OperaWatir
     def quick_widgets
       widgets(window_id)
     end
-    
+
 private
 
     # Gets the parent widget name of which there is none here
@@ -192,12 +192,12 @@ private
       if (@elm == nil || refresh == true)
        @elm = find
       end
-      
-      raise(Exceptions::UnknownObjectException, "Window #{@selector} not found using #{@method}") unless @elm 
+
+      raise(Exceptions::UnknownObjectException, "Window #{@selector} not found using #{@method}") unless @elm
       @elm
     end
-    
-    # Finds the element on the page.  
+
+    # Finds the element on the page.
     def find
       #puts "<find> Find Window by " + @method.to_s + ", selector = " + @selector.to_s
       case @method
@@ -214,7 +214,7 @@ private
       when :id
         @element = driver.findWindowById(@selector)
       end
-      raise(Exceptions::UnknownObjectException, "Window #{@selector} not found using #{@method}") unless @element 
+      raise(Exceptions::UnknownObjectException, "Window #{@selector} not found using #{@method}") unless @element
       @element
     end
   end

@@ -13,16 +13,16 @@ class OperaWatir::Keys
   # @param [Symbol, String] *args  Arbitrary list of symbols (modification)
   #                                keys or strings (regular keys) to be
   #                                pressed down.
-  #                               
+  #
   # @example
   #
   #   browser.keys.down 'a'
   #   browser.keys.down 'a', :right
-  #  
+  #
   # @seealso up
   # @seealso send
   #
-  
+
   def down(*args)
     args.each { |key| driver.keyDown(key) }
   end
@@ -109,7 +109,7 @@ class OperaWatir::Keys
 private
 
   def driver
-    browser.driver    
+    browser.driver
   end
 
   def key(key)

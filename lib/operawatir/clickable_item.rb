@@ -3,7 +3,7 @@ module OperaWatir
 
     ######################################################################
     # Clicks the button, and waits for loading to finish
-    #  
+    #
     # @return [int] Window ID of the window shown or 0 if no window is shown
     #
     # @raise [DesktopExceptions::WidgetNotVisibleException] if the button
@@ -15,9 +15,9 @@ module OperaWatir
       # Just wait for the load
       wait_for_window_loaded("")
     end
-    
+
     ######################################################################
-    # Clicks the button, and waits for the window with window name 
+    # Clicks the button, and waits for the window with window name
     # win_name to be shown
     #
     # @param [String] win_name name of the window that will be opened (Pass a blank string for any window)
@@ -33,7 +33,7 @@ module OperaWatir
       wait_for_window_shown(win_name)
     end
     alias_method :open_dialog_with_click, :open_window_with_click
-    
+
     ######################################################################
     # Clicks item and waits for the menu to close
     #
@@ -44,7 +44,7 @@ module OperaWatir
       click
       wait_for_menu_closed(menu_name)
     end
-    
+
     ######################################################################
     # Clicks the item, and waits for the menu with menu with name
     # menu_name to be shown
@@ -63,6 +63,6 @@ module OperaWatir
       wait_for_menu_shown(menu_name)
     end
 
-    
-  end  
+
+  end
 end

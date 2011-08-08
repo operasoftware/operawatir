@@ -122,7 +122,7 @@ class OperaWatir::Window
   # Creates a Screenshot interface or saves screenshot to specified
   # location if a file path is given.
   #
-  # @param [String] file_name The absolute path to the location where 
+  # @param [String] file_name The absolute path to the location where
   #                           you want the screenshot saved.
   #
   # @return [Object]          A Screenshot object.

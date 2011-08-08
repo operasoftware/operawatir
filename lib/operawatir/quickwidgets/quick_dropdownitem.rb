@@ -6,11 +6,11 @@ module OperaWatir
     def correct_type?
       @element.getType == WIDGET_ENUM_MAP[:dropdownitem]
     end
-    
+
     ######################################################################
-    # Checks if the item is selected 
+    # Checks if the item is selected
     #
-    # @return [Boolean] true if the dropdown has the item with the 
+    # @return [Boolean] true if the dropdown has the item with the
     #                   string_id selected, otherwise false
     #
     # @raise [Exceptions::UnknownObjectException] if the widget could not be found
@@ -18,7 +18,7 @@ module OperaWatir
     def selected?
       element(true).isSelected()
     end
-    
+
     ##########################################################################
     # Select item by click
     #
@@ -43,4 +43,4 @@ module OperaWatir
       driver.pressQuickMenuItem(text, true);
     end
   end
-end 
+end
