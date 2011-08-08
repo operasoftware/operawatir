@@ -127,6 +127,22 @@ shared_examples_for 'a widget' do
        end
      end
      
+     #there's one of these for each type
+     describe '#quick_buttons' do
+       it 'retrieves buttons' do
+         widget.quick_buttons.should be_kind_of Array
+       end
+       it 'retrieves only buttons' do
+         widget.quick_buttons.select { |w| w.type != :button }.should be_empty
+       end
+     end
+     
+     describe '#quick_widgets' do
+       it 'retrieves only widgets in this widget' do
+         widget.quick_widgets.select { |w| w.parent_name != widget.name }.should be_empty
+       end  
+     end
+     
   #describe 'print_row' do
   #end
 

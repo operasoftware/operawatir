@@ -6,7 +6,7 @@ describe 'QuickButton' do
 	let(:url) { "http://t/platforms/desktop/automated/resources/documents/page1.html" }
 	let(:url2) { "http://t/platforms/desktop/automated/resources/documents/page2.html" }
   
-  let(:widget) { browser.quick_window(:name, "Document Window").quick_toolbar(:name, "Document Toolbar")  .quick_button(:name, "tbb_Home") }
+  let(:widget) { browser.quick_window(:name, "Document Window").quick_toolbar(:name, "Document Toolbar")  .quick_button(:name, "tbb_Stop_Reload") }
   subject { widget }
     
   it_behaves_like 'a widget'
@@ -15,7 +15,9 @@ describe 'QuickButton' do
   its(:type) { should == :button }
   
   describe '#quick_button' do
-    it "constructs a button by its name" 
+    it "constructs a button by its name" do
+		browser.quick_window(:name, "Document Window").quick_toolbar(:name, "Document Toolbar")
+	end
   end
   
   after(:all) do
@@ -54,11 +56,11 @@ describe 'QuickButton' do
 			browser.close_dialog("New Preferences Dialog").should > 0
 		end
 		
-		it 'default button' do
+		it 'returns true for default button' do
 			browser.quick_button(:name, "button_OK").should be_default
 		end
 		
-		it 'non-default button' do
+		it 'returns false for non-default button' do
 			browser.quick_button(:name, "button_Cancel").should_not be_default
 		end
   end
@@ -75,14 +77,14 @@ describe 'QuickButton' do
 			browser.quick_window(:name, "Document Window").quick_toolbar(:name, "Document Toolbar").quick_addressfield(:name, "tba_address_field").quick_button(:name, "af_ProtocolButton").open_window_with_click("Addressbar Overlay Window").should open_window
 		end
 		
-		it 'raises exception' do
+		it 'raises exception for not visible button' do
 			browser.open_dialog_with_action("Customize Toolbar Dialog", "Customize Toolbars").should open_dialog
 			browser.quick_dialogtab(:name, "tab_appearance_toolbars").activate_tab_with_click
 			if browser.quick_checkbox(:name, "address_bar").checked? == true
 				browser.quick_checkbox(:name, "address_bar").toggle_with_click.should == false
 			end
 			browser.quick_button(:name, "button_OK").close_dialog_with_click("Customize Toolbar Dialog").should close_dialog
-			lambda { browser.quick_window(:name, "Document Window").quick_toolbar(:name, "Document Toolbar").quick_addressfield(:name, "tba_address_field").quick_button(:name, "af_ProtocolButton").open_window_with_click("Addressbar Overlay Window") }.should raise_error OperaWatir::DesktopExceptions::WidgetNotVisibleException
+			expect { browser.quick_window(:name, "Document Window").quick_toolbar(:name, "Document Toolbar").quick_addressfield(:name, "tba_address_field").quick_button(:name, "af_ProtocolButton").open_window_with_click("Addressbar Overlay Window") }.to raise_error OperaWatir::DesktopExceptions::WidgetNotVisibleException
 		end
 		
 		after(:all) do
@@ -101,7 +103,7 @@ describe 'QuickButton' do
 			browser.open_dialog_with_action("New Account Wizard", "New account").should > 0
 		end
 		
-		it 'change to a different page, with ID > 0' do
+		it 'changes dialog to a different page' do
 			browser.quick_button(:name, "button_Next").change_page_with_click.should > 0
 			browser.close_dialog("New Account Wizard").should > 0
 		end
@@ -113,7 +115,13 @@ describe 'QuickButton' do
   end
   
   describe '#close_window_with_click' do
-    it 'raises exception'
+		it 'raises exception' do
+			browser.open_dialog_with_action("Clear Private Data Dialog", "Delete private data").should > 0
+			browser.quick_button(:name, "button_manage_cookies").visible?.should == false
+			lambda { browser.quick_button(:name, "button_manage_cookies").close_window_with_click("")}.should raise_error OperaWatir::DesktopExceptions::WidgetNotVisibleException
+			browser.close_dialog("Clear Private Data Dialog").should > 0
+		
+		end
 	
 		it 'returns window id of closed dialog window' do
 			browser.open_dialog_with_action("Add Bookmark Dialog", "Add to bookmarks").should > 0
@@ -153,13 +161,15 @@ describe 'QuickButton' do
 		
 		it 'returns value = 0 of button when button is unpressed' do
 			browser.quick_button(:name, "Destails_expand").toggle_with_click.should == 0
-		end
-		
-		it "returns false when it removes a button" #New in Task 5
-		
-		after(:all) do
 			browser.close_dialog("Clear Private Data Dialog").should close_dialog
 		end
+		
+		it "returns false when it removes a button" do #New in Task 5
+			browser.open_window_with_key_press("Document Window", "t", :ctrl).should > 0
+			browser.quick_window(:name, "Document Window").quick_thumbnail(:name, name).quick_button(:name, "tb_CloseButton").toggle_with_click
+		end
+		
+
   end
 
   describe '#close_toolbar_with_click' do
@@ -171,18 +181,18 @@ describe 'QuickButton' do
 			browser.open_dialog_with_action("Clear Private Data Dialog", "Delete private data").should open_dialog
 		end
 	
-		it 'expand with click' do
+		it 'expands dialog with click' do
 			browser.quick_button(:name, "Destails_expand").expand_with_click
-			browser.quick_button(:name, "button_manage_wand").visible?.should be_true
+			browser.quick_button(:name, "button_manage_wand").should be_visible
 		end
 		
 
-		it 'collapse with click ' do
+		it 'collapses dialog with click ' do
 			browser.quick_button(:name, "Destails_expand").expand_with_click
-			browser.quick_button(:name, "button_manage_wand").visible?.should be_false
+			browser.quick_button(:name, "button_manage_wand").should_not be_visible
 		end
 		
-		it 'raises exception' do
+		it 'raises exception when button is not visible' do
 			lambda { browser.quick_button(:name, "button_manage_wand").expand_with_click }.should raise_error OperaWatir::DesktopExceptions::WidgetNotVisibleException
 		end
 		
@@ -246,3 +256,26 @@ describe 'QuickButton' do
 =end    
   end
 end
+
+describe 'QuickButton' do
+  let(:menubutton) { browser.quick_window(:name, "Browser Window").quick_toolbar(:name, "Pagebar Head").quick_button(:name, "tbb_MenuButton") }
+  let(:menubar)    { browser.quick_menu(:name, "Main Menu")}
+    
+  describe 'open_menu_with_click' do
+    before(:each) do
+      unless menubutton.exists? 
+        menubar.quick_menuitem(:name, "Browser File Menu").open_menu_with_click("Browser File Menu").should open_menu
+        browser.quick_menu(:name, "Browser File Menu").quick_menuitem(:action, "Enable menu bar").toggle_with_click
+      end
+    end
+    it 'opens a menu' do
+      menubutton.open_menu_with_click("Browser Button Menu Bar").should open_menu 
+    end
+  end
+  
+  #We don't support longclick yet
+  describe 'open_menu_with_long_click' do
+    it 'opens a menu'
+  end
+end
+

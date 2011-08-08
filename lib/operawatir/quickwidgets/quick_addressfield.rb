@@ -11,14 +11,19 @@ module OperaWatir
     # Enters the url into the address field, and waits for page loading 
     # to finish
     #
+    # @example (with RSpec)
+    #    addressfield.load_page_with_url("opera:debug").should == "opera:debug"
+    #
     # @param  [String] URL to load
     # @return [String] text in the address field after the page is loaded
     #                  or a blank string
     # @raise [Exceptions::UnknownObjectException] if the widget could not be found
     #           using the specified method
+    #
     def load_page_with_url(url)
       # Must focus field before calling enter_text...
       focus_with_click
+      
       # Enters text in a field and then hits enter
       enter_text_and_hit_enter(url)
     end
@@ -30,6 +35,7 @@ module OperaWatir
     #
     # @raise [Exceptions::UnknownObjectException] if the widget could not be found
     #           using the specified method
+    #
     def visible_text
       element.getVisibleText()
     end
@@ -41,6 +47,7 @@ module OperaWatir
     #
     # @raise [Exceptions::UnknownObjectException] if the widget could not be found
     #           using the specified method
+    #
     def highlighted_text
       element.getAdditionalText()     
     end

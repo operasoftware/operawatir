@@ -11,6 +11,9 @@ module OperaWatir
     # Enters the search text into the search field, and waits for page 
     # loading to finish
     #
+    # @example (RSpec)
+    #    browser.quick_searchfield(:name, "tbs_MainSearch").search_with_text("old cars").should include "http://www.google"
+    #
     # @param [String] url   text to search with
     #
     # @return [String] text in the address field after the page is loaded
