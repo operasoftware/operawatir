@@ -9,4 +9,7 @@ group :development do
   gem "sinatra", ">= 1.1"
   gem "rr"
   gem "clipboard"
+  gem "rspec", "~> 2.6.0"
+  gem "deprecated"
+  gem "builder"
 end
