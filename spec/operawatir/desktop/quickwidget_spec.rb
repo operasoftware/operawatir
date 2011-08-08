@@ -35,7 +35,7 @@ describe 'QuickWidget' do
       end
 
       it 'verifies simple string by string_id' do
-			 browser.quick_button(:name, "button_OK").verify_text("DI_ID_OK").should be_true
+       browser.quick_button(:name, "button_OK").verify_text("DI_ID_OK").should be_true
       end
       
       it 'verifies strings with string substitution' 
@@ -51,38 +51,38 @@ describe 'QuickWidget' do
     #NOTE: This is deprecated
     describe '#verify_includes_text' do
       it 'verifies the include text id' do
-			 browser.open_dialog_with_action("New Preferences Dialog", "Show preferences").should > 0
-			 browser.quick_button(:name, "button_OK").verify_includes_text("DI_ID_OK").should be_true
-			 browser.close_dialog("New Preferences Dialog").should > 0
+       browser.open_dialog_with_action("New Preferences Dialog", "Show preferences").should > 0
+       browser.quick_button(:name, "button_OK").verify_includes_text("DI_ID_OK").should be_true
+       browser.close_dialog("New Preferences Dialog").should > 0
       end
     end
     
     describe '#focus_with_click' do
-      #Not really testable until there's a way to check focus		
+      #Not really testable until there's a way to check focus    
       it 'should focus the addressfield' do
-			 browser.quick_toolbar(:name, "Document Toolbar").quick_addressfield(:name, "tba_address_field").focus_with_click
+       browser.quick_toolbar(:name, "Document Toolbar").quick_addressfield(:name, "tba_address_field").focus_with_click
       end
-	  end
-	  
-	  describe '#focus_with_hover' do
-	    
-	    it 'should hover widget' do
-	      home.focus_with_hover
-	      browser.quick_window(:name, "Browser Window").quick_toolbar(:name, "Status Toolbar Head").quick_label(:name, "tbb_Status").text.should_not be_empty 
-	    end
-	  end
+    end
+    
+    describe '#focus_with_hover' do
+      
+      it 'should hover widget' do
+        home.focus_with_hover
+        browser.quick_window(:name, "Browser Window").quick_toolbar(:name, "Status Toolbar Head").quick_label(:name, "tbb_Status").text.should_not be_empty 
+      end
+    end
   
-	  describe '#click_with_condition' do
+    describe '#click_with_condition' do
   
-	    it 'should fail without condition' do
-	      browser.quick_toolbar(:name, "Document Toolbar").click_with_condition.should be_false
-	    end
+      it 'should fail without condition' do
+        browser.quick_toolbar(:name, "Document Toolbar").click_with_condition.should be_false
+      end
 
-	    it 'should not throw exception for nonexisting widget' do
-	      home.click_with_condition do 
-	         browser.quick_button(:name, "tbb_nonexisting").visible?
-	      end.should be_false
-	    end
+      it 'should not throw exception for nonexisting widget' do
+        home.click_with_condition do 
+           browser.quick_button(:name, "tbb_nonexisting").visible?
+        end.should be_false
+      end
       it 'should fail if exception thrown' do
         home.click_with_condition { 
           browser.quick_button(:name, "tbb_nonexisting").visible?
@@ -97,13 +97,13 @@ describe 'QuickWidget' do
         home.click_with_condition { false }.should be_false
       end
     
-	  end
+    end
    
-	  #Those are really the same as click..
-	  #describe '#double_click_with_condition'
+    #Those are really the same as click..
+    #describe '#double_click_with_condition'
     #describe '#right_click_with_condition'
-	  # Private
-	  # Also: Test in shared.rb not here
+    # Private
+    # Also: Test in shared.rb not here
     #describe '#element' do
     #end
   

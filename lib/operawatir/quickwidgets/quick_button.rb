@@ -1,7 +1,7 @@
 module OperaWatir
   class QuickButton < QuickWidget
     include ClickableItem
-    
+
     # @private
     # Checks the type of the widget is correct
     def correct_type?

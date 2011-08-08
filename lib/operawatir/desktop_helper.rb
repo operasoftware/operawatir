@@ -13,36 +13,36 @@ require File.expand_path('../../../spec/operawatir/matchers', __FILE__)
 module OperaWatir::DesktopHelper
   extend self
   @@files = []
-  
+
   def settings
     OperaWatir::DesktopBrowser.settings
   end
-  
+
   def browser
     @browser ||= OperaWatir::DesktopBrowser.new
   end
-  
+
   def mac?
     Config::CONFIG['target_os'] == "darwin"
   end
-  
+
   def linux?
     Config::CONFIG['target_os'] == "linux"
   end
-  
+
   def configure_rspec!
     RSpec.configure do |config|
-      
-     
-      
+
+
+
       if mac?
         config.filter_run_excluding :nonmac? => true
       end
-      
+
       if linux? == false
         config.filter_run_excluding :nix? => true
       end
-      
+
       # Set every RSpec option
       settings.each do |key, value|
         config.send("#{key}=", value) if config.respond_to?("#{key}=")
@@ -53,9 +53,9 @@ module OperaWatir::DesktopHelper
           @@files = value
         end
       end
-            
+
       config.include SpecHelpers
-      
+
       config.before(:all) {
         if OperaWatir::DesktopHelper::settings[:no_restart] == false
           unless @@files.empty?
@@ -68,10 +68,10 @@ module OperaWatir::DesktopHelper
           # test is run before Opera has been launched
           browser
         end
-		browser.set_preference("User Prefs", "Enable UI Animations", 0)
+        browser.set_preference("User Prefs", "Enable UI Animations", 0)
       }
 
-      config.after(:suite) { 
+      config.after(:suite) {
         # Use the @browser directly because we don't want
         # to launch Opera here if it's not running
         if @browser
@@ -94,7 +94,7 @@ module OperaWatir::DesktopHelper
     configure_rspec!
     RSpec::Core::Runner.autorun
   end
-  
+
 private
 
   module SpecHelpers

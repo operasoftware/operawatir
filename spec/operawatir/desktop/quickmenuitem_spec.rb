@@ -133,16 +133,16 @@ end
       menubutton.open_menu_with_click("Browser Button Menu Bar").should open_menu
       mainmenu.quick_menuitem(:text, "Downloads").open_window_with_click("Transfers Panel Window").should open_window
     end
-	after (:all) do
-		browser.close_all_tabs
-	end
+  after (:all) do
+    browser.close_all_tabs
+  end
   end
 
    
     describe '#quick_menuitems' do
       #before:enable menubar?
       it 'lists menuitems' do
-		addressfield.open_menu_with_rightclick("Toolbar Edit Item Popup Menu").should open_menu
+    addressfield.open_menu_with_rightclick("Toolbar Edit Item Popup Menu").should open_menu
         browser.quick_menuitems.should_not be_empty
       end
     end

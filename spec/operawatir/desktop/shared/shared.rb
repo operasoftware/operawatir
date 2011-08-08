@@ -52,15 +52,15 @@ shared_examples_for 'an editfield' do
 
 =begin
   describe '#key_press' do
-	it "presses keys with modifiers" do
-		widget.type_text "some other text"
-		widget.focus_with_click
-		widget.key_press("a", :ctrl)
-		widget.key_press("c", :ctrl)
-		widget.clear
-		widget.key_press("v", :ctrl)
-		widget.text.should include "some other text"
-	end
+  it "presses keys with modifiers" do
+    widget.type_text "some other text"
+    widget.focus_with_click
+    widget.key_press("a", :ctrl)
+    widget.key_press("c", :ctrl)
+    widget.clear
+    widget.key_press("v", :ctrl)
+    widget.text.should include "some other text"
+  end
   end
 =end  
 end
