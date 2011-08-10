@@ -9,7 +9,7 @@ describe 'Browser' do
       window.find_by_id('one').click
       browser.opera_action('Select all')
       window.eval_js('one = document.getElementById("one");')
-		window.eval_js('one.value.substr(one.selectionStart, one.selectionEnd - one.selectionStart)').to_s.should == 'foobar'
+    window.eval_js('one.value.substr(one.selectionStart, one.selectionEnd - one.selectionStart)').to_s.should == 'foobar'
     end
   end
 

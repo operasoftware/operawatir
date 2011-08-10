@@ -48,8 +48,6 @@ module WatirSpec
 
 end
 
-include OperaWatir::DesktopExceptions
-
 include WatirSpec::Guard::Helpers
 
 RSpec.configure do |config|

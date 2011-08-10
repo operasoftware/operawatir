@@ -8,7 +8,7 @@ module OperaWatir::Exceptions
   #   rescue OperaWatirException
   #   end
   class OperaWatirException < RuntimeError; end
-  
+
   # Raised when a method is called on an object which doesn't have a
   # corresponding element.
   class UnknownObjectException < OperaWatirException; end
@@ -17,7 +17,7 @@ module OperaWatir::Exceptions
   #
   # @example browser.divs(:weird_method, 10)
   class MissingWayOfFindingObjectException < OperaWatirException; end
-  
+
   # Raised when trying to switch to an unknown frame.
   class UnknownFrameException < OperaWatirException; end
 
@@ -31,7 +31,7 @@ module OperaWatir::Exceptions
   # Raised when trying to perform an action on an element which is
   # disabled.
   class ObjectDisabledException < OperaWatirException; end
-  
+
   # Raised when trying to access a table cell that doesn't exist.
   class UnknownCellException < OperaWatirException; end
 
@@ -40,5 +40,5 @@ module OperaWatir::Exceptions
 
   # Raised when an exception occurs in Preferences.
   class PreferencesException < OperaWatirException; end
-  
+
 end

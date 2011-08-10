@@ -52,15 +52,15 @@ shared_examples_for 'an editfield' do
 
 =begin
   describe '#key_press' do
-	it "presses keys with modifiers" do
-		widget.type_text "some other text"
-		widget.focus_with_click
-		widget.key_press("a", :ctrl)
-		widget.key_press("c", :ctrl)
-		widget.clear
-		widget.key_press("v", :ctrl)
-		widget.text.should include "some other text"
-	end
+  it "presses keys with modifiers" do
+    widget.type_text "some other text"
+    widget.focus_with_click
+    widget.key_press("a", :ctrl)
+    widget.key_press("c", :ctrl)
+    widget.clear
+    widget.key_press("v", :ctrl)
+    widget.text.should include "some other text"
+  end
   end
 =end  
 end
@@ -125,6 +125,22 @@ shared_examples_for 'a widget' do
        it 'returns a boolean' do
         [true, false].should include widget.enabled?
        end
+     end
+     
+     #there's one of these for each type
+     describe '#quick_buttons' do
+       it 'retrieves buttons' do
+         widget.quick_buttons.should be_kind_of Array
+       end
+       it 'retrieves only buttons' do
+         widget.quick_buttons.select { |w| w.type != :button }.should be_empty
+       end
+     end
+     
+     describe '#quick_widgets' do
+       it 'retrieves only widgets in this widget' do
+         widget.quick_widgets.select { |w| w.parent_name != widget.name }.should be_empty
+       end  
      end
      
   #describe 'print_row' do

@@ -26,7 +26,7 @@ class OperaWatir::Collection
     elsif args.first == :index
       type, value = :index, args[1].to_i - 1
 
-	# Handle a hash of selectors
+    # Handle a hash of selectors
     elsif args.length == 1 and  args.first.is_a? Hash
       args.first.each_pair do |k, v|
         s = add_selector_from_arguments([k, v], default_method)

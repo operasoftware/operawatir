@@ -10,13 +10,16 @@ module OperaWatir
     ######################################################################
     # Sets focus to the edit field by clicking on it
     #
-    # @raise [DesktopExceptions::WidgetNotVisibleException] if the editfield 
+    # @example
+    #   browser.quick_editfield(:name, "Startpage_edit").focus_with_clic
+    #
+    # @raise [DesktopExceptions::WidgetNotVisibleException] if the editfield
     #            is not visible
     #
     def focus_with_click
       super
     end
-        
+
     ######################################################################
     # Types a text string into the edit field
     #
@@ -25,20 +28,20 @@ module OperaWatir
     #
     # @param [String] text text string to type in
     # @param wait - seconds to wait after typing
-    # 
+    #
     # @return [String] contents of the edit field after typing has completed
     #
     def type_text(text, wait = 0)
       text.each_char { | t | key_press_direct t }
-      
+
       # No event yet so just cheat and sleep
       sleep(0.2)
 
       # Return what is in the field to check
       text = element(true).getText
-      
+
       sleep(wait) if wait != 0
-      
+
       text
     end
 
@@ -47,10 +50,10 @@ module OperaWatir
     #
     def clear
       focus_with_click
-      
+
       key_press_direct("a", :ctrl)
       key_press_direct("backspace")
-      
+
       # Cheat until we have an event
       sleep(0.1)
     end
@@ -74,7 +77,7 @@ module OperaWatir
     #
     def key_press(key, *modifiers)
       key_press_direct(key, *modifiers)
-      
+
       # Cheat until we have an event
       sleep(0.1)
 
@@ -82,7 +85,7 @@ module OperaWatir
       element(true).getText
     end
 
-    private  
+    private
     # @private
     # Presses the key, and waits for loading to finish
     def load_page_with_key_press(key, *modifiers)
@@ -95,12 +98,12 @@ module OperaWatir
     # Enter some text and hit enter to do the action for the field
     def enter_text_and_hit_enter(text)
       loaded_url = ""
-      
-      # OBS: only caller should set focus, if not this will happily type 
+
+      # OBS: only caller should set focus, if not this will happily type
       # away in the incorrect field, if for example called from subclass address_field
       # Set focus
       # focus_with_click
-      
+
       # Clear the field
       clear
       # Type in the text
