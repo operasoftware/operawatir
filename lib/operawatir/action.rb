@@ -83,7 +83,7 @@ class OperaWatir::Actions
   end
 
   def drag_and_drop(source, target)
-    @actions.dragAndDrop(source, target)
+    @actions.dragAndDrop(source.node, target.node)
     self
   end
 
