@@ -10,6 +10,7 @@ include Java
 include_class org.openqa.selenium.WebDriver
 include_class org.openqa.selenium.remote.RemoteWebElement
 include_class org.openqa.selenium.NoSuchElementException
+include_class org.openqa.selenium.interactions.Actions
 include_class com.opera.core.systems.OperaDriver
 include_class com.opera.core.systems.OperaWebElement
 include_class com.opera.core.systems.settings.OperaDriverSettings
@@ -58,6 +59,7 @@ require 'operawatir/keys'
 require 'operawatir/screenshot'
 require 'operawatir/preferences'
 require 'operawatir/spatnav'
+require 'operawatir/action'
 
 require 'operawatir/exceptions'
 require 'operawatir/selector'
