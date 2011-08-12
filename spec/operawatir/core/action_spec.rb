@@ -9,9 +9,9 @@ describe 'Actions' do
   it 'is available on the browser object' do
     browser.should.respond_to? :actions
     actions = browser.actions
-    [:key_down, :key_up, :send_keys, :click_and_hold,
-      :release, :click, :double_click, :move_to_element, :move_by_offset,
-      :context_click, :drag_and_drop, :perform].each do |method|
+    [:key_down, :key_up, :send_keys, :click_and_hold, :release, :click,
+      :double_click, :move_to_element, :move_by_offset, :context_click,
+      :drag_and_drop, :perform].each do |method|
       actions.should.respond_to? method
       end
   end
@@ -57,9 +57,7 @@ describe 'Actions' do
       browser.url = fixture('input_fields_value.html')
       el = browser.text_field(:id => 'two')
 
-      @actions.key_down(:shift).perform()
-      browser.actions.send_keys(el, 'ab').perform()
-      browser.actions.key_up(:shift).perform()
+      @actions.key_down(el, :shift).send_keys(el, 'ab').key_up(el, :shift).perform()
 
       el.text.should == 'AB'
     end
@@ -76,7 +74,7 @@ describe 'Actions' do
   end
 
   describe 'mouse' do
-    it 'drags and drops' do
+    it 'can be used to drag and drop' do
       browser.url = fixture('draggableLists.html')
       dragReporter = browser.p(:id => 'dragging_reports')
 
@@ -100,11 +98,35 @@ describe 'Actions' do
       dragInto.lis.length.should == 6
     end
 
+    it 'drags and drops' do
+      browser.url = fixture('draggableLists.html')
+      dragReporter = browser.p(:id => 'dragging_reports')
+
+      toDrag = browser.li(:id => 'rightitem-3')
+      dragInto = browser.ul(:id => 'sortable1')
+
+      dragReporter.text.should == 'Nothing happened.'
+
+      browser.actions.drag_and_drop(toDrag, dragInto).perform()
+
+      dragReporter.text.should == 'Nothing happened. DragOut DropIn RightItem 3'
+
+      dragInto.lis.length.should == 6
+    end
+
     it 'double clicks' do
       browser.url = fixture('mouse.html')
       el = browser.div(:id => 'test')
 
       @actions.double_click(el).perform()
+      window.text.should include 'dblclick'
+    end
+
+    it 'move and double clicks' do
+      browser.url = fixture('mouse.html')
+      el = browser.div(:id => 'test')
+
+      @actions.move_to_element(el).double_click().perform()
       window.text.should include 'dblclick'
     end
 
@@ -128,6 +150,13 @@ describe 'Actions' do
       browser.url = fixture('mouse.html')
 
       lambda { @actions.click().perform() }.should raise_error
+    end
+
+    it 'moves by an offset' do
+      browser.url = fixture('mouse.html')
+
+      @actions.move_to_element(browser.pre(:id => 'log')).move_by_offset(1, -30).click().perform()
+      window.text.should include 'click 0'
     end
 
   end
