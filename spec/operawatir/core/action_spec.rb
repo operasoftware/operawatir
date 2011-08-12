@@ -3,7 +3,17 @@ require File.expand_path('../../watirspec_helper', __FILE__)
 describe 'Actions' do
 
   before :each do
-    @actions = OperaWatir::Actions.new(browser)
+    @actions = browser.actions
+  end
+
+  it 'is available on the browser object' do
+    browser.should.respond_to? :actions
+    actions = browser.actions
+    [:key_down, :key_up, :send_keys, :click_and_hold,
+      :release, :click, :double_click, :move_to_element, :move_by_offset,
+      :context_click, :drag_and_drop, :perform].each do |method|
+      actions.should.respond_to? method
+      end
   end
 
   describe 'keyboard' do
@@ -31,7 +41,7 @@ describe 'Actions' do
       window.text.should include 'down, 17, , ctrl'
       window.text.should_not include 'up, 17'
 
-      OperaWatir::Actions.new(browser).key_up(:control).perform()
+      browser.actions.key_up(:control).perform()
       window.text.should include 'up, 17'
     end
 
@@ -48,8 +58,8 @@ describe 'Actions' do
       el = browser.text_field(:id => 'two')
 
       @actions.key_down(:shift).perform()
-      OperaWatir::Actions.new(browser).send_keys(el, 'ab').perform()
-      OperaWatir::Actions.new(browser).key_up(:shift).perform()
+      browser.actions.send_keys(el, 'ab').perform()
+      browser.actions.key_up(:shift).perform()
 
       el.text.should == 'AB'
     end
@@ -75,15 +85,15 @@ describe 'Actions' do
 
       dragReporter.text.should == 'Nothing happened.'
 
-      OperaWatir::Actions.new(browser).click_and_hold(toDrag).perform()
+      browser.actions.click_and_hold(toDrag).perform()
 
-      OperaWatir::Actions.new(browser).move_to_element(browser.li(:id => 'leftitem-4')).perform()
+      browser.actions.move_to_element(browser.li(:id => 'leftitem-4')).perform()
 
-      OperaWatir::Actions.new(browser).move_to_element(dragInto).perform()
+      browser.actions.move_to_element(dragInto).perform()
 
       dragReporter.text.should == 'Nothing happened. DragOut'
 
-      OperaWatir::Actions.new(browser).release(dragInto).perform();
+      browser.actions.release(dragInto).perform();
 
       dragReporter.text.should == 'Nothing happened. DragOut DropIn RightItem 3'
 

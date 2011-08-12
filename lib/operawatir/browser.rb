@@ -195,6 +195,12 @@ class OperaWatir::Browser
 
   deprecated :key, 'browser.keys.send'
 
+  # actions
+
+  def actions
+    OperaWatir::Actions.new(browser)
+  end
+
 private
 
   def self.opera_driver_settings
