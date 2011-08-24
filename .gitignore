@@ -1,5 +1,11 @@
-pkg
-spec/spec.opts
+pkg/*
+*.gem
+.bundle
+.DS_Store
 .yardoc
+spec/spec.opts
 doc
+Gemfile.lock
+.rvmrc
+probedata
 test_apc.txt
