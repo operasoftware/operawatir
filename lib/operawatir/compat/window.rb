@@ -64,7 +64,7 @@ module OperaWatir
         driver.switch_to.default_content
       end
 
-      
+
       def show_frames
         frames = driver.list_frames
         puts "There are #{frames.length.to_s} frames"

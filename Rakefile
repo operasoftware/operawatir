@@ -3,6 +3,7 @@ require 'rake/clean'
 require 'jeweler'
 require 'rspec/core/rake_task'
 require 'yard'
+require 'ci/reporter/rake/rspec'
 
 require './lib/operawatir/version'
 
@@ -47,8 +48,8 @@ end
 
 CLEAN.add 'pkg'
 
-RSpec::Core::RakeTask.new do |t|
-end
+RSpec::Core::RakeTask.new(:spec)
+task :test => [:"ci:setup:rspec", :spec]
 
 YARD::Rake::YardocTask.new do |t|
   t.options = ['--no-private']

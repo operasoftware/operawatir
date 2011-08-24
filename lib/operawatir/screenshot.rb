@@ -32,7 +32,7 @@ class OperaWatir::Screenshot
 
   # Lets you get a MD5 sum of the screen.
   #
-  # @return [String] A hash. 
+  # @return [String] A hash.
   def md5
     reply.getMd5
   end

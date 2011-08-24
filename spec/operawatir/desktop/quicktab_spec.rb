@@ -3,8 +3,8 @@ require File.expand_path('../shared/shared', __FILE__)
 
 describe 'QuickTab' do
 
-	let(:url1) { "http://t/platforms/desktop/automated/resources/documents/page1.html" }
-	let(:url2) { "http://t/platforms/desktop/automated/resources/documents/page2.html" }
+  let(:url1) { "http://t/platforms/desktop/automated/resources/documents/page1.html" }
+  let(:url2) { "http://t/platforms/desktop/automated/resources/documents/page2.html" }
   
    let(:widget) { browser.quick_window(:name, "Browser Window").quick_toolbar(:name, "Pagebar").quick_tab(:name, "Tab 0") }
   
@@ -39,9 +39,9 @@ describe 'QuickTab' do
   describe '#move_with_drag' do
     describe 'when target is not a tab' do
       it 'raises UnknownObjectException' do
-		browser.load_window_with_action("Document Window", "Open url in current page", "http://t/platforms/desktop/automated/resources/documents/page1.html").should > 0
-		expect { browser.quick_window(:name, "Browser Window").quick_toolbar(:name, "Pagebar").quick_tab(:text, "Test Page 1").move_with_drag(browser.quick_window(:name, "Browser Window")) }.to raise_error OperaWatir::DesktopExceptions::UnknownObjectException
-	  end
+    browser.load_window_with_action("Document Window", "Open url in current page", "http://t/platforms/desktop/automated/resources/documents/page1.html").should > 0
+    expect { browser.quick_window(:name, "Browser Window").quick_toolbar(:name, "Pagebar").quick_tab(:text, "Test Page 1").move_with_drag(browser.quick_window(:name, "Browser Window")) }.to raise_error OperaWatir::DesktopExceptions::UnknownObjectException
+    end
     end
   end
   
@@ -55,7 +55,7 @@ describe 'QuickTab' do
        browser.quick_window(:name, "Browser Window").quick_toolbar(:name, "Pagebar").quick_tab(:name, "Tab 0").activate_tab_with_click.should > 0
      end
      
-	 it 'when the window is already active returns 0' do
+   it 'when the window is already active returns 0' do
          browser.quick_window(:name, "Browser Window").quick_toolbar(:name, "Pagebar").quick_tab(:name, "Tab 0").activate_tab_with_click.should == 0    
      end
          
@@ -67,10 +67,10 @@ describe 'QuickTab' do
      
      context 'when the tab button is not visible' do
        it 'raises WidgetNotVisibleException' #do
-		#tab_to_drop_on = browser.quick_window(:name, "Browser Window").quick_toolbar(:name, "Pagebar").quick_tab(:text, "Test Page 2")
-		#browser.quick_window(:name, "Browser Window").quick_toolbar(:name, "Pagebar").quick_tab(:text, "Test Page 1").move_with_drag(tab_to_drop_on)
-		#expect { browser.quick_window(:name, "Browser Window").quick_toolbar(:name, "Pagebar").quick_tab(:name, "Tab 1").activate_tab_with_click }.to raise_error OperaWatir::DesktopExceptions::WidgetNotVisibleException
-	   #end
+    #tab_to_drop_on = browser.quick_window(:name, "Browser Window").quick_toolbar(:name, "Pagebar").quick_tab(:text, "Test Page 2")
+    #browser.quick_window(:name, "Browser Window").quick_toolbar(:name, "Pagebar").quick_tab(:text, "Test Page 1").move_with_drag(tab_to_drop_on)
+    #expect { browser.quick_window(:name, "Browser Window").quick_toolbar(:name, "Pagebar").quick_tab(:name, "Tab 1").activate_tab_with_click }.to raise_error OperaWatir::DesktopExceptions::WidgetNotVisibleException
+     #end
      end
 
      it 'activates a tab with click' do
@@ -83,13 +83,13 @@ describe 'QuickTab' do
  
   #Note this part of api will probably change when new tab grouping is handled
   describe '#group_with_drag' do
-	
+  
     it 'raises UnknownObjectException if target is not a tab' 
-	
+  
     it 'returns the number of tabs in the tab group'
-	
+  
     it 'returns 1 if not a group' 
-	
+  
   end
   
 

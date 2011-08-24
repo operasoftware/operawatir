@@ -10,7 +10,7 @@ module OperaWatir
     ######################################################################
     # Set focus to the tree item by clicking on it
     #
-    # @raise [DesktopExceptions::WidgetNotVisibleException] if the treeview 
+    # @raise [DesktopExceptions::WidgetNotVisibleException] if the treeview
     #            the treeitem is in is not visible
     # @raise [DesktopExceptions::WidgetDisabledException] if the treeitem
     #            is disabled
@@ -20,24 +20,24 @@ module OperaWatir
       scroll_item_into_view unless visible?
       super
     end
-        
+
     ######################################################################
     # Expands a tree item when it is clicked
     #
-    # @raise [DesktopExceptions::WidgetNotVisibleException] if the treeitem 
+    # @raise [DesktopExceptions::WidgetNotVisibleException] if the treeitem
     #            is not visible
     #
     def expand_with_click
       # For now there is no difference to focusing
       focus_with_click
     end
-    
+
     alias_method :collapse_with_click, :expand_with_click
 
     ######################################################################
     # Expands a tree item when it is double clicked
     #
-    # @raise [DesktopExceptions::WidgetNotVisibleException] if the treeitem 
+    # @raise [DesktopExceptions::WidgetNotVisibleException] if the treeitem
     #            is not visible
     #
     def expand_with_double_click
@@ -46,9 +46,9 @@ module OperaWatir
       # No event yet so just cheat and sleep
       sleep(0.1);
     end
-    
+
     alias_method :collapse_with_double_click, :expand_with_double_click
-    
+
     ######################################################################
     # Presses a key including modifiers
     #
@@ -70,7 +70,7 @@ module OperaWatir
       key_press_direct(key, *opts)
       sleep(0.1)
     end
-        
+
     ######################################################################
     # Checks if the treeitem is selected
     #
@@ -81,24 +81,24 @@ module OperaWatir
     def selected?
       element.isSelected
     end
-     
-    
+
+
     ######################################################################
-    # Switches to the tree view tab by clicking on it (e.g. on the 
-    # Advanced page of the preferences dialog) 
+    # Switches to the tree view tab by clicking on it (e.g. on the
+    # Advanced page of the preferences dialog)
     #
     # @raise [DesktopExceptions::WidgetNotVisibleException] if the treeitem
     #            is not visible
     #
     def activate_tab_with_click
       click
-      
+
       # No event yet so just cheat and sleep
       sleep(0.1);
     end
-    
+
     ######################################################################
-    # Double clicks the tree item, and waits for the window with 
+    # Double clicks the tree item, and waits for the window with
     # window name win_name to be shown
     #
     # @param [String] win_name name of the window that will be opened (Pass a blank string for any window)
@@ -111,12 +111,12 @@ module OperaWatir
     def open_window_with_double_click(win_name)
       open_window_with_click_internal(win_name, 2)
     end
-    
+
     alias_method :open_dialog_with_double_click, :open_window_with_double_click
 
-    
+
     ######################################################################
-    # Clicks the tree item, and waits for the window with 
+    # Clicks the tree item, and waits for the window with
     # window name win_name to be shown
     #
     # @param [String] win_name name of the window that will be opened (Pass a blank string for any window)
@@ -131,9 +131,9 @@ module OperaWatir
     end
 
     alias_method :open_dialog_with_click, :open_window_with_click
-    
+
     ######################################################################
-    # Double clicks the tree item, and waits for the window with 
+    # Double clicks the tree item, and waits for the window with
     # window name win_name to be loaded with the url of the treeitem
     #
     # @param [String] win_name name of the window that will be loaded (Pass a blank string for any window)
@@ -148,21 +148,21 @@ module OperaWatir
       click(:left, 2)
       wait_for_window_loaded(win_name)
     end
-    
+
 
 private
     # @private
     # Scrolls the item into view if required
     def scroll_item_into_view
-      
+
       # Make sure we have a window id
       win_id = window_id >= 0 ? window_id : driver.getActiveQuickWindowID()
-      
+
       # Filter only treeitems in parent_treeview
       treeitems = driver.getQuickWidgetList(win_id).select do |wdg|
         wdg.getType == QuickWidget::WIDGET_ENUM_MAP[:treeitem] && wdg.getParentName == parent_name
       end
-      
+
       # Get the first visible item
       lowest = treeitems.find { | item| item.visible? } #This will always be a parent item, not a child
       # Assume list is ordered? => lower row means scroll up, higher row means scroll down
@@ -172,10 +172,10 @@ private
       qw = QuickTreeItem.new(self,lowest)
       qw.focus_with_click
       key_press_direct(key)
-      
+
       #First scroll
       key_press_direct(key)
-      
+
       visible_treeitems = driver.getQuickWidgetList(win_id).select do |wdg|
         wdg.getType == QuickWidget::WIDGET_ENUM_MAP[:treeitem] && wdg.getParentName == parent_name && wdg.visible?
       end
@@ -183,12 +183,12 @@ private
       # Stop scrolling if we have run through the whole list, the item is then a child and won't get visible
       max_times = treeitems.length / visible_treeitems.length + 1
       until element(true).visible? || max_times < 0
-          key_press_direct(key) 
+          key_press_direct(key)
           max_times-=1
       end
-      
+
     end
   end
-  
+
 end
 

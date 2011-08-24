@@ -5,14 +5,14 @@ module OperaWatir
     #def correct_type?
     #  @element.getType == WIDGET_ENUM_MAP[:menu]
     #end
-    
+
     # @private
     # window_id is set if constructor is called on a (parent) window
     # location if set is this is called on a (parent) widget
     def initialize(container, method, selector=nil, location=nil)
-      
+
       @container = container
-                            
+
       if method.is_a? Java::ComOperaCoreSystems::QuickMenu
         @elm = method
       else
@@ -21,7 +21,7 @@ module OperaWatir
         @location  = location
       end
     end
-    
+
     ####################################################################
     #
     # @example
@@ -32,8 +32,8 @@ module OperaWatir
     def name
       element.getName
     end
-    
-    
+
+
     #######################################################################
     #
     # @return the window_id of the window the menu is attached to
@@ -43,7 +43,7 @@ module OperaWatir
     # Note: This makes it possible to distinguish between menubars in different
     #         main windows
     #
-    # @example: 
+    # @example:
     #   browser.quick_menu(:name, "Main Menu").window_id
     #   browser.quick_window(:id, <id>).quick_menu(:name, "Browser File Menu")...
     #
@@ -51,16 +51,16 @@ module OperaWatir
     def window_id
       element.getParentWindowId()
     end
-    
+
     #######################################################################
     #
     # @return string representation of menu
     #
     def to_s
-      window = window_id > 0 ? "window_id #{window_id}" : "" 
+      window = window_id > 0 ? "window_id #{window_id}" : ""
       "QUICKMENU #{name} #{window}" # TODO: Add rect
     end
-    
+
     ########################################################################
     #
     # @return width of widget
@@ -86,7 +86,7 @@ module OperaWatir
     def y
       element.getRect().y
     end
-    
+
     ########################################################################
     #
     # @return true if this menu has one or more submenus
@@ -102,7 +102,7 @@ module OperaWatir
       end
       false
     end
-    
+
     ########################################################################
     #
     # @return array of all menuitems in this menu
@@ -116,7 +116,7 @@ module OperaWatir
         QuickMenuItem.new(self,java_item)
       end
     end
-  
+
     ######################################################################
     # Checks whether a widget exists or not
     #
@@ -128,10 +128,10 @@ module OperaWatir
         false
     end
     alias_method :exists?, :exist?
-    
+
     private
 
-    # Finds the element on the page.  
+    # Finds the element on the page.
     def find
       #If @method set and we do new find because of refresh, we need to get @selector first
       #Have the java object because the construct was done on it
@@ -147,7 +147,7 @@ module OperaWatir
           @element = driver.getQuickMenu(@selector)
         end
       end
-      raise(Exceptions::UnknownObjectException, "Element #{@selector} not found using #{@method}") unless @element 
+      raise(Exceptions::UnknownObjectException, "Element #{@selector} not found using #{@method}") unless @element
       @element
     end
 

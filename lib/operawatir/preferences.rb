@@ -219,7 +219,7 @@ class OperaWatir::Preferences
   def exists?
     !_prefs.empty?
   end
-  
+
   alias_method :exist?, :exists?  # LOL Ruby
 
 private
@@ -273,7 +273,7 @@ private
 
     def method_missing(method)
       method = method.to_s
-      
+
       if _keys.any? { |k| k.method == method }
         _keys.find { |k| k.method == method }
       else
@@ -381,11 +381,11 @@ private
 
       driver.listPrefs(true, key).to_a.each do |p|
         p = p.to_s
-        
+
         p =~ /^key: \"([a-zA-Z0-9\(\)\\\.\-\s]*)\"$/
         key = $1.to_s.gsub(/^\\t/, "\t")  # Workaround for double-encoded tabs:
                                           # We get \\t, but it only accepts \t.
-        
+
         p =~ /^type: ([A-Z]+)$/
         type = $1.to_s.capitalize
 

@@ -18,11 +18,11 @@ module OperaWatir
       end.select { |item| item != nil }
       treeitems.select {|item| item.parent_name == name }
     end
-    
+
     def num_treeitems
       treeitems.select { |item| item.position[1] == 0 }.length
     end
-    
+
   end
 end
 
