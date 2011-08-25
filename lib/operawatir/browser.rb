@@ -51,13 +51,6 @@ class OperaWatir::Browser
     driver.shutdown
   end
 
-  # Closes all windows.
-  #
-  # TODO This should be on Windows
-  def close_all
-    driver.closeAll
-  end
-
   # Get the version number of the driver.  This _is not_ the same as
   # the version number for OperaWatir, which can be retrieved using
   # +OperaWatir.version+ instead.
