@@ -59,7 +59,7 @@ require 'operawatir/keys'
 require 'operawatir/screenshot'
 require 'operawatir/preferences'
 require 'operawatir/spatnav'
-require 'operawatir/action'
+require 'operawatir/actions'
 
 require 'operawatir/exceptions'
 require 'operawatir/selector'
