@@ -63,7 +63,7 @@ class OperaWatir::Actions
   end
 
   def double_click(element = nil)
-    element ? @actions.double_click(element.node) : @actions.click()
+    element ? @actions.double_click(element.node) : @actions.double_click()
     self
   end
 
