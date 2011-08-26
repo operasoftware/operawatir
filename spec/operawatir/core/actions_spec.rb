@@ -143,7 +143,7 @@ describe OperaWatir::Actions do
       el = browser.div(:id => 'test')
 
       @actions.move_to_element(el).click().perform()
-      window.text.should include 'dblclick 0'
+      window.text.should include 'click 0'
     end
 
     it 'cannot move to a nil element' do
