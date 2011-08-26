@@ -4,8 +4,8 @@ require 'deprecated'
 require 'java'
 include Java
 
-%w(commons-jxpath-1.3.jar protobuf-java-2.3.0.jar selenium-java-2.3.0.jar
-   operadriver-v0.6.jar commons-io-2.0.1.jar guava-r09.jar).each { |jar| require "operadriver/#{jar}" }
+%w(commons-jxpath-1.3.jar protobuf-java-2.3.0.jar selenium-java-head.jar
+   operadriver-head.jar commons-io-2.0.1.jar guava-r09.jar).each { |jar| require "operadriver/#{jar}" }
 
 include_class org.openqa.selenium.WebDriver
 include_class org.openqa.selenium.remote.RemoteWebElement
@@ -59,7 +59,7 @@ require 'operawatir/keys'
 require 'operawatir/screenshot'
 require 'operawatir/preferences'
 require 'operawatir/spatnav'
-require 'operawatir/action'
+require 'operawatir/actions'
 
 require 'operawatir/exceptions'
 require 'operawatir/selector'
