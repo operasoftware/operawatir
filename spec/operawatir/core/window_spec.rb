@@ -1,7 +1,7 @@
 require File.expand_path('../../watirspec_helper', __FILE__)
 require 'tmpdir'
 
-describe 'Window' do
+describe OperaWatir::Window do
 
   describe '#visual_hash' do
     before :each do

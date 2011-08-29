@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 require File.expand_path('../../watirspec_helper', __FILE__)
 
-describe 'Preferences' do
+describe OperaWatir::Preferences do
 
   before :all do
     @prefs = browser.preferences

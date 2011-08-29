@@ -1,7 +1,7 @@
 require File.expand_path('../../watirspec_helper', __FILE__)
 require 'tmpdir'
 
-describe 'Element' do
+describe OperaWatir::Element do
 
   describe '#click' do
     # TODO: Move to watirspec

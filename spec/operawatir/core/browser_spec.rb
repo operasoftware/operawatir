@@ -1,6 +1,6 @@
 require File.expand_path('../../watirspec_helper', __FILE__)
 
-describe 'Browser' do
+describe OperaWatir::Browser do
 
   # Note: This method is deprecated, but still needs to be tested.
   describe '#opera_action' do
