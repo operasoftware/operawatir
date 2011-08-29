@@ -17,7 +17,7 @@ describe OperaWatir::Preferences do
   describe '#each' do
     it 'contains a list of entries' do
       @prefs.each do |p|
-        p.should be_kind_of OperaWatir::Preferences::Entry
+        p.should be_kind_of OperaWatir::Preferences::Section
       end
     end
   end
@@ -38,11 +38,7 @@ describe OperaWatir::Preferences do
 
   describe '#first' do
     it 'is a valid entry' do
-      @prefs.first.should be_kind_of OperaWatir::Preferences::Entry
-    end
-
-    it 'is a section' do
-      @prefs.first.should be_section
+      @prefs.first.should be_kind_of OperaWatir::Preferences::Section
     end
 
     it 'has a key' do
@@ -56,11 +52,7 @@ describe OperaWatir::Preferences do
 
   describe '#last' do
     it 'is a valid entry' do
-      @prefs.last.should be_kind_of OperaWatir::Preferences::Entry
-    end
-
-    it 'is a section' do
-      @prefs.last.should be_section
+      @prefs.last.should be_kind_of OperaWatir::Preferences::Section
     end
 
     it 'has a key' do
@@ -117,8 +109,8 @@ describe OperaWatir::Preferences do
       @array.should be_kind_of Array
     end
 
-    it 'returns entries of the type Preference::Entry' do
-      @array[0].should be_kind_of OperaWatir::Preferences::Entry
+    it 'returns entries of the type Preference::Section' do
+      @array[0].should be_kind_of OperaWatir::Preferences::Section
     end
 
     it 'has several entries' do
@@ -131,7 +123,7 @@ describe OperaWatir::Preferences do
     end
   end
 
-  describe 'Section' do  # Preferences::Entry / Preferences#method_missing
+  describe OperaWatir::Preferences::Section do
 
     before :all do
       @section = @prefs.link
@@ -140,7 +132,7 @@ describe OperaWatir::Preferences do
     describe '#new' do
       it 'constructs a new instance' do
         @section.should exist
-        @section.should be_kind_of OperaWatir::Preferences::Entry
+        @section.should be_kind_of OperaWatir::Preferences::Section
       end
     end
 
@@ -162,40 +154,6 @@ describe OperaWatir::Preferences do
       end
     end
 
-    describe '#value' do
-      it 'raises exception' do
-        lambda { @section.value }.should raise_error OperaWatir::Exceptions::PreferencesException
-      end
-    end
-
-    describe '#value=' do
-      it 'raises exception' do
-        lambda { @section.value = 'hoobaflooba' }.should raise_error OperaWatir::Exceptions::PreferencesException
-      end
-    end
-
-    describe '#default' do
-      it 'raises exception' do
-        lambda { @section.default }.should raise_error OperaWatir::Exceptions::PreferencesException
-      end
-    end
-
-    describe '#default!' do
-      it 'raises exception' do
-        lambda { @section.default! }.should raise_error OperaWatir::Exceptions::PreferencesException
-      end
-    end
-
-    describe '#section?' do
-      it 'returns a valid type' do
-        @section.section?.should be_kind_of TrueClass
-      end
-
-      it 'is a section' do
-        @section.section?.should be_true
-      end
-    end
-
     describe '#exists?' do
       it 'returns a valid type' do
         @section.exists?.should be_kind_of TrueClass
@@ -203,6 +161,7 @@ describe OperaWatir::Preferences do
 
       it 'exists' do
         @section.exists?.should be_true
+        # TODO: @section.should exist
       end
 
       it 'responds to alias #exist?' do
@@ -213,7 +172,7 @@ describe OperaWatir::Preferences do
     describe '#each' do
       it 'contains a list of entries' do
         @section.each do |k|
-          k.should be_kind_of OperaWatir::Preferences::Entry
+          k.should be_kind_of OperaWatir::Preferences::Section::Key
         end
       end
     end
@@ -234,15 +193,11 @@ describe OperaWatir::Preferences do
 
     describe '#first' do
       it 'is a valid entry' do
-        @section.first.should be_kind_of OperaWatir::Preferences::Entry
+        @section.first.should be_kind_of OperaWatir::Preferences::Section::Key
       end
 
       it 'has a key' do
         @section.first.key.should_not be_empty
-      end
-
-      it 'has a key which is not a section' do
-        @section.first.should_not be_section
       end
 
       it 'has a key with a method' do
@@ -252,15 +207,11 @@ describe OperaWatir::Preferences do
 
     describe '#last' do
       it 'is a valid entry' do
-        @section.last.should be_kind_of OperaWatir::Preferences::Entry
+        @section.last.should be_kind_of OperaWatir::Preferences::Section::Key
       end
 
       it 'has a key' do
         @section.last.key.should_not be_empty
-      end
-
-      it 'is a key which is not section' do
-        @section.last.should_not be_section
       end
 
       it 'has a key with a method' do
@@ -278,15 +229,14 @@ describe OperaWatir::Preferences do
       end
     end
 
-    describe 'Keys' do  # Preferences::Entry / Entry#method_missing
-
+    describe OperaWatir::Preferences::Section::Key do
       before :all do
         @key = @section.expiry
       end
 
       describe '#parent' do
         it 'contains the parent class' do
-          @key.parent.should be_kind_of OperaWatir::Preferences::Entry
+          @key.parent.should be_kind_of OperaWatir::Preferences::Section
         end
       end
 
@@ -307,15 +257,15 @@ describe OperaWatir::Preferences do
         # Note that the types aren't proper Ruby objects, but strings.
 
         it '`expiry` is a type integer' do
-          @key.type.should include 'Integer'
+          @key.type.should match /integer/i
         end
 
         it '`color` is a type boolean' do
-          @section.color.type.should include 'Boolean'
+          @section.color.type.should match /boolean/i
         end
 
         it '`opera_account.server_address` is a type string' do
-          @prefs.opera_account.server_address.type.should include 'String'
+          @prefs.opera_account.server_address.type.should match /string/i
         end
       end
 
@@ -342,8 +292,8 @@ describe OperaWatir::Preferences do
 
         it 'has effect in the browser when changed' do
           @section.strikethrough.value = '1' #true
-          window.url = fixture('../simple.html')
-          window.a.execute_script('this.currentStyle.textDecoration').should include /strike\-through/
+          window.url = fixture('simple.html')
+          window.execute_script('document.getElementsByTagName("a")[0].currentStyle.textDecoration').should include 'line-through'
         end
 
         # JRUBY-1127 makes it impossible to unwrap Java exceptions in JRuby.
@@ -377,50 +327,6 @@ describe OperaWatir::Preferences do
 
         after :all do
           @key.default!
-        end
-      end
-
-      describe '#section?' do
-        it 'returns a valid type' do
-          @key.section?.should be_kind_of FalseClass
-        end
-
-        it 'is not a section' do
-          @key.section?.should be_false
-        end
-      end
-
-      describe '#each' do
-        it 'raises error' do
-          lambda { @key.each { |e| } }.should raise_error OperaWatir::Exceptions::PreferencesException
-        end
-      end
-
-      describe '#length' do
-        it 'raises error' do
-          lambda { @key.length }.should raise_error OperaWatir::Exceptions::PreferencesException
-        end
-
-        it 'responds to alias #size' do
-          lambda { @key.size }.should raise_error OperaWatir::Exceptions::PreferencesException
-        end
-      end
-
-      describe '#first' do
-        it 'raises error' do
-          lambda { @key.first }.should raise_error OperaWatir::Exceptions::PreferencesException
-        end
-      end
-
-      describe '#last' do
-        it 'raises error' do
-          lambda { @key.last }.should raise_error OperaWatir::Exceptions::PreferencesException
-        end
-      end
-
-      describe '#empty?' do
-        it 'raises error' do
-          lambda { @key.empty? }.should raise_error OperaWatir::Exceptions::PreferencesException
         end
       end
 

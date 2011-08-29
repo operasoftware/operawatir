@@ -106,19 +106,6 @@ class OperaWatir::Preferences
 
   attr_accessor :browser, :driver
 
-  # FIXME This should be retrievable from OperaDriver
-  SECTIONS = ['Author Display Mode', 'Auto Update', 'BitTorrent',
-              'CSS Generic Font Family', 'Cache', 'Clear Private Data Dialog',
-              'Colors', 'Developer Tools', 'Disk Cache', 'Extensions',
-              'File Selector', 'File Types Section Info', 'Fonts', 'Geolocation',
-              'Handheld', 'HotListWindow', 'ISP', 'Install', 'Interface Colors',
-              'Java', 'Link', 'Mail', 'MailBox', 'Multimedia', 'Network', 'News',
-              'OEM', 'Opera Account', 'Opera Sync', 'Performance', 'Persistent Storage',
-              'Personal Info', 'Printer', 'Proxy', 'SVG', 'Saved Settings',
-              'Security Prefs', 'Sounds', 'Special', 'Transfer Window',
-              'User Agent', 'User Display Mode', 'User Prefs', 'Visited Link',
-              'Visited Link', 'Web Server', 'Widgets', 'Workspace']
-
   #
   # The OperaWatir::Preferences object is created automatically when you
   # create an OperaWatir::Browser object, and is available as
@@ -133,7 +120,19 @@ class OperaWatir::Preferences
 
   def initialize(browser)
     self.browser, self.driver = browser, browser.driver
+
+    raw_prefs = driver.listAllPrefs.to_a
+    @_prefs = {}
+    @_prefs = raw_prefs.map { |s| Section.new(self, s) }.sort_by { |s| s.key }
   end
+
+  def_delegators :_prefs, :[],
+                          :each,
+                          :length,
+                          :size,
+                          :first,
+                          :last,
+                          :empty?
 
   #
   # When calling Preferences#any_method_name, the `any_method_name` will
@@ -149,26 +148,17 @@ class OperaWatir::Preferences
   #   browser.preferences.interface_colors
   #   # will return section “Interface Colors”
   #
-  # @param           section  Method to look up in preferences.
-  # @return [Object]          A Preferences::Entry (section) object.
+  # @param           section  method to look up in preferences
+  # @return [Object]          a Preferences::Section object
   #
 
-  def method_missing(section)
-    if _prefs.any? { |s| s.method == section.to_s }
-      _prefs.find { |s| s.method == section.to_s }
-    else
-      _prefs << Entry.new(self, section)
-      _prefs.last
+  def method_missing(method)
+    method = method.to_s
+
+    if _prefs.any? { |s| s.method == method }
+      _prefs.find { |s| s.method == method }
     end
   end
-
-  def_delegators :_prefs, :[],
-                          :each,
-                          :length,
-                          :size,
-                          :first,
-                          :last,
-                          :empty?
 
   #
   # Retrieves a human-readable list of Opera preferences available.
@@ -176,7 +166,7 @@ class OperaWatir::Preferences
   # using the built-in Ruby iterator #each (with friends) or
   # Preferences#to_a for that.
   #
-  # @return [String]          List of preferences.
+  # @return [String] list of preferences
   #
 
   def to_s
@@ -190,7 +180,10 @@ class OperaWatir::Preferences
         text << "    type:     #{k.type.inspect}\n"
         text << "    value:    #{k.value.inspect}\n"
         text << "    default:  #{k.default.inspect}\n"
+        text << "    enabled:  #{k.enabled?.inspect}\n"
       end
+
+      text << "\n"
     end
 
     text
@@ -199,10 +192,10 @@ class OperaWatir::Preferences
   #
   # Returns a list of all preferences in array form.  This can be used
   # for external parsing.  If you wish to manipulate or iterate through
-  # the list of preferences consider using the built-in Ruby iterator
+  # the list of preferences, consider using the built-in Ruby iterator
   # #each (with friends).
   #
-  # @return [Array]           List of preferences.
+  # @return [Array] list of preferences
   #
 
   def to_a
@@ -213,7 +206,7 @@ class OperaWatir::Preferences
   # Checks if any preferences exists in your Opera build.  If true,
   # there are preferences available, false otherwise.
   #
-  # @return [Boolean]         Whether any preferences exists.
+  # @return [Boolean] whether any preference exists
   #
 
   def exists?
@@ -225,36 +218,41 @@ class OperaWatir::Preferences
 private
 
   def _prefs
-    @_prefs ||= SECTIONS.map { |s| Entry.new(self, s.methodize, s) }
+    @_prefs
   end
 
+  #
+  # OperaWatir::Preferences::Section represents a section in Opera
+  # configuration.
+  #
 
-  class Entry
+  class Section
     extend Forwardable
     include Enumerable
 
-    attr_accessor :parent, :method, :key, :value, :type, :default, :driver
+    attr_accessor :parent, :driver, :method, :key
 
-    #
-    # OperaWatir::Preferences::Entry is the object that represents
-    # either a section or a section's entry.
-    #
-    # It's created automatically when you query for entries using the
-    # Preference object itself.
-    #
-    # @return [Object] An OperaWatir::Preferences::Entry object.
-    #
+    def initialize(parent, raw_section)
+      self.parent, self.driver = parent, parent.driver
+      self.method, self.key    = raw_section.first.methodize, raw_section.first
 
-    def initialize(parent, method, key=nil, type=nil)
-      self.parent = parent
-      self.method = method.to_s
-      self.key    = key ? key : method.to_s.keyize
-      self.type   = type
-      self.driver = parent.driver
+      @_keys = raw_section[1].map { |k| Key.new(self, k) }.sort_by { |k| k.key }
+    end
+
+    def_delegators :_keys, :[],
+                           :length,
+                           :size,
+                           :first,
+                           :last,
+                           :empty?
+
+    def each
+      return unless block_given?
+      _keys.each { |k| yield k }
     end
 
     #
-    # When calling Preferences::Entry#any_method_name, the
+    # When calling Preferences::Section#any_method_name, the
     # `any_method_name` will be caught by this method.
     #
     # This is the standard way of looking up preference entries.
@@ -267,8 +265,8 @@ private
     #   browser.preferences.interface_colors.background
     #   # will return the “Background” entry in section “Interface Colors”
     #
-    # @param           method  Method to look up in section.
-    # @return [Object]         A Preferences::Entry (entry) object.
+    # @param           method  method to look up in section
+    # @return [Object]         a Preferences::Section::Key (entry) object
     #
 
     def method_missing(method)
@@ -276,126 +274,80 @@ private
 
       if _keys.any? { |k| k.method == method }
         _keys.find { |k| k.method == method }
-      else
-        _keys << Entry.new(self, method)
-        _keys.last
       end
     end
-
-    #
-    # Returns the value of an entry in a section.  Note that it's not
-    # possible to retrieve the value for sections.
-    #
-    # @return [String] Value of the entry.
-    #
-
-    def value
-      raise OperaWatir::Exceptions::PreferencesException, 'Sections do not have values' if section?
-      @value ||= driver.getPref(parent.key, key)
-    end
-
-    #
-    # Sets the entry's value to the specified string.  Note that it's
-    # not possible to set a section's value.
-    #
-    # @param [String] value  Value you wish to set for the entry.
-    #
-
-    def value=(value)
-      raise OperaWatir::Exceptions::PreferencesException, 'Sections cannot have values' if section?
-      value = value.truthy? ? '1' : '0' if type.include?('Boolean')
-      driver.setPref parent.key, key, value.to_s
-      @value = value
-    end
-
-    #
-    # Returns entry's default value.  Note that it's not possible to
-    # return a section's default value.
-    #
-    # @return [String]       The default value of the entry.
-    #
-
-    def default
-      raise OperaWatir::Exceptions::PreferencesException, 'Sections do not have defaults' if section?
-      @default ||= driver.getDefaultPref parent.key, key
-    end
-
-    #
-    # Returns and sets the default value of the entry.  Note that it's
-    # not possible to return and set a section's default value.
-    #
-    # @return [String]       The default value of the entry.
-    #
-
-    def default!
-      self.value=(default)  # WTF?  Bug in Ruby?
-    end
-
-    #
-    # Is the current node a section?
-    #
-    # @return [Boolean]      True/false based on whether you're
-    #                        interacting with a section or entry.
-    #
-
-    def section?
-      parent.kind_of? OperaWatir::Preferences
-    end
-
-    #
-    # Does this entry/section exist?
-    #
-    # @return [Boolean]      True/false based on whether the method you
-    #                        are attempting to access exists as a
-    #                        preference entry/section.
-    #
-
-    def exists?
-      section? ? SECTIONS.include?(key) : !type.empty?
-    end
-
-    alias_method :exist?, :exists?  # LOL Ruby
-
-    def each
-      return unless block_given?
-      _keys.each { |k| yield k }
-    end
-
-    def_delegators :_keys, :[],
-                           :length,
-                           :size,
-                           :first,
-                           :last,
-                           :empty?
 
   private
 
     def _keys
-      raise OperaWatir::Exceptions::PreferencesException, 'Keys are not iteratable objects' if not section?
-      @_keys ||= all_keys
+      @_keys
     end
 
-    def all_keys
-      return if not section?
-      keys = []
+    class Key
+      extend Forwardable
+      include Enumerable
 
-      driver.listPrefs(true, key).to_a.each do |p|
-        p = p.to_s
+      attr_accessor :parent, :driver, :method, :key, :type, :value
 
-        p =~ /^key: \"([a-zA-Z0-9\(\)\\\.\-\s]*)\"$/
-        key = $1.to_s.gsub(/^\\t/, "\t")  # Workaround for double-encoded tabs:
-                                          # We get \\t, but it only accepts \t.
+      def initialize(parent, raw_key)
+        self.parent, self.driver = parent, parent.driver
+        self.method, self.key = raw_key.first.methodize, raw_key.first
+        raw_data = raw_key[1].to_s
 
-        p =~ /^type: ([A-Z]+)$/
-        type = $1.to_s.capitalize
+        raw_data =~ /^type: ([A-Z]+)$/
+        self.type = $1.to_s.capitalize
 
-        next if key.empty?  # “Opera Widgets/Unite Style File” is bugged, workaround.
-        keys << Entry.new(self, key.methodize, key, type)
+        raw_data =~ /^value: \"(.*)\"$/
+        @value = $1.to_s
+
+        # Ruby doesn't support attr_accessor's with question mark in their
+        # name.
+        raw_data =~ /^enabled: (true|false)$/
+        @enabled = $1.truthy?
       end
 
-      keys
-    end
+      #
+      # Whether the current key entry is enabled inside Opera or not.
+      #
+      # @return [Boolean] true if enabled, false if otherwise
+      #
 
+      def enabled?
+        !!@enabled
+      end
+
+      #
+      # Sets the key's value to the specified string.
+      #
+      # @param [String] value  the value you wish to set for the key
+      #
+
+      def value=(value)
+        value = value.truthy? ? '1' : '0' if type.include?('Boolean')
+        driver.setPref parent.key, key, value.to_s
+        @value = value
+      end
+
+      #
+      # Returns key's default value.
+      #
+      # @return [String] the default value of the key
+      #
+
+      def default
+        @default ||= driver.getDefaultPref parent.key, key
+      end
+
+      #
+      # Returns and sets the default value of the key.
+      #
+      # @return [String] the default value of the key
+      #
+
+      def default!
+        self.value=(default)
+      end
+    end
   end
 
 end
