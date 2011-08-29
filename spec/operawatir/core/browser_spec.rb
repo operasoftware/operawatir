@@ -69,7 +69,7 @@ describe OperaWatir::Browser do
 
   describe '#desktop?' do
     it 'returns true or false' do
-       [true,false].should include browser.desktop?
+       [true, false].should include browser.desktop?
     end
   end
 
