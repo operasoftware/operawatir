@@ -109,7 +109,7 @@ class OperaWatir::Browser
   #
   # @return [String] List of available Opera actions.
   def opera_action_list
-    driver.getOperaActionList.to_s
+    driver.getOperaActionList.to_a
   end
   deprecated :opera_action_list
 
