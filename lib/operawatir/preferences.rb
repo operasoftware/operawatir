@@ -124,6 +124,8 @@ class OperaWatir::Preferences
     raw_prefs = driver.listAllPrefs.to_a
     @_prefs = {}
     @_prefs = raw_prefs.map { |s| Section.new(self, s) }.sort_by { |s| s.key }
+
+    @old_prefs = _prefs
   end
 
   def_delegators :_prefs, :[],
@@ -214,6 +216,23 @@ class OperaWatir::Preferences
   end
 
   alias_method :exist?, :exists?  # LOL Ruby
+
+=begin
+  def cleanup
+    @old_prefs.dup
+  end
+
+  def cleanup!
+    @old_prefs.each do |old_section|
+      old_section.each do |old_key|
+        #self.send(old_section.method).send(old_key.method).send(:value, old_key.value)
+        puts "#{old_section.method}.#{old_key.method}.value = #{old_key.value}"
+      end
+    end
+
+    _prefs
+  end
+=end
 
 private
 

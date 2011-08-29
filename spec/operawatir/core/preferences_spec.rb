@@ -5,6 +5,7 @@ describe OperaWatir::Preferences do
 
   before :all do
     @prefs = browser.preferences
+    @old_prefs = @prefs.to_a
   end
 
   describe '#new' do
@@ -131,7 +132,6 @@ describe OperaWatir::Preferences do
 
     describe '#new' do
       it 'constructs a new instance' do
-        @section.should exist
         @section.should be_kind_of OperaWatir::Preferences::Section
       end
     end
@@ -151,21 +151,6 @@ describe OperaWatir::Preferences do
     describe '#key' do
       it 'has a key name' do
         @section.key.should_not be_empty
-      end
-    end
-
-    describe '#exists?' do
-      it 'returns a valid type' do
-        @section.exists?.should be_kind_of TrueClass
-      end
-
-      it 'exists' do
-        @section.exists?.should be_true
-        # TODO: @section.should exist
-      end
-
-      it 'responds to alias #exist?' do
-        @section.exist?.should == @section.exists?
       end
     end
 
@@ -334,11 +319,36 @@ describe OperaWatir::Preferences do
 
   end
 
-  describe '#cleanup' do; end   # TODO
-  describe '#cleanup!' do; end  # TODO
+=begin
+  describe '#cleanup' do
+    it 'returns an array' do
+      @prefs.cleanup.should be_kind_of Array
+    end
 
-  after :all do
-    @prefs.cleanup!
+    it 'matches the old stored prefs' do
+      @prefs.cleanup.should == @old_prefs
+    end
   end
+
+  describe '#cleanup!' do
+    before(:all) { @after_cleanup = @prefs.cleanup! }
+
+    it 'cleans up the preferences' do
+      @key.value.should_not == '1337'
+    end
+
+    it 'matches the old stored prefs' do
+      @after_cleanup.should == @old_prefs
+    end
+
+    it 'returns an array' do
+      @after_cleanup.should be_kind_of Array
+    end
+  end
+=end
+
+#  after :all do
+#    @prefs.cleanup!
+#  end
 
 end
