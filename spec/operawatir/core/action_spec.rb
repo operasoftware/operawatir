@@ -1,6 +1,6 @@
 require File.expand_path('../../watirspec_helper', __FILE__)
 
-describe 'Actions' do
+describe OperaWatir::Actions do
 
   before :each do
     @actions = browser.actions
@@ -143,7 +143,7 @@ describe 'Actions' do
       el = browser.div(:id => 'test')
 
       @actions.move_to_element(el).click().perform()
-      window.text.should include 'dblclick 0'
+      window.text.should include 'click'
     end
 
     it 'cannot move to a nil element' do
@@ -167,6 +167,8 @@ describe 'Actions' do
     end
 
     it 'selects multiple items' do
+      pending 'getLocation() for OPTION elements is a known bug in OperaDriver'
+
       browser.url = fixture('formSelectionPage.html')
 
       options = browser.options()
