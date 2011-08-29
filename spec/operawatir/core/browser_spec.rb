@@ -9,7 +9,7 @@ describe OperaWatir::Browser do
       window.find_by_id('one').click
       browser.opera_action('Select all')
       window.eval_js('one = document.getElementById("one");')
-    window.eval_js('one.value.substr(one.selectionStart, one.selectionEnd - one.selectionStart)').to_s.should == 'foobar'
+    window.eval_js('one.value.substr(one.selectionStart, one.selectionEnd - one.selectionStart)').should == 'foobar'
     end
   end
 
@@ -40,7 +40,7 @@ describe OperaWatir::Browser do
       browser.key 'Down'
       browser.key 'Down'
       browser.key_up 'Shift'
-      window.execute_script("document.activeElement.text;").to_s.should == 'C2'
+      window.execute_script("document.activeElement.text;").should == 'C2'
     end
   end
 
@@ -53,7 +53,7 @@ describe OperaWatir::Browser do
       browser.key 'Down'
       browser.key_up 'Shift'
       browser.key 'Down'
-      window.execute_script("document.activeElement.text;").to_s.should == 'C2'
+      window.execute_script("document.activeElement.text;").should == 'C2'
     end
   end
 
