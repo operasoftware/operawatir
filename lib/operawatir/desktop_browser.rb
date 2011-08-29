@@ -805,7 +805,7 @@ private
 
    def self.opera_driver_settings
      @opera_driver_settings ||= OperaDriverSettings.new.tap {|s|
-       s.setRunOperaLauncherFromOperaDriver true
+       #s.setRunOperaLauncherFromOperaDriver true
        s.setAutostart false if self.settings[:manual]
        s.setOperaLauncherBinary self.settings[:launcher]
        s.setOperaBinaryLocation self.settings[:path]
