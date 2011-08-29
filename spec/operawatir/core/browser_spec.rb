@@ -17,8 +17,8 @@ describe 'Browser' do
   describe '#opera_action_list' do
     it 'returns a list of available Opera actions' do
       browser.url = 'about:blank'
-      browser.opera_action_list.should include 'Copy'
-      browser.opera_action_list.should include 'Paste'
+      browser.opera_action_list.should include 'copy'
+      browser.opera_action_list.should include 'paste'
     end
   end
 
