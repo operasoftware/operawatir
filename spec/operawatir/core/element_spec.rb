@@ -11,7 +11,7 @@ describe OperaWatir::Element do
       window.text.should include 'PASS'
     end
   end
-
+  
   describe '#triple_click' do
     it 'clicks three times' do
       browser.url = fixture('onclick.html')

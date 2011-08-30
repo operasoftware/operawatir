@@ -5,7 +5,7 @@ describe OperaWatir::Actions do
   before :each do
     @actions = browser.actions
   end
-
+  
   it 'is available on the browser object' do
     browser.should.respond_to? :actions
     actions = browser.actions
@@ -72,7 +72,7 @@ describe OperaWatir::Actions do
       el.text.should == 'ab'
     end
   end
-
+  
   describe 'mouse' do
     it 'can be used to drag and drop' do
       browser.url = fixture('draggableLists.html')
@@ -129,13 +129,14 @@ describe OperaWatir::Actions do
       @actions.move_to_element(el).double_click().perform()
       window.text.should include 'dblclick'
     end
-
+    
     it 'context clicks' do
       browser.url = fixture('mouse.html')
       el = browser.div(:id => 'test')
 
       @actions.context_click(el).perform()
       window.text.should include 'mouseup 2'
+      browser.keys.send(:esc)
     end
 
     it 'move and clicks' do
@@ -158,9 +159,9 @@ describe OperaWatir::Actions do
       @actions.move_to_element(browser.pre(:id => 'log')).move_by_offset(1, -30).click().perform()
       window.text.should include 'click 0'
     end
-
+ 
   end
-
+  
   describe 'combined' do
     it 'uses form elements' do
 
