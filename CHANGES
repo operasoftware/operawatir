@@ -1,3 +1,150 @@
+v0.5.pre1    2011-09-31
+
+  [API CHANGES]
+
+  * Implemented advanced user interaction API in Watir by adding a new Actions
+    class.  This is accessible through Browser#actions.  (stuartk)
+
+  * Removed Browser#close_all since this is no longer supported in WebDriver.
+    The alternative approach is to get all windows, then cycle through them to
+    close them.  (andreastt)
+
+  * Added following method calls related to performing context menu clicks:
+
+      DesktopBrowser#action_with_condition
+      DesktopBrowser#active_quick_window_id
+      DesktopBrowser#close_active_menu
+      DesktopBrowser#close_all_menus
+      DesktopBrowser#close_menu
+      DesktopBrowser#close_menu_with_key_press
+      DesktopBrowser#key_press_with_condition
+      DesktopBrowser#open_menu_with_key_press
+      DesktopBrowser#open_menu_with_rightclick
+      DesktopBrowser#quick_menuitems
+      DesktopBrowser#quick_menus
+      DesktopBrowser#quick_tabs
+      DesktopBrowser::ConditionTimeout
+      DesktopContainer#quick_dropdownitem
+      DesktopContainer#quick_menu
+      DesktopContainer#quick_menuitem
+      QuickMenu (...)
+      QuickMenuItem (...)
+
+    (karie)
+
+  * Added following utility methods:
+
+      DesktopBrowser#desktop?
+      DesktopHelper#linux?
+      DesktopHelper#mac?
+      DesktopCommon#linux_internal?
+      DesktopCommon#mac_internal?
+      DesktopCommon#wait_for_menu_closed
+      DesktopCommon#wait_for_menu_shown
+      DesktopCommon#wait_for_widget_visible
+      DesktopCommon#widgets
+
+    (karie)
+
+  * Added QuickButton#wait_for_visible to wait for a button to become visible.
+   (karie)
+
+  * Added following APIs related to QuickDropdown's:
+
+      QuickDropdown#dropped_down?
+      QuickDropdown#open_with_click
+      QuickDropdownItem (...)
+
+  * Added QuickTab#close_window_with_doubleclick.  (karie)
+
+  * Added following APIs related to QuickTreeItem:
+
+      QuickTreeItem#open_dialog_with_click
+      QuickTreeItem#open_window_with_click
+
+    (karie)
+
+  * Added following APIs related to widgets:
+
+      QuickWidget#click_with_condition
+      QuickWidget#click_with_condition_internal
+      QuickWidget#double_click_with_condition
+      QuickWidget#focus_with_hover
+      QuickWidget#middle_click_with_condition
+      QuickWidget#open_menu_with_rightclick
+      QuickWidget#open_window_with_click_internal
+      QuickWidget#quick_tabs
+      QuickWidget#quick_widgets
+      QuickWidget#right_click_with_condition
+      QuickWidget#verify_realtext
+      QuickWidget::ConditionTimeout
+
+    (karie)
+
+  * Added following APIs related to QuickWindow:
+
+      QuickWindow#active?
+      QuickWindow#quick_widgets
+
+    (karie)
+
+  * Removed DesktopBrowser#open_dialog_with_click.  (karie)
+
+  * Removed DesktopBrowser#key_down.  (karie)
+
+  * Removed DesktopBrowser#key_up.  (karie)
+
+  * Removed Preferences::Entry (...) and Preferences::SECTIONS; replaced by
+    Preferences::Section and Preferences::Section::Key.  (andreastt)
+
+  * Removed QuickButton#load_page_with_click.  (karie)
+
+  * Removed QuickButton#open_dialog_with_click.  (karie)
+
+  * Removed QuickButton#open_window_with_click.  (karie)
+
+  * Exposed WebElement.middleClick() from WebDriver as Element#middle_click.
+    (andreastt)
+
+  * Renamed #key_down, and #key_up in desktop_browser to avoid clash with clash
+    with browser#key_down and up.  Fixes failures of operawatir/core spec tests.
+    New APIs:
+
+       DesktopCommon#key_down_direct
+       DesktopCommon#key_up_direct
+
+    (karie)
+
+  [NEW FEATURES]
+
+  * Access to widgets in Desktop.  (karie/adamm)
+
+  * Context menus in Desktop.  (karie/adamm)
+
+  [BUG FIXES]
+
+  * Fix for bug DSK-341584.  (karie)
+
+  * profile-autotest folder was not deleted in running any spec test with no
+    arguments, fixes DSK-333674.  (karie)
+
+  * Add separator to #QuickMenuItem#to_s method.  (adamm)
+
+  * Fixes to make Mac work with menus and multiple windows.  (adamm)
+
+  * treeitem open window with click, fixes bug DSK-341539.  (karie)
+
+  [OTHER]
+
+  * Added more desktop-related tests.  (karie)
+
+  * Added preliminary tests for keys implementation in key_spec.rb.
+    (andreastt)
+
+  * Fixes to make core tests run.  (andreastt)
+
+  * Fixes to make desktop tests run.  (mariap)
+
 v0.4.3.pre2  2011-05-25
 
   [BUG FIXES]
