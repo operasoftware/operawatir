@@ -200,7 +200,7 @@ class OperaWatir::Element
       init = "initEvent(\"#{event.to_s}\", true, true)"
     when :click, :dblclick, :mousedown, :mousemove, :mouseout, :mouseover, :mouseup
       type = 'MouseEvents'
-      init = "initMouseEvent(\"#{event.to_s}\", true, true, window, 1, 0, 0, 0, 0, false, false, false, false, 0, null)"
+      init = "initMouseEvent(\"#{event.to_s}\", true, true, window, 1, 0, 0, #{x}, #{y}, false, false, false, false, 0, null)"
     else
       raise Exceptions::NotImplementedException, "Event on#{event} is not a valid ECMAscript event for OperaWatir."
     end
