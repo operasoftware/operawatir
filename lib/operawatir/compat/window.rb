@@ -67,8 +67,9 @@ module OperaWatir
 
       def show_frames
         frames = driver.list_frames
-        puts "There are #{frames.length.to_s} frames"
-        frames.each_with_index { |frame, i| puts "frame index: #{(i.to_i + 1).to_s} name: #{frame.to_s}" }
+        text = "There are #{frames.length.to_s} frames\n"
+        frames.each_with_index { |frame, i| text << "frame index: #{(i.to_i + 1).to_s} name: #{frame.to_s}\n" }
+        text
       end
 
     end
