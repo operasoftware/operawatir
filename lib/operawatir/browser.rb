@@ -48,7 +48,7 @@ class OperaWatir::Browser
 
   # Instruct the browser instance to quit and shut down.
   def quit
-    driver.shutdown
+    driver.quit
   end
 
   # Get the version number of the driver.  This _is not_ the same as
