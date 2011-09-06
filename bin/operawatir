@@ -91,7 +91,7 @@ EOS
     opts.separator 'Common options:'
 
     opts.on_tail('-h', '--help', 'Show this message') do
-      abort opts
+      abort opts.to_s
     end
 
     opts.on_tail('-v', '--version', 'Show version') do
