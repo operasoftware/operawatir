@@ -14,7 +14,7 @@ include_class org.openqa.selenium.interactions.Actions
 include_class org.openqa.selenium.remote.DesiredCapabilities
 include_class com.opera.core.systems.OperaDriver
 include_class com.opera.core.systems.OperaWebElement
-include_class com.opera.core.systems.OperaDriverSettings
+include_class com.opera.core.systems.settings.OperaDriverSettings
 
 # Desktop stuff
 include_class com.opera.core.systems.OperaDesktopDriver
