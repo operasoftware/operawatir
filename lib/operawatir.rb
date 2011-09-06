@@ -61,6 +61,7 @@ require 'operawatir/screenshot'
 require 'operawatir/preferences'
 require 'operawatir/spatnav'
 require 'operawatir/actions'
+require 'operawatir/utils'
 
 require 'operawatir/exceptions'
 require 'operawatir/selector'

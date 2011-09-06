@@ -2,7 +2,7 @@
 class OperaWatir::Browser
   include Deprecated
 
-  attr_accessor :driver, :active_window, :preferences, :keys, :spatnav
+  attr_accessor :driver, :active_window, :preferences, :keys, :spatnav, :utils
 
   def self.settings=(settings={})
     @desired_capabilities = nil  # Bust cache
@@ -27,6 +27,7 @@ class OperaWatir::Browser
     self.preferences   = OperaWatir::Preferences.new(self)
     self.keys          = OperaWatir::Keys.new(self)
     self.spatnav       = OperaWatir::Spatnav.new(self)
+    self.utils         = OperaWatir::Utils.new(self)
   end
 
   alias_method :window, :active_window
@@ -99,6 +100,7 @@ class OperaWatir::Browser
   def opera_action(name, *args)
     driver.operaAction(name, args.to_java(:string))
   end
+
   deprecated :opera_action
 
   # Full list of available Opera actions in the Opera build you're
@@ -111,6 +113,7 @@ class OperaWatir::Browser
   def opera_action_list
     driver.getOperaActionList.to_a
   end
+
   deprecated :opera_action_list
 
   # Selects all content in the currently focused element.  Equivalent
