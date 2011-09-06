@@ -1,4 +1,57 @@
-v0.5.pre1    2011-09-31
+v0.5.pre2    2011-09-06
+
+  [NEW FEATURES]
+
+  * Added browser utility service as Browser#utils, implementing the following
+    new method calls:
+
+      Utils#core_version, returning the core version
+      Utils#os, returning the browser's OS
+      Utils#product, returning product type (desktop/core/mobile)
+      Utils#binary_path, returning full path to Opera binary
+      Utils#user_agent, returning User-Agent string
+      Utils#pid, returning the browser's PID if available
+
+    (andreastt)
+
+  * Implementing ability to enable verbose logging in operawatir.  Added
+    following new command-line switches to the operawatir binary:
+
+      --debug=LEVEL (or -d for short), for specifying logging level
+      --log=FILE, for specifying sending the logging to a file
+
+    Available logging levels are: SEVERE (highest), WARNING, INFO, CONFIG,
+    FINE, FINER, FINEST (lowest), ALL.  Default is INFO.  See `operawatir
+    --help` for more information.
+
+    (andreastt)
+
+  [ENHANCEMENTS]
+
+  * Now using DesiredCapabilities from OperaDriver v0.7 instead of
+    OperaDriverSettings.  (andreastt)
+
+  [BUG FIXES]
+
+  * initMouseEvent in Element#fire_event is now clicking clientX and clientY
+    instead of relying on internal driver locators.  (andreastt)
+
+  * Compat::Window#show_frames now returns a string instead of writing to
+    STDOUT.  (andreastt)
+
+  * Browser#quit was calling OperaDriver.shutdown() which is now deprecated.
+    Fixed by now calling OperaDriver.quit() instead.  (andreastt)
+
+  * `operawatir --help` was broken, fixed by converting OptionParse object to a
+    String.  (andreastt)
+
+  [OTHER]
+
+  * Upgraded to OperaDriver v0.7.1.  (andreastt)
+
+  * Added tests for new Utils interface.  (andreastt)
+
+v0.5.pre1    2011-08-31
 
   [API CHANGES]
 
