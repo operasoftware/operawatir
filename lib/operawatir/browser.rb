@@ -5,7 +5,7 @@ class OperaWatir::Browser
   attr_accessor :driver, :active_window, :preferences, :keys, :spatnav
 
   def self.settings=(settings={})
-    @opera_driver_settings = nil  # Bust cache
+    @desired_capabilities = nil  # Bust cache
     @settings = settings
   end
 
@@ -22,7 +22,7 @@ class OperaWatir::Browser
   def initialize
     OperaWatir.compatibility! unless OperaWatir.api >= 3
 
-    self.driver        = OperaDriver.new(self.class.opera_driver_settings)
+    self.driver        = OperaDriver.new(self.class.desired_capabilities)
     self.active_window = OperaWatir::Window.new(self)
     self.preferences   = OperaWatir::Preferences.new(self)
     self.keys          = OperaWatir::Keys.new(self)
@@ -196,14 +196,14 @@ class OperaWatir::Browser
 
 private
 
-  def self.opera_driver_settings
-    @opera_driver_settings ||= OperaDriverSettings.new.tap { |s|
-      s.setAutostart false if self.settings[:manual]
-      s.setOperaLauncherBinary self.settings[:launcher] if self.settings[:launcher]
-      s.setOperaBinaryLocation self.settings[:path] if self.settings[:path]
-      s.setOperaBinaryArguments self.settings[:args].to_s if self.settings[:args]
-      s.setNoQuit true if self.settings[:no_quit]
-      s.setUseOperaIdle true if self.settings[:opera_idle] or ENV['OPERA_IDLE'].truthy?
+  def self.desired_capabilities
+    @desired_capabilities ||= DesiredCapabilities.new.tap { |s|
+      s.setCapability('opera.autostart', false) if self.settings[:manual]
+      s.setCapability('opera.launcher', self.settings[:launcher]) if self.settings[:launcher]
+      s.setCapability('opera.binary', self.settings[:path]) if self.settings[:path]
+      s.setCapability('opera.arguments', self.settings[:args].to_s) if self.settings[:args]
+      s.setCapability('opera.no_quit', true) if self.settings[:no_quit]
+      s.setCapability('opera.idle', true) if self.settings[:opera_idle] or ENV['OPERA_IDLE'].truthy?
     }
   end
 
