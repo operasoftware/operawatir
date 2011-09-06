@@ -27,7 +27,7 @@ begin
 Usage: operawatir [-m|--manual] [-l|--launcher=BINARY] [--binary=BINARY]
        [-a|--args=ARGUMENTS] [-q|--no-quit] [--opera-idle] [-b|--backtrace]
        [--no-color] [-t|--tag=TAG] [-f|--format=FORMAT] [-o|--out=FILE]
-       [-h|--help] [-v|--version] FILES
+       [-d|--debug=LEVEL] [--log=FILE] [-h|--help] [-v|--version] FILES
 EOS
 
     opts.separator ''
@@ -90,6 +90,18 @@ EOS
     opts.separator ''
     opts.separator 'Common options:'
 
+    opts.on_tail('-d', '--debug=LEVEL', 'The logging level to use.  Available levels: SEVERE',
+                 '(highest),  WARNING, INFO (default), CONFIG, FINE,',
+                 'FINER, FINEST (lowest), ALL') do |l|
+      available_levels = ['SEVERE', 'WARNING', 'INFO', 'CONFIG', 'FINE', 'FINER', 'FINEST', 'ALL']
+      raise OptionParser::InvalidArgument, l.to_s.inspect unless available_levels.include?(l)
+      @options[:logging_level] = l
+    end
+
+    opts.on_tail('--log=FILE', 'Output the log to a file') do |f|
+      @options[:logging_file] = f
+    end
+
     opts.on_tail('-h', '--help', 'Show this message') do
       abort opts.to_s
     end
@@ -98,8 +110,8 @@ EOS
       abort "OperaWatir version #{OperaWatir.version}"
     end
   end.parse!(ARGV)
-rescue OptionParser::InvalidOption => e
-  abort "operawatir: Unknown option `#{e.to_s.sub(/invalid option:\s+/, '')}'"
+rescue OptionParser::ParseError => e
+  abort "operawatir: #{e}"
 end
 
 if ARGV.empty?

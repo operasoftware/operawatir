@@ -198,6 +198,8 @@ private
 
   def self.desired_capabilities
     @desired_capabilities ||= DesiredCapabilities.new.tap { |s|
+      s.setCapability('opera.logging.level', self.settings[:logging_level]) if self.settings[:logging_level]
+      s.setCapability('opera.logging.file', self.settings[:logging_file]) if self.settings[:logging_file]
       s.setCapability('opera.autostart', false) if self.settings[:manual]
       s.setCapability('opera.launcher', self.settings[:launcher]) if self.settings[:launcher]
       s.setCapability('opera.binary', self.settings[:path]) if self.settings[:path]
