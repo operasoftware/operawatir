@@ -156,11 +156,11 @@ describe 'QuickButton' do
     end
     
     it 'returns value = 1 of button when button is pressed' do
-      browser.quick_button(:name, "Destails_expand").toggle_with_click.should == 1
+      browser.quick_button(:name, "Details_expand").toggle_with_click.should == 1
     end
     
     it 'returns value = 0 of button when button is unpressed' do
-      browser.quick_button(:name, "Destails_expand").toggle_with_click.should == 0
+      browser.quick_button(:name, "Details_expand").toggle_with_click.should == 0
       browser.close_dialog("Clear Private Data Dialog").should close_dialog
     end
     
@@ -182,13 +182,13 @@ describe 'QuickButton' do
     end
   
     it 'expands dialog with click' do
-      browser.quick_button(:name, "Destails_expand").expand_with_click
+      browser.quick_button(:name, "Details_expand").expand_with_click
       browser.quick_button(:name, "button_manage_wand").should be_visible
     end
     
 
     it 'collapses dialog with click ' do
-      browser.quick_button(:name, "Destails_expand").expand_with_click
+      browser.quick_button(:name, "Details_expand").expand_with_click
       browser.quick_button(:name, "button_manage_wand").should_not be_visible
     end
     
@@ -208,13 +208,13 @@ describe 'QuickButton' do
     end
     
     it 'returns 1 when button is pressed' do
-      browser.quick_button(:name, "Destails_expand").toggle_with_click.should == 1
-      browser.quick_button(:name, "Destails_expand").value.should == 1
+      browser.quick_button(:name, "Details_expand").toggle_with_click.should == 1
+      browser.quick_button(:name, "Details_expand").value.should == 1
     end
     
     it 'returns 0 when button is unpressed' do
-      browser.quick_button(:name, "Destails_expand").toggle_with_click.should == 0
-      browser.quick_button(:name, "Destails_expand").value.should == 0
+      browser.quick_button(:name, "Details_expand").toggle_with_click.should == 0
+      browser.quick_button(:name, "Details_expand").value.should == 0
     end
     
     after(:all) do
