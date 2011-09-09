@@ -1,5 +1,12 @@
 v0.5.pre3    2011-09-09
 
+  [BUG FIXES]
+
+  * Calling #to_s on opts, fixes `desktopwatir --help`.  (andreastt)
+
+  * Removing redundant -autotestmode argument sent by
+    OperaWatir::DesktopBrowser.  (andreastt)
+
   [OTHER]
 
   * Upgraded to OperaDriver v0.7.2.  This will fix issues with getting location
