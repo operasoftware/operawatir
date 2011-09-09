@@ -4,8 +4,8 @@ require 'deprecated'
 require 'java'
 include Java
 
-%w(commons-jxpath-1.3.jar protobuf-java-2.3.0.jar selenium-java-head.jar
-   operadriver-v0.7.1.jar commons-io-2.0.1.jar guava-r09.jar).each { |jar| require "operadriver/#{jar}" }
+%w(commons-jxpath-1.3.jar protobuf-java-2.3.0.jar selenium-nodeps-20100909.jar
+   operadriver-v0.7.2.jar commons-io-2.0.1.jar guava-r09.jar).each { |jar| require "operadriver/#{jar}" }
 
 include_class org.openqa.selenium.WebDriver
 include_class org.openqa.selenium.remote.RemoteWebElement
