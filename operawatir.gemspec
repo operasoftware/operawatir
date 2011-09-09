@@ -5,12 +5,12 @@
 
 Gem::Specification.new do |s|
   s.name = %q{operawatir}
-  s.version = "0.5.pre2"
+  s.version = "0.5.pre3"
   s.platform = %q{jruby}
 
   s.required_rubygems_version = Gem::Requirement.new("> 1.3.1") if s.respond_to? :required_rubygems_version=
   s.authors = ["Andreas Tolf Tolfsen", "Chris Lloyd", "Stuart Knightley", "Deniz Turkoglu"]
-  s.date = %q{2011-09-06}
+  s.date = %q{2011-09-09}
   s.description = %q{    OperaWatir is a part of the Watir (pronounced water) family of
     free software Ruby libraries for automating web browsers.
     OperaWatir provides a querying engine and Ruby bindings for a
@@ -40,9 +40,9 @@ Gem::Specification.new do |s|
     "lib/operadriver/commons-io-2.0.1.jar",
     "lib/operadriver/commons-jxpath-1.3.jar",
     "lib/operadriver/guava-r09.jar",
-    "lib/operadriver/operadriver-v0.7.1.jar",
+    "lib/operadriver/operadriver-v0.7.2.jar",
     "lib/operadriver/protobuf-java-2.3.0.jar",
-    "lib/operadriver/selenium-java-head.jar",
+    "lib/operadriver/selenium-nodeps-20100909.jar",
     "lib/operawatir.rb",
     "lib/operawatir/actions.rb",
     "lib/operawatir/browser.rb",
