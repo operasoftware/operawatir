@@ -1,3 +1,11 @@
+v0.5.1       2011-09-20
+
+  [OTHER]
+
+  * Upgraded to OperaDriver v0.7.2.  (andreastt)
+
+  * Upgraded to protobuffers v2.4.1.  (andreastt)
+
 v0.5         2011-09-12
 
   [OTHER]
