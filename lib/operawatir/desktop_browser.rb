@@ -604,8 +604,8 @@ module OperaWatir
       return 0 if win_id == 0
 
       #Ensure is Expanded
-      if quick_button(:name, "Destails_expand").value == 0
-        quick_button(:name, "Destails_expand").toggle_with_click
+      if quick_button(:name, "Details_expand").value == 0
+        quick_button(:name, "Details_expand").toggle_with_click
       end
 
       quick_checkboxes("Clear Private Data Dialog").each do |box|
