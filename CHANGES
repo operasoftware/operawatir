@@ -1,3 +1,15 @@
+v0.6.pre1    2011-12-01
+
+  [ENHANCEMENTS]
+
+  * Construction of DesktopWatir now uses desired capabilities, and
+    relies on shared code between OperaWatir and OperaDesktopWatir.
+    (andreastt)
+
+  [OTHER]
+
+  * Upgraded to OperaDriver v0.8.1.  (andreastt)
+
 v0.5.1       2011-09-20
 
   [OTHER]
