@@ -14,6 +14,7 @@ require 'operawatir'
   :output_stream  => IO.new(1, 'w'),
   :format         => 'progress',
   :no_quit        => false,
+  :no_restart     => false,
   :opera_idle     => false,
   #:full_backtrace => false  # TODO: Provide fix for RSpec
 }
@@ -24,10 +25,11 @@ require 'operawatir'
 begin
   OptionParser.new do |opts|
     opts.banner = <<EOS
-Usage: operawatir [-m|--manual] [-l|--launcher=BINARY] [--binary=BINARY]
-       [-a|--args=ARGUMENTS] [-q|--no-quit] [--opera-idle] [-b|--backtrace]
-       [--no-color] [-t|--tag=TAG] [-f|--format=FORMAT] [-o|--out=FILE]
-       [-d|--debug=LEVEL] [--log=FILE] [-h|--help] [-v|--version] FILES
+Usage: operawatir [-m|--manual] [-l|--launcher=BINARY]
+       [--binary=BINARY] [-a|--args=ARGUMENTS] [-q|--no-quit]
+       [--opera-idle] [-b|--backtrace] [--no-color] [-t|--tag=TAG]
+       [-f|--format=FORMAT] [-o|--out=FILE] [-d|--debug=LEVEL]
+       [--log=FILE] [-h|--help] [-v|--version] FILES
 EOS
 
     opts.separator ''

@@ -1,13 +1,14 @@
 #!/usr/bin/env jruby
 require 'rubygems'
 require 'optparse'
+require 'stringio'
 require 'rspec'
 require 'rbconfig'
 require 'operawatir'
 
-
 @options = {
-  #:manual        => false,
+  :manual         => false,  # Defining this here so that we are sure
+                             # it doesn't trigger manual mode
   :ng             => false,
   :color_enabled  => true,
   :check_syntax   => false,
@@ -25,21 +26,16 @@ require 'operawatir'
 begin
   OptionParser.new do |opts|
     opts.banner = <<EOS
-
-Usage: desktopwatir [-l|--launcher=BINARY] [-e|--executable=BINARY]
-       [-a|--args=ARGUMENTS] [--no-color] [-q|--no-quit] [-r|--no-restart]
-       [--opera-idle] [-b|--backtrace] [-t|--tag=TAG] [-f|--format=FORMAT]
+Usage: desktopwatir [-m|--manual] [-l|--launcher=BINARY]
+       [-e|--executable=BINARY] [-a|--args=ARGUMENTS] [--no-color]
+       [-q|--no-quit] [-r|--no-restart] [--opera-idle]
+       [-b|--backtrace] [-t|--tag=TAG] [-f|--format=FORMAT]
        [-o|--out=FILE] [-h|--help] [-v|--version] FILES
 EOS
 
     opts.separator ''
     opts.separator 'Specific options:'
 
-    #run without launcher and with manual connection, restart not possible (same as -rq)
-    #opts.on('-m', '--manual', 'Wait for a manual connection from opera:debug') do |c|
-    #  @options[:manual] = c
-    #end
-    
     opts.on('-l', '--launcher=BINARY', 'Path to launcher binary, will use environmental ',
             'variable OPERA_LAUNCHER if not specified') do |c|
       @options[:launcher] = c
@@ -96,6 +92,18 @@ EOS
     opts.separator ''
     opts.separator 'Common options:'
 
+    opts.on_tail('-d', '--debug=LEVEL', 'The logging level to use.  Available levels: SEVERE',
+                 '(highest),  WARNING, INFO (default), CONFIG, FINE,',
+                 'FINER, FINEST (lowest), ALL') do |l|
+      available_levels = ['SEVERE', 'WARNING', 'INFO', 'CONFIG', 'FINE', 'FINER', 'FINEST', 'ALL']
+      raise OptionParser::InvalidArgument, l.to_s.inspect unless available_levels.include?(l)
+      @options[:logging_level] = l
+    end
+
+    opts.on_tail('--log=FILE', 'Output the log to a file') do |f|
+      @options[:logging_file] = f
+    end
+
     opts.on_tail('-h', '--help', 'Show this message') do
       abort opts.to_s
     end
@@ -105,7 +113,7 @@ EOS
     end
   end.parse!(ARGV)
 rescue OptionParser::InvalidOption => e
-  abort "desktopwatir: Unknown option `#{e.to_s.sub(/invalid option:\s+/, '')}'"
+  abort "desktopwatir: #{e}"
 end
 
 if ARGV.empty?
