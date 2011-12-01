@@ -12,6 +12,8 @@ v0.6.pre1    2011-12-01
     desktopwatir RSpec tests from `jruby -S rspec test.rb`.
     (andreastt)
 
+  * Exposing browser.utils.* on DesktopBrowser.  (andreastt)
+
   [OTHER]
 
   * Upgraded to OperaDriver v0.8.1.  (andreastt)
