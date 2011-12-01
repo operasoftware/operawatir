@@ -5,12 +5,12 @@
 
 Gem::Specification.new do |s|
   s.name = %q{operawatir}
-  s.version = "0.5.1"
+  s.version = "0.6.pre1"
   s.platform = %q{jruby}
 
-  s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = ["Andreas Tolf Tolfsen", "Chris Lloyd", "Stuart Knightley", "Deniz Turkoglu"]
-  s.date = %q{2011-09-20}
+  s.required_rubygems_version = Gem::Requirement.new("> 1.3.1") if s.respond_to? :required_rubygems_version=
+  s.authors = [%q{Andreas Tolf Tolfsen}, %q{Chris Lloyd}, %q{Stuart Knightley}, %q{Deniz Turkoglu}]
+  s.date = %q{2011-12-01}
   s.description = %q{    OperaWatir is a part of the Watir (pronounced water) family of
     free software Ruby libraries for automating web browsers.
     OperaWatir provides a querying engine and Ruby bindings for a
@@ -18,8 +18,8 @@ Gem::Specification.new do |s|
     browser.  It aims for full compliancy with the Watir 2 and Watir 3
     specifications.
 }
-  s.email = ["andreastt@opera.com", "christopherl@opera.com", "stuartk@opera.com", "dturkoglu@opera.com"]
-  s.executables = ["desktopwatir", "operawatir"]
+  s.email = [%q{andreastt@opera.com}, %q{christopherl@opera.com}, %q{stuartk@opera.com}, %q{dturkoglu@opera.com}]
+  s.executables = [%q{desktopwatir}, %q{operawatir}]
   s.extra_rdoc_files = [
     "README.md"
   ]
@@ -37,12 +37,13 @@ Gem::Specification.new do |s|
     "bin/operawatir",
     "lib/operadriver/APACHE_2.0_LICENSE.txt",
     "lib/operadriver/NEW_BSD_LICENSE.txt",
-    "lib/operadriver/commons-io-2.0.1.jar",
+    "lib/operadriver/commons-exec-1.1.jar",
     "lib/operadriver/commons-jxpath-1.3.jar",
-    "lib/operadriver/guava-r09.jar",
-    "lib/operadriver/operadriver-v0.7.3.jar",
+    "lib/operadriver/guava-10.0.1.jar",
+    "lib/operadriver/operadriver-v0.8.1.jar",
+    "lib/operadriver/operalaunchers-0.3.jar",
     "lib/operadriver/protobuf-java-2.4.1.jar",
-    "lib/operadriver/selenium-nodeps-20100909.jar",
+    "lib/operadriver/selenium-java-2.13.0.jar",
     "lib/operawatir.rb",
     "lib/operawatir/actions.rb",
     "lib/operawatir/browser.rb",
@@ -292,9 +293,9 @@ Gem::Specification.new do |s|
     "utils/formatters/spartan_formatter.rb"
   ]
   s.homepage = %q{http://www.opera.com/developer/tools/operawatir/}
-  s.require_paths = ["lib"]
+  s.require_paths = [%q{lib}]
   s.rubyforge_project = %q{operawatir}
-  s.rubygems_version = %q{1.5.1}
+  s.rubygems_version = %q{1.8.9}
   s.summary = %q{Toolkit for automating interactions with the Opera web browser.}
 
   if s.respond_to? :specification_version then
