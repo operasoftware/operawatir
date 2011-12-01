@@ -10,7 +10,7 @@ v0.6.pre1    2011-12-01
 
   * OperaDesktopHelper missed a line making it impossible to run
     desktopwatir RSpec tests from `jruby -S rspec test.rb`.
-    (andreastt)v
+    (andreastt)
 
   [OTHER]
 
