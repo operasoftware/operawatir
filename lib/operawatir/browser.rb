@@ -199,17 +199,19 @@ class OperaWatir::Browser
 
 private
 
-  def self.desired_capabilities
-    @desired_capabilities ||= DesiredCapabilities.new.tap { |s|
-      s.setCapability('opera.logging.level', self.settings[:logging_level]) if self.settings[:logging_level]
-      s.setCapability('opera.logging.file', self.settings[:logging_file]) if self.settings[:logging_file]
-      s.setCapability('opera.autostart', false) if self.settings[:manual]
-      s.setCapability('opera.launcher', self.settings[:launcher]) if self.settings[:launcher]
-      s.setCapability('opera.binary', self.settings[:path]) if self.settings[:path]
-      s.setCapability('opera.arguments', self.settings[:args].to_s) if self.settings[:args]
-      s.setCapability('opera.no_quit', true) if self.settings[:no_quit]
-      s.setCapability('opera.idle', true) if self.settings[:opera_idle] or ENV['OPERA_IDLE'].truthy?
-    }
+  def self.desired_capabilities(desktopwatir = false)
+    @desired_capabilities ||= DesiredCapabilities.new.tap do |c|
+      c.setCapability('opera.logging.level', self.settings[:logging_level]) if self.settings[:logging_level]
+      c.setCapability('opera.logging.file', self.settings[:logging_file]) if self.settings[:logging_file]
+      c.setCapability('opera.autostart', false) if self.settings[:manual]
+      c.setCapability('opera.launcher', self.settings[:launcher]) if self.settings[:launcher]
+      c.setCapability('opera.binary', self.settings[:path]) if self.settings[:path]
+      c.setCapability('opera.arguments', self.settings[:args].to_s) if self.settings[:args]
+      c.setCapability('opera.no_quit', true) if self.settings[:no_quit]
+      c.setCapability('opera.no_restart', true) if self.settings[:no_restart]
+      c.setCapability('opera.guess_binary_path', false) if desktopwatir
+      c.setCapability('opera.idle', true) if self.settings[:opera_idle] or ENV['OPERA_IDLE'].truthy?
+    end
   end
 
 end

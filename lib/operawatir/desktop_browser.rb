@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 module OperaWatir
   class DesktopBrowser < Browser
     include DesktopContainer
@@ -13,7 +14,7 @@ module OperaWatir
     def initialize
       OperaWatir.compatibility! unless OperaWatir.api >= 3
 
-      self.driver = OperaDesktopDriver.new(self.class.opera_driver_settings)
+      self.driver        = OperaDesktopDriver.new(self.class.desired_capabilities(true))
       self.active_window = OperaWatir::Window.new(self)
       self.preferences   = OperaWatir::Preferences.new(self)
       self.keys          = OperaWatir::Keys.new(self)
@@ -796,26 +797,11 @@ module OperaWatir
 
 private
 
-   def close_menu
+    def close_menu
       wait_start
       key_press_direct("Esc")
       wait_for_menu_closed("")
-   end
-
-
-   def self.opera_driver_settings
-     @opera_driver_settings ||= OperaDriverSettings.new.tap {|s|
-       #s.setRunOperaLauncherFromOperaDriver true
-       s.setAutostart false if self.settings[:manual]
-       s.setOperaLauncherBinary self.settings[:launcher]
-       s.setOperaBinaryLocation self.settings[:path]
-#       s.setOperaBinaryArguments self.settings[:args].to_s + ' -autotestmode'
-       s.setNoQuit self.settings[:no_quit]
-       s.setNoRestart self.settings[:no_restart]
-       s.setGuessOperaPath false
-       s.setUseOperaIdle false if !self.settings[:opera_idle]
-     }
-   end
+    end
 
     # Gets the parent widget name of which there is none here
     def parent_widget
