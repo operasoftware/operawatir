@@ -6,6 +6,12 @@ v0.6.pre1    2011-12-01
     relies on shared code between OperaWatir and OperaDesktopWatir.
     (andreastt)
 
+  [BUG FIXES]
+
+  * OperaDesktopHelper missed a line making it impossible to run
+    desktopwatir RSpec tests from `jruby -S rspec test.rb`.
+    (andreastt)v
+
   [OTHER]
 
   * Upgraded to OperaDriver v0.8.1.  (andreastt)
