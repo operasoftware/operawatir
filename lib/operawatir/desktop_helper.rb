@@ -107,3 +107,5 @@ private
     end
   end
 end
+
+OperaWatir::DesktopHelper.run!
